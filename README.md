@@ -13,11 +13,7 @@ Don't worry, assuming my script works, it should create symbolic links with dots
 ## Pre-requisites (in order of importance)
 - *nix system (Yeah not you Microsoft)
 - Git and internet connection (to clone the repo)
-- Z Shell (no oh-my-zsh!!)
-- Bourne Again Shell
-- Vim
-- NeoVim
-- Homebrew (you'll get a confirmation for this in the shell script)
+- Z Shell (no oh-my-zsh!!) (or bash with a little change in the script)
 
 ## Usage
 Clone this repository in the home directory.
