@@ -7,8 +7,22 @@ printf "
 /_/ /_//_/\__/\___/ /____/\___/\__/_/ /_/_/\__/___/
 \n"
 
-printf "1. Dotfiles. Do you wish to replace dotfiles? Type 'y': "
-read -sk1 dotfile_input # read -n1 in bash
+printf "1. Homebrew. 
+All existing formulae will be uninstalled.
+Some formulae might compitable with non-MacOS System. 
+Do you want to proceed? y/n:"
+read -sk1 homebrew_input # read -n1 in bash
+case $homebrew_input in
+  y|Y)
+    brew remove --force $(brew list --formula)
+    brew remove --cask --force $(brew list)
+    brew bundle --file ~/dotfiles/homebrew/Brewfile
+  *)
+    printf "Skipping Homebrew installation...";;
+esac
+
+printf "2. Dotfiles. Do you wish to replace dotfiles? y/n: "
+read -sk1 dotfile_input
 case $dotfile_input in  
   y|Y)
     git=("gitignore" "gitconfig")

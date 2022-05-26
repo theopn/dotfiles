@@ -11,7 +11,7 @@ Dots in front of the files in repo are removed for readability reason, which is 
 Don't worry, assuming my script works, it should create symbolic links with dots in front of the file names.
 
 ## Pre-requisites (in order of importance)
-- UNIX/Linux machine
+- *nix system (Yeah not you Microsoft)
 - Git and internet connection (to clone the repo)
 - Z Shell (no oh-my-zsh!!)
 - Bourne Again Shell
