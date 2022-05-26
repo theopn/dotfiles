@@ -3,11 +3,12 @@ Do you wish to continue? Type 'yes': "
 read -r initial_input
 case $initial_input in  
   yes)
-    sudo rm -rf ~/.gitignore > /dev/null 2>&1
-    SYMLINKS=()
-    ln -sf ~/dotfiles/gitignore ~/.gitignore
-    SYMLINKS+=('.gitignore')
-    echo ${SYMLINKS[@]} modified.
+    git=( "gitignore" "gitconfig" )
+    for t in ${git[@]}; do
+      sudo rm -rf ~/.$t > /dev/null 2>&1
+      ln -sf ~/dotfiles/git/$t ~/.$t
+      echo .$t modified
+    done
     ;;
   *) 
     printf "Ending the script...";; 

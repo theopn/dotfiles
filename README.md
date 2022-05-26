@@ -21,17 +21,17 @@ Run the installation script (might ask for a password).
 
 # Highlights
 
-## bashrc
+## Bash
 
-## zshrc && zsh_plugin
+## Zsh
 
-## gitconfig && gitignore
+## Git
 
-## vimrc
+## Vim
 
-## config/nvim
+## NeoVim
 
-## Brewfile
+## Homebrew
 
-## macos_settings.sh
+## MacOS Setting
 Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
