@@ -47,6 +47,18 @@ case $dotfile_input in
       ln -sf ~/dotfiles/bash/$v ~/.$v
       echo .$v modified
     done
+    zsh=("zshrc" "zsh_plugins")
+    for v in ${zsh[@]}; do
+      if [[ -e "$home.$v" ]]; then
+        mkdir -p $dotfiles_backup/zsh
+        echo $home.$v exists. Moving to $dotfiles_backup
+        mv $home.$v $dotfiles_backup/zsh/
+      else
+        sudo rm -rf ~/.$v
+      fi
+      ln -sf ~/dotfiles/zsh/$v ~/.$v
+      echo .$v modified
+    done
     ;;
   *) 
     printf "Skipping the dotfiles...\n";; 

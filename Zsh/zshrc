@@ -1,0 +1,39 @@
+########## Git Prompt Set Up ##########
+# setup git information
+autoload -Uz vcs_info
+precmd_functions+=( vcs_info )
+setopt prompt_subst
+# %b: branch
+# %u: unstaged changes
+zstyle ':vcs_info:git:*' formats '%F{5}(%b%u)%f '
+# this makes %u work, but also the prompt is clearly slower in git dirs when this is on
+zstyle ':vcs_info:*' check-for-changes true
+# what string to use for %u when there are unstaged changes
+zstyle ':vcs_info:*' unstagedstr '*'
+# vcs_info supports multiple version control systems, but I need just git
+zstyle ':vcs_info:*' enable git
+# Explaining prompt:
+# %B / %F{n}: begin bold / color
+# %b / %f: end bold / color
+# %n~: display n latest directories of current directory
+# %#: display a '%' (or '#' when root)
+# %(..): conditional expression (see docs)
+# %?: exit code of last process
+# %n@%m: user@host
+
+########## Prompt Setting ##########
+PROMPT="╭─ %F{146}%n%f %F{239}at %F{085}%m %F{239}hanging out in %F{081}%~%f
+╰─ %F{153}%D - %F{075}%* %f-> "
+# RPROMPT="%B${vcs_info_msg_0_}%F{12}%2~%f"
+
+# Vim mode
+bindkey -v
+
+# Auto completion. Requires zsh-autocomplete
+source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
+######### Alias ##########
+alias cl="clear"
+alias ls="ls -G"
+alias l="ls -l -a"
+alias nvi="nvim"
