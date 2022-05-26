@@ -18,12 +18,13 @@ Don't worry, assuming my script works, it should create symbolic links with dots
 ## Usage
 Clone this repository in the home directory.
 `git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
+
 Run the installation script (might ask for a password).
 `zsh ~/dotfiles/dotfiles_install.sh`
 
 ## After installation
 - Vim: `:PlugInstall`
-- NeoVim: `:PackerSync`
+- NeoVim: `:PackerSync`, then `:Coqdeps`
 
 # Highlights
 
@@ -48,7 +49,7 @@ Notable settings include
 - Handmade statusline
 
 ## NeoVim
-NeoVim is my IDE for C, Lua, Python, and other languages. Plug-ins are managed by Packer.
+NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
 - TokyoNight theme
 - Lualine
 - Treesitter and NvimTree
