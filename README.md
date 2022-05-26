@@ -13,17 +13,19 @@ Don't worry, assuming my script works, it should create symbolic links with dots
 ## Pre-requisites (in order of importance)
 - *nix system (Yeah not you Microsoft)
 - Git and internet connection (to clone the repo)
-- Z Shell (no oh-my-zsh!!) (or bash with a little change in the script)
+- Bash
 
 ## Usage
 Clone this repository in the home directory.
+
 `git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
 
-Run the installation script (might ask for a password).
-`zsh ~/dotfiles/dotfiles_install.sh`
+Run the installation script (do not run with sudo as Homebrew will not like that).
+
+`bash ~/dotfiles/dotfiles_install.sh`
 
 ## After installation
-- Vim: `:PlugInstall`
+- Vim: `:PlugInstall` ~~Will be removed soom~~
 - NeoVim: `:PackerSync`, then `:Coqdeps`
 
 # Highlights
@@ -34,6 +36,9 @@ Barebone shell setting with just ls alias and prompt.
 ## Zsh
 Vim keybinding, list, clear, NeoVim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
 zsh-autocomplete theme installed.
+
+## tmux
+I don't use it a whole lot, but it has some keybinding and status bar settings.
 
 ## Git
 Basic gitignore and name/email config. I might delete email or modify it for the privacy reason. 
@@ -57,13 +62,15 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
   - lspconfig is the default LSP engine
   - coq.artifacts include a lot of LSP engines
 
+
 ## Homebrew
 Items with strikethrough are one's that are not automated, probably because I don't want them to be installed on every machine.
 
 Formulae:
 - Bat: Fancier `cat` replacement (though I don't do alias cat="bat")
-- ffmpeg: Great media type converter. `ffmpeg -i in.xxx out.yyy`
-- neofetch: You know what's up
+- ~~ffmpeg: Great media type converter. `ffmpeg -i in.xxx out.yyy`~~
+- neofetch
+- tmux: You know what's up
 
 Casks:
 - Browser

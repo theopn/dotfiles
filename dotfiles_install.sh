@@ -11,7 +11,7 @@ printf "1. Homebrew.
 All existing formulae will be uninstalled.
 Some formulae might compitable with non-MacOS System. 
 Do you want to proceed? y/n: \n"
-read -sk1 homebrew_input # read -n1 in bash
+read -n1 homebrew_input # read -sk1 in zsh
 case $homebrew_input in
   y|Y)
     brew remove --force $(brew list --formula)
@@ -23,7 +23,7 @@ case $homebrew_input in
 esac
 
 printf "2. Dotfiles. Do you wish to replace dotfiles? y/n: \n"
-read -sk1 dotfile_input
+read -n1 dotfile_input
 case $dotfile_input in  
   y|Y)
     git=("gitignore" "gitconfig")
@@ -74,16 +74,28 @@ case $dotfile_input in
       ln -sf ~/dotfiles/zsh/$v ~/.$v
       echo .$v modified
     done
+    tmux=("tmux.conf")
+    for v in ${tmux[@]}; do
+      if [[ -e "$home.$v" ]]; then
+        mkdir -p $dotfiles_backup/tmux
+        echo $home.$v exists. Moving to $dotfiles_backup
+        mv $home.$v $dotfiles_backup/tmux/
+      else
+        sudo rm -rf ~/.$v
+      fi
+      ln -sf ~/dotfiles/tmux/$v ~/.$v
+      echo .$v modified
+    done
     ;;
   *) 
     printf "Skipping dotfile setups...\n" ;; 
 esac
 
 printf "3. MacOS specific Settings. Do you want to proceed? y/n: \n"
-read -sk1 macos_input # read -n1 in bash
+read -n1 macos_input # read -n1 in bash
 case $macos_input in
   y|Y)
-    ~/dotfiles/scripts/macos_settings.sh ;;
+    source ~/dotfiles/scripts/macos_settings.sh ;;
   *)
     printf "Skipping MacOS specific settings... \n" ;;
 esac
