@@ -1,11 +1,12 @@
+"===============================================================================
+" "Nature is pleased with simplicity. And nature is no dummy” - Isaac Newton
 "___________.__                   ____   ____.__
 "\__    ___/|  |__   ____  ____   \   \ /   /|__| ____________   ____
 "  |    |   |  |  \_/ __ \/  _ \   \   Y   / |  |/     \_  __ \_/ ___\
 "  |    |   |   Y  \  ___(  <_> )   \     /  |  |  Y Y  \  | \/\  \___
 "  |____|   |___|  /\___  >____/     \___/   |__|__|_|  /__|    \___  >
 "                \/     \/                            \/            \/
-"
-
+"===============================================================================
 
 " Vim Plug --- {{{
 call plug#begin()
@@ -14,7 +15,6 @@ call plug#begin()
   Plug 'scrooloose/nerdtree'
 call plug#end()
 " }}}
-
 
 " Visual Related Setting --- {{{
 set number norelativenumber ruler colorcolumn=80 " Yes I hate relativenumber
@@ -26,14 +26,12 @@ let g:dracula_italic=0 " Enable this if some syntax are weirdly highlighted
 colorscheme dracula
 " }}}
 
-
 " Text Edit Related Settings --- {{{
 let mapleader=','
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
 set list listchars=tab:>\ ,trail:␣,nbsp:+
 " }}}
-
 
 " Syntax Related Settings --- {{{
 filetype on
@@ -47,7 +45,6 @@ augroup filetype_vim
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
 " }}}
-
 
 " Keybinding Related Settings --- {{{
 " Automatic closer for parenthesis, brackets, et
@@ -68,7 +65,6 @@ tnoremap <ESC> <C-\><C-n>
 nmap n nzz
 nmap N Nzz
 " }}}
-
 
 " Status Bar related settings --- {{{
 set laststatus=2
@@ -92,7 +88,6 @@ set statusline+=%9*\ col:%03c\                            "Colnr
 set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
 " }}}
 
-
 " NERDTree Related Settings --- {{{
 " Start NERDTree and put the cursor back in the other window.
 autocmd VimEnter * NERDTree | wincmd p
@@ -102,7 +97,6 @@ let NERDTreeShowHidden=1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 " }}}
-
 
 " CS240 Work Environment --- {{{
 " By Theo Park, special thanks to Shriansh Chari
