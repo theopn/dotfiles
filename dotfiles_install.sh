@@ -27,68 +27,73 @@ read -n1 dotfile_input
 case $dotfile_input in  
   y|Y)
     # Git related dotfiles
-    git=("gitignore" "gitconfig")
-    for v in ${git[@]}; do
+    current="git"
+    git_files=("gitignore" "gitconfig")
+    for v in ${git_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/git
+        mkdir -p $dotfiles_backup/$current
         echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/git/
+        mv $home.$v $dotfiles_backup/$current/
       else
         sudo rm -rf ~/.$v
       fi
-      ln -sf ~/dotfiles/git/$v ~/.$v
+      ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
     # Zsh related dotfiles
-    zsh=("zshrc" "zsh_plugins")
-    for v in ${zsh[@]}; do
+    current="zsh"
+    zsh_files=("zshrc" "zsh_plugins")
+    for v in ${zsh_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/zsh
+        mkdir -p $dotfiles_backup/$current
         echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/zsh/
+        mv $home.$v $dotfiles_backup/$current/
       else
         sudo rm -rf ~/.$v
       fi
-      ln -sf ~/dotfiles/zsh/$v ~/.$v
+      ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
     # Vim related dotfiles
-    vim=("vimrc")
-    for v in ${vim[@]}; do
+    current="vim"
+    vim_files=("vimrc")
+    for v in ${vim_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/vim
+        mkdir -p $dotfiles_backup/$current
         echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/vim/
+        mv $home.$v $dotfiles_backup/$current/
       else
         sudo rm -rf ~/.$v
       fi
-      ln -sf ~/dotfiles/vim/$v ~/.$v
+      ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
     # Tmux related dotfiles
-    tmux=("tmux.conf")
-    for v in ${tmux[@]}; do
+    current="tmux"
+    tmux_files=("tmux.conf")
+    for v in ${tmux_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/tmux
+        mkdir -p $dotfiles_backup/$current
         echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/tmux/
+        mv $home.$v $dotfiles_backup/$current/
       else
         sudo rm -rf ~/.$v
       fi
-      ln -sf ~/dotfiles/tmux/$v ~/.$v
+      ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
     # Bash related dotfiles
-    bash=("bashrc")
-    for v in ${bash[@]}; do
+    current="bash"
+    bash_files=("bashrc")
+    for v in ${bash_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/bash
+        mkdir -p $dotfiles_backup/$current
         echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/bash/
+        mv $home.$v $dotfiles_backup/$current/
       else
         sudo rm -rf ~/.$v
       fi
-      ln -sf ~/dotfiles/bash/$v ~/.$v
+      ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
     ;;
