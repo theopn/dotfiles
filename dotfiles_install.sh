@@ -1,3 +1,5 @@
+home=~/
+dotfiles_backup=~/dotfiles_backup
 printf "
  ________              ___       __  _____ __      
 /_  __/ /  ___ ___    / _ \___  / /_/ __(_) /__ ___
@@ -5,21 +7,44 @@ printf "
 /_/ /_//_/\__/\___/ /____/\___/\__/_/ /_/_/\__/___/
 \n"
 
-printf "1. Dotfiles; If previous file existed, it will be moved to ~/dotfiles_backup.
-Do you wish to replace dotfiles? Type 'yes': "
-read -r dotfile_input
+printf "1. Dotfiles. Do you wish to replace dotfiles? Type 'y': "
+read -sk1 dotfile_input # read -n1 in bash
 case $dotfile_input in  
-  y|Y|yes|Yes)
+  y|Y)
     git=("gitignore" "gitconfig")
     for v in ${git[@]}; do
-      sudo rm -rf ~/.$v > /dev/null 2>&1
+      if [[ -e "$home.$v" ]]; then
+        mkdir -p $dotfiles_backup/git
+        echo $home.$v exists. Moving to $dotfiles_backup
+        mv $home.$v $dotfiles_backup/git/
+      else
+        sudo rm -rf ~/.$v
+      fi
       ln -sf ~/dotfiles/git/$v ~/.$v
       echo .$v modified
     done
     vim=("vimrc")
     for v in ${vim[@]}; do
-      sudo rm -rf ~/.$v # > /dev/null 2>&1
+      if [[ -e "$home.$v" ]]; then
+        mkdir -p $dotfiles_backup/vim
+        echo $home.$v exists. Moving to $dotfiles_backup
+        mv $home.$v $dotfiles_backup/vim/
+      else
+        sudo rm -rf ~/.$v
+      fi
       ln -sf ~/dotfiles/vim/$v ~/.$v
+      echo .$v modified
+    done
+    bash=("bashrc")
+    for v in ${bash[@]}; do
+      if [[ -e "$home.$v" ]]; then
+        mkdir -p $dotfiles_backup/bash
+        echo $home.$v exists. Moving to $dotfiles_backup
+        mv $home.$v $dotfiles_backup/bash/
+      else
+        sudo rm -rf ~/.$v
+      fi
+      ln -sf ~/dotfiles/bash/$v ~/.$v
       echo .$v modified
     done
     ;;
