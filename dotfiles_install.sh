@@ -1,7 +1,7 @@
 printf "This script will remove and replace dotfiles with ones in the repository.
 Do you wish to continue? Type 'yes': "
-read -r initial_input
-case $initial_input in  
+read -r dotfile_input
+case $dotfile_input in  
   yes)
     git=("gitignore" "gitconfig")
     for v in ${git[@]}; do
