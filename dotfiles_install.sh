@@ -7,10 +7,10 @@ printf "
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 \n"
 
-printf "1. Homebrew. 
+printf "\n1. Homebrew. 
 All existing formulae will be uninstalled.
 Some formulae might compitable with non-MacOS System. 
-Do you want to proceed? y/n: \n"
+Do you want to proceed? y/n: "
 read -n1 homebrew_input # read -sk1 in zsh
 case $homebrew_input in
   y|Y)
@@ -19,13 +19,14 @@ case $homebrew_input in
     brew bundle --file ~/dotfiles/homebrew/Brewfile
     ;;
   *)
-    printf "Skipping Homebrew installation...\n" ;;
+    printf "\nSkipping Homebrew installation...\n" ;;
 esac
 
-printf "2. Dotfiles. Do you wish to replace dotfiles? y/n: \n"
+printf "\n2. Dotfiles. Do you wish to replace dotfiles? y/n: "
 read -n1 dotfile_input
 case $dotfile_input in  
   y|Y)
+    # Git related dotfiles
     git=("gitignore" "gitconfig")
     for v in ${git[@]}; do
       if [[ -e "$home.$v" ]]; then
@@ -38,30 +39,7 @@ case $dotfile_input in
       ln -sf ~/dotfiles/git/$v ~/.$v
       echo .$v modified
     done
-    vim=("vimrc")
-    for v in ${vim[@]}; do
-      if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/vim
-        echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/vim/
-      else
-        sudo rm -rf ~/.$v
-      fi
-      ln -sf ~/dotfiles/vim/$v ~/.$v
-      echo .$v modified
-    done
-    bash=("bashrc")
-    for v in ${bash[@]}; do
-      if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/bash
-        echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/bash/
-      else
-        sudo rm -rf ~/.$v
-      fi
-      ln -sf ~/dotfiles/bash/$v ~/.$v
-      echo .$v modified
-    done
+    # Zsh related dotfiles
     zsh=("zshrc" "zsh_plugins")
     for v in ${zsh[@]}; do
       if [[ -e "$home.$v" ]]; then
@@ -74,6 +52,20 @@ case $dotfile_input in
       ln -sf ~/dotfiles/zsh/$v ~/.$v
       echo .$v modified
     done
+    # Vim related dotfiles
+    vim=("vimrc")
+    for v in ${vim[@]}; do
+      if [[ -e "$home.$v" ]]; then
+        mkdir -p $dotfiles_backup/vim
+        echo $home.$v exists. Moving to $dotfiles_backup
+        mv $home.$v $dotfiles_backup/vim/
+      else
+        sudo rm -rf ~/.$v
+      fi
+      ln -sf ~/dotfiles/vim/$v ~/.$v
+      echo .$v modified
+    done
+    # Tmux related dotfiles
     tmux=("tmux.conf")
     for v in ${tmux[@]}; do
       if [[ -e "$home.$v" ]]; then
@@ -86,21 +78,34 @@ case $dotfile_input in
       ln -sf ~/dotfiles/tmux/$v ~/.$v
       echo .$v modified
     done
+    # Bash related dotfiles
+    bash=("bashrc")
+    for v in ${bash[@]}; do
+      if [[ -e "$home.$v" ]]; then
+        mkdir -p $dotfiles_backup/bash
+        echo $home.$v exists. Moving to $dotfiles_backup
+        mv $home.$v $dotfiles_backup/bash/
+      else
+        sudo rm -rf ~/.$v
+      fi
+      ln -sf ~/dotfiles/bash/$v ~/.$v
+      echo .$v modified
+    done
     ;;
   *) 
-    printf "Skipping dotfile setups...\n" ;; 
+    printf "\nSkipping dotfile setups...\n" ;; 
 esac
 
-printf "3. MacOS specific Settings. Do you want to proceed? y/n: \n"
+printf "\n3. MacOS specific Settings. Do you want to proceed? y/n: "
 read -n1 macos_input # read -n1 in bash
 case $macos_input in
   y|Y)
     source ~/dotfiles/scripts/macos_settings.sh ;;
   *)
-    printf "Skipping MacOS specific settings... \n" ;;
+    printf "\nSkipping MacOS specific settings... \n" ;;
 esac
 
-printf "Ending the dotfile installation...\n"
+printf "\nEnding the dotfile installation..."
 printf "
    ____   __   __U _____ u
 U | __')u \ \ / /\| ___'|/
