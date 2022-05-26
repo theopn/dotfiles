@@ -26,7 +26,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 ## After installation
 - Vim: `:PlugInstall` ~~Will be removed soom~~
-- NeoVim: `:PackerSync`, then `:Coqdeps`
+- NeoVim: `:PackerSync`, then `:COQdeps`
 
 # Highlights
 
@@ -64,38 +64,38 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
 
 
 ## Homebrew
-Items with strikethrough are one's that are not automated, probably because I don't want them to be installed on every machine.
+Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`, either because I don't want them to be installed on every machine or is too large.
 
 Formulae:
-- Bat: Fancier `cat` replacement (though I don't do alias cat="bat")
-- ~~ffmpeg: Great media type converter. `ffmpeg -i in.xxx out.yyy`~~
+- **Bat: Fancier `cat` replacement (though I don't do alias cat="bat")**
+- ffmpeg: Great media type converter. `ffmpeg -i in.xxx out.yyy`
 - neofetch
-- tmux: You know what's up
+- **NeoVim**
+- **Lua**
+- **tmux**
 
 Casks:
 - Browser
   - Brave
-  - Firefox
-- Personal productivity
-  - Obsidian: Knowledge base based on local markdown files.
-  - Notion: Good for Database.
+  - **Firefox**
 - Productivity
-  - ~~Libre Office~~
+  - **Obsidian: Knowledge base based on local markdown files.**
+  - Notion: Good for Database.
+  - Libre Office
 - Development
   - IntelliJ CE: Ugh Java
-  - iTerm 2
-  - MacVim
-  - VSCode
+  - **iTerm 2**
+  - **MacVim**
+  - **VSCode**
 - Entertainment
-    - ~~Spotify~~
-    - ~~Minecraft~~
+    - Spotify
+    - Minecraft
 - System
-  - ~~Alfred: Lovely Spotlight replacement~~
-  - AppCleaner
-  - Bitwarden: The BEST password manager
-  - ~~Hidden bar: Hides MacOS menu bar items~~
-  - ~~Spectacle: Window manager for MacOS. Officially discontinued and might not work.~~
-  - ~~iStats Menu: System monitoring tool~~
+  - Alfred: Lovely Spotlight replacement
+  - **AppCleaner: App remover for MacOS**
+  - **Bitwarden: The best password manager**
+  - **Spectacle: Window manager for MacOS. Officially discontinued and might not work.**
+  - iStat Menus: System monitoring tool
 
 
 ## MacOS Setting
