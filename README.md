@@ -1,8 +1,8 @@
 ```
- ________              ___       __  _____ __      
-/_  __/ /  ___ ___    / _ \___  / /_/ __(_) /__ ___
- / / / _ \/ -_) _ \  / // / _ \/ __/ _// / / -_|_-<
-/_/ /_//_/\__/\___/ /____/\___/\__/_/ /_/_/\__/___/
+  _____ _              ___      _    __ _ _
+ |_   _| |_  ___ ___  |   \ ___| |_ / _(_) |___
+   | | | ' \/ -_) _ \ | |) / _ \  _|  _| | / -_)
+   |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 ```
 # Theo's dotfiles
 Here are dotfiles for my system, currently 2020 Macbook Air with M1 processor.
@@ -20,6 +20,10 @@ Clone this repository in the home directory.
 `git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
 Run the installation script (might ask for a password).
 `zsh ~/dotfiles/dotfiles_install.sh`
+
+## After installation
+- Vim: `:PlugInstall`
+- NeoVim: `:PackerSync`
 
 # Highlights
 
@@ -44,7 +48,7 @@ Notable settings include
 - Handmade statusline
 
 ## NeoVim
-NeoVim is my IDE for C, Lua, and development in other languages. Plug-ins are managed by Packer.
+NeoVim is my IDE for C, Lua, Python, and other languages. Plug-ins are managed by Packer.
 - TokyoNight theme
 - Lualine
 - Treesitter and NvimTree
@@ -53,12 +57,38 @@ NeoVim is my IDE for C, Lua, and development in other languages. Plug-ins are ma
   - coq.artifacts include a lot of LSP engines
 
 ## Homebrew
+Items with strikethrough are one's that are not automated, probably because I don't want them to be installed on every machine.
+
 Formulae:
 - Bat: Fancier `cat` replacement (though I don't do alias cat="bat")
 - ffmpeg: Great media type converter. `ffmpeg -i in.xxx out.yyy`
 - neofetch: You know what's up
+
 Casks:
-- 
+- Browser
+  - Brave
+  - Firefox
+- Personal productivity
+  - Obsidian: Knowledge base based on local markdown files.
+  - Notion: Good for Database.
+- Productivity
+  - ~~Libre Office~~
+- Development
+  - IntelliJ CE: Ugh Java
+  - iTerm 2
+  - MacVim
+  - VSCode
+- Entertainment
+    - ~~Spotify~~
+    - ~~Minecraft~~
+- System
+  - ~~Alfred: Lovely Spotlight replacement~~
+  - AppCleaner
+  - Bitwarden: The BEST password manager
+  - ~~Hidden bar: Hides MacOS menu bar items~~
+  - ~~Spectacle: Window manager for MacOS. Officially discontinued and might not work.~~
+  - ~~iStats Menu: System monitoring tool~~
+
 
 ## MacOS Setting
 Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
