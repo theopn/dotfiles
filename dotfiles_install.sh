@@ -9,7 +9,7 @@ printf "1. Dotfiles; If previous file existed, it will be moved to ~/dotfiles_ba
 Do you wish to replace dotfiles? Type 'yes': "
 read -r dotfile_input
 case $dotfile_input in  
-  yes)
+  y|Y|yes|Yes)
     git=("gitignore" "gitconfig")
     for v in ${git[@]}; do
       sudo rm -rf ~/.$v > /dev/null 2>&1
