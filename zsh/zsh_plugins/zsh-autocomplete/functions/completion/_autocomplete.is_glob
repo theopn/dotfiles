@@ -1,0 +1,12 @@
+#autoload
+zmodload -F zsh/parameter p:patchars
+
+local word=$PREFIX$SUFFIX
+if [[ $word == ${~${(q)word}} &&
+    $word == (*(${(~j:|:)patchars[@]:#\~}})*|?*(${(~j:|:)patchars})*) ]]; then
+  reply=( yes )
+  true
+else
+  reply=( no )
+  false
+fi

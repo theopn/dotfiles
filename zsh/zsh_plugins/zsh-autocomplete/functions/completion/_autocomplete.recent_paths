@@ -1,0 +1,56 @@
+#autoload
+zmodload -F zsh/parameter p:functions
+
+_autocomplete.recent_paths() {
+  (( compstate[nmatches] )) &&
+      return 1
+
+  local -PaU files=()
+  local -Pi ret=1
+  local -P tag=
+  for tag in directories files; do
+    if [[ -v functions[_autocomplete.recent_$tag] &&
+            $_comp_tags == (|* )(|(all|local)-)$tag(| *) ]] &&
+        _autocomplete.recent_$tag "$PREFIX$SUFFIX"; then
+      files=( "$reply[@]" )
+      _description -V recent-$tag expl 'recent directory'
+      .autocomplete.recent_paths.add $files[@] &&
+          ret=0
+    fi
+  done
+
+  return ret
+}
+
+.autocomplete.recent_paths.add() {
+  local -a displ=() matches=( "$@" )
+  builtin compadd "$expl[@]" -D matches -- "$@:t"
+  displ=( "${(@D)matches}" )
+  zformat -a displ '' $^displ':'
+
+  .autocomplete.recent_paths.trim
+
+  local -Pi ret=1
+
+  # Work around `setopt autonamedirs` by not assigning absolute paths to scalars.
+  while (( $#matches )); do
+    (( $#displ[1] > 1 )) &&
+        compadd "$expl[@]" -d displ -P "${${(D)matches[1]:h}%/}/" -fW "${${matches[1]:h}%/}/" \
+              -- "$matches[1]:t" &&
+            ret=0
+    shift -- displ matches
+  done
+
+  return ret
+}
+
+# Workaround to prevent the prompt from jumping
+.autocomplete.recent_paths.trim() {
+  local -P total="${(j:/  :)displ}/  "
+  while (( $#total > COLUMNS )); do
+    shift -p -- displ matches
+    total="${(j:/  :)displ}/  "
+  done
+}
+
+_autocomplete.recent_paths "$@"

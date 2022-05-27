@@ -1,0 +1,144 @@
+#autoload
+
+_autocomplete.history_lines() {
+  local -P tag=history-lines
+  _tags $tag
+  _tags ||
+      return 1
+  _requested $tag ||
+      return 1
+
+  local -PA events=()
+  local -Pi min_lines= max_lines=
+  builtin zstyle -s ":autocomplete:${curcontext}:" list-lines min_lines ||
+      min_lines=16
+  (( max_lines = min( min_lines, HISTNO - 1, LINES - BUFFERLINES ) ))
+
+  if [[ -z $BUFFER ]]; then
+    if [[ $curcontext == *-forward:* ]]; then
+      local -Pi inc=1 histno=1
+    else
+      local -Pi inc=-1 histno=$(( HISTNO - 1 ))
+    fi
+    if [[ -o histfindnodups ]]; then
+      while (( $#events[@] < max_lines && 0 < histno && histno < HISTNO )); do
+        # -v's arg is a literal string, so we need to quote all characters.
+        [[ -v history[$histno] && ! -v events[${(q)history[$histno]}] ]] &&
+            events[$history[$histno]]=$histno
+        (( histno += inc ))
+      done
+      events=( "${(@Oa)${(@kv)events}}" )
+    else
+      while (( $#events[@] < max_lines && 0 < histno && histno < HISTNO )); do
+        [[ -v history[$histno] ]] &&
+            events[$histno]="$history[$histno]"
+        (( histno += inc ))
+      done
+    fi
+    _comp_colors=( '(history-lines)=[[:space:]]#(#b)(<->) *=0=2' "$_comp_colors[@]" )
+  else
+    local -PaU queries=() err=( '(#ia'{0..$(( $#words[CURRENT] ))}')' )
+    local -P query lbuffer= rbuffer=
+    if [[ $WIDGET == (|*-)search(|-*) ]]; then
+      queries=( \*$^err${(j:*:)${(0)words[CURRENT]}}\* )
+    else
+      lbuffer="${(j.[[:blank:]]##.)${(@b)words[1,CURRENT-1]}}"
+      rbuffer="${(j.[[:blank:]]##.)${(@b)words[CURRENT+1,-1]}}"
+      [[ -n $lbuffer ]] &&
+          lbuffer="${lbuffer}[[:blank:]]##"
+      [[ -n $rbuffer ]] &&
+          rbuffer="[[:blank:]]##${rbuffer}"
+      lbuffer="$lbuffer${(b)QIPREFIX}"
+      rbuffer="${(b)QISUFFIX}$rbuffer"
+      queries=( $lbuffer\*\($^err${words[CURRENT]}\)\*$rbuffer )
+    fi
+    if [[ -o histfindnodups ]]; then
+      local -Pa numbers=()
+      for query in $queries[@]; do
+        numbers=( "${(@k)history[(R)$~query]}" )
+        (( $#numbers[@] > 1 )) &&
+            break
+      done
+      local -Pa lines=( "${(@v)history[(I)(${(~j:|:)numbers})]}" )
+      if [[ $curcontext != *-forward:* ]]; then
+        numbers=( "${(@Oa)numbers}" )
+        lines=( "${(@Oa)lines}" )
+      fi
+      events=( "${(@)lines:^numbers}" )
+      events=( "${(@Oa)${(@kv)events}}" )
+    else
+      for query in $queries[@]; do
+        events=( "${(@kv)history[(R)$~query]}" )
+        (( $#events[@] > 1 )) &&
+            break
+      done
+    fi
+    _comp_colors=(
+        "(history-lines)=[[:space:]]#(#b)(<->) *(${${query#$lbuffer\*}%\*$rbuffer})*=0=2=30;103"
+        "$_comp_colors[@]"
+    )
+  fi
+
+  (( $#events[@] )) ||
+      return
+
+  local -a displays=()
+  printf -v displays "%s:%s" "${(@kv)events}"
+  displays=( "$displays[@]" )
+
+  local -Pi diff=$(( $#displays[@] - max_lines ))
+  local -P suf=
+  if [[ $WIDGET == (|*-)search(|-*) ]]; then
+    displays=( ${(@n)displays} )
+    (( diff > 0 )) &&
+        shift "$diff" displays
+    suf=';'
+  else
+    if [[ $curcontext == *-forward:* ]]; then
+        displays=( ${(@n)displays} )
+    else
+        displays=( ${(@On)displays} )
+    fi
+    (( diff > 0 )) &&
+        shift -p "$diff" displays
+    suf=' '
+  fi
+
+  local -a matches=( "${displays[@]##[[:blank:]]#<->:}" )
+  [[ $WIDGET != (|*-)search(|-*) ]] &&
+      matches=( "${(@)${(@)matches[@]##$~lbuffer}%%$~rbuffer}" )
+
+  local -Pa match=() mbegin=() mend=()
+  displays=(
+      "${(@r:COLUMNS-1:)displays[@]/%(#b)(<->):(*)/${(l:$#HISTNO:)match[1]} ${(V)${(Z+C+)match[2]}}}"
+  )
+
+  local -a expl=()
+  local _comp_no_ignore=1
+  _description -2V "$tag" expl 'history line'
+  builtin compadd "$expl[@]" -S "$suf" -R _autocomplete.history_lines.suffix \
+      -QU -ld displays -a matches
+}
+# functions -T _autocomplete.history_lines
+
+_autocomplete.history_lines.suffix() {
+  case $WIDGET in
+    ( (|.|*-)(hist(|ory)|search|delete|kill)(|-*) )
+    ;;
+    ( (|.)(self-insert(|-*)|magic-space) )
+      case $KEYS[-1] in
+        ( [$ZLE_SPACE_SUFFIX_CHARS$ZLE_REMOVE_SUFFIX_CHARS] )
+          LBUFFER=$LBUFFER[1,-1-$1]
+        ;|
+        ( [$ZLE_SPACE_SUFFIX_CHARS] )
+          LBUFFER+=' '
+        ;;
+      esac
+    ;;
+    ( * )
+      LBUFFER=$LBUFFER[1,-1-$1]
+    ;;
+  esac
+}
+
+_autocomplete.history_lines "$@"

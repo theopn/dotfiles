@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+if [[ $LBUFFER == *$'\n'* ]]; then
+  builtin zle up-line
+else
+  builtin zle history-search -w
+fi

@@ -1,0 +1,47 @@
+#!/bin/zsh
+local 0=${(%):-%N}
+builtin zle -C ${0}.context list-choices ${0}.context
+
+${0}.context() {
+  # Inside a completion widget, the current quote level is removed. So, we should not include
+  # $QIPREFIX/$QISUFFIX in our pattern or it won't match.
+  lcontext=${LBUFFER%${(~j:*:)words[1,CURRENT-1]}*$IPREFIX$PREFIX}
+  lcontext+=${lcontext:+ }${(pj:\0:)${(@b)words}}
+  rcontext=${RBUFFER#$SUFFIX$ISUFFIX*${(~j:*:)words[CURRENT+1,-1]}}
+}
+
+${0}() {
+  local -P lbuffer="$LBUFFER" rbuffer="$RBUFFER"
+  local -P keymap_menuselect="$( builtin bindkey -M menuselect -L )"
+  {
+    builtin bindkey -M menuselect -s \
+        '^R' '^_^_^R' \
+        '^S' '^_^_^S'
+    builtin bindkey -M menuselect \
+        '\e[D' .backward-char \
+        '\eOD' .backward-char \
+        '\e[C' .forward-char \
+        '\eOC' .forward-char
+
+    setopt $_autocomplete__comp_opts[@] $_autocomplete__ctxt_opts[@]
+
+    local lcontext= rcontext=
+    builtin zle ${(%):-%N}.context
+    LBUFFER="$lcontext"
+    RBUFFER="$rcontext"
+
+    [[ -o sharehistory ]] &&
+        fc -RI  # Get new history events from file.
+    builtin zle _history_search
+
+  } always {
+    builtin bindkey -M menuselect -r '^R' '^S' '\e'{\[,O}{D,C}
+    eval "$keymap_menuselect"
+    if [[ $BUFFER == $lcontext$rcontext ]] then
+      LBUFFER="$lbuffer"
+      RBUFFER="$rbuffer"
+    fi
+  }
+}
+
+$0 "$@"

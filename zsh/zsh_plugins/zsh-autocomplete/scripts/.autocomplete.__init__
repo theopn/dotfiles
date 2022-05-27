@@ -1,0 +1,125 @@
+#!/bin/zsh
+zmodload -Fa zsh/files b:zf_mkdir b:zf_rm
+zmodload -F zsh/parameter p:functions
+zmodload -F zsh/system p:sysparams
+zmodload -F zsh/zleparameter p:widgets
+zmodload -Fa zsh/zutil b:zstyle
+builtin autoload +X -Uz add-zsh-hook zmathfunc
+zmathfunc
+
+typeset -gHa _autocomplete__func_opts=(
+  localoptions extendedglob clobber
+  NO_aliases localloops pipefail NO_shortloops NO_unset warncreateglobal
+)
+setopt $_autocomplete__func_opts[@]
+
+typeset -gHa _autocomplete__comp_opts=( localoptions NO_banghist NO_completeinword )
+typeset -gHa _autocomplete__ctxt_opts=( completealiases completeinword )
+
+.autocomplete.__init__.precmd() {
+  # Workaround for https://github.com/zdharma/zinit/issues/366
+  # NOTE: Needs to come before _everything_ else!
+  [[ -v functions[.zinit-shade-off] ]] &&
+      .zinit-shade-off "${___mode:-load}"
+  [[ -v functions[.zinit-tmp-subst-off] ]] &&
+      .zinit-tmp-subst-off "${___mode:-load}"
+
+  () {
+    emulate -L zsh
+    setopt $_autocomplete__func_opts[@]
+
+    add-zsh-hook -d precmd .autocomplete.__init__.precmd
+    unfunction .autocomplete.__init__.precmd
+
+    # Workaround for https://www.zsh.org/mla/workers/2021/msg01310.html
+    if builtin zstyle -L zle-hook types > /dev/null; then
+      local -P hook=
+      for hook in \
+          zle-{isearch-{exit,update},line-{pre-redraw,init,finish},history-line-set,keymap-select}
+      do
+        [[ -v widgets[$hook] &&
+              $widgets[$hook] == user:_zsh_highlight_widget_orig-s*-r<->-$hook ]] &&
+            builtin zle -N $hook azhw:$hook
+      done
+    fi
+  }
+
+  local -P mod=
+  for mod in compinit config widget key-binding recent-dirs async; do
+    mod=.autocomplete.$mod.precmd
+    if [[ -v functions[$mod] ]]; then
+      $mod
+      unfunction $mod
+    fi
+  done
+
+  true
+}
+
+local -P basedir=${${(%):-%x}:P:h:h}
+if ! [[ -n $basedir && -d $basedir ]]; then
+  print -u2 -- 'zsh-autocomplete: Failed to find base dir. Aborting.'
+  return 66
+fi
+hash -d zsh-autocomplete=$basedir
+typeset -gU FPATH fpath=( ~zsh-autocomplete/functions/completion $fpath[@] )
+
+local -Pa funcs=(
+    ~zsh-autocomplete/functions{,/widget}/.autocomplete.*~*.zwc(N-.:P)
+)
+if ! (( $#funcs )); then
+  print -u2 -- 'zsh-autocomplete: Failed to find functions. Aborting.'
+  return 66
+fi
+unfunction $funcs[@]:t 2> /dev/null
+builtin autoload -UWz $funcs[@]
+
+local -P xdg_data_home=${XDG_DATA_HOME:-$HOME/.local/share}
+
+local -P zsh_data_dir=$xdg_data_home/zsh
+[[ -d $zsh_data_dir ]] ||
+    zf_mkdir -pm 0700 $zsh_data_dir
+
+local -P logdir=$xdg_data_home/zsh-autocomplete/log
+[[ -d $logdir ]] ||
+    zf_mkdir -p -- $logdir
+local -Pa older_than_a_week=( $logdir/*(Nmd+7) )
+(( $#older_than_a_week[@] )) &&
+    zf_rm -f -- $older_than_a_week[@]
+local -P date=${(%):-%D{%F}}
+typeset -gH _autocomplete__log=$logdir/$date.log
+typeset -gH _autocomplete__log_async=$logdir/$date.async.log
+typeset -gH _autocomplete__log_pty=$logdir/$date.pty.log
+
+typeset -gH _autocomplete__prev=' ' _autocomplete__next=$'\n# %e. %N'
+typeset -gH _autocomplete__time=$' [%D{%T.%.}]\n'
+typeset -gH _autocomplete__ps4=\
+'${${_autocomplete__prev:#${(%)_autocomplete__next}}:+'\
+'${_autocomplete__prev::=${(%)_autocomplete__next}}${(%)_autocomplete__time}}'\
+$'%I%(?,\t, ->%?\t)%(1_,%_ ,)'
+
+local -P zsh_cache_dir=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+[[ -d $zsh_cache_dir ]] ||
+    zf_mkdir -pm 0700 $zsh_cache_dir
+
+local -P mod=
+for mod in compinit config widget key-binding recent-dirs async; do
+  if builtin zstyle -T ':autocomplete:' $mod; then
+    builtin autoload +X -Uz ~zsh-autocomplete/scripts/.autocomplete.$mod
+    {
+      .autocomplete.$mod "$@"
+    } always {
+      unfunction .autocomplete.$mod
+    }
+  fi
+done
+
+add-zsh-hook precmd .autocomplete.__init__.precmd
+
+# Ensure our precmd runs before zsh-autosuggestions'.
+[[ -v precmd_functions && $precmd_functions[(I)_zsh_autosuggest_start] != 0 ]] &&
+    typeset -gHaU precmd_functions=(
+        ${precmd_functions[@]:#_zsh_autosuggest_start} _zsh_autosuggest_start
+    )
+
+true
