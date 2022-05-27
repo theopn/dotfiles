@@ -1,0 +1,18 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+
+brew "bat"
+brew "neovim"
+brew "tmux"
+brew "lua"
+brew "node"
+
+cask "firefox"
+cask "obsidian"
+cask "iterm2"
+cask "macvim"
+cask "visual-studio-code"
+cask "appcleaner"
+cask "bitwarden"
+cask "spectacle"

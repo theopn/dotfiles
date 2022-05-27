@@ -1,0 +1,15 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+
+brew "ffmpeg"
+brew "neofetch"
+
+cask "brave-browser"
+cask "notion"
+cask "libreoffice"
+cask "intellij-idea"
+cask "spotify"
+cask "minecraft"
+cask "alfred"
+cask "istat-menus"

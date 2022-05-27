@@ -69,10 +69,11 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 Formulae:
 - **Bat: Fancier `cat` replacement (though I don't do alias cat="bat")**
 - ffmpeg: Great media type converter. `ffmpeg -i in.xxx out.yyy`
-- neofetch
+- **neofetch**
 - **NeoVim**
-- **Lua**
 - **tmux**
+- **Lua**
+- **node**
 
 Casks:
 - Browser

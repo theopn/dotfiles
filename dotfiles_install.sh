@@ -7,7 +7,7 @@ printf "
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 \n"
 
-printf "\n1. Homebrew. 
+printf "\n1. Homebrew Core Formulae/Casks. 
 All existing formulae will be uninstalled.
 Some formulae might compitable with non-MacOS System. 
 Do you want to proceed? y/n: "
@@ -16,10 +16,10 @@ case $homebrew_input in
   y|Y)
     brew remove --force $(brew list --formula)
     brew remove --cask --force $(brew list)
-    brew bundle --file ~/dotfiles/homebrew/Brewfile
+    brew bundle --file ~/dotfiles/homebrew/Brewfile_core
     ;;
   *)
-    printf "\nSkipping Homebrew installation...\n" ;;
+    printf "\nSkipping Homebrew core file installation...\n" ;;
 esac
 
 printf "\n2. Dotfiles. Do you wish to replace dotfiles? y/n: "
@@ -113,6 +113,19 @@ case $macos_input in
     source ~/dotfiles/scripts/macos_settings.sh ;;
   *)
     printf "\nSkipping MacOS specific settings... \n" ;;
+esac
+
+printf "\n4. Homebrew Optional Formulae/Casks.
+Some formulae might compitable with non-MacOS System.
+This might take a while
+Do you want to proceed? y/n: "
+read -n1 homebrew_opt_input
+case $homebrew_opt_input in
+  y|Y)
+    brew bundle --file ~/dotfiles/homebrew/Brewfile_optional
+    ;;
+  *)
+    printf "\nSkipping Homebrew optonal file installation...\n" ;;
 esac
 
 printf "\nEnding the dotfile installation..."
