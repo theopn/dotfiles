@@ -10,8 +10,6 @@
 
 " Vim Plug --- {{{
 call plug#begin()
-  Plug 'dracula/vim'
-  " Plug 'ghifarit53/tokyonight-vim'
   Plug 'scrooloose/nerdtree'
 call plug#end()
 " }}}
@@ -21,9 +19,8 @@ set number norelativenumber ruler colorcolumn=80 " Yes I hate relativenumber
 set cursorline cursorcolumn
 set wildmenu
 set termguicolors
-let g:dracula_colorterm=0
-let g:dracula_italic=0 " Enable this if some syntax are weirdly highlighted
-colorscheme dracula
+let g:tokyonight_disable_italic_comment=1
+colorscheme 2022-05-26_tokyonight_backup
 " }}}
 
 " Text Edit Related Settings --- {{{
@@ -50,8 +47,7 @@ augroup END
 " Automatic closer for parenthesis, brackets, et
 inoremap ( ()<left>
 inoremap [ []<left>
-" Have <tab> after ko if needed
-inoremap {<CR> {<CR>}<ESC>ko
+inoremap {<CR> {<CR>}<ESC>ko<tab>
 " Caps lock for ESC overrated
 inoremap jj <ESC>
 " Split pane navigation

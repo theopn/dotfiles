@@ -45,7 +45,7 @@ Basic gitignore and name/email config. I might delete email or modify it for the
 
 ## Vim
 I use vanilla Vim as a light text editor, so most of the configurations were done by default settings.
-Two plug-ins are: Dracula theme (one of the few themes that work on my colorblind eyes) and NERDTree.
+[Tokyonight](https://github.com/ghifarit53/tokyonight-vim) theme is bundled (backed up in 2022-05-26), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm.
 I am planning on utilizing netrw instead of NERDTree in the future, eleminating the need for VimPlug.
 Notable settings include
 - 2 spaces as a tab. > for the \t, ␣ for the trailing whitespace, + for the non-breaking space

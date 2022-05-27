@@ -68,6 +68,11 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
+    # Manual deployment for tokyonight theme
+    mkdir -p ~/.vim/
+    sudo rm -rf ~/.vim/colors
+    ln -sf ~/dotfiles/vim/colors ~/.vim/colors
+    printf "Tokyonight theme for Vim installed"
     # Tmux related dotfiles
     current="tmux"
     tmux_files=("tmux.conf")
