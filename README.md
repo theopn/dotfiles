@@ -11,7 +11,7 @@ Dots in front of the files in repo are removed for readability reason, which is 
 Don't worry, assuming my script works, it should create symbolic links with dots in front of the file names.
 
 ## Pre-requisites (in order of importance)
-- *nix system (Yeah not you Microsoft)
+- \*nix system (Yeah not you Microsoft)
 - Git and internet connection (to clone the repo)
 - Bash
 
@@ -45,7 +45,7 @@ Basic gitignore and name/email config. I might delete email or modify it for the
 
 ## Vim
 I use vanilla Vim as a light text editor, so most of the configurations were done by default settings.
-[Tokyonight](https://github.com/ghifarit53/tokyonight-vim) theme is bundled (backed up in 2022-05-26), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm.
+[Tokyonight](https://github.com/ghifarit53/tokyonight-vim) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm.
 I am planning on utilizing netrw instead of NERDTree in the future, eleminating the need for VimPlug.
 Notable settings include
 - 2 spaces as a tab. > for the \t, ␣ for the trailing whitespace, + for the non-breaking space

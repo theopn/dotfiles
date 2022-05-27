@@ -8,42 +8,34 @@
 "                \/     \/                            \/            \/
 "===============================================================================
 
-" Vim Plug --- {{{
-call plug#begin()
-  Plug 'scrooloose/nerdtree'
-call plug#end()
-" }}}
-
-" Visual Related Setting --- {{{
+" ---[[ Visual Related Setting
 set number norelativenumber ruler colorcolumn=80 " Yes I hate relativenumber
 set cursorline cursorcolumn
-set wildmenu
-set termguicolors
-let g:tokyonight_disable_italic_comment=1
-colorscheme 2022-05-26_tokyonight_backup
-" }}}
+set wildmenu termguicolors
+colorscheme tokyonight_noitallics
+" --]]
 
-" Text Edit Related Settings --- {{{
+" ---[[ Text Edit Related Settings
 let mapleader=','
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
 set list listchars=tab:>\ ,trail:␣,nbsp:+
-" }}}
+" --]]
 
-" Syntax Related Settings --- {{{
+" ---[[ Syntax Related Settings
 filetype on
 syntax on
-set hlsearch incsearch " Highlight and non-submit  search results
-set so=7 "Keep 7 lines visible at the top and bottom when scrolling
+set hlsearch incsearch shortmess-=S " Highlight, incremental, # result on bottom
+set so=7 " Keep 7 lines visible at the top and bottom when scrolling
 " Auto fold
 set foldmethod=indent foldlevel=1
 augroup filetype_vim
   autocmd!
   autocmd FileType vim setlocal foldmethod=marker
 augroup END
-" }}}
+" --]]
 
-" Keybinding Related Settings --- {{{
+" ---[[ Keybinding Related Settings
 " Automatic closer for parenthesis, brackets, et
 inoremap ( ()<left>
 inoremap [ []<left>
@@ -60,41 +52,38 @@ tnoremap <ESC> <C-\><C-n>
 " Automatic search result center
 nmap n nzz
 nmap N Nzz
-" }}}
+" --]]
 
-" Status Bar related settings --- {{{
+" ---[[ Statusline related settings
 set laststatus=2
-function! HighlightSearch()
-  if &hls
-    return 'H'
-  else
-    return ''
-  endif
-endfunction
 set statusline=
-set statusline+=%7*\[%n]                                  "buffernr
-set statusline+=%1*\ %<%F\                                "File+path
-set statusline+=%2*\ %y\                                  "FileType
-set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''}      "Encoding
-set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
-set statusline+=%4*\ %{&ff}\                              "FileFormat (dos/unix..)
-set statusline+=%5*\ %{&spelllang}\%{HighlightSearch()}\  "Spellanguage & Highlight on?
-set statusline+=%8*\ %=\ row:%l/%L\ (%03p%%)\             "Rownumber/total (%)
-set statusline+=%9*\ col:%03c\                            "Colnr
-set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
-" }}}
+set statusline+=%7*\[%n] " Buffer num
+set statusline+=%1*\ %<%F\  " File ppath
+set statusline+=%2*\ %y\  " FileType
+set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''} " Encoding
+set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\  " Encoding2
+set statusline+=%4*\ %{&ff}\  " FileFormat (dos/unix..)
+set statusline+=%5*\ %{&spelllang} "Spelllang
+set statusline+=%6*\ %{&hls?'HL':'NHL'}\  " Highlight search on?
+set statusline+=%8*\ %=\ row:%l/%L\  " Row num
+set statusline+=%9*\ col:%03c\  " Column num
+set statusline+=%0*\ \ %m%r%w\ %P\ \  " + for change in buffer, top/bottom
+" --]]
 
-" NERDTree Related Settings --- {{{
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-" }}}
+" ---[[ netrw Related Settings
+autocmd VimEnter * :Vexplore | wincmd p
+let g:netrw_banner=1 " Guide on the top, known to error if disabled
+let g:netrw_liststyle=0 " 0 simple, 1 detailed, 2 thick, 3 tree
+let g:netrw_browse_split=3
+let g:netrw_winsize = 20
+aug netrw_auto_close
+  au!
+  au WinEnter * if tabpagenr('$') == 1  && winnr('$') == 1
+  \ && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | quit | endif
+aug EN
+" --]]
 
-" CS240 Work Environment --- {{{
+" ---[[ CS240 Work Environment
 " By Theo Park, special thanks to Shriansh Chari
 function CS240(hwNum)
   exec 'cd ' . $HOME. '/cs240/' . a:hwNum . '/'
@@ -112,4 +101,4 @@ function CS240(hwNum)
   exec 'open '. a:hwNum . '.h'
   winc l
 endfunction
-" }}}
+" --]]

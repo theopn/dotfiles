@@ -6,6 +6,8 @@
 " License:      MIT
 " -----------------------------------------------------------------------------
 
+" ---------- THIS VERSION HAS ALL ITALLIC FONTS COMMENTED OUT ----------
+
 " Initialization: {{{
 highlight clear
 if exists('syntax_on')
@@ -16,7 +18,7 @@ set background=dark
 let s:t_Co = exists('&t_Co') && !empty(&t_Co) && &t_Co > 1 ? &t_Co : 2
 let s:tmux = executable('tmux') && $TMUX !=# ''
 
-let g:colors_name = '2022-05-26_tokyonight_backup'
+let g:colors_name = 'tokyonight_noitallics'
 " }}}
 " Configuration: {{{
 let s:configuration = {}
@@ -261,11 +263,11 @@ endif
 " }}}
 " Syntax: {{{
 if s:configuration.enable_italic
-  call s:HL('Type', s:palette.blue, s:palette.none, 'italic')
-  call s:HL('Structure', s:palette.blue, s:palette.none, 'italic')
-  call s:HL('StorageClass', s:palette.blue, s:palette.none, 'italic')
-  call s:HL('Identifier', s:palette.orange, s:palette.none, 'italic')
-  call s:HL('Constant', s:palette.orange, s:palette.none, 'italic')
+  call s:HL('Type', s:palette.blue, s:palette.none) ", 'italic")
+  call s:HL('Structure', s:palette.blue, s:palette.none) ", 'italic")
+  call s:HL('StorageClass', s:palette.blue, s:palette.none) ", 'italic")
+  call s:HL('Identifier', s:palette.orange, s:palette.none) ", 'italic")
+  call s:HL('Constant', s:palette.orange, s:palette.none) ", 'italic")
 else
   call s:HL('Type', s:palette.blue, s:palette.none)
   call s:HL('Structure', s:palette.blue, s:palette.none)
@@ -303,9 +305,9 @@ if s:configuration.disable_italic_comment
   call s:HL('SpecialComment', s:palette.grey, s:palette.none)
   call s:HL('Todo', s:palette.blue, s:palette.none)
 else
-  call s:HL('Comment', s:palette.grey, s:palette.none, 'italic')
-  call s:HL('SpecialComment', s:palette.grey, s:palette.none, 'italic')
-  call s:HL('Todo', s:palette.blue, s:palette.none, 'italic')
+  call s:HL('Comment', s:palette.grey, s:palette.none) ", 'italic")
+  call s:HL('SpecialComment', s:palette.grey, s:palette.none) ", 'italic")
+  call s:HL('Todo', s:palette.blue, s:palette.none) ", 'italic")
 endif
 call s:HL('Ignore', s:palette.grey, s:palette.none)
 call s:HL('Underlined', s:palette.none, s:palette.none, 'underline')
@@ -320,9 +322,9 @@ call s:HL('Green', s:palette.green, s:palette.none)
 call s:HL('Blue', s:palette.blue, s:palette.none)
 call s:HL('Purple', s:palette.purple, s:palette.none)
 if s:configuration.enable_italic
-  call s:HL('RedItalic', s:palette.red, s:palette.none, 'italic')
-  call s:HL('BlueItalic', s:palette.blue, s:palette.none, 'italic')
-  call s:HL('OrangeItalic', s:palette.orange, s:palette.none, 'italic')
+  call s:HL('RedItalic', s:palette.red, s:palette.none) ", 'italic")
+  call s:HL('BlueItalic', s:palette.blue, s:palette.none) ", 'italic")
+  call s:HL('OrangeItalic', s:palette.orange, s:palette.none) ", 'italic")
 else
   call s:HL('RedItalic', s:palette.red, s:palette.none)
   call s:HL('BlueItalic', s:palette.blue, s:palette.none)
@@ -341,9 +343,9 @@ call s:HL('markdownH4', s:palette.green, s:palette.none, 'bold')
 call s:HL('markdownH5', s:palette.blue, s:palette.none, 'bold')
 call s:HL('markdownH6', s:palette.purple, s:palette.none, 'bold')
 call s:HL('markdownUrl', s:palette.blue, s:palette.none, 'underline')
-call s:HL('markdownItalic', s:palette.none, s:palette.none, 'italic')
+call s:HL('markdownItalic', s:palette.none, s:palette.none) ", 'italic")
 call s:HL('markdownBold', s:palette.none, s:palette.none, 'bold')
-call s:HL('markdownItalicDelimiter', s:palette.grey, s:palette.none, 'italic')
+call s:HL('markdownItalicDelimiter', s:palette.grey, s:palette.none) ", 'italic")
 highlight! link markdownCode Green
 highlight! link markdownCodeBlock Green
 highlight! link markdownCodeDelimiter Green
@@ -365,7 +367,7 @@ highlight! link markdownId Yellow
 " vim-markdown: https://github.com/gabrielelana/vim-markdown{{{
 call s:HL('mkdURL', s:palette.blue, s:palette.none, 'underline')
 call s:HL('mkdInlineURL', s:palette.blue, s:palette.none, 'underline')
-call s:HL('mkdItalic', s:palette.grey, s:palette.none, 'italic')
+call s:HL('mkdItalic', s:palette.grey, s:palette.none) ", 'italic")
 highlight! link mkdCodeDelimiter Green
 highlight! link mkdBold Grey
 highlight! link mkdLink Red
@@ -379,7 +381,7 @@ highlight! link mkdId Yellow
 " ReStructuredText: {{{
 " builtin: https://github.com/marshallward/vim-restructuredtext{{{
 call s:HL('rstStandaloneHyperlink', s:palette.purple, s:palette.none, 'underline')
-call s:HL('rstEmphasis', s:palette.none, s:palette.none, 'italic')
+call s:HL('rstEmphasis', s:palette.none, s:palette.none) ", 'italic")
 call s:HL('rstStrongEmphasis', s:palette.none, s:palette.none, 'bold')
 call s:HL('rstStandaloneHyperlink', s:palette.blue, s:palette.none, 'underline')
 call s:HL('rstHyperlinkTarget', s:palette.blue, s:palette.none, 'underline')
@@ -420,7 +422,7 @@ call s:HL('htmlBoldItalic', s:palette.none, s:palette.none, 'bold,italic')
 call s:HL('htmlBoldUnderlineItalic', s:palette.none, s:palette.none, 'bold,underline,italic')
 call s:HL('htmlUnderline', s:palette.none, s:palette.none, 'underline')
 call s:HL('htmlUnderlineItalic', s:palette.none, s:palette.none, 'underline,italic')
-call s:HL('htmlItalic', s:palette.none, s:palette.none, 'italic')
+call s:HL('htmlItalic', s:palette.none, s:palette.none) ", 'italic")
 highlight! link htmlTag Green
 highlight! link htmlEndTag Blue
 highlight! link htmlTagN RedItalic
@@ -1462,7 +1464,7 @@ if s:configuration.current_word ==# 'bold'
 elseif s:configuration.current_word ==# 'underline'
   call s:HL('CocHighlightText', s:palette.none, s:palette.none, 'underline')
 elseif s:configuration.current_word ==# 'italic'
-  call s:HL('CocHighlightText', s:palette.none, s:palette.none, 'italic')
+  call s:HL('CocHighlightText', s:palette.none, s:palette.none) ", 'italic")
 elseif s:configuration.current_word ==# 'grey background'
   call s:HL('CocHighlightText', s:palette.none, s:palette.bg1)
 endif
