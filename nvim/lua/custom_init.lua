@@ -79,6 +79,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 do
   local key_opt = {
     { mode = 't', shortcut = "<ESC>", target = ":<C-\\><C-n>" }, --> ESC for term
+    { mode = 'n', shortcut = "<C-t>", target = ":tabnew<CR>" }, --> Open a new buffer
     -- Auto closers --
     { mode = 'i', shortcut = "(", target = "()<LEFT>" },
     { mode = 'i', shortcut = "[", target = "[]<LEFT>" },

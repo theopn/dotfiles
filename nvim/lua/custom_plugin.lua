@@ -35,6 +35,7 @@ require("packer").startup(function(use)
   }
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
+  use "romgrk/barbar.nvim" --> Simple tabline plug in
 end)
 --]]
 
@@ -47,14 +48,6 @@ require("lualine").setup {
 --]]
 
 ---[[ NvimTree Settings
---[[ Disable icons for no nerd fonts
-vim.g.nvim_tree_show_icons = {
-  git = 0,
-  folders = 0,
-  files = 0,
-  folder_arrows = 0,
-}
---]]
 require("nvim-tree").setup {
   auto_reload_on_write = true,
   -- auto_close = true, --> Auto close has been deprecated
@@ -78,4 +71,29 @@ vim.cmd[[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTre
 --]]
 
 ---[[ nvim-cmp Settings
+--]]
+
+---[[ Barbar Settings
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = false }
+map('n', "<C-,>", ":BufferPrevious<CR>", opts)
+map('n', "<C-.>", ":BufferNext<CR>", opts)
+vim.g.bufferline = {
+  icons = false,
+  maximum_padding = 1,
+  maximum_length = 30,
+  icon_separator_active = '▎',
+  icon_separator_inactive = '▎',
+  icon_close_tab = '',
+  icon_close_tab_modified = '●',
+  icon_pinned = '車',
+  no_name_title = "New Tab"
+}
+-- Compitability w/ nvim-tree --
+require("nvim-tree.events").on_tree_open(function ()
+  require("bufferline.state").set_offset(31, "File Tree")
+end)
+require("nvim-tree.events").on_tree_close(function ()
+  require("bufferline.state").set_offset(0)
+end)
 --]]

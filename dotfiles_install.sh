@@ -1,5 +1,3 @@
-home=~/
-dotfiles_backup=~/dotfiles_backup
 printf "
   _____ _              ___      _    __ _ _
  |_   _| |_  ___ ___  |   \ ___| |_ / _(_) |___
@@ -30,12 +28,10 @@ case $dotfile_input in
     current="git"
     git_files=("gitignore_global" "gitconfig")
     for v in ${git_files[@]}; do
-      if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/$current
-        echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/$current/
-      else
-        sudo rm -rf ~/.$v
+      if [[ -e "~/.$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        mv ~/.$v ~/dotfiles_backup/$current/
       fi
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
@@ -44,12 +40,22 @@ case $dotfile_input in
     current="zsh"
     zsh_files=("zshrc" "zsh_plugins")
     for v in ${zsh_files[@]}; do
-      if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/$current
-        echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/$current/
-      else
-        sudo rm -rf ~/.$v
+      if [[ -e "~/.$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        mv ~/.$v ~/dotfiles_backup/$current/
+      fi
+      ln -sf ~/dotfiles/$current/$v ~/.$v
+      echo .$v modified
+    done
+    # Tmux related dotfiles
+    current="tmux"
+    tmux_files=("tmux.conf")
+    for v in ${tmux_files[@]}; do
+      if [[ -e "~/.$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        mv ~/.$v ~/dotfiles_backup/$current/
       fi
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
@@ -58,12 +64,10 @@ case $dotfile_input in
     current="vim"
     vim_files=("vimrc")
     for v in ${vim_files[@]}; do
-      if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/$current
-        echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/$current/
-      else
-        sudo rm -rf ~/.$v
+      if [[ -e "~/.$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        mv ~/.$v ~/dotfiles_backup/$current/
       fi
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
@@ -73,16 +77,14 @@ case $dotfile_input in
     sudo rm -rf ~/.vim/colors
     ln -sf ~/dotfiles/vim/colors ~/.vim/colors
     printf "Modified version of tokyonight theme for Vim installed"
-    # Tmux related dotfiles
-    current="tmux"
-    tmux_files=("tmux.conf")
-    for v in ${tmux_files[@]}; do
-      if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/$current
-        echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/$current/
-      else
-        sudo rm -rf ~/.$v
+    # Manual deployment for neovim settings
+    current="config/nvim"
+    nvim_files=("lua" "init.lua")
+    for v in ${nvim_files[@]}; do
+      if [[ -e "~/.$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        mv ~/.$v ~/dotfiles_backup/$current/
       fi
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
@@ -91,12 +93,10 @@ case $dotfile_input in
     current="bash"
     bash_files=("bashrc")
     for v in ${bash_files[@]}; do
-      if [[ -e "$home.$v" ]]; then
-        mkdir -p $dotfiles_backup/$current
-        echo $home.$v exists. Moving to $dotfiles_backup
-        mv $home.$v $dotfiles_backup/$current/
-      else
-        sudo rm -rf ~/.$v
+      if [[ -e "~/.$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        mv ~/.$v ~/dotfiles_backup/$current/
       fi
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
