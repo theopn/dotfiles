@@ -28,7 +28,7 @@ case $dotfile_input in
   y|Y)
     # Git related dotfiles
     current="git"
-    git_files=("gitignore" "gitconfig")
+    git_files=("gitignore_global" "gitconfig")
     for v in ${git_files[@]}; do
       if [[ -e "$home.$v" ]]; then
         mkdir -p $dotfiles_backup/$current
@@ -72,7 +72,7 @@ case $dotfile_input in
     mkdir -p ~/.vim/
     sudo rm -rf ~/.vim/colors
     ln -sf ~/dotfiles/vim/colors ~/.vim/colors
-    printf "Tokyonight theme for Vim installed"
+    printf "Modified version of tokyonight theme for Vim installed"
     # Tmux related dotfiles
     current="tmux"
     tmux_files=("tmux.conf")

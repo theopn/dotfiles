@@ -25,8 +25,8 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 `bash ~/dotfiles/dotfiles_install.sh`
 
 ## After installation
-- Vim: `:PlugInstall` ~~Will be removed soom~~
-- NeoVim: `:PackerSync`, then `:COQdeps`
+- NeoVim: `:PackerSync`, then `:COQdeps`.
+That's it!!
 
 # Highlights
 
@@ -44,14 +44,15 @@ I don't use it a whole lot, but it has some keybinding and status bar settings.
 Basic gitignore and name/email config. I might delete email or modify it for the privacy reason. 
 
 ## Vim
-I use vanilla Vim as a light text editor, so most of the configurations were done by default settings.
-[Tokyonight](https://github.com/ghifarit53/tokyonight-vim) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm.
-I am planning on utilizing netrw instead of NERDTree in the future, eleminating the need for VimPlug.
+I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
+Modified version of [tokyonight](https://github.com/ghifarit53/tokyonight-vim) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm. There is no plugin installed.
+
 Notable settings include
 - 2 spaces as a tab. > for the \t, ␣ for the trailing whitespace, + for the non-breaking space
 - A little wacky way of telling where you're in the file (cursorline/column)
 - Automatic bracket closers, HJKL to navigate split panes, ESC to escape terminal, and jj as an ESC in insert mode
-- Handmade statusline
+- Many custom key bindings
+- Handmade statusline (using built-in commands)
 
 ## NeoVim
 NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
