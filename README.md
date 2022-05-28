@@ -41,7 +41,7 @@ zsh-autocomplete theme installed.
 I don't use it a whole lot, but it has some keybinding and status bar settings.
 
 ## Git
-Basic gitignore and name/email config. I might delete email or modify it for the privacy reason. 
+Basic gitignore and name/email config.
 
 ## Vim
 I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
