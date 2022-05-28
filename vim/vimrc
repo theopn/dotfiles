@@ -36,19 +36,19 @@ augroup END
 " --]]
 
 " ---[[ Keybinding Related Settings
-" Automatic closer for parenthesis, brackets, et
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap {<CR> {<CR>}<ESC>ko<tab>
 " Caps lock for ESC overrated
 inoremap jj <ESC>
+" Automatic closer for parenthesis, brackets, etc
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap {<CR> {<CR>}<ESC>ko<TAB>
+" ESC to escape terminal
+tnoremap <ESC> <C-\><C-n>
 " Split pane navigation
 nnoremap H <C-W>h
 nnoremap J <C-W>j
 nnoremap K <C-W>k
 nnoremap L <C-W>l
-" ESC to escape terminal
-tnoremap <ESC> <C-\><C-n>
 " Automatic search result center
 nmap n nzz
 nmap N Nzz
