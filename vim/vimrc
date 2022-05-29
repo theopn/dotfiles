@@ -11,7 +11,7 @@
 " ---[[ Visual Related Setting
 set number norelativenumber ruler colorcolumn=80 " Yes I hate relativenumber
 set cursorline cursorcolumn
-set wildmenu termguicolors
+set wildmenu termguicolors bg=dark
 colo gruvbox_noitalics
 " --]]
 
