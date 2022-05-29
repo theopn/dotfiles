@@ -45,7 +45,7 @@ Basic gitignore and name/email config.
 
 ## Vim
 I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
-Modified version of [tokyonight](https://github.com/ghifarit53/tokyonight-vim) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm. There is no plugin installed.
+Modified version of [gruvbox](https://github.com/morhetz/gruvbox) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm. There is no plugin installed.
 
 Notable settings include
 - 2 spaces as a tab. > for the \t, ␣ for the trailing whitespace, + for the non-breaking space

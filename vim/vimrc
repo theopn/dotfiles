@@ -12,7 +12,7 @@
 set number norelativenumber ruler colorcolumn=80 " Yes I hate relativenumber
 set cursorline cursorcolumn
 set wildmenu termguicolors
-colorscheme tokyonight_noitallics
+colo gruvbox_noitalics
 " --]]
 
 " ---[[ Text Edit Related Settings
