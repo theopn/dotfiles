@@ -55,6 +55,14 @@ nmap N Nzz
 " --]]
 
 " ---[[ Statusline related settings
+let g:currentmode={
+  \ 'n' : 'Normal', 'no' : 'Normal·Operator Pending',
+  \ 'v' : 'Visual', 'V' : 'V·Line', '^V' : 'V·Block',
+  \ 's' : 'Select', 'S' : 'S·Line', '^S' : 'S·Block',
+  \ 'i' : 'Insert', 'R' : 'Replace', 'Rv' : 'V·Replace',
+  \ 'c' : 'Command', 'cv' : 'Vim Ex', 'ce' : 'Ex',
+  \ 'r' : 'Prompt', 'rm' : 'More', 'r?' : 'Confirm',
+  \ '!' : 'Shell', 't' : 'Terminal' }
 set laststatus=2
 set statusline=
 set statusline+=%0*\[%n] " Buffer num
@@ -63,12 +71,11 @@ set statusline+=%2*\ %y\  " FileType
 set statusline+=%3*\ %{''.(&fenc!=''?&fenc:&enc).''} " Encoding
 set statusline+=%3*\ %{(&bomb?\",BOM\":\"\")}\  " Encoding2
 set statusline+=%4*\ %{&ff}\  " FileFormat (dos/unix..)
-set statusline+=%5*\ %{&spelllang} "Spelllang
-set statusline+=%6*\ %{&hls?'HL':'NHL'}\  " Highlight search on?
-set statusline+=%7*\ %#ORANGE#%{'Messing'}\ %{'w'}\ %{'vimrc'}\ %{'againʕ•́ᴥ•̀?'}
-set statusline+=%8*\ %=\ row:%l/%L\  " Row num
-set statusline+=%9*\ col:%03c\  " Column num
-set statusline+=%10*\ \ %m%r%w\ %P\ \  " + for change in buffer, top/bottom
+set statusline+=%5*\ %#BLUE#[%{toupper(g:currentmode[mode()])}] " Current mode
+set statusline+=%6*\ %=\ row:%l/%L\  " Row num
+set statusline+=%7*\ col:%03c\  " Column num
+set statusline+=%8*\ \ %m%r%w\ %P\  " + for change in buffer, top/bottom
+set statusline+=%9*\ %#ORANGE#%{'Messing'}\ %{'w'}\ %{'vimrc'}\ %{'againʕ•́ᴥ•̀?'}
 " --]]
 
 " ---[[ netrw Related Settings
