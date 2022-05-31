@@ -23,7 +23,7 @@ require("packer").startup(function(use)
   use "wbthomason/packer.nvim" --> Irony of having to import itself
   use {
     "folke/tokyonight.nvim", --> Pretty theme
-    vim.cmd[[colorscheme tokyonight]],
+    vim.cmd[[colo tokyonight]],
   }
   use "nvim-lualine/lualine.nvim" --> Statusline plugin
   use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
