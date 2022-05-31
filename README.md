@@ -5,8 +5,9 @@
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 ```
 # Theo's dotfiles
-Here are dotfiles for my system, currently 2020 Macbook Air with M1 processor.
-I try to make it as generic as possible, and  it should work on most devices with a little pre-requisites.
+Here are dotfiles for my systems, 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5.
+My dotfiles are tailored toward me, and it might not suit all of you. Work of caution for those who begin to start customizing their \*nix system: don't just copy over dotfiles on the internet! It sure is a good place to start, but it's always a good practice to understand what each file actually does and make your own.
+
 Dots in front of the files in repo are removed for readability reason, which is ironic.
 Don't worry, assuming my script works, it should create symbolic links with dots in front of the file names.
 
@@ -26,7 +27,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 ## After installation
 - NeoVim: `:PackerSync`, then `:COQdeps`.
-That's it!!
+- Manual installation for some configuration files.
 
 # Highlights
 
@@ -67,38 +68,23 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
 ## Homebrew
 Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`, either because I don't want them to be installed on every machine or is too large.
 
-Formulae:
-- **Bat: Fancier `cat` replacement (though I don't do alias cat="bat")**
-- ffmpeg: Great media type converter. `ffmpeg -i in.xxx out.yyy`
-- **neofetch**
-- **NeoVim**
-- **tmux**
-- **Lua**
-- **node**
+| Formulae | Description |
+| ---- | ----------- |
+| **Bat** | Fancier `cat` replacement (though I don't do alias cat="bat") |
+| ffmpeg | Great media type converter. `ffmpeg -i in.xxx out.yyy` |
+| **neofetch** | |
+| **NeoVim** | |
+| **tmux** | |
+| **Lua** | |
+| **node** | |
 
-Casks:
-- Browser
-  - Brave
-  - **Firefox**
-- Productivity
-  - **Obsidian: Knowledge base based on local markdown files.**
-  - Notion: Good for Database.
-  - Libre Office
-- Development
-  - IntelliJ CE: Ugh Java
-  - **iTerm 2**
-  - **MacVim**
-  - **VSCode**
-- Entertainment
-    - Spotify
-    - Minecraft
-- System
-  - Alfred: Lovely Spotlight replacement
-  - **AppCleaner: App remover for MacOS**
-  - **Bitwarden: The best password manager**
-  - **Spectacle: Window manager for MacOS. Officially discontinued and might not work.**
-  - iStat Menus: System monitoring tool
-
+| Type | Casks |
+| ---- | ----- |
+| Browser | - Brave <br/> - **Firefox** |
+| Productivity| - **Obsidian: Knowledge base based on local markdown files.** <br/> - Notion <br/> - Libre Office |
+| Development | - IntelliJ CE: Ugh Java. <br/> - **iTerm 2** <br/> - **MacVim** <br/> - **VSCode**
+| Entertainment | - Spotify <br/> - Minecraft
+| System | - Alfred: Spotlight replacement. <br/> - **AppCleaner: App remover for MacOS.** <br/> - **Bitwarden: The best password manager.** <br/> - **Spectacle: Window manager for MacOS.** <br/> - iStat Menus: System monitoring tool.
 
 ## MacOS Setting
 Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
