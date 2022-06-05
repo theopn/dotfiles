@@ -35,6 +35,11 @@ require("packer").startup(function(use)
   }
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
+  use "nvim-lua/plenary.nvim" --> telescope dependency
+  use {
+  "nvim-telescope/telescope.nvim", --> Expendable fuzzy finder
+  requires = { {"nvim-lua/plenary.nvim"} }
+  }
   use "romgrk/barbar.nvim" --> Simple tabline plug in
 end)
 --]]
