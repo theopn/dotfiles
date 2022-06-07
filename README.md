@@ -84,7 +84,7 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 | Productivity| - **Obsidian: Knowledge base based on local markdown files.** <br/> - Notion <br/> - Libre Office |
 | Development | - IntelliJ CE: Ugh Java. <br/> - **iTerm 2** <br/> - **MacVim** <br/> - **VSCode**
 | Entertainment | - Spotify <br/> - Minecraft
-| System | - Alfred: Spotlight replacement. <br/> - **AppCleaner: App remover for MacOS.** <br/> - **Bitwarden: The best password manager.** <br/> - **Spectacle: Window manager for MacOS.** <br/> - iStat Menus: System monitoring tool.
+| System | - Alfred: Spotlight replacement. <br/> - AppCleaner: App remover for MacOS. <br/> - Bitwarden: The best password manager. <br/> - **Amethyst: Tiling manager for MacOS.** <br/> - iStat Menus: System monitoring tool.
 
 ## MacOS Setting
 Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
