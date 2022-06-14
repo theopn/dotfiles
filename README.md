@@ -4,7 +4,9 @@
    | | | ' \/ -_) _ \ | |) / _ \  _|  _| | / -_)
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 ```
+
 # Theo's dotfiles
+
 Here are dotfiles for my systems, 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5.
 My dotfiles are tailored toward me, and it might not suit all of you. Work of caution for those who begin to start customizing their \*nix system: don't just copy over dotfiles on the internet! It sure is a good place to start, but it's always a good practice to understand what each file actually does and make your own.
 
@@ -12,11 +14,13 @@ Dots in front of the files in repo are removed for readability reason, which is 
 Don't worry, assuming my script works, it should create symbolic links with dots in front of the file names.
 
 ## Pre-requisites (in order of importance)
+
 - \*nix system (Yeah not you Microsoft)
 - Git and internet connection (to clone the repo)
 - Bash
 
 ## Usage
+
 Clone this repository in the home directory.
 
 `git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
@@ -26,27 +30,33 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 `bash ~/dotfiles/dotfiles_install.sh`
 
 ## After installation
+
 - NeoVim: `:PackerSync`, then `:COQdeps`.
 - Manual installation for some configuration files.
 
 # Highlights
 
 ## Bash
+
 Barebone shell setting with just ls alias and prompt.
 
 ## Zsh
+
 Vim keybinding, list, clear, NeoVim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
 zsh-autocomplete theme installed.
 
 ## tmux
+
 I don't use it a whole lot, but it has some keybinding and status bar settings.
 
 ## Git
+
 Basic gitignore and name/email config.
 
 ## Vim
+
 I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
-Modified version of [gruvbox](https://github.com/morhetz/gruvbox) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorweakness and overall compitability with tmux/iTerm. There is no plugin installed.
+Modified version of [gruvbox](https://github.com/morhetz/gruvbox) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorblindness and overall compatibility with tmux/iTerm. There is no plugin installed.
 
 Notable settings include
 - 2 spaces as a tab. > for the \t, ␣ for the trailing whitespace, + for the non-breaking space
@@ -56,7 +66,9 @@ Notable settings include
 - Handmade statusline (using built-in commands)
 
 ## NeoVim
+
 NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
+
 - TokyoNight theme
 - Lualine
 - Treesitter and NvimTree
@@ -64,8 +76,8 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
   - lspconfig is the default LSP engine
   - coq.artifacts include a lot of LSP engines
 
-
 ## Homebrew
+
 Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`, either because I don't want them to be installed on every machine or is too large.
 
 | Formulae | Description |
@@ -88,4 +100,5 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 | System (MacOS) | - Alfred: Spotlight replacement. <br/> - AppCleaner: App remover for MacOS. <br/> - **Amethyst: Tiling manager for MacOS.** <br/> - iStat Menus: System monitoring tool.
 
 ## MacOS Setting
+
 Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
