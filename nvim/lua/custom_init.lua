@@ -83,7 +83,6 @@ do
     -- Auto closers --
     { mode = 'i', shortcut = "(", target = "()<LEFT>" },
     { mode = 'i', shortcut = "[", target = "[]<LEFT>" },
-    { mode = 'i', shortcut = "'", target = "''<LEFT>" },
     { mode = 'i', shortcut = "{<CR>", target = "{<CR>}<ESC>ko" }, --> Add <TAB> after ko if needed
     { mode = 'i', shortcut = "jj", target = "<ESC>" }, --> Caps lock for ESC overrated
     -- Split pane navigation --
