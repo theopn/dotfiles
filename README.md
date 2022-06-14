@@ -1,11 +1,11 @@
-```
+# Theo's dotfiles
+
+```php
   _____ _              ___      _    __ _ _
  |_   _| |_  ___ ___  |   \ ___| |_ / _(_) |___
    | | | ' \/ -_) _ \ | |) / _ \  _|  _| | / -_)
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 ```
-
-# Theo's dotfiles
 
 Here are dotfiles for my systems, 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5.
 My dotfiles are tailored toward me, and it might not suit all of you. Work of caution for those who begin to start customizing their \*nix system: don't just copy over dotfiles on the internet! It sure is a good place to start, but it's always a good practice to understand what each file actually does and make your own.
@@ -34,38 +34,39 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 - NeoVim: `:PackerSync`, then `:COQdeps`.
 - Manual installation for some configuration files.
 
-# Highlights
+## Highlights
 
-## Bash
+### Bash
 
 Barebone shell setting with just ls alias and prompt.
 
-## Zsh
+### Zsh
 
 Vim keybinding, list, clear, NeoVim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
 zsh-autocomplete theme installed.
 
-## tmux
+### tmux
 
 I don't use it a whole lot, but it has some keybinding and status bar settings.
 
-## Git
+### Git
 
 Basic gitignore and name/email config.
 
-## Vim
+### Vim
 
 I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
 Modified version of [gruvbox](https://github.com/morhetz/gruvbox) theme is bundled (I commented out itallics font, which does not play well with MacOS), which I found to be working great with my colorblindness and overall compatibility with tmux/iTerm. There is no plugin installed.
 
 Notable settings include
+
 - 2 spaces as a tab. > for the \t, ␣ for the trailing whitespace, + for the non-breaking space
 - A little wacky way of telling where you're in the file (cursorline/column)
 - Automatic bracket closers, HJKL to navigate split panes, ESC to escape terminal, and jj as an ESC in insert mode
 - Many custom key bindings
 - Handmade statusline (using built-in commands)
 
-## NeoVim
+### NeoVim
 
 NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
 
