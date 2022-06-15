@@ -10,9 +10,12 @@
 
 " ---[[ Visual Related Setting
 set number norelativenumber ruler colorcolumn=80 " Yes I hate relativenumber
-set cursorline cursorcolumn
-set wildmenu termguicolors bg=dark
-colo gruvbox_noitalics
+set cursorline cursorcolumn wildmenu termguicolors bg=dark
+try
+  colo gruvbox_noitalics
+catch
+  colo slate
+endtry
 " --]]
 
 " ---[[ Text Edit Related Settings
@@ -50,8 +53,10 @@ nnoremap J <C-W>j
 nnoremap K <C-W>k
 nnoremap L <C-W>l
 " Automatic search result center
-nmap n nzz
-nmap N Nzz
+nnoremap n nzz
+nnoremap N Nzz
+" Copy into the system clipboard
+vnoremap <C-c> "*y
 " --]]
 
 " ---[[ Statusline related settings
@@ -80,7 +85,7 @@ set statusline+=%9*\ %#ORANGE#%{'Messing'}\ %{'w'}\ %{'vimrc'}\ %{'againʕ•́�
 
 " ---[[ netrw Related Settings
 autocmd VimEnter * :Vexplore | wincmd p
-let g:netrw_banner=1 " Guide on the top, known to error if disabled
+let g:netrw_banner=0 " No guide on the top, turn on if error occurs
 let g:netrw_liststyle=0 " 0 simple, 1 detailed, 2 thick, 3 tree
 let g:netrw_browse_split=3
 let g:netrw_winsize = 20
@@ -108,5 +113,13 @@ function CS240(hwNum)
   winc j
   exec 'open '. a:hwNum . '.h'
   winc l
+endfunction
+" --]]
+
+" ---[[ CS193 Demo purpose
+function Hi()
+  " e command is used to open a file
+  exec 'e ~/.vimrc'
+  echo "Hello! You just opend .vimrc!"
 endfunction
 " --]]
