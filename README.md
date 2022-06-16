@@ -33,9 +33,9 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 - NeoVim: `:PackerSync`, then `:COQdeps`.
 - Firefox:
-  - `about:config` and make `toolkit.legacyUserProfileCustomizations.stylesheets` true.
+  - `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
   - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
-- Manual installation for some configuration files.
+- Manually deploy some config files for GUI applications (iTerm, iStats, font, etc)
 
 ## Highlights
 
@@ -82,7 +82,7 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
 
 ### Firefox
 
-userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included.
+userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included. Just be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.
 
 ### Homebrew
 

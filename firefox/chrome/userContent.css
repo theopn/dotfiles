@@ -1,0 +1,39 @@
+ @import url("userChrome.css");
+
+/* Removes white loading page */
+@-moz-document url(about:blank), url(about:newtab), url(about:home) {
+    html:not(#ublock0-epicker), html:not(#ublock0-epicker) body, #newtab-customize-overlay {
+      background: var(--mff-bg) !important;
+    }
+  }
+
+.search-wrapper input {
+    --newtab-textbox-focus-boxshadow: none !important;
+    padding-left: 20px !important;
+   	padding-inline-end: 13px !important;
+  }
+  
+
+.search-wrapper .logo-and-wordmark .wordmark {
+  display: none!important;
+}
+
+.search-wrapper .logo-and-wordmark {
+  margin-bottom: 40px!important;
+  padding-top: 60px!important;
+  filter: saturate(30%) opacity(50%)!important;
+}
+
+.search-button{background:none !important;}
+
+.prefs-button button {fill: #9BA8BB !important;}
+  
+.prefs-button button:hover, .prefs-button button:focus {
+    background-color:  transparent !important; }	
+ 
+ .contentSearchSuggestionTable {display: none !important;}
+
+  :root{
+    scrollbar-color: #677379 #263238 !important;
+  }
+
