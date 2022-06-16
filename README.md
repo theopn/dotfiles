@@ -40,6 +40,16 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 ## Highlights
 
+### Fonts
+
+I have an exquisite taste in fonts.
+
+- [Comic Mono](https://dtinth.github.io/comic-mono-font/): Mono-spaced version of Comic Sans. The best font in the world. Just trust me and use it, you'll love it.
+- [NERD font version](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FantasqueSansMono) of [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans). Formally known as *Cosmic Sans Neue Mono*, the name "comes from [author's] realization that at some point it looked like the mutant child of Comic Sans and Helvetica Neue."
+
+As you can tell, I like rather childish fonts. But why serious fonts? When I'm stressed out with works, the last thing I want is to stare at the screen filled with generic mono-spaced fonts and 56 error messages. I highly recommend you to explore with fonts, especially if you have dyslexia.
+I also recommend [DaddyTimeMono Nerd Font](https://www.programmingfonts.org/#daddytimemono) and [Hermit Nerd Font](https://www.programmingfonts.org/#hermit), available to download at [Nerd Fonts website](https://www.nerdfonts.com/font-downloads).
+
 ### Bash
 
 Barebone shell setting with just ls alias and prompt.
