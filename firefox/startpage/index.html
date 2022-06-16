@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="scripts/search.js"></script>
+    <script src="scripts/load.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="head">
+        <div class="logo"><img src="icons/fox.svg" /></div>
+        <div class="search_box">
+
+          <img class="engine" id="engineLogo" src="icons/google.svg" onclick="toggleEngine()" style="cursor:pointer" />
+
+          <div id="gSearch" style="display:block;">
+            <form id="textField" class="google" action="https://google.com/search" method="get">
+              <input class="input_box" type="text" name="q" placeholder="Search with Google">
+              <button class="button"> <img src="icons/search.svg" style="cursor:pointer" /></button>
+            </form>
+          </div>
+
+          <div id="dSearch" style="display:none;">
+            <form class="duck" action="https://duckduckgo.com/" method="get">
+              <input class="input_box" type="text" name="q" placeholder="Search with DuckDuckGo">
+              <button class="button"> <img src="icons/search.svg" style="cursor:pointer" /></button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="bookmark">
+
+        <div class="category">
+          <div class="icon"><img src="icons/entertainment.svg" /></div>
+          <div class="bookmarks ent">
+            <li><a class="bm" href=https://www.formula1.com/>F1</a></li>
+            <li><a class="bm" href="https://www.reddit.com/">Reddit</a></li>
+            <li><a class="bm" href="https://open.spotify.com/">Spotify</a></li>
+            <li><a class="bm" href="https://www.youtube.com/">Youtube</a></li>
+          </div>
+        </div>
+
+        <div class="category">
+          <div class="icon"><img src="icons/code.svg" /></div>
+          <div class="bookmarks cod">
+            <li><a class="bm" href="https://www.github.com">GitHub</a></li>
+            <li><a class="bm" href="https://www.gitlab.com">GitLab</a></li>
+            <li><a class="bm" href="https://leetcode.com/problemset/algorithms/">LeetCode</a></li>
+            <li><a class="bm" href="https://stackoverflow.com/">Stackoverflow</a></li>
+          </div>
+        </div>
+
+        <div class="category">
+          <div class="icon"><img src="icons/purdue.svg" /></div>
+          <div class="bookmarks pur">
+            <li><a class="bm" href="https://purdue.brightspace.com/">Brightspace</a></li>
+            <li><a class="bm" href="https://campuswire.com/">Campuswire</a></li>
+            <li><a class="bm" href="https://dining.purdue.edu/menus/">Dining Hall Menus</a></li>
+            <li><a class="bm" href="https://www.gradescope.com/">Gradescope</a></li>
+            <li><a class="bm" href="https://wl.mypurdue.purdue.edu/">MyPurdue</a></li>
+          </div>
+        </div>
+
+        <div class="category">
+          <div class="icon"><img src="icons/eye.svg" /></div>
+          <div class="bookmarks art">
+            <li><a class="bm" href="https://vault.bitwarden.com/">Bitwarden</a></li>
+            <li><a class="bm" href="https://mail.google.com/mail/">Gmail</a></li>
+            <li><a class="bm" href="https://keep.google.com/">Google Keep</a></li>
+            <li><a class="bm" href="https://www.notion.so/">Notion</a></li>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </body>
+
+</html>

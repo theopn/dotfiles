@@ -82,8 +82,7 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
 
 ### Firefox
 
-I have userChrome.css file for Firefox appearance and custom startup page. They are both based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) and I have made changes in auto-fold mechanism and the start up page.
-
+userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included.
 
 ### Homebrew
 
