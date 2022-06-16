@@ -84,15 +84,6 @@
 
 }
 
-.tab-label-container:not([textoverflow]) {
-  display: flex;
-  overflow: hidden;
-  justify-content: center;
-width: 50% !important;
-  max-width: 50% !important;
-  min-width: 50% !important;
-}
-
 .tabbrowser-tab {
   border-radius: var(--mff-tab-border-radius) !important;
   border-width: 0;
