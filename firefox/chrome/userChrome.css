@@ -13,7 +13,7 @@
   --mff-tab-font-weight: 400;
   --mff-tab-height: 32px;
   --mff-tab-pinned-bg: #70c1b3;
-  --mff-tab-selected-bg: #ee6c4d;
+  --mff-tab-selected-bg: #008080;
   --mff-tab-soundplaying-bg: #9c89b8;
   --mff-urlbar-color: #98c1d9;
   --mff-urlbar-focused-color: #e0fbfc;
@@ -25,8 +25,6 @@
   --mff-urlbar-results-font-size: 12pt;
   --mff-urlbar-results-font-weight: 700;
   --mff-urlbar-results-url-color: #98c1d9;
-  /*   --mff-tab-selected-bg: linear-gradient(90deg, rgba(232,74,95,1) 0%, rgba(255,132,124,1) 50%, rgba(254,206,168,1) 100%); */
-  /*   --mff-urlbar-font-weight: 600; */
 
   /* Overriden Firefox variables*/
   --autocomplete-popup-background: var(--mff-bg) !important;
@@ -74,29 +72,11 @@
   margin-inline-end: 0px !important;
 }
 
-.tab-close-button {
- display: none !important;
-}
-
 .tab-text {
   font-family: var(--mff-tab-font-family);
   font-weight: var(--mff-tab-font-weight);
   font-size: var(--mff-tab-font-size) !important;
   color: var(--mff-tab-color);
-}
-
-/* Hide the favicon for tabs */
-hbox.tab-content .tab-icon-image {
-  display: none !important;
-}
-
-/* Show the favicon for tabs that are pinned */
-hbox.tab-content[pinned=true] .tab-icon-image {
-  display: initial !important;
-}
-
-hbox.tab-content[pinned=true] .tab-text {
-  display: none !important;
 }
 
 #tabbrowser-tabs {
@@ -111,15 +91,6 @@ hbox.tab-content[pinned=true] .tab-text {
 width: 50% !important;
   max-width: 50% !important;
   min-width: 50% !important;
-}
-
-/* .tab-label-container::after {
-  content: "?" !important;
-
-} */
-
-.tab-line {
-  display: none !important;
 }
 
 .tabbrowser-tab {
@@ -137,15 +108,6 @@ width: 50% !important;
   background-color: var(--mff-tab-soundplaying-bg) !important;
 }
 
-#tabs-newtab-button {
-  list-style-image: url("icons/add.svg") !important;
-  opacity: 0.7;
-}
-
-.tab-icon-sound {
-  display: none !important;
-}
-
 /*
   _____ ___   ___  _    ___   _   ___
 |_   _/ _ \ / _ \| |  | _ ) /_\ | _ \
@@ -153,27 +115,12 @@ width: 50% !important;
   |_| \___/ \___/|____|___/_/  \_\_|_\
 */
 
-#PersonalToolbar{
-    --multirow-bmb-n-rows: 3; /* Control how many rows are shown before scrolling */
-    --multirow-bmb-row-margin: 2px; /* Control how much spacing is between rows */
-    max-height: none !important;
-  }
-  #PlacesToolbar > hbox{ 
-    display: block;
-    width: 100vw;
-  }
-  #PlacesToolbarItems{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-height: calc(var(--multirow-bmb-n-rows) * (5px + 1em + (2 * var(--multirow-bmb-row-margin )))) !important;
-    overflow-y:auto;
-    scrollbar-color: var(--lwt-accent-color) var(--toolbar-bgcolor) ;
-    scrollbar-width: thin;
-  }
-  #PlacesChevron{ display: none }
-  #PlacesToolbarItems > .bookmark-item{ margin: var(--multirow-bmb-row-margin) 2px !important;  }
-
+/* Centered bookmark bar */
+#PlacesToolbarItems{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
 .urlbar-icon > image {
   fill: var(--mff-icon-color) !important;
@@ -186,10 +133,6 @@ width: 50% !important;
 .urlbar-icon {
   color: var(--mff-icon-color)  !important;
 
-}
-
-.toolbarbutton-icon {
-/* filter: drop-shadow(0 0 0.75rem crimson); */
 }
 
 #urlbar-results {
@@ -214,20 +157,12 @@ width: 50% !important;
   font-size: var(--mff-urlbar-font-size) !important;
 }
 
-.urlbarView-favicon, .urlbarView-type-icon {
-  display: none !important;
-}
-
 #urlbar-input {
   font-size: var(--mff-urlbar-font-size) !important;
   color: var(--mff-urlbar-color) !important;
   font-family: var(--mff-urlbar-font-family) !important;
   font-weight: var(--mff-urlbar-font-weight)!important;
   text-align: center !important;
-}
-
-#tracking-protection-icon-container, #identity-box {
-  display: none;
 }
 
 #back-button > .toolbarbutton-icon{
@@ -268,10 +203,6 @@ toolbar {
   background-color: var(--mff-sidebar-bg) !important;
 }
 
-box.panel-arrowbox {
-  display: none;
-}
-
 box.panel-arrowcontent {
   border-radius: 8px !important;
   border: none !important;
@@ -285,10 +216,6 @@ tab.tabbrowser-tab:hover {
   box-shadow: 0 1px 4px rgba(0,0,0,.05);
 }
 
-image#star-button {
-  display: none;
-}
-
 toolbar#nav-bar {
   padding: var(--mff-nav-toolbar-padding) !important;
 }
@@ -300,13 +227,11 @@ toolbar#nav-bar {
 #urlbar {
   max-width: 70% !important;
   margin: 0 15% !important;
-  /* 	position: unset!important; */;
 }
 
 #urlbar-input:focus {
   color: var(--mff-urlbar-focused-color) !important;
 }
-
 
 .megabar[breakout-extend="true"]:not([open="true"]) > #urlbar-background {
   box-shadow: none !important;
@@ -317,12 +242,12 @@ toolbarbutton {
   box-shadow: none !important;
 }
 
-@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+/* Auto hide tool bar */
  #navigator-toolbox:not(:focus-within):not(:hover) {
     margin-top: -38px;
   }
   #navigator-toolbox {
-    transition: 0.2s margin-top ease-out;
+    transition: 0.1s margin-top ease-out;
   }
 
 /*
@@ -338,10 +263,6 @@ toolbarbutton {
 
 .sidebar-placesTree {
   color: var(--mff-sidebar-color) !important;
-}
-
-#sidebar-switcher-target {
-/*   color: white !important; */
 }
 
 #sidebar-box {
