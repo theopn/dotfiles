@@ -35,6 +35,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 - Firefox:
   - `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
   - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
+- Install fonts
 - Manually deploy some config files for GUI applications (iTerm, iStats, font, etc)
 
 ## Highlights
