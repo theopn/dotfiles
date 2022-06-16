@@ -7,10 +7,14 @@
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 ```
 
-Here are dotfiles for my systems, 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5.
-My dotfiles are tailored toward me, and it might not suit all of you. Words of caution for those who begin to start customizing their \*nix system: don't just copy over dotfiles on the internet! It sure is a good place to start, but it's always a good practice to understand what each file actually does and make your own.
+Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5 running Fedora.
+You are free to use all or some of the dotfiles in your system, but
 
-Dots in front of the files in repo are removed for readability reason, which is ironic.
+1. My dotfiles are tailored toward me, and they might not suit your taste.
+2. The installation script, Homebrew formulae, and some other components are developed on macOS. Other dotfiles work on my Linux machine, but be cautious when utilizing them on a Linux machine (or any machine).
+3. If you are beginning to customize your \*nix system, I highly recommend you explore what each file does before copying them over to your system. I once started my dotfiles and \*nix customization journey by referencing other people's systems (and I still do), but you always should try to understand and learn from them.
+
+Dots in front of the files in the repo are removed for readability reasons, which is ironic.
 Don't worry, assuming my script works, it should create symbolic links with dots in front of the file names.
 
 ## Pre-requisites (in order of importance)
@@ -35,7 +39,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 - Firefox:
   - `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
   - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
-- Install fonts
+- Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts.
 - Manually deploy some config files for GUI applications (iTerm, iStats, font, etc)
 
 ## Highlights
@@ -47,7 +51,7 @@ I have an exquisite taste in fonts.
 - [Comic Mono](https://dtinth.github.io/comic-mono-font/): Mono-spaced version of Comic Sans. The best font in the world. Just trust me and use it, you'll love it.
 - [NERD font version](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FantasqueSansMono) of [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans). Formally known as *Cosmic Sans Neue Mono*, the name "comes from [author's] realization that at some point it looked like the mutant child of Comic Sans and Helvetica Neue."
 
-As you can tell, I like rather childish fonts. But why serious fonts? When I'm stressed out with works, the last thing I want is to stare at the screen filled with generic mono-spaced fonts and 56 error messages. I highly recommend you to explore with fonts, especially if you have dyslexia.
+As you can tell, I like rather childish fonts, but why serious fonts? When I'm stressed out with work, the last thing I want is to stare at the screen filled with Consolas or other generic fonts and 56 error messages. I highly recommend you explore fonts, especially if you have dyslexia.
 I also recommend [DaddyTimeMono Nerd Font](https://www.programmingfonts.org/#daddytimemono) and [Hermit Nerd Font](https://www.programmingfonts.org/#hermit), available to download at [Nerd Fonts website](https://www.nerdfonts.com/font-downloads).
 
 ### Bash
