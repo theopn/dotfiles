@@ -115,11 +115,3 @@ function CS240(hwNum)
   winc l
 endfunction
 " --]]
-
-" ---[[ CS193 Demo purpose
-function Hi()
-  " e command is used to open a file
-  exec 'e ~/.vimrc'
-  echo "Hello! You just opend .vimrc!"
-endfunction
-" --]]

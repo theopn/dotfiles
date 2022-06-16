@@ -8,7 +8,7 @@
 ```
 
 Here are dotfiles for my systems, 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5.
-My dotfiles are tailored toward me, and it might not suit all of you. Work of caution for those who begin to start customizing their \*nix system: don't just copy over dotfiles on the internet! It sure is a good place to start, but it's always a good practice to understand what each file actually does and make your own.
+My dotfiles are tailored toward me, and it might not suit all of you. Words of caution for those who begin to start customizing their \*nix system: don't just copy over dotfiles on the internet! It sure is a good place to start, but it's always a good practice to understand what each file actually does and make your own.
 
 Dots in front of the files in repo are removed for readability reason, which is ironic.
 Don't worry, assuming my script works, it should create symbolic links with dots in front of the file names.
