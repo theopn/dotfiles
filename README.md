@@ -32,6 +32,9 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 ## After installation
 
 - NeoVim: `:PackerSync`, then `:COQdeps`.
+- Firefox:
+  - `about:config` and make `toolkit.legacyUserProfileCustomizations.stylesheets` true.
+  - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
 - Manual installation for some configuration files.
 
 ## Highlights
@@ -77,7 +80,12 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
   - lspconfig is the default LSP engine
   - coq.artifacts include a lot of LSP engines
 
-## Homebrew
+### Firefox
+
+I have userChrome.css file for Firefox appearance and custom startup page. They are both based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) and I have made changes in auto-fold mechanism and the start up page.
+
+
+### Homebrew
 
 Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`, either because I don't want them to be installed on every machine or is too large.
 
@@ -100,6 +108,6 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 | Tools | - Bitwarden: The best password manager. <br/> - Cryptomator: File encryption before uploading to cloud storage <br/> - Syncthing: File synchronization across multiple devices. 
 | System (MacOS) | - Alfred: Spotlight replacement. <br/> - AppCleaner: App remover for MacOS. <br/> - **Amethyst: Tiling manager for MacOS.** <br/> - iStat Menus: System monitoring tool.
 
-## MacOS Setting
+### MacOS Setting
 
 Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
