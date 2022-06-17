@@ -9,7 +9,7 @@
 "===============================================================================
 
 " ---[[ Visual Related Setting
-set number norelativenumber ruler colorcolumn=80 " Yes I hate relativenumber
+set number relativenumber ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
 try
   colo gruvbox_noitalics
