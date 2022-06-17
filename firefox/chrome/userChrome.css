@@ -8,7 +8,7 @@
   --mff-sidebar-color: #e0fbfc;
   --mff-tab-border-radius: 0px;
   --mff-tab-color: #fefefa;
-  --mff-tab-font-family: "Comic Mono";
+  --mff-tab-font-family: "FantasqueSansMono Nerd Font", "Arial";
   --mff-tab-font-size: 11pt;
   --mff-tab-font-weight: 400;
   --mff-tab-height: 32px;
@@ -17,14 +17,15 @@
   --mff-tab-soundplaying-bg: #9c89b8;
   --mff-urlbar-color: #98c1d9;
   --mff-urlbar-focused-color: #e0fbfc;
-  --mff-urlbar-font-family: "Comic Mono";
+  --mff-urlbar-font-family: "FantasqueSansMono Nerd Font", "Arial";
   --mff-urlbar-font-size: 12pt;
   --mff-urlbar-font-weight: 700;
   --mff-urlbar-results-color: #e0fbfc;
-  --mff-urlbar-results-font-family: "Comic Mono";
+  --mff-urlbar-results-font-family: "FantasqueSansMono Nerd Font", "Arial";
   --mff-urlbar-results-font-size: 12pt;
   --mff-urlbar-results-font-weight: 700;
   --mff-urlbar-results-url-color: #98c1d9;
+
 
   /* Overriden Firefox variables*/
   --autocomplete-popup-background: var(--mff-bg) !important;
