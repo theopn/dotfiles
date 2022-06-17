@@ -95,6 +95,10 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
   - lspconfig is the default LSP engine
   - coq.artifacts include a lot of LSP engines
 
+### kitty
+
+kitty is my choice of terminal emulator, it is fast and cross-platform. My config is nothing out of ordinary with Gruvbox theme that I boosted contrast up. `color_test.sh` is also included for testing colors.
+
 ### Firefox
 
 userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included. Just be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.

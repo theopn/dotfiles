@@ -25,7 +25,7 @@ printf "\n2. Dotfiles. Do you wish to replace dotfiles? y/n: "
 read -n1 dotfile_input
 case $dotfile_input in  
   y|Y)
-    # Git related dotfiles
+    # Git
     current="git"
     git_files=("gitignore_global" "gitconfig")
     for v in ${git_files[@]}; do
@@ -38,7 +38,8 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    # Zsh related dotfiles
+    
+    # Zsh
     current="zsh"
     zsh_files=("zshrc" "zsh_plugins")
     for v in ${zsh_files[@]}; do
@@ -51,7 +52,8 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    # Tmux related dotfiles
+    
+    # Tmux
     current="tmux"
     tmux_files=("tmux.conf")
     for v in ${tmux_files[@]}; do
@@ -64,7 +66,8 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    # Vim related dotfiles
+    
+    # Vim
     current="vim"
     vim_files=("vimrc")
     for v in ${vim_files[@]}; do
@@ -77,12 +80,28 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    # Manual deployment for tokyonight theme
+    # Vim Gruvbox theme
     mkdir -p ~/.vim/
     sudo rm -rf ~/.vim/colors
     ln -sf ~/dotfiles/vim/colors ~/.vim/colors
-    printf "Modified version of tokyonight theme for Vim installed\n"
-    # Modified deployment for neovim settings
+    printf "Modified version of Gruvbox theme for Vim installed\n"
+    
+    # kitty
+    current="kitty"
+    kitty_files=("kitty.conf")
+    for v in ${kitty_files[@]}; do
+      if [[ -e "$home.config/kitty/$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo ~/.config/kitty/$v exists. Moving to ~/dotfiles_backup
+        mv ~/.config/kitty/$v ~/dotfiles_backup/$current/
+      fi
+      mkdir -p ~/.config/kitty
+      sudo rm -rf ~/.config/kitty/$v
+      ln -sf ~/dotfiles/$current/$v ~/.config/kitty/$v
+      echo $v modified
+    done
+
+    # Neovim
     current="nvim"
     nvim_files=("init.lua")
     for v in ${nvim_files[@]}; do
@@ -96,12 +115,13 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.config/nvim/$v
       echo $v modified
     done
-    # Manual deployment for extra lua settings
+    # Neovim Lua settings
     mkdir -p ~/.config/nvim
     sudo rm -rf ~/.config/nvim/lua
     ln -sf ~/dotfiles/nvim/lua ~/.config/nvim/lua
     printf "Extra lua config for NeoVim installed\n" 
-    # Bash related dotfiles
+    
+    # Bash
     current="bash"
     bash_files=("bashrc")
     for v in ${bash_files[@]}; do
