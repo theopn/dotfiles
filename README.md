@@ -40,7 +40,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
   - `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
   - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
 - Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts.
-- Manually deploy some config files for GUI applications (iTerm, iStats, font, etc)
+- Manually deploy some config files for GUI applications.
 
 ## Highlights
 
@@ -121,7 +121,7 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 | ---- | ----- |
 | Browser | - Brave <br/> - **Firefox** |
 | Productivity| - **Obsidian: Knowledge base based on local markdown files.** <br/> - Notion <br/> - Libre Office |
-| Development | - IntelliJ CE: Ugh Java. <br/> - **iTerm 2** <br/> - **MacVim** <br/> - **VSCode**
+| Development | - **kitty** <br/> - iTerm 2 <br/> - IntelliJ CE: Ugh Java. <br/> - **MacVim** <br/> - **VSCode**
 | Entertainment | - Spotify <br/> - Minecraft
 | Tools | - Bitwarden: The best password manager. <br/> - Cryptomator: File encryption before uploading to cloud storage <br/> - Syncthing: File synchronization across multiple devices. 
 | System (MacOS) | - Alfred: Spotlight replacement. <br/> - AppCleaner: App remover for MacOS. <br/> - **Amethyst: Tiling manager for MacOS.** <br/> - iStat Menus: System monitoring tool.

@@ -10,7 +10,7 @@ brew "node"
 
 cask "firefox"
 cask "obsidian"
-cask "iterm2"
+cask "kitty"
 cask "macvim"
 cask "visual-studio-code"
 cask "bitwarden"
