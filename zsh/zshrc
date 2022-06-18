@@ -1,6 +1,6 @@
-echo "Welcome \e[32m$USER\e[0m!"
+echo "\e[036mWelcome\e[0m \e[32m$USER\e[0m!"
 ########## Prompt Setting ##########
-PROMPT="╭─ %F{146}%n%f %F{239}at %F{085}%m %F{239}hanging out in %F{081}%~%f
+PROMPT="╭─ %F{146}%n%f %F{036}at %F{085}%m %F{036}hanging out in %F{081}%~%f
 ╰─ %F{153}%D - %F{075}%* %f-> "
 # RPROMPT="%B${vcs_info_msg_0_}%F{12}%2~%f"
 
