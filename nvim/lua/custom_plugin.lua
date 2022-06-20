@@ -61,7 +61,7 @@ require("onedark").load()
 ---[[ Lualine Settings
 require("lualine").setup {
   options = {
-    theme = "gruvbox"
+    theme = "dracula"
   },
 }
 --]]
