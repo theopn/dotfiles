@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("BufWritePost", { command = "source <afile> | Packer
 ---[[ Packer Plugins
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim" --> Irony of having to import itself
-  use "folke/tokyonight.nvim" --> Pretty theme
+  use "navarasu/onedark.nvim" --> Pretty theme
   use "nvim-lualine/lualine.nvim" --> Statusline plugin
   use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
   use "kyazdani42/nvim-tree.lua" --> NvimTree
@@ -41,7 +41,22 @@ require("packer").startup(function(use)
 end)
 --]]
 
-vim.cmd[[colo tokyonight]]
+---[[ Theme Settings
+require("onedark").setup {
+  style = "deep",
+  transparent = false,
+  toggle_style_key = "<leader>od",
+  toggle_style_list = {"dark", "darker", "cool", "deep", "warm", "warmer"},
+  code_style = {
+    comments = "italic",
+    keywords = "bold",
+    functions = 'none',
+    strings = 'none',
+    variables = 'none'
+  },
+}
+require("onedark").load()
+--]]
 
 ---[[ Lualine Settings
 require("lualine").setup {
