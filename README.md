@@ -98,7 +98,18 @@ userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/min
 
 ### Linux
 
-#### i3 WM
+#### i3 WM (i3-gap)
+
+Here are difference I made from the stock configuration.
+
+0. Reorganization, terminal, and workspace name.
+1. Vim keybinding instead of the weird semicolon, super + space to launch `rofi drun`.
+2. Regular reload, restart, and exit key has been remapped to a "system_mode," which is a custom mode connected to `i3_system_mode.sh` and provides i3/systemctl functions (reload, exit, suspend, shutdown, etc).
+3. Auto executed programs on startup: wallpaper `feh`, `polybar`, and blue light filter `redshift`.
+
+#### Polybar
+
+Polybar goes with i3. Just a simple Gruvbox bar, it displays two batteries since my ThinkPad T460s has two.
 
 ### macOS
 
