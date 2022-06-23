@@ -1,11 +1,11 @@
-#############################################
-#  __   ____   ____    __    ____ .___  ___.#
-# |  | |___ \  \   \  /  \  /   / |   \/   |#
-# |  |   __) |  \   \/    \/   /  |  \  /  |#
-# |  |  |__ <    \            /   |  |\/|  |#
-# |  |  ___) |    \    /\    /    |  |  |  |#
-# |__| |____/      \__/  \__/     |__|  |__|#
-#############################################
+##################################
+#██╗██By██╗ ██╗Theo██╗███╗   ███╗#
+#██║╚════██╗██║    ██║████╗ ████║#
+#██║ █████╔╝██║ █╗ ██║██╔████╔██║#
+#██║ ╚═══██╗██║███╗██║██║╚██╔╝██║#
+#██║██████╔╝╚███╔███╔╝██║ ╚═╝ ██║#
+#╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝#
+##################################
 
 # ---[[ VARIABLES
 set $term kitty
@@ -58,6 +58,8 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
+# Press the mod key to move the floating window w/ mouse
+floating_modifier $mod
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
 # focus the parent/child container
@@ -105,7 +107,7 @@ mode "$system_mode" {
   bindsym r restart
   bindsym l exec i3lock -i ~/Pictures/screenshot.png, mode "default"
   bindsym e exec "i3-nagbar -t warning -m 'Bye bye?' -B 'Sure' 'i3-msg exit'"
-  bindsym s exec --no-startup-id ~/.config/i3~/.config/i3/i3_system_mode.sh
+  bindsym s exec --no-startup-id ~/.config/i3/i3_system_mode.sh suspend, mode "default"
   bindsym Escape mode "default"
 }
 bindsym $mod+Shift+c mode "$system_mode"
@@ -127,10 +129,11 @@ font pango:FantasqueSansMono Nerd Font 8
 client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce   #9aa5ce
 client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
 client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
-# Only for i3 gaps
+####### I3-GAPS ONLY SETTINGS #######
 for_window [class=".*"] border pixel 5
-gaps inner 5
-gaps outer 5
+gaps inner 3
+gaps outer 3
+####### I3-GAPS ONLY SETTINGS #######
 # --]]
 
 # ---[[ HARDWARE ET SYSTEM
@@ -152,19 +155,13 @@ bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # --]]
 
 # ---[[ STARTUP COMMANDS
-exec --no-startup-id ./.fehbg
-exec --no-startup-id polybar -c ~/.config/polybar/config.inl
-exec --no-startup-id redshift -l 39.2:-86.5 -t 5000:3500 -m randr
-# --]]
-
-# ---[[ OTHERS
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+# You can show the default i3 bottom bar w/ mode key
 bar {
-  status_command i3status
+  status_command polybar -c ~/.config/polybar/config.inl
+  mode hide
 }
+exec --no-startup-id ./.fehbg
+exec --no-startup-id redshift -l 39.2:-86.5 -t 5000:3500 -m randr
 # --]]
 
 ########## ---[[ EXPERIMENTAL ZONE
