@@ -22,13 +22,10 @@ set $ws9 "9: Other stuffs"
 set $ws10 "10: Spotify"
 # --]]
 
-# ---[[ KEYBINDINGS
+# ---[[ WINDOW KEYBINDINGS
 set $mod Mod4
-# start a terminal
 bindsym $mod+Return exec $term
-# kill focused window
 bindsym $mod+Shift+q kill
-# start dmenu (a program launcher)
 bindsym $mod+space exec --no-startup-id rofi run -show drun
 # change focus
 bindsym $mod+h focus left
@@ -50,9 +47,8 @@ bindsym $mod+Shift+Right move right
 # split in horizontal/vertical orientation
 bindsym $mod+z split h
 bindsym $mod+v split v
-# enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
-# change container layout (stacked, tabbed, toggle split)
+# change container layout
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
@@ -86,8 +82,8 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-# resize window (you can also use the mouse for that)
-mode "resize" {
+# Window resize mode
+mode "RESIZE MODE" {
   bindsym h resize shrink width 10 px or 10 ppt
   bindsym j resize grow height 10 px or 10 ppt
   bindsym k resize shrink height 10 px or 10 ppt
@@ -100,7 +96,26 @@ mode "resize" {
   bindsym Escape mode "default"
   bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym $mod+r mode "RESIZE MODE"
+# --]]
+
+# ---[[ HARDWARE ET SYSTEM
+# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
+# screen before suspend. Use loginctl lock-session to lock your screen.
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+# Use brightnessctl to adjust brightness with function row keys
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+# System option mode
 set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (Shift+s) Shutdown
 mode "$system_mode" {
   bindsym c reload
@@ -113,21 +128,16 @@ mode "$system_mode" {
 bindsym $mod+Shift+c mode "$system_mode"
 bindsym $mod+Shift+r mode "$system_mode"
 bindsym $mod+Shift+e mode "$system_mode"
-# reload the configuration file
 #bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 #bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 #bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # I use CopyQ as my clipboard manager
 bindsym Ctrl+Shift+v exec "copyq show"
 # --]]
 
 # ---[[ APPEARANCE
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
 font pango:FantasqueSansMono Nerd Font 8
-# Colorscheme
+# Nord colorscheme
 client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce   #9aa5ce
 client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
 client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
@@ -138,28 +148,11 @@ gaps outer 3
 ####### I3-GAPS ONLY SETTINGS #######
 # --]]
 
-# ---[[ HARDWARE ET SYSTEM
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-# Use brightnessctl to adjust brightness with function row keys
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
-# --]]
-
 # ---[[ STARTUP COMMANDS
-# You can show the default i3 bottom bar w/ mode key
+# Default i3 bar is hidden by default, activated with the mod key
 bar {
   status_command polybar -c ~/.config/polybar/config.inl
+  font pango:Comic Mono 15
   mode hide
 }
 exec --no-startup-id ./.fehbg
