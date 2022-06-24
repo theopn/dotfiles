@@ -105,7 +105,7 @@ set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3
 mode "$system_mode" {
   bindsym c reload
   bindsym r restart
-  bindsym l exec i3lock -i ~/dotfiles/i3lock_solarsys_gruvbox_lock.png, mode "default"
+  bindsym l exec i3lock -i ~/Pictures/screenshot.png, mode "default"
   bindsym e exec "i3-nagbar -t warning -m 'Bye bye?' -B 'Sure' 'i3-msg exit'"
   bindsym s exec --no-startup-id ~/.config/i3/i3_system_mode.sh suspend, mode "default"
   bindsym Escape mode "default"
@@ -119,6 +119,8 @@ bindsym $mod+Shift+e mode "$system_mode"
 #bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 #bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+# I use CopyQ as my clipboard manager
+bindsym Ctrl+Shift+v exec "copyq show"
 # --]]
 
 # ---[[ APPEARANCE
@@ -162,6 +164,7 @@ bar {
 }
 exec --no-startup-id ./.fehbg
 exec --no-startup-id redshift -l 39.2:-86.5 -t 5000:3500 -m randr
+exec --no-startup-id copyq
 # --]]
 
 ########## ---[[ EXPERIMENTAL ZONE
