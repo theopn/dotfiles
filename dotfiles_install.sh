@@ -31,7 +31,7 @@ case $dotfile_input in
     for v in ${git_files[@]}; do
       if [[ -e "$home.$v" ]]; then
         mkdir -p ~/dotfiles_backup/$current
-        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        echo .$v exists. Moving to ~/dotfiles_backup
         mv ~/.$v ~/dotfiles_backup/$current/
       fi
       sudo rm -rf ~/.$v
@@ -45,7 +45,7 @@ case $dotfile_input in
     for v in ${zsh_files[@]}; do
       if [[ -e "$home.$v" ]]; then
         mkdir -p ~/dotfiles_backup/$current
-        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        echo .$v exists. Moving to ~/dotfiles_backup
         mv ~/.$v ~/dotfiles_backup/$current/
       fi
       sudo rm -rf ~/.$v
@@ -59,7 +59,7 @@ case $dotfile_input in
     for v in ${tmux_files[@]}; do
       if [[ -e "$home.$v" ]]; then
         mkdir -p ~/dotfiles_backup/$current
-        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        echo .$v exists. Moving to ~/dotfiles_backup
         mv ~/.$v ~/dotfiles_backup/$current/
       fi
       sudo rm -rf ~/.$v
@@ -73,7 +73,7 @@ case $dotfile_input in
     for v in ${vim_files[@]}; do
       if [[ -e "$home.$v" ]]; then
         mkdir -p ~/dotfiles_backup/$current
-        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        echo .$v exists. Moving to ~/dotfiles_backup
         mv ~/.$v ~/dotfiles_backup/$current/
       fi
       sudo rm -rf ~/.$v
@@ -92,12 +92,27 @@ case $dotfile_input in
     for v in ${kitty_files[@]}; do
       if [[ -e "$home.config/kitty/$v" ]]; then
         mkdir -p ~/dotfiles_backup/$current
-        echo ~/.config/kitty/$v exists. Moving to ~/dotfiles_backup
+        echo $v exists. Moving to ~/dotfiles_backup
         mv ~/.config/kitty/$v ~/dotfiles_backup/$current/
       fi
       mkdir -p ~/.config/kitty
       sudo rm -rf ~/.config/kitty/$v
       ln -sf ~/dotfiles/$current/$v ~/.config/kitty/$v
+      echo $v modified
+    done
+
+    # neofetch
+    current="neofetch"
+    neofetch_files=("config.conf")
+    for v in ${neofetch_files[@]}; do
+      if [[ -e "$home.config/neofetch/$v" ]]; then
+        mkdir -p ~/dotfiles_backup/$current
+        echo $v exists. Moving to ~/dotfiles_backup
+        mv ~/.config/neofetch/$v ~/dotfiles_backup/$current/
+      fi
+      mkdir -p ~/.config/neofetch
+      sudo rm -rf ~/.config/neofetch/$v
+      ln -sf ~/dotfiles/$current/$v ~/.config/neofetch/$v
       echo $v modified
     done
 
@@ -107,7 +122,7 @@ case $dotfile_input in
     for v in ${nvim_files[@]}; do
       if [[ -e "$home.config/nvim/$v" ]]; then
         mkdir -p ~/dotfiles_backup/$current
-        echo ~/.config/nvim/$v exists. Moving to ~/dotfiles_backup
+        echo $v exists. Moving to ~/dotfiles_backup
         mv ~/.config/nvim/$v ~/dotfiles_backup/$current/
       fi
       mkdir -p ~/.config/nvim
@@ -127,7 +142,7 @@ case $dotfile_input in
     for v in ${bash_files[@]}; do
       if [[ -e "$home.$v" ]]; then
         mkdir -p ~/dotfiles_backup/$current
-        echo ~/.$v exists. Moving to ~/dotfiles_backup
+        echo .$v exists. Moving to ~/dotfiles_backup
         mv ~/.$v ~/dotfiles_backup/$current/
       fi
       ln -sf ~/dotfiles/$current/$v ~/.$v

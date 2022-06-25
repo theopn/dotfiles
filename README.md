@@ -47,6 +47,14 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 ### Cross-platform
 
+#### Bash
+
+Basic shell setting with just ls alias and prompt.
+
+#### Firefox
+
+userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included. Just be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.
+
 #### Fonts
 
 I have an exquisite taste in fonts.
@@ -57,22 +65,29 @@ I have an exquisite taste in fonts.
 As you can tell, I like rather childish fonts, but why serious fonts? When I'm stressed out with work, the last thing I want is to stare at the screen filled with Consolas or other generic fonts and 56 error messages. I highly recommend you explore fonts, especially if you have dyslexia.
 I also recommend [DaddyTimeMono Nerd Font](https://www.programmingfonts.org/#daddytimemono) and [Hermit Nerd Font](https://www.programmingfonts.org/#hermit), available to download at [Nerd Fonts website](https://www.nerdfonts.com/font-downloads).
 
-#### Bash
+#### Git
 
-Basic shell setting with just ls alias and prompt.
+Basic gitignore and name/email config.
 
-#### Zsh
+#### kitty
 
-Vim keybinding, list, clear, Neovim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
-zsh-autocomplete plug-in included.
+kitty is my choice of terminal emulator, it is fast and cross-platform. My config is nothing out of ordinary with Gruvbox theme that I boosted contrast up. `color_test.sh` is also included for testing colors.
+
+#### Neofetch
+
+No system is complete without this. A simple custom configuration utilizing NERD font glyphs and separate categories for hardware and software.
+
+#### Neovim
+
+NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
+
+#### Neovim
+
+NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
 
 #### tmux
 
 Tmux is very usable out of the box. I changed the prefix to `ctrl + a`, use Vim keybinding for navigation, and configured the status bar.
-
-#### Git
-
-Basic gitignore and name/email config.
 
 #### Vim
 
@@ -84,17 +99,10 @@ Notable settings include
 - 2 spaces as a tab. > for the \t, ␣ for the trailing whitespace, + for the non-breaking space
 - Automatic bracket closers, HJKL to navigate split panes, ESC to escape terminal, and jj as an ESC in insert mode.
 
-#### Neovim
+#### Zsh
 
-NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
-
-#### kitty
-
-kitty is my choice of terminal emulator, it is fast and cross-platform. My config is nothing out of ordinary with Gruvbox theme that I boosted contrast up. `color_test.sh` is also included for testing colors.
-
-#### Firefox
-
-userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included. Just be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.
+Vim keybinding, list, clear, Neovim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
+zsh-autocomplete plug-in included.
 
 ### Linux
 
@@ -148,7 +156,7 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 | ---- | ----- |
 | Browser | - Brave <br/> - **Firefox** |
 | Productivity| - **Obsidian: Knowledge base based on local markdown files.** <br/> - Notion <br/> - Libre Office |
-| Development | - **kitty** <br/> - iTerm 2 <br/> - IntelliJ CE: Ugh Java. <br/> - **MacVim** <br/> - **VSCode**
+| Development | - Emacs (Cask version): Vim is better, but it doesn't hurt to have it. <br/> - **kitty** <br/> - IntelliJ CE: Ugh Java. <br/> - **MacVim** <br/> - **VSCode**
 | Entertainment | - Spotify <br/> - Minecraft
 | Tools | - Bitwarden: The best password manager. <br/> - Cryptomator: File encryption before uploading to cloud storage <br/> - Syncthing: File synchronization across multiple devices. 
 | System (MacOS) | - Alfred: Spotlight replacement. <br/> - AppCleaner: App remover for MacOS. <br/> - **Amethyst: Tiling manager for MacOS.** <br/> - iStat Menus: System monitoring tool.
