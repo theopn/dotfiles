@@ -7,11 +7,12 @@
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 ```
 
-Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5 running Fedora.
+Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5.
+MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation (Gnome DE) with i3 window manager.
 You are free to use all or some of the dotfiles in your system, but
 
 1. My dotfiles are tailored toward me, and they might not suit your taste.
-2. The installation script, Homebrew formulae, and some other components are developed on macOS. Other dotfiles work on my Linux machine, but be cautious when utilizing them on a Linux machine (or any machine).
+2. The installation script, Homebrew formulae, and some other components are developed on macOS. Cross-platform dotfiles work on my Linux machine, but be cautious when utilizing them on a Linux machine (or any machine).
 3. If you are beginning to customize your \*nix system, I highly recommend you explore what each file does before copying them over to your system. I once started my dotfiles and \*nix customization journey by referencing other people's systems (and I still do), but you always should try to understand and learn from them.
 
 Dots in front of the files in the repo are removed for readability reasons, which is ironic.
@@ -40,7 +41,6 @@ Run the installation script (do not run with sudo as Homebrew will not like that
   - `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
   - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
 - Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts.
-- Manually deploy some config files for GUI applications.
 - Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed.
 
 ## Highlights
@@ -63,7 +63,7 @@ Basic shell setting with just ls alias and prompt.
 
 #### Zsh
 
-Vim keybinding, list, clear, Neoim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
+Vim keybinding, list, clear, Neovim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
 zsh-autocomplete plug-in included.
 
 #### tmux
@@ -98,18 +98,35 @@ userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/min
 
 ### Linux
 
+I use the latest version of Fedora Workstation (official version with Gnome DE) and primarily use i3 window manager and Gnome as a back up.
+
 #### i3 WM (i3-gap)
 
-Here are difference I made from the stock configuration.
+i3 is integral in my workflow, and I tried to keep as many stock keybindings as possible. Below is a list of the dependencies needed to run my configuration correctly, besides other dependencies that get installed from Fedora's dnf package manager.
 
-0. Reorganization, terminal, and workspace name.
-1. Vim keybinding instead of the weird semicolon, super + space to launch `rofi drun`.
-2. Regular reload, restart, and exit key has been remapped to a "system_mode," which is a custom mode connected to `i3_system_mode.sh` and provides i3/systemctl functions (reload, exit, suspend, shutdown, etc).
-3. Auto executed programs on startup: wallpaper `feh`, `polybar`, and blue light filter `redshift`.
+| Dependencies | Description |
+| ------------ | ----------- |
+| brightnessctl | Controls backlight |
+| polybar | Top status bar. Replacement of i3bar |
+| feh | Wallpaper |
+| ImageMagick | Used to make lock screen background for i3lock |
+| rofi | App launcher. Replacement of dmenu |
+| ranger | TUI file manager |
+| CopyQ | Clipboard manager |
+| Flameshot | Screenshot program |
+| Redshift | Blue light filter |
+| Script | All the custom scripts that are included in the dotfiles folder
+
+Below is a list of keybindings that are unique to my setup.
+
+- Instead of `jkl;`, I use Vim keybinding of `hjkl`
+- `$mod+Shift+c, r, e` (config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and other system-related actions.
+
+My goal is to eventually migrate to Sway and Wayland-based dependencies, though that's going to be a long journey.
 
 #### Polybar
 
-Polybar goes with i3. Just a simple Gruvbox bar, it displays two batteries since my ThinkPad T460s has two.
+Nord colorscheme, volume and brightness, two batteries in my laptop, date in ISO 8601, nothing special.
 
 ### macOS
 
