@@ -28,14 +28,14 @@ require("packer").startup(function(use)
   use {
     "ms-jpq/coq_nvim", --> Complention program
     branch = "coq",
-    event = "VimEnter", config = "vim.cmd[[COQnow]]",--> Autoexecute COQnow on startup
+    event = "VimEnter", config = "vim.cmd[[COQnow]]", --> Autoexecute COQnow on startup
   }
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
   use "nvim-lua/plenary.nvim" --> telescope dependency
   use {
-  "nvim-telescope/telescope.nvim", --> Expendable fuzzy finder
-  requires = { {"nvim-lua/plenary.nvim"} }
+    "nvim-telescope/telescope.nvim", --> Expendable fuzzy finder
+    requires = { {"nvim-lua/plenary.nvim"} }
   }
   use "romgrk/barbar.nvim" --> Simple tabline plug in
 end)
@@ -86,7 +86,10 @@ require("nvim-tree").setup {
   }
 }
 vim.api.nvim_set_keymap('n', "<C-n>", ":NvimTreeToggle<CR>", { noremap = true })
-vim.cmd[[autocmd BufEnter * ++nested if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif]]
+vim.api.nvim_create_autocmd('BufEnter', {
+  command = "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif",
+  nested = true,
+})
 --]]
 
 ---[[ nvim-cmp Settings
@@ -116,3 +119,4 @@ require("nvim-tree.events").on_tree_close(function ()
   require("bufferline.state").set_offset(0)
 end)
 --]]
+

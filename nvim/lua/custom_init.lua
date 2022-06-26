@@ -17,36 +17,6 @@ local function vim_map(mode, shortcut, target)
 end
 --]]
 
----[[ Visual Related Settings
-do
-  local vis_opt = {
-    { opt = "number", val = true },
-    { opt = "relativenumber", val = false },
-    { opt = "colorcolumn", val = '120' },
-    { opt = "cursorline", val = true },
-    { opt = "cursorcolumn", val = true },
-  }
-  for i,v in pairs(vis_opt) do
-    vim_set(v.opt, WINDOW, v.val)
-  end
-end
---]]
-
----[[ Text Edit Related Settings
-do
-  local edit_opt = {
-    { opt = "shiftwidth", val = 2 },
-    { opt = "tabstop", val = 2 },
-    { opt = "softtabstop", val = 2 },
-    { opt = "expandtab", val = true },
-    { opt = "mouse", val = 'a' },
-  }
-  for i,v in ipairs(edit_opt) do
-    vim_set(v.opt, GLOBAL, v.val)
-  end
-end
---]
-
 ---[[ Syntax Related Settings
 do
   local syntax_opt = {
@@ -75,6 +45,36 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 --]]
 
+---[[ Text Edit Related Settings
+do
+  local edit_opt = {
+    { opt = "shiftwidth", val = 2 },
+    { opt = "tabstop", val = 2 },
+    { opt = "softtabstop", val = 2 },
+    { opt = "expandtab", val = true },
+    { opt = "mouse", val = 'a' },
+  }
+  for i,v in ipairs(edit_opt) do
+    vim_set(v.opt, GLOBAL, v.val)
+  end
+end
+--]
+
+---[[ Visual Related Settings
+do
+  local vis_opt = {
+    { opt = "number", val = true },
+    { opt = "relativenumber", val = true },
+    { opt = "colorcolumn", val = '120' },
+    { opt = "cursorline", val = true },
+    { opt = "cursorcolumn", val = true },
+  }
+  for i,v in pairs(vis_opt) do
+    vim_set(v.opt, WINDOW, v.val)
+  end
+end
+--]]
+
 ---[[ Key Binding Related Settings
 do
   local key_opt = {
@@ -101,3 +101,4 @@ do
 end
 vim.g.mapleader = ","
 --]]
+
