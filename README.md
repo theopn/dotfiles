@@ -51,6 +51,10 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 Basic shell setting with just ls alias and prompt.
 
+#### Emacs
+
+I like vim more, but it doesn't hurt to know a thing or two about it.
+
 #### Firefox
 
 userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included. Just be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.
@@ -89,7 +93,7 @@ NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations
 
 Tmux is very usable out of the box. I changed the prefix to `ctrl + a`, use Vim keybinding for navigation, and configured the status bar.
 
-#### Vim
+#### vim
 
 I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
 Modified version of [gruvbox](https://github.com/morhetz/gruvbox) theme is bundled (I commented out italics font, which does not play well with MacOS), which I found to be working great with my colorblindness and overall compatibility with tmux/iTerm. There is no plugin installed.
@@ -154,12 +158,12 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 | Type | Casks |
 | ---- | ----- |
-| Browser | - Brave <br/> - **Firefox** |
-| Productivity| - **Obsidian: Knowledge base based on local markdown files.** <br/> - Notion <br/> - Libre Office |
-| Development | - Emacs (Cask version): Vim is better, but it doesn't hurt to have it. <br/> - **kitty** <br/> - IntelliJ CE: Ugh Java. <br/> - **MacVim** <br/> - **VSCode**
-| Entertainment | - Spotify <br/> - Minecraft
-| Tools | - Bitwarden: The best password manager. <br/> - Cryptomator: File encryption before uploading to cloud storage <br/> - Syncthing: File synchronization across multiple devices. 
-| System (MacOS) | - Alfred: Spotlight replacement. <br/> - AppCleaner: App remover for MacOS. <br/> - **Amethyst: Tiling manager for MacOS.** <br/> - iStat Menus: System monitoring tool.
+| Browser | - Brave <br> - **Firefox** |
+| Productivity| - Emacs (Cask version): Vim is better, but it doesn't hurt to have it. <br> - **Obsidian: Knowledge base based on local markdown files.** <br> - Notion <br> - Libre Office |
+| Development | - Docker <br> - **kitty** <br> - IntelliJ CE: Ugh Java. <br> - **MacVim** <br> - **VSCode**
+| Entertainment | - Spotify <br> - Minecraft
+| Tools | - Bitwarden: The best password manager. <br> - Cryptomator: File encryption before uploading to cloud storage <br> - Syncthing: File synchronization across multiple devices. 
+| System (MacOS) | - Alfred: Spotlight replacement. <br> - AppCleaner: App remover for MacOS. <br> - **Amethyst: Tiling manager for MacOS.** <br> - iStat Menus: System monitoring tool.
 
 #### Settings
 
