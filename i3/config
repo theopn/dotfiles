@@ -82,8 +82,12 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+# --]]
+
+# ---[[ MODES
 # Window resize mode
-mode "RESIZE MODE" {
+set $resize_mode RESIZE MODE: (hjkl, arrows) Resize (esc, return, super+r) Exit
+mode "$resize_mode" {
   bindsym h resize shrink width 10 px or 10 ppt
   bindsym j resize grow height 10 px or 10 ppt
   bindsym k resize shrink height 10 px or 10 ppt
@@ -92,11 +96,30 @@ mode "RESIZE MODE" {
   bindsym Down resize grow height 10 px or 10 ppt
   bindsym Up resize shrink height 10 px or 10 ppt
   bindsym Right resize grow width 10 px or 10 ppt
-  bindsym Return mode "default"
   bindsym Escape mode "default"
+  bindsym Return mode "default"
   bindsym $mod+r mode "default"
 }
-bindsym $mod+r mode "RESIZE MODE"
+bindsym $mod+r mode "$resize_mode"
+# System option mode
+set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (shift+s) Shutdown (esc) Exit
+mode "$system_mode" {
+  bindsym c reload
+  bindsym r restart
+  bindsym l exec i3lock -i ~/Pictures/screenshot.png, mode "default"
+  bindsym e exec "i3-nagbar -t warning -m 'Bye bye?' -B 'Sure' 'i3-msg exit'"
+  bindsym s exec --no-startup-id ~/.config/i3/i3_system_mode.sh suspend, mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+Shift+c mode "$system_mode"
+bindsym $mod+Shift+r mode "$system_mode"
+bindsym $mod+Shift+e mode "$system_mode"
+# Passthrough mode
+set $passthrough_mode PASSTHROUGH MODE: (esc) Exit
+mode "$passthrough_mode" {
+  bindsym Escape mode "default"
+}
+bindsym $mod+Shift+p mode "$passthrough_mode"
 # --]]
 
 # ---[[ HARDWARE ET SYSTEM
@@ -115,22 +138,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use brightnessctl to adjust brightness with function row keys
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
-# System option mode
-set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (Shift+s) Shutdown
-mode "$system_mode" {
-  bindsym c reload
-  bindsym r restart
-  bindsym l exec i3lock -i ~/Pictures/screenshot.png, mode "default"
-  bindsym e exec "i3-nagbar -t warning -m 'Bye bye?' -B 'Sure' 'i3-msg exit'"
-  bindsym s exec --no-startup-id ~/.config/i3/i3_system_mode.sh suspend, mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+Shift+c mode "$system_mode"
-bindsym $mod+Shift+r mode "$system_mode"
-bindsym $mod+Shift+e mode "$system_mode"
-#bindsym $mod+Shift+c reload
-#bindsym $mod+Shift+r restart
-#bindsym Mod1+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 # I use CopyQ as my clipboard manager
 bindsym Ctrl+Shift+v exec "copyq show"
 # --]]
@@ -141,8 +148,9 @@ font pango:FantasqueSansMono Nerd Font 8
 client.focused           #9aa5ce #364A82 #c0caf5 #9aa5ce   #9aa5ce
 client.focused_inactive  #16161d #16161d #c0caf5 #16161d   #16161d
 client.unfocused         #16161d #16161d #c0caf5 #16161d   #16161d
-####### I3-GAPS ONLY SETTINGS #######
+# No window title
 for_window [class=".*"] border pixel 5
+####### I3-GAPS ONLY SETTINGS #######
 gaps inner 3
 gaps outer 3
 ####### I3-GAPS ONLY SETTINGS #######
