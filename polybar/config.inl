@@ -139,12 +139,12 @@ format-full =  BAT1(Ext) <label-full>
 type = internal/network
 interface-type = wireless
 interval = 3.0
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-5 = 
+ramp-signal-0 = .
+ramp-signal-1 = :
+ramp-signal-2 = ::
+ramp-signal-3 = :::
+ramp-signal-4 = ::::
+ramp-signal-5 = :::::
 ramp-signal-foreground = ${colors.primary}
 label-connected = 直  %essid%
 label-disconnected = 睊  no wifi?
@@ -153,7 +153,7 @@ format-disconnected = <label-disconnected>
 
 [module/date]
 type = internal/date
-inteval = 5
+interval = 5
 date = "%a %m-%d"
 time = "%H:%M:%S"
 label = %date% %time%
