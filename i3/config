@@ -136,7 +136,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # I use CopyQ as my clipboard manager
-bindsym $mod+Shift+v exec "copyq show"
+bindsym $mod+Shift+v exec --no-startup-id copyq show
 # --]]
 
 # ---[[ APPEARANCE

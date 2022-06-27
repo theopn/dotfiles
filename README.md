@@ -114,26 +114,29 @@ i3 is integral in my workflow, and I tried to keep as many stock keybindings as 
 
 | Dependencies | Description |
 | ------------ | ----------- |
-| setxkbmap | Everyone needs to swap caps lock and control |
-| xss-lock | Can automatically call i3lock before suspend |
-| network-manager-applet | GUI network manager |
 | brightnessctl | Controls backlight |
-| polybar | Top status bar. Replacement of i3bar |
-| feh | Wallpaper |
-| ImageMagick | Used to make lock screen background for i3lock |
-| rofi | App launcher. Replacement of dmenu |
-| ranger | TUI file manager |
 | CopyQ | Clipboard manager |
+| feh | Wallpaper |
 | Flameshot | Screenshot program |
+| ImageMagick | Used to make lock screen background for i3lock |
+| network-manager-applet | GUI network manager |
+| polybar | Top status bar. Replacement of i3bar |
+| ranger | TUI file manager |
 | Redshift | Blue light filter |
-| Script | All the custom scripts that are included in the dotfiles folder
+| rofi | App launcher. Replacement of dmenu |
+| setxkbmap | Everyone needs to swap caps lock and control |
+| xrandr | Controls external display output |
+| xss-lock | Can automatically call i3lock before suspend |
+| Script | All the custom scripts that are included in the dotfiles folder |
 
 Below is a list of keybindings that are unique to my setup.
 
-- Instead of `jkl;`, I use Vim keybinding of `hjkl`
+- Instead of `jkl;`, I use Vim keybinding of `hjkl`.
+- Instead of `$mod+h`, `$mod+z` toggles horiZontal split.
+- Instead of `$mod+d`, `$mod+Space` launches rofi. Habit from using macOS Spotlight.
 - `$mod+Shift+c, r, e` (config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and other system-related actions.
 - `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: kitty uses `super + 0` to reset the font adjustment, which you cannot normally use since i3 uses `super + 0` as a shortcut to workspace 0. This can be solved by executing `super + 0` in the passthrough mode).
-- `super + shift + v` to execute the clipboard manager.
+- `$mod+Shift+v` to execute the clipboard manager.
 
 My goal is to eventually migrate to Sway and Wayland-based dependencies, though that's going to be a long journey.
 
