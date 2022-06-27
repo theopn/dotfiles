@@ -119,6 +119,8 @@ i3 is integral in my workflow, and I tried to keep as many stock keybindings as 
 | Dependencies | Description |
 | ------------ | ----------- |
 | setxkbmap | Everyone needs to swap caps lock and control |
+| xss-lock | Can automatically call i3lock before suspend |
+| network-manager-applet | GUI network manager |
 | brightnessctl | Controls backlight |
 | polybar | Top status bar. Replacement of i3bar |
 | feh | Wallpaper |

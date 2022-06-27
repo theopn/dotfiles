@@ -9,6 +9,7 @@
 
 # ---[[ VARIABLES
 set $term kitty
+set $system_mode_script ~/.config/i3/i3_system_mode.sh
 # workspace variables
 set $ws1 "1: Firefox"
 set $ws2 "2: Term"
@@ -102,13 +103,15 @@ mode "$resize_mode" {
 }
 bindsym $mod+r mode "$resize_mode"
 # System option mode
-set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (shift+s) Shutdown (esc) Exit
+set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (shift+r) Restart (shift+s) Shutdown (esc) Exit
 mode "$system_mode" {
   bindsym c reload
   bindsym r restart
-  bindsym l exec i3lock -i ~/Pictures/screenshot.png, mode "default"
-  bindsym e exec "i3-nagbar -t warning -m 'Bye bye?' -B 'Sure' 'i3-msg exit'"
-  bindsym s exec --no-startup-id ~/.config/i3/i3_system_mode.sh suspend, mode "default"
+  bindsym l exec --no-startup-id $system_mode_script lock, mode "default"
+  bindsym e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Sure' 'i3-msg exit'"
+  bindsym s exec --no-startup-id $system_mode_script suspend, mode "default"
+  bindsym Shift+r exec "i3-nagbar -t warning -m 'Restart?' -B 'Sure' '$system_mode_script restart'"
+  bindsym Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Sure' '$system_mode_script shutdown'"
   bindsym Escape mode "default"
 }
 bindsym $mod+Shift+c mode "$system_mode"
@@ -123,12 +126,6 @@ bindsym $mod+Shift+p mode "$passthrough_mode"
 # --]]
 
 # ---[[ HARDWARE ET SYSTEM
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -163,10 +160,12 @@ bar {
   font pango:Comic Mono 15
   mode hide
 }
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
+exec --no-startup-id nm-applet
 exec --no-startup-id ./.fehbg
+exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id redshift -l 39.2:-86.5 -t 5000:3500 -m randr
 exec --no-startup-id copyq
-exec --no-startup-id setxkbmap -option ctrl:swapcaps
 # --]]
 
 ########## ---[[ EXPERIMENTAL ZONE
