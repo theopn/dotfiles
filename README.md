@@ -79,11 +79,7 @@ kitty is my choice of terminal emulator, it is fast and cross-platform. My confi
 
 #### Neofetch
 
-No system is complete without this. A simple custom configuration utilizing NERD font glyphs and separate categories for hardware and software.
-
-#### Neovim
-
-NeoVim is my IDE for C, Lua, Python, and other languages. All the configurations are written in Lua, and Plug-ins are managed by Packer!
+Does it have any use? Not really. Is it pretty and essential? Yes. A simple custom configuration utilizing NERD font glyphs and separate categories for hardware and software.
 
 #### Neovim
 
