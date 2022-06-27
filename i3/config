@@ -166,6 +166,7 @@ bar {
 exec --no-startup-id ./.fehbg
 exec --no-startup-id redshift -l 39.2:-86.5 -t 5000:3500 -m randr
 exec --no-startup-id copyq
+exec --no-startup-id setxkbmap -option ctrl:swapcaps
 # --]]
 
 ########## ---[[ EXPERIMENTAL ZONE

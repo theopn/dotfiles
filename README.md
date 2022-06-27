@@ -118,6 +118,7 @@ i3 is integral in my workflow, and I tried to keep as many stock keybindings as 
 
 | Dependencies | Description |
 | ------------ | ----------- |
+| setxkbmap | Everyone needs to swap caps lock and control |
 | brightnessctl | Controls backlight |
 | polybar | Top status bar. Replacement of i3bar |
 | feh | Wallpaper |
