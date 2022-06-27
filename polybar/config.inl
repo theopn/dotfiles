@@ -45,7 +45,7 @@ module-margin-left = 1
 module-margin-right = 1
 
 modules-left = xworkspaces xwindow
-modules-right = memory cpu backlight pulseaudio battery0 battery1 wlan date
+modules-right = memory cpu backlight pulseaudio battery0 battery1 network date
 enable-ipc = true
 
 [module/xworkspaces]
@@ -71,14 +71,14 @@ label = %title:0:60:...%
 type = internal/memory
 interval = 2
 label = %gb_used%/%gb_total%
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 
 [module/cpu]
 type = internal/cpu
 interval = 2
 label = %percentage:2%%
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.primary}
 
 [module/backlight]
@@ -131,21 +131,25 @@ ramp-capacity-1 = 
 ramp-capacity-1-foreground = ${colors.primary}
 ramp-capacity-2 = 
 ramp-capacity-3 = 
-format-charging =  BAT1(Rmv) <label-charging>
-format-discharging = <ramp-capacity> BAT1(Rmv) <label-discharging>
-format-full =  BAT1(Rmv) <label-full>
+format-charging =  BAT1(Ext) <label-charging>
+format-discharging = <ramp-capacity> BAT1(Ext) <label-discharging>
+format-full =  BAT1(Ext) <label-full>
 
-[network-base]
+[module/network]
 type = internal/network
-interval = 5
-format-connected = <label-connected>
-format-disconnected = <label-disconnected>
-label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
-
-[module/wlan]
-inherit = network-base
 interface-type = wireless
-label-connected = %{F#F0C674}%ifname%%{F-} %essid% %local_ip%
+interval = 3.0
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-5 = 
+ramp-signal-foreground = ${colors.primary}
+label-connected = 直  %essid%
+label-disconnected = 睊  no wifi?
+format-connected = <label-connected> <ramp-signal>
+format-disconnected = <label-disconnected>
 
 [module/date]
 type = internal/date
@@ -160,6 +164,16 @@ screenchange-reload = true
 pseudo-transparency = true
 
 ; ---[[ Unused modules
+[network-base]
+type = internal/network
+interval = 5
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-disconnected = %{F#F0C674}%ifname%%{F#707880} disconnected
+[module/wlan]
+inherit = network-base
+interface-type = wireless
+label-connected = %{F#F0C674}%ifname%%{F-} %essid% %local_ip%
 [module/eth]
 inherit = network-base
 interface-type = wired
