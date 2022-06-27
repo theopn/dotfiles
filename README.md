@@ -132,7 +132,8 @@ Below is a list of keybindings that are unique to my setup.
 
 - Instead of `jkl;`, I use Vim keybinding of `hjkl`
 - `$mod+Shift+c, r, e` (config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and other system-related actions.
-- `Passthrough mode`, lets you use keybindings that are bound to both i3 and other program (e.g: kitty uses `super + 0` to reset the font adjustment, which you cannot normally use since i3 uses `super + 0` as a shortcut to workspace 0. This can be solved by executing `super + 0` in the passthrough mode).
+- `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: kitty uses `super + 0` to reset the font adjustment, which you cannot normally use since i3 uses `super + 0` as a shortcut to workspace 0. This can be solved by executing `super + 0` in the passthrough mode).
+- `super + shift + v` to execute the clipboard manager.
 
 My goal is to eventually migrate to Sway and Wayland-based dependencies, though that's going to be a long journey.
 
@@ -150,6 +151,7 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 | ---- | ----------- |
 | **Bat** | Fancier `cat` replacement (though I don't do alias cat="bat") |
 | ffmpeg | Great media type converter. `ffmpeg -i in.xxx out.yyy` |
+| hugo | Static website generator |
 | **neofetch** | |
 | **NeoVim** | |
 | **tmux** | |
