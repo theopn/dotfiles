@@ -152,23 +152,25 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 | Formulae | Description |
 | ---- | ----------- |
-| **Bat** | Fancier `cat` replacement (though I don't do alias cat="bat") |
+| Bat| Fancier `cat` replacement (though I don't do alias cat="bat") |
 | ffmpeg | Great media type converter. `ffmpeg -i in.xxx out.yyy` |
 | hugo | Static website generator |
+| htop | System monitor |
+| **Lua** | Programming language |
+| **node** | Node Js |
 | **neofetch** | |
 | **NeoVim** | |
+| ranger | TUI file explorer
 | **tmux** | |
-| **Lua** | |
-| **node** | |
 
 | Type | Casks |
 | ---- | ----- |
+| Anti-Productivity | - Spotify <br> - Minecraft <br> - Discord: Ugh.
 | Browser | - Brave <br> - **Firefox** |
-| Productivity| - Emacs (Cask version): Vim is better, but it doesn't hurt to have it. <br> - **Obsidian: Knowledge base based on local markdown files.** <br> - Notion <br> - Libre Office |
 | Development | - Docker <br> - **kitty** <br> - IntelliJ CE: Ugh Java. <br> - **MacVim** <br> - **VSCode**
-| Entertainment | - Spotify <br> - Minecraft
-| Tools | - Bitwarden: The best password manager. <br> - Cryptomator: File encryption before uploading to cloud storage <br> - Syncthing: File synchronization across multiple devices. 
+| Productivity| - Emacs (Cask version): Vim is better, but it doesn't hurt to have it. <br> - **Obsidian: Knowledge base based on local markdown files.** <br> - Notion <br> - Libre Office |
 | System (MacOS) | - Alfred: Spotlight replacement. <br> - AppCleaner: App remover for MacOS. <br> - **Amethyst: Tiling manager for MacOS.** <br> - iStat Menus: System monitoring tool.
+| Tools | - Bitwarden: The best password manager. <br> - Cryptomator: File encryption before uploading to cloud storage <br> - Syncthing: File synchronization across multiple devices. 
 
 #### Settings
 
