@@ -158,10 +158,8 @@ gaps outer 3
 # Default i3 bar is hidden by default, activated with the mod key
 bar {
   status_command $polybar_launch_script
-  colors {
-    background #3b4252
-  }
-  font pango:Comic Mono 12
+  font pango:Comic Mono 15
+  mode hide
 }
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
 exec --no-startup-id nm-applet

@@ -44,9 +44,33 @@ module-margin-left = 1
 module-margin-right = 1
 
 modules-left = xworkspaces xwindow
-modules-right = memory cpu backlight pulseaudio battery0 battery1 network date
+modules-center = xwindow
+modules-right = backlight pulseaudio battery0 battery1 date
 enable-ipc = true
 
+[bar/myBarBottom]
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-color = ${colors.transparent}
+font-0 = FantasqueSansMono Nerd Font:size20;1
+cursor-click = pointer
+cursor-scroll = ns-resize
+width = 100%
+height = 18pt
+radius = 6
+line-size = 3pt
+border-size = 3pt
+padding-left = 1
+padding-right = 1
+module-margin = 1
+module-margin-left = 1
+module-margin-right = 1
+
+modules-left = powermenu
+modules-center = 
+modules-right = memory cpu network
+
+; ---[[ Top modules
 [module/xworkspaces]
 type = internal/xworkspaces
 label-active = %name%
@@ -65,20 +89,6 @@ label-empty-padding = 1
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
-
-[module/memory]
-type = internal/memory
-interval = 2
-label = %gb_used%/%gb_total%
-format-prefix = " "
-format-prefix-foreground = ${colors.primary}
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-label = %percentage:2%%
-format-prefix = " "
-format-prefix-foreground = ${colors.primary}
 
 [module/backlight]
 type = internal/backlight
@@ -134,6 +144,74 @@ format-charging =  BAT1(Ext) <label-charging>
 format-discharging = <ramp-capacity> BAT1(Ext) <label-discharging>
 format-full =  BAT1(Ext) <label-full>
 
+
+[module/date]
+type = internal/date
+interval = 5
+date = "%a %m-%d"
+time = "%H:%M:%S"
+label = %date% %time%
+format =   <label>
+; --]]
+
+; ---[[ Bottom modules
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = "  "
+label-open-foreground = ${colors.primary}
+label-close = "  "
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.primary}
+menu-0-0 = Lock
+menu-0-0-exec = menu-open-1
+menu-0-1 = Exit i3 (Logout)
+menu-0-1-exec = menu-open-2
+menu-0-2 = Reboot
+menu-0-2-exec = menu-open-3
+menu-0-3 = Shutdown
+menu-0-3-exec = menu-open-4
+
+menu-1-0 = 
+menu-1-0-exec = $HOME/.config/i3/i3_system_mode.sh lock
+menu-2-0 = Exit i3 Confirm
+menu-2-0-exec = i3-msg exit
+menu-2-1 = Cancel
+menu-2-1-exec = menu-open-0
+menu-3-0 = Reboot Confirm
+menu-3-0-exec = $HOME/.config/i3/i3_system_mode.sh reboot
+menu-3-1 = Cancel
+menu-3-1-exec = menu-open-0
+menu-4-0 = Shutdown Confirm
+menu-4-0-exec = $HOME/.config/i3/i3_system_mode.sh shutdown
+menu-4-1 = Cancel
+menu-4-1-exec = menu-open-0
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+mount-0 = /
+label-mounted =  %mountpoint%: %used% / %total%
+label-mounted-foreground = ${colors.primary}
+label-unmounted =  %mountpoint%: NOT MOUNTED
+label-unmounted-foreground = ${colors.disabled}
+
+[module/memory]
+type = internal/memory
+interval = 2
+label = %gb_used%/%gb_total%
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+label = %percentage:2%%
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+
 [module/network]
 type = internal/network
 interface-type = wireless
@@ -149,14 +227,7 @@ label-connected = 直  %essid%
 label-disconnected = 睊  no wifi?
 format-connected = <label-connected> <ramp-signal>
 format-disconnected = <label-disconnected>
-
-[module/date]
-type = internal/date
-interval = 5
-date = "%a %m-%d"
-time = "%H:%M:%S"
-label = %date% %time%
-format =   <label>
+; --]]
 
 [settings]
 screenchange-reload = true
@@ -177,13 +248,6 @@ label-connected = %{F#F0C674}%ifname%%{F-} %essid% %local_ip%
 inherit = network-base
 interface-type = wired
 label-connected = %{F#F0C674}%ifname%%{F-} %local_ip%
-[module/filesystem]
-type = internal/fs
-interval = 25
-mount-0 = /
-label-mounted = %{F#F0C674}%mountpoint%%{F-} %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.disabled}
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
@@ -193,28 +257,6 @@ label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-foreground = ${colors.background}
 label-indicator-background = ${colors.secondary}
-[module/powermenu]
-type = custom/menu
-expand-right = true
-format-spacing = 1
-label-open = "  "
-label-open-foreground = ${colors.primary}
-label-close = "  cancelar "
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.primary}
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
 ; --]]
 
 
