@@ -150,7 +150,7 @@ interval = 5
 date = "%a %m-%d"
 time = "%H:%M:%S"
 label = %date% %time%
-format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}   <label>%{A}
+format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A4:$HOME/.config/polybar/polybar_calendar.sh next:}%{A5:$HOME/.config/polybar/polybar_calendar.sh prev:}   <label>%{A}%{A}%{A}
 ; --]]
 
 ; ---[[ Bottom modules
