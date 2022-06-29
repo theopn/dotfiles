@@ -68,8 +68,7 @@ module-margin-right = 1
 bottom = true
 
 modules-left = powermenu
-modules-center = 
-modules-right = memory cpu network
+modules-right = filesystem memory cpu network
 
 ; ---[[ Top modules
 [module/xworkspaces]
@@ -194,7 +193,7 @@ menu-4-1-exec = menu-open-0
 type = internal/fs
 interval = 25
 mount-0 = /
-label-mounted =  %mountpoint%: %used% / %total%
+label-mounted =  %mountpoint%: %used% of %total%
 label-mounted-foreground = ${colors.primary}
 label-unmounted =  %mountpoint%: NOT MOUNTED
 label-unmounted-foreground = ${colors.disabled}
