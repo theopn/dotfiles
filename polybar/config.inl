@@ -7,8 +7,8 @@
 ;=======================================
 
 [colors]
-; Prefix cc is for the transparent, ranging from 0 (fully transparent), 1, ... E, F
-background = #dd3b4252
+; Prefix aa is for the transparent, ranging from 0 (fully transparent), 1, ... E, F
+background = #aa3b4252
 ; nord0
 background-alt = #3b4252
 ; nord4
@@ -23,7 +23,7 @@ alert = #bf616a
 disabled = #a3be8c
 transparent = #00000000
 
-[bar/mybar]
+[bar/myBarTop]
 background = ${colors.background}
 foreground = ${colors.foreground}
 border-color = ${colors.transparent}
@@ -32,7 +32,6 @@ separator-foreground = ${colors.disabled}
 font-0 = FantasqueSansMono Nerd Font:size20;1
 cursor-click = pointer
 cursor-scroll = ns-resize
-
 width = 100%
 height = 24pt
 radius = 6
@@ -47,6 +46,28 @@ module-margin-right = 1
 modules-left = xworkspaces xwindow
 modules-right = memory cpu backlight pulseaudio battery0 battery1 network date
 enable-ipc = true
+
+[bar/myBarBottom]
+bottom = true
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-color = ${colors.transparent}
+font-0 = FantasqueSansMono Nerd Font:size20;1
+cursor-click = pointer
+cursor-scroll = ns-resize
+width = 100%
+height = 18pt
+radius = 6
+line-size = 3pt
+border-size = 3pt
+padding-left = 1
+padding-right = 1
+module-margin = 1
+module-margin-left = 1
+module-margin-right = 1
+
+modules-left = powermenu xworkspaces xwindow
+modules-right = memory cpu backlight pulseaudio battery0 battery1 network date
 
 [module/xworkspaces]
 type = internal/xworkspaces
@@ -195,6 +216,33 @@ label-indicator-margin = 1
 label-indicator-foreground = ${colors.background}
 label-indicator-background = ${colors.secondary}
 ; --]]
+
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+
+label-open = "  "
+label-open-foreground = ${colors.primary}
+label-close = "  cancelar "
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.primary}
+
+menu-0-0 = reboo
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = sudo poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
 
 ; vim:ft=dosini
 
