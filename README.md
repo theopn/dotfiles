@@ -108,6 +108,10 @@ zsh-autocomplete plug-in included.
 
 I use the latest version of Fedora Workstation (official version with Gnome DE) and primarily use i3 window manager and Gnome as a back up.
 
+# Dunst
+
+Notification daemon. This is also used to grep result of `cal` command and display calendar as a notification, simulating pop-up calendar of other OS.
+
 #### i3 WM (i3-gap)
 
 i3 is integral in my workflow, and I tried to keep as many stock keybindings as possible. Below is a list of the dependencies needed to run my configuration correctly, besides other dependencies that get installed from Fedora's dnf package manager.
@@ -142,7 +146,7 @@ My goal is to eventually migrate to Sway and Wayland-based dependencies, though 
 
 #### Polybar
 
-Nord colorscheme, volume and brightness, two batteries in my laptop, date in ISO 8601, nothing special.
+Top bar displays workspace, window title, battery, brightness, volume, and date information. Pop-up calendar script can also be executed by clicking the top right calendar icon (this requires Dunst). Bottom bar has power option button (this requires `i3_system_script.sh`), Spotify current playing information (this requires `polybar_spotify.py`), hard disk, memory, CPU, and network information.
 
 ### macOS
 
