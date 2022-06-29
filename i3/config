@@ -9,7 +9,8 @@
 
 # ---[[ VARIABLES
 set $term kitty
-set $system_mode_script ~/.config/i3/i3_system_mode.sh
+set $system_mode_script $HOME/.config/i3/i3_system_mode.sh
+set $polybar_launch_script $HOME/.config/polybar/polybar_launch.sh
 # workspace variables
 set $ws1 "1:  "
 set $ws2 "2:  "
@@ -103,14 +104,14 @@ mode "$resize_mode" {
 }
 bindsym $mod+r mode "$resize_mode"
 # System option mode
-set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (shift+r) Restart (shift+s) Shutdown (esc) Exit
+set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
 mode "$system_mode" {
   bindsym c reload
   bindsym r restart
   bindsym l exec --no-startup-id $system_mode_script lock, mode "default"
   bindsym e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Sure' 'i3-msg exit'"
   bindsym s exec --no-startup-id $system_mode_script suspend, mode "default"
-  bindsym Shift+r exec "i3-nagbar -t warning -m 'Restart?' -B 'Sure' '$system_mode_script restart'"
+  bindsym Shift+r exec "i3-nagbar -t warning -m 'Reboot?' -B 'Sure' '$system_mode_script reboot'"
   bindsym Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Sure' '$system_mode_script shutdown'"
   bindsym Escape mode "default"
 }
@@ -156,9 +157,11 @@ gaps outer 3
 # ---[[ STARTUP COMMANDS
 # Default i3 bar is hidden by default, activated with the mod key
 bar {
-  status_command polybar -c ~/.config/polybar/config.inl
-  font pango:Comic Mono 15
-  mode hide
+  status_command $polybar_launch_script
+  colors {
+    background #3b4252
+  }
+  font pango:Comic Mono 12
 }
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
 exec --no-startup-id nm-applet
