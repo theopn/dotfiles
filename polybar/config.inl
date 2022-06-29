@@ -166,28 +166,28 @@ label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.primary}
 menu-0-0 = Lock
-menu-0-0-exec = menu-open-1
+menu-0-0-exec = #powermenu.open.1
 menu-0-1 = Exit i3 (Logout)
-menu-0-1-exec = menu-open-2
+menu-0-1-exec = #powermenu.open.2
 menu-0-2 = Reboot
-menu-0-2-exec = menu-open-3
+menu-0-2-exec = #powermenu.open.3
 menu-0-3 = Shutdown
-menu-0-3-exec = menu-open-4
+menu-0-3-exec = #powermenu.open.4
 
-menu-1-0 = 
+menu-1-0 = Lock
 menu-1-0-exec = $HOME/.config/i3/i3_system_mode.sh lock
 menu-2-0 = Exit i3 Confirm
 menu-2-0-exec = i3-msg exit
 menu-2-1 = Cancel
-menu-2-1-exec = menu-open-0
+menu-2-1-exec = #powermenu.open.0
 menu-3-0 = Reboot Confirm
 menu-3-0-exec = $HOME/.config/i3/i3_system_mode.sh reboot
 menu-3-1 = Cancel
-menu-3-1-exec = menu-open-0
+menu-3-1-exec = #powermenu.open.0
 menu-4-0 = Shutdown Confirm
 menu-4-0-exec = $HOME/.config/i3/i3_system_mode.sh shutdown
 menu-4-1 = Cancel
-menu-4-1-exec = menu-open-0
+menu-4-1-exec = #powermenu.open.0
 
 [module/filesystem]
 type = internal/fs
