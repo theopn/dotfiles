@@ -144,14 +144,13 @@ format-charging =  BAT1(Ext) <label-charging>
 format-discharging = <ramp-capacity> BAT1(Ext) <label-discharging>
 format-full =  BAT1(Ext) <label-full>
 
-
 [module/date]
 type = internal/date
 interval = 5
 date = "%a %m-%d"
 time = "%H:%M:%S"
 label = %date% %time%
-format =   <label>
+format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr}%{A4:$HOME/.config/polybar/polybar_calendar.sh next}%{A5:$HOME/.config/polybar/polybar_calendar.sh next}   <label>
 ; --]]
 
 ; ---[[ Bottom modules
@@ -259,4 +258,3 @@ label-indicator-background = ${colors.secondary}
 
 
 ; vim:ft=dosini
-
