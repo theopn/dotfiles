@@ -8,19 +8,19 @@
 
 [colors]
 ; Prefix aa is for the transparent, ranging from 0 (fully transparent), 1, ... E, F
-background = #aa3b4252
-; nord0
-background-alt = #3b4252
-; nord4
-foreground = #d8dee9
-; nord9
-primary = #81a1c1
-; nord8
-secondary = #88c0d0
-; nord11
-alert = #bf616a
-; nord14
-disabled = #a3be8c
+; Dracula Background
+background = #aa282a36
+background-alt = #282a36
+; Dracula Foreground
+foreground = #f8f8f2
+; Dracula Current Line
+primary = #44475a
+; Dracula Comment
+secondary = #6272a4
+; Dracula Red
+alert = #ff5555
+; Dracula Pink
+disabled = ##ff79c6
 transparent = #00000000
 
 [bar/myBarTop]

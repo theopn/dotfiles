@@ -1,11 +1,10 @@
 #!/bin/sh
 
 year=$(date +%Y)
+month=$(date +%m)
 case $1 in
-  "prev") month=$(($(date +%m)-1));;
-  "curr") month=$(date +%m);;
-  "next") month=$(($(date +%m)+1));;
+  "prev") ((month--));;
+  "next") ((month++));;
 esac
 
 notify-send "      Calendar" "$(cal $month $year)"
-
