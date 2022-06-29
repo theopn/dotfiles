@@ -65,6 +65,7 @@ padding-right = 1
 module-margin = 1
 module-margin-left = 1
 module-margin-right = 1
+bottom = true
 
 modules-left = powermenu
 modules-center = 
