@@ -19,9 +19,8 @@ primary = #8be9fd
 secondary = #6272a4
 ; Dracula Red
 alert = #ff5555
-; Dracula Pink
-; Dracula Current Line
-disabled = ##44475a
+; Nord 14
+disabled = #a3be8c
 transparent = #00000000
 
 [bar/myBarTop]
@@ -256,6 +255,5 @@ label-indicator-margin = 1
 label-indicator-foreground = ${colors.background}
 label-indicator-background = ${colors.secondary}
 ; --]]
-
 
 ; vim:ft=dosini
