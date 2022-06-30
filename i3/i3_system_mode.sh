@@ -1,6 +1,11 @@
 #!/bin/sh
 lock() {
-  i3lock -i $HOME/dotfiles/pictures/2022-06-25_i3lock_solarsys_lock.png
+  if [ -d "$HOME/dotfiles" ]
+  then
+    i3lock -i $HOME/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png
+  else
+    i3lock -c #282a36
+  fi
 }
 
 case "$1" in

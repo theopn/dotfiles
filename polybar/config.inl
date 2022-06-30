@@ -13,14 +13,15 @@ background = #aa282a36
 background-alt = #282a36
 ; Dracula Foreground
 foreground = #f8f8f2
-; Dracula Current Line
-primary = #44475a
+; Dracula Cyan
+primary = #8be9fd
 ; Dracula Comment
 secondary = #6272a4
 ; Dracula Red
 alert = #ff5555
 ; Dracula Pink
-disabled = ##ff79c6
+; Dracula Current Line
+disabled = ##44475a
 transparent = #00000000
 
 [bar/myBarTop]
