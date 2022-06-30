@@ -92,7 +92,7 @@ Tmux is very usable out of the box. I changed the prefix to `ctrl + a`, use Vim 
 #### vim
 
 I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
-Modified version of [gruvbox](https://github.com/morhetz/gruvbox) theme is bundled (I commented out italics font, which does not play well with MacOS), which I found to be working great with my colorblindness and overall compatibility with tmux/iTerm. There is no plugin installed.
+`gruvcula.vim`, which is a custom-made colorscheme of mix between Dracula and Gruvbox is included. I probably will make this a separate project.
 
 Notable settings include
 
