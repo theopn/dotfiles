@@ -191,7 +191,7 @@ menu-3-1-exec = #powermenu.open.0
 [module/spotify]
 type = custom/script
 interval = 15
-format-prefix = " ﱘ "
+format-prefix = " ﱘ  "
 format = <label>
 exec = $HOME/.config/polybar/polybar_spotify.py
 
