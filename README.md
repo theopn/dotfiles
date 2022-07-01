@@ -92,7 +92,7 @@ Tmux is very usable out of the box. I changed the prefix to `ctrl + a`, use Vim 
 #### vim
 
 I use vanilla Vim as a light text editor, and I have moved away from having plugins (theme, NERDTree, statusline, etc) to utilize built-in features.
-`gruvcula.vim`, which is a custom-made colorscheme of mix between Dracula and Gruvbox is included. I probably will make this a separate project.
+`drakai.vim`, which is a custom-made colorscheme of mix between Dracula and Monokai is included. I probably will make this a separate project.
 
 Notable settings include
 

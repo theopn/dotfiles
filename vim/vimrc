@@ -12,7 +12,7 @@
 set number relativenumber ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
 try
-  colo gruvcula
+  colo drakai
 catch
   colo darkblue
 endtry
