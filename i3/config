@@ -177,7 +177,7 @@ bar {
   mode hide
 }
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
-#exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet
 exec --no-startup-id ./.fehbg
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id redshift -l 39.2:-86.5 -t 5600:3500 -m randr
