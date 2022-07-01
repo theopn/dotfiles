@@ -68,7 +68,9 @@ module-margin-right = 1
 bottom = true
 
 modules-left = powermenu
+modules-center = spotify
 modules-right = filesystem memory cpu network
+enable-ipc = true
 
 ; ---[[ Top modules
 [module/xworkspaces]
@@ -146,11 +148,11 @@ format-full =  BAT1(Ext) <label-full>
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1
 date = "%a %m-%d"
 time = "%H:%M:%S"
 label = %date% %time%
-format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A4:$HOME/.config/polybar/polybar_calendar.sh next:}%{A5:$HOME/.config/polybar/polybar_calendar.sh prev:}   <label>%{A}%{A}%{A}
+format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A2:$HOME/.config/polybar/polybar_calendar.sh next:}   <label>%{A}%{A}
 ; --]]
 
 ; ---[[ Bottom modules
@@ -185,6 +187,13 @@ menu-3-0 = Shutdown Confirm
 menu-3-0-exec = $HOME/.config/i3/i3_system_mode.sh shutdown
 menu-3-1 = Cancel
 menu-3-1-exec = #powermenu.open.0
+
+[module/spotify]
+type = custom/script
+interval = 15
+format-prefix = " ﱘ "
+format = <label>
+exec = $HOME/.config/polybar/polybar_spotify.py
 
 [module/filesystem]
 type = internal/fs
