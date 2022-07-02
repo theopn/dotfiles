@@ -145,6 +145,7 @@ Below is a list of keybindings that are unique to my setup.
 - `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and other system-related actions.
 - `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: kitty uses `super + 0` to reset the font adjustment, which you cannot normally use since i3 uses `super + 0` as a shortcut to workspace 0. This can be solved by executing `super + 0` in the passthrough mode).
 - `$mod+Shift+v` to execute the clipboard manager.
+- `$mod+Shift+s` to execute screenshot tool.
 
 My goal is to eventually migrate to Sway and Wayland-based dependencies, though that's going to be a long journey.
 
@@ -154,7 +155,7 @@ Top bar displays workspace, window title, battery, brightness, volume, and date 
 
 #### Rofi
 
-Just the Dracula colorscheme
+Just the Dracula colorscheme.
 
 ### macOS
 

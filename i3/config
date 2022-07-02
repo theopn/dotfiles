@@ -153,8 +153,9 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use brightnessctl to adjust brightness with function row keys
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
-# I use CopyQ as my clipboard manager
+# Accessing clipboard manager and screenshot tool
 bindsym $mod+Shift+v exec --no-startup-id copyq show
+bindsym $mod+Shift+s exec --no-startup-id flameshot launcher
 # --]]
 
 # ---[[ APPEARANCE
@@ -179,12 +180,11 @@ gaps outer 3
 # Default i3 bar is hidden by default, activated with the mod key
 bar {
   status_command $polybar_launch_script
-  font pango:Comic Mono 15
+  font pango:FantasqueSansMono Nerd Font 15
   colors {
     background #282A36
     statusline #F8F8F2
     separator  #44475A
-
     focused_workspace  #44475A #44475A #F8F8F2
     active_workspace   #282A36 #44475A #F8F8F2
     inactive_workspace #282A36 #282A36 #BFBFBF
@@ -193,10 +193,12 @@ bar {
   }
   mode hide
 }
+# Using xss-lock to automatically lock computer before going to sleep
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
-exec --no-startup-id nm-applet
-exec --no-startup-id ./.fehbg
+# Swap ctrl and caps lock
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
+exec --no-startup-id nm-applet
+exec --no-startup-id $HOME/.fehbg
 exec --no-startup-id redshift -l 39.2:-86.5 -t 5600:3500 -m randr
 exec --no-startup-id copyq
 # --]]
