@@ -11,6 +11,11 @@
 set $term kitty
 set $system_mode_script $HOME/.config/i3/i3_system_mode.sh
 set $polybar_launch_script $HOME/.config/polybar/polybar_launch.sh
+# Key variables
+set $up h
+set $down j
+set $left k
+set $right l
 # workspace variables
 set $ws1 "1:  "
 set $ws2 "2:  "
@@ -28,20 +33,21 @@ set $ws10 "10:  "
 set $mod Mod4
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-bindsym $mod+space exec --no-startup-id rofi run -show drun
+# $mod+d has been reconfigured to launch rofi_mode
+bindsym $mod+space exec --no-startup-id "rofi -modi drun,run -show drun"
 # change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+$up focus left
+bindsym $mod+$down focus down
+bindsym $mod+$left focus up
+bindsym $mod+$right focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+$up move left
+bindsym $mod+Shift+$down move down
+bindsym $mod+Shift+$left move up
+bindsym $mod+Shift+$right move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
@@ -87,6 +93,17 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # --]]
 
 # ---[[ MODES
+# rofi mode
+set $rofi_mode ROFI MODE: (f) Filebrowser (c) Combi (k) Keys (r) Run (w) Window (esc) Exit
+mode "$rofi_mode" {
+  bindsym f exec --no-startup-id "rofi -modi filebrowser, -show filebrowser", mode "default"
+  bindsym c exec --no-startup-id "rofi -modi combi, -show combi", mode "default"
+  bindsym r exec --no-startup-id rofi -show run, mode "default"
+  bindsym k exec --no-startup-id "rofi -modi keys, -show keys", mode "default"
+  bindsym w exec --no-startup-id rofi -show window, mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+d mode "$rofi_mode"
 # Window resize mode
 set $resize_mode RESIZE MODE: (hjkl, arrows) Resize (esc, return, super+r) Exit
 mode "$resize_mode" {
@@ -104,7 +121,7 @@ mode "$resize_mode" {
 }
 bindsym $mod+r mode "$resize_mode"
 # System option mode
-set $system_mode SYS MODE: (c) Config reload (r) Restart i3 (l) Lock (e) Exit i3 (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
+set $system_mode SYS MODE: (c) Config reload (e) Exit i3 (l) Lock (r) Restart i3 (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
 mode "$system_mode" {
   bindsym c reload
   bindsym r restart

@@ -138,7 +138,8 @@ Below is a list of keybindings that are unique to my setup.
 - Instead of `jkl;`, I use Vim keybinding of `hjkl`.
 - Instead of `$mod+h`, `$mod+z` toggles horiZontal split.
 - Instead of `$mod+d`, `$mod+Space` launches rofi. Habit from using macOS Spotlight.
-- `$mod+Shift+c, r, e` (config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and other system-related actions.
+- `$mod+d` launches `rofi_mode`, which you can choose various rofi modes like filebrowser, full app list (run), window list, etc
+- `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and other system-related actions.
 - `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: kitty uses `super + 0` to reset the font adjustment, which you cannot normally use since i3 uses `super + 0` as a shortcut to workspace 0. This can be solved by executing `super + 0` in the passthrough mode).
 - `$mod+Shift+v` to execute the clipboard manager.
 
