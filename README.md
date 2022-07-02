@@ -151,7 +151,7 @@ My goal is to eventually migrate to Sway and Wayland-based dependencies, though 
 
 #### Polybar
 
-Top bar displays workspace, window title, battery, brightness, volume, and date information. Pop-up calendar script can also be executed by clicking the top right calendar icon (this requires Dunst). Bottom bar has power option button (this requires `i3_system_script.sh`), Spotify current playing information (this requires `polybar_spotify.py`), hard disk, memory, CPU, and network information.
+Top bar displays workspace, window title, battery, brightness, volume, and date information. Pop-up calendar script can also be executed by clicking the top right calendar icon (this requires Dunst). Bottom bar has power option button (this requires `i3_system_script.sh`), Spotify current playing information (this requires `polybar_spotify.py`), temperature of the zone `acpitz`, hard disk, memory, CPU, and network information.
 
 #### Rofi
 

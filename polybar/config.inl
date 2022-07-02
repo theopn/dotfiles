@@ -69,7 +69,7 @@ bottom = true
 
 modules-left = powermenu
 modules-center = spotify
-modules-right = filesystem memory cpu network
+modules-right = temperature filesystem memory cpu network
 enable-ipc = true
 
 ; ---[[ Top modules
@@ -195,12 +195,21 @@ format-prefix = " ﱘ  "
 format = <label>
 exec = $HOME/.config/polybar/polybar_spotify.py
 
+[module/temperature]
+type = internal/temperature
+interval = 1
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+thermal-zone = 0
+base-temperature = 0
+units = true
+format-prefix = "   "
+label = %temperature-c%
+
 [module/filesystem]
 type = internal/fs
 interval = 25
 mount-0 = /
 label-mounted =  %mountpoint%: %used% of %total%
-label-mounted-foreground = ${colors.primary}
 label-unmounted =  %mountpoint%: NOT MOUNTED
 label-unmounted-foreground = ${colors.disabled}
 
