@@ -179,11 +179,11 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 | Type | Casks |
 | ---- | ----- |
 | Anti-Productivity | - Spotify <br> - Minecraft <br> - Discord: Ugh.
-| Browser | - Brave <br> - **Firefox** |
 | Development | - Docker <br> - **kitty** <br> - IntelliJ CE: Ugh Java. <br> - **MacVim** <br> - **VSCode**
 | Productivity| - Emacs (Cask version): Vim is better, but it doesn't hurt to have it. <br> - **Obsidian: Knowledge base based on local markdown files.** <br> - Notion <br> - Libre Office |
-| System (MacOS) | - Alfred: Spotlight replacement. <br> - AppCleaner: App remover for MacOS. <br> - **Amethyst: Tiling manager for MacOS.** <br> - iStat Menus: System monitoring tool.
-| Tools | - Bitwarden: The best password manager. <br> - Cryptomator: File encryption before uploading to cloud storage <br> - Syncthing: File synchronization across multiple devices. 
+| System (MacOS) | - Alfred: Spotlight replacement. <br> - AppCleaner: App remover for MacOS. <br> - **Amethyst: "Tiling window manager" for MacOS.** <br> - iStat Menus: System monitoring tool.
+| Tools | - Bitwarden: The best password manager. <br> - Cryptomator: File encryption before uploading to cloud storage <br> - Syncthing: File synchronization across multiple devices. <br> - Nextcloud: I host a personal Nextcloud server on VPS.
+| Web | - Brave: I like to keep a Chromium based browser just in case. <br> - **Firefox: My main browser.** <br> - Thunderbird |
 
 #### Settings
 

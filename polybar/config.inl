@@ -23,7 +23,7 @@ alert = #ff5555
 disabled = #a3be8c
 transparent = #00000000
 
-[bar/myBarTop]
+[bar/hamilton]
 background = ${colors.background}
 foreground = ${colors.foreground}
 border-color = ${colors.transparent}
@@ -43,12 +43,12 @@ module-margin = 1
 module-margin-left = 1
 module-margin-right = 1
 
-modules-left = xworkspaces
+modules-left = powermenu backlight pulseaudio
 modules-center = xwindow
-modules-right = backlight pulseaudio battery0 battery1 date
+modules-right = battery0 battery1 date
 enable-ipc = true
 
-[bar/myBarBottom]
+[bar/bottas]
 background = ${colors.background}
 foreground = ${colors.foreground}
 border-color = ${colors.transparent}
@@ -67,30 +67,43 @@ module-margin-left = 1
 module-margin-right = 1
 bottom = true
 
-modules-left = powermenu
+modules-left = xworkspaces
 modules-center = spotify
 modules-right = temperature filesystem memory cpu network
 enable-ipc = true
 
-; ---[[ Top modules
-[module/xworkspaces]
-type = internal/xworkspaces
-label-active = %name%
-label-active-background = ${colors.background-alt}
-label-active-underline= ${colors.primary}
-label-active-padding = 1
-label-occupied = %name%
-label-occupied-padding = 1
-label-urgent = %name%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
-label-empty = %name%
-label-empty-foreground = ${colors.disabled}
-label-empty-padding = 1
+; ---[[ Hamilton modules
+[module/powermenu]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = "  "
+label-open-foreground = ${colors.primary}
+label-close = "  "
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.primary}
+menu-0-0 = Lock
+menu-0-0-exec = $HOME/.config/i3/i3_system_mode.sh lock
+menu-0-1 = Exit i3 (Logout)
+menu-0-1-exec = #powermenu.open.1
+menu-0-2 = Reboot
+menu-0-2-exec = #powermenu.open.2
+menu-0-3 = Shutdown
+menu-0-3-exec = #powermenu.open.3
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:60:...%
+menu-1-0 = Exit i3 Confirm
+menu-1-0-exec = i3-msg exit
+menu-1-1 = Cancel
+menu-1-1-exec = #powermenu.open.0
+menu-2-0 = Reboot Confirm
+menu-2-0-exec = $HOME/.config/i3/i3_system_mode.sh reboot
+menu-2-1 = Cancel
+menu-2-1-exec = #powermenu.open.0
+menu-3-0 = Shutdown Confirm
+menu-3-0-exec = $HOME/.config/i3/i3_system_mode.sh shutdown
+menu-3-1 = Cancel
+menu-3-1-exec = #powermenu.open.0
 
 [module/backlight]
 type = internal/backlight
@@ -111,6 +124,10 @@ ramp-volume-2 = 墳
 label-muted = 婢 muted
 label-muted-foreground = ${colors.disabled}
 format-volume = <ramp-volume> <label-volume>
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:60:...%
 
 [module/battery0]
 type = internal/battery
@@ -155,38 +172,21 @@ label = %date% %time%
 format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A2:$HOME/.config/polybar/polybar_calendar.sh next:}   <label>%{A}%{A}
 ; --]]
 
-; ---[[ Bottom modules
-[module/powermenu]
-type = custom/menu
-expand-right = true
-format-spacing = 1
-label-open = "  "
-label-open-foreground = ${colors.primary}
-label-close = "  "
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.primary}
-menu-0-0 = Lock
-menu-0-0-exec = $HOME/.config/i3/i3_system_mode.sh lock
-menu-0-1 = Exit i3 (Logout)
-menu-0-1-exec = #powermenu.open.1
-menu-0-2 = Reboot
-menu-0-2-exec = #powermenu.open.2
-menu-0-3 = Shutdown
-menu-0-3-exec = #powermenu.open.3
-
-menu-1-0 = Exit i3 Confirm
-menu-1-0-exec = i3-msg exit
-menu-1-1 = Cancel
-menu-1-1-exec = #powermenu.open.0
-menu-2-0 = Reboot Confirm
-menu-2-0-exec = $HOME/.config/i3/i3_system_mode.sh reboot
-menu-2-1 = Cancel
-menu-2-1-exec = #powermenu.open.0
-menu-3-0 = Shutdown Confirm
-menu-3-0-exec = $HOME/.config/i3/i3_system_mode.sh shutdown
-menu-3-1 = Cancel
-menu-3-1-exec = #powermenu.open.0
+; ---[[ Bottas modules
+[module/xworkspaces]
+type = internal/xworkspaces
+label-active = %name%
+label-active-background = ${colors.background-alt}
+label-active-underline= ${colors.primary}
+label-active-padding = 1
+label-occupied = %name%
+label-occupied-padding = 1
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 1
 
 [module/spotify]
 type = custom/script
