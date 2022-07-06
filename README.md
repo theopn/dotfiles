@@ -40,7 +40,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 ## After installation
 
 - NeoVim: `:PackerSync`, then `:COQdeps`.
-- Emacs: `all-the-icons-install-fonts`
+- Emacs: `list-packages` then `all-the-icons-install-fonts`
 - Firefox:
   - `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
   - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
@@ -57,7 +57,7 @@ Basic shell setting with just ls alias and prompt.
 
 #### Emacs
 
-I like vim more, but it doesn't hurt to know a thing or two about it.
+I'm currently learning Emacs for its Org mode. Popular opinion: Vim is a better "text editor."
 
 #### Firefox
 
