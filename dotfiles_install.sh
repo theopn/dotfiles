@@ -1,4 +1,6 @@
 home=~/
+bu_dir=~/dotfiles_backup
+
 printf "
   _____ _              ___      _    __ _ _
  |_   _| |_  ___ ___  |   \ ___| |_ / _(_) |___
@@ -30,9 +32,9 @@ case $dotfile_input in
     git_files=("gitignore_global" "gitconfig")
     for v in ${git_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo .$v exists. Moving to ~/dotfiles_backup
-        mv ~/.$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo .$v exists. Backing up.
+        mv ~/.$v $bu_dir/$current/
       fi
       sudo rm -rf ~/.$v
       ln -sf ~/dotfiles/$current/$v ~/.$v
@@ -44,9 +46,9 @@ case $dotfile_input in
     zsh_files=("zshrc" "zsh_plugins")
     for v in ${zsh_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo .$v exists. Moving to ~/dotfiles_backup
-        mv ~/.$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo .$v exists. Backing up.
+        mv ~/.$v $bu_dir/$current/
       fi
       sudo rm -rf ~/.$v
       ln -sf ~/dotfiles/$current/$v ~/.$v
@@ -58,9 +60,9 @@ case $dotfile_input in
     tmux_files=("tmux.conf")
     for v in ${tmux_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo .$v exists. Moving to ~/dotfiles_backup
-        mv ~/.$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo .$v exists. Backing up.
+        mv ~/.$v $bu_dir/$current/
       fi
       sudo rm -rf ~/.$v
       ln -sf ~/dotfiles/$current/$v ~/.$v
@@ -72,28 +74,27 @@ case $dotfile_input in
     vim_files=("vimrc")
     for v in ${vim_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo .$v exists. Moving to ~/dotfiles_backup
-        mv ~/.$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo .$v exists. Backing up.
+        mv ~/.$v $bu_dir/$current/
       fi
       sudo rm -rf ~/.$v
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    # Vim Gruvbox theme
-    mkdir -p ~/.vim/
-    sudo rm -rf ~/.vim/colors
+    # Vim theme
+    mkdir -p ~/.vim/colors
     ln -sf ~/dotfiles/vim/colors ~/.vim/colors
-    printf "Modified version of Gruvbox theme for Vim installed\n"
+    printf "Vim themes installed"
     
     # kitty
     current="kitty"
     kitty_files=("kitty.conf")
     for v in ${kitty_files[@]}; do
       if [[ -e "$home.config/kitty/$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo $v exists. Moving to ~/dotfiles_backup
-        mv ~/.config/kitty/$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo $v exists. Backing up.
+        mv ~/.config/kitty/$v $bu_dir/$current/
       fi
       mkdir -p ~/.config/kitty
       sudo rm -rf ~/.config/kitty/$v
@@ -106,9 +107,9 @@ case $dotfile_input in
     neofetch_files=("config.conf")
     for v in ${neofetch_files[@]}; do
       if [[ -e "$home.config/neofetch/$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo $v exists. Moving to ~/dotfiles_backup
-        mv ~/.config/neofetch/$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo $v exists. Backing up.
+        mv ~/.config/neofetch/$v $bu_dir/$current/
       fi
       mkdir -p ~/.config/neofetch
       sudo rm -rf ~/.config/neofetch/$v
@@ -121,9 +122,9 @@ case $dotfile_input in
     nvim_files=("init.lua")
     for v in ${nvim_files[@]}; do
       if [[ -e "$home.config/nvim/$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo $v exists. Moving to ~/dotfiles_backup
-        mv ~/.config/nvim/$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo $v exists. Backing up.
+        mv ~/.config/nvim/$v $bu_dir/$current/
       fi
       mkdir -p ~/.config/nvim
       sudo rm -rf ~/.config/nvim/$v
@@ -131,19 +132,27 @@ case $dotfile_input in
       echo $v modified
     done
     # Neovim Lua settings
-    mkdir -p ~/.config/nvim
-    sudo rm -rf ~/.config/nvim/lua
+    mkdir -p ~/.config/nvim/lua
     ln -sf ~/dotfiles/nvim/lua ~/.config/nvim/lua
     printf "Extra lua config for NeoVim installed\n" 
-    
+
+    # Emacs
+    current="emacs"
+    emacs_files=("init.el")
+    for v in ${emacs_files[@]}; do
+      mkdir -p ~/.emacs.d
+      ln -sf ~/dotfiles/$current/$v ~/.emacs.d/$v
+      echo $v modified
+    done
+
     # Bash
     current="bash"
     bash_files=("bashrc")
     for v in ${bash_files[@]}; do
       if [[ -e "$home.$v" ]]; then
-        mkdir -p ~/dotfiles_backup/$current
-        echo .$v exists. Moving to ~/dotfiles_backup
-        mv ~/.$v ~/dotfiles_backup/$current/
+        mkdir -p $bu_dir/$current
+        echo .$v exists. Backing up.
+        mv ~/.$v $bu_dir/$current/
       fi
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified

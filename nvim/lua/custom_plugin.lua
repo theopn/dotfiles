@@ -43,7 +43,7 @@ end)
 
 ---[[ Theme Settings
 require("onedark").setup {
-  style = "deep",
+  style = "cool",
   transparent = false,
   toggle_style_key = "<leader>od",
   toggle_style_list = {"dark", "darker", "cool", "deep", "warm", "warmer"},
