@@ -7,7 +7,7 @@
    |_| |_||_\___\___/ |___/\___/\__|_| |_|_\___|
 ```
 
-![fedora_sc](./pictures/2022-07-05_Fedora_screenshot.png)
+![fedora_sc](./pictures/2022-07-05_Fedora_Screenshot.png)
 ![macos_sc](./pictures/2022-07-02_macOS_Screenshot.jpg)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with 6th generation Intel i5.
