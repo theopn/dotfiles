@@ -45,7 +45,7 @@ module-margin-right = 1
 
 modules-left = powermenu backlight pulseaudio
 modules-center = xwindow
-modules-right = battery0 battery1 date
+modules-right = battery0 battery1 network date
 enable-ipc = true
 
 [bar/bottas]
@@ -69,7 +69,7 @@ bottom = true
 
 modules-left = xworkspaces
 modules-center = spotify
-modules-right = temperature filesystem memory cpu network
+modules-right = temperature filesystem memory cpu
 enable-ipc = true
 
 ; ---[[ Hamilton modules
@@ -110,20 +110,40 @@ type = internal/backlight
 card = intel_backlight
 use-actual-brightness = true
 label = %percentage%%
+bar-width = 11
+bar-indicator = |
+bar-indicator-foreground = ${colors.primary}
+bar-fill = ─
+bar-fill-font = 4
+bar-fill-foreground = ${colors.primary}
+bar-empty = ─
+bar-empty-font = 4
+bar-empty-foreground = ${colors.secondary}
 format-prefix = "  "
 format-prefix-foreground = ${colors.primary}
+format = <label> <bar>
 
 [module/pulseaudio]
 type = internal/pulseaudio
 use-ui-max = true
 
-label-volume = %percentage%%
+label-muted = 婢 muted
+label-muted-foreground = ${colors.disabled}
+
 ramp-volume-0 = 奄
 ramp-volume-1 = 奔
 ramp-volume-2 = 墳
-label-muted = 婢 muted
-label-muted-foreground = ${colors.disabled}
-format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+bar-volume-width = 11
+bar-volume-indicator = |
+bar-volume-indicator-foreground = ${colors.secondary}
+bar-volume-fill = ─
+bar-volume-fill-font = 4
+bar-volume-fill-foreground = ${colors.secondary}
+bar-volume-empty = ─
+bar-volume-empty-font = 4
+bar-volume-empty-foregorund = ${colors.primary}
+format-volume = <ramp-volume> <label-volume> <bar-volume>
 
 [module/xwindow]
 type = internal/xwindow
@@ -169,7 +189,8 @@ interval = 1
 date = "%a %m-%d"
 time = "%H:%M:%S"
 label = %date% %time%
-format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A2:$HOME/.config/polybar/polybar_calendar.sh next:}   <label>%{A}%{A}
+; A1 Left click, A2 middle, A3 right click, A4 Scroll up, A5 scroll down, etc
+format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A3:$HOME/.config/polybar/polybar_calendar.sh next:}  <label>%{A}%{A}
 ; --]]
 
 ; ---[[ Bottas modules
