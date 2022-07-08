@@ -8,15 +8,21 @@
 ##################################
 
 # ---[[ VARIABLES
+set $mod Mod4
+# Program var
 set $term kitty
+set $menu "rofi -modi drun,run -show drun"
+set $clipboard copyq
+set $network nm-applet --indicator
+# Script var
 set $system_mode_script $HOME/.config/i3/i3_system_mode.sh
 set $polybar_launch_script $HOME/.config/polybar/polybar_launch.sh
-# Key variables
+# Key var
 set $left h
 set $up j
 set $down k
 set $right l
-# workspace variables
+# workspace var
 set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
@@ -30,11 +36,10 @@ set $ws10 "10:  "
 # --]]
 
 # ---[[ WINDOW KEYBINDINGS
-set $mod Mod4
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 # $mod+d has been reconfigured to launch rofi_mode
-bindsym $mod+space exec --no-startup-id "rofi -modi drun,run -show drun"
+bindsym $mod+space exec --no-startup-id $menu
 # change focus
 bindsym $mod+$up focus left
 bindsym $mod+$down focus down
@@ -197,10 +202,10 @@ bar {
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
 # Swap ctrl and caps lock
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
-exec --no-startup-id nm-applet
+exec --no-startup-id $network
 exec --no-startup-id $HOME/.fehbg
 exec --no-startup-id redshift -l 39.2:-86.5 -t 5600:3500 -m randr
-exec --no-startup-id copyq
+exec --no-startup-id $clipboard
 # --]]
 
 ########## ---[[ EXPERIMENTAL ZONE
