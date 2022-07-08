@@ -1,35 +1,32 @@
-##################################
-#██╗██By██╗ ██╗Theo██╗███╗   ███╗#
-#██║╚════██╗██║    ██║████╗ ████║#
-#██║ █████╔╝██║ █╗ ██║██╔████╔██║#
-#██║ ╚═══██╗██║███╗██║██║╚██╔╝██║#
-#██║██████╔╝╚███╔███╔╝██║ ╚═╝ ██║#
-#╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝#
-##################################
+######################################
+#███████╗██╗    ██╗ █████╗ ██╗   ██╗ #
+#██╔════╝██║    ██║██╔══██╗A╚██╗ ██╔╝#
+#███████╗██║By╗ ██║██Theo█║ ╚████╔╝  #
+#╚════██║██║███╗██║██╔══██║  ╚██╔╝   #
+#███████║╚███╔███╔╝██║  ██║   ██║    #
+#╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝    #
+######################################
 
-# ---[[ VARIABLES
+# ---[[ Variables
+# Mod1 for Alt
 set $mod Mod4
-# This is used to set the natural scrolling and tab to click
-set $trackpad_id 'SynPS/2 Synaptics TouchPad'
-# Script var
-set $system_mode_script $HOME/.config/i3/i3_system_mode.sh
-set $polybar_launch_script $HOME/.config/polybar/polybar_launch.sh
-# Program var
+# Programm var
 set $clipboard copyq
 set $clipboard_show copyq show
-set $menu "rofi -modi drun,run -show drun"
+set $menu wofi --show drun
 set $network nm-applet --indicator
-set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
+set $nightlight gammastep -l 39.2:-86.5 -t 5600:3500
 set $notification dunst
 set $screenshot flameshot launcher
 set $term kitty
-set $wallpaper $HOME/.fehbg
+# External file var
+set $wallpaper $HOME/dotfiles/pictures/2008-09-28_SingaporeGP_LH-Nord.jpg
 # Key var
 set $left h
-set $up j
-set $down k
+set $down j
+set $up k
 set $right l
-# workspace var
+# Workspace var
 set $ws1 "1:  "
 set $ws2 "2:  "
 set $ws3 "3:  "
@@ -42,9 +39,17 @@ set $ws9 "9:  "
 set $ws10 "10:  "
 # --]]
 
-# ---[[ HARDWARE ET SYSTEM
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
+# ---[[ Swaybg, swayidle, swaylock, et sway built-in tools settings
+output * bg $wallpaper fill
+# Lock after 300 seconds, display off after another 300 seconds, exec swaylock before suspend
+exec swayidle -w \
+  timeout 300 'swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png' \
+  timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
+  before-sleep 'swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png'
+# --]]
+
+# ---[[ Hardware et System
+#$bindsym $mod+Shift+b exec pkill -SIGUSR1 waybar
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -52,16 +57,16 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use brightnessctl to adjust brightness with function row keys
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
-# Accessing clipboard manager and screenshot tool
-bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
-bindsym $mod+Shift+s exec --no-startup-id $screenshot
-# Using xss-lock to automatically lock computer before going to sleep
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
-# Swap Caps Lock and Control. No more Emacs pinky
-exec --no-startup-id setxkbmap -option ctrl:swapcaps
-# Enable tap to click and natural scrolling
-exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
-exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
+# Sway CapsLock and Ctrl
+input "type:keyboard" {
+  xkb_options ctrl:swapcaps
+}
+input "type:touchpad" {
+  dwt enabled
+  tap enabled
+  natural_scroll enabled
+  middle_emulation enabled
+}
 # --]]
 
 # ---[[ WINDOW KEYBINDINGS
@@ -97,7 +102,7 @@ bindsym $mod+e layout toggle split
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
 # Press the mod key to move the floating window w/ mouse
-floating_modifier $mod
+floating_modifier $mod normal
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
 # focus the parent/child container
@@ -124,6 +129,13 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+# --]]
+
+# ---[[ Custom keybindings
+bindsym $mod+Shift+v exec --no-startup-id copyq show
+bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # --]]
 
 # ---[[ MODES
@@ -155,19 +167,17 @@ mode "$resize_mode" {
 }
 bindsym $mod+r mode "$resize_mode"
 # System option mode
-set $system_mode SYS MODE: (c) Config reload (e) Exit i3 (l) Lock (r) Restart i3 (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
+set $system_mode SYS MODE: (c) Config reload (e) Exit Sway (l) Lock (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
 mode "$system_mode" {
   bindsym c reload
-  bindsym r restart
-  bindsym l exec --no-startup-id $system_mode_script lock, mode "default"
-  bindsym e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Sure' 'i3-msg exit'"
-  bindsym s exec --no-startup-id $system_mode_script suspend, mode "default"
-  bindsym Shift+r exec "i3-nagbar -t warning -m 'Reboot?' -B 'Sure' '$system_mode_script reboot'"
-  bindsym Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Sure' '$system_mode_script shutdown'"
+  bindsym l exec --no-startup-id waylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png, mode "default"
+  bindsym e exec "swaynag -t warning -m 'Exit Sway?' -B 'Sure' 'swaymsg exit'"
+  bindsym s exec --no-startup-id systemctl suspend, mode "default"
+  bindsym Shift+r exec "swaynag -t warning -m 'Reboot?' -B 'Sure' 'systemctl reboot'"
+  bindsym Shift+s exec "swaynag -t warning -m 'Shutdown?' -B 'Sure' 'systemctl shutdown'"
   bindsym Escape mode "default"
 }
 bindsym $mod+Shift+c mode "$system_mode"
-bindsym $mod+Shift+r mode "$system_mode"
 bindsym $mod+Shift+e mode "$system_mode"
 # Passthrough mode
 set $passthrough_mode PASSTHROUGH MODE: (esc) Exit
@@ -178,18 +188,9 @@ bindsym $mod+Shift+p mode "$passthrough_mode"
 # --]]
 
 # ---[[ APPEARANCE
-font pango:FantasqueSansMono Nerd Font 8
-# Dracula theme
-# class                 border  bground text    indicator child_border
-client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-client.background       #F8F8F2
-# Default i3 bar is hidden by default, activated with the mod key
 bar {
-  status_command $polybar_launch_script
+  status_command waybar
+  position bottom
   font pango:FantasqueSansMono Nerd Font 15
   colors {
     background #282A36
@@ -203,22 +204,24 @@ bar {
   }
   mode hide
 }
-# No window title
-for_window [class=".*"] border pixel 5
-####### I3-GAPS ONLY SETTINGS #######
+font pango:FantasqueSansMono Nerd Font 8
+# Dracula theme
+# class                 border  bground text    indicator child_border
+client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
+client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
+client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
+client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
+client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
+client.background       #F8F8F2
+default_border pixel
+default_floating_border pixel
 gaps inner 3
 gaps outer 3
-####### I3-GAPS ONLY SETTINGS #######
 # --]]
 
-# ---[[ STARTUP APPLICATIONS
+# ---[[ Startup applications
 exec --no-startup-id $clipboard
 exec --no-startup-id $network
 exec --no-startup-id $nightlight
 exec --no-startup-id $notification
-exec --no-startup-id $wallpaper
 # --]]
-
-########## ---[[ EXPERIMENTAL ZONE
-
-########## --]]

@@ -112,42 +112,31 @@ zsh-autocomplete plug-in included.
 
 I use the latest version of Fedora Workstation and primarily use a tiling window manager and Gnome as a back up.
 
-#### Wayland
-
-##### Sway
-
-My Sway setting is almost entirely based on i3 WM. You can reference i3 section for more detailed keybindings and modes. Below are the list of packages mentioned in the config.
-
-##### Waybar
-
-##### Wofi
-
-#### X11
-
-##### Dunst
+#### Dunst
 
 Notification daemon. This is also used to grep result of `cal` command and display calendar as a notification, simulating pop-up calendar of other OS.
 
-##### i3 WM (i3-gap)
+#### i3 WM (i3-gap)
 
-i3 is integral in my workflow, and I tried to keep as many stock keybindings as possible. Below is a list of the dependencies needed to run my configuration correctly, besides other dependencies that get installed from Fedora's dnf package manager (and by dependencies I mean the packages mentioned in the i3 config).
+i3 is integral in my workflow, and I tried to keep as many stock keybindings as possible. Below is a list of the packages that get mentioned in my configuration.
 
-| Dependencies | Description |
-| ------------ | ----------- |
-| brightnessctl | Controls backlight |
+| Packages | Description |
+| -------- | ----------- |
+| Brightnessctl | Controls backlight |
 | CopyQ | Clipboard manager |
-| feh | Wallpaper |
+| Feh | Wallpaper |
 | Flameshot | Screenshot program |
+| i3lock | Simple lock program |
 | ImageMagick | Used to make lock screen background for i3lock |
 | network-manager-applet | GUI network manager |
-| polybar | Top status bar. Replacement of i3bar |
-| ranger | TUI file manager |
+| Polybar | Top status bar. Replacement of i3bar |
 | Redshift | Blue light filter |
-| rofi | App launcher. Replacement of dmenu |
+| Rofi | App launcher and more |
 | setxkbmap | Everyone needs to swap caps lock and control |
+| xinput | Enables trackpad natural scrolling and tab to click |
 | xrandr | Controls external display output |
 | xss-lock | Can automatically call i3lock before suspend |
-| Script | All the custom scripts that are included in the dotfiles folder |
+| Scripts | All the custom scripts that are included in the dotfiles folder |
 
 Below is a list of keybindings that are unique to my setup.
 
@@ -160,15 +149,28 @@ Below is a list of keybindings that are unique to my setup.
 - `$mod+Shift+v` to execute the clipboard manager.
 - `$mod+Shift+s` to execute screenshot tool.
 
-My goal is to eventually migrate to Sway and Wayland-based dependencies, though that's going to be a long journey.
-
-##### Polybar
+#### Polybar
 
 Top bar displays workspace, window title, battery, brightness, volume, and date information. Pop-up calendar script can also be executed by clicking the top right calendar icon (this requires Dunst). Bottom bar has power option button (this requires `i3_system_script.sh`), Spotify current playing information (this requires `polybar_spotify.py`), temperature of the zone `acpitz`, hard disk, memory, CPU, and network information.
 
-##### Rofi
+#### Rofi
 
 Just the Dracula colorscheme.
+
+#### Sway
+
+I would love to use Wayland, but it still is buggy on my system. Keybindings are practically the mirror of my i3 setup, and below are programs mentioned in the configuration.
+
+| Packages | Description |
+| -------- | ----------- |
+| Brightnessctl | Backlight control |
+| CopyQ | Clipboard manager |
+| Dunst | Notification daemon |
+| Gammastep | Redshift replacement |
+| nm-applet | Network manager |
+| Waybar | Polybar replacement |
+| Wl-clipboard | Enables `+` clipboard so that I can copy from Neovim |
+| Wofi | Rofi replacement |
 
 ### macOS
 
@@ -201,3 +203,4 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 #### Settings
 
 Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
+
