@@ -13,7 +13,7 @@ set $mod Mod4
 set $trackpad_id 'SynPS/2 Synaptics TouchPad'
 # Script var
 set $system_mode_script $HOME/.config/i3/i3_system_mode.sh
-set $polybar_launch_script $HOME/.config/polybar/polybar_launch.sh
+set $polybar_launch $HOME/.config/polybar/polybar_launch.sh
 # Program var
 set $clipboard copyq
 set $clipboard_show copyq show
@@ -179,7 +179,6 @@ bindsym $mod+Shift+p mode "$passthrough_mode"
 
 # ---[[ APPEARANCE
 font pango:FantasqueSansMono Nerd Font 8
-# Dracula theme
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
@@ -187,22 +186,6 @@ client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
 client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
-# Default i3 bar is hidden by default, activated with the mod key
-bar {
-  status_command $polybar_launch_script
-  font pango:FantasqueSansMono Nerd Font 15
-  colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
-    focused_workspace  #44475A #44475A #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
-  }
-  mode hide
-}
 # No window title
 for_window [class=".*"] border pixel 5
 ####### I3-GAPS ONLY SETTINGS #######
@@ -212,6 +195,9 @@ gaps outer 3
 # --]]
 
 # ---[[ STARTUP APPLICATIONS
+#bar { }
+exec --no-startup-id $polybar_launch
+
 exec --no-startup-id $clipboard
 exec --no-startup-id $network
 exec --no-startup-id $nightlight

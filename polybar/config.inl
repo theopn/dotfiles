@@ -46,7 +46,6 @@ module-margin-right = 1
 modules-left = powermenu backlight pulseaudio
 modules-center = xwindow
 modules-right = battery0 battery1 network date
-enable-ipc = true
 
 [bar/bottas]
 background = ${colors.background}
@@ -67,9 +66,10 @@ module-margin-left = 1
 module-margin-right = 1
 bottom = true
 
-modules-left = xworkspaces
+modules-left = i3
 modules-center = spotify
 modules-right = temperature filesystem memory cpu
+tray-position = right
 enable-ipc = true
 
 ; ---[[ Hamilton modules
@@ -194,20 +194,32 @@ format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A3:$HOME/.config
 ; --]]
 
 ; ---[[ Bottas modules
-[module/xworkspaces]
-type = internal/xworkspaces
-label-active = %name%
-label-active-background = ${colors.background-alt}
-label-active-underline= ${colors.primary}
-label-active-padding = 1
-label-occupied = %name%
-label-occupied-padding = 1
-label-urgent = %name%
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = false
+
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = ${colors.alert}
+
+label-focused = %name%
+label-focused-background = ${colors.background}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
+
+label-unfocused = %index%: %name%
+label-unfocused-padding = 2
+
+label-urgent = %index%: %name%
 label-urgent-background = ${colors.alert}
-label-urgent-padding = 1
-label-empty = %name%
-label-empty-foreground = ${colors.disabled}
-label-empty-padding = 1
+label-urgent-padding = 2
 
 [module/spotify]
 type = custom/script
@@ -270,6 +282,20 @@ screenchange-reload = true
 pseudo-transparency = true
 
 ; ---[[ Unused modules
+[module/xworkspaces]
+type = internal/xworkspaces
+label-active = %name%
+label-active-background = ${colors.background}
+label-active-underline= ${colors.primary}
+label-active-padding = 1
+label-occupied = %name%
+label-occupied-padding = 1
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+label-empty = %name%
+label-empty-foreground = ${colors.disabled}
+label-empty-padding = 1
 [network-base]
 type = internal/network
 interval = 5
