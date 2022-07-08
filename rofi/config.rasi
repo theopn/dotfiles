@@ -1,3 +1,7 @@
+configuration {
+  show-icons: true;
+  sidebar-mode: true;
+}
 * {
     /* Dracula theme colour palette */
     drac-bgd: #282a36;
@@ -137,3 +141,4 @@ element-text, element-icon {
     background-color: inherit;
     text-color: inherit;
 }
+
