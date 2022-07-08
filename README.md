@@ -110,15 +110,27 @@ zsh-autocomplete plug-in included.
 
 ### Linux
 
-I use the latest version of Fedora Workstation (official version with Gnome DE) and primarily use i3 window manager and Gnome as a back up.
+I use the latest version of Fedora Workstation and primarily use a tiling window manager and Gnome as a back up.
 
-#### Dunst
+#### Wayland
+
+##### Sway
+
+My Sway setting is almost entirely based on i3 WM. You can reference i3 section for more detailed keybindings and modes. Below are the list of packages mentioned in the config.
+
+##### Waybar
+
+##### Wofi
+
+#### X11
+
+##### Dunst
 
 Notification daemon. This is also used to grep result of `cal` command and display calendar as a notification, simulating pop-up calendar of other OS.
 
-#### i3 WM (i3-gap)
+##### i3 WM (i3-gap)
 
-i3 is integral in my workflow, and I tried to keep as many stock keybindings as possible. Below is a list of the dependencies needed to run my configuration correctly, besides other dependencies that get installed from Fedora's dnf package manager.
+i3 is integral in my workflow, and I tried to keep as many stock keybindings as possible. Below is a list of the dependencies needed to run my configuration correctly, besides other dependencies that get installed from Fedora's dnf package manager (and by dependencies I mean the packages mentioned in the i3 config).
 
 | Dependencies | Description |
 | ------------ | ----------- |
@@ -150,11 +162,11 @@ Below is a list of keybindings that are unique to my setup.
 
 My goal is to eventually migrate to Sway and Wayland-based dependencies, though that's going to be a long journey.
 
-#### Polybar
+##### Polybar
 
 Top bar displays workspace, window title, battery, brightness, volume, and date information. Pop-up calendar script can also be executed by clicking the top right calendar icon (this requires Dunst). Bottom bar has power option button (this requires `i3_system_script.sh`), Spotify current playing information (this requires `polybar_spotify.py`), temperature of the zone `acpitz`, hard disk, memory, CPU, and network information.
 
-#### Rofi
+##### Rofi
 
 Just the Dracula colorscheme.
 
