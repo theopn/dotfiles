@@ -151,7 +151,7 @@ Below is a list of keybindings that are unique to my setup.
 
 #### Polybar
 
-There are two configurations utilizing essentially the same modules - one with two top and bottom bars and one with just one bar. I honestly don't like either of them, but one bar is better in terms of screen utilization (duh). There's a launch script that can take `onebar` or `twobar` argument and launch bar(s) accordingly.
+There are two configurations utilizing essentially the same modules - one with two top and bottom bars and one with just one bar. I'm kind of forced to use two bars since system tray does not play well with Polybar especially with light wallpaper. There's a launch script that can take `onebar` or `twobar` argument and launch bar(s) accordingly.
 
 #### Rofi
 

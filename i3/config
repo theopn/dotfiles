@@ -13,7 +13,7 @@ set $mod Mod4
 set $trackpad_id 'SynPS/2 Synaptics TouchPad'
 # Script var
 set $system_mode_script $HOME/.config/i3/i3_system_mode.sh
-set $polybar_launch $HOME/.config/polybar/polybar_launch.sh onebar
+set $polybar_launch $HOME/.config/polybar/polybar_launch.sh twobar
 # Program var
 set $clipboard copyq
 set $clipboard_show copyq show
