@@ -15,7 +15,7 @@
   "height": 35,
   "width": 1920,
   "spacing": 4,
-  "modules-left": ["temperature", "cpu", "memory", "tray"],
+  "modules-left": ["temperature", "cpu", "memory", "tray", "custom/spotify"],
   "modules-center": ["sway/workspaces", "sway/mode"],
   "modules-right": ["pulseaudio", "backlight", "battery", "battery#bat2", "network", "clock"],
 
@@ -42,6 +42,14 @@
   "tray": {
     // "icon-size": 21,
     "spacing": 10
+  },
+
+  "custom/spotify": {
+    "interval": 10,
+    "format": "🎜  {}",
+    "max-length": 20,
+    "escape": true,
+    "exec": "$HOME/.config/waybar/waybar_spotify.py 2> /dev/null" // Script in resources folder
   },
 
   /* Modules-Center */

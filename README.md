@@ -159,7 +159,7 @@ Just the Dracula colorscheme.
 
 #### Sway
 
-I would love to use Wayland, but it still is buggy on my system. Keybindings are practically the mirror of my i3 setup, and below are programs mentioned in the configuration.
+I am experiencing with Sway. It's a big buggy and I don't like the notion of having one program be WM + compositor + input/output manager + etc, but so far it is the best tiling WM in Wayland. Keybindings are practically the mirror of my i3 setup, and below are programs needs to run my configuration.
 
 | Packages | Description |
 | -------- | ----------- |
@@ -171,6 +171,10 @@ I would love to use Wayland, but it still is buggy on my system. Keybindings are
 | Waybar | Polybar replacement |
 | Wl-clipboard | Enables `+` clipboard so that I can copy from Neovim |
 | Wofi | Rofi replacement |
+
+#### Waybar
+
+Unlike my Polybar setup, I went with a simpler route with one top bar, and detailed information can be accessed by hovering the moues over to modules.
 
 ### macOS
 

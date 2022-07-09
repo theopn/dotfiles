@@ -60,7 +60,7 @@ window#waybar {
 
 /* Universal Module Settings */
 
-#temperature, #cpu, #memory, #disk, #tray,
+#temperature, #cpu, #memory, #disk, #tray, #custom-spotify,
 #pulseaudio, #backlight, #battery, #network, #clock {
   border-radius: 10px;
   background-color: rgba(40, 42, 54, 0.2); /* Dracula BG */
@@ -96,7 +96,9 @@ window#waybar {
   background-color: rgb(255, 85, 85); /* Dracula Red */
 }
 
-
+#custom-spotify {
+  background-color: rgba(241, 250, 140, 0.5); /* Dracula Red */
+}
 
 
 
