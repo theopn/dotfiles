@@ -11,16 +11,17 @@
 # Mod1 for Alt
 set $mod Mod4
 # Programm var
+set $bar waybar
 set $clipboard copyq
 set $clipboard_show copyq show
-set $menu wofi --show drun
+set $menu wofi --show drun --allow-images
 set $network nm-applet --indicator
 set $nightlight gammastep -l 39.2:-86.5 -t 5600:3500
 set $notification dunst
-set $screenshot flameshot launcher
+set $screenshot flameshot
 set $term kitty
 # External file var
-set $wallpaper $HOME/dotfiles/pictures/2008-09-28_SingaporeGP_LH-Nord.jpg
+set $wallpaper $HOME/dotfiles/pictures/2020-11-15_TurkishGP_LH-Nord.jpeg
 # Key var
 set $left h
 set $down j
@@ -50,13 +51,13 @@ exec swayidle -w \
 
 # ---[[ Hardware et System
 #$bindsym $mod+Shift+b exec pkill -SIGUSR1 waybar
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Use brightnessctl to adjust brightness with function row keys
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
 # Sway CapsLock and Ctrl
 input "type:keyboard" {
   xkb_options ctrl:swapcaps
@@ -67,25 +68,27 @@ input "type:touchpad" {
   natural_scroll enabled
   middle_emulation enabled
 }
+bindsym $mod+Shift+v exec $clipboard_show
+for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
+bindsym $mod+Shift+s exec $screenshot
 # --]]
 
 # ---[[ WINDOW KEYBINDINGS
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-# $mod+d has been reconfigured to launch rofi_mode
-bindsym $mod+space exec --no-startup-id $menu
+bindsym $mod+space exec $menu
 # change focus
-bindsym $mod+$up focus left
+bindsym $mod+$left focus left
 bindsym $mod+$down focus down
-bindsym $mod+$left focus up
+bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-bindsym $mod+Shift+$up move left
+bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$left move up
+bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -133,23 +136,14 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 # --]]
 
-# ---[[ Custom keybindings
-bindsym $mod+Shift+v exec --no-startup-id copyq show
-bindsym $mod+Shift+s exec --no-startup-id $screenshot
-# --]]
-
 # ---[[ MODES
-# rofi mode
-set $rofi_mode ROFI MODE: (f) Filebrowser (c) Combi (k) Keys (r) Run (w) Window (esc) Exit
+# wofi mode
+set $wofi_mode WOFI MODE: (r) Run (esc) Exit (I miss Rofi...)
 mode "$rofi_mode" {
-  bindsym f exec --no-startup-id "rofi -modi filebrowser, -show filebrowser", mode "default"
-  bindsym c exec --no-startup-id "rofi -modi combi, -show combi", mode "default"
-  bindsym r exec --no-startup-id rofi -show run, mode "default"
-  bindsym k exec --no-startup-id "rofi -modi keys, -show keys", mode "default"
-  bindsym w exec --no-startup-id rofi -show window, mode "default"
+  bindsym r exec wofi --show run, mode "default"
   bindsym Escape mode "default"
 }
-bindsym $mod+d mode "$rofi_mode"
+bindsym $mod+d mode "$wofi_mode"
 # Window resize mode
 set $resize_mode RESIZE MODE: (hjkl, arrows) Resize (esc, return, super+r) Exit
 mode "$resize_mode" {
@@ -170,9 +164,9 @@ bindsym $mod+r mode "$resize_mode"
 set $system_mode SYS MODE: (c) Config reload (e) Exit Sway (l) Lock (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
 mode "$system_mode" {
   bindsym c reload
-  bindsym l exec --no-startup-id waylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png, mode "default"
+  bindsym l exec swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png, mode "default"
   bindsym e exec "swaynag -t warning -m 'Exit Sway?' -B 'Sure' 'swaymsg exit'"
-  bindsym s exec --no-startup-id systemctl suspend, mode "default"
+  bindsym s exec systemctl suspend, mode "default"
   bindsym Shift+r exec "swaynag -t warning -m 'Reboot?' -B 'Sure' 'systemctl reboot'"
   bindsym Shift+s exec "swaynag -t warning -m 'Shutdown?' -B 'Sure' 'systemctl shutdown'"
   bindsym Escape mode "default"
@@ -188,24 +182,7 @@ bindsym $mod+Shift+p mode "$passthrough_mode"
 # --]]
 
 # ---[[ APPEARANCE
-bar {
-  status_command waybar
-  position bottom
-  font pango:FantasqueSansMono Nerd Font 15
-  colors {
-    background #282A36
-    statusline #F8F8F2
-    separator  #44475A
-    focused_workspace  #44475A #44475A #F8F8F2
-    active_workspace   #282A36 #44475A #F8F8F2
-    inactive_workspace #282A36 #282A36 #BFBFBF
-    urgent_workspace   #FF5555 #FF5555 #F8F8F2
-    binding_mode       #FF5555 #FF5555 #F8F8F2
-  }
-  mode hide
-}
 font pango:FantasqueSansMono Nerd Font 8
-# Dracula theme
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
@@ -220,8 +197,9 @@ gaps outer 3
 # --]]
 
 # ---[[ Startup applications
-exec --no-startup-id $clipboard
-exec --no-startup-id $network
-exec --no-startup-id $nightlight
-exec --no-startup-id $notification
+exec $bar
+exec $clipboard
+exec $network
+exec $nightlight
+exec $notification
 # --]]
