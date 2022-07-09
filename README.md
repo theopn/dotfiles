@@ -151,7 +151,7 @@ Below is a list of keybindings that are unique to my setup.
 
 #### Polybar
 
-Top bar displays power menu (requires `i3_system_script.sh`), brightness, volume, window title, battery, wifi, and date information. Pop-up calendar script can also be executed by clicking the top right calendar icon (this requires Dunst). Bottom bar has i3 module, Spotify current playing information (this requires `polybar_spotify.py`), temperature of the zone `acpitz`, hard disk, memory, and CPU information.
+There are two configurations utilizing essentially the same modules - one with two top and bottom bars and one with just one bar. I honestly don't like either of them, but one bar is better in terms of screen utilization (duh). There's a launch script that can take `onebar` or `twobar` argument and launch bar(s) accordingly.
 
 #### Rofi
 
