@@ -23,7 +23,7 @@ set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
 set $screenshot flameshot launcher
 set $term kitty
-set $wallpaper $HOME/.fehbg
+set $wallpaper feh --no-fehbg --bg-fill '/home/theopn/dotfiles/pictures/2008-09-28_SingaporeGP_LH-Nord.jpg'
 # Key var
 set $left h
 set $up j
@@ -54,6 +54,7 @@ bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Accessing clipboard manager and screenshot tool
 bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
+for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
 bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # Using xss-lock to automatically lock computer before going to sleep
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
