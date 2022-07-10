@@ -22,9 +22,8 @@ set $clipboard copyq
 set $clipboard_show copyq show
 for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
 set $compositor picom
-set $menu "rofi -modi drun,run -show drun"
-#set $menu kitty --class=launcher -e ~/dotfiles/sway/sway-app-launcher.sh
-#for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+set $menu kitty --class=launcher -e ~/dotfiles/i3/terminal-app-launcher.sh
+for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 set $network nm-applet --indicator
 set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
@@ -59,7 +58,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Using xss-lock to automatically lock computer before going to sleep
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $lock --nofork
 # Swap Caps Lock and Control. No more Emacs pinky
 exec --no-startup-id setxkbmap -option ctrl:swapcaps
 # Enable tap to click and natural scrolling
@@ -73,7 +72,7 @@ bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # ---[[ WINDOW KEYBINDINGS
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
-# $mod+d has been reconfigured to launch rofi_mode
+bindsym $mod+d exec --no-startup-id $menu
 bindsym $mod+space exec --no-startup-id $menu
 # change focus
 bindsym $mod+$left focus left
@@ -133,17 +132,6 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 # --]]
 
 # ---[[ MODES
-# rofi mode
-set $rofi_mode ROFI MODE: (f) Filebrowser (c) Combi (k) Keys (r) Run (w) Window (esc) Exit
-mode "$rofi_mode" {
-  bindsym f exec --no-startup-id "rofi -modi filebrowser, -show filebrowser", mode "default"
-  bindsym c exec --no-startup-id "rofi -modi combi, -show combi", mode "default"
-  bindsym r exec --no-startup-id rofi -show run, mode "default"
-  bindsym k exec --no-startup-id "rofi -modi keys, -show keys", mode "default"
-  bindsym w exec --no-startup-id rofi -show window, mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+d mode "$rofi_mode"
 # Window resize mode
 set $resize_mode RESIZE MODE: (hjkl, arrows) Resize (esc, return, super+r) Exit
 mode "$resize_mode" {

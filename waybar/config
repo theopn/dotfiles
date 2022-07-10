@@ -63,7 +63,7 @@
     "format": "🎜  {}",
     "max-length": 20,
     "escape": true,
-    "exec": "$HOME/.config/waybar/waybar_spotify.py",
+    "exec": "~/dotfiles/polybar/polybar_spotify.py",
   },
 
   /* Modules-Center */

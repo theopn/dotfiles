@@ -116,13 +116,12 @@ Below are the packages mentioned in my configuration.
 - Dunst: Notification daemon
 - Feh: Wallpaper
 - Flameshot: Screenshot on X
+- fzf: Fuzzy finder is needed to launch the [terminal app launcher](https://github.com/theopn/terminal-app-launcher)
 - i3lock: Simple lock program
-- ImageMagick: Used to make lock screen image
 - network-manager-applet: GUI network manager
 - Picom: Compositor
 - Polybar: This is where all the ricing takes place
 - Redshift: Blue light filter/nightlight/nightshift
-- Rofi: App launcher and much more
 - setxkbmap: Swap caps lock and control, your pinky will thank you
 - xinput: Enables trackpad natural scrolling and tap to click
 - xrandr: Controls external display output
@@ -132,7 +131,7 @@ Below is a list of keybindings that are unique to my setup.
 
 - Instead of `jkl;`, Vim keybinding of `hjkl`.
 - Instead of `$mod+h`, `$mod+z` toggles horiZontal split.
-- Instead of `$mod+d`, `$mod+Space` launches Rofi.
+- In addition to the default binding of `$mod+d`, `$mod+Space` launches the app launcher.
 - `$mod+d` launches `rofi_mode`, which you can choose various Rofi modes like file browser, full app list (run), window list, etc
 - `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and `systemctl` actions.
 - `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: Kitty uses `super + 0` to reset the font adjustment, which overlaps with i3's "move to workspace number 10." This can be solved by executing `super + 0` in the passthrough mode).
@@ -142,10 +141,6 @@ Below is a list of keybindings that are unique to my setup.
 #### Polybar
 
 Two configurations, one with one bar and one with two bars. Polybar does not play nicely with system tray, so two bars look better.
-
-#### Rofi
-
-Just the Dracula colorscheme.
 
 #### Sway
 

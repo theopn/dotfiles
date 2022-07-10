@@ -20,7 +20,7 @@ set $bar waybar
 set $clipboard copyq
 set $clipboard_show copyq show
 for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
-set $menu kitty --class=launcher -e ~/dotfiles/sway/sway-launcher-desktop.sh
+set $menu kitty --class=launcher -e ~/dotfiles/i3/terminal-app-launcher.sh
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 set $network nm-applet --indicator
 set $nightlight gammastep -l 39.2:-86.5 -t 5600:3500
