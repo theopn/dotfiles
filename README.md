@@ -154,11 +154,11 @@ Wayland will be the norm one day, but today is not that day. Wayland is just too
 - Brightnessctl: Backlight control
 - CopyQ: Clipboard manager
 - Dunst: Notification daemon
+- fzf: Fuzzy finder is needed to launch the [TUI app launcher](https://github.com/Biont/sway-launcher-desktop)
 - Gammastep: Redshift replacement
 - nm-applet: Network manager
 - Waybar: Polybar replacement, arguably better
 - Wl-clipboard: Enables `+` clipboard so that I can copy from Neovim
-- Wofi: Rofi replcaement, objectively worse
 
 #### Waybar
 

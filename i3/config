@@ -12,13 +12,19 @@ set $mod Mod4
 # This is used to set the natural scrolling and tab to click
 set $trackpad_id 'SynPS/2 Synaptics TouchPad'
 # Script var
-set $system_mode_script $HOME/.config/i3/i3_system_mode.sh
-set $polybar_launch $HOME/.config/polybar/polybar_launch.sh twobar
+set $lock $HOME/dotfiles/i3/i3_system_mode.sh lock
+set $suspend $HOME/dotfiles/i3/i3_system_mode.sh suspend
+set $reboot $HOME/dotfiles/i3/i3_system_mode.sh reboot
+set $shutdown $HOME/dotfiles/i3/i3_system_mode.sh shutdown
 # Program var
+set $bar $HOME/.config/polybar/polybar_launch.sh twobar
 set $clipboard copyq
 set $clipboard_show copyq show
+for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
+#set $menu kitty --class=launcher -e ~/dotfiles/sway/sway-app-launcher.sh
+#for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 set $network nm-applet --indicator
 set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
@@ -27,8 +33,8 @@ set $term kitty
 set $wallpaper feh --no-fehbg --bg-fill '/home/theopn/dotfiles/pictures/2008-09-28_SingaporeGP_LH-Nord.jpg'
 # Key var
 set $left h
-set $up j
-set $down k
+set $down j
+set $up k
 set $right l
 # workspace var
 set $ws1 "1:  "
@@ -45,7 +51,6 @@ set $ws10 "10:  "
 
 # ---[[ HARDWARE ET SYSTEM
 # Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -53,10 +58,6 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use brightnessctl to adjust brightness with function row keys
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
-# Accessing clipboard manager and screenshot tool
-bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
-for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
-bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # Using xss-lock to automatically lock computer before going to sleep
 exec --no-startup-id xss-lock --transfer-sleep-lock -- $system_mode_script lock --nofork
 # Swap Caps Lock and Control. No more Emacs pinky
@@ -64,6 +65,9 @@ exec --no-startup-id setxkbmap -option ctrl:swapcaps
 # Enable tap to click and natural scrolling
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
+# Accessing clipboard manager and screenshot tool
+bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
+bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # --]]
 
 # ---[[ WINDOW KEYBINDINGS
@@ -72,17 +76,17 @@ bindsym $mod+Shift+q kill
 # $mod+d has been reconfigured to launch rofi_mode
 bindsym $mod+space exec --no-startup-id $menu
 # change focus
-bindsym $mod+$up focus left
+bindsym $mod+$left focus left
 bindsym $mod+$down focus down
-bindsym $mod+$left focus up
+bindsym $mod+$up focus up
 bindsym $mod+$right focus right
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-bindsym $mod+Shift+$up move left
+bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
-bindsym $mod+Shift+$left move up
+bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -161,11 +165,11 @@ set $system_mode SYS MODE: (c) Config reload (e) Exit i3 (l) Lock (r) Restart i3
 mode "$system_mode" {
   bindsym c reload
   bindsym r restart
-  bindsym l exec --no-startup-id $system_mode_script lock, mode "default"
+  bindsym l exec --no-startup-id $lock, mode "default"
   bindsym e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Sure' 'i3-msg exit'"
-  bindsym s exec --no-startup-id $system_mode_script suspend, mode "default"
-  bindsym Shift+r exec "i3-nagbar -t warning -m 'Reboot?' -B 'Sure' '$system_mode_script reboot'"
-  bindsym Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Sure' '$system_mode_script shutdown'"
+  bindsym s exec --no-startup-id $suspend, mode "default"
+  bindsym Shift+r exec "i3-nagbar -t warning -m 'Reboot?' -B 'Sure' '$reboot'"
+  bindsym Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Sure' '$shutdown'"
   bindsym Escape mode "default"
 }
 bindsym $mod+Shift+c mode "$system_mode"
@@ -197,9 +201,7 @@ gaps outer 3
 # --]]
 
 # ---[[ STARTUP APPLICATIONS
-#bar { }
-exec --no-startup-id $polybar_launch
-
+exec --no-startup-id $bar
 exec --no-startup-id $clipboard
 exec --no-startup-id $compositor
 exec --no-startup-id $network
@@ -208,6 +210,3 @@ exec --no-startup-id $notification
 exec --no-startup-id $wallpaper
 # --]]
 
-########## ---[[ EXPERIMENTAL ZONE
-
-########## --]]

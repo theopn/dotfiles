@@ -10,11 +10,18 @@
 # ---[[ Variables
 # Mod1 for Alt
 set $mod Mod4
+# Script var
+set $lock swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png
+set $suspend systemctl suspend
+set $reboot systemctl reboot
+set $shutdown systemctl shutdown
 # Programm var
 set $bar waybar
 set $clipboard copyq
 set $clipboard_show copyq show
-set $menu wofi --show drun --allow-images
+for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
+set $menu kitty --class=launcher -e ~/dotfiles/sway/sway-launcher-desktop.sh
+for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 set $network nm-applet --indicator
 set $nightlight gammastep -l 39.2:-86.5 -t 5600:3500
 set $notification dunst
@@ -40,16 +47,13 @@ set $ws9 "9:  "
 set $ws10 "10:  "
 # --]]
 
-# ---[[ Swaybg, swayidle, swaylock, et sway built-in tools settings
+# ---[[ Hardware et System
 output * bg $wallpaper fill
 # Lock after 300 seconds, display off after another 300 seconds, exec swaylock before suspend
 exec swayidle -w \
   timeout 300 'swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png' \
   timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-  before-sleep 'swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png'
-# --]]
-
-# ---[[ Hardware et System
+  before-sleep '$lock'
 #$bindsym $mod+Shift+b exec pkill -SIGUSR1 waybar
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
@@ -69,13 +73,13 @@ input "type:touchpad" {
   middle_emulation enabled
 }
 bindsym $mod+Shift+v exec $clipboard_show
-for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
 bindsym $mod+Shift+s exec $screenshot
 # --]]
 
 # ---[[ WINDOW KEYBINDINGS
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
+bindsym $mod+d exec $menu
 bindsym $mod+space exec $menu
 # change focus
 bindsym $mod+$left focus left
@@ -137,13 +141,6 @@ bindsym $mod+minus scratchpad show
 # --]]
 
 # ---[[ MODES
-# wofi mode
-set $wofi_mode WOFI MODE: (r) Run (esc) Exit (I miss Rofi...)
-mode "$rofi_mode" {
-  bindsym r exec wofi --show run, mode "default"
-  bindsym Escape mode "default"
-}
-bindsym $mod+d mode "$wofi_mode"
 # Window resize mode
 set $resize_mode RESIZE MODE: (hjkl, arrows) Resize (esc, return, super+r) Exit
 mode "$resize_mode" {
@@ -164,11 +161,11 @@ bindsym $mod+r mode "$resize_mode"
 set $system_mode SYS MODE: (c) Config reload (e) Exit Sway (l) Lock (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
 mode "$system_mode" {
   bindsym c reload
-  bindsym l exec swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png, mode "default"
+  bindsym l exec $lock, mode "default"
   bindsym e exec "swaynag -t warning -m 'Exit Sway?' -B 'Sure' 'swaymsg exit'"
-  bindsym s exec systemctl suspend, mode "default"
-  bindsym Shift+r exec "swaynag -t warning -m 'Reboot?' -B 'Sure' 'systemctl reboot'"
-  bindsym Shift+s exec "swaynag -t warning -m 'Shutdown?' -B 'Sure' 'systemctl shutdown'"
+  bindsym s exec $suspend, mode "default"
+  bindsym Shift+r exec "swaynag -t warning -m 'Reboot?' -B 'Sure' '$reboot'"
+  bindsym Shift+s exec "swaynag -t warning -m 'Shutdown?' -B 'Sure' '$shutdown'"
   bindsym Escape mode "default"
 }
 bindsym $mod+Shift+c mode "$system_mode"
@@ -203,3 +200,4 @@ exec $network
 exec $nightlight
 exec $notification
 # --]]
+
