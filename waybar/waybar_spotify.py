@@ -59,7 +59,7 @@ try:
         print(output.format(artist=artist, song=song).encode('UTF-8'))
 except Exception as e:
     if isinstance(e, dbus.exceptions.DBusException):
-        print('')
+        print('Not Playing')
     else:
         print(e)
 
