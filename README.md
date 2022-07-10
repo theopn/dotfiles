@@ -107,9 +107,9 @@ Fedora Fedora Fedora.
 
 Notification daemon, and is also used to grep result of `cal` command and display calendar as a notification, simulating pop-up calendar of other OS.
 
-#### i3 WM (i3-gap)
+#### i3 (i3-gap)
 
-Below are packages mentioned in my configuration.
+Below are the packages mentioned in my configuration.
 
 - Brightnessctl: Backlight control
 - CopyQ: Clipboard manager
@@ -119,6 +119,7 @@ Below are packages mentioned in my configuration.
 - i3lock: Simple lock program
 - ImageMagick: Used to make lock screen image
 - network-manager-applet: GUI network manager
+- Picom: Compositor
 - Polybar: This is where all the ricing takes place
 - Redshift: Blue light filter/nightlight/nightshift
 - Rofi: App launcher and much more
@@ -148,7 +149,7 @@ Just the Dracula colorscheme.
 
 #### Sway
 
-A bit buggy, I don't like how it's WM + compositor + input/output manager + wallpaper setter, but Wayland app ecosystem is much smaller and I understand that. Below are packages mentioned in my config.
+Wayland will be the norm one day, but today is not that day. Wayland is just too buggy for me to use everyday. My Sway setup is almost a copy of the i3 setup.
 
 - Brightnessctl: Backlight control
 - CopyQ: Clipboard manager
@@ -161,7 +162,7 @@ A bit buggy, I don't like how it's WM + compositor + input/output manager + wall
 
 #### Waybar
 
-I like the look better than Polybar. Simple top bar that contains all the necessary information.
+I like the look better than Polybar. Colorful top bar that contains all the necessary information.
 
 ### macOS
 

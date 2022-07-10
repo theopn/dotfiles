@@ -17,6 +17,7 @@ set $polybar_launch $HOME/.config/polybar/polybar_launch.sh twobar
 # Program var
 set $clipboard copyq
 set $clipboard_show copyq show
+set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
 set $network nm-applet --indicator
 set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
@@ -200,6 +201,7 @@ gaps outer 3
 exec --no-startup-id $polybar_launch
 
 exec --no-startup-id $clipboard
+exec --no-startup-id $compositor
 exec --no-startup-id $network
 exec --no-startup-id $nightlight
 exec --no-startup-id $notification

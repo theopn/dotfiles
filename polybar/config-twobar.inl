@@ -9,7 +9,7 @@
 [colors]
 ; Prefix aa is for the transparent, ranging from 0 (fully transparent), 1, ... E, F
 ; Dracula Background
-background = #aa282a36
+background = #77282a36
 background-alt = #282a36
 ; Dracula Foreground
 foreground = #f8f8f2
@@ -19,8 +19,8 @@ primary = #8be9fd
 secondary = #6272a4
 ; Dracula Red
 alert = #ff5555
-; Nord 14
-disabled = #a3be8c
+; Dracula Orange
+disabled = #ffb86c
 transparent = #00000000
 
 [bar/hamilton]
@@ -33,7 +33,7 @@ font-0 = FantasqueSansMono Nerd Font:size20;1
 cursor-click = pointer
 cursor-scroll = ns-resize
 width = 100%
-height = 24pt
+height = 18pt
 radius = 6
 line-size = 3pt
 border-size = 3pt
