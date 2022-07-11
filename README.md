@@ -112,20 +112,20 @@ Notification daemon, and is also used to grep result of `cal` command and displa
 Below are the packages mentioned in my configuration.
 
 - Brightnessctl: Backlight control
-- CopyQ: Clipboard manager
+- Clipit: Clipboard manager
 - Dunst: Notification daemon
 - Feh: Wallpaper
 - Flameshot: Screenshot on X
-- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop)
+- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop).
 - i3lock: Simple lock program
 - network-manager-applet: GUI network manager
 - Picom: Compositor
-- Polybar: This is where all the ricing takes place
+- Polybar: This is where all the ricing takes place.
 - Redshift: Blue light filter/nightlight/nightshift
-- setxkbmap: Swap caps lock and control, your pinky will thank you
-- xinput: Enables trackpad natural scrolling and tap to click
-- xrandr: Controls external display output
-- xss-lock: Call i3lock before suspending
+- setxkbmap: Swap caps lock and control, your pinky will thank you.
+- xinput: Enabling trackpad natural scrolling and tap to click
+- xrandr: External display output control
+- xss-lock: Calling i3lock before suspending
 
 Below is a list of keybindings that are unique to my setup.
 
@@ -147,13 +147,13 @@ Top bar with powermenu, brightness, volume, network, date, etc, and a bottom bar
 Wayland will be the norm one day, but today is not that day. Wayland is just too buggy for me to use everyday. My Sway setup is almost a copy of the i3 setup.
 
 - Brightnessctl: Backlight control
-- CopyQ: Clipboard manager
+- Clipman & wl-clipboard: Wayland clipboard utility (wl-clipboard) and terminal command-line clipboard history manager (clipman).
 - Dunst: Notification daemon
-- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop)
+- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop).
 - Gammastep: Redshift replacement
+- Grim & Slurp: Select a region in Wayland compositor (Slurp) and take a screenshot (Grim).
 - nm-applet: Network manager
 - Waybar: Polybar replacement, arguably better
-- Wl-clipboard: Enables `+` clipboard so that I can copy from Neovim
 
 #### Waybar
 

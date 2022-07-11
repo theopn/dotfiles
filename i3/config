@@ -18,8 +18,8 @@ set $reboot $HOME/dotfiles/i3/i3_system_mode.sh reboot
 set $shutdown $HOME/dotfiles/i3/i3_system_mode.sh shutdown
 # Program var
 set $bar $HOME/.config/polybar/polybar_launch.sh twobar
-set $clipboard copyq
-set $clipboard_show copyq show
+set $clipboard clipit
+#set $clipboard_show copyq show
 for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu kitty --class=launcher -e ~/dotfiles/i3/sway-launcher-desktop.sh
@@ -65,7 +65,7 @@ exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
 # Accessing clipboard manager and screenshot tool
-bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
+#bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
 bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # --]]
 
