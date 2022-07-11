@@ -52,7 +52,7 @@ Basic shell setting with just ls alias and prompt.
 
 #### Emacs
 
-Part-time text editor, full-time to-do list application. My configuration is focused on making Emacs function as a to-do list application.
+Part-time text editor, full-time to-do list application. My configuration is focused on making Emacs function as a to-do list application by utilizing the Org-mode.
 
 #### Firefox
 
