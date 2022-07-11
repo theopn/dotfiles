@@ -140,7 +140,7 @@
 
   "clock": {
     "timezone": "America/New_York",
-    "format": "{:%m-%d %H:%M}",
+    "format": "{:%a %m-%d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
 }

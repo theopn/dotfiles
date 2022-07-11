@@ -140,7 +140,7 @@ Below is a list of keybindings that are unique to my setup.
 
 #### Polybar
 
-Two configurations, one with one bar and one with two bars. Polybar does not play nicely with system tray, so two bars look better.
+Top bar with powermenu, brightness, volume, network, date, etc, and a bottom bar with workspaces, Spotify info, system resource usage, and system icon tray.
 
 #### Sway
 
