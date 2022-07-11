@@ -16,13 +16,48 @@ TERMINAL_COMMAND="${TERMINAL_COMMAND:="$TERMINAL -e"}"
 GLYPH_COMMAND="${GLYPH_COMMAND-  }"
 GLYPH_DESKTOP="${GLYPH_DESKTOP-  }"
 CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/sway-launcher-desktop"
+PROVIDERS_FILE="${PROVIDERS_FILE:=providers.conf}"
+if [[ "${PROVIDERS_FILE#/}" == "${PROVIDERS_FILE}" ]]; then
+  # $PROVIDERS_FILE is a relative path, prepend $CONFIG_DIR
+  PROVIDERS_FILE="${CONFIG_DIR}/${PROVIDERS_FILE}"
+fi
 
 # Provider config entries are separated by the field separator \034 and have the following structure:
 # list_cmd,preview_cmd,launch_cmd,purge_cmd
 declare -A PROVIDERS
-PROVIDERS['desktop']="${0} list-entries${DEL}${0} describe-desktop \"{1}\"${DEL}${0} run-desktop '{1}' {2}${DEL}test -f '{1}' || exit 43"
-PROVIDERS['command']="${0} list-commands${DEL}${0} describe-command \"{1}\"${DEL}${TERMINAL_COMMAND} {1}${DEL}command -v '{1}' || exit 43"
+if [ -f "${PROVIDERS_FILE}" ]; then
+  eval "$(awk -F= '
+  BEGINFILE{ provider=""; }
+  /^\[.*\]/{sub("^\\[", "");sub("\\]$", "");provider=$0}
+  /^(launch|list|preview|purge)_cmd/{st = index($0,"=");providers[provider][$1] = substr($0,st+1)}
+  ENDFILE{
+    for (key in providers){
+      if(!("list_cmd" in providers[key])){continue;}
+      if(!("launch_cmd" in providers[key])){continue;}
+      if(!("preview_cmd" in providers[key])){continue;}
+      if(!("purge_cmd" in providers[key])){providers[key]["purge_cmd"] = "exit 0";}
+      for (entry in providers[key]){
+       gsub(/[\x27,\047]/,"\x27\"\x27\"\x27", providers[key][entry])
+      }
+      print "PROVIDERS[\x27" key "\x27]=\x27" providers[key]["list_cmd"] "\034" providers[key]["preview_cmd"] "\034" providers[key]["launch_cmd"] "\034" providers[key]["purge_cmd"] "\x27\n"
+    }
+  }' "${PROVIDERS_FILE}")"
+  if [[ ! -v HIST_FILE ]]; then
+    HIST_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/${0##*/}-${PROVIDERS_FILE##*/}-history.txt"
+  fi
+else
+  PROVIDERS['desktop']="${0} list-entries${DEL}${0} describe-desktop \"{1}\"${DEL}${0} run-desktop '{1}' {2}${DEL}test -f '{1}' || exit 43"
+  PROVIDERS['command']="${0} list-commands${DEL}${0} describe-command \"{1}\"${DEL}${TERMINAL_COMMAND} {1}${DEL}command -v '{1}' || exit 43"
+  if [[ ! -v HIST_FILE ]]; then
+    HIST_FILE="${XDG_CACHE_HOME:-$HOME/.cache}/${0##*/}-history.txt"
+  fi
+fi
 PROVIDERS['user']="exit${DEL}exit${DEL}{1}" # Fallback provider that simply executes the exact command if there were no matches
+
+if [[ -n "${HIST_FILE}" ]]; then
+  mkdir -p "${HIST_FILE%/*}" && touch "$HIST_FILE"
+  readarray HIST_LINES <"$HIST_FILE"
+fi
 
 function describe() {
   # shellcheck disable=SC2086
@@ -216,12 +251,34 @@ function list-autostart() {
     ${DIRS[@]} </dev/null
 }
 
+purge() {
+ # shellcheck disable=SC2188
+ > "${HIST_FILE}"
+ declare -A PURGE_CMDS
+ for PROVIDER_NAME in "${!PROVIDERS[@]}"; do
+   readarray -td ${DEL} PROVIDER_ARGS <<<${PROVIDERS[${PROVIDER_NAME}]}
+   PURGE_CMD=${PROVIDER_ARGS[3]}
+   [ -z "${PURGE_CMD}" ] && PURGE_CMD='test -f "{1}" || exit 43'
+   PURGE_CMDS[$PROVIDER_NAME]="${PURGE_CMD%$'\n'}"
+  done
+  for HIST_LINE in "${HIST_LINES[@]#*' '}"; do
+    readarray -td $'\034' HIST_ENTRY <<<${HIST_LINE}
+    ENTRY=${HIST_ENTRY[1]}
+    readarray -td ' ' FILTER <<<${PURGE_CMDS[$ENTRY]//\{1\}/${HIST_ENTRY[0]}}
+    (eval "${FILTER[@]}" 1>/dev/null) # Run filter command discarding output. We only want the exit status
+    if [[ $? -ne 43 ]]; then
+      echo "1 ${HIST_LINE[@]%$'\n'}" >> "${HIST_FILE}"
+    fi
+  done
+}
+
 case "$1" in
 describe | describe-desktop | describe-command | entries | list-entries | list-commands | list-autostart | generate-command | autostart | run-desktop | provide | purge)
   "$@"
   exit
   ;;
 esac
+echo "Starting launcher instance with the following providers:" "${!PROVIDERS[@]}" >&3
 
 FZFPIPE=$(mktemp -u)
 mkfifo "$FZFPIPE"
@@ -251,8 +308,29 @@ readarray -t COMMAND_STR <<<$(
 COMMAND_STR=$(printf '%s\n' "${COMMAND_STR[@]: -1}")
 # We still need to format the query to conform to our fallback provider.
 # We check for the presence of field separator character to determine if we're dealing with a custom command
+if [[ $COMMAND_STR != *$'\034'* ]]; then
+    COMMAND_STR="${COMMAND_STR}"$'\034user\034'"${COMMAND_STR}"$'\034'
+    SKIP_HIST=1 # I chose not to include custom commands in the history. If this is a bad idea, open an issue please
+fi
 
 [ -z "$COMMAND_STR" ] && exit 1
+
+if [[ -n "${HIST_FILE}" && ! "$SKIP_HIST" ]]; then
+  # update history
+  for i in "${!HIST_LINES[@]}"; do
+    if [[ "${HIST_LINES[i]}" == *" $COMMAND_STR"$'\n' ]]; then
+      HIST_COUNT=${HIST_LINES[i]%% *}
+      HIST_LINES[$i]="$((HIST_COUNT + 1)) $COMMAND_STR"$'\n'
+      match=1
+      break
+    fi
+  done
+  if ! ((match)); then
+    HIST_LINES+=("1 $COMMAND_STR"$'\n')
+  fi
+
+  printf '%s' "${HIST_LINES[@]}" | sort -nr >"$HIST_FILE"
+fi
 
 # shellcheck disable=SC2086
 readarray -d $'\034' -t PARAMS <<<${COMMAND_STR}

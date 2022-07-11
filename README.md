@@ -1,6 +1,6 @@
 # Theo's dotfiles
 
-> Collection of my personal configuration files. The reason why this Readme is so long is because I forget things often, not because I like to write hundreds of lines of instructions on a documentation that no one will ever read.
+> Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definetely not because I like wasting time writing a documentation that no one will ever read instead of doing actual works.
 
 ![fedora_sc](./pictures/2022-07-05_Fedora_Screenshot.png)
 ![macos_sc](./pictures/2022-07-02_macOS_Screenshot.jpg)
@@ -116,7 +116,7 @@ Below are the packages mentioned in my configuration.
 - Dunst: Notification daemon
 - Feh: Wallpaper
 - Flameshot: Screenshot on X
-- fzf: Fuzzy finder is needed to launch the [terminal app launcher](https://github.com/theopn/terminal-app-launcher)
+- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop)
 - i3lock: Simple lock program
 - network-manager-applet: GUI network manager
 - Picom: Compositor
@@ -149,7 +149,7 @@ Wayland will be the norm one day, but today is not that day. Wayland is just too
 - Brightnessctl: Backlight control
 - CopyQ: Clipboard manager
 - Dunst: Notification daemon
-- fzf: Fuzzy finder is needed to launch the [TUI app launcher](https://github.com/Biont/sway-launcher-desktop)
+- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop)
 - Gammastep: Redshift replacement
 - nm-applet: Network manager
 - Waybar: Polybar replacement, arguably better

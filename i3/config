@@ -20,9 +20,9 @@ set $shutdown $HOME/dotfiles/i3/i3_system_mode.sh shutdown
 set $bar $HOME/.config/polybar/polybar_launch.sh twobar
 set $clipboard copyq
 set $clipboard_show copyq show
-for_window [class=$clipboard] floating enable; resize set 500px 700px; move position 1300px 50px
+for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
-set $menu kitty --class=launcher -e ~/dotfiles/i3/terminal-app-launcher.sh
+set $menu kitty --class=launcher -e ~/dotfiles/i3/sway-launcher-desktop.sh
 for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
 set $network nm-applet --indicator
 set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
