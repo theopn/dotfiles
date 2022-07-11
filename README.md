@@ -167,7 +167,7 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 Formulae:
 
-- Fancier `cat` replacement
+- Bat: Fancier `cat` replacement
 - ffmpeg: Primarily used for `ffmpeg -i in.xxx out.yyy`
 - Hugo: Static website generator
 - htop: System monitor
