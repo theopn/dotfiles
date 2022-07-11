@@ -19,11 +19,12 @@ set $shutdown $HOME/dotfiles/i3/i3_system_mode.sh shutdown
 # Program var
 set $bar $HOME/.config/polybar/polybar_launch.sh twobar
 set $clipboard clipit
-#set $clipboard_show copyq show
+set $clipboard_clear notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 69"
+set $clipboard_show notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 70"
 for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu kitty --class=launcher -e ~/dotfiles/i3/sway-launcher-desktop.sh
-for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10
+for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10, move center
 set $network nm-applet --indicator
 set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
@@ -65,6 +66,7 @@ exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
 # Accessing clipboard manager and screenshot tool
+#bindsym $mod+Shift+z exec --no-startup-id $clipboard_clear
 #bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
 bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # --]]
