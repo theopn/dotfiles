@@ -115,13 +115,16 @@
 ;; --]]
 
 ;; ---[[ Org Mode Environment
+;; Org mode file directory
+(defvar my_org_dir '"~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org")
 (use-package org
   :hook (org-mode . efs/org-mode-setup)
   :config
   (setq org-ellipsis " ▾")
+  (setq org-agenda-window-setup 'current-window) 
   (setq org-agenda-start-with-log-mode t)
   (setq org-agenda-skip-timestamp-if-done t)
-  (setq org-agenda-skip-closed-if-done t)
+  (setq org-agenda-skip-scheduled-if-done t)
   (setq org-log-done 'time)
   (setq org-log-into-drawer t)
 
@@ -135,8 +138,7 @@
   (setq org-habit-graph-column 60)
 
   (setq org-refile-targets
-    '(("archive.org" :maxlevel . 1)
-      ("Tasks.org" :maxlevel . 1)))
+    '(("archive.org" :maxlevel . 1)))
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
 
   (setq org-todo-keywords
@@ -165,4 +167,13 @@
 ;; --]]
 
 ;; Emacs is Jack of all trades, master of one.
-(org-agenda-list)
+(defun startup-layout ()
+ (interactive)
+ (delete-other-windows)
+ (split-window-horizontally)
+ (next-multiframe-window)
+ (org-agenda-list)
+ (next-multiframe-window)
+ (dired my_org_dir)
+ )
+(startup-layout)
