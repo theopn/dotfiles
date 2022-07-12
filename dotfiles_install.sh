@@ -137,11 +137,11 @@ case $dotfile_input in
     printf "Extra lua config for NeoVim installed\n" 
 
     # Emacs
-    current="emacs"
+    current="emacs.d"
     emacs_files=("init.el")
     for v in ${emacs_files[@]}; do
-      mkdir -p ~/.emacs.d
-      ln -sf ~/dotfiles/$current/$v ~/.emacs.d/$v
+      mkdir -p ~/.$current
+      ln -sf ~/dotfiles/$current/$v ~/.$current/$v
       echo $v modified
     done
 
