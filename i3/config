@@ -12,12 +12,12 @@ set $mod Mod4
 # This is used to set the natural scrolling and tab to click
 set $trackpad_id 'SynPS/2 Synaptics TouchPad'
 # Script var
-set $lock $HOME/dotfiles/i3/i3_system_mode.sh lock
-set $suspend $HOME/dotfiles/i3/i3_system_mode.sh suspend
-set $reboot $HOME/dotfiles/i3/i3_system_mode.sh reboot
-set $shutdown $HOME/dotfiles/i3/i3_system_mode.sh shutdown
+set $lock ~/dotfiles/i3/i3_system_mode.sh lock
+set $suspend ~/dotfiles/i3/i3_system_mode.sh suspend
+set $reboot ~/dotfiles/i3/i3_system_mode.sh reboot
+set $shutdown ~/dotfiles/i3/i3_system_mode.sh shutdown
 # Program var
-set $bar $HOME/.config/polybar/polybar_launch.sh twobar
+set $bar ~/.config/polybar/polybar_launch.sh twobar
 set $clipboard clipit
 set $clipboard_clear notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 69"
 set $clipboard_show notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 70"
@@ -26,7 +26,7 @@ set $compositor picom
 set $menu kitty --class=launcher -e ~/dotfiles/i3/sway-launcher-desktop.sh
 for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10, move center
 set $network nm-applet --indicator
-set $nightlight redshift -l 39.2:-86.5 -t 5600:3500 -m randr
+set $nightlight redshift -P -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
 set $screenshot flameshot launcher
 set $term kitty

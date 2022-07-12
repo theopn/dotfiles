@@ -43,7 +43,7 @@ module-margin = 1
 module-margin-left = 1
 module-margin-right = 1
 
-modules-left = powermenu backlight pulseaudio
+modules-left = powermenu compositor-toggle backlight pulseaudio
 modules-center = xwindow
 modules-right = battery0 battery1 network date
 
@@ -104,6 +104,21 @@ menu-3-0 = Shutdown Confirm
 menu-3-0-exec = $HOME/.config/i3/i3_system_mode.sh shutdown
 menu-3-1 = Cancel
 menu-3-1-exec = #powermenu.open.0
+
+[module/compositor-toggle]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = " "
+label-open-foreground = ${colors.primary}
+label-close = " "
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.primary}
+menu-0-0 = "  Compositor"
+menu-0-0-exec = ~/dotfiles/polybar/polybar_display_tools_toggle.sh compositor
+menu-0-1 = "  Nightlight/Nightshift/Bluelight filter/whatever it's called"
+menu-0-1-exec = ~/dotfiles/polybar/polybar_display_tools_toggle.sh nightlight
 
 [module/backlight]
 type = internal/backlight
@@ -250,7 +265,7 @@ label-unmounted-foreground = ${colors.disabled}
 type = internal/memory
 interval = 2
 label = %gb_used%/%gb_total%
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${colors.primary}
 
 [module/cpu]

@@ -140,7 +140,7 @@ Below is a list of keybindings that are unique to my setup.
 
 #### Polybar
 
-Top bar with powermenu, brightness, volume, network, date, etc, and a bottom bar with workspaces, Spotify info, system resource usage, and system icon tray.
+Top bar with powermenu, compositor and nightlight toggle, brightness, volume, network, date, etc, and a bottom bar with workspaces, Spotify info, system resource usage, and system icon tray.
 
 #### Sway
 

@@ -17,7 +17,7 @@
   "spacing": 4,
   "modules-left": ["disk", "memory", "temperature", "cpu", "network", "tray"],
   "modules-center": ["sway/workspaces", "sway/mode"],
-  "modules-right": ["custom/spotify", "pulseaudio", "backlight", "battery", "battery#bat2", "clock"],
+  "modules-right": ["custom/spotify", "pulseaudio", "backlight", "custom/nightlight_toggle", "battery", "battery#bat2", "clock"],
 
   /* Modules-Left */
 
@@ -108,6 +108,12 @@
   "backlight": {
     "format": "{percent}% {icon}",
     "format-icons": ["", "", "", "", "", "", "", "", ""],
+  },
+
+  "custom/nightlight_toggle": {
+    "on-click": "~/dotfiles/waybar/waybar_display_tools_toggle.sh nightlight",
+    "format": "  ",
+    "tooltip": "nightlight toggle",
   },
 
   "battery": {

@@ -24,7 +24,7 @@ for_window [app_id="^clipboard$"] floating enable, sticky enable, resize set 30 
 set $menu kitty --class=launcher -e ~/dotfiles/i3/sway-launcher-desktop.sh
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10, move center
 set $network nm-applet --indicator
-set $nightlight gammastep -l 39.2:-86.5 -t 5600:3500
+set $nightlight gammastep -P -l 39.2:-86.5 -t 5600:3500
 set $notification dunst
 set $screenshot grim -g "$(slurp)"
 set $term kitty
