@@ -177,6 +177,7 @@ Formulae:
 - **Neovim**
 - ranger: TUI file explorer
 - **tmux**
+- **trash-cli: `trash` command sends the file to `~/.local/share/Trash` folder**
 
 | Type | Casks |
 | ---- | ----- |
@@ -189,4 +190,4 @@ Formulae:
 
 #### Settings
 
-Shows hidden file and full path on the Finder window. Puts screenshot as .jpg file in ~/Downloads by default.
+Remove Dock un-hide animation, add a Dock spacer, Finder hidden file, screenshot format and location, etc.

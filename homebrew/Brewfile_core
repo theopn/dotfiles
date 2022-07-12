@@ -7,6 +7,7 @@ brew "neofetch"
 brew "tmux"
 brew "lua"
 brew "node"
+brew "trash-cli"
 
 cask "firefox"
 cask "obsidian"
