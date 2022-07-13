@@ -18,6 +18,7 @@ set $reboot ~/dotfiles/i3/i3_system_mode.sh reboot
 set $shutdown ~/dotfiles/i3/i3_system_mode.sh shutdown
 # Program var
 set $bar ~/.config/polybar/polybar_launch.sh twobar
+set $bluetooth blueman-manager
 set $clipboard clipit
 set $clipboard_clear notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 69"
 set $clipboard_show notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 70"
@@ -191,6 +192,7 @@ gaps outer 3
 
 # ---[[ STARTUP APPLICATIONS
 exec --no-startup-id $bar
+#exec --no-startup-id $bluetooth
 exec --no-startup-id $clipboard
 exec --no-startup-id $compositor
 exec --no-startup-id $network

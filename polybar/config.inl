@@ -29,7 +29,7 @@ foreground = ${colors.foreground}
 border-color = ${colors.transparent}
 separator = |
 separator-foreground = ${colors.disabled}
-font-0 = FantasqueSansMono Nerd Font:size20;1
+font-0 = FantasqueSansMono Nerd Font:size=12;1
 cursor-click = pointer
 cursor-scroll = ns-resize
 width = 100%
@@ -43,15 +43,16 @@ module-margin = 1
 module-margin-left = 1
 module-margin-right = 1
 
-modules-left = powermenu compositor-toggle backlight pulseaudio
+modules-left = powermenu display_settings do_not_disturb backlight pulseaudio
 modules-center = xwindow
 modules-right = battery0 battery1 network date
 
 [bar/bottas]
+enable-ipc = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 border-color = ${colors.transparent}
-font-0 = FantasqueSansMono Nerd Font:size20;1
+font-0 = FantasqueSansMono Nerd Font:size=12;1
 cursor-click = pointer
 cursor-scroll = ns-resize
 width = 100%
@@ -70,7 +71,6 @@ modules-left = i3
 modules-center = spotify
 modules-right = temperature filesystem memory cpu
 tray-position = right
-enable-ipc = true
 
 ; ---[[ Hamilton modules
 [module/powermenu]
@@ -105,7 +105,7 @@ menu-3-0-exec = $HOME/.config/i3/i3_system_mode.sh shutdown
 menu-3-1 = Cancel
 menu-3-1-exec = #powermenu.open.0
 
-[module/compositor-toggle]
+[module/display_settings]
 type = custom/menu
 expand-right = true
 format-spacing = 1
@@ -117,8 +117,23 @@ label-separator = |
 label-separator-foreground = ${colors.primary}
 menu-0-0 = "  Compositor"
 menu-0-0-exec = ~/dotfiles/polybar/polybar_display_tools_toggle.sh compositor
-menu-0-1 = "  Nightlight/Nightshift/Bluelight filter/whatever it's called"
+menu-0-1 = "盛  Nightlight/Nightshift/Bluelight filter/whatever it's called"
 menu-0-1-exec = ~/dotfiles/polybar/polybar_display_tools_toggle.sh nightlight
+
+[module/do_not_disturb]
+type = custom/menu
+expand-right = true
+format-spacing = 1
+label-open = " "
+label-open-foreground = ${colors.primary}
+label-close = " "
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.primary}
+menu-0-0 = "Do NOT Disturb"
+menu-0-0-exec = ~/dotfiles/polybar/polybar_dunst_pause.sh on
+menu-0-1 = "Disturb me"
+menu-0-1-exec = ~/dotfiles/polybar/polybar_dunst_pause.sh off
 
 [module/backlight]
 type = internal/backlight
@@ -141,6 +156,7 @@ format = <label> <bar>
 [module/pulseaudio]
 type = internal/pulseaudio
 use-ui-max = true
+click-right = pavucontrol
 
 label-muted = 婢 muted
 label-muted-foreground = ${colors.disabled}

@@ -111,6 +111,7 @@ Notification daemon, and is also used to grep result of `cal` command and displa
 
 Below are the packages mentioned in my configuration.
 
+- Blueman: GUI Bluetooth manager
 - Brightnessctl: Backlight control
 - Clipit: Clipboard manager
 - Dunst: Notification daemon
@@ -118,6 +119,7 @@ Below are the packages mentioned in my configuration.
 - Flameshot: Screenshot on X
 - i3lock: Simple lock program
 - network-manager-applet: GUI network manager
+- Pavucontrol: Not strictly necessary but can be executed with right clicking volume icon in Polybar.
 - Picom: Compositor
 - Polybar: This is where all the ricing takes place.
 - Redshift: Blue light filter/nightlight/nightshift
