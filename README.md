@@ -116,12 +116,12 @@ Below are the packages mentioned in my configuration.
 - Dunst: Notification daemon
 - Feh: Wallpaper
 - Flameshot: Screenshot on X
-- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop).
 - i3lock: Simple lock program
 - network-manager-applet: GUI network manager
 - Picom: Compositor
 - Polybar: This is where all the ricing takes place.
 - Redshift: Blue light filter/nightlight/nightshift
+- Rofi: App launcher and more
 - setxkbmap: Swap caps lock and control, your pinky will thank you.
 - xinput: Enabling trackpad natural scrolling and tap to click
 - xrandr: External display output control
@@ -132,7 +132,6 @@ Below is a list of keybindings that are unique to my setup.
 - Instead of `jkl;`, Vim keybinding of `hjkl`.
 - Instead of `$mod+h`, `$mod+z` toggles horiZontal split.
 - In addition to the default binding of `$mod+d`, `$mod+Space` launches the app launcher.
-- `$mod+d` launches `rofi_mode`, which you can choose various Rofi modes like file browser, full app list (run), window list, etc
 - `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and `systemctl` actions.
 - `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: Kitty uses `super + 0` to reset the font adjustment, which overlaps with i3's "move to workspace number 10." This can be solved by executing `super + 0` in the passthrough mode).
 - `$mod+Shift+v` to execute the clipboard manager.
@@ -169,6 +168,7 @@ Formulae:
 
 - Bat: Fancier `cat` replacement
 - ffmpeg: Primarily used for `ffmpeg -i in.xxx out.yyy`
+- fzf: Command line fuzzy finder
 - Hugo: Static website generator
 - htop: System monitor
 - **Lua**

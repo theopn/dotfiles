@@ -8,6 +8,7 @@ brew "tmux"
 brew "lua"
 brew "node"
 brew "trash-cli"
+brew "fzf"
 
 cask "firefox"
 cask "obsidian"

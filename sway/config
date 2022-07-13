@@ -21,7 +21,7 @@ set $clipboard wl-paste -t text --watch clipman store
 set $clipboard_clear clipman clear --all
 set $clipboard_show kitty --class=clipboard clipman pick --print0 --tool=CUSTOM --tool-args="fzf --prompt 'pick > ' --bind 'tab:up' --cycle --read0"
 for_window [app_id="^clipboard$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10, move position 1300px 50px
-set $menu kitty --class=launcher -e ~/dotfiles/i3/sway-launcher-desktop.sh
+set $menu kitty --class=launcher -e ~/dotfiles/sway/sway-launcher-desktop.sh
 for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10, move center
 set $network nm-applet --indicator
 set $nightlight gammastep -P -l 39.2:-86.5 -t 5600:3500

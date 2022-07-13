@@ -23,8 +23,7 @@ set $clipboard_clear notify-send "PLACEHOLDER - Not applicapable with Clipit - L
 set $clipboard_show notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 70"
 for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
-set $menu kitty --class=launcher -e ~/dotfiles/i3/sway-launcher-desktop.sh
-for_window [class="^launcher$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, border pixel 10, move center
+set $menu "rofi -modi drun,run -show drun"
 set $network nm-applet --indicator
 set $nightlight redshift -P -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
