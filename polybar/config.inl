@@ -29,7 +29,7 @@ foreground = ${colors.foreground}
 border-color = ${colors.transparent}
 separator = |
 separator-foreground = ${colors.disabled}
-font-0 = FantasqueSansMono Nerd Font:size20;1
+font-0 = FantasqueSansMono Nerd Font:size=12;1
 cursor-click = pointer
 cursor-scroll = ns-resize
 width = 100%
@@ -52,7 +52,7 @@ enable-ipc = true
 background = ${colors.background}
 foreground = ${colors.foreground}
 border-color = ${colors.transparent}
-font-0 = FantasqueSansMono Nerd Font:size20;1
+font-0 = FantasqueSansMono Nerd Font:size=12;1
 cursor-click = pointer
 cursor-scroll = ns-resize
 width = 100%
