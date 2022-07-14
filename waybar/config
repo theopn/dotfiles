@@ -17,7 +17,7 @@
   "spacing": 4,
   "modules-left": ["disk", "memory", "temperature", "cpu", "network", "tray"],
   "modules-center": ["sway/workspaces", "sway/mode"],
-  "modules-right": ["custom/spotify", "pulseaudio", "backlight", "custom/nightlight_toggle", "battery", "battery#bat2", "clock"],
+  "modules-right": ["custom/spotify", "pulseaudio", "backlight", "battery", "battery#bat2", "custom/nightlight_toggle", "custom/dunst_toggle", "custom/weather", "clock"],
 
   /* Modules-Left */
 
@@ -51,6 +51,12 @@
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
     "tooltip-format": "{ifname}, {ipaddr}, {frequency}Mhz"
+  },
+
+  "custom/dunst_toggle": {
+    "on-click": "~/dotfiles/polybar/polybar_dunst_toggle.sh",
+    "format": "  ",
+    "tooltip": "Do Not Disturb Toggle",
   },
 
   "tray": {
@@ -112,7 +118,7 @@
 
   "custom/nightlight_toggle": {
     "on-click": "~/dotfiles/waybar/waybar_display_tools_toggle.sh nightlight",
-    "format": "  ",
+    "format": "盛 ",
     "tooltip": "nightlight toggle",
   },
 
@@ -148,6 +154,12 @@
     "timezone": "America/New_York",
     "format": "{:%a %m-%d %H:%M}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+  },
+
+  "custom/weather": {
+    "on-click": "~/dotfiles/polybar/polybar_weather.sh",
+    "format": "摒 ",
+    "tooltip": "weathre",
   },
 }
 

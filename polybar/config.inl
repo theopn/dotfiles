@@ -45,7 +45,7 @@ module-margin-right = 1
 
 modules-left = powermenu display_settings do_not_disturb backlight pulseaudio
 modules-center = xwindow
-modules-right = battery0 battery1 network date
+modules-right = battery0 battery1 network date weather
 
 [bar/bottas]
 enable-ipc = true
@@ -121,19 +121,10 @@ menu-0-1 = "盛  Nightlight/Nightshift/Bluelight filter/whatever it's called"
 menu-0-1-exec = ~/dotfiles/polybar/polybar_display_tools_toggle.sh nightlight
 
 [module/do_not_disturb]
-type = custom/menu
-expand-right = true
-format-spacing = 1
-label-open = " "
-label-open-foreground = ${colors.primary}
-label-close = " "
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.primary}
-menu-0-0 = "Do NOT Disturb"
-menu-0-0-exec = ~/dotfiles/polybar/polybar_dunst_pause.sh on
-menu-0-1 = "Disturb me"
-menu-0-1-exec = ~/dotfiles/polybar/polybar_dunst_pause.sh off
+type = custom/text
+content = " "
+content-foreground = ${colors.primary}
+click-left = ~/dotfiles/polybar/polybar_dunst_toggle.sh
 
 [module/backlight]
 type = internal/backlight
@@ -222,6 +213,11 @@ time = "%H:%M:%S"
 label = %date% %time%
 ; A1 Left click, A2 middle, A3 right click, A4 Scroll up, A5 scroll down, etc
 format = %{A1:$HOME/.config/polybar/polybar_calendar.sh curr:}%{A3:$HOME/.config/polybar/polybar_calendar.sh next:}  <label>%{A}%{A}
+
+[module/weather]
+type = custom/text
+content = "摒 "
+click-left = ~/dotfiles/polybar/polybar_weather.sh
 ; --]]
 
 ; ---[[ Bottas modules

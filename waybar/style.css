@@ -59,8 +59,8 @@ window#waybar {
 
 /* Universal Module Settings */
 
-#disk, #temperature, #cpu, #memory, #disk, #tray, #custom-spotify,
-#pulseaudio, #backlight, #custom-nightlight_toggle, #battery, #network, #clock {
+#disk, #temperature, #cpu, #memory, #disk, #tray, #custom-dunst_toggle,
+#custom-spotify, #pulseaudio, #backlight, #custom-nightlight_toggle, #battery, #network, #clock, #custom-weather {
   border-radius: 10px;
   color: rgb(248, 248, 242); /* Dracula FG */
   margin: 3px 3px;
@@ -86,7 +86,7 @@ window#waybar {
 }
 
 #network {
-    background-color: rgba(255, 85, 85, 0.5); /* Dracula Red */
+  background-color: rgba(189, 147, 249, 0.5); /* Dracula Purple */
 }
 
 #network.disconnected {
@@ -94,7 +94,7 @@ window#waybar {
 }
 
 #tray {
-  background-color: rgba(189, 147, 249, 0.5); /* Dracula Purple */
+  background-color: rgba(255, 85, 85, 0.5); /* Dracula Red */
 }
 
 #tray > .passive {
@@ -106,11 +106,11 @@ window#waybar {
   background-color: rgb(255, 85, 85); /* Dracula Red */
 }
 
+/* Modules-Right */
+
 #custom-spotify {
   background-color: rgba(241, 250, 140, 0.5); /* Dracula Yellow */
 }
-
-/* Modules-Right */
 
 #pulseaudio {
   background-color: rgba(241, 250, 140, 0.5); /* Dracula Yellow */
@@ -136,7 +136,15 @@ window#waybar {
     background-color: rgba(255, 184, 108, 0.5); /* Dracula Orange */
 }
 
+#custom-dunst_toggle {
+  background-color: rgba(80, 250, 123, 0.5); /* Dracula Green */
+}
+
 #clock {
   background-color: rgba(68, 71, 90, 0.5); /* Dracula Current Line */
+}
+
+#custom-weather {
+  background-color: rgba(255, 121, 198, 0.5); /* Dracula Pink */
 }
 
