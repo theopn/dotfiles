@@ -5,10 +5,10 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 case "$1" in
-  onebar)
-    echo "oops onebar no longer exists"
+  simple)
+    polybar -c ~/dotfiles/polybar/config-simple.inl -r
     ;;
-  twobar)
+  full)
     polybar -c ~/dotfiles/polybar/config.inl hamilton -r &
     polybar -c ~/dotfiles/polybar/config.inl bottas -r
     ;;
@@ -18,3 +18,4 @@ case "$1" in
 esac
 
 exit 0
+

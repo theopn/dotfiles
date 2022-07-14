@@ -17,7 +17,7 @@ set $suspend ~/dotfiles/i3/i3_system_mode.sh suspend
 set $reboot ~/dotfiles/i3/i3_system_mode.sh reboot
 set $shutdown ~/dotfiles/i3/i3_system_mode.sh shutdown
 # Program var
-set $bar ~/.config/polybar/polybar_launch.sh twobar
+set $bar ~/.config/polybar/polybar_launch.sh simple
 set $bluetooth blueman-manager
 set $clipboard clipit
 set $clipboard_clear notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 69"

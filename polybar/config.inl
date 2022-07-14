@@ -251,13 +251,14 @@ label-urgent-padding = 2
 [module/spotify]
 type = custom/script
 interval = 15
+label = %output:0:30:...%
 format-prefix = " ﱘ  "
 format = <label>
 exec = $HOME/.config/polybar/polybar_spotify.py
 
 [module/temperature]
 type = internal/temperature
-interval = 1
+interval = 5
 ; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
 thermal-zone = 0
 base-temperature = 0
@@ -275,14 +276,14 @@ label-unmounted-foreground = ${colors.disabled}
 
 [module/memory]
 type = internal/memory
-interval = 2
+interval = 5
 label = %gb_used%/%gb_total%
 format-prefix = "  "
 format-prefix-foreground = ${colors.primary}
 
 [module/cpu]
 type = internal/cpu
-interval = 2
+interval = 5
 label = %percentage:2%%
 format-prefix = " "
 format-prefix-foreground = ${colors.primary}
@@ -290,7 +291,7 @@ format-prefix-foreground = ${colors.primary}
 [module/network]
 type = internal/network
 interface-type = wireless
-interval = 3.0
+interval = 5.0
 ramp-signal-0 = x
 ramp-signal-1 = .
 ramp-signal-2 = :
