@@ -76,6 +76,7 @@ end
 --]]
 
 ---[[ Key Binding Related Settings
+vim.g.mapleader = ","
 do
   local key_opt = {
     { mode = 't', shortcut = "<ESC>", target = ":<C-\\><C-n>" }, --> ESC for term
@@ -85,7 +86,8 @@ do
     { mode = 'i', shortcut = "(", target = "()<LEFT>" },
     { mode = 'i', shortcut = "[", target = "[]<LEFT>" },
     { mode = 'i', shortcut = "{<CR>", target = "{<CR>}<ESC>ko" }, --> Add <TAB> after ko if needed
-    { mode = 'i', shortcut = "jj", target = "<ESC>" }, --> Caps lock for ESC overrated
+    { mode = 'i', shortcut = "jk", target = "<ESC>" },
+    { mode = 'i', shortcut = "<leader>w", target = "<ESC>:write<CR>" }, --> comma + w writes the file
     -- Split pane navigation --
     { mode = 'n', shortcut = "H", target = "<C-W>h" },
     { mode = 'n', shortcut = "J", target = "<C-W>j" },
@@ -99,6 +101,5 @@ do
     vim_map(v.mode, v.shortcut, v.target)
   end
 end
-vim.g.mapleader = ","
 --]]
 

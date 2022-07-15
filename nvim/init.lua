@@ -7,6 +7,6 @@
 --]]
 
 ---[[ Lua configs in ~/.config/nvim/lua
-require("custom_init")
-require("custom_plugin")
+require("theo_init")
+require("theo_plugins")
 --]]

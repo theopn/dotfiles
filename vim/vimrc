@@ -15,11 +15,11 @@ try
   colo drakai
 catch
   colo darkblue
+
 endtry
 " --]]
 
 " ---[[ Text Edit Related Settings
-let mapleader=','
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
 set list listchars=tab:>\ ,trail:␣,nbsp:+
@@ -39,8 +39,11 @@ augroup END
 " --]]
 
 " ---[[ Keybinding Related Settings
-" Caps lock for ESC overrated
-inoremap jj <ESC>
+let mapleader=','
+" Write shortcut
+inoremap <leader>w <ESC>:write<CR>
+" ESC is too far
+inoremap jk <ESC>
 " Automatic closer for parenthesis, brackets, etc
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
