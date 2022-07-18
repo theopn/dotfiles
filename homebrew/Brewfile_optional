@@ -7,6 +7,8 @@ brew "ffmpeg"
 brew "hugo"
 brew "htop"
 brew "ranger"
+brew "mutt"
+brew "w3m"
 
 cask "brave-browser"
 cask "notion"
