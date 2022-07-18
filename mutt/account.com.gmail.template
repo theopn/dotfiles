@@ -1,0 +1,20 @@
+# For Google Accounts: Turn on 2FA and make 16 digit App PW at
+# https://security.google.com/settings/security/apppasswords
+
+set my_gmail_id = <UR-GMAIL-ID>
+set my_gmail_2fa_pw = <UR-16-DIGIT-APP-PW>
+
+set imap_user = "$my_gmail_id@gmail.com"
+set imap_pass = "$my_gmail_2fa_pw"
+set imap_check_subscribed
+set smtp_url = "smtps://$my_gmail_id@smtp.gmail.com"
+set smtp_pass = "$my_gmail_2fa_pw"
+set folder = "imaps://imap.gmail.com/"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+set record = "+[Gmail]/Sent Mail"
+set trash = "+[Gmail]/Trash"
+set header_cache = ~/.mutt//cache/headers
+set message_cachedir = ~/.mutt/cache/bodies
+set certificate_file = ~/.mutt/certificates
+

@@ -1,0 +1,33 @@
+##### Variables - Remember that all the variables have to start with my_ #####
+set my_gmail_one = parktheo0
+set my_gmail_two = theo.park.n
+
+# My info
+set from = "$my_gmail_one@gmail.com"
+set realname = "Theo P"
+
+# Global settings
+set editor = "vim"
+set sidebar_visible = yes
+
+# Keybindings
+bind index R imap-fetch-mail
+bind index,pager \CK sidebar-prev
+bind index,pager \CJ sidebar-next
+bind index,pager \CO sidebar-open
+
+# Folder hooks
+folder-hook 'account.com.gmail.$my_gmail_one' 'source ~/.mutt/account.com.gmail.$my_gmail_one'
+folder-hook 'account.com.gmail.$my_gmail_two' 'source ~/.mutt/account.com.gmail.$my_gmail_two'
+
+# Default Account
+source ~/.mutt/account.com.gmail.$my_gmail_one
+
+# Macros for switching accounts
+macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.com.gmail.$my_gmail_one<enter><change-folder>!<enter>'
+macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.com.gmail.$my_gmail_two<enter><change-folder>!<enter>'
+
+
+# For Google Accounts: Turn on 2FA and make 16 digit App PW at
+# https://security.google.com/settings/security/apppasswords
+

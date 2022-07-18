@@ -134,11 +134,23 @@ case $dotfile_input in
     # Neovim Lua settings
     mkdir -p ~/.config/nvim/lua
     ln -sf ~/dotfiles/nvim/lua ~/.config/nvim/lua
-    printf "Extra lua config for NeoVim installed\n" 
+    printf "Extra lua config for NeoVim installed\n"
+
+    # Mutt
+    current="mutt"
+    mutt_files=("muttrc")
+    for v in ${mutt_files[@]}; do
+      mkdir -p ~/.$current
+      ln -sf ~/dotfiles/$current/$v ~/.$current/$v
+      echo $v modified
+    done
 
     # Emacs
     current="emacs.d"
     emacs_files=("init.el")
+    if [[ -e "$home.$current" ]]; then
+      mkdir -p "$home.$current"
+    fi
     for v in ${emacs_files[@]}; do
       mkdir -p ~/.$current
       ln -sf ~/dotfiles/$current/$v ~/.$current/$v

@@ -76,6 +76,10 @@ Basic gitignore and name/email config.
 
 Cross-platform, easily configurable with one file, and fast. All I want from a terminal emulator. `color_test.sh` is also included for testing colors.
 
+#### Mutt
+
+It does everything I need from an email client, which are receiving, reading, deleting, and moving emails to different folders, composing email in my favorite editor, and doing them efficiently. It's a shame that modern emails are all HTML files.
+
 #### Neofetch
 
 Happy ricing!
