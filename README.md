@@ -178,12 +178,14 @@ Formulae:
 - Hugo: Static website generator
 - htop: System monitor
 - **Lua**
+- mutt
 - **node**: Node JS
 - **neofetch**
 - **Neovim**
 - ranger: TUI file explorer
 - **tmux**
 - **trash-cli: `trash` command sends the file to `~/.local/share/Trash` folder**
+- w3m
 
 | Type | Casks |
 | ---- | ----- |
