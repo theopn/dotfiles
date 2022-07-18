@@ -194,7 +194,7 @@ Formulae:
 | Productivity| - Emacs (GUI version): To-do list app <br> - **Obsidian: Knowledge base based on local markdown files.** <br> - Notion <br> - Libre Office |
 | System (MacOS) | - Alfred: Spotlight replacement <br> - AppCleaner: App remover for MacOS <br> - **Amethyst: "Tiling window manager" for MacOS** <br> - iStat Menus: System monitoring tool
 | Tools | - Bitwarden: Password manager <br> - Cryptomator: File encryption tool <br> - Syncthing: File synchronization across multiple devices <br> - Nextcloud: I host a personal Nextcloud server on VPS
-| Web | - Brave: Current primary browser. It's fine, I don't like all the crypto stuffs it throws at my face, but hey, free money <br> - **Firefox: My secondary browser** <br> - Thunderbird |
+| Web | - Brave: Secondary Chromium browser. Would use a pure Chromium, but hey, free money <br> - **Firefox** <br> - Thunderbird |
 
 #### Settings
 
