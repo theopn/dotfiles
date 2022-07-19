@@ -40,10 +40,8 @@ augroup END
 
 " ---[[ Keybinding Related Settings
 let mapleader=','
-" Write shortcut
-inoremap <leader>w <ESC>:write<CR>
 " ESC is too far
-inoremap jk <ESC>
+inoremap jk <ESC>:write<CR>
 " Automatic closer for parenthesis, brackets, etc
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
