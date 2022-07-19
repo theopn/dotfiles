@@ -138,7 +138,7 @@ case $dotfile_input in
 
     # Mutt
     current="mutt"
-    mutt_files=("muttrc")
+    mutt_files=("muttrc" "mailcap")
     for v in ${mutt_files[@]}; do
       mkdir -p ~/.$current
       ln -sf ~/dotfiles/$current/$v ~/.$current/$v

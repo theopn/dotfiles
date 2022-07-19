@@ -9,12 +9,26 @@ set realname = "Theo P"
 # Global settings
 set editor = "vim"
 set sidebar_visible = yes
+auto_view text/html
+alternative_order text/plain text/enriched text/html
 
-# Keybindings
-bind index R imap-fetch-mail
+# Global Keybindings
 bind index,pager \CK sidebar-prev
 bind index,pager \CJ sidebar-next
 bind index,pager \CO sidebar-open
+# Index Keybindings
+bind index R imap-fetch-mail
+# Pager Keybindings
+bind pager <up> previous-line
+bind pager <down> next-line
+bind pager <left> previous-entry
+bind pager <right> next-entry
+bind pager <delete> delete-message
+bind pager k previous-line
+bind pager j next-line
+bind pager n next-entry
+bind pager p previous-entry
+bind pager w previous-page
 
 # Folder hooks
 folder-hook 'account.com.gmail.$my_gmail_one' 'source ~/.mutt/account.com.gmail.$my_gmail_one'
@@ -28,6 +42,47 @@ macro index <f2> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.c
 macro index <f3> '<sync-mailbox><refresh><enter-command>source ~/.mutt/account.com.gmail.$my_gmail_two<enter><change-folder>!<enter>'
 
 
-# For Google Accounts: Turn on 2FA and make 16 digit App PW at
-# https://security.google.com/settings/security/apppasswords
+
+###############################################################################
+# Dracula Theme for Mutt: https://draculatheme.com/
+#
+# @author Paul Townsend <paul@caprica.org>
+
+# general ------------ foreground ---- background -----------------------------
+color error		color231	color212
+color indicator		color231	color241
+color markers		color210	default
+color message		default		default
+color normal		default		default
+color prompt		default	        default
+color search		color84		default
+color status 		color141	color236
+color tilde		color231	default
+color tree		color141	default
+
+# message index ------ foreground ---- background -----------------------------
+color index		color210	default 	~D # deleted messages
+color index		color84		default 	~F # flagged messages
+color index		color117	default 	~N # new messages
+color index		color212	default 	~Q # messages which have been replied to
+color index		color215	default 	~T # tagged messages
+color index		color141	default		~v # messages part of a collapsed thread
+
+# message headers ---- foreground ---- background -----------------------------
+color hdrdefault	color117	default
+color header		color231	default		^Subject:.*
+
+# message body ------- foreground ---- background -----------------------------
+color attachment	color228	default
+color body		color231	default		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses
+color body		color228	default		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs
+color body		color231	default		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text
+color body		color231	default		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text
+color body		color231	default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text
+color quoted		color61		default
+color quoted1		color117	default
+color quoted2		color84		default
+color quoted3		color215	default
+color quoted4		color212	default
+color signature		color212	default
 
