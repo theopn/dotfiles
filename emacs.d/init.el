@@ -127,9 +127,10 @@
   (setq org-agenda-skip-scheduled-if-done t) ; ^
 
   (setq org-agenda-files
-	'("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/officium.org"
-          "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/educatio.org"
-	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/proiecta_gaudia.org")))
+	'("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/educatio.org"
+          "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/officium.org"
+	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/proiecta_gaudia.org"
+	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/vita.org")))
 
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit)
