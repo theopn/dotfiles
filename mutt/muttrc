@@ -9,6 +9,7 @@ set realname = "Theo P"
 # Global settings
 set editor = "vim"
 set sidebar_visible = yes
+set mailcap_path = ~/dotfiles/mutt/mailcap
 auto_view text/html
 alternative_order text/plain text/enriched text/html
 
