@@ -28,6 +28,8 @@ set $menu "rofi -modi drun,run -show drun"
 set $network nm-applet --indicator
 set $nightlight redshift -P -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
+set $quicknote kitty --class=quicknote vim ~/Documents/i3_quicknote
+for_window [class="^quicknote$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $screenshot flameshot launcher
 set $term kitty
 set $wallpaper feh --no-fehbg --bg-fill '/home/theopn/dotfiles/pictures/2008-09-28_SingaporeGP_LH-Nord.jpg'
@@ -68,6 +70,7 @@ exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling 
 # Accessing clipboard manager and screenshot tool
 #bindsym $mod+Shift+z exec --no-startup-id $clipboard_clear
 #bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
+bindsym $mod+Shift+n exec --no-startup-id $quicknote
 bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # --]]
 
