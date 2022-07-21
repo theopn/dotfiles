@@ -20,6 +20,7 @@ source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 ######### Alias ##########
 alias cl="clear"
+alias google="w3m google.com"
 alias ls="ls -G"
 alias l="ls -l -a"
 alias nvi="nvim"

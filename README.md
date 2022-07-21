@@ -100,7 +100,7 @@ Where I spend most of my time on (both the configuration and the text editor its
 
 #### Zsh
 
-Vim keybinding, list, clear, Neovim alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
+Vim keybinding, some alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
 zsh-autocomplete plug-in included.
 
 ### Linux
@@ -141,7 +141,7 @@ Below is a list of keybindings that are unique to my setup.
 - `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and `systemctl` actions.
 - `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: Kitty uses `super + 0` to reset the font adjustment, which overlaps with i3's "move to workspace number 10." This can be solved by executing `super + 0` in the passthrough mode).
 - `$mod+Shift+v` to execute the clipboard manager.
-- `$mod+Shift+n` to launch a floating terminal with Vim open for a quick note (saved as `~/Documents/i3_quicknote`)
+- `$mod+Shift+n` to launch a floating terminal with Vim open for a quick note (saved as `~/Documents/i3_quicknote.txt`)
 - `$mod+Shift+s` to execute screenshot tool.
 
 #### Polybar
