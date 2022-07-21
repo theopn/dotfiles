@@ -38,6 +38,7 @@ require("packer").startup(function(use)
     requires = { {"nvim-lua/plenary.nvim"} }
   }
   use "romgrk/barbar.nvim" --> Simple tabline plug in
+  use "MeF0504/vim-pets"
 end)
 --]]
 
@@ -120,3 +121,7 @@ require("nvim-tree.events").on_tree_close(function ()
 end)
 --]]
 
+---[[ Vim Pets settings
+vim.g["pets_garden_width"] = 25
+vim.g["pets_garden_height"] = 10
+--]]
