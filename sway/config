@@ -31,7 +31,7 @@ for_window [app_id="^quicknote$"] floating enable, sticky enable, resize set 30 
 set $screenshot grim -g "$(slurp)"
 set $term kitty
 # External file var
-set $wallpaper $HOME/dotfiles/pictures/2020-11-15_TurkishGP_LH-Nord.jpeg
+set $wallpaper $HOME/dotfiles_images/2020-11-15_TurkishGP_LH-Nord.jpeg
 # Key var
 set $left h
 set $down j
