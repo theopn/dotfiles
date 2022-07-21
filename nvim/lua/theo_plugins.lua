@@ -124,4 +124,5 @@ end)
 ---[[ Vim Pets settings
 vim.g["pets_garden_width"] = 25
 vim.g["pets_garden_height"] = 10
+vim.g["pets_default_pet"] = "cat"
 --]]
