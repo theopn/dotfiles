@@ -66,23 +66,23 @@
 (scroll-bar-mode -1) ; Disable scroll bar
 (set-face-attribute 'default nil :font "Comic Mono" :height 140)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ; Theme
-(load-theme 'dracula t) ;
+(load-theme 'dracula t) ; ^
 (set-frame-parameter (selected-frame) 'alpha '(90 90)) ; Transparency
-(add-to-list 'default-frame-alist '(alpha 90 90)) ;
+(add-to-list 'default-frame-alist '(alpha 90 90)) ; ^
 (defalias 'yes-or-no-p 'y-or-n-p) ; Change yes no menu
 ;; --]]
 
 ;; ---[[ Apperance - Advanced
-(use-package all-the-icons)
+(use-package all-the-icons) ; Icons for Modeline
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
-(column-number-mode)
+  :custom ((doom-modeline-height 15))) 
+(column-number-mode) ; Colume line in the Modeline
 (global-display-line-numbers-mode t) ; Display line number
 (dolist (mode '(term-mode-hook
 		eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0))))
+  (add-hook mode (lambda () (display-line-numbers-mode 0)))) ;Don't display line number in the EShell
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 ;; --]]
@@ -121,32 +121,30 @@
   (setq org-ellipsis " ▾") ; S-TAB view icon
   (setq org-log-done 'time) ; Record the time stamp of when things were done
   (setq org-log-into-drawer t) ; Idk what it does, but I heard it's related to repeating task organizatioon
-  (setq org-agenda-start-with-log-mode nil) ; This will display bunch of time stamp on the agenda, not a big fan
+  (setq org-agenda-start-with-log-mode nil) ; This will display bunch of time stamp on the agenda by default, not a big fan
   (setq org-agenda-window-setup 'current-window) ; Lauch Org agenda on a current window, needed to launch one on the startup
   (setq org-agenda-skip-timestamp-if-done t) ; Don't show DONE item on the agenda
   (setq org-agenda-skip-scheduled-if-done t) ; ^
+  (setq org-agenda-skip-deadline-if-done t) ; ^
 
   (setq org-agenda-files
 	'("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/educatio.org"
+	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/habitus.org"
           "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/officium.org"
 	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/proiecta_gaudia.org"
 	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/vita.org")))
 
-  (require 'org-habit)
-  (add-to-list 'org-modules 'org-habit)
-  (setq org-habit-graph-column 60) ; Progress bar width
-
   ;; Archive can be acheived with C-c C-w
-  (setq org-refile-targets
-    '(("archive.org" :maxlevel . 1)))
-  (advice-add 'org-refile :after 'org-save-all-org-buffers)
+  (setq org-refile-targets ; Default current buffer + archive.org file
+    '(("archive.org" :maxlevel . 2))) ; Detects upto heading 2, so make month (heading 1) and categories (heading 2)
+  (advice-add 'org-refile :after 'org-save-all-org-buffers) ; Automatically save after refiling
 
   (setq org-todo-keywords
     '((sequence "TODO(t)" "INPR(i)" "NEXT(n)" "|" "DONE(d)" "CANC(c)")))
 
-(setq org-agenda-span 10
+(setq org-agenda-span 8 ; Agenda shows 8 day
       org-agenda-start-on-weekday nil
-      org-agenda-start-day "-3d")
+      org-agenda-start-day "-3d") ; Shows 3 days before
 
   ;; Configure custom agenda views
   (setq org-agenda-custom-commands
@@ -163,7 +161,7 @@
             ((org-agenda-overriding-header "Next")
              (org-agenda-todo-list-sublevels nil)
              (org-agenda-files org-agenda-files)))
-))))
+)))) ; Honestly never uses it until I figure out how to launch it by default
 ;; --]]
 
 ;; Jack of all trades, master of one.
@@ -171,11 +169,10 @@
 (defun startup-layout ()
  (interactive)
  (delete-other-windows)
+ (dired my_org_dir)
  (split-window-horizontally)
  (next-multiframe-window)
  (org-agenda-list)
  (enlarge-window-horizontally 10)
- (next-multiframe-window)
- (dired my_org_dir)
  )
 (startup-layout)
