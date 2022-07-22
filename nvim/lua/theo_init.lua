@@ -81,7 +81,7 @@ do
   local key_opt = {
     { mode = 't', shortcut = "<ESC>", target = ":<C-\\><C-n>" }, --> ESC for term
     { mode = 'n', shortcut = "<C-t>", target = ":tabnew<CR>" }, --> Open a new buffer
-    { mode = 'v', shortcut = "<C-c>", target = '"*y' }, --> Easy copy to sys clipboard
+    { mode = 'v', shortcut = "<C-c>", target = '"+y' }, --> Easy copy to sys clipboard
     -- Auto closers --
     { mode = 'i', shortcut = "(", target = "()<LEFT>" },
     { mode = 'i', shortcut = "[", target = "[]<LEFT>" },
