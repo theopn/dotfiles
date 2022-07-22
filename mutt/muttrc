@@ -7,7 +7,7 @@ set from = "$my_gmail_one@gmail.com"
 set realname = "Theo P"
 
 # Global settings
-set editor = "vim"
+set editor = "nvim +':set textwidth=0'"
 set sidebar_visible = yes
 set mailcap_path = ~/dotfiles/mutt/mailcap
 auto_view text/html

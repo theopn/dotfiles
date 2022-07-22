@@ -78,7 +78,7 @@ Cross-platform, easily configurable with one file, and fast. All I want from a t
 
 #### Mutt
 
-It does everything I need from an email client, which are receiving, reading, deleting, and moving emails to different folders, composing email in my favorite editor, and doing them efficiently. It's a shame that modern emails are all HTML files.
+It does everything I need from an email client, which are receiving, reading, deleting, and moving emails to different folders, composing email in my favorite text editor, and doing them efficiently. It's a shame that emails nowadays are filled with HTML contents and images. It can utilize w3m to view *most* HTML contents.
 
 #### Neofetch
 
@@ -109,28 +109,24 @@ Fedora Fedora Fedora.
 
 #### Dunst
 
-Notification daemon, and is also used to grep result of `cal` command and display calendar as a notification, simulating pop-up calendar of other OS.
+Notification daemon, and is also used to grep result of `cal` command and weather information to display them as a pop-up.
 
 #### i3 (i3-gap)
 
 Below are the packages mentioned in my configuration.
 
-- Blueman: GUI Bluetooth manager
 - Brightnessctl: Backlight control
 - Clipit: Clipboard manager
 - Dunst: Notification daemon
 - Feh: Wallpaper
 - Flameshot: Screenshot on X
 - i3lock: Simple lock program
-- network-manager-applet: GUI network manager
-- Pavucontrol: Not strictly necessary but can be executed with right clicking volume icon in Polybar.
 - Picom: Compositor
 - Polybar: This is where all the ricing takes place.
 - Redshift: Blue light filter/nightlight/nightshift
 - Rofi: App launcher and more
 - setxkbmap: Swap caps lock and control, your pinky will thank you.
 - xinput: Enabling trackpad natural scrolling and tap to click
-- xrandr: External display output control
 - xss-lock: Calling i3lock before suspending
 
 Below is a list of keybindings that are unique to my setup.
@@ -144,6 +140,13 @@ Below is a list of keybindings that are unique to my setup.
 - `$mod+Shift+n` to launch a floating terminal with Vim open for a quick note (saved as `~/Documents/i3_quicknote.txt`)
 - `$mod+Shift+s` to execute screenshot tool.
 
+Below are packages that you might want to install as well.
+
+- Blueman: GUI Bluetooth manager
+- network-manager-applet: GUI network manager
+- Pavucontrol: Volume control for Pulseaudio (or Pipewire that pretends to be Pulseaudio)
+- xrandr: External display output control, should be a dependency for X11 server
+
 #### Polybar
 
 Two configuration, they are both semi-transparent with utilizing very similar modules, but one is more simplified with just one bar and the other has the top and bottom bars.
@@ -152,13 +155,10 @@ Two configuration, they are both semi-transparent with utilizing very similar mo
 
 Wayland will be the norm one day, but today is not that day. Wayland is just too buggy for me to use everyday. My Sway setup is almost a copy of the i3 setup.
 
-- Brightnessctl: Backlight control
 - Clipman & wl-clipboard: Wayland clipboard utility (wl-clipboard) and terminal command-line clipboard history manager (clipman).
-- Dunst: Notification daemon
 - fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop).
 - Gammastep: Redshift replacement
 - Grim & Slurp: Select a region in Wayland compositor (Slurp) and take a screenshot (Grim).
-- nm-applet: Network manager
 - Waybar: Polybar replacement, arguably better
 
 #### Waybar
@@ -179,14 +179,14 @@ Formulae:
 - Hugo: Static website generator
 - htop: System monitor
 - **Lua**
-- mutt
+- mutt: TUI email clinet
 - **node**: Node JS
 - **neofetch**
 - **Neovim**
 - ranger: TUI file explorer
 - **tmux**
 - **trash-cli: `trash` command sends the file to `~/.local/share/Trash` folder**
-- w3m
+- w3m: TUI web browser. Useful for a quick Google search or viewing HTML contents in Mutt
 
 | Type | Casks |
 | ---- | ----- |
