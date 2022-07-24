@@ -107,6 +107,10 @@ zsh-autocomplete plug-in included.
 
 Fedora Fedora Fedora.
 
+#### AwesomeWM
+
+New project I started recently. I still prefer i3, but tinkering with Lua configuration is fun.
+
 #### Dunst
 
 Notification daemon, and is also used to grep result of `cal` command and weather information to display them as a pop-up.
