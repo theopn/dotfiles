@@ -24,6 +24,8 @@ do
     { opt = "so", val = 7 },
     { opt = "hlsearch", val = true },
     { opt = "incsearch", val = true },
+    { opt = "ignorecase", val = true },
+    { opt = "smartcase", val = true },
     { opt = "foldmethod", val = "indent" },
     { opt = "foldlevel", val = 1 },
     { opt = "list", val = true },
@@ -76,22 +78,23 @@ end
 --]]
 
 ---[[ Key Binding Related Settings
-vim.g.mapleader = ","
+vim.api.nvim_set_keymap('n', '<Space>', '<Nop>', { noremap = true }) --> Unbind space
+vim.g.mapleader = " " --> Space as the leader key
 do
   local key_opt = {
     { mode = 't', shortcut = "<ESC>", target = ":<C-\\><C-n>" }, --> ESC for term
     { mode = 'n', shortcut = "<C-t>", target = ":tabnew<CR>" }, --> Open a new buffer
-    { mode = 'v', shortcut = "<C-c>", target = '"+y' }, --> Easy copy to sys clipboard
+    { mode = 'v', shortcut = "<leader>y", target = '"+y' }, --> Copy to sys clipboard
     -- Auto closers --
     { mode = 'i', shortcut = "(", target = "()<LEFT>" },
     { mode = 'i', shortcut = "[", target = "[]<LEFT>" },
     { mode = 'i', shortcut = "{<CR>", target = "{<CR>}<ESC>ko" }, --> Add <TAB> after ko if needed
     { mode = 'i', shortcut = "jk", target = "<ESC>:write<CR>" },
     -- Split pane navigation --
-    { mode = 'n', shortcut = "H", target = "<C-W>h" },
-    { mode = 'n', shortcut = "J", target = "<C-W>j" },
-    { mode = 'n', shortcut = "K", target = "<C-W>k" },
-    { mode = 'n', shortcut = "L", target = "<C-W>l" },
+    { mode = 'n', shortcut = "<leader>h", target = "<C-W>h" },
+    { mode = 'n', shortcut = "<leader>j", target = "<C-W>j" },
+    { mode = 'n', shortcut = "<leader>k", target = "<C-W>k" },
+    { mode = 'n', shortcut = "<leader>l", target = "<C-W>l" },
     -- Search auto center --
     { mode = 'n', shortcut = "n", target = "nzz" },
     { mode = 'n', shortcut = "N", target = "Nzz" },

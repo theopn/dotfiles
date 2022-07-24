@@ -15,7 +15,6 @@ try
   colo drakai
 catch
   colo darkblue
-
 endtry
 " --]]
 
@@ -29,35 +28,35 @@ set list listchars=tab:>\ ,trail:␣,nbsp:+
 filetype on
 syntax on
 set hlsearch incsearch shortmess-=S " Highlight, incremental, # result on bottom
+set ignorecase smartcase " Make all lowercase search case insensitive
 set so=7 " Keep 7 lines visible at the top and bottom when scrolling
-" Auto fold
 set foldmethod=indent foldlevel=1
-augroup filetype_vim
-  autocmd!
-  autocmd FileType vim setlocal foldmethod=marker
-augroup END
 " --]]
 
 " ---[[ Keybinding Related Settings
-let mapleader=','
+" Unbind space from everything and set it as the leader
+nnoremap <SPACE> <Nop>
+let mapleader=' '
 " ESC is too far
 inoremap jk <ESC>:write<CR>
+" ESC to escape terminal
+tnoremap <ESC> <C-\><C-n>
+" Copy into the system clipboard. * works on mac
+vnoremap <leader>y "+y
+" New tab buffer
+nnoremap <C-t> :tabnew<CR>
 " Automatic closer for parenthesis, brackets, etc
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
-" ESC to escape terminal
-tnoremap <ESC> <C-\><C-n>
 " Split pane navigation
-nnoremap H <C-W>h
-nnoremap J <C-W>j
-nnoremap K <C-W>k
-nnoremap L <C-W>l
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
 " Automatic search result center
 nnoremap n nzz
 nnoremap N Nzz
-" Copy into the system clipboard. * works on mac
-vnoremap <C-c> "+y
 " --]]
 
 " ---[[ Statusline related settings
@@ -94,7 +93,7 @@ aug netrw_auto_close
   au!
   au WinEnter * if tabpagenr('$') == 1  && winnr('$') == 1
   \ && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | quit | endif
-aug EN
+aug END
 " --]]
 
 " ---[[ CS240 Work Environment
