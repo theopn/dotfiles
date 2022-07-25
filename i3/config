@@ -9,8 +9,6 @@
 
 # ---[[ VARIABLES
 set $mod Mod4
-# This is used to set the natural scrolling and tab to click
-set $trackpad_id 'SynPS/2 Synaptics TouchPad'
 # Script var
 set $lock ~/dotfiles/i3/i3_system_mode.sh lock
 set $suspend ~/dotfiles/i3/i3_system_mode.sh suspend
@@ -18,14 +16,12 @@ set $reboot ~/dotfiles/i3/i3_system_mode.sh reboot
 set $shutdown ~/dotfiles/i3/i3_system_mode.sh shutdown
 # Program var
 set $bar ~/.config/polybar/polybar_launch.sh simple
-#set $bluetooth blueman-manager
 set $clipboard clipit
 set $clipboard_clear notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 69"
 set $clipboard_show notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 70"
 for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
-#set $network nm-applet --indicator
 set $nightlight redshift -P -l 39.2:-86.5 -t 5600:3500 -m randr
 set $notification dunst
 set $quicknote kitty --class=quicknote vim ~/Documents/i3_quicknote.txt
@@ -33,6 +29,8 @@ for_window [class="^quicknote$"] floating enable, sticky enable, resize set 30 p
 set $screenshot flameshot launcher
 set $term kitty
 set $wallpaper feh --no-fehbg --bg-fill '/home/theopn/dotfiles_images/2008-09-28_SingaporeGP_LH-Nord.jpg'
+# This is used to set the natural scrolling and tab to click
+set $trackpad_id 'SynPS/2 Synaptics TouchPad'
 # Key var
 set $left h
 set $down j
@@ -111,7 +109,7 @@ floating_modifier $mod
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
 # focus the parent/child container
-#bindsym $mod+a focus parent
+bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -186,7 +184,7 @@ client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
 client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
 client.background       #F8F8F2
 # No window title
-for_window [class=".*"] border pixel 5
+for_window [class=".*"] border pixel 3
 ####### I3-GAPS ONLY SETTINGS #######
 gaps inner 3
 gaps outer 3
