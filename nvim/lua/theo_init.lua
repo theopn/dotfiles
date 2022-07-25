@@ -55,6 +55,9 @@ do
     { opt = "softtabstop", val = 2 },
     { opt = "expandtab", val = true },
     { opt = "mouse", val = 'a' },
+    { opt = "spelllang", val = "en" },
+    { opt = "spellsuggest", val = "best,8" },
+    { opt = "spell", val = true },
   }
   for i,v in ipairs(edit_opt) do
     vim_set(v.opt, GLOBAL, v.val)
@@ -98,6 +101,9 @@ do
     -- Search auto center --
     { mode = 'n', shortcut = "n", target = "nzz" },
     { mode = 'n', shortcut = "N", target = "Nzz" },
+    -- Spell check --
+    { mode = 'n', shortcut = "<leader>s", target = "z=" }, --> Correct spelling error
+    { mode = 'n', shortcut = "<leader>cs", target = ":set spell!<CR>" }, --> Turn off spellcheck
   }
   for i,v in ipairs(key_opt) do
     vim_map(v.mode, v.shortcut, v.target)
