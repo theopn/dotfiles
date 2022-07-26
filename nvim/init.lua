@@ -9,4 +9,5 @@
 ---[[ Lua configs in ~/.config/nvim/lua
 require("theo_init")
 require("theo_plugins")
+require("theo_appearance")
 --]]

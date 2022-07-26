@@ -17,54 +17,41 @@ vim.api.nvim_create_autocmd("BufWritePost", { command = "source <afile> | Packer
                             group = packer_group, pattern = "init.lua" })
 --]]
 
-
 ---[[ Packer Plugins
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim" --> Irony of having to import itself
+  ---[[ Appearance plugins
   use "navarasu/onedark.nvim" --> Pretty theme
-  use "nvim-lualine/lualine.nvim" --> Statusline plugin
-  use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
-  use "kyazdani42/nvim-tree.lua" --> NvimTree
-  use {
-    "ms-jpq/coq_nvim", --> Complention program
-    branch = "coq",
-    event = "VimEnter", config = "vim.cmd[[COQnow]]", --> Autoexecute COQnow on startup
+  use "nvim-lualine/lualine.nvim" --> Status line plugin
+  use { --> Tab bar plugin
+    "romgrk/barbar.nvim",
+    requires = { "kyazdani42/nvim-web-devicons" }
   }
+  use "MeF0504/vim-pets" --> Cats.
+  --]]
+  ---[[ Text Edit plugins
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
+  use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
+  use { --> Complention program
+    "ms-jpq/coq_nvim",
+    branch = "coq",
+    event = "VimEnter", config = "vim.cmd[[COQnow -s]]", --> Autoexecute COQnow on startup
+  }
   use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
+  --]]
+  ---[[ File and search
+  use "kyazdani42/nvim-tree.lua" --> NvimTree
   use "nvim-lua/plenary.nvim" --> telescope dependency
-  use {
-    "nvim-telescope/telescope.nvim", --> Expendable fuzzy finder
+  use { --> Expendable fuzzy finder
+    "nvim-telescope/telescope.nvim",
     requires = { {"nvim-lua/plenary.nvim"} }
   }
-  use "romgrk/barbar.nvim" --> Simple tabline plug in
-  use "MeF0504/vim-pets"
+  --]]
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
 end)
---]]
-
----[[ Theme Settings
-require("onedark").setup {
-  style = "cool",
-  transparent = false,
-  toggle_style_key = "<leader>od",
-  toggle_style_list = {"dark", "darker", "cool", "deep", "warm", "warmer"},
-  code_style = {
-    comments = "italic",
-    keywords = "bold",
-    functions = 'none',
-    strings = 'none',
-    variables = 'none'
-  },
-}
-require("onedark").load()
---]]
-
----[[ Lualine Settings
-require("lualine").setup {
-  options = {
-    theme = "dracula"
-  },
-}
 --]]
 
 ---[[ NvimTree Settings
@@ -91,38 +78,17 @@ vim.api.nvim_create_autocmd('BufEnter', {
   command = "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif",
   nested = true,
 })
---]]
-
----[[ nvim-cmp Settings
---]]
-
----[[ Barbar Settings
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = false }
-map('n', "<C-,>", ":BufferPrevious<CR>", opts)
-map('n', "<C-.>", ":BufferNext<CR>", opts)
-vim.g.bufferline = {
-  icons = false,
-  maximum_padding = 1,
-  maximum_length = 30,
-  icon_separator_active = '▎',
-  icon_separator_inactive = '▎',
-  icon_close_tab = '',
-  icon_close_tab_modified = '●',
-  icon_pinned = '車',
-  no_name_title = "New Tab"
+--[[ Disabling NvimTree icons for no nerd fonts
+vim.g.nvim_tree_show_icons = {
+  git = 0,
+  folders = 0,
+  files = 0,
+  folder_arrows = 0,
 }
--- Compitability w/ nvim-tree --
-require("nvim-tree.events").on_tree_open(function ()
-  require("bufferline.state").set_offset(31, "File Tree")
-end)
-require("nvim-tree.events").on_tree_close(function ()
-  require("bufferline.state").set_offset(0)
-end)
+--]]
 --]]
 
----[[ Vim Pets settings
-vim.g["pets_garden_width"] = 25
-vim.g["pets_garden_height"] = 10
-vim.g["pets_default_pet"] = "cat"
+---[[ Markdown reader setting
+vim.g["mkdp_browser"] = "usr/bin/firefox"
 --]]
+

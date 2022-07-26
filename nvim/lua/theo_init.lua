@@ -85,7 +85,6 @@ vim.api.nvim_set_keymap('n', '<Space>', '<Nop>', { noremap = true }) --> Unbind 
 vim.g.mapleader = " " --> Space as the leader key
 do
   local key_opt = {
-    { mode = 'n', shortcut = "<C-t>", target = ":tabnew<CR>" }, --> Open a new buffer
     { mode = 'i', shortcut = "jk", target = "<ESC>:write<CR>" }, --> "joke", get it? Ha ha I'm so funny
     { mode = 'v', shortcut = "<leader>y", target = '"+y' }, --> Copy to the system clipboard
     { mode = 't', shortcut = "<ESC>", target = ":<C-\\><C-n>" }, --> ESC for term
@@ -98,6 +97,9 @@ do
     { mode = 'n', shortcut = "<leader>j", target = "<C-W>j" },
     { mode = 'n', shortcut = "<leader>k", target = "<C-W>k" },
     { mode = 'n', shortcut = "<leader>l", target = "<C-W>l" },
+    -- Tab navigation --
+    { mode = 'n', shortcut = "<C-t>", target = ":tabnew<CR>" }, --> Open a new buffer
+    { mode = 'n', shortcut = "<leader>t", target = "gt" }, --> Next tab
     -- Search auto center --
     { mode = 'n', shortcut = "n", target = "nzz" },
     { mode = 'n', shortcut = "N", target = "Nzz" },

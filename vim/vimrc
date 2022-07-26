@@ -45,6 +45,7 @@ tnoremap <ESC> <C-\><C-n>
 vnoremap <leader>y "+y
 " New tab buffer
 nnoremap <C-t> :tabnew<CR>
+nnoremap <leader>t gt
 " Automatic closer for parenthesis, brackets, etc
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
