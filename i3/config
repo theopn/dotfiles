@@ -22,7 +22,7 @@ set $clipboard_show notify-send "PLACEHOLDER - Not applicapable with Clipit - Li
 for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
-set $nightlight redshift -P -l 39.2:-86.5 -t 5600:3500 -m randr
+set $nightlight redshift -P -l 40.7:-73.9 -t 5600:3500 -m randr
 set $notification dunst
 set $quicknote kitty --class=quicknote vim ~/Documents/i3_quicknote.txt
 for_window [class="^quicknote$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
