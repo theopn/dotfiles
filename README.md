@@ -2,7 +2,7 @@
 
 > Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definetely not because I like wasting time writing a documentation that no one will ever read instead of doing actual works.
 
-![fedora_sc](./pictures/2022-07-05_Fedora_Screenshot.png)
+![fedora_sc](./pictures/2022-07-25_Fedora_Screenshot.png)
 ![macos_sc](./pictures/2022-07-02_macOS_Screenshot.jpg)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
