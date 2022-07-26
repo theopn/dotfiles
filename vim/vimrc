@@ -21,7 +21,7 @@ endtry
 " ---[[ Text Edit Related Settings
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
-set list listchars=tab:>\ ,trail:␣,nbsp:+
+set list listchars=tab:!>,trail:␣,nbsp:+
 " --]]
 
 " ---[[ Syntax Related Settings

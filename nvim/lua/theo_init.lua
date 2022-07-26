@@ -35,7 +35,7 @@ do
   end
 end
 -- Trailing white space --
-vim.opt.listchars = { tab = ">\\ ", trail = "␣", nbsp = "+" }
+vim.opt.listchars = { tab = "!>", trail = "␣", nbsp = "+" }
 -- Highlight on yank --
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -85,14 +85,14 @@ vim.api.nvim_set_keymap('n', '<Space>', '<Nop>', { noremap = true }) --> Unbind 
 vim.g.mapleader = " " --> Space as the leader key
 do
   local key_opt = {
-    { mode = 't', shortcut = "<ESC>", target = ":<C-\\><C-n>" }, --> ESC for term
     { mode = 'n', shortcut = "<C-t>", target = ":tabnew<CR>" }, --> Open a new buffer
-    { mode = 'v', shortcut = "<leader>y", target = '"+y' }, --> Copy to sys clipboard
+    { mode = 'i', shortcut = "jk", target = "<ESC>:write<CR>" }, --> "joke", get it? Ha ha I'm so funny
+    { mode = 'v', shortcut = "<leader>y", target = '"+y' }, --> Copy to the system clipboard
+    { mode = 't', shortcut = "<ESC>", target = ":<C-\\><C-n>" }, --> ESC for term
     -- Auto closers --
     { mode = 'i', shortcut = "(", target = "()<LEFT>" },
     { mode = 'i', shortcut = "[", target = "[]<LEFT>" },
     { mode = 'i', shortcut = "{<CR>", target = "{<CR>}<ESC>ko" }, --> Add <TAB> after ko if needed
-    { mode = 'i', shortcut = "jk", target = "<ESC>:write<CR>" },
     -- Split pane navigation --
     { mode = 'n', shortcut = "<leader>h", target = "<C-W>h" },
     { mode = 'n', shortcut = "<leader>j", target = "<C-W>j" },
