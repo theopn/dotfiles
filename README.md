@@ -107,9 +107,9 @@ zsh-autocomplete plug-in included.
 
 Fedora Fedora Fedora.
 
-#### AwesomeWM
+#### Awesome
 
-New project I started recently. I still prefer i3, but tinkering with Lua configuration is fun.
+Migrated to separate repository. Configuring Awesome is a Lua software engineering project.
 
 #### Dunst
 
