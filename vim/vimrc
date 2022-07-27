@@ -8,7 +8,7 @@
 "                \/     \/                            \/            \/
 "===============================================================================
 
-" ---[[ Visual Related Setting
+" {{{ Visual Related Setting
 set number relativenumber ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
 try
@@ -16,36 +16,36 @@ try
 catch
   colo darkblue
 endtry
-" --]]
+" }}}
 
-" ---[[ Text Edit Related Settings
+" {{{ Text Edit Related Settings
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
 set list listchars=tab:!>,trail:␣,nbsp:+
-" --]]
-
-" ---[[ Syntax Related Settings
 filetype on
 syntax on
 set hlsearch incsearch shortmess-=S " Highlight, incremental, # result on bottom
 set ignorecase smartcase " Make all lowercase search case insensitive
 set so=7 " Keep 7 lines visible at the top and bottom when scrolling
-set foldmethod=indent foldlevel=1
-" --]]
+set foldmethod=marker foldlevel=0
+" }}}
 
-" ---[[ Keybinding Related Settings
+" {{{ Keybinding Related Settings
 " Unbind space from everything and set it as the leader
 nnoremap <SPACE> <Nop>
 let mapleader=' '
+" A bit sketchy netrw closer
+nnoremap <leader>f <C-W>h<CMD>q<CR>
 " ESC is too far
-inoremap jk <ESC>:write<CR>
+inoremap jk <ESC><CMD>write<CR>
 " ESC to escape terminal
 tnoremap <ESC> <C-\><C-n>
-" Copy into the system clipboard. * works on mac
+" System clipboard
 vnoremap <leader>y "+y
-" New tab buffer
-nnoremap <C-t> :tabnew<CR>
-nnoremap <leader>t gt
+" Tabs
+nnoremap <leader>t <CMD>tabnew<CR>
+nnoremap <leader>, gT
+nnoremap <leader>. gt
 " Automatic closer for parenthesis, brackets, etc
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
@@ -58,9 +58,9 @@ nnoremap <leader>l <C-W>l
 " Automatic search result center
 nnoremap n nzz
 nnoremap N Nzz
-" --]]
+" }}}
 
-" ---[[ Statusline related settings
+" {{{ Statusline related settings
 let g:currentmode={
   \ 'n' : 'Normal', 'no' : 'Normal·Operator Pending',
   \ 'v' : 'Visual', 'V' : 'V·Line', '^V' : 'V·Block',
@@ -82,9 +82,9 @@ set statusline+=%6*\ %=\ row:%l/%L\  " Row num
 set statusline+=%7*\ col:%03c\  " Column num
 set statusline+=%8*\ \ %m%r%w\ %P\  " + for change in buffer, top/bottom
 set statusline+=%9*\ %#ORANGE#%{'Messing'}\ %{'w'}\ %{'vimrc'}\ %{'againʕ•́ᴥ•̀?'}
-" --]]
+" }}}
 
-" ---[[ netrw Related Settings
+" {{{ netrw Related Settings
 autocmd VimEnter * :Vexplore | wincmd p
 let g:netrw_banner=0 " No guide on the top, turn on if error occurs
 let g:netrw_liststyle=0 " 0 simple, 1 detailed, 2 thick, 3 tree
@@ -95,9 +95,9 @@ aug netrw_auto_close
   au WinEnter * if tabpagenr('$') == 1  && winnr('$') == 1
   \ && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | quit | endif
 aug END
-" --]]
+" }}}
 
-" ---[[ CS240 Work Environment
+" {{{ CS240 Work Environment
 " By Theo Park, special thanks to Shriansh Chari
 function CS240(hwNum)
   exec 'cd ' . $HOME. '/cs240/' . a:hwNum . '/'
@@ -115,4 +115,5 @@ function CS240(hwNum)
   exec 'open '. a:hwNum . '.h'
   winc l
 endfunction
-" --]]
+" }}}
+
