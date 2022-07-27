@@ -7,7 +7,7 @@
 #╚═╝╚═════╝  ╚══╝╚══╝ ╚═╝     ╚═╝#
 ##################################
 
-# ---[[ VARIABLES
+# {{{ VARIABLES
 set $mod Mod4
 # Script var
 set $lock ~/dotfiles/i3/i3_system_mode.sh lock
@@ -47,9 +47,9 @@ set $ws7 "7"
 set $ws8 "8:  "
 set $ws9 "9:  "
 set $ws10 "10:  "
-# --]]
+# }}}
 
-# ---[[ HARDWARE ET SYSTEM
+# {{{ HARDWARE ET SYSTEM
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
@@ -70,9 +70,9 @@ exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling 
 #bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
 bindsym $mod+Shift+n exec --no-startup-id $quicknote
 bindsym $mod+Shift+s exec --no-startup-id $screenshot
-# --]]
+# }}}
 
-# ---[[ WINDOW KEYBINDINGS
+# {{{ WINDOW KEYBINDINGS
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id $menu
@@ -132,9 +132,9 @@ bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
-# --]]
+# }}}
 
-# ---[[ MODES
+# {{{ MODES
 # Window resize mode
 set $resize_mode RESIZE MODE: (hjkl, arrows) Resize (esc, return, super+r) Exit
 mode "$resize_mode" {
@@ -172,9 +172,9 @@ mode "$passthrough_mode" {
   bindsym Escape mode "default"
 }
 bindsym $mod+Shift+p mode "$passthrough_mode"
-# --]]
+# }}}
 
-# ---[[ APPEARANCE
+# {{{ APPEARANCE
 font pango:FantasqueSansMono Nerd Font 8
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
@@ -189,14 +189,14 @@ for_window [class=".*"] border pixel 3
 gaps inner 3
 gaps outer 3
 ####### I3-GAPS ONLY SETTINGS #######
-# --]]
+# }}}
 
-# ---[[ STARTUP APPLICATIONS
+# {{{ STARTUP APPLICATIONS
 exec --no-startup-id $bar
 exec --no-startup-id $clipboard
 exec --no-startup-id $compositor
 exec --no-startup-id $nightlight
 exec --no-startup-id $notification
 exec --no-startup-id $wallpaper
-# --]]
+# }}}
 

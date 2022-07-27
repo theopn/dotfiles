@@ -7,7 +7,7 @@
 #╚══════╝ ╚══╝╚══╝ ╚═╝  ╚═╝   ╚═╝    #
 ######################################
 
-# ---[[ Variables
+# {{{ Variables
 # Mod1 for Alt
 set $mod Mod4
 # Script var
@@ -48,9 +48,9 @@ set $ws7 "7"
 set $ws8 "8:  "
 set $ws9 "9:  "
 set $ws10 "10:  "
-# --]]
+# }}}
 
-# ---[[ Hardware et System
+# {{{ Hardware et System
 output * bg $wallpaper fill
 # Lock after 300 seconds, display off after another 300 seconds, exec swaylock before suspend
 exec swayidle -w \
@@ -79,9 +79,9 @@ bindsym $mod+Shift+z exec $clipboard_clear
 bindsym $mod+Shift+v exec $clipboard_show
 bindsym $mod+Shift+n exec $quicknote
 bindsym $mod+Shift+s exec $screenshot
-# --]]
+# }}}
 
-# ---[[ WINDOW KEYBINDINGS
+# {{{ WINDOW KEYBINDINGS
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec $menu
@@ -143,9 +143,9 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-# --]]
+# }}}
 
-# ---[[ MODES
+# {{{ MODES
 # Window resize mode
 set $resize_mode RESIZE MODE: (hjkl, arrows) Resize (esc, return, super+r) Exit
 mode "$resize_mode" {
@@ -181,9 +181,9 @@ mode "$passthrough_mode" {
   bindsym Escape mode "default"
 }
 bindsym $mod+Shift+p mode "$passthrough_mode"
-# --]]
+# }}}
 
-# ---[[ APPEARANCE
+# {{{ APPEARANCE
 font pango:FantasqueSansMono Nerd Font 8
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
@@ -196,13 +196,13 @@ default_border pixel
 default_floating_border pixel
 gaps inner 3
 gaps outer 3
-# --]]
+# }}}
 
-# ---[[ Startup applications
+# {{{ Startup applications
 exec $bar
 exec $clipboard
 exec $network
 exec $nightlight
 exec $notification
-# --]]
+# }}}
 
