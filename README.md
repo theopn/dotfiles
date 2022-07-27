@@ -180,6 +180,7 @@ Formulae:
 - Bat: Fancier `cat` replacement
 - ffmpeg: Primarily used for `ffmpeg -i in.xxx out.yyy`
 - fzf: Command line fuzzy finder
+- figlet: ASCII art generator
 - Hugo: Static website generator
 - htop: System monitor
 - **Lua**
