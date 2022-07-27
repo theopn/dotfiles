@@ -89,6 +89,6 @@ vim.g.nvim_tree_show_icons = {
 --]]
 
 ---[[ Markdown reader setting
-vim.g["mkdp_browser"] = "usr/bin/firefox"
+vim.g["mkdp_browser"] = "firefox"
 --]]
 

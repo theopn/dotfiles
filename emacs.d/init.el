@@ -127,6 +127,10 @@
   (setq org-agenda-skip-scheduled-if-done t) ; ^
   (setq org-agenda-skip-deadline-if-done t) ; ^
 
+  (require 'org-habit)
+  (add-to-list 'org-modules 'org-habit)
+  (setq org-habit-graph-column 60)
+
   (setq org-agenda-files
 	'("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/educatio.org"
 	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/habitus.org"
@@ -164,15 +168,14 @@
 )))) ; Honestly never uses it until I figure out how to launch it by default
 ;; --]]
 
-;; Jack of all trades, master of one.
-;; Automatically puts Org file directory and agenda
+;; Automatically puts buffer list and Org agenda
 (defun startup-layout ()
  (interactive)
  (delete-other-windows)
- (dired my_org_dir)
+ (org-agenda-list)
  (split-window-horizontally)
  (next-multiframe-window)
- (org-agenda-list)
+ (list-buffers)
  (enlarge-window-horizontally 10)
  )
 (startup-layout)
