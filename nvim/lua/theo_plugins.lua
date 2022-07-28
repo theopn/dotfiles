@@ -78,9 +78,15 @@ require("nvim-tree").setup {
     signcolumn = "yes",
   }
 }
-vim.api.nvim_create_autocmd('BufEnter', {
-  command = "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif",
-  nested = true,
+vim.api.nvim_create_autocmd("BufEnter", {
+  group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true }),
+  pattern = "NvimTree_*",
+  callback = function()
+    local layout = vim.api.nvim_call_function("winlayout", {})
+    if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then
+      vim.cmd("confirm quit")
+    end
+  end
 })
 --[[ Disabling NvimTree icons for no nerd fonts
 vim.g.nvim_tree_show_icons = {
