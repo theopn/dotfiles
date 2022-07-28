@@ -8,7 +8,7 @@
 "                \/     \/                            \/            \/
 "===============================================================================
 
-" {{{ Visual Related Setting
+" {{{ Visual Related Settings
 set number relativenumber ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
 try
@@ -35,7 +35,7 @@ set foldmethod=marker foldlevel=0
 nnoremap <SPACE> <Nop>
 let mapleader=' '
 " A bit sketchy netrw closer
-nnoremap <leader>f <C-W>h<CMD>q<CR>
+nnoremap <leader>n <C-W>h<CMD>q<CR>
 " ESC is too far
 inoremap jk <ESC><CMD>write<CR>
 " ESC to escape terminal
@@ -60,7 +60,7 @@ nnoremap n nzz
 nnoremap N Nzz
 " }}}
 
-" {{{ Statusline related settings
+" {{{ Statusline related Settings
 let g:currentmode={
   \ 'n' : 'Normal', 'no' : 'Normal·Operator Pending',
   \ 'v' : 'Visual', 'V' : 'V·Line', '^V' : 'V·Block',

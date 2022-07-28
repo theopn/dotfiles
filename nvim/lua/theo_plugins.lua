@@ -6,7 +6,7 @@
                                       /_/          /___/
 --]]
 
----[[ Packer installation
+--- {{{ Packer installation
 local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
   vim.fn.execute("!git clone https://github.com/wbthomason/packer.nvim " .. install_path)
@@ -15,12 +15,12 @@ end
 local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", { command = "source <afile> | PackerCompile",
                             group = packer_group, pattern = "init.lua" })
---]]
+-- }}}
 
----[[ Packer Plugins
+-- {{{ Packer Plugins
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim" --> Irony of having to import itself
-  ---[[ Appearance plugins
+  -- {{{  Appearance plugins
   use "navarasu/onedark.nvim" --> Pretty theme
   use "nvim-lualine/lualine.nvim" --> Status line plugin
   use { --> Tab bar plugin
@@ -28,8 +28,9 @@ require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons" }
   }
   use "MeF0504/vim-pets" --> Cats.
-  --]]
-  ---[[ Text Edit plugins
+  -- }}}
+
+  -- {{{ Text Edit plugins
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
   use { --> Complention program
@@ -38,23 +39,27 @@ require("packer").startup(function(use)
     event = "VimEnter", config = "vim.cmd[[COQnow -s]]", --> Autoexecute COQnow on startup
   }
   use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
-  --]]
-  ---[[ File and search
+  -- }}}
+
+  -- {{{ File and search
   use "kyazdani42/nvim-tree.lua" --> NvimTree
-  use "nvim-lua/plenary.nvim" --> telescope dependency
   use { --> Expendable fuzzy finder
     "nvim-telescope/telescope.nvim",
-    requires = { {"nvim-lua/plenary.nvim"} }
+    requires = { "nvim-lua/plenary.nvim" }
   }
-  --]]
-  use({
-    "iamcco/markdown-preview.nvim",
-    run = function() vim.fn["mkdp#util#install"]() end,
-  })
-end)
---]]
+  -- }}}
 
----[[ NvimTree Settings
+  -- {{{ Note Taking
+  use({
+    "iamcco/markdown-preview.nvim", --> MarkdownPreview to toggle
+    run = function() vim.fn["mkdp#util#install"]() end, --> Binary installation for markdown-preview
+  })
+  use "fadein/vim-figlet" --> ASCII art generator. Requires figlet installed
+  -- }}}
+end)
+-- }}}
+
+-- {{{ NvimTree Settings
 require("nvim-tree").setup {
   auto_reload_on_write = true,
   -- auto_close = true, --> Auto close has been deprecated
@@ -73,7 +78,6 @@ require("nvim-tree").setup {
     signcolumn = "yes",
   }
 }
-vim.api.nvim_set_keymap('n', "<C-n>", ":NvimTreeToggle<CR>", { noremap = true })
 vim.api.nvim_create_autocmd('BufEnter', {
   command = "if winnr('$') == 1 && bufname() == 'NvimTree_' . tabpagenr() | quit | endif",
   nested = true,
@@ -86,9 +90,5 @@ vim.g.nvim_tree_show_icons = {
   folder_arrows = 0,
 }
 --]]
---]]
-
----[[ Markdown reader setting
-vim.g["mkdp_browser"] = "firefox"
---]]
+-- }}}
 

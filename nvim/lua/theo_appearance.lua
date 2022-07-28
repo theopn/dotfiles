@@ -6,8 +6,7 @@
                                              /_/  /_/
 --]]
 
-
----[[ Theme Settings
+-- {{{ Theme Settings
 require("onedark").setup({
   style = "cool",
   transparent = false,
@@ -22,16 +21,17 @@ require("onedark").setup({
   },
 })
 require("onedark").load()
---]]
+-- }}}
 
----[[
+-- {{{ Lualine (Status bar) Settings
 require("lualine").setup({
   selection = {
   },
 })
---]]
+-- }}}
 
----[[ Barbar Settings
+-- {{{ Barbar (Tab bar) Settings
+vim.api.nvim_set_keymap('n', "<C-,>", ":BufferPrevious<CR>", { noremap = true, silent = true } )
 vim.g.bufferline = { icons = true, maximum_padding = 1,
   maximum_length = 30,
   icon_separator_active = '▎',
@@ -48,11 +48,11 @@ end)
 require("nvim-tree.events").on_tree_close(function ()
   require("bufferline.state").set_offset(0)
 end)
---]]
+-- }}}
 
----[[ Vim Pets settings
+-- {{{ Vim Pets Settings
 vim.g["pets_garden_width"] = 25
 vim.g["pets_garden_height"] = 10
 vim.g["pets_default_pet"] = "cat"
---]]
+-- }}}
 

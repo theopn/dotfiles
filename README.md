@@ -1,6 +1,6 @@
 # Theo's dotfiles
 
-> Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definetely not because I like wasting time writing a documentation that no one will ever read instead of doing actual works.
+> Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definitely not because I like wasting time writing a documentation that no one will ever read instead of doing actual works.
 
 ![fedora_sc](./pictures/2022-07-25_Fedora_Screenshot.png)
 ![macos_sc](./pictures/2022-07-02_macOS_Screenshot.jpg)
@@ -70,7 +70,7 @@ Honorable mentions for [DaddyTimeMono Nerd Font](https://www.programmingfonts.or
 
 #### Git
 
-Basic gitignore and name/email config.
+No comment.
 
 #### kitty
 
@@ -86,11 +86,11 @@ Happy ricing!
 
 #### Neovim
 
-My IDE for most languages except for Java. All my configurations are written in Lua, and packages are managed by Packer.
+My IDE for most languages except for Java, note taker, and so much more. Configuration is written 99% in Lua.
 
 #### tmux
 
-Prefix changed from `C-b` to `C-a`.
+Prefix changed from `C-b` to `C-a`, status bar with some information.
 
 #### Vim
 
@@ -184,7 +184,7 @@ Formulae:
 - Hugo: Static website generator
 - htop: System monitor
 - **Lua**
-- mutt: TUI email clinet
+- mutt: TUI email client
 - **node**: Node JS
 - **neofetch**
 - **Neovim**
@@ -204,4 +204,5 @@ Formulae:
 
 #### Settings
 
-Remove Dock un-hide animation, add a Dock spacer, Finder hidden file, screenshot format and location, etc.
+Remove Dock unhide animation, add a Dock spacer, Finder hidden file, screenshot format and location, etc.
+
