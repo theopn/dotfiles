@@ -24,9 +24,9 @@ set mouse=a
 set list listchars=tab:!>,trail:␣,nbsp:+
 filetype on
 syntax on
-set hlsearch incsearch shortmess-=S " Highlight, incremental, # result on bottom
-set ignorecase smartcase " Make all lowercase search case insensitive
-set so=7 " Keep 7 lines visible at the top and bottom when scrolling
+set hlsearch incsearch shortmess-=S " Num result on the bottom
+set ignorecase smartcase
+set scrolloff=7
 set foldmethod=marker foldlevel=0
 " }}}
 
@@ -34,28 +34,20 @@ set foldmethod=marker foldlevel=0
 " Unbind space from everything and set it as the leader
 nnoremap <SPACE> <Nop>
 let mapleader=' '
-" A bit sketchy netrw closer
-nnoremap <leader>n <C-W>h<CMD>q<CR>
-" ESC is too far
 inoremap jk <ESC><CMD>write<CR>
 " ESC to escape terminal
 tnoremap <ESC> <C-\><C-n>
-" System clipboard
 vnoremap <leader>y "+y
-" Tabs
 nnoremap <leader>t <CMD>tabnew<CR>
 nnoremap <leader>, gT
 nnoremap <leader>. gt
-" Automatic closer for parenthesis, brackets, etc
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
-" Split pane navigation
 nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-" Automatic search result center
 nnoremap n nzz
 nnoremap N Nzz
 " }}}
@@ -89,7 +81,7 @@ autocmd VimEnter * :Vexplore | wincmd p
 let g:netrw_banner=0 " No guide on the top, turn on if error occurs
 let g:netrw_liststyle=0 " 0 simple, 1 detailed, 2 thick, 3 tree
 let g:netrw_browse_split=3
-let g:netrw_winsize = 20
+let g:netrw_winsize = 15
 aug netrw_auto_close
   au!
   au WinEnter * if tabpagenr('$') == 1  && winnr('$') == 1

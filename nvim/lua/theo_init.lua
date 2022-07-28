@@ -21,15 +21,16 @@ end
 do
   local syntax_opt = {
     { opt = "filetype", val = 'on' },
-    { opt = "so", val = 7 },
-    { opt = "hlsearch", val = true },
-    { opt = "incsearch", val = true },
-    { opt = "ignorecase", val = true },
-    { opt = "smartcase", val = true },
+    { opt = "scrolloff", val = 7 }, --> Keep at least 7 lines visible above and below the cursor
+    { opt = "hlsearch", val = true }, --> Highlight search result
+    { opt = "incsearch", val = true }, --> Should be enabled by default
+    { opt = "ignorecase", val = true }, --> Needed for smartcase
+    { opt = "smartcase", val = true }, --> Ignore case iff search input was all lowercase
     { opt = "foldmethod", val = "marker" },
     { opt = "foldlevel", val = 0 },
-    { opt = "list", val = true },
-    { opt = "splitright", val = false },
+    { opt = "foldenable", val = false }, --> No fold enabled until I hit zc.
+    { opt = "list", val = true }, --> Needed for listchars
+    { opt = "splitright", val = false }, --> Vertical split default to left
   }
   for i,v in ipairs(syntax_opt) do
     vim_set(v.opt, GLOBAL, v.val)
@@ -109,8 +110,9 @@ do
     -- Spell check --
     { mode = 'n', shortcut = "<leader>s", target = "z=" }, --> Correct spelling error
     { mode = 'n', shortcut = "<leader>cs", target = "<CMD>set spell!<CR>" }, --> Toggle spellcheck
-    -- Note Taking --
-    { mode = 'n', shortcut = "<leader>ff", target = "<CMD>Telescope find_files<CR>" },
+    -- Telescope --
+    { mode = 'n', shortcut = "<leader>f", target = "<CMD>Telescope find_files<CR>" },
+    { mode = 'n', shortcut = "<leader>/", target = "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
   }
   for i,v in ipairs(key_opt) do
     vim_map(v.mode, v.shortcut, v.target)

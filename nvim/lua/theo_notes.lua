@@ -15,7 +15,7 @@ vim.g["mkdp_browser"] = "firefox"
 local notes_directory = "~/Documents/vim_notes/"
 function new_note(class_name, note_name)
   date = os.date("%Y-%m-%d_")
-  note_name = notes_directory .. "/" .. class_name .. "/" .. date .. class_name .. "_" .. note_name .. ".md"
+  note_name = notes_directory .. class_name .. "/" .. date .. class_name .. "_" .. note_name .. ".md"
   print("Opening " .. note_name .. " ...")
   vim.cmd("e" .. note_name)
   vim.cmd("Pets cat Oliver")
