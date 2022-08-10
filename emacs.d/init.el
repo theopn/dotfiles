@@ -126,6 +126,7 @@
   (setq org-agenda-skip-timestamp-if-done t) ; Don't show DONE item on the agenda
   (setq org-agenda-skip-scheduled-if-done t) ; ^
   (setq org-agenda-skip-deadline-if-done t) ; ^
+  (add-hook 'auto-save-hook 'org-save-all-org-buffers) ; Auto save every 30 seconds
 
   (require 'org-habit)
   (add-to-list 'org-modules 'org-habit)
@@ -147,6 +148,7 @@
     '((sequence "TODO(t)" "INPR(i)" "NEXT(n)" "|" "DONE(d)" "CANC(c)")))
 
 (setq org-agenda-span 8 ; Agenda shows 8 day
+      org-deadline-warning-days 2
       org-agenda-start-on-weekday nil
       org-agenda-start-day "-3d") ; Shows 3 days before
 
