@@ -25,7 +25,13 @@ require("onedark").load()
 
 -- {{{ Lualine (Status bar) Settings
 require("lualine").setup({
-  selection = {
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = { 'filename', { 'filename', path = 2 } }, --> 0 (default) file name, 1 relative path, 2 abs path
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
   },
 })
 -- }}}
@@ -48,6 +54,59 @@ end)
 require("nvim-tree.events").on_tree_close(function ()
   require("bufferline.state").set_offset(0)
 end)
+-- }}}
+
+-- {{{ Dashboard Settings
+local db = require("dashboard")
+db.custom_header = {
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "████████╗██╗  ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗",
+  "╚══██╔══╝██║  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║",
+  "   ██║   ███████║█████╗  ██║   ██║██║   ██║██║██╔████╔██║",
+  "   ██║   ██╔══██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║",
+  "   ██║   ██║  ██║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║",
+  "   ╚═╝   ╚═╝  ╚═╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝",
+  "",
+  "",
+  "",
+  "",
+}
+db.custom_center = {
+  {
+    icon = "  ",
+    desc = "Browse Files        ",
+    action = "Telescope file_browser",
+    shortcut = "SPC n",
+  },
+  {
+    icon = "  ",
+    desc = "New File            ",
+    action = "DashboardNewFile",
+    shortcut = "SPC t",
+  },
+  {
+    icon = "  ",
+    desc = "Find File          ",
+    action = "Telescope find_files",
+    shortcut = "SPC ff",
+  },
+  {
+    icon = "  ",
+    desc = "Configure Dotfiles       ",
+    action = "edit ~/dotfiles/",
+  },
+  {
+    icon = "  ",
+    desc = "Exit Neovim              ",
+    action = "quit",
+  },
+}
 -- }}}
 
 -- {{{ Vim Pets Settings

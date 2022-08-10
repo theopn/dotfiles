@@ -27,6 +27,7 @@ require("packer").startup(function(use)
     "romgrk/barbar.nvim",
     requires = { "kyazdani42/nvim-web-devicons" }
   }
+  use "glepnir/dashboard-nvim" --> Startup dashboard
   use "MeF0504/vim-pets" --> Cats.
   -- }}}
 
@@ -47,6 +48,7 @@ require("packer").startup(function(use)
     "nvim-telescope/telescope.nvim",
     requires = { "nvim-lua/plenary.nvim" }
   }
+  use "nvim-telescope/telescope-file-browser.nvim" --> Extension for Telescope
   -- }}}
 
   -- {{{ Note Taking
@@ -98,3 +100,9 @@ vim.g.nvim_tree_show_icons = {
 --]]
 -- }}}
 
+--- {{{ Telescope Settings
+require("telescope").setup {
+  extensions = { file_browser = { hidden = true } },
+}
+require("telescope").load_extension "file_browser"
+--}
