@@ -24,18 +24,16 @@ set mouse=a
 set list listchars=tab:!>,trail:␣,nbsp:+
 filetype on
 syntax on
-set hlsearch incsearch shortmess-=S " Num result on the bottom
+set hlsearch incsearch shortmess-=S
 set ignorecase smartcase
 set scrolloff=7
 set foldmethod=marker foldlevel=0
 " }}}
 
 " {{{ Keybinding Related Settings
-" Unbind space from everything and set it as the leader
 nnoremap <SPACE> <Nop>
 let mapleader=' '
 inoremap jk <ESC><CMD>write<CR>
-" ESC to escape terminal
 tnoremap <ESC> <C-\><C-n>
 vnoremap <leader>y "+y
 nnoremap <leader>t <CMD>tabnew<CR>
