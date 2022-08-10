@@ -12,8 +12,9 @@ local WINDOW = vim.wo
 local function vim_set(opt, scope, val)
   scope[opt] = val
 end
+-- vim.api.nvim_set_keymap is old way of doing it
 local function vim_map(mode, shortcut, target)
-  vim.api.nvim_set_keymap(mode, shortcut, target, { noremap = true, silent = true })
+  vim.keymap.set(mode, shortcut, target, { noremap = true, silent = true })
 end
 -- }}}
 
@@ -31,6 +32,7 @@ do
     { opt = "foldenable", val = false }, --> No fold enabled until I hit zc.
     { opt = "list", val = true }, --> Needed for listchars
     { opt = "splitright", val = false }, --> Vertical split default to left
+    { opt = "splitbelow", val = false },
   }
   for i,v in ipairs(syntax_opt) do
     vim_set(v.opt, GLOBAL, v.val)
@@ -83,14 +85,16 @@ end
 -- }}}
 
 -- {{{ Key Binding Related Settings
-vim.api.nvim_set_keymap('n', '<Space>', '<Nop>', { noremap = true }) --> Unbind space
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { noremap = true }) --> Unbind space
 vim.g.mapleader = " " --> Space as the leader key
 do
   local key_opt = {
-    { mode = 'n', shortcut = "<leader>n", target = "<CMD>NvimTreeToggle<CR>" },
-    { mode = 'i', shortcut = "jk", target = "<ESC><CMD>write<CR>" }, --> "joke", get it? Ha ha I'm so funny
+    { mode = 'n', shortcut = "<leader>n", target = "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
+    { mode = 'n', shortcut = "<leader>q", target = "<CMD>vsplit term://zsh<CR>" }, --> Quick terminal launch
+    { mode = 'n', shortcut = "<leader>/", target = "<CMD>let @/=''<CR>" }, --> Clear search highlighting
+    { mode = 'i', shortcut = "jk", target = "<ESC><CMD>write<CR>" }, --> "joke", get it? Ha ha
     { mode = 'v', shortcut = "<leader>y", target = '"+y' }, --> Copy to the system clipboard
-    { mode = 't', shortcut = "<ESC>", target = "<CMD><C-\\><C-n>" }, --> ESC for term
+    { mode = 't', shortcut = "<ESC>", target = "<C-\\><C-n>" }, --> ESC for term
     -- Auto bracket closers --
     { mode = 'i', shortcut = "(", target = "()<LEFT>" },
     { mode = 'i', shortcut = "[", target = "[]<LEFT>" },
@@ -111,8 +115,8 @@ do
     { mode = 'n', shortcut = "<leader>s", target = "z=" }, --> Correct spelling error
     { mode = 'n', shortcut = "<leader>cs", target = "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- Telescope --
-    { mode = 'n', shortcut = "<leader>f", target = "<CMD>Telescope find_files<CR>" },
-    { mode = 'n', shortcut = "<leader>/", target = "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
+    { mode = 'n', shortcut = "<leader>ff", target = "<CMD>Telescope find_files<CR>" },
+    { mode = 'n', shortcut = "<leader>f/", target = "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
   }
   for i,v in ipairs(key_opt) do
     vim_map(v.mode, v.shortcut, v.target)
