@@ -41,17 +41,16 @@ inoremap <C-h> <left>
 inoremap <C-j> <down>
 inoremap <C-k> <up>
 inoremap <C-l> <right>
-nnoremap <leader>q <CMD>vsplit term<CR>
 nnoremap <leader>/ <CMD>let @/=''<CR>
 nnoremap <leader>a gg<S-v>G
 nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-nnoremap <leader><left> <C-w><
-nnoremap <leader><down> <C-w>-
-nnoremap <leader><up> <C-w>+
-nnoremap <leader><right> <C-w>>
+nnoremap <leader><LEFT> <C-w><
+nnoremap <leader><DOWN> <C-w>-
+nnoremap <leader><UP> <C-w>+
+nnoremap <leader><RIGHT> <C-w>>
 nnoremap n nzz
 nnoremap N Nzz
 tnoremap <ESC> <C-\><C-n>
@@ -60,8 +59,8 @@ tnoremap <ESC> <C-\><C-n>
 " {{{ Statusline related Settings
 let g:currentmode={
   \ 'n' : 'Normal', 'no' : 'Normal·Operator Pending',
-  \ 'v' : 'Visual', 'V' : 'V·Line', '^V' : 'V·Block',
-  \ 's' : 'Select', 'S' : 'S·Line', '^S' : 'S·Block',
+  \ 'v' : 'Visual', 'V' : 'V·Line', "\<C-V>" : 'V·Block',
+  \ 's' : 'Select', 'S' : 'S·Line', "\<C-S>" : 'S·Block',
   \ 'i' : 'Insert', 'R' : 'Replace', 'Rv' : 'V·Replace',
   \ 'c' : 'Command', 'cv' : 'Vim Ex', 'ce' : 'Ex',
   \ 'r' : 'Prompt', 'rm' : 'More', 'r?' : 'Confirm',
