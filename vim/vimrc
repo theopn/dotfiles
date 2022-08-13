@@ -34,20 +34,27 @@ set foldmethod=marker foldlevel=0
 nnoremap <SPACE> <Nop>
 let mapleader=' '
 inoremap jk <ESC><CMD>write<CR>
-tnoremap <ESC> <C-\><C-n>
-vnoremap <leader>y "+y
-nnoremap <leader>t <CMD>tabnew<CR>
-nnoremap <leader>, gT
-nnoremap <leader>. gt
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
+inoremap <C-h> <left>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+inoremap <C-l> <right>
+nnoremap <leader>q <CMD>vsplit term<CR>
+nnoremap <leader>/ <CMD>let @/=''<CR>
+nnoremap <leader>a gg<S-v>G
 nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
+nnoremap <leader><left> <C-w><
+nnoremap <leader><down> <C-w>-
+nnoremap <leader><up> <C-w>+
+nnoremap <leader><right> <C-w>>
 nnoremap n nzz
 nnoremap N Nzz
+tnoremap <ESC> <C-\><C-n>
 " }}}
 
 " {{{ Statusline related Settings
