@@ -21,21 +21,21 @@ end
 -- {{{ Syntax Related Settings
 do
   local syntax_opt = {
-    { opt = "filetype", val = 'on' },
-    { opt = "scrolloff", val = 7 }, --> Keep at least 7 lines visible above and below the cursor
-    { opt = "hlsearch", val = true }, --> Highlight search result
-    { opt = "incsearch", val = true }, --> Should be enabled by default
-    { opt = "ignorecase", val = true }, --> Needed for smartcase
-    { opt = "smartcase", val = true }, --> Ignore case iff search input was all lowercase
-    { opt = "foldmethod", val = "marker" },
-    { opt = "foldlevel", val = 0 },
-    { opt = "foldenable", val = false }, --> No fold enabled until I hit zc.
-    { opt = "list", val = true }, --> Needed for listchars
-    { opt = "splitright", val = false }, --> Vertical split default to left
-    { opt = "splitbelow", val = false },
+    { "filetype", 'on' },
+    { "scrolloff", 7 }, --> Keep at least 7 lines visible above and below the cursor
+    { "hlsearch", true }, --> Highlight search result
+    { "incsearch", true }, --> Should be enabled by default
+    { "ignorecase", true }, --> Needed for smartcase
+    { "smartcase", true }, --> Ignore case iff search input was all lowercase
+    { "foldmethod", "marker" },
+    { "foldlevel", 1 },
+    { "foldenable", true }, --> Fold enabled w/o hitting zc.
+    { "list", true }, --> Needed for listchars
+    { "splitright", false }, --> Vertical split default to left
+    { "splitbelow", false },
   }
   for i,v in ipairs(syntax_opt) do
-    vim_set(v.opt, GLOBAL, v.val)
+    vim_set(v[1], GLOBAL, v[2])
   end
 end
 -- Trailing white space --
@@ -54,17 +54,17 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- {{{ Text Edit Related Settings
 do
   local edit_opt = {
-    { opt = "shiftwidth", val = 2 }, --> Indentation width
-    { opt = "tabstop", val = 2 }, --> Backslash t width
-    { opt = "softtabstop", val = 2 }, --> Tab key width
-    { opt = "expandtab", val = true }, --> Tab as spaces
-    { opt = "mouse", val = 'a' },
-    { opt = "spell", val = true },
-    { opt = "spelllang", val = "en" },
-    { opt = "spellsuggest", val = "best,8" }, --> 8 suggestions for spell check
+    { "shiftwidth", 2 }, --> Indentation width
+    { "tabstop", 2 }, --> Backslash t width
+    { "softtabstop", 2 }, --> Tab key width
+    { "expandtab", true }, --> Tab as spaces
+    { "mouse", 'a' },
+    { "spell", true },
+    { "spelllang", "en" },
+    { "spellsuggest", "best,8" }, --> 8 suggestions for spell check
   }
   for i,v in ipairs(edit_opt) do
-    vim_set(v.opt, GLOBAL, v.val)
+    vim_set(v[1], GLOBAL, v[2])
   end
 end
 -- }}}
@@ -89,37 +89,57 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { noremap = true }) --> Unbind 
 vim.g.mapleader = " " --> Space as the leader key
 do
   local key_opt = {
-    { mode = 'n', shortcut = "<leader>n", target = "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
-    { mode = 'n', shortcut = "<leader>q", target = "<CMD>vsplit term://zsh<CR>" }, --> Quick terminal launch
-    { mode = 'n', shortcut = "<leader>/", target = "<CMD>let @/=''<CR>" }, --> Clear search highlighting
-    { mode = 'i', shortcut = "jk", target = "<ESC><CMD>write<CR>" }, --> "joke", get it? Ha ha
-    { mode = 'v', shortcut = "<leader>y", target = '"+y' }, --> Copy to the system clipboard
-    { mode = 't', shortcut = "<ESC>", target = "<C-\\><C-n>" }, --> ESC for term
+    -- {{{ Text Edit Keybindings
+    -- Insert Mode --
+    { 'i', "jk", "<ESC><CMD>write<CR>" }, --> "joke", get it? Ha ha
     -- Auto bracket closers --
-    { mode = 'i', shortcut = "(", target = "()<LEFT>" },
-    { mode = 'i', shortcut = "[", target = "[]<LEFT>" },
-    { mode = 'i', shortcut = "{<CR>", target = "{<CR>}<ESC>ko" }, --> Add <TAB> after ko if needed
-    -- Split pane navigation --
-    { mode = 'n', shortcut = "<leader>h", target = "<C-W>h" },
-    { mode = 'n', shortcut = "<leader>j", target = "<C-W>j" },
-    { mode = 'n', shortcut = "<leader>k", target = "<C-W>k" },
-    { mode = 'n', shortcut = "<leader>l", target = "<C-W>l" },
+    { 'i', "(", "()<LEFT>" },
+    { 'i', "[", "[]<LEFT>" },
+    { 'i', "{<CR>", "{<CR>}<ESC>ko" },
+    -- Navigation in insert mode --
+    { 'i', "<C-h>", "<LEFT>" },
+    { 'i', "<C-j>", "<DOWN>" },
+    { 'i', "<C-k>", "<UP>" },
+    { 'i', "<C-l>", "<RIGHT>" },
+    -- Normal Mode --
+    { 'n', "<leader>q", "<CMD>vsplit term://zsh<CR>" }, --> Quick terminal launch
+    { 'n', "<leader>/", "<CMD>let @/=''<CR>" }, --> Clear search highlighting
+    { 'n', "<leader>a", "gg<S-v>G" }, --> Select all
+    -- Split pane navigation and resizing --
+    { 'n', "<leader>h", "<C-w>h" },
+    { 'n', "<leader>j", "<C-w>j" },
+    { 'n', "<leader>k", "<C-w>k" },
+    { 'n', "<leader>l", "<C-w>l" },
+    { 'n', "<leader><LEFT>", "<C-w><" },
+    { 'n', "<leader><DOWN>", "<C-w>-" },
+    { 'n', "<leader><UP>", "<C-w>+" },
+    { 'n', "<leader><RIGHT>", "<C-w>>" },
     -- Tab navigation --
-    { mode = 'n', shortcut = "<leader>t", target = "<CMD>tabnew<CR>" }, --> Open a new buffer
-    { mode = 'n', shortcut = "<leader>,", target = "<CMD>BufferPrevious<CR>" }, --> Barbar plugin overrides "gT"
-    { mode = 'n', shortcut = "<leader>.", target = "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
+    { 'n', "<leader>t", "<CMD>tabnew<CR>" }, --> Open a new buffer
+    { 'n', "<leader>,", "<CMD>BufferPrevious<CR>" }, --> Barbar plugin overrides "gT"
+    { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
     -- Search auto center --
-    { mode = 'n', shortcut = "n", target = "nzz" },
-    { mode = 'n', shortcut = "N", target = "Nzz" },
+    { 'n', "n", "nzz" },
+    { 'n', "N", "Nzz" },
+    -- Visual Mode --
+    { 'v', "<leader>y", '"+y' }, --> Copy to the system clipboard
+    -- Terminal Mode --
+    { 't', "<ESC>", "<C-\\><C-n>" }, --> ESC for term
+    -- }}}
+
+    -- {{{ Plugin/Neovim Specific Keybindings
+    { 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
     -- Spell check --
-    { mode = 'n', shortcut = "<leader>s", target = "z=" }, --> Correct spelling error
-    { mode = 'n', shortcut = "<leader>cs", target = "<CMD>set spell!<CR>" }, --> Toggle spellcheck
+    { 'n', "<leader>s", "z=" }, --> Correct spelling error
+    { 'n', "<leader>cs", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- Telescope --
-    { mode = 'n', shortcut = "<leader>ff", target = "<CMD>Telescope find_files<CR>" },
-    { mode = 'n', shortcut = "<leader>f/", target = "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
+    { 'n', "<leader>ff", "<CMD>Telescope find_files<CR>" },
+    { 'n', "<leader>fb", "<CMD>Telescope file_browser<CR>" },
+    { 'n', "<leader>f/", "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
+    -- }}}
   }
   for i,v in ipairs(key_opt) do
-    vim_map(v.mode, v.shortcut, v.target)
+    vim_map(v[1], v[2], v[3])
   end
 end
 -- }}}

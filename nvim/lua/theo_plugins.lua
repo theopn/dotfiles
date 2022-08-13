@@ -32,13 +32,9 @@ require("packer").startup(function(use)
   -- }}}
 
   -- {{{ Text Edit plugins
-  use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
-  use { --> Complention program
-    "ms-jpq/coq_nvim",
-    branch = "coq",
-    event = "VimEnter", config = "vim.cmd[[COQnow -s]]", --> Autoexecute COQnow on startup
-  }
+  use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
+  use "williamboman/mason.nvim" --> LSP Manager
   use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
   -- }}}
 

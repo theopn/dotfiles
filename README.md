@@ -34,11 +34,13 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 ## After installation
 
-- NeoVim: `:PackerSync`, then `:COQdeps`.
-- Emacs: `list-packages` then `all-the-icons-install-fonts`
+- NeoVim: `:PackerSync`, then `:Mason` to check the available lsp servers to install.
+- Emacs: `list-packages` then `all-the-icons-install-fonts`.
 - Firefox:
-  - `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
-  - `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
+
+  1. `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
+  2. `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
+
 - Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts.
 - Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed.
 
@@ -86,7 +88,7 @@ Happy ricing!
 
 #### Neovim
 
-Neovim is where I spend most of my time on (both the configuration and the text editor itself). It is my IDE for most languages except for Java, note taker, and so much more. Configuration is written 99.9% in Lua.
+Where I spend most of my time on (both the configuration and the text editor itself). It is my IDE for Lua and C, note taker, and so much more. Configuration is written 99.9% in Lua.
 
 #### tmux
 
@@ -100,8 +102,7 @@ Formally where I spent most of my time on, but since I have Neovim now, my confi
 
 #### Zsh
 
-Vim keybinding, some alias, and prompt setting inspired by "fino-time" theme in oh-my-zsh.
-zsh-autocomplete plug-in included.
+Prompt setting inspired by "fino-time" theme in oh-my-zsh and included zsh-autocomplete plug-in. My favorite aliases are `fzfvi` to quickly search files to open in Neovim, `google` to open up Google search in w3m, and `nvi` because not typing 'm' saves me 3 milliseconds every time I open Neovim.
 
 ### Linux
 
