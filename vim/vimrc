@@ -37,10 +37,10 @@ inoremap jk <ESC><CMD>write<CR>
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
-inoremap <C-h> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-inoremap <C-l> <right>
+inoremap <C-h> <LEFT>
+inoremap <C-j> <DOWN>
+inoremap <C-k> <UP>
+inoremap <C-l> <RIGHT>
 nnoremap <leader>/ <CMD>let @/=''<CR>
 nnoremap <leader>a gg<S-v>G
 nnoremap <leader>h <C-W>h
