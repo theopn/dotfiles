@@ -10,6 +10,7 @@
 require("theo_init")
 require("theo_plugins")
 require("theo_appearance")
+require("theo_file_et_search")
 require("theo_lsp")
 require("theo_notes")
 --]]

@@ -12,10 +12,12 @@ local WINDOW = vim.wo
 local function vim_set(opt, scope, val)
   scope[opt] = val
 end
+
 -- vim.api.nvim_set_keymap is old way of doing it
 local function vim_map(mode, shortcut, target)
   vim.keymap.set(mode, shortcut, target, { noremap = true, silent = true })
 end
+
 -- }}}
 
 -- {{{ Syntax Related Settings
@@ -34,7 +36,7 @@ do
     { "splitright", false }, --> Vertical split default to left
     { "splitbelow", false },
   }
-  for i,v in ipairs(syntax_opt) do
+  for i, v in ipairs(syntax_opt) do
     vim_set(v[1], GLOBAL, v[2])
   end
 end
@@ -63,7 +65,7 @@ do
     { "spelllang", "en" },
     { "spellsuggest", "best,8" }, --> 8 suggestions for spell check
   }
-  for i,v in ipairs(edit_opt) do
+  for i, v in ipairs(edit_opt) do
     vim_set(v[1], GLOBAL, v[2])
   end
 end
@@ -78,7 +80,7 @@ do
     { opt = "cursorline", val = true },
     { opt = "cursorcolumn", val = true },
   }
-  for i,v in pairs(vis_opt) do
+  for i, v in pairs(vis_opt) do
     vim_set(v.opt, WINDOW, v.val)
   end
 end
@@ -87,6 +89,7 @@ end
 -- {{{ Key Binding Related Settings
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { noremap = true }) --> Unbind space
 vim.g.mapleader = " " --> Space as the leader key
+local action = require("lspsaga.codeaction")
 do
   local key_opt = {
     -- {{{ Text Edit Keybindings
@@ -102,7 +105,7 @@ do
     { 'i', "<C-k>", "<UP>" },
     { 'i', "<C-l>", "<RIGHT>" },
     -- Normal Mode --
-    { 'n', "<leader>q", "<CMD>vsplit term://zsh<CR>" }, --> Quick terminal launch
+    { 'n', "<leader>z", "<CMD>vsplit term://zsh<CR>" }, --> Quick terminal launch
     { 'n', "<leader>/", "<CMD>let @/=''<CR>" }, --> Clear search highlighting
     { 'n', "<leader>a", "gg<S-v>G" }, --> Select all
     -- Split pane navigation and resizing --
@@ -136,11 +139,19 @@ do
     { 'n', "<leader>ff", "<CMD>Telescope find_files<CR>" },
     { 'n', "<leader>fb", "<CMD>Telescope file_browser<CR>" },
     { 'n', "<leader>f/", "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
+    -- LSPSaga --
+    { 'n', "<leader>sf", "<CMD>Lspsaga lsp_finder<CR>" },
+    { 'n', "<leader>sa", require("lspsaga.codeaction").code_action },
+    { 'v', "<leader>sa",
+      function() vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
+        action.range_code_action()
+      end },
+    { 'n', "<leader>sd", "<CMD>Lspsaga hover_doc<CR>" },
+    { 'n', "<leader>sr", "<CMD>Lspsaga rename<CR>" },
     -- }}}
   }
-  for i,v in ipairs(key_opt) do
+  for i, v in ipairs(key_opt) do
     vim_map(v[1], v[2], v[3])
   end
 end
 -- }}}
-

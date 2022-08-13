@@ -14,37 +14,44 @@ end
 
 local packer_group = vim.api.nvim_create_augroup("Packer", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", { command = "source <afile> | PackerCompile",
-                            group = packer_group, pattern = "init.lua" })
+  group = packer_group, pattern = "init.lua" })
 -- }}}
 
 -- {{{ Packer Plugins
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim" --> Irony of having to import itself
+
   -- {{{  Appearance plugins
   use "navarasu/onedark.nvim" --> Pretty theme
   use "nvim-lualine/lualine.nvim" --> Status line plugin
-  use { --> Tab bar plugin
-    "romgrk/barbar.nvim",
-    requires = { "kyazdani42/nvim-web-devicons" }
-  }
+  use "romgrk/barbar.nvim" --> Tab bar plugin
+  use "kyazdani42/nvim-web-devicons" --> Icons for barbar, Telescope, and more
   use "glepnir/dashboard-nvim" --> Startup dashboard
-  use "MeF0504/vim-pets" --> Cats.
+  use "MeF0504/vim-pets" --> Cats
   -- }}}
 
-  -- {{{ Text Edit plugins
+  -- {{{ File et Search
+  use "kyazdani42/nvim-tree.lua" --> File tree
+  use {
+    "nvim-telescope/telescope.nvim", --> Expendable fuzzy finder
+    requires = { "nvim-lua/plenary.nvim" } --> nvim-telescope Dependency
+  }
+  use "nvim-telescope/telescope-file-browser.nvim" --> File browser extension for Telescope
+  -- }}}
+
+  -- {{{ LSP plugins
   use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use "williamboman/mason.nvim" --> LSP Manager
-  use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
-  -- }}}
-
-  -- {{{ File and search
-  use "kyazdani42/nvim-tree.lua" --> NvimTree
-  use { --> Expendable fuzzy finder
-    "nvim-telescope/telescope.nvim",
-    requires = { "nvim-lua/plenary.nvim" }
-  }
-  use "nvim-telescope/telescope-file-browser.nvim" --> Extension for Telescope
+  use "onsails/lspkind.nvim" --> VS Code like pictograms for lsp completion
+  use "L3MON4D3/LuaSnip" --> Snippet engine
+  use "saadparwaiz1/cmp_luasnip" --> nvim_cmp and LuaSnip bridge
+  use "hrsh7th/cmp-nvim-lsp" --> nvim-cmp and lspconfig bridge
+  use "hrsh7th/cmp-buffer" --> nvim-cmp source for buffer words
+  use "hrsh7th/cmp-path" --> nvim-cmp source for file path
+  use "hrsh7th/cmp-cmdline" --> nvim-cmp source for vim commands
+  use "hrsh7th/nvim-cmp" -- Completion Engine
+  use "glepnir/lspsaga.nvim" --> LSP hover menu and much more
   -- }}}
 
   -- {{{ Note Taking
@@ -56,49 +63,3 @@ require("packer").startup(function(use)
   -- }}}
 end)
 -- }}}
-
--- {{{ NvimTree Settings
-require("nvim-tree").setup {
-  auto_reload_on_write = true,
-  -- auto_close = true, --> Auto close has been deprecated
-  open_on_setup = true, --> Auto open when no files opened
-  open_on_setup_file = true, --> Auto open when files opened
-  open_on_tab = true,
-  sort_by = "name",
-  view = {
-    width = 30,
-    height = 30,
-    hide_root_folder = false,
-    side = "right",
-    preserve_window_proportions = false,
-    number = false,
-    relativenumber = false,
-    signcolumn = "yes",
-  }
-}
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = vim.api.nvim_create_augroup("NvimTreeClose", { clear = true }),
-  pattern = "NvimTree_*",
-  callback = function()
-    local layout = vim.api.nvim_call_function("winlayout", {})
-    if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then
-      vim.cmd("confirm quit")
-    end
-  end
-})
---[[ Disabling NvimTree icons for no nerd fonts
-vim.g.nvim_tree_show_icons = {
-  git = 0,
-  folders = 0,
-  files = 0,
-  folder_arrows = 0,
-}
---]]
--- }}}
-
---- {{{ Telescope Settings
-require("telescope").setup {
-  extensions = { file_browser = { hidden = true } },
-}
-require("telescope").load_extension "file_browser"
---}
