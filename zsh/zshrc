@@ -20,6 +20,8 @@ source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
 ######### Alias ##########
 alias cl="clear"
+# Any commands in double quotes will be substituted in the startup and will be executed. So use single quotes
+alias fzfvi='nvim $(fzf --height 40% --reverse)'
 alias google="w3m google.com"
 alias ls="ls -G"
 alias l="ls -l -a"
