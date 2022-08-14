@@ -133,8 +133,8 @@ do
     -- {{{ Plugin/Neovim Specific Keybindings
     { 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
     -- Spell check --
-    { 'n', "<leader>s", "z=" }, --> Correct spelling error
-    { 'n', "<leader>cs", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
+    { 'n', "<leader>cs", "z=" }, --> Correct spelling error
+    { 'n', "<leader>ct", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- Telescope --
     { 'n', "<leader>ff", "<CMD>Telescope find_files<CR>" },
     { 'n', "<leader>fb", "<CMD>Telescope file_browser<CR>" },
@@ -146,7 +146,7 @@ do
       function() vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
         action.range_code_action()
       end },
-    { 'n', "<leader>sd", "<CMD>Lspsaga hover_doc<CR>" },
+    { 'n', "<leader>sd", "<CMD>Lspsaga hover_doc<CR>" }, --> Could use built-in command <CMD>lua vim.lsp.buf.hover()
     { 'n', "<leader>sr", "<CMD>Lspsaga rename<CR>" },
     -- }}}
   }

@@ -86,4 +86,11 @@ au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline.inactive()
 augroup END]],false)
 --]]
 
-
+--[[
+  use { --> Complention program
+    "ms-jpq/coq_nvim",
+    branch = "coq",
+    event = "VimEnter", config = "vim.cmd[[COQnow -s]]", --> Autoexecute COQnow on startup
+  }
+  use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
+--]]

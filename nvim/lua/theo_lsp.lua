@@ -60,6 +60,12 @@ require("lspkind").init({
 -- }}}
 
 --- {{{ nvim-cmp setup
+-- Helper function for TAB completion
+local check_backspace = function()
+  local col = vim.fn.col "." - 1
+  return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
+end
+
 local cmp = require "cmp"
 
 cmp.setup({
@@ -74,17 +80,36 @@ cmp.setup({
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<C-j>"] = cmp.mapping.select_next_item(), --> <C-n>
+    ["<C-k>"] = cmp.mapping.select_prev_item(), --> <C-p>
+    ["<C-e>"] = cmp.mapping.abort(), --> Close the completion window
+    ["<C-[>"] = cmp.mapping.scroll_docs(-4), --> Scroll through the information window next to the item
+    ["<C-]>"] = cmp.mapping.scroll_docs(4), --> ^
+    ["<C-Space>"] = cmp.mapping.complete(), --> Brings up completion window without
+    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item({ behavior = cmp.SelectBehavior.Select }) --> <C-n> if completion window is open
+      elseif check_backspace() then
+        fallback() --> Default action (tab char or shiftwidth) if the line is empty
+      else
+        cmp.complete() --> Open completion window. Change it to fallback() if you want to insert tab in between lines
+      end
+    end, { 'i', 's' }),
+    ["<S-Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
-    { name = 'buffer' },
-  }),
+    }, {
+      { name = 'buffer' },
+    }),
   formatting = {
     format = require("lspkind").cmp_format({ with_text = false, maxwidth = 50 })
   }
@@ -113,8 +138,24 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 --- }}}
 
 --- {{{ Language Server Settings
-nvim_lsp.cmake.setup {
-  capabilities = capabilities
+nvim_lsp.bashls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = {
+    Lua = {
+      diagnostircs = {
+        globals = { "vim" }
+      },
+      workspace = {
+        library = vim.api.nvim_get_runtime_file("", true)
+      },
+    },
+  },
+}
+
+nvim_lsp.clangd.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 
 nvim_lsp.sumneko_lua.setup {
@@ -129,7 +170,16 @@ nvim_lsp.sumneko_lua.setup {
         library = vim.api.nvim_get_runtime_file("", true)
       },
     },
-  }
+  },
+}
+
+nvim_lsp.html.setup {
+  on_attach = on_attach,
+}
+
+nvim_lsp.marksman.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
 --- }}}
 
