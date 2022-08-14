@@ -21,12 +21,18 @@ vim.api.nvim_create_autocmd("BufWritePost", { command = "source <afile> | Packer
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim" --> Irony of having to import itself
 
+  -- {{{
+  use "nvim-treesitter/nvim-treesitter" --> Incremental highlighting
+  use "p00f/nvim-ts-rainbow"
+  -- }}}
+
   -- {{{  Appearance plugins
   use "navarasu/onedark.nvim" --> Pretty theme
   use "nvim-lualine/lualine.nvim" --> Status line plugin
   use "romgrk/barbar.nvim" --> Tab bar plugin
   use "kyazdani42/nvim-web-devicons" --> Icons for barbar, Telescope, and more
   use "glepnir/dashboard-nvim" --> Startup dashboard
+  use "rcarriga/nvim-notify" --> Prettier notification
   use "MeF0504/vim-pets" --> Cats
   -- }}}
 
@@ -40,11 +46,11 @@ require("packer").startup(function(use)
   -- }}}
 
   -- {{{ LSP plugins
-  use "nvim-treesitter/nvim-treesitter" --> Highlighting focusing on one file
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use "williamboman/mason.nvim" --> LSP Manager
   use "onsails/lspkind.nvim" --> VS Code like pictograms for lsp completion
-  use "L3MON4D3/LuaSnip" --> Snippet engine
+  use "L3MON4D3/LuaSnip" --> Snippet engine that accepts VS Code style snippets
+  use "theopn/friendly-snippets" --> VS Code style snippet collection
   use "saadparwaiz1/cmp_luasnip" --> nvim_cmp and LuaSnip bridge
   use "hrsh7th/cmp-nvim-lsp" --> nvim-cmp and lspconfig bridge
   use "hrsh7th/cmp-buffer" --> nvim-cmp source for buffer words

@@ -23,6 +23,10 @@ local on_attach = function(client, bufnr)
 end
 --- }}}
 
+-- {{{ Loading Snippets to LuaSnip
+require("luasnip.loaders.from_vscode").lazy_load()
+--}}}
+
 --- {{{ Mason and lspkind Settings
 require("mason").setup()
 

@@ -5,6 +5,26 @@
 /_/ /_//_/\__/\___/ /_/|_/|___/_/_/_/_/ /_/ /_/_/\__/  \__/\__/ /___/\__/\_,_/_/  \__/_//_/
 --]]
 
+--- {{{ Tree Sitter Settings
+require("nvim-treesitter.configs").setup {
+  ensure_installed = { "java", "c", "lua", "html", "css", "vim", "javascript" },
+  sync_install = false,
+  auto_install = true,
+  ignore_install = {},
+  highlight = {
+    enable = true,
+    disable = {},
+    additional_vim_regex_highlighting = false,
+  },
+  rainbow = {
+    enable = true,
+    extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+    max_file_lines = nil, -- Do not enable for files with more than n lines, int
+  }
+}
+--}}}
+
+
 -- {{{ NvimTree Settings
 require("nvim-tree").setup {
   auto_reload_on_write = true,

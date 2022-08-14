@@ -117,10 +117,6 @@ do
     { 'n', "<leader><DOWN>", "<C-w>-" },
     { 'n', "<leader><UP>", "<C-w>+" },
     { 'n', "<leader><RIGHT>", "<C-w>>" },
-    -- Tab navigation --
-    { 'n', "<leader>t", "<CMD>tabnew<CR>" }, --> Open a new buffer
-    { 'n', "<leader>,", "<CMD>BufferPrevious<CR>" }, --> Barbar plugin overrides "gT"
-    { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
     -- Search auto center --
     { 'n', "n", "nzz" },
     { 'n', "N", "Nzz" },
@@ -132,6 +128,10 @@ do
 
     -- {{{ Plugin/Neovim Specific Keybindings
     { 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
+    -- Tab navigation --
+    { 'n', "<leader>t", "<CMD>tabnew<CR>" }, --> Open a new buffer
+    { 'n', "<leader>,", "<CMD>BufferPrevious<CR>" }, --> Barbar plugin overrides "gT"
+    { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
     -- Spell check --
     { 'n', "<leader>cs", "z=" }, --> Correct spelling error
     { 'n', "<leader>ct", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
