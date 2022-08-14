@@ -102,7 +102,7 @@ Formally where I spent most of my time on, but since I have Neovim now, my confi
 
 #### Zsh
 
-Prompt setting inspired by "fino-time" theme in oh-my-zsh and included zsh-autocomplete plug-in. My favorite aliases are `fzfvi` to quickly search files to open in Neovim, `google` to open up Google search in w3m, and `nvi` because not typing 'm' saves me 3 milliseconds every time I open Neovim.
+Prompt setting inspired by "fino-time" theme in oh-my-zsh and included zsh-autocomplete plug-in. My favorite aliases are `vifzf` to quickly search files to open in Neovim, `google` to open up Google search in w3m, and `nvi` because not typing 'm' saves me 3 milliseconds every time I open Neovim.
 
 ### Linux
 
