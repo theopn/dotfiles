@@ -25,45 +25,39 @@ end
 
 -- {{{ Loading Snippets to LuaSnip
 require("luasnip.loaders.from_vscode").lazy_load()
+require("mason").setup()
 --}}}
 
---- {{{ Mason and lspkind Settings
-require("mason").setup()
+-- {{{ nvim-cmp setup
+-- Table for icons
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "ﰠ",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "塞",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "פּ",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
 
-require("lspkind").init({
-  mode = "symbol_text",
-  preset = "codicons",
-  symbol_map = {
-    Text = "",
-    Method = "",
-    Function = "",
-    Constructor = "",
-    Field = "ﰠ",
-    Variable = "",
-    Class = "ﴯ",
-    Interface = "",
-    Module = "",
-    Property = "ﰠ",
-    Unit = "塞",
-    Value = "",
-    Enum = "",
-    Keyword = "",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "פּ",
-    Event = "",
-    Operator = "",
-    TypeParameter = ""
-  },
-})
--- }}}
-
---- {{{ nvim-cmp setup
 -- Helper function for TAB completion
 local check_backspace = function()
   local col = vim.fn.col "." - 1
@@ -116,8 +110,20 @@ cmp.setup({
     { name = 'path' },
   }),
   formatting = {
-    format = require("lspkind").cmp_format({ with_text = false, maxwidth = 50 })
-  }
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
+      -- Source
+      vim_item.menu = ({
+        buffer = "[Buffer]",
+        nvim_lsp = "[LSP]",
+        luasnip = "[LuaSnip]",
+        nvim_lua = "[Lua]",
+        latex_symbols = "[LaTeX]",
+      })[entry.source.name]
+      return vim_item
+    end
+  },
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

@@ -21,11 +21,6 @@ vim.api.nvim_create_autocmd("BufWritePost", { command = "source <afile> | Packer
 require("packer").startup(function(use)
   use "wbthomason/packer.nvim" --> Irony of having to import itself
 
-  -- {{{
-  use "nvim-treesitter/nvim-treesitter" --> Incremental highlighting
-  use "p00f/nvim-ts-rainbow"
-  -- }}}
-
   -- {{{  Appearance plugins
   use "navarasu/onedark.nvim" --> Pretty theme
   use "nvim-lualine/lualine.nvim" --> Status line plugin
@@ -37,6 +32,9 @@ require("packer").startup(function(use)
   -- }}}
 
   -- {{{ File et Search
+  use "lewis6991/gitsigns.nvim" --> Git information
+  use "nvim-treesitter/nvim-treesitter" --> Incremental highlighting
+  use "p00f/nvim-ts-rainbow" --> Rainbow color matching for parentheses
   use "kyazdani42/nvim-tree.lua" --> File tree
   use {
     "nvim-telescope/telescope.nvim", --> Expendable fuzzy finder
@@ -48,7 +46,6 @@ require("packer").startup(function(use)
   -- {{{ LSP plugins
   use "neovim/nvim-lspconfig" --> Neovim defult LSP engine
   use "williamboman/mason.nvim" --> LSP Manager
-  use "onsails/lspkind.nvim" --> VS Code like pictograms for lsp completion
   use "L3MON4D3/LuaSnip" --> Snippet engine that accepts VS Code style snippets
   use "theopn/friendly-snippets" --> VS Code style snippet collection
   use "saadparwaiz1/cmp_luasnip" --> nvim_cmp and LuaSnip bridge

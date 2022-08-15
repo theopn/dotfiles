@@ -7,10 +7,10 @@
 --]]
 
 ---[[ Lua configs in ~/.config/nvim/lua
-require("theo_plugins")
+require("plugins")
 require("theo_init")
-require("theo_appearance")
-require("theo_file_et_search")
-require("theo_lsp")
-require("theo_notes")
+require("appearance")
+require("file_et_search")
+require("lsp")
+require("markdown")
 --]]

@@ -5,7 +5,11 @@
 /_/ /_//_/\__/\___/ /_/|_/|___/_/_/_/_/ /_/ /_/_/\__/  \__/\__/ /___/\__/\_,_/_/  \__/_//_/
 --]]
 
---- {{{ Tree Sitter Settings
+-- {{{
+require('gitsigns').setup()
+--}
+
+-- {{{ Tree Sitter Settings
 require("nvim-treesitter.configs").setup {
   ensure_installed = { "java", "c", "lua", "html", "css", "vim", "javascript" },
   sync_install = false,
@@ -65,7 +69,7 @@ vim.g.nvim_tree_show_icons = {
 --]]
 -- }}}
 
---- {{{ Telescope Settings
+-- {{{ Telescope Settings
 require("telescope").setup {
   defaults = {
     mappings = {
