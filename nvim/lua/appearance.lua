@@ -132,7 +132,7 @@ db.custom_center = {
 }
 -- }}}
 
--- {{{
+-- {{{ Notification Settings
 require("notify").setup()
 vim.notify = require("notify")
 -- }

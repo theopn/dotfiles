@@ -5,10 +5,6 @@
 /_/ /_//_/\__/\___/ /_/|_/|___/_/_/_/_/ /_/ /_/_/\__/  \__/\__/ /___/\__/\_,_/_/  \__/_//_/
 --]]
 
--- {{{
-require('gitsigns').setup()
---}
-
 -- {{{ Tree Sitter Settings
 require("nvim-treesitter.configs").setup {
   ensure_installed = { "java", "c", "lua", "html", "css", "vim", "javascript" },
@@ -26,8 +22,7 @@ require("nvim-treesitter.configs").setup {
     max_file_lines = nil, -- Do not enable for files with more than n lines, int
   }
 }
---}}}
-
+-- }}}
 
 -- {{{ NvimTree Settings
 require("nvim-tree").setup {
@@ -82,4 +77,4 @@ require("telescope").setup {
   extensions = { file_browser = { hidden = true } },
 }
 require("telescope").load_extension "file_browser"
---}
+-- }}}

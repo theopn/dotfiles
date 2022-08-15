@@ -6,7 +6,7 @@
                                                 /_/
 --]]
 
---- {{{ Basic lspconfig settings
+-- {{{ Basic lspconfig settings
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
 
@@ -21,12 +21,7 @@ local on_attach = function(client, bufnr)
     })
   end
 end
---- }}}
-
--- {{{ Loading Snippets to LuaSnip
-require("luasnip.loaders.from_vscode").lazy_load()
-require("mason").setup()
---}}}
+-- }}}
 
 -- {{{ nvim-cmp setup
 -- Table for icons
@@ -146,9 +141,9 @@ cmp.setup.cmdline(':', {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
---- }}}
+-- }}}
 
---- {{{ Language Server Settings
+-- {{{ Language Server Settings
 nvim_lsp.bashls.setup { capabilities = capabilities, on_attach = on_attach, }
 nvim_lsp.clangd.setup { capabilities = capabilities, on_attach = on_attach, }
 nvim_lsp.sumneko_lua.setup {
@@ -167,7 +162,13 @@ nvim_lsp.sumneko_lua.setup {
 }
 nvim_lsp.html.setup { capabilities = capabilities, on_attach = on_attach, }
 nvim_lsp.marksman.setup { capabilities = capabilities, on_attach = on_attach, }
---- }}}
+-- }}}
+
+-- {{{
+require("trouble").setup {
+  mode = "document_diagnostics",
+}
+-- }}}
 
 -- {{{ lspsaga Settings
 local saga = require("lspsaga")

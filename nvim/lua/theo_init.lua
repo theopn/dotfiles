@@ -95,10 +95,11 @@ do
     -- {{{ Text Edit Keybindings
     -- Insert Mode --
     { 'i', "jk", "<ESC><CMD>write<CR>" }, --> "joke", get it? Ha ha
-    -- Auto bracket closers --
+    --[[ Auto bracket closers --> nvim utilizes nvim-autopairs
     { 'i', "(", "()<LEFT>" },
     { 'i', "[", "[]<LEFT>" },
     { 'i', "{<CR>", "{<CR>}<ESC>ko" },
+    --]]
     -- Navigation in insert mode --
     { 'i', "<C-h>", "<LEFT>" },
     { 'i', "<C-j>", "<DOWN>" },
@@ -128,10 +129,11 @@ do
 
     -- {{{ Plugin/Neovim Specific Keybindings
     { 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
-    -- Tab navigation --
+    -- Barbar navigation --
     { 'n', "<leader>t", "<CMD>tabnew<CR>" }, --> Open a new buffer
     { 'n', "<leader>,", "<CMD>BufferPrevious<CR>" }, --> Barbar plugin overrides "gT"
     { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
+    { 'n', "<leader>x", "<CMD>BufferClose<CR>" },
     -- Spell check --
     { 'n', "<leader>cs", "z=" }, --> Correct spelling error
     { 'n', "<leader>ct", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
