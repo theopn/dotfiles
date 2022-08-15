@@ -33,7 +33,7 @@ set foldmethod=marker foldlevel=0
 " {{{ Keybinding Related Settings
 nnoremap <SPACE> <Nop>
 let mapleader=' '
-inoremap jk <ESC><CMD>write<CR>
+inoremap jk <ESC>:write<CR>
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
@@ -41,7 +41,7 @@ inoremap <C-h> <LEFT>
 inoremap <C-j> <DOWN>
 inoremap <C-k> <UP>
 inoremap <C-l> <RIGHT>
-nnoremap <leader>/ <CMD>let @/=''<CR>
+nnoremap <leader>/ :let @/=''<CR>
 nnoremap <leader>a gg<S-v>G
 nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
