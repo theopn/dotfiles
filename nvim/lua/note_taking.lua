@@ -5,10 +5,6 @@
 /_/ /_//_/\__/\___/ /_/|_/|___/_/_/_/_/ /_/|_/\___/\__/\__/___/
 --]]
 
--- {{{ Markdown Reader Settings
-vim.g["mkdp_browser"] = "firefox"
--- }}}
-
 -- {{{ Custom function for quickly opening a file
 local notes_directory = "~/Documents/vim_notes/"
 function new_note(class_name, note_name)
@@ -28,11 +24,15 @@ require("neorg").setup {
     ["core.norg.dirman"] = {
       config = {
         workspaces = {
-          work = "~/notes/work",
-          home = "~/notes/home",
+          work = "~/Documents/neorg/",
         }
       }
-    }
+    },
+    ["core.norg.completion"] = {
+      config = {
+        engine = "nvim-cmp",
+      },
+    },
   }
 }
 -- }}}

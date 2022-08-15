@@ -36,7 +36,7 @@ do
     { "splitright", false }, --> Vertical split default to left
     { "splitbelow", false },
   }
-  for i, v in ipairs(syntax_opt) do
+  for _, v in ipairs(syntax_opt) do
     vim_set(v[1], GLOBAL, v[2])
   end
 end
@@ -65,7 +65,7 @@ do
     { "spelllang", "en" },
     { "spellsuggest", "best,8" }, --> 8 suggestions for spell check
   }
-  for i, v in ipairs(edit_opt) do
+  for _, v in ipairs(edit_opt) do
     vim_set(v[1], GLOBAL, v[2])
   end
 end
@@ -151,7 +151,7 @@ do
     { 'n', "<leader>sr", "<CMD>Lspsaga rename<CR>" },
     -- }}}
   }
-  for i, v in ipairs(key_opt) do
+  for _, v in ipairs(key_opt) do
     vim_map(v[1], v[2], v[3])
   end
 end
