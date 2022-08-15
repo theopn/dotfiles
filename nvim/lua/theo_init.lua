@@ -95,11 +95,10 @@ do
     -- {{{ Text Edit Keybindings
     -- Insert Mode --
     { 'i', "jk", "<ESC><CMD>write<CR>" }, --> "joke", get it? Ha ha
-    --[[ Auto bracket closers --> nvim utilizes nvim-autopairs
+    -- Auto bracket closers --
     { 'i', "(", "()<LEFT>" },
     { 'i', "[", "[]<LEFT>" },
-    { 'i', "{<CR>", "{<CR>}<ESC>ko" },
-    --]]
+    { 'i', "{<CR>", "{<CR>}<ESC><S-o><ESC><S-i><TAB>" }, --> A little clunky to combat auto indentations
     -- Navigation in insert mode --
     { 'i', "<C-h>", "<LEFT>" },
     { 'i', "<C-j>", "<DOWN>" },

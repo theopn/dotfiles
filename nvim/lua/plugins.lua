@@ -39,10 +39,6 @@ require("packer").startup(function(use)
     "lewis6991/gitsigns.nvim", --> Git information
     config = function() require("gitsigns").setup() end
   }
-  use {
-    "windwp/nvim-autopairs", --> Automatic paring for parentheses, curly braces, brackets, etc
-    config = function() require("nvim-autopairs").setup() end
-  }
   use "nvim-treesitter/nvim-treesitter" --> Incremental highlighting
   use "p00f/nvim-ts-rainbow" --> Rainbow color matching for parentheses
   use "kyazdani42/nvim-tree.lua" --> File tree
@@ -72,11 +68,12 @@ require("packer").startup(function(use)
   -- }}}
 
   -- {{{ Markdown
-  use({
-    "iamcco/markdown-preview.nvim", --> MarkdownPreview to toggle
-    run = function() vim.fn["mkdp#util#install"]() end, --> Binary installation for markdown-preview
-  })
+  use {
+    "ellisonleao/glow.nvim", --> Markdown file preview. Requires glow installed
+    ft = { "markdown" },
+  }
   use "fadein/vim-figlet" --> ASCII art generator. Requires figlet installed
+  use "nvim-neorg/neorg" --> Remastered Emacs Org Mode in Neovim
   -- }}}
 end)
 -- }}}

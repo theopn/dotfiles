@@ -12,5 +12,5 @@ require("theo_init")
 require("appearance")
 require("file_et_search")
 require("lsp")
-require("markdown")
+require("note_taking")
 --]]

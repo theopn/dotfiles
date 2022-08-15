@@ -20,3 +20,19 @@ function new_note(class_name, note_name)
 end
 
 -- }}}
+
+-- {{{ Neorg Setttings
+require("neorg").setup {
+  load = {
+    ["core.defaults"] = {},
+    ["core.norg.dirman"] = {
+      config = {
+        workspaces = {
+          work = "~/notes/work",
+          home = "~/notes/home",
+        }
+      }
+    }
+  }
+}
+-- }}}
