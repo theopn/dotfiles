@@ -35,6 +35,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 ## After installation
 
 - NeoVim: `:PackerSync`, then `:Mason` to check the available lsp servers to install.
+  - Fedora does not ship with `g++`, which `nvim-tree-sitter` uses to install tree sitters. So `dnf install -y g++`
 - Emacs: `list-packages` then `all-the-icons-install-fonts`.
 - Firefox:
 
@@ -102,7 +103,7 @@ Formally where I spent most of my time on, but since I have Neovim now, my confi
 
 #### Zsh
 
-Prompt setting inspired by "fino-time" theme in oh-my-zsh and included zsh-autocomplete plug-in. My favorite aliases are `vifzf` to quickly search files to open in Neovim, `google` to open up Google search in w3m, and `nvi` because not typing 'm' saves me 3 milliseconds every time I open Neovim.
+Prompt setting inspired by "fino-time" theme in oh-my-zsh and included zsh-autocomplete plug-in. My favorite aliases are `nvif` to quickly search files to open in Neovim, `google` to open up Google search in w3m, and `nvi` because not typing 'm' saves me 3 milliseconds every time I open Neovim.
 
 ### Linux
 
@@ -179,8 +180,9 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 Formulae:
 
 - Bat: Fancier `cat` replacement
+- **fd: Alternative of `find` to list file entries**
 - ffmpeg: Primarily used for `ffmpeg -i in.xxx out.yyy`
-- fzf: Command line fuzzy finder
+- **fzf: Command line fuzzy finder**
 - figlet: ASCII art generator
 - Hugo: Static website generator
 - htop: System monitor
@@ -191,7 +193,6 @@ Formulae:
 - **Neovim**
 - ranger: TUI file explorer
 - **tmux**
-- **trash-cli: `trash` command sends the file to `~/.local/share/Trash` folder**
 - w3m: TUI web browser. Useful for a quick Google search or viewing HTML contents in Mutt
 
 | Type | Casks |
