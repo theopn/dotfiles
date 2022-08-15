@@ -40,7 +40,7 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    
+
     # Zsh
     current="zsh"
     zsh_files=("zshrc" "zsh_plugins")
@@ -54,7 +54,7 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    
+
     # Tmux
     current="tmux"
     tmux_files=("tmux.conf")
@@ -68,7 +68,7 @@ case $dotfile_input in
       ln -sf ~/dotfiles/$current/$v ~/.$v
       echo .$v modified
     done
-    
+
     # Vim
     current="vim"
     vim_files=("vimrc")
@@ -86,7 +86,7 @@ case $dotfile_input in
     mkdir -p ~/.vim/colors
     ln -sf ~/dotfiles/vim/colors ~/.vim/colors
     printf "Vim themes installed"
-    
+
     # kitty
     current="kitty"
     kitty_files=("kitty.conf")
@@ -170,7 +170,7 @@ case $dotfile_input in
       echo .$v modified
     done
     ;;
-  *) 
+  *)
     printf "\nSkipping dotfile setups...\n" ;; 
 esac
 
