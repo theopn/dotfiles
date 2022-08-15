@@ -144,8 +144,13 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- }}}
 
 -- {{{ Language Server Settings
-nvim_lsp.bashls.setup { capabilities = capabilities, on_attach = on_attach, }
-nvim_lsp.clangd.setup { capabilities = capabilities, on_attach = on_attach, }
+local server_list = {
+  "bashls", "clangd", "html", "marksman",
+}
+for _, v in ipairs(server_list) do
+  nvim_lsp[v].setup { capabilities = capabilities, on_attach = on_attach, }
+end
+
 nvim_lsp.sumneko_lua.setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -160,8 +165,6 @@ nvim_lsp.sumneko_lua.setup {
     },
   },
 }
-nvim_lsp.html.setup { capabilities = capabilities, on_attach = on_attach, }
-nvim_lsp.marksman.setup { capabilities = capabilities, on_attach = on_attach, }
 -- }}}
 
 -- {{{
