@@ -67,13 +67,14 @@ require("packer").startup(function(use)
   use "glepnir/lspsaga.nvim" --> LSP hover menu, code action, rename, etc
   -- }}}
 
-  -- {{{ Markdown
+  -- {{{ Note Taking
   use {
     "ellisonleao/glow.nvim", --> Markdown file preview. Requires glow installed
     ft = { "markdown" },
   }
-  use "fadein/vim-figlet" --> ASCII art generator. Requires figlet installed
+  use "vimwiki/vimwiki" --> Personal wiki plugin
   use "nvim-neorg/neorg" --> Remastered Emacs Org Mode in Neovim
+  use "fadein/vim-figlet" --> ASCII art generator. Requires figlet installed
   -- }}}
 end)
 -- }}}

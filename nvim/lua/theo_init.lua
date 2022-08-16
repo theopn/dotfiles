@@ -134,6 +134,7 @@ do
     { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
     { 'n', "<leader>x", "<CMD>BufferClose<CR>" },
     -- Spell check --
+    { 'i', "<C-c>", "<c-g>u<Esc>[s1z=`]a<c-g>u" },
     { 'n', "<leader>cs", "z=" }, --> Correct spelling error
     { 'n', "<leader>ct", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- Telescope --

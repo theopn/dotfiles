@@ -7,7 +7,7 @@
 
 -- {{{ Tree Sitter Settings
 require("nvim-treesitter.configs").setup {
-  ensure_installed = { "java", "c", "lua", "html", "css", "vim", "javascript" },
+  ensure_installed = { "java", "c", "lua", "html", "css", "vim", "org", "javascript" },
   sync_install = false,
   auto_install = true,
   ignore_install = {},

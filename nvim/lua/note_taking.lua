@@ -24,7 +24,7 @@ require("neorg").setup {
     ["core.norg.dirman"] = {
       config = {
         workspaces = {
-          work = "~/Documents/neorg/",
+          default = "~/Documents/neorg/",
         }
       }
     },
@@ -36,3 +36,8 @@ require("neorg").setup {
   }
 }
 -- }}}
+
+vim.g.vimwiki_list = { {
+  path = "~/Documents/vimwiki",
+} }
+vim.g.vimwiki_global_ext = 0
