@@ -17,26 +17,6 @@ end
 
 -- }}}
 
--- {{{ Neorg Setttings
-require("neorg").setup {
-  load = {
-    ["core.defaults"] = {},
-    ["core.norg.dirman"] = {
-      config = {
-        workspaces = {
-          default = "~/Documents/neorg/",
-        }
-      }
-    },
-    ["core.norg.completion"] = {
-      config = {
-        engine = "nvim-cmp",
-      },
-    },
-  }
-}
--- }}}
-
 vim.g.vimwiki_list = { {
   path = "~/Documents/vimwiki",
 } }

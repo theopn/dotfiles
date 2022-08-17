@@ -123,32 +123,28 @@ do
     { 'v', "<leader>y", '"+y' }, --> Copy to the system clipboard
     -- Terminal Mode --
     { 't', "<ESC>", "<C-\\><C-n>" }, --> ESC for term
+    -- Spell check --
+    { 'i', "<C-s>", "<c-g>u<ESC>[s1z=`]a<c-g>u" }, --> Fix the nearest spelling error and put the cursor back
+    { 'n', "<C-s>", "z=" }, --> Toggle spelling suggestions
+    { 'n', "<leader>st", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- }}}
 
-    -- {{{ Plugin/Neovim Specific Keybindings
+    -- {{{ Plugin/Feature Specific Keybindings
     { 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
     -- Barbar navigation --
     { 'n', "<leader>t", "<CMD>tabnew<CR>" }, --> Open a new buffer
     { 'n', "<leader>,", "<CMD>BufferPrevious<CR>" }, --> Barbar plugin overrides "gT"
     { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
     { 'n', "<leader>x", "<CMD>BufferClose<CR>" },
-    -- Spell check --
-    { 'i', "<C-s>", "<c-g>u<ESC>[s1z=`]a<c-g>u" }, --> Fix the nearest spelling error and put the cursor back
-    { 'n', "<C-s>", "z=" }, --> Toggle spelling suggestions
-    { 'n', "<leader>st", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- Telescope --
     { 'n', "<leader>ff", "<CMD>Telescope find_files<CR>" },
     { 'n', "<leader>fb", "<CMD>Telescope file_browser<CR>" },
     { 'n', "<leader>f/", "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
-    -- LSPSaga --
-    { 'n', "<leader>cf", "<CMD>Lspsaga lsp_finder<CR>" },
-    { 'n', "<leader>ca", require("lspsaga.codeaction").code_action },
-    { 'v', "<leader>ca",
-      function() vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
-        require("lspsaga.codeaction").range_code_action()
-      end },
-    { 'n', "<leader>cd", "<CMD>Lspsaga hover_doc<CR>" }, --> Could use built-in command <CMD>lua vim.lsp.buf.hover()
-    { 'n', "<leader>cr", "<CMD>Lspsaga rename<CR>" },
+    -- LSP Related --
+    { 'n', "<leader>cf", "<CMD>lua vim.lsp.buf.references()<CR>" },
+    { 'n', "<leader>ca", "<CMD>lua vim.lsp.buf.code_action()<CR>" },
+    { 'n', "<leader>cd", "<CMD>lua vim.lsp.buf.hover()<CR>" }, --> Could use built-in command <CMD>lua vim.lsp.buf.hover()
+    { 'n', "<leader>cr", "<CMD>lua vim.lsp.buf.rename()<CR>" },
     -- }}}
   }
   for _, v in ipairs(key_opt) do

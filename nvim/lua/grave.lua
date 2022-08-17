@@ -6,7 +6,7 @@
 
 --]]
 
---[[ Status Bar Related Settings
+--[[
 -- https://nuxsh.is-a.dev/blog/custom-nvim-statusline.html --
 local modes = {
   ["n"] = "NORMAL",
@@ -87,10 +87,30 @@ augroup END]],false)
 --]]
 
 --[[
-  use { --> Complention program
-    "ms-jpq/coq_nvim",
-    branch = "coq",
-    event = "VimEnter", config = "vim.cmd[[COQnow -s]]", --> Autoexecute COQnow on startup
-  }
-  use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
+use { --> Complention program
+  "ms-jpq/coq_nvim",
+  branch = "coq",
+  event = "VimEnter", config = "vim.cmd[[COQnow -s]]", --> Autoexecute COQnow on startup
+}
+use { "ms-jpq/coq.artifacts", branch = "artifacts" } --> Used by COQ
 --]]
+
+-- [[
+require("neorg").setup {
+  load = {
+    ["core.defaults"] = {},
+    ["core.norg.dirman"] = {
+      config = {
+        workspaces = {
+          default = "~/Documents/neorg/",
+        }
+      }
+    },
+    ["core.norg.completion"] = {
+      config = {
+        engine = "nvim-cmp",
+      },
+    },
+  }
+}
+-- ]]

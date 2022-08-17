@@ -73,7 +73,6 @@ require("packer").startup(function(use)
     ft = { "markdown" },
   }
   use "vimwiki/vimwiki" --> Personal wiki plugin
-  use "nvim-neorg/neorg" --> Remastered Emacs Org Mode in Neovim
   use "fadein/vim-figlet" --> ASCII art generator. Requires figlet installed
   -- }}}
 end)
