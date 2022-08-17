@@ -89,7 +89,6 @@ end
 -- {{{ Key Binding Related Settings
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { noremap = true }) --> Unbind space
 vim.g.mapleader = " " --> Space as the leader key
-local action = require("lspsaga.codeaction")
 do
   local key_opt = {
     -- {{{ Text Edit Keybindings
@@ -134,22 +133,22 @@ do
     { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
     { 'n', "<leader>x", "<CMD>BufferClose<CR>" },
     -- Spell check --
-    { 'i', "<C-c>", "<c-g>u<Esc>[s1z=`]a<c-g>u" },
-    { 'n', "<leader>cs", "z=" }, --> Correct spelling error
-    { 'n', "<leader>ct", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
+    { 'i', "<C-s>", "<c-g>u<ESC>[s1z=`]a<c-g>u" }, --> Fix the nearest spelling error and put the cursor back
+    { 'n', "<C-s>", "z=" }, --> Toggle spelling suggestions
+    { 'n', "<leader>st", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- Telescope --
     { 'n', "<leader>ff", "<CMD>Telescope find_files<CR>" },
     { 'n', "<leader>fb", "<CMD>Telescope file_browser<CR>" },
     { 'n', "<leader>f/", "<CMD>Telescope current_buffer_fuzzy_find<CR>" }, --> Better search
     -- LSPSaga --
-    { 'n', "<leader>sf", "<CMD>Lspsaga lsp_finder<CR>" },
-    { 'n', "<leader>sa", require("lspsaga.codeaction").code_action },
-    { 'v', "<leader>sa",
+    { 'n', "<leader>cf", "<CMD>Lspsaga lsp_finder<CR>" },
+    { 'n', "<leader>ca", require("lspsaga.codeaction").code_action },
+    { 'v', "<leader>ca",
       function() vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
-        action.range_code_action()
+        require("lspsaga.codeaction").range_code_action()
       end },
-    { 'n', "<leader>sd", "<CMD>Lspsaga hover_doc<CR>" }, --> Could use built-in command <CMD>lua vim.lsp.buf.hover()
-    { 'n', "<leader>sr", "<CMD>Lspsaga rename<CR>" },
+    { 'n', "<leader>cd", "<CMD>Lspsaga hover_doc<CR>" }, --> Could use built-in command <CMD>lua vim.lsp.buf.hover()
+    { 'n', "<leader>cr", "<CMD>Lspsaga rename<CR>" },
     -- }}}
   }
   for _, v in ipairs(key_opt) do
