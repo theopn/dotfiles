@@ -124,7 +124,7 @@ do
     -- Terminal Mode --
     { 't', "<ESC>", "<C-\\><C-n>" }, --> ESC for term
     -- Spell check --
-    { 'i', "<C-s>", "<c-g>u<ESC>[s1z=`]a<c-g>u" }, --> Fix the nearest spelling error and put the cursor back
+    { 'i', "<C-s>", "<C-g>u<ESC>[s1z=`]a<C-g>u" }, --> Fix the nearest spelling error and put the cursor back
     { 'n', "<C-s>", "z=" }, --> Toggle spelling suggestions
     { 'n', "<leader>st", "<CMD>set spell!<CR>" }, --> Toggle spellcheck
     -- }}}
