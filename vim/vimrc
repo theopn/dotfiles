@@ -25,10 +25,10 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 call plug#begin()
-Plug 'vimwiki/vimwiki'
 Plug 'fadein/vim-figlet'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'vimwiki/vimwiki'
 call plug#end()
 " }}}
 
@@ -69,10 +69,10 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-nnoremap <leader><LEFT> <C-w><
-nnoremap <leader><DOWN> <C-w>-
-nnoremap <leader><UP> <C-w>+
-nnoremap <leader><RIGHT> <C-w>>
+nnoremap <leader><C-h> <C-w><
+nnoremap <leader><C-j> <C-w>-
+nnoremap <leader><C-k> <C-w>+
+nnoremap <leader><C-l> <C-w>>
 nnoremap n nzz
 nnoremap N Nzz
 tnoremap <ESC> <C-\><C-n>
