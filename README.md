@@ -93,11 +93,11 @@ Where I spend most of my time on (both the configuration and the text editor its
 
 #### tmux
 
-Prefix changed from `C-b` to `C-a`, status bar with some information.
+Status bar, prefix from `C-b` to `C-a`, and other keybindings inspired by Vim.
 
 #### Vim
 
-Formally where I spent most of my time on, but since I have Neovim now, my configuration does not have any plug-in (other than `netrw`). Still has contains many of the keybindings that is in my muscle memory, and I use it as a simple, zero-distraction text editor.
+My zero-distraction note taker utilizing `vimwiki` plug-in. I tried 
 
 `drakai.vim`, which is a custom-made colorscheme of mix between Dracula and Monokai is included. I probably will make this a separate project.
 

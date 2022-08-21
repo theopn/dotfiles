@@ -18,20 +18,6 @@
 " https://www.asciiart.eu/animals/cats - Shanaka Dias
 "===============================================================================
 
-" {{{ Vim Plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-call plug#begin()
-Plug 'fadein/vim-figlet'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'vimwiki/vimwiki'
-call plug#end()
-" }}}
-
 " {{{ Base Settings
 set number relativenumber ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
@@ -52,7 +38,7 @@ set foldmethod=marker foldlevel=0
 set spell spelllang=en_us spellsuggest=best,8
 " }}}
 
-" {{{ Keybindings
+" {{{ Base keybindings
 nnoremap <SPACE> <Nop>
 let mapleader=' '
 inoremap jk <ESC>:write<CR>
@@ -118,3 +104,29 @@ aug netrw_auto_close
 aug END
 " }}}
 
+" {{{ Vim Plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'fadein/vim-figlet'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'vimwiki/vimwiki'
+call plug#end()
+" }}}
+
+" {{{ Plugin Keybindings
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>f/ :Lines<CR>
+nnoremap <leader>fb :Buffers<CR>
+" }}}
+
+" {{{ Vimwiki
+let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
+       \ 'syntax':'markdown', 'ext': '.md' }]
+let g:vimwiki_global_ext = 0
+" }}}
