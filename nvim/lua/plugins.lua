@@ -31,7 +31,7 @@ require("packer").startup(function(use)
   use "romgrk/barbar.nvim" --> Tab bar plugin
   use "glepnir/dashboard-nvim" --> Startup dashboard
   use "rcarriga/nvim-notify" --> Prettier notification
-  use "MeF0504/vim-pets" --> Cats
+  --use "MeF0504/vim-pets" --> Cats
   -- }}}
 
   -- {{{ File et Search
@@ -44,6 +44,10 @@ require("packer").startup(function(use)
   use "kyazdani42/nvim-tree.lua" --> File tree
   use "nvim-telescope/telescope.nvim" --> Expendable fuzzy finder
   use "nvim-telescope/telescope-file-browser.nvim" --> File browser extension for Telescope
+  use {
+    "ellisonleao/glow.nvim", --> Markdown file preview. Requires glow installed
+    ft = { "markdown" },
+  }
   -- }}}
 
   -- {{{ LSP
@@ -67,13 +71,5 @@ require("packer").startup(function(use)
   use "glepnir/lspsaga.nvim" --> LSP hover menu, code action, rename, etc
   -- }}}
 
-  -- {{{ Note Taking
-  use {
-    "ellisonleao/glow.nvim", --> Markdown file preview. Requires glow installed
-    ft = { "markdown" },
-  }
-  use "vimwiki/vimwiki" --> Personal wiki plugin
-  use "fadein/vim-figlet" --> ASCII art generator. Requires figlet installed
-  -- }}}
 end)
 -- }}}

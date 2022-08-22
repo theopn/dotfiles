@@ -112,9 +112,13 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
+" ASCII art generator. Requires figlet installed
 Plug 'fadein/vim-figlet'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" Cats.
+Plug 'MeF0504/vim-pets'
+" Personal wiki plugin
 Plug 'vimwiki/vimwiki'
 call plug#end()
 " }}}
@@ -129,4 +133,10 @@ nnoremap <leader>fb :Buffers<CR>
 let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
        \ 'syntax':'markdown', 'ext': '.md' }]
 let g:vimwiki_global_ext = 1
+" }}}
+
+" {{{ Vim-pets
+let g:pets_garden_width = 25
+let g:pets_garden_height = 10
+let g:pets_default_pet = 'cat'
 " }}}

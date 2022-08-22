@@ -137,9 +137,3 @@ db.custom_center = {
 require("notify").setup()
 vim.notify = require("notify")
 -- }
-
--- {{{ Vim Pets Settings
-vim.g["pets_garden_width"] = 25
-vim.g["pets_garden_height"] = 10
-vim.g["pets_default_pet"] = "cat"
--- }}}
