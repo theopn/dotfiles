@@ -97,13 +97,13 @@ Status bar, prefix from `C-b` to `C-a`, and other keybindings inspired by Vim.
 
 #### Vim
 
-My zero-distraction note taker utilizing `vimwiki` plug-in. I tried 
+My zero-distraction note taker utilizing `vimwiki` plug-in.
 
-`drakai.vim`, which is a custom-made colorscheme of mix between Dracula and Monokai is included. I probably will make this a separate project.
+`drakai.vim`, which is a custom-made colorscheme of mix between Dracula and Monokai is included.
 
 #### Zsh
 
-Prompt setting inspired by "fino-time" theme in oh-my-zsh and included zsh-autocomplete plug-in. My favorite aliases are `nvif` to quickly search files to open in Neovim, `google` to open up Google search in w3m, and `nvi` because not typing 'm' saves me 3 milliseconds every time I open Neovim.
+Shell should be fast. Simple prompt with git status and several alias to make my life better, including `nvif` to find file using `fzf` and `fd` and launch on Neovim, `trash` to move a file/folder to `$HOME/trash_zsh/`, and `google` to launch Google on `w3m`.
 
 ### Linux
 
