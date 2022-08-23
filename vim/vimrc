@@ -55,10 +55,10 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-nnoremap <leader><C-h> <C-w><
-nnoremap <leader><C-j> <C-w>-
-nnoremap <leader><C-k> <C-w>+
-nnoremap <leader><C-l> <C-w>>
+nnoremap <leader><LEFT> <C-w><
+nnoremap <leader><DOWN> <C-w>-
+nnoremap <leader><UP> <C-w>+
+nnoremap <leader><RIGHT> <C-w>>
 nnoremap n nzz
 nnoremap N Nzz
 tnoremap <ESC> <C-\><C-n>
