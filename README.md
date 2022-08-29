@@ -13,12 +13,9 @@ You are free to use all or some of the dotfiles in your system, but
 2. The installation script is a failed project. I will re-write it one day, but don't bother with it if you're not using Mac.
 3. If you're beginning to customizing your \*nix system, don't blindly copy over someone else's dotfiles. You would learn a lot more by understanding and recreating the config to your taste. Also why would you want to use my configuration.
 
-Dots in front of the files in the repo are removed for readability reasons, which is ironic.
-Don't worry, assuming my script works, it should create symbolic links with dots in front of the file names.
-
 ## Pre-requisites (in order of importance)
 
-- \*nix system (Yeah not you Microsoft)
+- \*nix system
 - Git and internet connection (to clone the repo)
 - Bash
 
@@ -26,22 +23,21 @@ Don't worry, assuming my script works, it should create symbolic links with dots
 
 Clone this repository in the home directory.
 
-`git clone https://github.com/theopn/dotfiles.git $HOME`
+`git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
 
 Run the installation script (do not run with sudo as Homebrew will not like that).
 
-`bash $HOME/dotfiles/dotfiles_install.sh`
+`bash ~/dotfiles/dotfiles_install.sh`
 
 ## After installation
 
-- NeoVim: `:PackerSync`, then `:Mason` to check the available lsp servers to install.
+- Neovim: `:PackerSync`, then `:Mason` to check the available lsp servers to install.
+  - Reference `server_list` table in `nvim/lua/lsp.lua` for the server list
   - Fedora does not ship with `g++`, which `nvim-tree-sitter` uses to install tree sitters. So `dnf install -y g++`
 - Emacs: `list-packages` then `all-the-icons-install-fonts`.
 - Firefox:
-
   1. `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
   2. `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
-
 - Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts.
 - Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed.
 
@@ -59,7 +55,7 @@ Part-time text editor, full-time to-do list application. My configuration is foc
 
 #### Firefox
 
-userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and HTML for custom startup page based on [Prismatic-Night Firefox theme](https://github.com/3r3bu5x9/Prismatic-Night/) are included. Just be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.
+userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and a basic Vimium configuration are included. Be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.
 
 #### Fonts
 
@@ -111,7 +107,7 @@ Fedora Fedora Fedora.
 
 #### Awesome
 
-Migrated to separate repository. Configuring Awesome is a Lua software engineering project.
+Migrated to [separate repository](https://gitlab.com/theopn/hunted-tiles). Configuring Awesome is a Lua software engineering project.
 
 #### Dunst
 
