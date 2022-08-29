@@ -48,6 +48,10 @@ require("packer").startup(function(use)
     "ellisonleao/glow.nvim", --> Markdown file preview. Requires glow installed
     ft = { "markdown" },
   }
+  use({
+    "iamcco/markdown-preview.nvim", --> MarkdownPreview to toggle
+    run = function() vim.fn["mkdp#util#install"]() end, --> Binary installation for markdown-preview
+  })
   -- }}}
 
   -- {{{ LSP
