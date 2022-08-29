@@ -64,7 +64,7 @@
 (menu-bar-mode 1) ; Enable menu bar
 (set-fringe-mode 10) ; Vertical border
 (scroll-bar-mode -1) ; Disable scroll bar
-(set-face-attribute 'default nil :font "Comic Mono" :height 140)
+(set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 140)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ; Theme
 (load-theme 'dracula t) ; ^
 (set-frame-parameter (selected-frame) 'alpha '(90 90)) ; Transparency
