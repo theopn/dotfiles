@@ -311,6 +311,9 @@ db.custom_center = {
 -- }}}
 
 -- {{{ Notification Settings
-require("notify").setup()
+require("notify").setup({
+  -- The variable is needed if theme is transparent
+  background_colour = "#282a36",
+})
 vim.notify = require("notify")
 -- }

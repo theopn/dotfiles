@@ -145,7 +145,7 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 
 -- {{{ Language Server Settings
 local server_list = {
-  "bashls", "clangd", "html", "marksman",
+  "bashls", "clangd", "html", "marksman", "remark_ls", "ltex",
 }
 for _, v in ipairs(server_list) do
   nvim_lsp[v].setup { capabilities = capabilities, on_attach = on_attach, }
