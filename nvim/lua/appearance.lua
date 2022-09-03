@@ -24,21 +24,27 @@ require("onedark").load()
 -- }}}
 
 -- {{{ Lualine (Status bar) Settings
--- Emacs Doom Mode line style, heavily inspired examples/evil_lualine.lua in the plug-in repository
+-- Inspired by examples/evil_lualine.lua in the plug-in repository, but utilizing position B and Y
+-- Position A and Z (far right and left, used for mode and pos by default), actively changes color,
+-- which is not fitting for this status line theme
 local lualine = require('lualine')
 
 local colors = {
-  bg       = '#202328',
-  fg       = '#bbc2cf',
-  yellow   = '#ECBE7B',
-  cyan     = '#008080',
-  darkblue = '#081633',
-  green    = '#98be65',
-  orange   = '#FF8800',
-  violet   = '#a9a1e1',
-  magenta  = '#c678dd',
-  blue     = '#51afef',
-  red      = '#ec5f67',
+  bg           = "#282a36",
+  current_line = "#6272a4",
+  fg           = "#f8f8f2",
+  comment      = "#6272a4",
+  cyan         = "#8be9fd",
+  green        = "#50fa7b",
+  orange       = "#ffb86c",
+  pink         = "#ff79c6",
+  purple       = "#bd93f9",
+  red          = "#ff5555",
+  yellow       = "#f1fa8c",
+  darkblue     = '#081633',
+  violet       = '#a9a1e1',
+  magenta      = '#c678dd',
+  blue         = '#51afef',
 }
 
 local conditions = {
@@ -74,15 +80,19 @@ local config = {
     lualine_b = {},
     lualine_y = {},
     lualine_z = {},
-    lualine_c = { { 'filename', file_status = true, path = 2 } }, --> 0 (default) file name, 1 relative path, 2 abs path
+    lualine_c = { { "filename", file_status = true, path = 2 } }, --> 0 (default) file name, 1 relative path, 2 abs path
     lualine_x = {
-      { 'diagnostics',
+      { "diagnostics",
         sources = { 'nvim_diagnostic' },
         symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
       },
     },
   },
 }
+
+local function ins_far_left(component)
+  table.insert(config.sections.lualine_b, component)
+end
 
 local function ins_left(component)
   table.insert(config.sections.lualine_c, component)
@@ -92,7 +102,12 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
-ins_left {
+local function ins_far_right(component)
+  table.insert(config.sections.lualine_y, component)
+end
+
+-- Reminder that you can invoke Lua function without parentheses, but moving forward I prefer having them
+ins_far_left {
   function()
     return '▊'
   end,
@@ -100,48 +115,51 @@ ins_left {
   padding = { left = 0, right = 1 },
 }
 
-ins_left {
-  -- mode component
+ins_far_left({
   function()
     return ' ' .. vim.fn.mode()
   end,
   color = function()
     local mode_color = {
-      n = colors.red,
-      i = colors.green,
-      v = colors.blue,
-      [''] = colors.blue,
-      V = colors.blue,
-      c = colors.magenta,
-      no = colors.red,
-      s = colors.orange,
-      S = colors.orange,
-      [''] = colors.orange,
-      ic = colors.yellow,
-      R = colors.violet,
-      Rv = colors.violet,
-      cv = colors.red,
-      ce = colors.red,
-      r = colors.cyan,
-      rm = colors.cyan,
-      ['r?'] = colors.cyan,
-      ['!'] = colors.red,
-      t = colors.red,
+      n = colors.current_line,
+      no = colors.current_line,
+      i = colors.cyan,
+      v = colors.yellow,
+      [''] = colors.yellow,
+      V = colors.yellow,
+      R = colors.orange,
+      rm = colors.orange,
+      ['r?'] = colors.orange,
+      t = colors.purple,
+      ['!'] = colors.purple,
+      c = colors.bg,
+      ic = colors.bg,
+      cv = colors.bg,
+      ce = colors.bg,
+      -- Modes that I'm not interested in are all rendered in comment color
+      s = colors.comment,
+      S = colors.comment,
+      [''] = colors.comment,
     }
     return { fg = mode_color[vim.fn.mode()] }
   end,
   padding = { right = 1 },
-}
+})
 
-ins_left {
-  'branch',
-  icon = '',
-  color = { fg = colors.violet, gui = 'bold' },
-}
+ins_left({
+  "filename",
+  cond = conditions.buffer_not_empty,
+  color = { fg = colors.magenta, gui = "bold" },
+})
 
-ins_left {
-  'diff',
-  -- Is it me or the symbol for modified us really weird
+ins_left({
+  "branch",
+  icon = '',
+  color = { fg = colors.violet, gui = "bold" },
+})
+
+ins_left({
+  "diff",
   symbols = { added = ' ', modified = ' ', removed = ' ' },
   diff_color = {
     added = { fg = colors.green },
@@ -149,36 +167,22 @@ ins_left {
     removed = { fg = colors.red },
   },
   cond = conditions.hide_in_width,
-}
+})
 
-ins_left {
-  'filename',
-  cond = conditions.buffer_not_empty,
-  color = { fg = colors.magenta, gui = 'bold' },
-}
-
-ins_left {
-  -- filesize component
-  'filesize',
-  cond = conditions.buffer_not_empty,
-}
-
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left {
+-- Making middle section
+ins_left({
   function()
-    return '%='
+    return "%="
   end,
-}
+})
 
-ins_left {
-  -- Lsp server name .
+ins_left({
   function()
-    local msg = 'No Active Lsp'
-    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
+    local no_msg = "No LSP"
+    local buf_ft = vim.api.nvim_buf_get_option(0, "filetype")
     local clients = vim.lsp.get_active_clients()
     if next(clients) == nil then
-      return msg
+      return no_msg
     end
     for _, client in ipairs(clients) do
       local filetypes = client.config.filetypes
@@ -186,15 +190,15 @@ ins_left {
         return client.name
       end
     end
-    return msg
+    return no_msg
   end,
-  icon = ' LSP:',
-  color = { fg = '#ffffff', gui = 'bold' },
-}
+  icon = " LSP:",
+  color = { fg = colors.fg, gui = "bold" },
+})
 
 ins_left {
-  'diagnostics',
-  sources = { 'nvim_diagnostic' },
+  "diagnostics",
+  sources = { "nvim_diagnostic" },
   symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
   diagnostics_color = {
     color_error = { fg = colors.red },
@@ -203,32 +207,31 @@ ins_left {
   },
 }
 
--- Add components to right sections
-ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  fmt = string.upper, -- I'm not sure why it's upper case either ;)
+ins_right({
+  "o:encoding",
+  fmt = string.upper,
   cond = conditions.hide_in_width,
-  color = { fg = colors.green, gui = 'bold' },
-}
+  color = { fg = colors.green, gui = "bold" },
+})
 
-ins_right {
-  'fileformat',
+ins_right({
+  "fileformat",
   fmt = string.upper,
   icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = { fg = colors.green, gui = 'bold' },
-}
+  color = { fg = colors.green, gui = "bold" },
+})
 
-ins_right { 'location' }
+ins_far_right({ "location" })
 
-ins_right { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+ins_far_right({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
-ins_right {
+ins_far_right({
   function()
     return '▊'
   end,
   color = { fg = colors.blue },
   padding = { left = 1 },
-}
+})
 
 lualine.setup(config)
 -- }}}
