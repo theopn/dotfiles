@@ -21,16 +21,16 @@ endif
 let g:colors_name = 'drakai'
 
 " User Options --- {{{
-if !exists('g:vim_monokai_tasty_italic')
+if !exists('g:vim_drakai_tasty_italic')
   if has('gui_running') || $TERM_ITALICS == 'true'
-    let g:vim_monokai_tasty_italic = 1
+    let g:vim_drakai_tasty_italic = 1
   else
-    let g:vim_monokai_tasty_italic = 0
+    let g:vim_drakai_tasty_italic = 0
   endif
 endif
 " }}}
 
-if g:vim_monokai_tasty_italic
+if g:vim_drakai_tasty_italic
   let s:italic = { 'cterm': 'italic', 'gui': 'italic' }
 else
   let s:italic = { 'cterm': 'NONE', 'gui': 'NONE' }
@@ -572,6 +572,12 @@ call Highlight('netrwExe', { 'fg': s:yellow, 'bg': s:none, 'style': s:none })
 call Highlight('netrwDir', { 'fg': s:light_blue, 'bg': s:none, 'style': s:none })
 call Highlight('netrwClassify', { 'fg': s:purple, 'bg': s:none, 'style': s:none })
 
+" Transparent BG
+if exists('g:vim_drakai_transparent')
+  hi Normal guibg=NONE ctermbg=NONE
+endif
+
 " Must be at the end, because of ctermbg=234 bug.
 " https://groups.google.com/forum/#!msg/vim_dev/afPqwAFNdrU/nqh6tOM87QUJ
 set background=dark
+
