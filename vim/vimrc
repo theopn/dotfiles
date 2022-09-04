@@ -79,19 +79,18 @@ let g:currentmode={
   \ '!' : 'Shell', 't' : 'Terminal' }
 set laststatus=2
 set statusline=
-set statusline+=%*\[%n] " Buffer num
+set statusline+=%*\[%n] " Buffer number
 set statusline+=%*\ %#BLUE#[%{toupper(g:currentmode[mode()])}] " Current mode
 set statusline+=%*\ %m%<%F\  " + for change in buffer, full file path
+set statusline+=%*\ %y\  " File Type
 set statusline+=%=
-set statusline+=%*\ %#ORANGE#%{'Messing'}\ %{'w'}\ %{'vimrc'}\ %{'againʕ•́ᴥ•̀?'}
-set statusline+=%=
-set statusline+=%*\ %y\  " FileType
 set statusline+=%*\ %{''.(&fenc!=''?&fenc:&enc).''} " Encoding
 set statusline+=%*\ %{(&bomb?\",BOM\":\"\")}\  " Encoding2
-set statusline+=%*\ %{&ff}\  " FileFormat (dos/unix..)
-set statusline+=%*\ %=\ row:%l/%L\  " Row num
-set statusline+=%*\ col:%03c\  " Column num
+set statusline+=%*\ %{&ff}\  " File Format (dos/unix..)
+set statusline+=%*\ %=\ row:%l/%L\  " Row number
+set statusline+=%*\ col:%03c\  " Column number
 set statusline+=%*\ \ %r%w\ %P\  " Percentage
+set statusline+=%*\ %#ORANGE#%{'Messing'}\ %{'w'}\ %{'vimrc'}\ %{'againʕ•́ᴥ•̀?'}
 " }}}
 
 " {{{ netrw
