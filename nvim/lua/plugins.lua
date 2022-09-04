@@ -31,13 +31,16 @@ require("packer").startup(function(use)
   use "romgrk/barbar.nvim" --> Tab bar plugin
   use "glepnir/dashboard-nvim" --> Startup dashboard
   use "rcarriga/nvim-notify" --> Prettier notification
-  --use "MeF0504/vim-pets" --> Cats
   -- }}}
 
   -- {{{ File et Search
   use {
     "lewis6991/gitsigns.nvim", --> Git information
     config = function() require("gitsigns").setup() end
+  }
+  use {
+    "lukas-reineke/indent-blankline.nvim", --> Indentation guide
+    config = function() require("indent_blankline").setup() end
   }
   use "nvim-treesitter/nvim-treesitter" --> Incremental highlighting
   use "p00f/nvim-ts-rainbow" --> Rainbow color matching for parentheses

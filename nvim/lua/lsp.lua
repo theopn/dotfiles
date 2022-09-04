@@ -6,6 +6,11 @@
                                                 /_/
 --]]
 
+-- List of LSP server used later
+local server_list = {
+  "bashls", "clangd", "cssls", "html", "ltex", "remark_ls",
+}
+
 -- {{{ Basic lspconfig settings
 local status, nvim_lsp = pcall(require, "lspconfig")
 if (not status) then return end
@@ -144,9 +149,6 @@ local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protoco
 -- }}}
 
 -- {{{ Language Server Settings
-local server_list = {
-  "bashls", "clangd", "html", "marksman", "remark_ls", "ltex",
-}
 for _, v in ipairs(server_list) do
   nvim_lsp[v].setup { capabilities = capabilities, on_attach = on_attach, }
 end
@@ -167,7 +169,7 @@ nvim_lsp.sumneko_lua.setup {
 }
 -- }}}
 
--- {{{
+-- {{{ Trouble Settings
 require("trouble").setup {
   mode = "document_diagnostics",
 }
