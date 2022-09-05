@@ -1,5 +1,26 @@
 #!/bin/zsh
 
+# Custom trash function
+trash () {
+  if [ ! -d "$HOME/trash_zsh/" ]
+  then
+    mkdir $HOME/trash_zsh/
+  fi
+  mv "$1" $HOME/trash_zsh/
+  echo "$1" moved to trash!
+}
+
+trash_empty() {
+  if [ ! -d "$HOME/trash_zsh/" ]
+  then
+    echo "Trash folder does not exist!"
+  else
+    rm -r $HOME/trash_zsh/
+    mkdir $HOME/trash_zsh/
+    echo "Trash folder emptied!"
+  fi
+}
+
 ######### Alias ##########
 alias cl="clear"
 # Any $ commands in double quotes will be substituted in the startup and will be executed. So use single quotes

@@ -99,7 +99,7 @@ My zero-distraction note taker utilizing `vimwiki` plug-in.
 
 #### Zsh
 
-Shell should be fast. Simple prompt with git status and several alias to make my life better, including `nvif` to find file using `fzf` and `fd` and launch on Neovim, `trash` to move a file/folder to `$HOME/trash_zsh/`, and `google` to launch Google on `w3m`.
+Shell should be fast. Double line prompt with git status and several alias to make my life better, including `nvif` to find file using `fzf` and `fd` and launch on Neovim, `trash` to move a file/folder to `$HOME/trash_zsh/`, and `google` to launch Google on `w3m`.
 
 ### Linux
 

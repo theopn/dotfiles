@@ -11,29 +11,10 @@ echo "\e[036mWelcome\e[0m \e[32m$USER\e[0m!"
 # Vim mode
 bindkey -v
 
-# Custom trash function
-trash () {
-  if [ ! -d "$HOME/trash_zsh/" ]
-  then
-    mkdir $HOME/trash_zsh/
-  fi
-  mv "$1" $HOME/trash_zsh/
-  echo "$1" moved to trash!
-}
+#source ~/dotfiles/zsh/functions-zsh
 
-trash_empty() {
-  if [ ! -d "$HOME/trash_zsh/" ]
-  then
-    echo "Trash folder does not exist!"
-  else
-    rm -r $HOME/trash_zsh/
-    mkdir $HOME/trash_zsh/
-    echo "Trash folder emptied!"
-  fi
-}
-
-# Auto completion. Requires zsh-autocomplete
-source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
-source ~/dotfiles/zsh/alias-zsh
+source ~/dotfiles/zsh/aliases-zsh
 source ~/dotfiles/zsh/prompt-zsh
+
+#add_plugin marlonrichert/zsh-autocomplete
+source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
