@@ -8,7 +8,7 @@
 
 -- List of LSP server used later
 local server_list = {
-  "bashls", "clangd", "cssls", "html", "ltex", "remark_ls",
+  "bashls", "clangd", "cssls", "html", "ltex", --"remark_ls",
 }
 
 -- {{{ Basic lspconfig settings

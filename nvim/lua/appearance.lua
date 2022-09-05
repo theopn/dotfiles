@@ -176,6 +176,7 @@ ins_left({
   end,
 })
 
+
 ins_left({
   function()
     local no_msg = "No LSP"
@@ -195,6 +196,8 @@ ins_left({
   icon = " LSP:",
   color = { fg = colors.fg, gui = "bold" },
 })
+
+ins_left({ "filetype", color = { fg = colors.pink, gui = "bold" } })
 
 ins_left {
   "diagnostics",
