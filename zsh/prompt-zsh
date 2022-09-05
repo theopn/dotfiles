@@ -14,12 +14,28 @@ zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' *'
 zstyle ':vcs_info:*' stagedstr ' +'
 zstyle ':vcs_info:git:*' formats       '(%b%u%c)'
+# Only displayed in Git action like rebase, merge, cherry-pick
+zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
 ########## Prompt Setting ##########
-#PROMPT="╭─ %F{146}%n%f %F{036}at %F{085}%m %F{036}hanging out in %F{081}%~%f
-#╰─ %F{153}%D - %F{075}%* %f-> "
+#000 #000000
+#001 #800000
+#002 #008000
+#003 #808000
+#004 #000080
+#005 #800080
+#006 #008080
+#007 #c0c0c0
+#008 #808080
+#009 #ff0000
+#010 #00ff00
+#011 #ffff00
+#012 #0000ff
+#013 #ff00ff
+#014 #00ffff
+#015 #ffffff
 
-PROMPT="╭─ %F{146}⊄%f %F{153}%n%f %F{146}@%f %F{036}%m%f %F{146}⊅%f
-╰─ %F{146}%F{146}⊄%f %F{075}%*%f %F{081}%~%f %F{146}⊅%f ->%f %B"
-PROMPT+="\$vcs_info_msg_0_ "
+PROMPT="╭─ %F{037}⊄%f %F{146}%n%f %F{037}@%f %F{085}%m%f %F{037}hanging out in%f %F{114}%~%f %F{037}⊅%f
+╰─ %F{037}⊄%f %F{135}%*%f %F{037}⊅%f -> %B"
+PROMPT+="%F{131}\$vcs_info_msg_0_%f "
 
