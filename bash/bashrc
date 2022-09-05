@@ -1,6 +1,14 @@
 alias ls="ls --color=auto"
+alias la="ls -a"
+alias ll="ls -l"
 alias l="ls -l -a"
 alias cl="clear"
 
-PS1="\e[0;35m╭─\e[0m \e[0;37m\u\e[0m \e[0;96mat\e[0m \e[0;36m\h\e[0m \e[0;96mhanging out in\e[0m \e[1;32m\w\e[
-\e[0;35m╰─\e[0m \e[;0;34m\t\e[0m -> "
+# Read access for other users (default)
+umask 022
+# No read or write access for other users (Purdue SSH default)
+#umask 077
+
+PS1=" \e[0;96m[\e[0m\e[0;35m\u\e[0m @ \e[0;36m\h\e[0m in \e[0;34m\w\e[0m\e[0;96m]\e[0m -> "
+
+export TERM=xterm-256color
