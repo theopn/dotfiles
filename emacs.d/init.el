@@ -62,8 +62,8 @@
 (setq inhibit-startup-message t
       visible-bell t) ; Flash when bell rings
 (menu-bar-mode 1) ; Enable menu bar
-(set-fringe-mode 10) ; Vertical border
-(scroll-bar-mode -1) ; Disable scroll bar
+;; (set-fringe-mode 10) ; Vertical border -> Not compatible with non-GUI
+(scroll-bar-mode -1) ; Disable scroll bar -> Not compatible with non-GUI
 (set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 140)
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ; Theme
 (load-theme 'dracula t) ; ^
