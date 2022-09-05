@@ -7,10 +7,6 @@
 ##############################
 
 echo "\e[036mWelcome\e[0m \e[32m$USER\e[0m!"
-########## Prompt Setting ##########
-PROMPT="╭─ %F{146}%n%f %F{036}at %F{085}%m %F{036}hanging out in %F{081}%~%f
-╰─ %F{153}%D - %F{075}%* %f-> "
-# RPROMPT="%B${vcs_info_msg_0_}%F{12}%2~%f"
 
 # Vim mode
 bindkey -v
@@ -39,12 +35,5 @@ trash_empty() {
 # Auto completion. Requires zsh-autocomplete
 source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
-######### Alias ##########
-alias cl="clear"
-# Any $ commands in double quotes will be substituted in the startup and will be executed. So use single quotes
-alias cdfzf='cd $(fzf --height 40% --reverse)'
-alias google="w3m google.com"
-alias ls="ls -G"
-alias l="ls -l -a"
-alias nvi="nvim"
-alias nvif="fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim"
+source ~/dotfiles/zsh/alias-zsh
+source ~/dotfiles/zsh/prompt-zsh

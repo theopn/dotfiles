@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+autoload -Uz vcs_info
+autoload -U colors && colors
+
+zstyle ':vcs_info:*' enable git
+# Hook before every commands
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+zstyle ':vcs_info:*' check-for-changes true
+
+zstyle ':vcs_info:*' unstagedstr ' *'
+zstyle ':vcs_info:*' stagedstr ' +'
+zstyle ':vcs_info:git:*' formats       '(%b%u%c)'
+
+########## Prompt Setting ##########
+#PROMPT="╭─ %F{146}%n%f %F{036}at %F{085}%m %F{036}hanging out in %F{081}%~%f
+#╰─ %F{153}%D - %F{075}%* %f-> "
+
+PROMPT="╭─ %F{146}⊄%f %F{153}%n%f %F{146}@%f %F{036}%m%f %F{146}⊅%f
+╰─ %F{146}%F{146}⊄%f %F{075}%*%f %F{081}%~%f %F{146}⊅%f ->%f %B"
+PROMPT+="\$vcs_info_msg_0_ "
+
