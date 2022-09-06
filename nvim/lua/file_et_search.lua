@@ -78,3 +78,17 @@ require("telescope").setup {
 }
 require("telescope").load_extension "file_browser"
 -- }}}
+
+-- {{{ Which-Key Settings
+local wk = require("which-key")
+wk.setup()
+wk.register({
+  ["<leader>"] = {
+    f = {
+      name = "+file",
+      f = { "<CMD>Telescope find_files<CR>", "Find File" },
+      b = { "<CMD>Telescope file_browser<CR>", "Browse File" },
+    },
+  },
+})
+-- }}}

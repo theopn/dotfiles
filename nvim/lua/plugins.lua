@@ -47,6 +47,7 @@ require("packer").startup(function(use)
   use "kyazdani42/nvim-tree.lua" --> File tree
   use "nvim-telescope/telescope.nvim" --> Expendable fuzzy finder
   use "nvim-telescope/telescope-file-browser.nvim" --> File browser extension for Telescope
+  use "folke/which-key.nvim" --> Pop-up dictionary for keybindings
   use {
     "ellisonleao/glow.nvim", --> Markdown file preview. Requires glow installed
     ft = { "markdown" },

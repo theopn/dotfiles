@@ -130,6 +130,7 @@ do
     -- }}}
 
     -- {{{ Plugin/Feature Specific Keybindings
+    { 'n', "<leader>?", "<CMD>WhichKey<CR>" }, --> Bring up Which-key pop-up
     { 'n', "<leader>n", "<CMD>NvimTreeToggle<CR>" }, --> Tree toggle
     -- Barbar navigation --
     { 'n', "<leader>t", "<CMD>tabnew<CR>" }, --> Open a new buffer
