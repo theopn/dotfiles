@@ -8,7 +8,15 @@
 
 ;; a.k.a my to-do list
 
-;; ---[[ Essential ackages
+;; Change backup directory
+(setq backup-directory-alist `(("." . "~/emacs_backup")))
+(setq backup-by-copying-when-linked t)
+(setq delete-old-versions t
+  kept-new-versions 6
+  kept-old-versions 2
+  version-control t)
+
+;; Essential packages
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
 			 ("org" . "https://orgmode.org/elpa/")
@@ -39,9 +47,9 @@
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
-;; --]]
+;;
 
-;; ---[[ Helper packages
+;; Helper packages
 (use-package counsel
   :bind (("M-x" . counsel-M-x)
 	 ("C-x b" . counsel-ibuffer)
@@ -56,9 +64,9 @@
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.1))
-;; --]]
+;;
 
-;; ---[[ Apperance - Basic
+;; Apperance - Basic
 (setq inhibit-startup-message t
       visible-bell t) ; Flash when bell rings
 (menu-bar-mode 1) ; Enable menu bar
@@ -70,9 +78,9 @@
 (set-frame-parameter (selected-frame) 'alpha '(90 90)) ; Transparency
 (add-to-list 'default-frame-alist '(alpha 90 90)) ; ^
 (defalias 'yes-or-no-p 'y-or-n-p) ; Change yes no menu
-;; --]]
+;;
 
-;; ---[[ Apperance - Advanced
+;; Apperance - Advanced
 (use-package all-the-icons) ; Icons for Modeline
 (use-package doom-modeline
   :ensure t
@@ -85,9 +93,9 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0)))) ;Don't display line number in the EShell
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-;; --]]
+;;
 
-;; ---[[ Evil mode
+;; Evil mode
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 (use-package evil
   :init
@@ -106,7 +114,7 @@
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
   (evil-set-initial-state 'dashboard-mode 'normal))
-;; --]]
+;;
 
 ;; ---[[ Org Mode Environment
 (defun efs/org-mode-setup ()
@@ -168,7 +176,7 @@
              (org-agenda-todo-list-sublevels nil)
              (org-agenda-files org-agenda-files)))
 )))) ; Honestly never uses it until I figure out how to launch it by default
-;; --]]
+;;
 
 ;; Automatically puts buffer list and Org agenda
 (defun startup-layout ()
@@ -181,3 +189,17 @@
  (enlarge-window-horizontally 10)
  )
 (startup-layout)
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(which-key use-package rainbow-delimiters ivy-rich hydra general evil doom-modeline counsel all-the-icons)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
