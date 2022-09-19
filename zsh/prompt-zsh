@@ -35,5 +35,5 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 #015 #ffffff
 
 PROMPT="╭─ %F{037}⊄%f %F{146}%n%f %F{037}@%f %F{085}%m%f %F{037}hanging out in%f %F{114}%~%f %F{037}⊅%f
-╰─ %F{037}⊄%f %F{131}(\$vcs_info_msg_0_)%f %F{135}%*%f %F{037}⊅%f -> %B"
+╰─ %F{037}⊄%f %F{131}(\$vcs_info_msg_0_)%f %F{135}%*%f %F{037}⊅%f -> "
 

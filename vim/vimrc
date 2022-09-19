@@ -122,6 +122,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'MeF0504/vim-pets'
 " Personal wiki plugin
 Plug 'vimwiki/vimwiki'
+Plug 'vim-scripts/DrawIt'
 call plug#end()
 " }}}
 
