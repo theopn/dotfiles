@@ -93,7 +93,7 @@ do
   local key_opt = {
     -- {{{ Text Edit Keybindings
     -- Insert Mode --
-    { 'i', "jk", "<ESC><CMD>write<CR>" }, --> "joke", get it? Ha ha
+    { 'i', "jk", "<ESC><CMD>update<CR>" }, --> "joke", get it? Ha ha
     -- Auto bracket closers --
     { 'i', "(", "()<LEFT>" },
     { 'i', "[", "[]<LEFT>" },

@@ -42,7 +42,7 @@ set spell spelllang=en_us spellsuggest=best,8
 " {{{ Base keybindings
 nnoremap <SPACE> <Nop>
 let mapleader=' '
-inoremap jk <ESC>:write<CR>
+inoremap jk <ESC>:update<CR>
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
