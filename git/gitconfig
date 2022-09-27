@@ -1,6 +1,14 @@
 [user]
-	name = theopn
+	name = Theo P
 	email = 63016528+theopn@users.noreply.github.com
 #	email = 11766464-theopn@users.noreply.gitlab.com
 [core]
 	excludesfile = /Users/parktheo0/.gitignore_global
+	editor = vim
+[fetch]
+  # Delete out deted branch during fetch
+	prune = true
+[init]
+	defaultBranch = main
+[status]
+	short = true
