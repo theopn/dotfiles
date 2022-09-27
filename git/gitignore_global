@@ -1,6 +1,39 @@
-npm-debug.log
+# Come on Apple
 .DS_Store
+
+# Come on JetBrains
 .idea/
+
+# Sad Emacs user noise
+./auto/*
+*.el
 *~
-log/
+
+# Sad web dev noise
+npm-debug.log
+
+# Tex compiling related
+*.aux
+*.lof
 *.log
+*.lot
+*.fls
+*.out
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*fdb_latexmk
+*.synctex.gz
+latex.out/
+
+# Bibtex
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.run.xml
+
