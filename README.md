@@ -47,59 +47,95 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 #### Bash
 
+> Used in school SSH server only
+
 Basic shell setting with just ls alias and prompt.
 
 #### Emacs
 
-Part-time text editor, full-time to-do list application. My configuration is focused on making Emacs function as a to-do list application by utilizing the Org-mode.
+> To-do list
+
+Currently only using it for the Org mode. Planning on expanding its usage.
 
 #### Firefox
 
-userChrome files based on [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox) and a basic Vimium configuration are included. Be aware that user profile customization using CSS is deprecated and might break anytime with future update of Firefox.
+> Main browser
+
+- userChrome: Inspired by [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox)
+- Basic Vimium configuration
+
+User profile customization using CSS file is deprecated, so be cautious when using it. It might break with any future Firefox update.
 
 #### Fonts
 
-I have an exquisite taste in fonts.
+> I love Comic Sans
 
 - [Comic Mono](https://dtinth.github.io/comic-mono-font/): Mono-spaced version of Comic Sans. The best font in the world. Just trust me and use it, you'll love it.
-- [NERD font version](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FantasqueSansMono) of [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans). Formally known as *Cosmic Sans Neue Mono*, the name "comes from [author's] realization that at some point it looked like the mutant child of Comic Sans and Helvetica Neue."
+- [NERD font version](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FantasqueSansMono) of [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans).
 
-I like rather childish fonts, but why serious fonts? When I'm stressed out with work, the last thing I want is to stare at the screen filled with Consolas and 56 error messages. I highly recommend you explore fonts, especially if you have dyslexia.
 Honorable mentions for [DaddyTimeMono Nerd Font](https://www.programmingfonts.org/#daddytimemono) and [Hermit Nerd Font](https://www.programmingfonts.org/#hermit).
 
 #### Git
+
+> Hail Linus
 
 No comment.
 
 #### kitty
 
-Cross-platform, easily configurable with one file, and fast. All I want from a terminal emulator. `color_test.sh` is also included for testing colors.
+> Terminal emulator
+
+Configuration include Dracula color scheme and borderless look. `color_test.sh` is included to test color outputs.
 
 #### Mutt
 
-It does everything I need from an email client, which are receiving, reading, deleting, and moving emails to different folders, composing email in my favorite text editor, and doing them efficiently. It's a shame that emails nowadays are filled with HTML contents and images. It can utilize w3m to view *most* HTML contents.
+> Command-line email client
+
+Configuration include automatically opening HTML contents in w3m, Vim style keybindings, and Dracula theme. Templates to add a new email account is included.
 
 #### Neofetch
+
+> Essential
 
 Happy ricing!
 
 #### Neovim
 
-Where I spend most of my time on (both the configuration and the text editor itself). It is my IDE for Lua and C, note taker, and so much more. Configuration is written 99.9% in Lua.
+> Text editor/IDE for everything but Java (L Java)
+
+Configuration is written 100% in Lua.
+
+- `theo_init.lua`: Settings that does not require an external plug-in; id est keybindings, functions, base settings, etc.
+- `plugins.lua`: A table to manage plug-in using [Packer](https://github.com/wbthomason/packer.nvim)
+- `appearance.lua`: Settings for theme, tab and status bar, startup dashboard, etc.
+- `file_et_search.lua`: Settings for Telescope, NVimTree, and any file browser related plug-ins
+- `lsp.lua`: Settings for Neovim built-in LSP engine, servers, auto-completion, etc.
+- `grave.lua`: Any configuration that is not used anymore but is worth keeping
 
 #### tmux
 
-Status bar, prefix from `C-b` to `C-a`, and other keybindings inspired by Vim.
+> Actual terminal emulator
+
+Configuration includes a status bar, prefix from `C-b` to `C-a`, and other keybindings inspired by Vim.
 
 #### Vim
 
-My zero-distraction note taker utilizing `vimwiki` plug-in.
+> Focused note taker
 
-`drakai.vim`, which is a custom-made colorscheme of mix between Dracula and Monokai is included.
+- Configurations for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
+- `drakai.vim`, which is a custom-made colorscheme of mix between Dracula and Monokai is included in `.vim` folder
 
 #### Zsh
 
-Shell should be fast. Double line prompt with git status and several alias to make my life better, including `nvif` to find file using `fzf` and `fd` and launch on Neovim, `trash` to move a file/folder to `$HOME/trash_zsh/`, and `google` to launch Google on `w3m`.
+> I don't like my shell selling t-shirt
+
+No oh-my-zsh.
+
+- Quirky, smart, cool, and mysterious alias like:
+  - `nvif` to find file using `fzf` and `fd` and launch on Neovim
+  - `trash` to move a file/folder to `$HOME/trash_zsh/`
+  - `google` to launch Google on `w3m` (Startpage requires JavaScript :( )
+- Fairly fast and informative prompt
 
 ### Linux
 
