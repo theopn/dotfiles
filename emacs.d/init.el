@@ -9,12 +9,12 @@
 ;; a.k.a my to-do list
 
 ;; Change backup directory
-(setq backup-directory-alist `(("." . "~/emacs_backup")))
-(setq backup-by-copying-when-linked t)
-(setq delete-old-versions t
-  kept-new-versions 6
-  kept-old-versions 2
-  version-control t)
+(setq backup-directory-alist `(("." . "~/emacs_backup"))
+      backup-by-copying-when-linked t
+      delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
 
 ;; Essential packages
 (require 'package)
@@ -69,7 +69,8 @@
 ;; Apperance - Basic
 (setq inhibit-startup-message t
       visible-bell t) ; Flash when bell rings
-(menu-bar-mode 1) ; Enable menu bar
+(menu-bar-mode -1) ; Enable menu bar
+(tool-bar-mode -1)
 ;; (set-fringe-mode 10) ; Vertical border -> Not compatible with non-GUI
 (scroll-bar-mode -1) ; Disable scroll bar -> Not compatible with non-GUI
 (set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 140)
