@@ -41,16 +41,51 @@ printf "\n2. Dotfiles. Do you wish to replace dotfiles? y/n: \n"
 read -n1 dotfile_input
 case $dotfile_input in
   y|Y)
-    # Git
-    git_files=("gitignore_global" "gitconfig")
-    for v in ${git_files[@]}; do
+    # bash
+    current_files=("bashrc")
+    for v in ${current_files[@]}; do
+      safe_symlink ~/dotfiles/bash/"$v" ~/."$v" ~/dotfiles_backup/
+    done
+
+    # emacs
+    current_files=("init.el")
+    mkdir -p ~/.emacs.d/
+    for v in ${current_files[@]}; do
+      safe_symlink ~/dotfiles/emacs.d/"$v" ~/.emacs.d/"$v" ~/dotfiles_backup/
+    done
+
+    # git
+    current_files=("gitignore_global" "gitconfig")
+    for v in ${current_files[@]}; do
       safe_symlink ~/dotfiles/git/"$v" ~/."$v" ~/dotfiles_backup/
     done
 
-    # Zsh
-    zsh_files=("zshrc" "zsh_plugins")
-    for v in ${zsh_files[@]}; do
-      safe_symlink ~/dotfiles/zsh/"$v" ~/."$v" ~/dotfiles_backup/
+    # kitty
+    current_files=("kitty.conf")
+    mkdir -p ~/.config/kitty/
+    for v in ${current_files[@]}; do
+      safe_symlink ~/dotfiles/kitty/"$v" ~/.config/kitty/"$v" ~/dotfiles_backup/
+    done
+
+    # mutt
+    current_files=("mailcap", "muttrc")
+    mkdir -p ~/.mutt/
+    for v in ${current_files[@]}; do
+      safe_symlink ~/dotfiles/mutt/"$v" ~/.mutt/"$v" ~/dotfiles_backup/
+    done
+
+    # neofetch
+    current_files=("config.conf")
+    mkdir -p ~/.config/neofetch/
+    for v in ${current_files[@]}; do
+      safe_symlink ~/dotfiles/neofetch/"$v" ~/.config/neofetch/"$v" ~/dotfiles_backup/
+    done
+
+    # nvim
+    current_files=("init.lua", "lua")
+    mkdir -p ~/.config/nvim/
+    for v in ${current_files[@]}; do
+      safe_symlink ~/dotfiles/nvim/"$v" ~/.config/nvim/"$v" ~/dotfiles_backup/
     done
 
     # Tmux
@@ -59,20 +94,54 @@ case $dotfile_input in
       safe_symlink ~/dotfiles/tmux/"$v" ~/."$v" ~/dotfiles_backup/
     done
 
-    # Tmux
-    bash_files=("bashrc")
-    for v in ${bash_files[@]}; do
-      safe_symlink ~/dotfiles/bash/"$v" ~/."$v" ~/dotfiles_backup/
-    done
-
     # Vim
-    current="vim"
     vim_files=("vimrc")
     for v in ${vim_files[@]}; do
       safe_symlink ~/dotfiles/vim/"$v" ~/."$v" ~/dotfiles_backup/
     done
+    # Vim color
+    mkdir -p ~/.vim/
+    safe_symlink ~/dotfiles/vim/colors/ ~/.vim/colors/ ~/dotfiles_backup/
+
+    # Zsh
+    zsh_files=("zshrc" "zsh_plugins")
+    for v in ${zsh_files[@]}; do
+      safe_symlink ~/dotfiles/zsh/"$v" ~/."$v" ~/dotfiles_backup/
+    done
+
     ;;
   *)
     printf "\nSkipping dotfile setups...\n" ;;
 esac
 
+printf "\n3. MacOS specific Settings. Do you want to proceed? y/n: "
+read -n1 macos_input
+case $macos_input in
+  y|Y)
+    source ~/dotfiles/scripts/macos_settings.sh ;;
+  *)
+    printf "\nSkipping MacOS specific settings... \n" ;;
+esac
+
+printf "\n4. Homebrew Optional Formulae/Casks.
+Some formulae might compitable with non-MacOS System.
+This might take a while
+Do you want to proceed? y/n: "
+read -n1 homebrew_opt_input
+case $homebrew_opt_input in
+  y|Y)
+    brew bundle --file ~/dotfiles/homebrew/Brewfile_optional
+    ;;
+  *)
+    printf "\nSkipping Homebrew optonal file installation...\n" ;;
+esac
+
+printf "\nEnding the dotfile installation..."
+printf "
+   ____   __   __U _____ u
+U | __')u \ \ / /\| ___'|/
+ \|  _ \/  \ V /  |  _|'
+  | |_) | U_|'|_u | |___
+  |____/    |_|   |_____|
+ _|| \\_.-,//|(_  <<   >>
+(__) (__)\_) (__)(__) (__)\n"

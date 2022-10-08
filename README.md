@@ -27,7 +27,7 @@ Clone this repository in the home directory.
 
 Run the installation script (do not run with sudo as Homebrew will not like that).
 
-`bash ~/dotfiles/dotfiles_install.sh`
+`bash ~/dotfiles/deploy.sh`
 
 ## After installation
 
