@@ -8,7 +8,7 @@
 
 -- List of LSP server used later
 local server_list = {
-  "bashls", "clangd", "cssls", "html", "ltex", --"remark_ls",
+  "bashls", "clangd", "cssls", "html", "ltex", "pylsp", --"remark_ls",
 }
 
 -- {{{ Basic lspconfig settings
@@ -22,7 +22,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = vim.api.nvim_create_augroup("Format", { clear = true }),
       buffer = bufnr,
-      callback = function() vim.lsp.buf.formatting_seq_sync() end
+      callback = function() vim.lsp.buf.format() end -- vim.lsp.buf.formatting_seq_sync() is deprecated
     })
   end
 end
