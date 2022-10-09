@@ -4,10 +4,12 @@ tap "homebrew/core"
 
 brew "fd"
 brew "fzf"
+brew "htop"
 brew "lua"
 brew "neofetch"
 brew "neovim"
 brew "node"
+brew "ranger"
 brew "tmux"
 
 cask "amethyst"
