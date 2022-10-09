@@ -68,7 +68,7 @@ case $dotfile_input in
     done
 
     # mutt
-    current_files=("mailcap", "muttrc")
+    current_files=("mailcap" "muttrc") # Mailcap not working
     mkdir -p ~/.mutt/
     for v in ${current_files[@]}; do
       safe_symlink ~/dotfiles/mutt/"$v" ~/.mutt/"$v" ~/dotfiles_backup/
@@ -82,7 +82,7 @@ case $dotfile_input in
     done
 
     # nvim
-    current_files=("init.lua", "lua")
+    current_files=("init.lua" "lua") # init not working
     mkdir -p ~/.config/nvim/
     for v in ${current_files[@]}; do
       safe_symlink ~/dotfiles/nvim/"$v" ~/.config/nvim/"$v" ~/dotfiles_backup/
@@ -101,7 +101,7 @@ case $dotfile_input in
     done
     # Vim color
     mkdir -p ~/.vim/
-    safe_symlink ~/dotfiles/vim/colors/ ~/.vim/colors/ ~/dotfiles_backup/
+    safe_symlink ~/dotfiles/vim/colors ~/.vim/colors ~/dotfiles_backup/ # not working
 
     # Zsh
     zsh_files=("zshrc" "zsh_plugins")
@@ -118,7 +118,7 @@ printf "\n3. MacOS specific Settings. Do you want to proceed? y/n: "
 read -n1 macos_input
 case $macos_input in
   y|Y)
-    source ~/dotfiles/scripts/macos_settings.sh ;;
+    source ~/dotfiles/macos/macos_settings.sh ;;
   *)
     printf "\nSkipping MacOS specific settings... \n" ;;
 esac

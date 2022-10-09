@@ -212,18 +212,18 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 Formulae:
 
 - Bat: Fancier `cat` replacement
-- **fd: Alternative of `find` to list file entries**
+- **fd**: Alternative of `find` to list file entries
 - ffmpeg: Primarily used for `ffmpeg -i in.xxx out.yyy`
-- **fzf: Command line fuzzy finder**
+- **fzf**: Command line fuzzy finder
 - figlet: ASCII art generator
 - Hugo: Static website generator
-- htop: System monitor
+- **htop**: System monitor
 - **Lua**
 - mutt: TUI email client
 - **node**: Node JS
 - **neofetch**
 - **Neovim**
-- ranger: TUI file explorer
+- **ranger**: TUI file explorer
 - **tmux**
 - w3m: TUI web browser. Useful for a quick Google search or viewing HTML contents in Mutt
 
