@@ -68,7 +68,7 @@ case $dotfile_input in
     done
 
     # mutt
-    current_files=("mailcap" "muttrc") # Mailcap not working
+    current_files=("mailcap" "muttrc")
     mkdir -p ~/.mutt/
     for v in ${current_files[@]}; do
       safe_symlink ~/dotfiles/mutt/"$v" ~/.mutt/"$v" ~/dotfiles_backup/
@@ -82,7 +82,7 @@ case $dotfile_input in
     done
 
     # nvim
-    current_files=("init.lua" "lua") # init not working
+    current_files=("init.lua" "lua")
     mkdir -p ~/.config/nvim/
     for v in ${current_files[@]}; do
       safe_symlink ~/dotfiles/nvim/"$v" ~/.config/nvim/"$v" ~/dotfiles_backup/
@@ -101,7 +101,7 @@ case $dotfile_input in
     done
     # Vim color
     mkdir -p ~/.vim/
-    safe_symlink ~/dotfiles/vim/colors ~/.vim/colors ~/dotfiles_backup/ # not working
+    safe_symlink ~/dotfiles/vim/colors ~/.vim/colors ~/dotfiles_backup/
 
     # Zsh
     zsh_files=("zshrc" "zsh_plugins")
