@@ -251,11 +251,23 @@ vim.g.bufferline = { icons = true, maximum_padding = 1,
   no_name_title = "New Tab"
 }
 -- Compitability w/ nvim-tree --
-require("nvim-tree.events").on_tree_open(function()
-  require("bufferline.state").set_offset(31, "File Tree")
+local nvim_tree_events = require("nvim-tree.events")
+local bufferline_api = require("bufferline.api")
+
+local function get_tree_size()
+  return require "nvim-tree.view".View.width
+end
+
+nvim_tree_events.subscribe("TreeOpen", function()
+  bufferline_api.set_offset(get_tree_size())
 end)
-require("nvim-tree.events").on_tree_close(function()
-  require("bufferline.state").set_offset(0)
+
+nvim_tree_events.subscribe("Resize", function()
+  bufferline_api.set_offset(get_tree_size())
+end)
+
+nvim_tree_events.subscribe("TreeClose", function()
+  bufferline_api.set_offset(0)
 end)
 -- }}}
 
