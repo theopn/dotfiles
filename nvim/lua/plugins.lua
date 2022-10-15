@@ -31,6 +31,10 @@ require("packer").startup(function(use)
   use "romgrk/barbar.nvim" --> Tab bar plugin
   use "glepnir/dashboard-nvim" --> Startup dashboard
   use "rcarriga/nvim-notify" --> Prettier notification
+  use {
+    "folke/zen-mode.nvim",
+    config = function() require("zen-mode").setup() end
+  }
   -- }}}
 
   -- {{{ File et Search
