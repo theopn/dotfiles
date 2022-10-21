@@ -142,11 +142,11 @@
   (setq org-habit-graph-column 60)
 
   (setq org-agenda-files
-	'("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/educatio.org"
-	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/habitus.org"
-          "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/officium.org"
-	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/proiecta_gaudia.org"
-	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/org/vita.org")))
+	'("~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org/educatio.org"
+	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org/habitus.org"
+          "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org/officium.org"
+	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org/proiecta_gaudia.org"
+	  "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org/vita.org")))
 
   ;; Archive can be acheived with C-c C-w
   (setq org-refile-targets ; Default current buffer + archive.org file
