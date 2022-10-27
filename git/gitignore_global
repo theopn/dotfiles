@@ -3,6 +3,9 @@
 
 # Come on JetBrains
 .idea/
+*.xml
+*.iml
+*.class
 
 # Sad Emacs user noise
 ./auto/*
