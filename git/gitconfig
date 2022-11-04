@@ -6,6 +6,7 @@
 [core]
 	excludesfile = /Users/parktheo0/.gitignore_global
 	editor = vim
+	autocrlf = input
 [fetch]
   # Delete out deted branch during fetch
 	prune = true
