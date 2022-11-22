@@ -9,7 +9,6 @@
 
 # Sad Emacs user noise
 ./auto/*
-*.el
 *~
 
 # Sad web dev noise
