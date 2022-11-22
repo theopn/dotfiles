@@ -30,11 +30,19 @@ require("packer").startup(function(use)
   use "nvim-lualine/lualine.nvim" --> Status line plugin
   use "romgrk/barbar.nvim" --> Tab bar plugin
   use "glepnir/dashboard-nvim" --> Startup dashboard
-  use "rcarriga/nvim-notify" --> Prettier notification
   use {
-    "folke/zen-mode.nvim",
+    "folke/zen-mode.nvim", --> Centered view for focused text editing
     config = function() require("zen-mode").setup() end
   }
+  use({
+    "folke/noice.nvim", --> UI for LSP loading, command, notification, etc
+    event = "VimEnter",
+    config = function() require("noice").setup() end,
+    requires = {
+      "MunifTanjim/nui.nvim", --> Pop-up UI layout library
+      "rcarriga/nvim-notify" --> Prettier notification
+    }
+  })
   -- }}}
 
   -- {{{ File et Search
