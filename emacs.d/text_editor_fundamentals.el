@@ -40,6 +40,7 @@
   (setq evil-want-C-i-jump nil)
   :config
   (evil-mode 1)
+  (evil-set-undo-system 'undo-redo) ; Vim style undo-redo sequence
 
   ;; Use visual line motions even outside of visual-line-mode buffers
   (evil-global-set-key 'motion "j" 'evil-next-visual-line)
@@ -63,5 +64,6 @@
 (use-package evil-escape)
 (evil-escape-mode 1)
 (setq-default evil-escape-key-sequence "jk") ; Imagine requiring a separate package for this
+(setq-default evil-escape-delay 0.2) ; Default 0,1 is too fast
 ;; ---------
 

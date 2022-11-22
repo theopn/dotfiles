@@ -31,11 +31,11 @@
 (defalias 'yes-or-no-p 'y-or-n-p) ; Change yes no menu
 ;;
 
-;; Essential packages
+;; PACKAGE PACKAGE
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
-			 ("org" . "https://orgmode.org/elpa/")
-			 ("elpa" . "https://elpa.gnu.org/packages/")))
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 (unless package-archive-contents
   (package-refresh-contents))
@@ -44,12 +44,13 @@
   (package-install 'use-package))
 (require 'use-package)
 (setq use-package-always-ensure t)
+;; ---------------
 
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
          :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)	
+         ("TAB" . ivy-alt-done)
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)

@@ -1,4 +1,4 @@
-;; ---[[ Org Mode Environment
+;; Org Mode Environment
 (defun efs/org-mode-setup ()
   (org-indent-mode)
   (visual-line-mode 1))
