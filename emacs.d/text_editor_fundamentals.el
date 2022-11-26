@@ -52,10 +52,14 @@
   (define-key evil-insert-state-map (kbd "C-j") 'evil-next-visual-line)
   (define-key evil-insert-state-map (kbd "C-k") 'evil-previous-visual-line)
   (define-key evil-insert-state-map (kbd "C-l") 'evil-forward-char)
+  ;; C-x o (other-window)
+  ;; C-x { } enlarge/shrink-window-horizontally C-x ^ enlarge-window
   (define-key evil-normal-state-map (kbd "SPC h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "SPC j") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "SPC k") 'evil-window-up)
   (define-key evil-normal-state-map (kbd "SPC l") 'evil-window-right)
+  ;; C-x 0 (delete-window)
+  ;; C-x 2 (split-window-below) C-x 3 (split-window-right)
   (define-key evil-normal-state-map (kbd "SPC w") 'delete-window)
 
   (evil-set-initial-state 'messages-buffer-mode 'normal)
@@ -66,4 +70,21 @@
 (setq-default evil-escape-key-sequence "jk") ; Imagine requiring a separate package for this
 (setq-default evil-escape-delay 0.2) ; Default 0,1 is too fast
 ;; ---------
+
+;; Parenthesis matching
+;; Built-in electric pair matching for () "" [], etc
+(electric-pair-mode 1)
+(setq electric-pair-preserve-balance nil)
+
+; Better parenthesis
+;(use-package smartparens)
+
+;; Go to the matching paren if on a paren; otherwise insert %
+(global-set-key "%" 'match-paren)
+(defun match-paren (arg)
+  (interactive "p")
+  (cond ((looking-at "\\s(") (forward-list 1) (backward-char 1))
+        ((looking-at "\\s)") (forward-char 1) (backward-list 1))
+        (t (self-insert-command (or arg 1)))))
+;; --------------------
 
