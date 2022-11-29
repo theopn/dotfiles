@@ -116,7 +116,7 @@ Configuration is written 100% in Lua.
 
 > Actual terminal emulator
 
-Configuration includes a status bar, prefix from `C-b` to `C-a`, and other keybindings inspired by Vim.
+Configuration includes a status bar, prefix from `C-b` to `C-x` to match Emacs keybindings, and other keybindings inspired by Vim.
 
 #### Vim
 
