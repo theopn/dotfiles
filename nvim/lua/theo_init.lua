@@ -136,7 +136,7 @@ do
     { 'n', "<leader>t", "<CMD>tabnew<CR>" }, --> Open a new buffer
     { 'n', "<leader>,", "<CMD>BufferPrevious<CR>" }, --> Barbar plugin overrides "gT"
     { 'n', "<leader>.", "<CMD>BufferNext<CR>" }, --> Barbar plugin overrides "gt"
-    { 'n', "<leader>w", "<CMD>BufferClose<CR>" },
+    { 'n', "<leader>k", "<CMD>BufferClose<CR>" }, --> Kill a tab
     -- Telescope --
     { 'n', "<leader>ff", "<CMD>Telescope find_files<CR>" },
     { 'n', "<leader>fb", "<CMD>Telescope file_browser<CR>" },
