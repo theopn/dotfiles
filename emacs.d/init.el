@@ -16,21 +16,6 @@
       kept-old-versions 2
       version-control t)
 
-;; Basic appearance settings
-(setq inhibit-startup-message t
-      visible-bell t) ; Flash when bell rings
-(menu-bar-mode -1) ; - disables menu bar
-(tool-bar-mode -1) ; -1 disables tool bar
-;; (set-fringe-mode 10) ; Vertical border -> Not compatible with non-GUI
-(scroll-bar-mode -1) ; Disable scroll bar -> Not compatible with non-GUI
-(set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font" :height 140) ; Font
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes") ; Theme
-(load-theme 'dracula t) ; ^
-(set-frame-parameter (selected-frame) 'alpha '(90 90)) ; Transparency
-(add-to-list 'default-frame-alist '(alpha 90 90)) ; ^
-(defalias 'yes-or-no-p 'y-or-n-p) ; Change yes no menu
-;;
-
 ;; PACKAGE PACKAGE
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
@@ -46,60 +31,11 @@
 (setq use-package-always-ensure t)
 ;; ---------------
 
-(use-package ivy
-  :diminish
-  :bind (("C-s" . swiper)
-         :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
-         ("C-l" . ivy-alt-done)
-         ("C-j" . ivy-next-line)
-         ("C-k" . ivy-previous-line)
-         :map ivy-switch-buffer-map
-         ("C-k" . ivy-previous-line)
-         ("C-l" . ivy-done)
-         ("C-d" . ivy-switch-buffer-kill)
-         :map ivy-reverse-i-search-map
-         ("C-k" . ivy-previous-line)
-         ("C-d" . ivy-reverse-i-search-kill))
-  :config
-  (ivy-mode 1))
-;;
-
-;; Helper packages
-(use-package counsel
-  :bind (("M-x" . counsel-M-x)
-	 ("C-x b" . counsel-ibuffer)
-	 ("C-x C-f" . counsel-find-file)
-	 :map minibuffer-local-map
-	 ("C-r" . 'counsel-minibuffer-history)))
-(use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 0.1))
-;;
-
-;; Apperance - Advanced
-(use-package all-the-icons) ; Icons for Modeline
-(use-package doom-modeline
-  :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 15)))
-(column-number-mode) ; Colume line in the Modeline
-(global-display-line-numbers-mode t) ; Display line number
-(dolist (mode '(term-mode-hook
-		eshell-mode-hook))
-  (add-hook mode (lambda () (display-line-numbers-mode 0)))) ;Don't display line number in the EShell
-(use-package rainbow-delimiters
-  :hook (prog-mode . rainbow-delimiters-mode))
-;;
-
 ;; Load other config files
 ;; ----------------------------------------------------
+(load "~/dotfiles/emacs.d/appearance.el")
 (load "~/dotfiles/emacs.d/text_editor_fundamentals.el")
+(load "~/dotfiles/emacs.d/convinience.el")
 (load "~/dotfiles/emacs.d/org_config.el")
 ;; ----------------------------------------------------
 
