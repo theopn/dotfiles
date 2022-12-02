@@ -35,7 +35,7 @@
 ;; ----------------------------------------------------
 (load "~/dotfiles/emacs.d/appearance.el")
 (load "~/dotfiles/emacs.d/text_editor_fundamentals.el")
-(load "~/dotfiles/emacs.d/convinience.el")
+(load "~/dotfiles/emacs.d/convenience.el")
 (load "~/dotfiles/emacs.d/org_config.el")
 ;; ----------------------------------------------------
 
