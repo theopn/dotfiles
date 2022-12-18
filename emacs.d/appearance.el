@@ -1,4 +1,7 @@
 ;; Basic appearance settings
+(setq display-time-day-and-date t
+      display-time-24hr-format t)
+(display-time)
 (setq inhibit-startup-message t
       visible-bell t) ; Flash when bell rings
 (menu-bar-mode -1) ; - disables menu bar

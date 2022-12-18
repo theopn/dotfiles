@@ -1,10 +1,12 @@
 ;; Visual Settings
-(global-hl-line-mode 1) ; Vim cursorline
-(setq display-fill-column-indicator-column 80) ; Ruler at 80
+(setq display-line-numbers-type 'relative) ; display-line-numbers is buffer-local, so don't use it
+(global-display-line-numbers-mode) ; Set the variable above, call the function to enable line globally. Basic Lisp workflow
+(global-hl-line-mode 1) ; cursorline
+(setq display-fill-column-indicator-column 80) ; ruler 80
 (add-hook 'prog-mode-hook (lambda () (display-fill-column-indicator-mode))) ; ^
 
 ;; Tab character enabling and disabling
-(setq-default tab-width 2) ; 2 character as shift
+(setq-default tab-width 2) ; 2 character as tab
 (setq-default electric-indent-inhibit t) ; Disabling genius feature of indenting previous line
 
 (defun disable-tabs () (setq indent-tabs-mode nil)) ; Space as tab
