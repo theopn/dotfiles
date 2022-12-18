@@ -35,17 +35,6 @@ require("packer").startup(function(use)
     config = function() require("zen-mode").setup() end
   }
   use "rcarriga/nvim-notify" --> Prettier notification
-  --[[
-  use({
-    "folke/noice.nvim", --> UI for LSP loading, command, notification, etc
-    event = "VimEnter",
-    config = function() require("noice").setup() end,
-    requires = {
-      "MunifTanjim/nui.nvim", --> Pop-up UI layout library
-      "rcarriga/nvim-notify" --> Prettier notification
-    }
-  })
-  --]]
   -- }}}
 
   -- {{{ File et Search
