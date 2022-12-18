@@ -28,6 +28,8 @@ alias cdfzf='cd $(fzf --height 40% --reverse)'
 alias google="w3m google.com"
 alias ls="ls -G"
 alias l="ls -l -a"
+alias note="nvim ~/Documents/quick_notes.md"
+alias notes="nvim ~/Documents/quick_notes.md"
 alias nvi="nvim"
 alias nvif="fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim"
 
