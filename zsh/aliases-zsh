@@ -21,6 +21,17 @@ trash_empty() {
   fi
 }
 
+######### Alias w hard-coded paths ##########
+BUFFER="~/Nextcloud/buffer-homeworks_home/"
+DOTFILES_FOLDER="~/dotfiles/"
+QUICK_NOTES_PATH="$BUFFER""quick_notes.md"
+alias buf="cd $BUFFER"
+alias buffer="cd $BUFFER"
+alias dot="cd $DOTFILES_FOLDER"
+alias dotfiles="cd $DOTFILES_FOLDER"
+alias note="nvim $QUICK_NOTES_PATH"
+alias notes="nvim $QUICK_NOTES_PATH"
+
 ######### Alias ##########
 alias cl="clear"
 # Any $ commands in double quotes will be substituted in the startup and will be executed. So use single quotes
@@ -28,8 +39,6 @@ alias cdfzf='cd $(fzf --height 40% --reverse)'
 alias google="w3m google.com"
 alias ls="ls -G"
 alias l="ls -l -a"
-alias note="nvim ~/Documents/quick_notes.md"
-alias notes="nvim ~/Documents/quick_notes.md"
 alias nvi="nvim"
 alias nvif="fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim"
 
