@@ -23,10 +23,12 @@ trash_empty() {
 
 ######### Alias w hard-coded paths ##########
 BUFFER="~/Nextcloud/buffer-homeworks_home/"
+DAILY_WRITING_FOLDER="~/Nextcloud/DW_2023/"
 DOTFILES_FOLDER="~/dotfiles/"
 QUICK_NOTES_PATH="$BUFFER""quick_notes.md"
 alias buf="cd $BUFFER"
 alias buffer="cd $BUFFER"
+alias dw="vim $DAILY_WRITING_FOLDER""index.md"
 alias dot="cd $DOTFILES_FOLDER"
 alias dotfiles="cd $DOTFILES_FOLDER"
 alias note="nvim $QUICK_NOTES_PATH"
