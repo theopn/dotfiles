@@ -23,9 +23,10 @@ trash_empty() {
 
 ######### Alias w hard-coded paths ##########
 CACHE="~/Nextcloud/l1-cache/"
-DAILY_WRITING_FOLDER="~/Nextcloud/DW-$(date +'%Y')/"
+DAILY_WRITING_FOLDER="~/Nextcloud/dw-$(date +'%Y')/"
 DOTFILES_FOLDER="~/dotfiles/"
 QUICK_NOTES_PATH="$CACHE""quick_notes.md"
+WIKI_PATH="~/Nextcloud/theo-vimwiki/"
 alias l1="cd $CACHE"
 alias cache="cd $CACHE"
 alias dw="vim $DAILY_WRITING_FOLDER""index.md"
@@ -33,6 +34,7 @@ alias dot="cd $DOTFILES_FOLDER"
 alias dotfiles="cd $DOTFILES_FOLDER"
 alias note="nvim $QUICK_NOTES_PATH"
 alias notes="nvim $QUICK_NOTES_PATH"
+alias wiki="vim $WIKI_PATH""index.md"
 
 ######### Alias ##########
 alias cl="clear"
