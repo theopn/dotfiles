@@ -7,8 +7,9 @@
 --]]
 
 -- List of LSP server used later
+-- MasonInstall bash-language-server, clangd, css-lsp, html-lsp, ltex-ls, lua-language-server, python-lsp-server, remark-language-server, sqlls
 local server_list = {
-  "bashls", "clangd", "cssls", "html", "ltex", "pylsp", --"remark_ls",
+  "bashls", "clangd", "cssls", "html", "ltex", "pylsp", "sqlls", --"remark_ls",
 }
 
 -- {{{ Basic lspconfig settings
@@ -174,8 +175,3 @@ require("trouble").setup {
   mode = "document_diagnostics",
 }
 -- }}}
-
--- {{{ lspsaga Settings
-local saga = require("lspsaga")
-saga.init_lsp_saga()
--- }

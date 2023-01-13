@@ -80,7 +80,13 @@ require("packer").startup(function(use)
   use "hrsh7th/cmp-cmdline" --> nvim-cmp source for vim commands
   use "hrsh7th/nvim-cmp" --> Completion Engine
   use "folke/trouble.nvim" --> Pretty list of LSP error list
-  use "glepnir/lspsaga.nvim" --> LSP hover menu, code action, rename, etc
+  use {
+    "glepnir/lspsaga.nvim", --> LSP hover menu, code action, rename, etc
+    branch = "main",
+    config = function()
+        require('lspsaga').setup({})
+    end,
+  }
   -- }}}
 
 end)
