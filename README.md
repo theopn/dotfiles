@@ -103,6 +103,8 @@ Happy ricing!
 
 > Text editor/IDE for everything but Java (L Java)
 
+Due to requests of my friends in CS252, my Neovim configuration has moved to a separate repository [Theovim](https://github.com/theopn/theovim)
+
 Configuration is written 100% in Lua.
 
 - `theo_init.lua`: Settings that does not require an external plug-in; id est keybindings, functions, base settings, etc.
@@ -211,7 +213,7 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 Formulae:
 
-- Bat: Fancier `cat` replacement
+- bat: Fancier `cat` replacement
 - **fd**: Alternative of `find` to list file entries
 - ffmpeg: Primarily used for `ffmpeg -i in.xxx out.yyy`
 - **fzf**: Command line fuzzy finder
@@ -222,7 +224,7 @@ Formulae:
 - mutt: TUI email client
 - **node**: Node JS
 - **neofetch**
-- **Neovim**
+- **neovim**
 - **ranger**: TUI file explorer
 - **tmux**
 - w3m: TUI web browser. Useful for a quick Google search or viewing HTML contents in Mutt
@@ -233,7 +235,7 @@ Formulae:
 | Development | - Docker<br> - **kitty**<br> - IntelliJ CE: Ugh Java<br> - **MacVim**<br> - **VSCode**
 | Productivity| - Emacs (GUI version): To-do list app<br> - Notion<br> - **Obsidian**
 | System (MacOS) | - Alfred: Spotlight replacement<br> - AppCleaner: App remover for MacOS<br> - **Amethyst: "Tiling window manager" for MacOS**<br> - **Keka**: File archiver<br> - Stats: System monitoring tool
-| Tools | - Bitwarden: Password manager<br> - Cryptomator: File encryption tool<br> - Nextcloud: I host a personal Nextcloud server on VPS
+| Tools | - Bitwarden: Password manager<br> - Cryptomator: File encryption tool<br> - Nextcloud: I host a personal Nextcloud server on VPS<br> - OBS: Recording tool
 | Web | - Brave: Secondary Chromium browser. Would use a pure Chromium, but hey, free money<br> - **Firefox**<br> - Thunderbird
 
 #### Settings
