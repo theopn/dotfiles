@@ -47,11 +47,11 @@ case $dotfile_input in
       safe_symlink ~/dotfiles/bash/"$v" ~/."$v" ~/dotfiles_backup/
     done
 
-    # emacs
-    current_files=("init.el")
-    mkdir -p ~/.emacs.d/
+    # Doom Emacs
+    current_files=("init.el" "config.el" "packages.el")
+    mkdir -p ~/.doom.d/
     for v in ${current_files[@]}; do
-      safe_symlink ~/dotfiles/emacs.d/"$v" ~/.emacs.d/"$v" ~/dotfiles_backup/
+      safe_symlink ~/dotfiles/doom.d/"$v" ~/.doom.d/"$v" ~/dotfiles_backup/
     done
 
     # git
