@@ -1,5 +1,22 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;; Cat: https://www.asciiart.eu/animals/cats
+;;      I added a few layers of belly so it looks more like my cat Oliver
+;; Logo: figlet -f Soft Theomacs
+;;       Soft.flf file can be found in my "Theovim" repository
+;;                     .---....___
+;;            __..--''``          `` _..._    __
+;;  /// //_.-'    .-/';  `         `<._  ``.''_ `. / // /
+;; ///_.-' _..--.'_    ;                    `( ) ) // //
+;; / (_..-' // (< _     ;_..__               ; `' / ///
+;;  / // // //  `-._,_)' // / ``--...____..-' /// / //
+;;
+;; ,--------.,--.
+;; '--.  .--'|  ,---.  ,---.  ,---. ,--,--,--. ,--,--. ,---. ,---.
+;;    |  |   |  .-.  || .-. :| .-. ||        |' ,-.  || .--'(  .-'
+;;    |  |   |  | |  |\   --.' '-' '|  |  |  |\ '-'  |\ `--..-'  `)
+;;    `--'   `--' `--' `----' `---' `--`--`--' `--`--' `---'`----'
+
 ;; Things that Doom does by default that Emacs don't
 ;; - jk to ESC
 ;; - Tab character highlighting
