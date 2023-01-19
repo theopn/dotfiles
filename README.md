@@ -3,14 +3,14 @@
 > Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definitely not because I like wasting time writing a documentation that no one will ever read instead of doing actual works.
 
 ![fedora_sc](./pictures/2022-07-25_Fedora_Screenshot.png)
-![macos_sc](./pictures/2022-07-02_macOS_Screenshot.jpg)
+![macos_sc](./pictures/2022-07-02_macOS_Screenshot.jpg) //TODO
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
 MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager.
 You are free to use all or some of the dotfiles in your system, but
 
 1. My dotfiles are tailored toward me, and they might not suit your taste (in other words, they suck).
-2. The installation script is a failed project. I will re-write it one day, but don't bother with it if you're not using Mac.
+2. The installation script is a failed project. I will re-write it one day, but don't bother with it if you're not using Mac. //TODO
 3. If you're beginning to customizing your \*nix system, don't blindly copy over someone else's dotfiles. You would learn a lot more by understanding and recreating the config to your taste. Also why would you want to use my configuration.
 
 ## Pre-requisites (in order of importance)
@@ -31,15 +31,15 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 ## After installation
 
-- Neovim: `:PackerSync`, then `:Mason` to check the available lsp servers to install.
+- Neovim: `:PackerSync`, then `:Mason` to check the available lsp servers to install //TODO
   - Reference `server_list` table in `nvim/lua/lsp.lua` for the server list
   - Fedora does not ship with `g++`, which `nvim-tree-sitter` uses to install tree sitters. So `dnf install -y g++`
-- Emacs: `list-packages` then `all-the-icons-install-fonts`.
+- Doom Emacs: Install Doom Emacs //TODO
 - Firefox:
   1. `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
-  2. `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder.
-- Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts.
-- Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed.
+  2. `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder
+- Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts
+- Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed
 
 ## Highlights
 
@@ -51,9 +51,11 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 Basic shell setting with just ls alias and prompt.
 
-#### Emacs
+#### Doom Emacs
 
 > To-do list
+
+//TODO
 
 Currently only using it for the Org mode. Planning on expanding its usage.
 
@@ -101,6 +103,8 @@ Happy ricing!
 
 #### Neovim
 
+//TODO
+
 > Text editor/IDE for everything but Java (L Java)
 
 Due to requests of my friends in CS252, my Neovim configuration has moved to a separate repository [Theovim](https://github.com/theopn/theovim)
@@ -118,7 +122,7 @@ Configuration is written 100% in Lua.
 
 > Actual terminal emulator
 
-Configuration includes a status bar, prefix from `C-b` to `C-x` to match Emacs keybindings, and other keybindings inspired by Vim.
+Configuration includes a status bar, prefix changed from `C-b` to `C-a`, and other keybindings inspired by Vim.
 
 #### Vim
 
