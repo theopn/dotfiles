@@ -21,6 +21,15 @@ trash_empty() {
   fi
 }
 
+# Tar.gz
+tarMake() {
+  tar -czvf "$1.tgz" "$1" # c for archive, z for gzip compression, -verbose, -f for output
+}
+
+tarUnmake() {
+  tar -xvf "$1"
+}
+
 ######### Alias w hard-coded paths ##########
 CACHE="~/Nextcloud/l1-cache/"
 DAILY_WRITING_FOLDER="~/Nextcloud/dw-$(date +'%Y')/"
