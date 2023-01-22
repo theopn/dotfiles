@@ -1,17 +1,13 @@
 # Theo's dotfiles
 
-> Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definitely not because I like wasting time writing a documentation that no one will ever read instead of doing actual works.
+> Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
-![fedora_sc](./pictures/fedora-screenshot-2022-07-25.png)
-![macos_sc](./pictures/2022-07-02_macOS_Screenshot.jpg) //TODO
+![macos_sc](./assets/macos-rice-screenshot-2023-01-22.jpg)
+![fedora_sc](./assets/fedora-screenshot-2022-07-25.png)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
 MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager.
-You are free to use all or some of the dotfiles in your system, but
-
-1. My dotfiles are tailored toward me, and they might not suit your taste (in other words, they suck).
-2. The installation script is a failed project. I will re-write it one day, but don't bother with it if you're not using Mac. //TODO
-3. If you're beginning to customizing your \*nix system, don't blindly copy over someone else's dotfiles. You would learn a lot more by understanding and recreating the config to your taste. Also why would you want to use my configuration.
+You are free to use all or some of the dotfiles in your system, but my dotfiles are tailored toward me, and they might not suit your taste (in other words, they suck).
 
 ## Pre-requisites (in order of importance)
 
@@ -34,10 +30,14 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 - Neovim: `:PackerSync`, then `:Mason` to check the available lsp servers to install //TODO
   - Reference `server_list` table in `nvim/lua/lsp.lua` for the server list
   - Fedora does not ship with `g++`, which `nvim-tree-sitter` uses to install tree sitters. So `dnf install -y g++`
-- Doom Emacs: Install Doom Emacs //TODO
-- Firefox:
-  1. `about:config` and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
-  2. `about:profiles`, spot your default-release profile or the profile in use, and create symlinks for the `chrome` folder within the profile folder
+- Doom Emacs:
+
+```bash
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+~/.emacs.d/bin/doom install
+```
+
+- Firefox: Install `vimium` and apply the configuration
 - Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts
 - Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed
 
@@ -47,7 +47,7 @@ Run the installation script (do not run with sudo as Homebrew will not like that
 
 #### Bash
 
-> Used in school SSH server only
+> For school SSH server
 
 Basic shell setting with just ls alias and prompt.
 
@@ -61,18 +61,15 @@ Currently only using it for the Org mode. Planning on expanding its usage.
 
 #### Firefox
 
-> Main browser
+> Main browser 
 
-- userChrome: Inspired by [minimal-functional-fox](https://github.com/mut-ex/minimal-functional-fox)
-- Basic Vimium configuration
-
-User profile customization using CSS file is deprecated, so be cautious when using it. It might break with any future Firefox update.
+Just a vimium configuration.
 
 #### Fonts
 
-> I love Comic Sans
+> I like weird fonts
 
-- [Comic Mono](https://dtinth.github.io/comic-mono-font/): Mono-spaced version of Comic Sans. The best font in the world. Just trust me and use it, you'll love it.
+- [Comic Mono](https://dtinth.github.io/comic-mono-font/): Mono-spaced version of Comic Sans. The best font in the world.
 - [NERD font version](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FantasqueSansMono) of [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans).
 
 Honorable mentions for [DaddyTimeMono Nerd Font](https://www.programmingfonts.org/#daddytimemono) and [Hermit Nerd Font](https://www.programmingfonts.org/#hermit).
@@ -87,13 +84,13 @@ No comment.
 
 > Terminal emulator
 
-Configuration include Dracula color scheme and borderless look. `color_test.sh` is included to test color outputs.
+Configuration includes Dracula color scheme and borderless look. `color_test.sh` is included to test color outputs.
 
 #### Mutt
 
 > Command-line email client
 
-Configuration include automatically opening HTML contents in w3m, Vim style keybindings, and Dracula theme. Templates to add a new email account is included.
+Configuration includes automatically opening HTML contents in w3m, Vim style keybindings, and Dracula theme. Templates to add a new email account are included.
 
 #### Neofetch
 
@@ -103,9 +100,7 @@ Happy ricing!
 
 #### Neovim
 
-//TODO
-
-> Text editor/IDE for everything but Java (L Java)
+> My IDE for most language (except for Java) and a text editor for blog writing, note taking, quick idea capture, and so much more
 
 Due to requests of my friends in CS252, my Neovim configuration has moved to a separate repository [Theovim](https://github.com/theopn/theovim)
 
@@ -122,23 +117,23 @@ Configuration is written 100% in Lua.
 
 > Actual terminal emulator
 
-Configuration includes a status bar, prefix changed from `C-b` to `C-a`, and other keybindings inspired by Vim.
+Configuration includes a handmade Dracula themed status bar, prefix changed from `C-b` to `C-a`, and other keybindings inspired by Vim.
 
 #### Vim
 
 > Focused note taker
 
 - Configurations for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
-- `drakai.vim`, which is a custom-made colorscheme of mix between Dracula and Monokai is included in `.vim` folder
+- `drakai.vim`, which is a custom-made colorscheme of a mix between Dracula and Monokai is included in `.vim` folder
 
 #### Zsh
 
-> I don't like my shell selling t-shirt
+> I don't like my shell selling t-shirts
 
 No oh-my-zsh.
 
 - Quirky, smart, cool, and mysterious alias like:
-  - `nvif` to find file using `fzf` and `fd` and launch on Neovim
+  - `nvif` to find files using `fzf` and `fd` and launch on Neovim
   - `trash` to move a file/folder to `$HOME/trash_zsh/`
   - `google` to launch Google on `w3m` (Startpage requires JavaScript :( )
 - Fairly fast and informative prompt
@@ -153,7 +148,7 @@ Migrated to [separate repository](https://gitlab.com/theopn/hunted-tiles). Confi
 
 #### Dunst
 
-Notification daemon, and is also used to grep result of `cal` command and weather information to display them as a pop-up.
+Notification daemon, and is also used to grep the result of `cal` command and weather information to display them as a pop-up.
 
 #### i3 (i3-gap)
 
@@ -193,11 +188,11 @@ Below are packages that you might want to install as well.
 
 #### Polybar
 
-Two configuration, they are both semi-transparent with utilizing very similar modules, but one is more simplified with just one bar and the other has the top and bottom bars.
+Two configurations, they are both semi-transparent utilizing very similar modules, but one is more simplified with just one bar and the other has the top and bottom bars.
 
 #### Sway
 
-Wayland will be the norm one day, but today is not that day. Wayland is just too buggy for me to use everyday. My Sway setup is almost a copy of the i3 setup.
+Wayland will be the norm one day, but today is not that day. Wayland is just too buggy for me to use every day. My Sway setup is almost a copy of the i3 setup.
 
 - Clipman & wl-clipboard: Wayland clipboard utility (wl-clipboard) and terminal command-line clipboard history manager (clipman).
 - fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop).
@@ -207,13 +202,13 @@ Wayland will be the norm one day, but today is not that day. Wayland is just too
 
 #### Waybar
 
-I like the look better than Polybar. Colorful top bar that contains all the necessary information.
+I like the look better than Polybar. A colorful top bar that contains all the necessary information.
 
 ### macOS
 
 #### Homebrew
 
-Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`, either because I don't want them to be installed on every machine or is too large.
+Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`, either because I don't want them to be installed on every machine or are too large.
 
 Formulae:
 
