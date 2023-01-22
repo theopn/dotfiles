@@ -4,12 +4,11 @@ tap "homebrew/core"
 
 brew "bat"
 brew "ffmpeg"
-brwe "figlet"
+brew "figlet"
 brew "hugo"
 brew "mutt"
 brew "w3m"
 
-cask "alfred"
 cask "appcleaner"
 cask "brave-browser"
 cask "cryptomator"

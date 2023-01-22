@@ -233,7 +233,7 @@ Formulae:
 | Anti-Productivity | - Spotify<br> - Minecraft<br> - Discord: Ugh
 | Development | - Docker<br> - **kitty**<br> - IntelliJ CE: Ugh Java<br> - **MacVim**<br> - **VSCode**
 | Productivity| - Emacs (GUI version): To-do list app<br> - Notion<br> - **Obsidian**
-| System (MacOS) | - Alfred: Spotlight replacement<br> - AppCleaner: App remover for MacOS<br> - **Amethyst: "Tiling window manager" for MacOS**<br> - **Keka**: File archiver<br> - Stats: System monitoring tool
+| System (MacOS) | - AppCleaner: App remover for MacOS<br> - Raycast: Spotlight replacement, window manager, clipboard manager, etc - Stats: System monitoring tool
 | Tools | - Bitwarden: Password manager<br> - Cryptomator: File encryption tool<br> - Nextcloud: I host a personal Nextcloud server on VPS<br> - OBS: Recording tool
 | Web | - Brave: Secondary Chromium browser. Would use a pure Chromium, but hey, free money<br> - **Firefox**<br> - Thunderbird
 
