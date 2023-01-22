@@ -81,13 +81,6 @@ case $dotfile_input in
       safe_symlink ~/dotfiles/neofetch/"$v" ~/.config/neofetch/"$v" ~/dotfiles_backup/
     done
 
-    # nvim
-    current_files=("init.lua" "lua")
-    mkdir -p ~/.config/nvim/
-    for v in ${current_files[@]}; do
-      safe_symlink ~/dotfiles/nvim/"$v" ~/.config/nvim/"$v" ~/dotfiles_backup/
-    done
-
     # Tmux
     tmux_files=("tmux.conf")
     for v in ${tmux_files[@]}; do
