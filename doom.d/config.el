@@ -45,8 +45,6 @@
       doom-variable-pitch-font (font-spec :family "FantasqueSansMono Nerd Font" :size 15)) ; non-monospace font
 (setq doom-theme 'doom-dracula) ; `doom-theme' or `load-theme'
 
-
-
 ;; APPERANCE
 (setq display-line-numbers-type 'relative) ; t/nil for regular on and off
 (column-number-mode) ; Colume line in the Modeline
