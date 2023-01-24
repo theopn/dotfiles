@@ -1,14 +1,20 @@
+# Add cs240/bin to PATH
+export PATH=$PATH:~cs240/bin
+
+# Basic aliases to have common ls commands and add colors
 alias ls="ls --color=auto"
 alias la="ls -a"
 alias ll="ls -l"
 alias l="ls -l -a"
 alias cl="clear"
 
-# Read access for other users (default)
-umask 022
-# No read or write access for other users (Purdue SSH default)
-#umask 077
+# Strip permissions from group and others when creating new files
+umask 077
 
-PS1=" \e[0;96m[\e[0m\e[0;35m\u\e[0m @ \e[0;36m\h\e[0m in \e[0;34m\w\e[0m\e[0;96m]\e[0m -> "
+PS1=" \[\e[0;96m\][ \[\e[0;35m\]\u \[\e[0m\]@ \[\e[0;36m\]\h \[\e[0m\]in \[\e[0;34m\]\w \[\e[0;96m\]] \[\e[0m\]-> "
 
 export TERM=xterm-256color
+
+#Alias for those who prefer nvim appimage - Theovim
+alias nvim=~/Applications/nvim.appimage
+
