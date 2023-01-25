@@ -10,7 +10,7 @@ brew "mutt"
 brew "w3m"
 
 cask "appcleaner"
-cask "brave-browser"
+cask "chromium"
 cask "cryptomator"
 cask "discord"
 cask "docker"

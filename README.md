@@ -144,7 +144,7 @@ Fedora Fedora Fedora.
 
 #### Awesome
 
-Migrated to [separate repository](https://gitlab.com/theopn/hunted-tiles). Configuring Awesome is a Lua software engineering project.
+Migrated to [separate repository](https://github.com/theopn/hunted-tiles). Configuring Awesome is a Lua software engineering project.
 
 #### Dunst
 
@@ -230,12 +230,12 @@ Formulae:
 
 | Type | Casks |
 | ---- | ----- |
-| Anti-Productivity | - Spotify<br> - Minecraft<br> - Discord: Ugh
+| Anti-Productivity | - Discord: Ugh<br> - Minecraft<br> - Spotify<br>
 | Development | - Docker<br> - **kitty**<br> - IntelliJ CE: Ugh Java<br> - **MacVim**<br> - **VSCode**
 | Productivity| - Emacs (GUI version): To-do list app<br> - Notion<br> - **Obsidian**
 | System (MacOS) | - AppCleaner: App remover for MacOS<br> - Raycast: Spotlight replacement, window manager, clipboard manager, etc - Stats: System monitoring tool
 | Tools | - Bitwarden: Password manager<br> - Cryptomator: File encryption tool<br> - Nextcloud: I host a personal Nextcloud server on VPS<br> - OBS: Recording tool
-| Web | - Brave: Secondary Chromium browser. Would use a pure Chromium, but hey, free money<br> - **Firefox**<br> - Thunderbird
+| Web | - Chromium<br> - **Firefox**<br> - Thunderbird
 
 #### Settings
 
