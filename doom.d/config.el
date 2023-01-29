@@ -54,6 +54,7 @@
 (setq display-time-day-and-date t
       display-time-24hr-format t)
 (display-time)
+(setq frame-title-format "%b - Theomacs :)")
 ;; APPEARANCE
 
 ;; FILE EDITING
