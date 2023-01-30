@@ -52,4 +52,6 @@
         )))) ; Honestly never uses it until I figure out how to launch it by default
 ) ; after! ends
 
+(global-set-key (kbd "C-c a") #'org-agenda)
+
 ;;; org-config.el ends here
