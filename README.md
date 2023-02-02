@@ -231,7 +231,7 @@ Formulae:
 | Type | Casks |
 | ---- | ----- |
 | Anti-Productivity | - Discord: Ugh<br> - Minecraft<br> - Spotify<br>
-| Development | - Docker<br> - **kitty**<br> - IntelliJ CE: Ugh Java<br> - **MacVim**<br> - **VSCode**
+| Development | - Docker<br> - **kitty**<br> - IntelliJ CE: Ugh Java<br> - MacTex (No GUI) - **MacVim**<br>
 | Productivity| - Emacs (GUI version): To-do list app<br> - Notion<br> - **Obsidian**
 | System (MacOS) | - AppCleaner: App remover for MacOS<br> - Raycast: Spotlight replacement, window manager, clipboard manager, etc - Stats: System monitoring tool
 | Tools | - Bitwarden: Password manager<br> - Cryptomator: File encryption tool<br> - Nextcloud: I host a personal Nextcloud server on VPS<br> - OBS: Recording tool
