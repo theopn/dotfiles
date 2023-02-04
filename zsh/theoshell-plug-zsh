@@ -21,8 +21,8 @@ function theoshell_plug() {
 function theoshell_upgrade() {
   for repo in $THEOSHELL_PLUGIN_DIR/*
   do # Why does do have to be in a separate line???? Who knows
-    echo "refreshing $repo ..."
-    cd $repo && git pull && cd - >/dev/null
+    echo "refreshing $repo :"
+    cd $repo && git pull && cd - > /dev/null
   done
 }
 
