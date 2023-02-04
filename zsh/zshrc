@@ -16,5 +16,6 @@ bindkey -v
 source ~/dotfiles/zsh/aliases-zsh
 source ~/dotfiles/zsh/prompt-zsh
 
-#add_plugin marlonrichert/zsh-autocomplete
-source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source ~/dotfiles/zsh/functions-zsh
+theoshell_plug marlonrichert/zsh-autocomplete
+#source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh

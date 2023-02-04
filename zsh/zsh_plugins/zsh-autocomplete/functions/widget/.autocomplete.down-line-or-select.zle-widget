@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-if [[ $RBUFFER == *$'\n'* ]]; then
-  builtin zle down-line
-else
-  builtin zle menu-select -w
-fi

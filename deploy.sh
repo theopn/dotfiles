@@ -97,7 +97,7 @@ case $dotfile_input in
     safe_symlink ~/dotfiles/vim/colors ~/.vim/colors ~/dotfiles_backup/
 
     # Zsh
-    zsh_files=("zshrc" "zsh_plugins")
+    zsh_files=("zshrc")
     for v in ${zsh_files[@]}; do
       safe_symlink ~/dotfiles/zsh/"$v" ~/."$v" ~/dotfiles_backup/
     done
