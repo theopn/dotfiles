@@ -1,5 +1,8 @@
 #!/bin/bash
 
+DOT_DIR=~/dotfiles
+DOT_BACKUP_DIR=~/dotfiles.bu
+
 # From https://github.com/vsbuffalo/dotfiles/blob/master/setup.sh
 # For regular messages
 function green_echo() {
@@ -22,8 +25,8 @@ function red_echo() {
 
 function verify_script_dir() {
   script_dir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-  if [[ "$script_dir" != "$HOME/dotfiles" || ! -d $HOME/dotfiles ]]; then
-    red_echo "~/dotfiles directory not found"
+  if [[ "$script_dir" != "$DOT_DIR" || ! -d $DOT_DIR ]]; then
+    red_echo "$DOT_DIR directory not found"
     exit 1
   fi
 }
@@ -45,9 +48,9 @@ function selection_prompt() {
 # $1 = Current location, $2 Target location
 function backup_then_symlink() {
   if [[ -f $2 ]]; then
-    green_echo "Existing $2/ will be moved to ~/dotfiles.bu/$2."
-    mkdir -p ~/dotfiles.bu
-    mv $2 ~/dotfiles.bu/
+    green_echo "Existing $2 will be moved to $DOT_BACKUP_DIR."
+    mkdir -p $DOT_BACKUP_DIR
+    mv $2 $DOT_BACKUP_DIR/
   fi
   green_echo "Creating symlink for $1 at $2..."
   ln -s $1 $2
@@ -70,73 +73,73 @@ function install() {
   if selection_prompt "Homebrew Core"; then
     #brew remove --force $(brew list --formula)
     #brew remove --cask --force $(brew list)
-    brew bundle --file ~/dotfiles/homebrew/Brewfile_core
+    brew bundle --file "$DOT_DIR"/homebrew/Brewfile_core
   fi
 
   if selection_prompt "Bash"; then # Do not use bracket around a function that returns command (which true/false are)
-    backup_then_symlink ~/dotfiles/bash/bashrc ~/.bashrc
+    backup_then_symlink "$DOT_DIR"/bash/bashrc ~/.bashrc
   fi
 
   if selection_prompt "Doom"; then
     CURRENT_FILES=("init.el" "config.el" "packages.el")
     mkdir -p ~/.doom.d/
     for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ~/dotFILEs/doom.d/"$FILE" ~/.doom.d/"$FILE"
+      backup_then_symlink "$DOT_DIR"/doom.d/"$FILE" ~/.doom.d/"$FILE"
     done
   fi
 
   if selection_prompt "Git"; then
     CURRENT_FILES=("gitignore_global" "gitconfig")
     for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ~/dotFILEs/git/"$FILE" ~/."$FILE"
+      backup_then_symlink "$DOT_DIR"/git/"$FILE" ~/."$FILE"
     done
   fi
 
   if selection_prompt "Kitty"; then
     mkdir -p ~/.config/kitty/
-    backup_then_symlink ~/dotFILEs/kitty/kitty.conf ~/.config/kitty/kitty.conf
+    backup_then_symlink "$DOT_DIR"/kitty/kitty.conf ~/.config/kitty/kitty.conf
   fi
 
   if selection_prompt "Mutt"; then
     CURRENT_FILES=("mailcap" "muttrc")
     mkdir -p ~/.mutt/
     for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ~/dotFILEs/mutt/"$FILE" ~/.mutt/"$FILE"
+      backup_then_symlink "$DOT_DIR"/mutt/"$FILE" ~/.mutt/"$FILE"
     done
   fi
 
   if selection_prompt "Neofetch"; then
     mkdir -p ~/.config/neofetch/
-    backup_then_symlink ~/dotFILEs/neofetch/config.conf ~/.config/neofetch/config.conf
+    backup_then_symlink "$DOT_DIR"/neofetch/config.conf ~/.config/neofetch/config.conf
   fi
 
   if selection_prompt "Tmux"; then
-    backup_then_symlink ~/dotfiles/tmux/tmux.conf ~/.tmux.conf
+    backup_then_symlink "$DOT_DIR"/tmux/tmux.conf ~/.tmux.conf
   fi
 
   if selection_prompt "Vim"; then
-    backup_then_symlink ~/dotfiles/vim/vimrc ~/.vimrc
+    backup_then_symlink "$DOT_DIR"/vim/vimrc ~/.vimrc
   fi
 
   if selection_prompt "Vim Colorscheme"; then
     mkdir -p ~/.vim/
     mkdir -p ~/.vim/colors/
-    backup_then_symlink ~/dotfiles/vim/colors/drakai.vim ~/.vim/colors/drakai.vim
+    backup_then_symlink "$DOT_DIR"/vim/colors/drakai.vim ~/.vim/colors/drakai.vim
   fi
 
   if selection_prompt "Zsh"; then
-    backup_then_symlink ~/dotfiles/zsh/zshrc ~/.zshrc
+    backup_then_symlink "$DOT_DIR"/zsh/zshrc ~/.zshrc
   fi
 
   if selection_prompt "macOS Settings"; then
-    source ~/dotfiles/macos/macos_settings.sh
+    source "$DOT_DIR/macos/macos_settings.sh"
   fi
 
   green_echo "Homebrew Optional Formulae/Casks:
   This might take a while, and I honestly recommend you to go through each program manually.
   Do you want to proceed?"
   if selection_prompt "Homebrew Optional"; then
-    brew bundle --file ~/dotfiles/homebrew/Brewfile_optional
+    brew bundle --file "$DOT_DIR"/homebrew/Brewfile_optional
   fi
 
   yellow_echo "Ending the dotfiles installation..."
@@ -153,8 +156,8 @@ function install() {
 }
 
 function delete_backup() {
-  yellow_echo "Deleting ~/dotfiles.bu..."
-  rm -rf ~/dotfiles.bu
+  yellow_echo "Deleting $DOT_BACKUP_DIR..."
+  rm -rf $DOT_BACKUP_DIR
 }
 
 function help() {
@@ -168,7 +171,7 @@ function help() {
 
   args:
     insall: Go through the installation process
-    delete_backup: Delete backup files
+    delete_backup: Delete $DOT_BACKUP_DIR
   "
 }
 
