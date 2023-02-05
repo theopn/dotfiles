@@ -81,14 +81,14 @@ function install() {
     CURRENT_FILES=("init.el" "config.el" "packages.el")
     mkdir -p ~/.doom.d/
     for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ~/dotFILEs/doom.d/"$file" ~/.doom.d/"$file"
+      backup_then_symlink ~/dotFILEs/doom.d/"$FILE" ~/.doom.d/"$FILE"
     done
   fi
 
   if selection_prompt "Git"; then
     CURRENT_FILES=("gitignore_global" "gitconfig")
     for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ~/dotFILEs/git/"$file" ~/."$file"
+      backup_then_symlink ~/dotFILEs/git/"$FILE" ~/."$FILE"
     done
   fi
 
@@ -101,7 +101,7 @@ function install() {
     CURRENT_FILES=("mailcap" "muttrc")
     mkdir -p ~/.mutt/
     for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ~/dotFILEs/mutt/"$file" ~/.mutt/"$file"
+      backup_then_symlink ~/dotFILEs/mutt/"$FILE" ~/.mutt/"$FILE"
     done
   fi
 
