@@ -17,27 +17,11 @@ zstyle ':vcs_info:git:*' formats       '%b%u%c'
 zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
 ########## Prompt Setting ##########
-#000 #000000
-#001 #800000
-#002 #008000
-#003 #808000
-#004 #000080
-#005 #800080
-#006 #008080
-#007 #c0c0c0
-#008 #808080
-#009 #ff0000
-#010 #00ff00
-#011 #ffff00
-#012 #0000ff
-#013 #ff00ff
-#014 #00ffff
-#015 #ffffff
 
 #╭─ ⊄ theopn @ lightsaber hanging out in ~/dotfiles ⊅
 #╰─ ⊄ (main *) HH:MM:SS ⊅ -> <command>
-two_line_prompt="╭─ %F{008}⊊%f %F{214}%n%f %F{008}@%f %F{003}%m%f %F{008}ϵ%f %F{104}%~%f %F{008}⊋%f
-╰─ %F{008}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{008}⊅%f %F{008}<$%f "
+two_line_prompt="╭─ %F{008}⊊%f %F{yellow}%n%f %F{008}@%f %F{magenta}%m%f %F{008}ϵ%f %F{blue}%~%f %F{008}⊋%f
+╰─ %F{008}⊄%f %F{green}(\$vcs_info_msg_0_)%f %F{cyan}%*%f %F{008}⊅%f %F{008}<$%f "
 
 PROMPT=$two_line_prompt
 
