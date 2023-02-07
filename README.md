@@ -2,30 +2,28 @@
 
 > Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
-![macos_sc](./assets/macos-rice-screenshot-2023-01-22.jpg)
-![fedora_sc](./assets/fedora-screenshot-2022-07-25.png)
+![macos-sc](./assets/macos-rice-screenshot-2023-01-22.jpg)
+![fedora-sc](./assets/fedora-screenshot-2022-07-25.png)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
 MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager.
-You are free to use all or some of the dotfiles in your system, but my dotfiles are tailored toward me, and they might not suit your taste (in other words, they suck).
+You are welcome to take inspirations from any file in this repository, but I do not take any responsibility in any 
 
 ## Pre-requisites (in order of importance)
 
 - \*nix system
-- Git and internet connection (to clone the repo)
+- Git and internet connection
 - Bash
 
-## Usage
+## Installation
 
-Clone this repository in the home directory.
+```bash
+git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
+~/dotfiles/dotfiles-util.sh install
+~/dotfiles/dotfiles-util.sh delete_backup # Optional
+```
 
-`git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
-
-Run the installation script (do not run with sudo as Homebrew will not like that).
-
-`bash ~/dotfiles/deploy.sh`
-
-## After installation
+### After installation
 
 - Neovim: `:PackerSync`, then `:Mason` to check the available lsp servers to install //TODO
   - Reference `server_list` table in `nvim/lua/lsp.lua` for the server list
@@ -55,15 +53,13 @@ Basic shell setting with just ls alias and prompt.
 
 > To-do list
 
-//TODO
-
-Currently only using it for the Org mode. Planning on expanding its usage.
+Org mode is wonderful, and I use it every day. I do not understand why I would use Emacs for development over Neovim though (sorry Emacs user).
 
 #### Firefox
 
-> Main browser 
+> Main browser
 
-Just a vimium configuration.
+Just the Vimium configuration.
 
 #### Fonts
 
@@ -100,18 +96,9 @@ Happy ricing!
 
 #### Neovim
 
-> My IDE for most language (except for Java) and a text editor for blog writing, note taking, quick idea capture, and so much more
+> I live in Tmux + Neovim
 
 Due to requests of my friends in CS252, my Neovim configuration has moved to a separate repository [Theovim](https://github.com/theopn/theovim)
-
-Configuration is written 100% in Lua.
-
-- `theo_init.lua`: Settings that does not require an external plug-in; id est keybindings, functions, base settings, etc.
-- `plugins.lua`: A table to manage plug-in using [Packer](https://github.com/wbthomason/packer.nvim)
-- `appearance.lua`: Settings for theme, tab and status bar, startup dashboard, etc.
-- `file_et_search.lua`: Settings for Telescope, NVimTree, and any file browser related plug-ins
-- `lsp.lua`: Settings for Neovim built-in LSP engine, servers, auto-completion, etc.
-- `grave.lua`: Any configuration that is not used anymore but is worth keeping
 
 #### tmux
 
