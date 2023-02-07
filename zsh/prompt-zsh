@@ -34,6 +34,10 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 #014 #00ffff
 #015 #ffffff
 
-PROMPT="╭─ %F{037}⊄%f %F{146}%n%f %F{037}@%f %F{085}%m%f %F{037}hanging out in%f %F{114}%~%f %F{037}⊅%f
-╰─ %F{037}⊄%f %F{131}(\$vcs_info_msg_0_)%f %F{135}%*%f %F{037}⊅%f -> "
+#╭─ ⊄ theopn @ lightsaber hanging out in ~/dotfiles ⊅
+#╰─ ⊄ (main *) HH:MM:SS ⊅ -> <command>
+two_line_prompt="╭─ %F{008}⊊%f %F{214}%n%f %F{008}@%f %F{003}%m%f %F{008}ϵ%f %F{104}%~%f %F{008}⊋%f
+╰─ %F{008}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{008}⊅%f %F{008}<$%f "
+
+PROMPT=$two_line_prompt
 
