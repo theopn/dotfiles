@@ -1,5 +1,6 @@
 "===============================================================================
-" Theo vimrc for note taking
+" "Nature is pleased with simplicity. And nature is no dummy” - Isaac Newton
+"
 "          (___)
 "   ____
 " _\___ \  |\_/|
@@ -14,7 +15,6 @@
 "  (__   '          )
 "    (___    _____)
 "        '--'
-" Lost all 9 lives
 " https://www.asciiart.eu/animals/cats - Shanaka Dias
 "===============================================================================
 
@@ -107,6 +107,27 @@ aug netrw_auto_close
   \ && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | quit | endif
 aug END
 " }}}
+
+" {{{ CS240 Work Environment
+" By Theo Park, special thanks to Shriansh Chari
+" function CS240(hwNum)
+"   exec 'cd ' . $HOME. '/cs240/' . a:hwNum . '/'
+"   set colorcolumn=80
+"   vs
+"   " R source code file
+"   winc l
+"   exec 'open '. a:hwNum . '.c'
+"   " Top L terminal
+"   winc h
+"   term
+"   5winc+
+"   " Bottom L header file
+"   winc j
+"   exec 'open '. a:hwNum . '.h'
+"   winc l
+" endfunction
+" }}}
+
 
 " {{{ Vim Plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
