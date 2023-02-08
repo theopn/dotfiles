@@ -58,10 +58,10 @@ nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-nnoremap <leader><LEFT> <C-w><
-nnoremap <leader><DOWN> <C-w>-
-nnoremap <leader><UP> <C-w>+
-nnoremap <leader><RIGHT> <C-w>>
+nnoremap <leader><LEFT> <C-w>10<
+nnoremap <leader><DOWN> <C-w>5-
+nnoremap <leader><UP> <C-w>5+
+nnoremap <leader><RIGHT> <C-w>10>
 nnoremap n nzz
 nnoremap N Nzz
 tnoremap <ESC> <C-\><C-n>
