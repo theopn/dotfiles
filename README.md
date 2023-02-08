@@ -25,9 +25,6 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
 
 ### After installation
 
-- Neovim: `:PackerSync`, then `:Mason` to check the available lsp servers to install //TODO
-  - Reference `server_list` table in `nvim/lua/lsp.lua` for the server list
-  - Fedora does not ship with `g++`, which `nvim-tree-sitter` uses to install tree sitters. So `dnf install -y g++`
 - Doom Emacs:
 
 ```bash
