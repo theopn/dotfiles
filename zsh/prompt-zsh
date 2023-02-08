@@ -18,10 +18,34 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
 ########## Prompt Setting ##########
 
-#╭─ ⊄ theopn @ lightsaber hanging out in ~/dotfiles ⊅
-#╰─ ⊄ (main *) HH:MM:SS ⊅ -> <command>
-two_line_prompt="╭─ %F{008}⊊%f %F{yellow}%n%f %F{008}@%f %F{magenta}%m%f %F{008}ϵ%f %F{blue}%~%f %F{008}⊋%f
-╰─ %F{008}⊄%f %F{green}(\$vcs_info_msg_0_)%f %F{cyan}%*%f %F{008}⊅%f %F{008}<$%f "
+# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/spectrum.zsh
+# Use this to test the color codes
+typeset -AHg FX FG BG
+
+FX=(
+  reset     "%{[00m%}"
+  bold      "%{[01m%}" no-bold      "%{[22m%}"
+  italic    "%{[03m%}" no-italic    "%{[23m%}"
+  underline "%{[04m%}" no-underline "%{[24m%}"
+  blink     "%{[05m%}" no-blink     "%{[25m%}"
+  reverse   "%{[07m%}" no-reverse   "%{[27m%}"
+)
+
+for color in {000..255}; do
+  FG[$color]="%{[38;5;${color}m%}"
+  BG[$color]="%{[48;5;${color}m%}"
+done
+
+function spectrum_ls() {
+  setopt localoptions nopromptsubst
+  local ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
+  for code in {000..255}; do
+    print -P -- "$code: ${FG[$code]}${ZSH_SPECTRUM_TEXT}%{$reset_color%}"
+  done
+}
+
+two_line_prompt="╭─ %F{245}⊊%f %F{005}%n%f %F{245}@%f %F{002}%m%f %F{245}ϵ%f %F{010}%~%f %F{245}⊋%f
+╰─ %F{245}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{245}⊅%f %F{245}<$%f "
 
 PROMPT=$two_line_prompt
 
