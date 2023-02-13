@@ -1,7 +1,12 @@
 #!/bin/zsh
 
+# Updating dotfiles
+function dotfiles_update() {
+  cd ~/dotfiles/ && git pull && cd - &> /dev/null
+}
+
 # Custom trash function
-trash () {
+function trash () {
   if [ ! -d "$HOME/trash_zsh/" ]
   then
     mkdir $HOME/trash_zsh/
@@ -10,7 +15,7 @@ trash () {
   echo "$1" moved to trash!
 }
 
-trash_empty() {
+function trash_empty() {
   if [ ! -d "$HOME/trash_zsh/" ]
   then
     echo "Trash folder does not exist!"
@@ -22,11 +27,11 @@ trash_empty() {
 }
 
 # Tar.gz
-tarMake() {
+function tarMake() {
   tar -czvf "$1.tgz" "$1" # c for archive, z for gzip compression, -verbose, -f for output
 }
 
-tarUnmake() {
+function tarUnmake() {
   tar -xvf "$1"
 }
 
