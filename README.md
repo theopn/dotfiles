@@ -197,29 +197,29 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 Formulae:
 
 - bat: Fancier `cat` replacement
-- **fd**: Alternative of `find` to list file entries
-- ffmpeg: Primarily used for `ffmpeg -i in.xxx out.yyy`
+- **fd**
+- **ffmpeg**: `ffmpeg -i in.xxx out.yyy`
 - **fzf**: Command line fuzzy finder
-- figlet: ASCII art generator
+- **figlet**: ASCII art generator
 - Hugo: Static website generator
-- **htop**: System monitor
+- **htop**
 - **Lua**
 - mutt: TUI email client
-- **node**: Node JS
+- **node**
 - **neofetch**
 - **neovim**
 - **ranger**: TUI file explorer
 - **tmux**
-- w3m: TUI web browser. Useful for a quick Google search or viewing HTML contents in Mutt
+- w3m: TUI web browser
 
-| Type | Casks |
-| ---- | ----- |
-| Anti-Productivity | - Discord: Ugh<br> - Minecraft<br> - Spotify<br>
-| Development | - Docker<br> - **kitty**<br> - IntelliJ CE: Ugh Java<br> - MacTex (No GUI) - **MacVim**<br>
-| Productivity| - Emacs (GUI version): To-do list app<br> - Notion<br> - **Obsidian**
-| System (MacOS) | - AppCleaner: App remover for MacOS<br> - Raycast: Spotlight replacement, window manager, clipboard manager, etc - Stats: System monitoring tool
-| Tools | - Bitwarden: Password manager<br> - Cryptomator: File encryption tool<br> - Nextcloud: I host a personal Nextcloud server on VPS<br> - OBS: Recording tool
-| Web | - Chromium<br> - **Firefox**<br> - Thunderbird
+| Type              | Casks                                                                             |
+|-------------------|-----------------------------------------------------------------------------------|
+| Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify<br>                                       |
+| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**<br> |
+| Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                         |
+| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                            |
+| Tools             | - Bitwarden<br> - Cryptomator<br> - Nextcloud<br> - OBS<br> - Skim                |
+| Web               | - Chromium<br> - **Firefox**<br> - Thunderbird                                    |
 
 #### Settings
 
