@@ -101,7 +101,7 @@ Due to requests of my friends in CS252, my Neovim configuration has moved to a s
 
 > Actual terminal emulator
 
-Configuration includes a handmade Dracula themed status bar, prefix changed from `C-b` to `C-a`, and other keybindings inspired by Vim.
+Keybindings that are drastically different from stock bindings (but makes more sense), Dracula theme, and status bar with time, current command, and uptime information. No external plugins.
 
 #### Vim
 
