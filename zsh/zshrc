@@ -11,11 +11,9 @@ echo "\e[036mWelcome\e[0m \e[32m$USER\e[0m!"
 # Vim mode
 bindkey -v
 
-#source ~/dotfiles/zsh/functions-zsh
-
 source ~/dotfiles/zsh/aliases-zsh
 source ~/dotfiles/zsh/prompt-zsh
 
 source ~/dotfiles/zsh/theoshell-plug-zsh
 theoshell_plug marlonrichert/zsh-autocomplete
-#source ~/.zsh_plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+

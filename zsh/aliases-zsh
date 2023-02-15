@@ -39,21 +39,19 @@ function tarUnmake() {
 CACHE="~/Nextcloud/l1-cache/"
 DAILY_WRITING_FOLDER="~/Nextcloud/dw-$(date +'%Y')/"
 DOTFILES_FOLDER="~/dotfiles/"
-QUICK_NOTES_PATH="$CACHE""quick_notes.md"
+QUICK_NOTES_PATH="$CACHE""quick-notes.md"
 WIKI_PATH="~/Nextcloud/theo-vimwiki/"
+
 alias l1="cd $CACHE"
-alias cache="cd $CACHE"
 alias dw="vim $DAILY_WRITING_FOLDER""index.md"
 alias dot="cd $DOTFILES_FOLDER"
-alias dotfiles="cd $DOTFILES_FOLDER"
-alias note="nvim $QUICK_NOTES_PATH"
-alias notes="nvim $QUICK_NOTES_PATH"
-alias wiki="vim $WIKI_PATH""index.md"
+alias note="tmux display-popup -E -h 80% -w 80% 'nvim $QUICK_NOTES_PATH'"
+alias note_no_tmux="nvim $QUICK_NOTES_PATH"
+alias wiki="tmux display-popup -E -h 80% -w 80% 'vim $WIKI_PATH""index.md'"
+alias wiki_no_tmux="vim $WIKI_PATH""index.md"
 
 ######### Alias ##########
 alias cl="clear"
-# Any $ commands in double quotes will be substituted in the startup and will be executed. So use single quotes
-alias cdfzf='cd $(fzf --height 40% --reverse)'
 alias google="w3m google.com"
 alias ls="ls -G"
 alias l="ls -A -l -h" # All file except . and .., list view, display unit suffix for the size
