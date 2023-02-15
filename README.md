@@ -6,14 +6,9 @@
 ![fedora-sc](./assets/fedora-screenshot-2022-07-25.png)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
-MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager.
-You are welcome to take inspirations from any file in this repository, but I do not take any responsibility in any 
+MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager (Sway is actually a Wayland compositor :nerd-emoji:).
 
-## Pre-requisites (in order of importance)
-
-- \*nix system
-- Git and internet connection
-- Bash
+You are welcome to take inspirations from any file in this repository, but I do not take any responsibility in any content of the configurations. *Read the code before you use them!*
 
 ## Installation
 
@@ -32,8 +27,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 ```
 
-- Firefox: Install `vimium` and apply the configuration
-- Install fonts. You can utilize the included `fonts/font_test.sh` to test if your terminal emulator correctly displays the fonts
+- Install a [NERD Font](https://www.nerdfonts.com/font-downloads). Default fonts for my setup are Caskayadia Cove and FantasqueSansMono. Utilize `font-test.sh` in `kitty` folder.
 - Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed
 
 ## Highlights
@@ -48,24 +42,9 @@ Basic shell setting with just ls alias and prompt.
 
 #### Doom Emacs
 
-> To-do list
+> Everything you could think of but a text editor
 
-Org mode is wonderful, and I use it every day. I do not understand why I would use Emacs for development over Neovim though (sorry Emacs user).
-
-#### Firefox
-
-> Main browser
-
-Just the Vimium configuration.
-
-#### Fonts
-
-> I like weird fonts
-
-- [Comic Mono](https://dtinth.github.io/comic-mono-font/): Mono-spaced version of Comic Sans. The best font in the world.
-- [NERD font version](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FantasqueSansMono) of [Fantasque Sans Mono](https://github.com/belluzj/fantasque-sans).
-
-Honorable mentions for [DaddyTimeMono Nerd Font](https://www.programmingfonts.org/#daddytimemono) and [Hermit Nerd Font](https://www.programmingfonts.org/#hermit).
+I use it everyday for to-do list and project management (Org mode), file management (Dired), and Git interaction (Magit). But I still do not understand why it is a better text editor than Neovim (sorry Emacs users).
 
 #### Git
 
@@ -77,7 +56,7 @@ No comment.
 
 > Terminal emulator
 
-Configuration includes Dracula color scheme and borderless look. `color_test.sh` is included to test color outputs.
+Configuration includes Dracula color scheme and a borderless look.
 
 #### Mutt
 
@@ -93,21 +72,21 @@ Happy ricing!
 
 #### Neovim
 
-> I live in Tmux + Neovim
+> I love you Neovim
 
-Due to requests of my friends in CS252, my Neovim configuration has moved to a separate repository [Theovim](https://github.com/theopn/theovim)
+Due to requests from my friends, my Neovim configuration has migrated to a separate repository [Theovim](https://github.com/theopn/theovim)
 
 #### tmux
 
 > Actual terminal emulator
 
-Keybindings that are drastically different from stock bindings (but makes more sense), Dracula theme, and status bar with time, current command, and uptime information. No external plugins.
+Keybindings that are drastically different from stock bindings (but makes more sense IMO), Dracula theme, and status bar with time, current command, and uptime information. No external plugins.
 
 #### Vim
 
 > Focused note taker
 
-- Configurations for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
+- Very simple configurations for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
 - `drakai.vim`, which is a custom-made colorscheme of a mix between Dracula and Monokai is included in `.vim` folder
 
 #### Zsh
@@ -212,14 +191,14 @@ Formulae:
 - **tmux**
 - w3m: TUI web browser
 
-| Type              | Casks                                                                             |
-|-------------------|-----------------------------------------------------------------------------------|
-| Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify<br>                                       |
-| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**<br> |
-| Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                         |
-| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                            |
-| Tools             | - Bitwarden<br> - Cryptomator<br> - Nextcloud<br> - OBS<br> - Skim                |
-| Web               | - Chromium<br> - **Firefox**<br> - Thunderbird                                    |
+| Type              | Casks                                                                                 |
+|-------------------|---------------------------------------------------------------------------------------|
+| Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                               |
+| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**     |
+| Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                             |
+| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                                |
+| Tools             | - Bitwarden<br> - Cryptomator<br> - Nextcloud<br> - OBS<br> - Skim                    |
+| Web               | - Chromium<br> - **Firefox**<br> - Thunderbird                                        |
 
 #### Settings
 
