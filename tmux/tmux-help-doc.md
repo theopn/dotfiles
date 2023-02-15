@@ -1,6 +1,6 @@
 # Tmux
 
-Tmux is a terminal multiplexer that is highly customizable.
+Tmux is a highly customizable terminal multiplexer.
 
 Terminologies:
 
