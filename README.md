@@ -8,7 +8,7 @@
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
 MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager (Sway is actually a Wayland compositor :nerd-emoji:).
 
-You are welcome to take inspirations from any file in this repository, but I do not take any responsibility in any content of the configurations. *Read the code before you use them!*
+You are welcome to take inspirations from any file in this repository, but I do not take any responsibility in any content of the configurations. **Read the code before you use them!**
 
 ## Installation
 
@@ -27,7 +27,15 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 ```
 
-- Install a [NERD Font](https://www.nerdfonts.com/font-downloads). Default fonts for my setup are Caskayadia Cove and FantasqueSansMono. Utilize `font-test.sh` in `kitty` folder.
+- Fonts: CaskayadiaCove and FantasqueSansMono Nerd Fonts are default fonts in my configurations
+  1. Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and manually install fonts
+  2. Use Homebrew
+
+```bash
+brew tap homebrew/cask-fonts &&
+brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-font
+```
+
 - Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed
 
 ## Highlights
@@ -38,7 +46,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 
 > For school SSH server
 
-Basic shell setting with just ls alias and prompt.
+Basic shell setting with some aliases and prompt.
 
 #### Doom Emacs
 
