@@ -19,7 +19,7 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 ########## Prompt Setting ##########
 
 # Left prompt
-one_line_prompt=" %F{245}⦰%f %F{002}%n%f %F{245}ϵ%f %F{010}%~%f %F{013}{\$vcs_info_msg_0_}%f %F{245}\$%f "
+one_line_prompt=" %F{245}⦰%f %F{245}[%f %F{038}%n%f %F{245}ϵ%f %F{075}%~%f %F{245}]%f %F{013}{\$vcs_info_msg_0_}%f %F{245}\$%f "
 
 two_line_prompt="╭─ %F{245}⊊%f %F{005}%n%f %F{245}@%f %F{002}%m%f %F{245}ϵ%f %F{010}%~%f %F{245}⊋%f
 ╰─ %F{245}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{245}⊅%f %F{245}\$%f "

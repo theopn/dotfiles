@@ -109,7 +109,7 @@ Keybindings that are drastically different from stock bindings (that make more s
 ╭─ ⊊ parktheo0 @ lightsaber ϵ ~/dotfiles ⊋
 ╰─ ⊄ (main *) 14:57:42 ⊅ $                                                            41ms
 ||
-⦰ parktheo0 ϵ ~/dotfiles {main *} $                                                   55273ms
+ ⦰ [ parktheo0 ϵ ~/dotfiles ] {main *} $                                              41ms
 ```
 
 ### Linux
