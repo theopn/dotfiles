@@ -1,19 +1,19 @@
 # Theo's dotfiles
 
-> Collection of my personal configuration files. The reason why this README is so long is because I forget things often, definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
+> Collection of my configuration files. The reason why this README is so long is that I forget things often, definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
-![macos-sc](./assets/macos-rice-sc-2023-02-14.jpg)
+![macos-sc](./assets/macos-rice-sc-2023-02-15.jpg)
 ![fedora-sc](./assets/fedora-rice-sc-2022-07-25.png)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
-MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager (Sway is actually a Wayland compositor :nerd-emoji:).
+MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager (actually, Sway is a Wayland compositor :nerd-emoji:).
 
-You are welcome to take inspirations from any file in this repository, but I do not take any responsibility in any content of the configurations. **Read the code before you use them!**
+You are welcome to take inspiration from any file in this repository, but I do not take any responsibility for any content of the configurations. **Read the code before you use them!**
 
 ## Installation
 
 ```bash
-git clone https://github.com/theopn/dotfiles.git ~/dotfiles`
+git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh install
 ~/dotfiles/dotfiles-util.sh delete_backup # Optional
 ```
@@ -46,13 +46,13 @@ brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-
 
 > For school SSH server
 
-Basic shell setting with some aliases and prompt.
+Basic shell settings with some aliases and prompts.
 
 #### Doom Emacs
 
 > Everything you could think of but a text editor
 
-I use it everyday for to-do list and project management (Org mode), file management (Dired), and Git interaction (Magit). But I still do not understand why it is a better text editor than Neovim (sorry Emacs users).
+I use it every day for a to-do list and project management (Org mode), file management (Dired), and Git interaction (Magit). But I still do not understand why it is a better text editor than Neovim (sorry Emacs users).
 
 #### Git
 
@@ -64,7 +64,7 @@ No comment.
 
 > Terminal emulator
 
-Configuration includes Dracula color scheme and a borderless look.
+Configuration includes the Dracula color scheme and a borderless look.
 
 #### Mutt
 
@@ -88,7 +88,7 @@ Due to requests from my friends, my Neovim configuration has migrated to a separ
 
 > Actual terminal emulator
 
-Keybindings that are drastically different from stock bindings (but makes more sense IMO), Dracula theme, and status bar with time, current command, and uptime information. No external plugins.
+Keybindings that are drastically different from stock bindings (that make more sense to me), Dracula theme, and status bar with time, current command, and uptime information. No external plugins.
 
 #### Vim
 
@@ -99,15 +99,18 @@ Keybindings that are drastically different from stock bindings (but makes more s
 
 #### Zsh
 
-> I don't like my shell selling t-shirts
+> The shell
 
-No oh-my-zsh.
+- `theoshell_plug` and `theoshell_upgrade` automatically download and load ZSH plug-ins I need (currently only zsh-autocomplete), eliminating the need for a bloated shell plug-in manager
+- Aliases utilizing Tmux pop-up window (`nvif`, `note`, `wiki`) and miscellaneous functions like `trash()` and `update_dotfiles()`
+- Choice of a two-line prompt and a simpler one-line prompt (both support Git information)
 
-- Quirky, smart, cool, and mysterious alias like:
-  - `nvif` to find files using `fzf` and `fd` and launch on Neovim
-  - `trash` to move a file/folder to `$HOME/trash_zsh/`
-  - `google` to launch Google on `w3m` (Startpage requires JavaScript :( )
-- Fairly fast and informative prompt
+```bash
+╭─ ⊊ parktheo0 @ lightsaber ϵ ~/dotfiles ⊋
+╰─ ⊄ (main *) 14:57:42 ⊅ $                                                            41ms
+||
+⦰ parktheo0 ϵ ~/dotfiles {main *} $                                                   55273ms
+```
 
 ### Linux
 
@@ -119,7 +122,7 @@ Migrated to [separate repository](https://github.com/theopn/hunted-tiles). Confi
 
 #### Dunst
 
-Notification daemon, and is also used to grep the result of `cal` command and weather information to display them as a pop-up.
+Notification daemon for X11. Also used to grep the result of the `cal` command and weather information to display them as a pop-up.
 
 #### i3 (i3-gap)
 
@@ -135,8 +138,8 @@ Below are the packages mentioned in my configuration.
 - Polybar: This is where all the ricing takes place.
 - Redshift: Blue light filter/nightlight/nightshift
 - Rofi: App launcher and more
-- setxkbmap: Swap caps lock and control, your pinky will thank you.
-- xinput: Enabling trackpad natural scrolling and tap to click
+- setxkbmap: Swap caps lock and control, your pinky will thank you
+- xinput: Enabling trackpad natural scrolling and tap-to-click
 - xss-lock: Calling i3lock before suspending
 
 Below is a list of keybindings that are unique to my setup.
@@ -144,11 +147,11 @@ Below is a list of keybindings that are unique to my setup.
 - Instead of `jkl;`, Vim keybinding of `hjkl`.
 - Instead of `$mod+h`, `$mod+z` toggles horiZontal split.
 - In addition to the default binding of `$mod+d`, `$mod+Space` launches the app launcher.
-- `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirects to `system_mode`, which you can choose all the above actions and `systemctl` actions.
-- `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and other program (e.g: Kitty uses `super + 0` to reset the font adjustment, which overlaps with i3's "move to workspace number 10." This can be solved by executing `super + 0` in the passthrough mode).
+- `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirect to `system_mode`, from which you can choose all the above actions and `systemctl` actions.
+- `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and another program (e.g: Kitty uses `super + 0` to reset the font adjustment, which overlaps with i3's "move to workspace number 10." This can be solved by executing `super + 0` in the passthrough mode).
 - `$mod+Shift+v` to execute the clipboard manager.
 - `$mod+Shift+n` to launch a floating terminal with Vim open for a quick note (saved as `~/Documents/i3_quicknote.txt`)
-- `$mod+Shift+s` to execute screenshot tool.
+- `$mod+Shift+s` to execute a screenshot tool.
 
 Below are packages that you might want to install as well.
 
@@ -159,7 +162,7 @@ Below are packages that you might want to install as well.
 
 #### Polybar
 
-Two configurations, they are both semi-transparent utilizing very similar modules, but one is more simplified with just one bar and the other has the top and bottom bars.
+Two configurations. Both are semi-transparent utilizing a very similar set of modules, but one is more simplified with just one bar and the other has top and bottom bars.
 
 #### Sway
 
@@ -173,7 +176,7 @@ Wayland will be the norm one day, but today is not that day. Wayland is just too
 
 #### Waybar
 
-I like the look better than Polybar. A colorful top bar that contains all the necessary information.
+I like the look better than Polybar. A colorful top bar contains all the necessary information.
 
 ### macOS
 
