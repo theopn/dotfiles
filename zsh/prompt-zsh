@@ -18,8 +18,32 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
 ########## Prompt Setting ##########
 
+# Left prompt
+one_line_prompt=" %F{245}⦰%f %F{002}%n%f %F{245}ϵ%f %F{010}%~%f %F{013}{\$vcs_info_msg_0_}%f %F{245}\$%f "
+
+two_line_prompt="╭─ %F{245}⊊%f %F{005}%n%f %F{245}@%f %F{002}%m%f %F{245}ϵ%f %F{010}%~%f %F{245}⊋%f
+╰─ %F{245}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{245}⊅%f %F{245}\$%f "
+
+PROMPT=$one_line_prompt
+
+# Right prompt with execution time
+# https://gist.github.com/knadh/123bca5cfdae8645db750bfb49cb44b0 - comment by sudocurse
+function preexec() {
+  timer=$(($(print -P %D{%s%6.})/1000))
+}
+
+function precmd() {
+  if [ $timer ]; then
+    now=$(($(print -P %D{%s%6.})/1000))
+    elapsed=$(($now-$timer))
+
+    export RPROMPT="%F{245}${elapsed}ms %{$reset_color%}"
+    unset timer
+  fi
+}
+
+# Function for color testing
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/spectrum.zsh
-# Use this to test the color codes
 typeset -AHg FX FG BG
 
 FX=(
@@ -43,9 +67,4 @@ function spectrum_ls() {
     print -P -- "$code: ${FG[$code]}${ZSH_SPECTRUM_TEXT}%{$reset_color%}"
   done
 }
-
-two_line_prompt="╭─ %F{245}⊊%f %F{005}%n%f %F{245}@%f %F{002}%m%f %F{245}ϵ%f %F{010}%~%f %F{245}⊋%f
-╰─ %F{245}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{245}⊅%f %F{245}\$%f "
-
-PROMPT=$two_line_prompt
 
