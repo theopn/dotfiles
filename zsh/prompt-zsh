@@ -37,8 +37,12 @@ function precmd() {
   if [ $timer ]; then
     now=$(($(print -P %D{%s%6.})/1000))
     elapsed=$(($now-$timer))
-
-    export RPROMPT="%F{245}${elapsed}ms %{$reset_color%}"
+    if [ $elapsed -lt 1000 ]; then
+      export RPROMPT="%F{245}${elapsed}ms %f"
+    else
+      elapsed=$(($elapsed / 1000))
+      export RPROMPT="%F{245}${elapsed}s %f"
+    fi
     unset timer
   fi
 }
