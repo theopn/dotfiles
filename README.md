@@ -12,6 +12,15 @@ You are welcome to take inspiration from any file in this repository, but I do n
 
 ## Installation
 
+Install Homebrew:
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew analytics off # Sorry Brew but I don't want Google to know what packages I installed
+```
+
+Install packages and make symlinks using `dotfiles-util.sh`:
+
 ```bash
 git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh install
