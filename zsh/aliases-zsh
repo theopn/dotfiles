@@ -27,12 +27,38 @@ function trash_empty() {
 }
 
 # Tar.gz
-function tarMake() {
+function tar_make() {
   tar -czvf "$1.tgz" "$1" # c for archive, z for gzip compression, -verbose, -f for output
 }
 
-function tarUnmake() {
+function tar_unmake() {
   tar -xvf "$1"
+}
+
+function xrandr_external_on() {
+  if [[ "$OSTYPE" != "linux-gnu"* ]]; then
+    echo -e "\033[0;31m[Fatal] You are on $OSTYPE\033[0m"
+    return 1
+  fi
+  if [[ $# != 1 ]]; then
+    echo -e "\033[0;32m[Usage] xrandr_external_on <output-name>\033[0m"
+    echo -e "\033[0;32m\tRetreive the output name using xrandr command\033[0m"
+  else
+    xrandr --output $1 --auto --right-of eDP-1
+  fi
+}
+
+function xrandr_external_off() {
+  if [[ "$OSTYPE" != "linux-gnu"* ]]; then
+    echo -e "\033[0;31m[Fatal] You are on $OSTYPE\033[0m"
+    return 1
+  fi
+  if [[ $# != 1 ]]; then
+    echo -e "\033[0;32m[Usage] xrandr_external_off <output-name>\033[0m"
+    echo -e "\033[0;32m\tRetreive the output name using xrandr command\033[0m"
+  else
+    xrandr --output $1 --off
+  fi
 }
 
 ######### Alias w hard-coded paths ##########
