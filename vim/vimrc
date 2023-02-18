@@ -36,6 +36,7 @@ set hlsearch incsearch shortmess-=S
 set ignorecase smartcase
 set scrolloff=7
 set foldmethod=marker foldlevel=0
+set wildmenu wildmode=longest,list,full
 set spell spelllang=en_us spellsuggest=best,8
 " }}}
 
@@ -68,6 +69,9 @@ tnoremap <ESC> <C-\><C-n>
 inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
 nnoremap <C-s> z=
 nnoremap <leader>st :set spell!<CR>
+" Brings up auto completion menu using S-TAB, cycle through TAB and S-TAB
+inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<TAB>'
+inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
 " }}}
 
 " {{{ Statusline
@@ -145,7 +149,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'MeF0504/vim-pets'
 " Personal wiki plugin
 Plug 'vimwiki/vimwiki'
-Plug 'vim-scripts/DrawIt'
 call plug#end()
 " }}}
 
