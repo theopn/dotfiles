@@ -115,10 +115,14 @@ Keybindings that are drastically different from stock bindings (that make more s
 - Choice of a two-line prompt and a simpler one-line prompt (both support Git information)
 
 ```bash
+echo "
 ╭─ ⊊ parktheo0 @ lightsaber ϵ ~/dotfiles ⊋
 ╰─ ⊄ (main *) 14:57:42 ⊅ $                                                            41ms
-||
+"
+echo "||"
+echo "
  ⦰ [ parktheo0 ϵ ~/dotfiles ] {main *} $                                              41ms
+"
 ```
 
 ### Linux
