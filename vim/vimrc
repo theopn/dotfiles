@@ -29,7 +29,7 @@ catch
 endtry
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
-set list listchars=tab:!>,trail:␣,nbsp:+
+set list listchars=tab:t>,trail:␣,nbsp:⍽
 filetype on
 syntax on
 set hlsearch incsearch shortmess-=S
