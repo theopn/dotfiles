@@ -19,16 +19,16 @@ function get_battery() {
   if [[ $batlv -eq -1 ]]; then
     echo -e "\033[0;31m[Battery] Error, time to work on your dotfiles Theo\033[0m"
   elif [[ $batlv -ge 100 ]]; then
-    echo -e "\033[0;32m[Battery] Fully charged!!!\033[0m"
+    echo -e "\033[0;33mBattery fully charged!!!\033[0m" # Yellow
   elif [[ $batlv -gt 40 ]]; then
-    echo -e "\033[0;33m[Battery] $batlv%, good to go!\033[0m"
+    echo -e "\033[0;32mBattery $batlv%, good to go!\033[0m" # Green
   else
-    echo -e "\033[0;31m[Battery] $batlv%, charge your laptop now!!\033[0m"
+    echo -e "\033[0;31mBattery $batlv%, charge your laptop Theo!!\033[0m" # Red
   fi
 }
 
 function greeting_msg() {
-  echo "\e[38;2;200;107;209mWhat's up $USER\e[0m, \e[38;2;224;146;252;1mit's $(date -I) @ $(date +"%T") :)"
+  echo "\e[38;2;200;107;209mWhat's up $USER\e[0m, \e[38;2;224;146;252;1mshell opened @ $(date -I) $(date +"%T") :)"
   get_battery
 }
 
