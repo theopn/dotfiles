@@ -132,7 +132,7 @@ function install() {
   fi
 
   if selection_prompt "macOS Settings"; then
-    source "$DOT_DIR/macos/macos_settings.sh"
+    source "$DOT_DIR"/macos/macos_settings.sh
   fi
 
   green_echo "Homebrew Optional Formulae/Casks:
