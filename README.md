@@ -110,6 +110,7 @@ Keybindings that are drastically different from stock bindings (that make more s
 
 > The shell
 
+- Greeting message
 - `theoshell_plug` and `theoshell_upgrade` automatically download and load ZSH plug-ins I need (currently only zsh-autocomplete), eliminating the need for a bloated shell plug-in manager
 - Aliases utilizing Tmux pop-up window (`nvif`, `note`, `wiki`) and miscellaneous functions like `trash()` and `update_dotfiles()`
 - Choice of a two-line prompt and a simpler one-line prompt (both support Git information)

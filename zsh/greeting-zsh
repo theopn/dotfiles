@@ -28,7 +28,7 @@ function get_battery() {
 }
 
 function greeting_msg() {
-  echo "\e[38;2;200;107;209mWhat's up $USER\e[0m, \e[38;2;224;146;252;1mshell opened @ $(date -I) $(date +"%T") :)"
+  echo "\e[38;2;200;107;209mWhat's up $USER\e[0m, \e[38;2;224;146;252;1mshell opened on $(date -I) @ $(date +"%T") :)"
   get_battery
 }
 
