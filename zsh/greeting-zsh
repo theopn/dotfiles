@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+# Inspired by https://github.com/G2-Games/welcome.sh/
+function get_battery() {
+  batlv=-1
+
+  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    if [[ -a "/sys/class/power_supply/BAT0/capacity" ]]; then
+      batlv=$(cat /sys/class/power_supply/BAT0/capacity)
+    elif [[ -a "/sys/class/power_supply/BAT1/capacity" ]]; then
+      batlv=$(cat /sys/class/power_supply/BAT1/capacity)
+    fi
+  elif command -v pmset &> /dev/null; then
+    batlv=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
+  else
+    return
+  fi
+
+  if [[ $batlv -eq -1 ]]; then
+    echo -e "\033[0;31m[Battery] Error, time to work on your dotfiles Theo\033[0m"
+  elif [[ $batlv -ge 100 ]]; then
+    echo -e "\033[0;32m[Battery] Fully charged!!!\033[0m"
+  elif [[ $batlv -gt 40 ]]; then
+    echo -e "\033[0;33m[Battery] $batlv%, good to go!\033[0m"
+  else
+    echo -e "\033[0;31m[Battery] $batlv%, charge your laptop now!!\033[0m"
+  fi
+}
+
+function greeting_msg() {
+  echo "\e[38;2;200;107;209mWhat's up $USER\e[0m, \e[38;2;224;146;252;1mit's $(date -I) @ $(date +"%T") :)"
+  get_battery
+}
+
