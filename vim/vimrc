@@ -53,12 +53,13 @@ inoremap <C-k> <UP>
 inoremap <C-l> <RIGHT>
 nnoremap <leader>/ :let @/=''<CR>
 nnoremap <leader>a gg<S-v>G
-nnoremap <leader>\| :vsplit<CR><C-W>l
-nnoremap <leader>- :split<CR><C-W>j
-nnoremap <leader>h <C-W>h
-nnoremap <leader>j <C-W>j
-nnoremap <leader>k <C-W>k
-nnoremap <leader>l <C-W>l
+nnoremap <leader>\| :vsplit<CR><C-w>l
+nnoremap <leader>- :split<CR><C-w>j
+nnoremap <leader>q <C-w>q
+nnoremap <leader>h <C-w>h
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>l <C-w>l
 nnoremap <leader><LEFT> <C-w>10<
 nnoremap <leader><DOWN> <C-w>5-
 nnoremap <leader><UP> <C-w>5+
