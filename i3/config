@@ -10,25 +10,21 @@
 # {{{ VARIABLES
 set $mod Mod4
 # Script var
-set $lock ~/dotfiles/i3/i3_system_mode.sh lock
-set $suspend ~/dotfiles/i3/i3_system_mode.sh suspend
-set $reboot ~/dotfiles/i3/i3_system_mode.sh reboot
-set $shutdown ~/dotfiles/i3/i3_system_mode.sh shutdown
+set $lock ~/dotfiles/i3/i3-system-mode.sh lock
+set $suspend ~/dotfiles/i3/i3-system-mode.sh suspend
+set $reboot ~/dotfiles/i3/i3-system-mode.sh reboot
+set $shutdown ~/dotfiles/i3/i3-system-mode.sh shutdown
 # Program var
-set $bar ~/.config/polybar/polybar_launch.sh simple
-set $clipboard clipit
-set $clipboard_clear notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 69"
-set $clipboard_show notify-send "PLACEHOLDER - Not applicapable with Clipit - Line 70"
-for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
+set $bar ~/dotfiles/polybar/polybar_launch.sh simple
+#set $clipboard clipit
+#for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
 set $nightlight redshift -P -l 40.7:-73.9 -t 5600:3500 -m randr
 set $notification dunst
-set $quicknote kitty --class=quicknote vim ~/Documents/i3_quicknote.txt
-for_window [class="^quicknote$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $screenshot flameshot launcher
 set $term kitty
-set $wallpaper feh --no-fehbg --bg-fill '/home/theopn/dotfiles_images/2008-09-28_SingaporeGP_LH-Nord.jpg'
+set $wallpaper feh --no-fehbg --bg-fill '/home/theopn/dotfiles/assets/naomi-solarsys-draculafied.png'
 # This is used to set the natural scrolling and tab to click
 set $trackpad_id 'SynPS/2 Synaptics TouchPad'
 # Key var
@@ -66,9 +62,7 @@ exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
 # Accessing clipboard manager and screenshot tool
-#bindsym $mod+Shift+z exec --no-startup-id $clipboard_clear
-#bindsym $mod+Shift+v exec --no-startup-id $clipboard_show
-bindsym $mod+Shift+n exec --no-startup-id $quicknote
+bindsym $mod+Shift+v exec --no-startup-id $clipboard
 bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # }}}
 

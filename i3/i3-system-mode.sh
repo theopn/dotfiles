@@ -1,8 +1,8 @@
 #!/bin/sh
 lock() {
-  if [ -d "$HOME/dotfiles" ]
+  if [ -d ~/dotfiles ]
   then
-    i3lock -i $HOME/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png
+    i3lock -i ~/dotfiles/assets/naomi-solarsys-draculafied-lockscreen.png
   else
     i3lock -c "#282a36"
   fi
