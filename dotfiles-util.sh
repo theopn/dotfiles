@@ -160,6 +160,18 @@ function delete_backup() {
   rm -rf $DOT_BACKUP_DIR
 }
 
+function i3_install() {
+  if selection_prompt "i3"; then
+    mkdir -p ~/.config/i3/
+    backup_then_symlink "$DOT_DIR"/i3/config ~/.config/i3/config
+  fi
+  green_echo "Polybar will be launched from the dotfiles directory"
+  if selection_prompt "dunst"; then
+    mkdir -p ~/.config/dunst/
+    backup_then_symlink "$DOT_DIR"/dunst/dunstrc ~/.config/dunst/dunstrc
+  fi
+}
+
 function help() {
   green_echo "
                     Dotfiles Utility Script Usage
@@ -170,7 +182,8 @@ function help() {
   -------------------------------------------------------------------
 
   args:
-    insall: Go through the installation process
+    install: Deploy symlinks for cross-platform utilities
+    i3_install: Deploy symlinks for i3 WM and related utilities
     delete_backup: Delete $DOT_BACKUP_DIR
   "
 }
@@ -182,6 +195,9 @@ function main() {
     ;;
     delete_backup)
       delete_backup
+    ;;
+    i3_install)
+      i3_install
     ;;
     help)
       help
