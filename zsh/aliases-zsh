@@ -44,7 +44,7 @@ function xrandr_external_on() {
     echo -e "\033[0;32m[Usage] xrandr_external_on <output-name>\033[0m"
     echo -e "\033[0;32m\tRetreive the output name using xrandr command\033[0m"
   else
-    xrandr --output $1 --auto --right-of eDP-1
+    xrandr --output $1 --auto --same-as eDP-1
   fi
 }
 
