@@ -15,8 +15,8 @@ set $suspend ~/dotfiles/i3/i3-system-mode.sh suspend
 set $reboot ~/dotfiles/i3/i3-system-mode.sh reboot
 set $shutdown ~/dotfiles/i3/i3-system-mode.sh shutdown
 # Program var
-set $bar ~/dotfiles/polybar/polybar_launch.sh simple
-#set $clipboard clipit
+set $bar polybar -c=~/dotfiles/polybar/config.inl -r -q
+set $clipboard clipit
 #for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
@@ -34,14 +34,14 @@ set $up k
 set $right l
 # workspace var
 set $ws1 "1:  "
-set $ws2 "2:  "
-set $ws3 "3:  "
+set $ws2 "2:  "
+set $ws3 "3:  "
 set $ws4 "4:  "
-set $ws5 "5:  "
-set $ws6 "6:  "
+set $ws5 "5"
+set $ws6 "6"
 set $ws7 "7"
-set $ws8 "8:  "
-set $ws9 "9:  "
+set $ws8 "8"
+set $ws9 "9"
 set $ws10 "10:  "
 # }}}
 
@@ -62,7 +62,7 @@ exec --no-startup-id setxkbmap -option ctrl:swapcaps
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
 exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
 # Accessing clipboard manager and screenshot tool
-bindsym $mod+Shift+v exec --no-startup-id $clipboard
+#bindsym $mod+Shift+v exec --no-startup-id $clipboard
 bindsym $mod+Shift+s exec --no-startup-id $screenshot
 # }}}
 
