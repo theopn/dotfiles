@@ -29,11 +29,11 @@ foreground = ${colors.foreground}
 border-color = ${colors.transparent}
 separator = |
 separator-foreground = ${colors.disabled}
-font-0 = FantasqueSansMono Nerd Font:size=12;1
+font-0 = CaskaydiaCove Nerd Font:size=11;1
 cursor-click = pointer
 cursor-scroll = ns-resize
 width = 100%
-height = 24pt
+height = 22pt
 radius = 0
 line-size = 3pt
 border-size = 3pt
@@ -57,20 +57,20 @@ label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.primary}
 menu-0-0 = "  Compositor"
-menu-0-0-exec = ~/dotfiles/polybar/polybar_display_tools_toggle.sh compositor
-menu-0-1 = "盛  Nightlight/Nightshift/Bluelight filter/whatever it's called"
-menu-0-1-exec = ~/dotfiles/polybar/polybar_display_tools_toggle.sh nightlight
+menu-0-0-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh compositor
+menu-0-1 = "盛  Bluelight filter"
+menu-0-1-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh nightlight
 
 [module/do_not_disturb]
 type = custom/text
 content = " "
 content-foreground = ${colors.primary}
-click-left = ~/dotfiles/polybar/polybar_dunst_toggle.sh
+click-left = ~/dotfiles/polybar/polybar-dunst-toggle.sh
 
 [module/temperature]
 type = internal/temperature
 interval = 5
-; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
 thermal-zone = 0
 base-temperature = 0
 units = true
@@ -137,7 +137,7 @@ label-urgent-padding = 2
 [module/spotify-simple]
 type = custom/text
 content = " ﱘ "
-click-left = notify-send "$(~/dotfiles/polybar/polybar_spotify.py)"
+click-left = notify-send "$(~/dotfiles/polybar/polybar-spotify.py)"
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -163,7 +163,7 @@ format-prefix-foreground = ${colors.primary}
 format = <label>
 
 [module/battery0]
-; Internal (bottom) battery on T460
+; Internal (bottom) battery of X270/T460
 type = internal/battery
 battery = BAT0
 adapter = ADP1
@@ -181,7 +181,7 @@ format-discharging = <ramp-capacity> <label-discharging>
 format-full =  <label-full>
 
 [module/battery1]
-; External (top) battery on T460
+; External (top) battery of X270/T460
 type = internal/battery
 battery = BAT1
 adapter = ADP1
@@ -210,7 +210,7 @@ format = %{A1:~/dotfiles/polybar/polybar_calendar.sh curr:}%{A3:~/dotfiles/polyb
 [module/weather]
 type = custom/text
 content = "摒 "
-click-left = ~/dotfiles/polybar/polybar_weather.sh
+click-left = ~/dotfiles/polybar/polybar-weather.sh
 
 [settings]
 screenchange-reload = true
