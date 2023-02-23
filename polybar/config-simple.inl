@@ -43,7 +43,7 @@ module-margin = 1
 
 modules-left = display_settings do_not_disturb temperature memory cpu network
 modules-center = i3
-modules-right = spotify-simple pulseaudio backlight battery0 battery1 date weather
+modules-right = spotify-simple pulseaudio backlight battery1 date weather
 tray-position = left
 
 [module/display_settings]
@@ -205,7 +205,7 @@ date = "%a %m-%d"
 time = "%H:%M"
 label = %date% %time%
 ; A1 Left click, A2 middle, A3 right click, A4 Scroll up, A5 scroll down, etc
-format = %{A1:~/dotfiles/polybar/polybar_calendar.sh curr:}%{A3:~/dotfiles/polybar/polybar_calendar.sh next:}  <label>%{A}%{A}
+format = %{A1:~/dotfiles/polybar/polybar-calendar.sh curr:}%{A3:~/dotfiles/polybar/polybar-calendar.sh next:}  <label>%{A}%{A}
 
 [module/weather]
 type = custom/text
