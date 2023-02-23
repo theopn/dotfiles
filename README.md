@@ -5,8 +5,8 @@
 ![macos-sc](./assets/macos-rice-sc-2023-02-15.jpg)
 ![fedora-sc](./assets/fedora-rice-sc-2022-07-25.png)
 
-Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad T460s with i5.
-MBA runs the latest version of macOS, and T460s runs the latest version of Fedora Workstation with i3 and Sway window manager (actually, Sway is a Wayland compositor :nerd-emoji:).
+Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad X270 (6th-gen i5).
+MBA runs the latest version of macOS, and X270 runs the latest version of Fedora i3 Spin with i3 and Sway window manager (actually, Sway is a Wayland compositor :nerd-emoji:).
 
 You are welcome to take inspiration from any file in this repository, but I do not take any responsibility for any content of the configurations. **Read the code before you use them!**
 
@@ -27,6 +27,12 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh delete_backup # Optional
 ```
 
+If you are on Linux machine and has dependencies needed for i3 WM setup:
+
+```bash
+~/dotfiles/dotfiles-util.sh i3_install
+```
+
 ### After installation
 
 - Doom Emacs:
@@ -37,15 +43,24 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ```
 
 - Fonts: CaskayadiaCove and FantasqueSansMono Nerd Fonts are default fonts in my configurations
-  1. Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and manually install fonts
-  2. Use Homebrew
+
+Using `fontconfig`:
+
+Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and download fonts. Use the following commands to install fonts.
+
+```bash
+mkdir -p ~/.local/share/fonts
+mv /path/to/otf/or/ttf/file ~/.local/share/fonts/
+fc-cache -vf
+fc-list <font-name> # to verify the installation
+```
+
+Using Homebrew:
 
 ```bash
 brew tap homebrew/cask-fonts &&
 brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-font
 ```
-
-- Dotfiles for Linux are not automatically deployed. Manually make symlinks for them if needed
 
 ## Highlights
 
@@ -163,8 +178,6 @@ Below is a list of keybindings that are unique to my setup.
 - In addition to the default binding of `$mod+d`, `$mod+Space` launches the app launcher.
 - `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirect to `system_mode`, from which you can choose all the above actions and `systemctl` actions.
 - `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and another program (e.g: Kitty uses `super + 0` to reset the font adjustment, which overlaps with i3's "move to workspace number 10." This can be solved by executing `super + 0` in the passthrough mode).
-- `$mod+Shift+v` to execute the clipboard manager.
-- `$mod+Shift+n` to launch a floating terminal with Vim open for a quick note (saved as `~/Documents/i3_quicknote.txt`)
 - `$mod+Shift+s` to execute a screenshot tool.
 
 Below are packages that you might want to install as well.
