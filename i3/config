@@ -10,10 +10,6 @@
 # {{{ VARIABLES
 set $mod Mod4
 # Script var
-set $lock ~/dotfiles/i3/i3lock-launch.sh
-set $suspend systemctl suspend
-set $reboot systemctl reboot
-set $shutdown systemctl poweroff
 set $rofi_powermenu ~/dotfiles/rofi/rofi-powermenu.sh
 # Program var
 set $bar polybar -c=~/dotfiles/polybar/config.inl -r -q
@@ -135,19 +131,17 @@ mode "$resize_mode" {
   bindsym $mod+r mode "default"
 }
 bindsym $mod+r mode "$resize_mode"
-# System option mode
-set $system_mode SYS MODE: (c) Config reload (e) Exit i3 (l) Lock (r) Restart i3 (s) Suspend (shift+r) Reboot (shift+s) Shutdown (esc) Exit
-mode "$system_mode" {
+# i3 related options mode
+set $i3_mode i3 MODE: (c) Config reload (e) Exit i3 (r) Restart i3 (esc, Return, Mod+Shift+c/r/e) Exit
+mode "$i3_mode" {
   bindsym c reload
   bindsym r restart
-  bindsym l exec --no-startup-id $lock, mode "default"
   bindsym e exec "i3-nagbar -t warning -m 'Exit i3?' -B 'Sure' 'i3-msg exit'"
-  bindsym s exec --no-startup-id $suspend, mode "default"
-  bindsym Shift+r exec "i3-nagbar -t warning -m 'Reboot?' -B 'Sure' '$reboot'"
-  bindsym Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Sure' '$shutdown'"
   bindsym Escape mode "default"
   bindsym Return mode "default"
-  bindsym $mod+r mode "default"
+  bindsym $mod+Shift+c mode "default"
+  bindsym $mod+Shift+r mode "default"
+  bindsym $mod+Shift+e mode "default"
 }
 bindsym $mod+Shift+c mode "$system_mode"
 bindsym $mod+Shift+r mode "$system_mode"
