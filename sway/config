@@ -11,7 +11,7 @@
 # Mod1 for Alt
 set $mod Mod4
 # Script var
-set $lock swaylock -i ~/dotfiles/pictures/2022-06-29_i3lock_solarsys-dracula.png
+set $lock swaylock -i ~/dotfiles/assets/naomi-solarsys-draculafied-lockscreen.png
 set $suspend systemctl suspend
 set $reboot systemctl reboot
 set $shutdown systemctl shutdown
@@ -26,8 +26,6 @@ for_window [app_id="^launcher$"] floating enable, sticky enable, resize set 30 p
 set $network nm-applet --indicator
 set $nightlight gammastep -P -l 40.7:-73.9 -t 5600:3500
 set $notification dunst
-set $quicknote kitty --class=quicknote vim ~/Documents/sway_quicknote.txt
-for_window [app_id="^quicknote$"] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $screenshot grim -g "$(slurp)"
 set $term kitty
 # External file var
@@ -58,13 +56,13 @@ exec swayidle -w \
   timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
   before-sleep '$lock'
 #$bindsym $mod+Shift+b exec pkill -SIGUSR1 waybar
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Use brightnessctl to adjust brightness with function row keys
-bindsym XF86MonBrightnessUp exec brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec brightnessctl set 10%-
+bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 # Sway CapsLock and Ctrl
 input "type:keyboard" {
   xkb_options ctrl:swapcaps
@@ -77,7 +75,6 @@ input "type:touchpad" {
 }
 bindsym $mod+Shift+z exec $clipboard_clear
 bindsym $mod+Shift+v exec $clipboard_show
-bindsym $mod+Shift+n exec $quicknote
 bindsym $mod+Shift+s exec $screenshot
 # }}}
 
