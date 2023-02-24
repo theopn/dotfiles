@@ -171,6 +171,7 @@ List of packages needed for my configuration:
 - Feh: Wallpaper
 - Flameshot: Screenshot on X
 - i3lock: Simple lock program
+- network-manager-applet: GUI network manager
 - Picom: Compositor
 - Polybar: This is where all the ricing takes place.
 - Redshift: Blue light filter/nightlight/nightshift
@@ -182,7 +183,6 @@ List of packages needed for my configuration:
 Not necessary but helpful packages:
 
 - Blueman: GUI Bluetooth manager
-- network-manager-applet: GUI network manager
 - Pavucontrol: Volume control for Pulseaudio (or Pipewire that pretends to be Pulseaudio)
 - xrandr: External display output control, should be a dependency for X11 server
 

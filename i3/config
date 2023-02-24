@@ -10,16 +10,17 @@
 # {{{ VARIABLES
 set $mod Mod4
 # Script var
-set $lock ~/dotfiles/i3/i3-system-mode.sh lock
-set $suspend ~/dotfiles/i3/i3-system-mode.sh suspend
-set $reboot ~/dotfiles/i3/i3-system-mode.sh reboot
-set $shutdown ~/dotfiles/i3/i3-system-mode.sh shutdown
+set $lock ~/dotfiles/i3/i3lock-launch.sh
+set $suspend systemctl suspend
+set $reboot systemctl reboot
+set $shutdown systemctl poweroff
 # Program var
 set $bar polybar -c=~/dotfiles/polybar/config.inl -r -q
 set $clipboard clipit
 #for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
+set $network nm-applet --indicator
 set $nightlight redshift -P -l 40.7:-73.9 -t 5600:3500 -m randr
 set $notification dunst
 set $screenshot flameshot launcher
@@ -160,16 +161,10 @@ mode "$system_mode" {
 bindsym $mod+Shift+c mode "$system_mode"
 bindsym $mod+Shift+r mode "$system_mode"
 bindsym $mod+Shift+e mode "$system_mode"
-# Passthrough mode
-set $passthrough_mode PASSTHROUGH MODE: (esc) Exit
-mode "$passthrough_mode" {
-  bindsym Escape mode "default"
-}
-bindsym $mod+Shift+p mode "$passthrough_mode"
 # }}}
 
 # {{{ APPEARANCE
-font pango:FantasqueSansMono Nerd Font 8
+font pango:CaskaydiaCove Nerd Font 8
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
@@ -189,6 +184,7 @@ gaps outer 3
 exec --no-startup-id $bar
 exec --no-startup-id $clipboard
 exec --no-startup-id $compositor
+exec --no-startup-id $network
 exec --no-startup-id $nightlight
 exec --no-startup-id $notification
 exec --no-startup-id $wallpaper
