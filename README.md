@@ -173,9 +173,9 @@ List of packages needed for my configuration:
 - i3lock: Simple lock program
 - network-manager-applet: GUI network manager
 - Picom: Compositor
-- Polybar: This is where all the ricing takes place.
+- Polybar: This is where all the ricing takes place
 - Redshift: Blue light filter/nightlight/nightshift
-- Rofi: App launcher and more
+- Rofi: App and custom power menu launcher
 - setxkbmap: Swap caps lock and control, your pinky will thank you
 - xinput: Enabling trackpad natural scrolling and tap-to-click
 - xss-lock: Calling i3lock before suspending
@@ -191,10 +191,9 @@ List of keybindings differing from the default
 - `jkl;` -> `hjkl`
 - `$mod + h` -> `$mod + z`: "horiZontal" split
 - `$mod + Space`: launches Rofi as well as the default `$mod+d`
-- `$mod + Shift + c/r/e`: launches `system_mode`, from which you can choose config reload, restart, exit i3, and power options
+- `$mod + Shift + c/r/e`: launches `i3_mode`, from which you can choose config reload, restart, or exit i3
+- `$mod + Shift + p`: launches a Rofi menu with power options (lock, suspend, shutdown, etc.)
 - `$mod + Shift + s`: Screenshot tool
-- `$mod+Shift+s` to execute a screenshot tool.
-
 
 #### Polybar
 
@@ -203,6 +202,12 @@ List of keybindings differing from the default
 ```
 | Tray | disp_opt | do_not_disturb | temp | mem | CPU | wifi      workspaces      music | volume | brightness | battery | date time | weather |
 ```
+
+#### Rofi
+
+> Launcher
+
+Dracula theme and Vim keybindings for selection. Some simple utilities like `rofi-powermenu.sh` is included.
 
 #### Sway
 

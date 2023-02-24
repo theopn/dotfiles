@@ -143,9 +143,9 @@ mode "$i3_mode" {
   bindsym $mod+Shift+r mode "default"
   bindsym $mod+Shift+e mode "default"
 }
-bindsym $mod+Shift+c mode "$system_mode"
-bindsym $mod+Shift+r mode "$system_mode"
-bindsym $mod+Shift+e mode "$system_mode"
+bindsym $mod+Shift+c mode "$i3_mode"
+bindsym $mod+Shift+r mode "$i3_mode"
+bindsym $mod+Shift+e mode "$i3_mode"
 # }}}
 
 # {{{ CUSTOM KEYBINDINGS
