@@ -27,7 +27,7 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh delete_backup # Optional
 ```
 
-If you are on Linux machine and has dependencies needed for i3 WM setup:
+If you are on Linux machine and has all the dependencies needed for i3 WM setup:
 
 ```bash
 ~/dotfiles/dotfiles-util.sh i3_install
@@ -104,7 +104,7 @@ Happy ricing!
 
 #### Neovim
 
-> I love you Neovim
+> I code Neovim to code in Neovim
 
 Due to requests from my friends, my Neovim configuration has migrated to a separate repository [Theovim](https://github.com/theopn/theovim)
 
@@ -147,15 +147,23 @@ Fedora Fedora Fedora.
 
 #### Awesome
 
-Migrated to [separate repository](https://github.com/theopn/hunted-tiles). Configuring Awesome is a Lua software engineering project.
+> Software engineering project, except it's in Lua
+
+Migrated to a separate [repository](https://github.com/theopn/hunted-tiles).
 
 #### Dunst
 
-Notification daemon for X11. Also used to grep the result of the `cal` command and weather information to display them as a pop-up.
+> Notification daemon
 
-#### i3 (i3-gap)
+Dracula theme, that's it.
 
-Below are the packages mentioned in my configuration.
+#### i3 (i3-gap) -> Now merged!
+
+> Tiling WM that just works
+
+I try to keep my configuration somewhat close to the default, although I'm not sure if I succeeded.
+
+List of packages needed for my configuration:
 
 - Brightnessctl: Backlight control
 - Clipit: Clipboard manager
@@ -171,29 +179,34 @@ Below are the packages mentioned in my configuration.
 - xinput: Enabling trackpad natural scrolling and tap-to-click
 - xss-lock: Calling i3lock before suspending
 
-Below is a list of keybindings that are unique to my setup.
-
-- Instead of `jkl;`, Vim keybinding of `hjkl`.
-- Instead of `$mod+h`, `$mod+z` toggles horiZontal split.
-- In addition to the default binding of `$mod+d`, `$mod+Space` launches the app launcher.
-- `$mod+Shift+c, r, e` (originally config reload, restart, exit) all redirect to `system_mode`, from which you can choose all the above actions and `systemctl` actions.
-- `Passthrough mode ($mod+Shift+p)` lets you use keybindings that are bound to both i3 and another program (e.g: Kitty uses `super + 0` to reset the font adjustment, which overlaps with i3's "move to workspace number 10." This can be solved by executing `super + 0` in the passthrough mode).
-- `$mod+Shift+s` to execute a screenshot tool.
-
-Below are packages that you might want to install as well.
+Not necessary but helpful packages:
 
 - Blueman: GUI Bluetooth manager
 - network-manager-applet: GUI network manager
 - Pavucontrol: Volume control for Pulseaudio (or Pipewire that pretends to be Pulseaudio)
 - xrandr: External display output control, should be a dependency for X11 server
 
+List of keybindings differing from the default
+
+- `jkl;` -> `hjkl`
+- `$mod + h` -> `$mod + z`: "horiZontal" split
+- `$mod + Space`: launches Rofi as well as the default `$mod+d`
+- `$mod + Shift + c/r/e`: launches `system_mode`, from which you can choose config reload, restart, exit i3, and power options
+- `$mod + Shift + s`: Screenshot tool
+- `$mod+Shift+s` to execute a screenshot tool.
+
+
 #### Polybar
 
-Two configurations. Both are semi-transparent utilizing a very similar set of modules, but one is more simplified with just one bar and the other has top and bottom bars.
+> Bar
+
+```
+| Tray | disp_opt | do_not_disturb | temp | mem | CPU | wifi      workspaces      music | volume | brightness | battery | date time | weather |
+```
 
 #### Sway
 
-Wayland will be the norm one day, but today is not that day. Wayland is just too buggy for me to use every day. My Sway setup is almost a copy of the i3 setup.
+> Sorry Wayland, I don't think you are quite ready yet
 
 - Clipman & wl-clipboard: Wayland clipboard utility (wl-clipboard) and terminal command-line clipboard history manager (clipman).
 - fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop).
@@ -202,6 +215,8 @@ Wayland will be the norm one day, but today is not that day. Wayland is just too
 - Waybar: Polybar replacement, arguably better
 
 #### Waybar
+
+> Bar 2
 
 I like the look better than Polybar. A colorful top bar contains all the necessary information.
 
