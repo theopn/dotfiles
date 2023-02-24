@@ -10,6 +10,7 @@
 # {{{ VARIABLES
 set $mod Mod4
 # Script var
+set $lock ~/dotfiles/i3/i3-lock.sh
 set $rofi_powermenu ~/dotfiles/rofi/rofi-powermenu.sh
 # Program var
 set $bar polybar -c=~/dotfiles/polybar/config.inl -r -q

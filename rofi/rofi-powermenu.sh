@@ -17,16 +17,7 @@ no=' 󰜺 no'
 shutdown_cmd='systemctl poweroff'
 suspend_cmd='systemctl suspend'
 reboot_cmd='systemctl reboot'
-function lock() {
-  LOCK_SCREEN=~/dotfiles/assets/naomi-solarsys-draculafied-lockscreen.png
-
-  if [ -e $LOCK_SCREEN ]
-  then
-    i3lock -i $LOCK_SCREEN
-  else
-    i3lock -c "#282a36"
-  fi
-}
+lock_cmd=~/dotfiles/i3/i3-lock.sh
 
 function exit_wm() {
   if [[ "$DESKTOP_SESSION" == "i3" ]]; then
@@ -86,7 +77,7 @@ function main() {
   chosen="$(run_rofi_selection)"
   case ${chosen} in
     $lock)
-      lock # No confirmation needed for lock
+      $lock_cmd # No confirmation needed for lock
     ;;
     $shutdown)
       confirm_then_run --shutdown
