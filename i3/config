@@ -14,10 +14,10 @@ set $lock ~/dotfiles/i3/i3lock-launch.sh
 set $suspend systemctl suspend
 set $reboot systemctl reboot
 set $shutdown systemctl poweroff
+set $rofi_powermenu ~/dotfiles/rofi/rofi-powermenu.sh
 # Program var
 set $bar polybar -c=~/dotfiles/polybar/config.inl -r -q
 set $clipboard clipit
-#for_window [class=$clipboard] floating enable, sticky enable, resize set 30 ppt 60 ppt, move position 1300px 50px
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
 set $network nm-applet --indicator
@@ -46,7 +46,7 @@ set $ws9 "9"
 set $ws10 "10:  "
 # }}}
 
-# {{{ HARDWARE ET SYSTEM
+# {{{ BASE KEYBINDINGS
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -55,23 +55,12 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # Use brightnessctl to adjust brightness with function row keys
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
-# Using xss-lock to automatically lock computer before going to sleep
-exec --no-startup-id xss-lock --transfer-sleep-lock -- $lock --nofork
-# Swap Caps Lock and Control. No more Emacs pinky
-exec --no-startup-id setxkbmap -option ctrl:swapcaps
-# Enable tap to click and natural scrolling
-exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
-exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
-# Accessing clipboard manager and screenshot tool
-#bindsym $mod+Shift+v exec --no-startup-id $clipboard
-bindsym $mod+Shift+s exec --no-startup-id $screenshot
-# }}}
 
-# {{{ WINDOW KEYBINDINGS
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id $menu
 bindsym $mod+space exec --no-startup-id $menu
+
 # change focus
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
@@ -104,7 +93,7 @@ floating_modifier $mod
 # change focus between tiling / floating windows
 #bindsym $mod+space focus mode_toggle
 # focus the parent/child container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -157,10 +146,20 @@ mode "$system_mode" {
   bindsym Shift+r exec "i3-nagbar -t warning -m 'Reboot?' -B 'Sure' '$reboot'"
   bindsym Shift+s exec "i3-nagbar -t warning -m 'Shutdown?' -B 'Sure' '$shutdown'"
   bindsym Escape mode "default"
+  bindsym Return mode "default"
+  bindsym $mod+r mode "default"
 }
 bindsym $mod+Shift+c mode "$system_mode"
 bindsym $mod+Shift+r mode "$system_mode"
 bindsym $mod+Shift+e mode "$system_mode"
+# }}}
+
+# {{{ CUSTOM KEYBINDINGS
+# Accessing clipboard manager and screenshot tool
+#bindsym $mod+Shift+v exec --no-startup-id $clipboard
+bindsym $mod+Shift+s exec --no-startup-id $screenshot
+# Rofi powermenu
+bindsym $mod+Shift+p exec --no-startup-id $rofi_powermenu
 # }}}
 
 # {{{ APPEARANCE
@@ -181,6 +180,14 @@ gaps outer 3
 # }}}
 
 # {{{ STARTUP APPLICATIONS
+# Using xss-lock to automatically lock computer before going to sleep
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $lock --nofork
+# Swap Caps Lock and Control. No more Emacs pinky
+exec --no-startup-id setxkbmap -option ctrl:swapcaps
+# Enable tap to click and natural scrolling
+exec --no-startup-id xinput --set-prop $trackpad_id "libinput Tapping Enabled" 1
+exec --no-startup-id xinput --set-prop $trackpad_id "libinput Natural Scrolling Enabled" 1
+
 exec --no-startup-id $bar
 exec --no-startup-id $clipboard
 exec --no-startup-id $compositor
