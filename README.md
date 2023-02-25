@@ -199,7 +199,7 @@ List of keybindings differing from the default
 > The bar
 
 ```
-disp_opt | do_not_disturb | temp | mem | CPU | wifi    workspaces    volume | brightness | battery | date-time | music | weather | tray
+tray | disp_opt | do_not_disturb | temp | mem | CPU | wifi    workspaces    volume | brightness | battery | date-time | music | weather
 ```
 
 #### Rofi

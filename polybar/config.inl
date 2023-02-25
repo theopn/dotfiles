@@ -39,7 +39,7 @@ modules-left = display_settings do_not_disturb temperature memory cpu network
 modules-center = i3
 modules-right = pulseaudio backlight battery1 date spotify-simple weather
 
-tray-position = right
+tray-position = left
 tray-padding = 1
 
 [module/display_settings]
