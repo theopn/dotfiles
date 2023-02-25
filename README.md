@@ -200,14 +200,14 @@ List of keybindings differing from the default
 > Bar
 
 ```
-| Tray | disp_opt | do_not_disturb | temp | mem | CPU | wifi      workspaces      music | volume | brightness | battery | date time | weather |
+| disp_opt | do_not_disturb | temp | mem | CPU | wifi      workspaces      volume | brightness | battery | date-time | music | weather | tray |
 ```
 
 #### Rofi
 
 > Launcher
 
-Dracula theme and Vim keybindings for selection. Some simple utilities like `rofi-powermenu.sh` is included.
+Dracula theme ~~and Vim keybindings for selection~~. Some simple utilities like `rofi-powermenu.sh` is included.
 
 #### Sway
 

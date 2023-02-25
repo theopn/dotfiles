@@ -165,10 +165,17 @@ function i3_install() {
     mkdir -p ~/.config/i3/
     backup_then_symlink "$DOT_DIR"/i3/config ~/.config/i3/config
   fi
-  green_echo "Polybar will be launched from the dotfiles directory"
+
+  yellow_echo "Polybar will be launched from the dotfiles directory; no install needed"
+
   if selection_prompt "dunst"; then
     mkdir -p ~/.config/dunst/
     backup_then_symlink "$DOT_DIR"/dunst/dunstrc ~/.config/dunst/dunstrc
+  fi
+
+  if selection_prompt "rofi"; then
+    mkdir -p ~/.config/rofi/
+    backup_then_symlink "$DOT_DIR"/rofi/config.rasi ~/.config/rofi/config.rasi
   fi
 }
 
