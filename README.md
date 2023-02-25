@@ -16,7 +16,7 @@ Install Homebrew:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew analytics off # Sorry Brew but I don't want Google to know what packages I installed
+brew analytics off # Sorry Brew
 ```
 
 Install packages and make symlinks using `dotfiles-util.sh`:
@@ -27,7 +27,7 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh delete_backup # Optional
 ```
 
-If you are on Linux machine and has all the dependencies needed for i3 WM setup:
+For Linux machine with dependencies needed for my i3 configuration:
 
 ```bash
 ~/dotfiles/dotfiles-util.sh i3_install
@@ -52,7 +52,7 @@ Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and do
 mkdir -p ~/.local/share/fonts
 mv /path/to/otf/or/ttf/file ~/.local/share/fonts/
 fc-cache -vf
-fc-list <font-name> # to verify the installation
+fc-list <font-name> # Verifying the installation
 ```
 
 Using Homebrew:
@@ -135,7 +135,6 @@ echo "
 ╭─ ⊊ parktheo0 @ lightsaber ϵ ~/dotfiles ⊋
 ╰─ ⊄ (main *) 14:57:42 ⊅ $                                                            41ms
 "
-echo "||"
 echo "
  ⦰ [ parktheo0 ϵ ~/dotfiles ] {main *} $                                              41ms
 "
@@ -197,15 +196,15 @@ List of keybindings differing from the default
 
 #### Polybar
 
-> Bar
+> The bar
 
 ```
-| disp_opt | do_not_disturb | temp | mem | CPU | wifi      workspaces      volume | brightness | battery | date-time | music | weather | tray |
+disp_opt | do_not_disturb | temp | mem | CPU | wifi    workspaces    volume | brightness | battery | date-time | music | weather | tray
 ```
 
 #### Rofi
 
-> Launcher
+> The launcher
 
 Dracula theme ~~and Vim keybindings for selection~~. Some simple utilities like `rofi-powermenu.sh` is included.
 
@@ -241,13 +240,13 @@ Formulae:
 - Hugo: Static website generator
 - **htop**
 - **Lua**
-- mutt: TUI email client
+- mutt: CLI email client
 - **node**
 - **neofetch**
 - **neovim**
-- **ranger**: TUI file explorer
+- **ranger**: CLI file explorer
 - **tmux**
-- w3m: TUI web browser
+- w3m: web browser
 
 | Type              | Casks                                                                                 |
 |-------------------|---------------------------------------------------------------------------------------|
