@@ -5,6 +5,22 @@ function update_dotfiles() {
   cd ~/dotfiles/ && git pull && cd - &> /dev/null
 }
 
+# Add ssh shortcut
+function add_ssh_shortcut() {
+  mkdir -p ~/.ssh/
+  [[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config
+  echo -n 'Nickname for the host: '
+  read host_nickname
+  echo -n 'Host URL: '
+  read host_url
+  echo -n 'Username for the server: '
+  read -n username
+  echo "Host $host_nickname
+    Hostname $host_url
+    User $username" >> ~/.ssh/config
+  echo "${username}@${host_url} has been added to the SSH config! Try <ssh $host_nickname>."
+}
+
 # Custom trash function
 function trash () {
   if [ ! -d "$HOME/trash_zsh/" ]
@@ -18,11 +34,11 @@ function trash () {
 function trash_empty() {
   if [ ! -d "$HOME/trash_zsh/" ]
   then
-    echo "Trash folder does not exist!"
+    echo 'Trash folder does not exist!'
   else
     rm -r $HOME/trash_zsh/
     mkdir $HOME/trash_zsh/
-    echo "Trash folder emptied!"
+    echo 'Trash folder emptied!'
   fi
 }
 
