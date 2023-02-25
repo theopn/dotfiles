@@ -7,28 +7,22 @@
 ;=======================================
 
 [colors]
-; Prefix aa is for the transparent, ranging from 0 (fully transparent), 1, ... E, F
+transparent = #00000000
+; Prefix 00 is for the transparent, ranging from 0 (fully transparent), 1, ... E, F
 ; Dracula Background
-background = #77282a36
-background-alt = #282a36
-; Dracula Foreground
-foreground = #f8f8f2
+background = #00282a36
 ; Dracula Cyan
-primary = #8be9fd
-; Dracula Comment
-secondary = #6272a4
+foreground = #8be9fd
 ; Dracula Red
 alert = #ff5555
-; Dracula Orange
-disabled = #ffb86c
-transparent = #00000000
+; Dracula Comment
+disabled = #6272A4
 
 [bar/hamilton]
 background = ${colors.background}
 foreground = ${colors.foreground}
 border-color = ${colors.transparent}
-separator = |
-separator-foreground = ${colors.disabled}
+separator =
 font-0 = CaskaydiaCove Nerd Font:size=11;1
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -43,19 +37,20 @@ module-margin = 1
 
 modules-left = display_settings do_not_disturb temperature memory cpu network
 modules-center = i3
-modules-right = spotify-simple pulseaudio backlight battery1 date weather
-tray-position = left
+modules-right = pulseaudio backlight battery1 date spotify-simple weather
+
+tray-position = right
+tray-padding = 1
 
 [module/display_settings]
 type = custom/menu
 expand-right = true
 format-spacing = 1
 label-open = " "
-label-open-foreground = ${colors.primary}
 label-close = " "
-label-close-foreground = ${colors.secondary}
+label-close-foreground = ${colors.disabled}
 label-separator = |
-label-separator-foreground = ${colors.primary}
+label-separator-foreground = ${colors.disabled}
 menu-0-0 = "  Compositor"
 menu-0-0-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh compositor
 menu-0-1 = "盛  Bluelight filter"
@@ -64,7 +59,6 @@ menu-0-1-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh nightlight
 [module/do_not_disturb]
 type = custom/text
 content = " "
-content-foreground = ${colors.primary}
 click-left = ~/dotfiles/polybar/polybar-dunst-toggle.sh
 
 [module/temperature]
@@ -82,14 +76,12 @@ type = internal/memory
 interval = 5
 label = %gb_used%
 format-prefix = "  "
-format-prefix-foreground = ${colors.primary}
 
 [module/cpu]
 type = internal/cpu
 interval = 5
 label = %percentage:2%%
 format-prefix = " "
-format-prefix-foreground = ${colors.primary}
 
 [module/network]
 type = internal/network
@@ -101,7 +93,6 @@ ramp-signal-2 = :
 ramp-signal-3 = .:
 ramp-signal-4 = ::
 ramp-signal-5 = .::
-ramp-signal-foreground = ${colors.primary}
 label-connected = 直  %essid%
 label-disconnected = 睊  no wifi?
 format-connected = <label-connected> <ramp-signal>
@@ -124,7 +115,7 @@ label-mode-background = ${colors.alert}
 
 label-focused = %name%
 label-focused-background = ${colors.background}
-label-focused-underline = ${colors.primary}
+label-focused-underline = ${colors.foreground}
 label-focused-padding = 2
 
 label-unfocused = %index%: %name%
@@ -133,11 +124,6 @@ label-unfocused-padding = 2
 label-urgent = %index%: %name%
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
-
-[module/spotify-simple]
-type = custom/text
-content = " ﱘ "
-click-left = notify-send "$(~/dotfiles/polybar/polybar-spotify.py)"
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -159,7 +145,6 @@ card = intel_backlight
 use-actual-brightness = true
 label = %percentage%%
 format-prefix = "  "
-format-prefix-foreground = ${colors.primary}
 format = <label>
 
 [module/battery0]
@@ -173,7 +158,6 @@ poll-interval = 5
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = ${colors.alert}
 ramp-capacity-1 = 
-ramp-capacity-1-foreground = ${colors.primary}
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 format-charging =  <label-charging>
@@ -191,7 +175,6 @@ poll-interval = 5
 ramp-capacity-0 = 
 ramp-capacity-0-foreground = ${colors.alert}
 ramp-capacity-1 = 
-ramp-capacity-1-foreground = ${colors.primary}
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 format-charging =  <label-charging>
@@ -206,6 +189,11 @@ time = "%H:%M"
 label = %date% %time%
 ; A1 Left click, A2 middle, A3 right click, A4 Scroll up, A5 scroll down, etc
 format = %{A1:~/dotfiles/polybar/polybar-calendar.sh curr:}%{A3:~/dotfiles/polybar/polybar-calendar.sh next:}  <label>%{A}%{A}
+
+[module/spotify-simple]
+type = custom/text
+content = " ﱘ "
+click-left = notify-send "$(~/dotfiles/polybar/polybar-spotify.py)"
 
 [module/weather]
 type = custom/text
