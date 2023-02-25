@@ -21,24 +21,27 @@ function add_ssh_shortcut() {
   echo "${username}@${host_url} has been added to the SSH config! Try <ssh $host_nickname>."
 }
 
-# Custom trash function
+# Trash function
 function trash () {
-  if [ ! -d "$HOME/trash_zsh/" ]
-  then
-    mkdir $HOME/trash_zsh/
+  if [[ ! -d ~/.theoshell_trash ]]; then
+    mkdir -p ~/.theoshell_trash/
   fi
-  mv "$1" $HOME/trash_zsh/
-  echo "$1" moved to trash!
+  for file in $@
+  do
+    mv $file ~/.theoshell_trash/
+    echo "$file moved to trash!"
+  done
 }
 
 function trash_empty() {
-  if [ ! -d "$HOME/trash_zsh/" ]
-  then
-    echo 'Trash folder does not exist!'
+  if [[ ! -d ~/.theoshell_trash ]]; then
+    echo 'Trash direcoty does not exist!'
   else
-    rm -r $HOME/trash_zsh/
-    mkdir $HOME/trash_zsh/
-    echo 'Trash folder emptied!'
+    for file in ~/.theoshell_trash/*
+    do
+      echo "Removing ${file}..."
+      rm -rf $file
+    done
   fi
 }
 
