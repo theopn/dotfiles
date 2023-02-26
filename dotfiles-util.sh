@@ -179,6 +179,21 @@ function i3_install() {
   fi
 }
 
+function add_ssh_shortcut() {
+  mkdir -p ~/.ssh/
+  [[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config
+  echo -n 'Nickname for the host: '
+  read host_nickname
+  echo -n 'Host URL: '
+  read host_url
+  echo -n 'Username for the server: '
+  read username
+  echo "Host $host_nickname
+    Hostname $host_url
+    User $username" >> ~/.ssh/config
+  yellow_echo "${username}@${host_url} has been added to the SSH config! Try <ssh $host_nickname>."
+}
+
 function help() {
   green_echo "
                     Dotfiles Utility Script Usage
@@ -205,6 +220,9 @@ function main() {
     ;;
     i3_install)
       i3_install
+    ;;
+    add_ssh_shortcut)
+      add_ssh_shortcut
     ;;
     help)
       help

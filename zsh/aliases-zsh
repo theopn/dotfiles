@@ -5,22 +5,6 @@ function update_dotfiles() {
   cd ~/dotfiles/ && git pull && cd - &> /dev/null
 }
 
-# Add ssh shortcut
-function add_ssh_shortcut() {
-  mkdir -p ~/.ssh/
-  [[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config
-  echo -n 'Nickname for the host: '
-  read host_nickname
-  echo -n 'Host URL: '
-  read host_url
-  echo -n 'Username for the server: '
-  read -n username
-  echo "Host $host_nickname
-    Hostname $host_url
-    User $username" >> ~/.ssh/config
-  echo "${username}@${host_url} has been added to the SSH config! Try <ssh $host_nickname>."
-}
-
 # Trash function
 function trash () {
   if [[ ! -d ~/.theoshell_trash ]]; then
