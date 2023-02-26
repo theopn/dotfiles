@@ -38,12 +38,11 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 - Add SSH shortcut for frequently used servers:
 
 ```bash
-$ ~/dotfiles/dotfiles-util.sh add_ssh_shortcut
-Nickname for the host: data
-Host URL: data.cs.purdue.edu
-Username for the server: my_username
+~/dotfiles/dotfiles-util.sh add_ssh_shortcut
 
-[Attention] my_username@data.cs.purdue.edu has been added to the SSH config! Try <ssh data>.
+> Nickname for the host: <data>
+> Host URL: <data.cs.purdue.edu>
+> Username for the server: <my_username>
 ```
 
 - Install Doom Emacs:
@@ -52,8 +51,6 @@ Username for the server: my_username
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 ```
-
-- Install Fonts: CaskayadiaCove and FantasqueSansMono Nerd Fonts are default fonts in my configurations
 
 - Install fonts using `fontconfig`:
   1. Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and download fonts
@@ -66,7 +63,7 @@ fc-cache -vf
 fc-list <font-name> # Verifying the installation
 ```
 
-- Install fonts using Homebrew:
+- Install CaskayadiaCove and FantasqueSansMono Nerd Fonts using Homebrew:
 
 ```bash
 brew tap homebrew/cask-fonts &&
@@ -163,7 +160,7 @@ Migrated to a separate [repository](https://github.com/theopn/hunted-tiles).
 
 Dracula theme, that's it.
 
-#### i3 (i3-gap) -> Now merged!
+#### i3 (i3-gap) - Now merged!
 
 > Tiling WM that just works
 
