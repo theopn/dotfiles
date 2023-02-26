@@ -12,14 +12,14 @@ You are welcome to take inspiration from any file in this repository, but I do n
 
 ## Installation
 
-Install Homebrew:
+- Install Homebrew:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew analytics off # Sorry Brew
 ```
 
-Install packages and make symlinks using `dotfiles-util.sh`:
+- **Install packages and make symlinks using `dotfiles-util.sh`**:
 
 ```bash
 git clone https://github.com/theopn/dotfiles.git ~/dotfiles
@@ -27,35 +27,46 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh delete_backup # Optional
 ```
 
-For Linux machine with dependencies needed for my i3 configuration:
+- For Linux machine with dependencies needed for my i3 configuration:
 
 ```bash
 ~/dotfiles/dotfiles-util.sh i3_install
 ```
 
-### After installation
+### Post Installation
 
-- Doom Emacs:
+- Add SSH shortcut for frequently used servers:
+
+```bash
+$ ~/dotfiles/dotfiles-util.sh add_ssh_shortcut
+Nickname for the host: data
+Host URL: data.cs.purdue.edu
+Username for the server: my_username
+
+[Attention] my_username@data.cs.purdue.edu has been added to the SSH config! Try <ssh data>.
+```
+
+- Install Doom Emacs:
 
 ```bash
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 ```
 
-- Fonts: CaskayadiaCove and FantasqueSansMono Nerd Fonts are default fonts in my configurations
+- Install Fonts: CaskayadiaCove and FantasqueSansMono Nerd Fonts are default fonts in my configurations
 
-Using `fontconfig`:
-
-Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and download fonts. Use the following commands to install fonts.
+- Install fonts using `fontconfig`:
+  1. Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and download fonts
+  2. Use the following commands to install fonts:
 
 ```bash
 mkdir -p ~/.local/share/fonts
-mv /path/to/otf/or/ttf/file ~/.local/share/fonts/
+mv </path/to/otf/or/ttf/file> ~/.local/share/fonts/
 fc-cache -vf
 fc-list <font-name> # Verifying the installation
 ```
 
-Using Homebrew:
+- Install fonts using Homebrew:
 
 ```bash
 brew tap homebrew/cask-fonts &&
@@ -128,13 +139,9 @@ Keybindings that are drastically different from stock bindings (that make more s
 - Greeting message
 - `theoshell_plug` and `theoshell_upgrade` automatically download and load ZSH plug-ins I need (currently only zsh-autocomplete), eliminating the need for a bloated shell plug-in manager
 - Aliases utilizing Tmux pop-up window (`nvif`, `note`, `wiki`) and miscellaneous functions like `trash()` and `update_dotfiles()`
-- Choice of a two-line prompt and a simpler one-line prompt (both support Git information)
+- Set theory themed prompt:
 
 ```bash
-echo "
-╭─ ⊊ parktheo0 @ lightsaber ϵ ~/dotfiles ⊋
-╰─ ⊄ (main *) 14:57:42 ⊅ $                                                            41ms
-"
 echo "
  ⦰ [ parktheo0 ϵ ~/dotfiles ] {main *} $                                              41ms
 "
