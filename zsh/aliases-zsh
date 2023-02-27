@@ -86,4 +86,5 @@ alias ls="ls -G"
 alias l="ls -A -l -h --color=auto" # All file except . and .., list view, display unit suffix for the size
 alias nvi="nvim"
 alias nvif="fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim"
+alias weather="curl 'https://wttr.in'"
 
