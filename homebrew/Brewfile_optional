@@ -3,6 +3,7 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 brew "bat"
+brew "fd"
 brew "hugo"
 brew "mutt"
 brew "w3m"

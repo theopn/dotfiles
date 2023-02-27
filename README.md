@@ -164,8 +164,6 @@ Dracula theme, that's it.
 
 > Tiling WM that just works
 
-I try to keep my configuration somewhat close to the default, although I'm not sure if I succeeded.
-
 List of packages needed for my configuration:
 
 - Brightnessctl: Backlight control
@@ -236,8 +234,9 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 Formulae:
 
+
 - bat: Fancier `cat` replacement
-- **fd**
+- fd: Fancier `find` replacement
 - **ffmpeg**: `ffmpeg -i in.xxx out.yyy`
 - **fzf**: Command line fuzzy finder
 - **figlet**: ASCII art generator
