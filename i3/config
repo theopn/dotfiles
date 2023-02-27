@@ -31,17 +31,16 @@ set $down j
 set $up k
 set $right l
 # workspace var
-# 1 - Productivity: Emacs, calendar, daily agenda
-set $ws1 "1: 󰇴 "
-# 2 - Development: Terminal with tmux and Neovim
-set $ws2 "2:  "
-# 3 - Web: Firefox and Thunderbird
-set $ws3 "3:  "
-# 4 - Park: If you need to have two apps side-by-side, join it here
+# 1 - Productivity: Emacs, calendar, daily agenda, and music
+set $ws1 "1: 󰇴 |  "
+# 2 - Development and web: Terminal with tmux and Neovim
+set $ws2 "2:  |  "
+# 3 - Communication: Email and other communication apps
+set $ws3 "3: 󰵅 "
+# 4 - Park: Background processes and apps no longer used
 set $ws4 "4: 󰪭 "
-# 5 - Background: Spotify, backup script, etc.
-set $ws5 "5:  "
 # Rest of the workspaces are often unused
+set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
