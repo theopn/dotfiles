@@ -33,7 +33,7 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh i3_install
 ```
 
-### Post Installation
+### Post-Installation
 
 - Add SSH shortcut for frequently used servers:
 
@@ -52,15 +52,14 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
 ```
 
-- Install fonts using `fontconfig`:
-  1. Navigate to [NERD Font](https://www.nerdfonts.com/font-downloads) website and download fonts
-  2. Use the following commands to install fonts:
+- Install fonts using `fontconfig` and the included function in `dotfiles-util.sh`:
+
+1. Navigate to [NERD Fonts download](https://www.nerdfonts.com/font-downloads) website
+2. Right click on the font download and copy the link
+3. Execute the following
 
 ```bash
-mkdir -p ~/.local/share/fonts
-mv </path/to/otf/or/ttf/file> ~/.local/share/fonts/
-fc-cache -vf
-fc-list <font-name> # Verifying the installation
+~/dotfiles/dotfiles-util.sh install_font <URL>
 ```
 
 - Install CaskayadiaCove and FantasqueSansMono Nerd Fonts using Homebrew:

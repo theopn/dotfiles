@@ -191,7 +191,18 @@ function add_ssh_shortcut() {
   echo "Host $host_nickname
     Hostname $host_url
     User $username" >> ~/.ssh/config
-  yellow_echo "${username}@${host_url} has been added to the SSH config! Try <ssh $host_nickname>."
+  green_echo "${username}@${host_url} has been added to the SSH config! Try <ssh $host_nickname>."
+}
+
+function install_font() {
+  mkdir -p ~/.local/share/fonts
+  cd ~/.local/share/fonts
+  wget -O temp-font.zip $1
+  unzip temp-font.zip
+  rm temp-font.zip
+  fc-cache -vf
+  cd - > /dev/null 2>&1
+  green_echo "A font from $1 successfully installed!"
 }
 
 function help() {
@@ -204,9 +215,11 @@ function help() {
   -------------------------------------------------------------------
 
   args:
-    install: Deploy symlinks for cross-platform utilities
-    i3_install: Deploy symlinks for i3 WM and related utilities
-    delete_backup: Delete $DOT_BACKUP_DIR
+    install             : Deploy configuration symlinks for cross-platform utilities
+    i3_install          : Deploy configuration symlinks for i3 WM and related utilities
+    delete_backup       : Delete $DOT_BACKUP_DIR
+    add_ssh_shortcut    : Add a new SSH shortcut at ~/.ssh/config
+    install_font <URL>  : wget a font file from URL (preferably from NERDFont website) and install it at ~/.local/share/fonts/
   "
 }
 
@@ -215,14 +228,18 @@ function main() {
     install)
       install
     ;;
-    delete_backup)
-      delete_backup
-    ;;
     i3_install)
       i3_install
     ;;
+    delete_backup)
+      delete_backup
+    ;;
     add_ssh_shortcut)
       add_ssh_shortcut
+    ;;
+    install_font)
+      if [[ ! $2 ]]; then red_echo "URL for the font is missing!"; exit 1; fi
+      install_font $2
     ;;
     help)
       help
@@ -237,6 +254,6 @@ function main() {
 }
 
 ########### MAIN CALL HERE ##########
-main $1
+main $@
 ########### MAIN CALL HERE ##########
 
