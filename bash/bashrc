@@ -13,5 +13,7 @@ export TERM=xterm-256color
 PS1=" \[\e[0;96m\][ \[\e[0;35m\]\u \[\e[0m\]@ \[\e[0;36m\]\h \[\e[0m\]in \[\e[0;34m\]\w \[\e[0;96m\]] \[\e[0m\]-> "
 
 #Alias for those who prefer nvim appimage - Theovim
-alias nvim=~/apps/nvim.appimage
+#alias nvim=~/apps/nvim.appimage
+# 2022-02-27, Shriansh emailed ScienceHelp and they actually updated package
+# Today is a good day
 
