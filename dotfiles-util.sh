@@ -66,21 +66,21 @@ function install() {
 
   verify_script_dir
 
-  green_echo "Homebrew Core Formulae/Casks:
+  green_echo 'Homebrew Core Formulae/Casks:
   Existing formulae will be uninstalled.
   Some casks might not be compitable with non-macOS systems.
-  Do you want to proceed?"
-  if selection_prompt "Homebrew Core"; then
+  Do you want to proceed?'
+  if selection_prompt 'Homebrew Core'; then
     #brew remove --force $(brew list --formula)
     #brew remove --cask --force $(brew list)
     brew bundle --file "$DOT_DIR"/homebrew/Brewfile_core
   fi
 
-  if selection_prompt "Bash"; then # Do not use bracket around a function that returns command (which true/false are)
+  if selection_prompt 'Bash'; then # Do not use bracket around a function that returns command (which true/false are)
     backup_then_symlink "$DOT_DIR"/bash/bashrc ~/.bashrc
   fi
 
-  if selection_prompt "Doom"; then
+  if selection_prompt 'Doom'; then
     CURRENT_FILES=("init.el" "config.el" "packages.el")
     mkdir -p ~/.doom.d/
     for FILE in ${CURRENT_FILES[@]}; do
@@ -88,61 +88,61 @@ function install() {
     done
   fi
 
-  if selection_prompt "Git"; then
+  if selection_prompt 'Git'; then
     CURRENT_FILES=("gitignore_global" "gitconfig")
     for FILE in ${CURRENT_FILES[@]}; do
       backup_then_symlink "$DOT_DIR"/git/"$FILE" ~/."$FILE"
     done
   fi
 
-  if selection_prompt "Kitty"; then
+  if selection_prompt 'Kitty'; then
     mkdir -p ~/.config/kitty/
     backup_then_symlink "$DOT_DIR"/kitty/kitty.conf ~/.config/kitty/kitty.conf
   fi
 
-  if selection_prompt "Mutt"; then
-    CURRENT_FILES=("mailcap" "muttrc")
+  if selection_prompt 'Mutt'; then
+    CURRENT_FILES=('mailcap' 'muttrc')
     mkdir -p ~/.mutt/
     for FILE in ${CURRENT_FILES[@]}; do
       backup_then_symlink "$DOT_DIR"/mutt/"$FILE" ~/.mutt/"$FILE"
     done
   fi
 
-  if selection_prompt "Neofetch"; then
+  if selection_prompt 'Neofetch'; then
     mkdir -p ~/.config/neofetch/
     backup_then_symlink "$DOT_DIR"/neofetch/config.conf ~/.config/neofetch/config.conf
   fi
 
-  if selection_prompt "Tmux"; then
+  if selection_prompt 'Tmux'; then
     backup_then_symlink "$DOT_DIR"/tmux/tmux.conf ~/.tmux.conf
   fi
 
-  if selection_prompt "Vim"; then
+  if selection_prompt 'Vim'; then
     backup_then_symlink "$DOT_DIR"/vim/vimrc ~/.vimrc
   fi
 
-  if selection_prompt "Vim Colorscheme"; then
+  if selection_prompt 'Vim Colorscheme'; then
     mkdir -p ~/.vim/
     mkdir -p ~/.vim/colors/
     backup_then_symlink "$DOT_DIR"/vim/colors/drakai.vim ~/.vim/colors/drakai.vim
   fi
 
-  if selection_prompt "Zsh"; then
+  if selection_prompt 'Zsh'; then
     backup_then_symlink "$DOT_DIR"/zsh/zshrc ~/.zshrc
   fi
 
-  if selection_prompt "macOS Settings"; then
+  if selection_prompt 'macOS Settings'; then
     source "$DOT_DIR"/macos/macos_settings.sh
   fi
 
-  green_echo "Homebrew Optional Formulae/Casks:
+  green_echo 'Homebrew Optional Formulae/Casks:
   This might take a while, and I honestly recommend you to go through each program manually.
-  Do you want to proceed?"
-  if selection_prompt "Homebrew Optional"; then
+  Do you want to proceed?'
+  if selection_prompt 'Homebrew Optional'; then
     brew bundle --file "$DOT_DIR"/homebrew/Brewfile_optional
   fi
 
-  yellow_echo "Ending the dotfiles installation..."
+  yellow_echo 'Ending the dotfiles installation...'
 
   green_echo "
      ____   __   __U _____ u
@@ -161,19 +161,19 @@ function delete_backup() {
 }
 
 function i3_install() {
-  if selection_prompt "i3"; then
+  if selection_prompt 'i3'; then
     mkdir -p ~/.config/i3/
     backup_then_symlink "$DOT_DIR"/i3/config ~/.config/i3/config
   fi
 
-  yellow_echo "Polybar will be launched from the dotfiles directory; no install needed"
+  yellow_echo 'Polybar will be launched from the dotfiles directory; no install needed'
 
-  if selection_prompt "dunst"; then
+  if selection_prompt 'dunst'; then
     mkdir -p ~/.config/dunst/
     backup_then_symlink "$DOT_DIR"/dunst/dunstrc ~/.config/dunst/dunstrc
   fi
 
-  if selection_prompt "rofi"; then
+  if selection_prompt 'rofi'; then
     mkdir -p ~/.config/rofi/
     backup_then_symlink "$DOT_DIR"/rofi/config.rasi ~/.config/rofi/config.rasi
   fi
@@ -182,11 +182,11 @@ function i3_install() {
 function add_ssh_shortcut() {
   mkdir -p ~/.ssh/
   [[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config
-  echo -n 'Nickname for the host: '
+  echo -n 'add_ssh_shortcut) Enter host nickname: '
   read host_nickname
-  echo -n 'Host URL: '
+  echo -n 'add_ssh_shortcut) Enter host URL; '
   read host_url
-  echo -n 'Username for the server: '
+  echo -n 'add_ssh_shortcut) Enter username for the host: '
   read username
   echo "Host $host_nickname
     Hostname $host_url
@@ -195,6 +195,7 @@ function add_ssh_shortcut() {
 }
 
 function install_font() {
+  if [[ ! $2 ]]; then red_echo 'Target URL is missing!'; exit 1; fi
   mkdir -p ~/.local/share/fonts
   cd ~/.local/share/fonts
   wget -O temp-font.zip $1
@@ -238,14 +239,13 @@ function main() {
       add_ssh_shortcut
     ;;
     install_font)
-      if [[ ! $2 ]]; then red_echo "URL for the font is missing!"; exit 1; fi
       install_font $2
     ;;
     help)
       help
     ;;
     *) # Invalid option
-     red_echo "Invalid option"
+     red_echo 'Invalid option'
      help
     ;;
   esac
