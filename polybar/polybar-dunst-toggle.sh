@@ -1,7 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-notify-send -u normal "If you see this, DND is off"
-dunstctl set-paused toggle
+if [[ $(dunstctl is-paused) == "false" ]]; then
+  notify-send -u normal "Do not disturb on!"
+  sleep 3
+  dunstctl close
+  dunstctl set-paused true
+else
+  notify-send -u normal "Do not disturb off"
+  dunstctl set-paused false
+fi
 
 exit 0;
 
