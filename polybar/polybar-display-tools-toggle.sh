@@ -1,6 +1,6 @@
 #!/bin/bash
 
-case "$1" in
+case $1 in
   nightlight)
     if [[ $(ps -aux | grep [r]edshift | wc -l) > 0 ]]; then
       redshift -x & pkill -9 redshift & redshift - x
