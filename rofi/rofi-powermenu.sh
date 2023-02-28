@@ -58,13 +58,13 @@ function run_rofi_confirmation() {
 function confirm_then_run() {
   selected="$(run_rofi_confirmation)"
   if [[ "$selected" == "$yes" ]]; then
-    if [[ $1 == "--shutdown" ]]; then
+    if [[ $1 == '--shutdown' ]]; then
       $shutdown_cmd
-    elif [[ $1 == "--reboot" ]]; then
+    elif [[ $1 == '--reboot' ]]; then
       $reboot_cmd
     elif [[ $1 == '--suspend' ]]; then
       $suspend_cmd
-    elif [[ $1 == "--logout" ]]; then
+    elif [[ $1 == '--logout' ]]; then
       exit_wm
     fi
   else
@@ -75,7 +75,7 @@ function confirm_then_run() {
 # Actions
 function main() {
   chosen="$(run_rofi_selection)"
-  case ${chosen} in
+  case $chosen in
     $lock)
       $lock_cmd # No confirmation needed for lock
     ;;
