@@ -101,7 +101,14 @@ Configuration includes the Dracula color scheme and a borderless look.
 
 > Best terminal file manager
 
-Very simple (as I prefer) but complete file manager for my use. Vim keybindings plus some bindings for features that I use a lot in terminal (`rm` -> `rm` or `trash`, `touch` -> `mf`, `mkdir` -> `md` etc.).
+Very simple (as I prefer) but complete file manager for my use. Some keybindings other than default vim-style bindings:
+
+- `~` : Go to the home directory
+- `md`: mkdir
+- `mf`: Open a file with the supplied name in Neovim
+- `mo`: chmod
+- `DD`: Move a file to `~/.trash-lf`
+
 
 #### Mutt
 

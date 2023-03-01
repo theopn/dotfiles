@@ -5,14 +5,15 @@
 # | |_/\| |
 # \____/\_/
 #
+# Official Document: https://pkg.go.dev/github.com/gokcehan/lf
 
-# Documentation says that these values are boolean, but on/off or true/false doesn't do anything
+# Like vim settings, put no in front ot the arrtibute to negate
 set drawbox
 set hidden
 set icons
 set ignorecase
 set incsearch
-set mouse
+set nomouse
 set number
 set preview
 set relativenumber
@@ -47,7 +48,7 @@ cmd mkfile ${{
 }}
 
 cmd chmod %{{
-  echo - n 'Mode Bits: '
+  echo - n ' Mode Bits: '
   read ans
 
   for file in $fx; do
@@ -83,10 +84,61 @@ cmd tar %tar cvf "$f.tar" "$f"
 cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
 
-# Remove default bindings
-map m
+# Reference for default bindings and removal of some
+# Default bindings that I really like:
+# quit                     (default 'q')
+# up                       (default 'k' and '<up>')
+# half-up                  (default '<c-u>')
+# page-up                  (default '<c-b>' and '<pgup>')
+# scroll-up                (default '<c-y>')
+# down                     (default 'j' and '<down>')
+# half-down                (default '<c-d>')
+# page-down                (default '<c-f>' and '<pgdn>')
+# scroll-down              (default '<c-e>')
+# updir                    (default 'h' and '<left>')
+# open                     (default 'l' and '<right>')
+# jump-next                (default ']')
+# jump-prev                (default '[')
+# top                      (default 'gg' and '<home>')
+# bottom                   (default 'G' and '<end>')
+# high                     (default 'H')
+# middle                   (default 'M')
+# low                      (default 'L')
+# invert                   (default 'v')
+# unselect                 (default 'u')
+# copy                     (default 'y')
+# cut                      (default 'd')
+# paste                    (default 'p')
+# clear                    (default 'c')
+# redraw                   (default '<c-l>')
+# reload                   (default '<c-r>')
+# rename         (modal)   (default 'r')
+# read           (modal)   (default ':')
+# shell          (modal)   (default '$')
+# shell-pipe     (modal)   (default '%')
+# shell-wait     (modal)   (default '!')
+# shell-async    (modal)   (default '&')
+# search         (modal)   (default '/')
+# search-back    (modal)   (default '?')
+# search-next              (default 'n')
+# search-prev              (default 'N')
 
-# Keybindings
+map f # find           (modal)   (default 'f')
+map F # find-back      (modal)   (default 'F')
+map ; # find-next                (default ';')
+map , # find-prev                (default ',')
+map m # mark-save      (modal)   (default 'm')
+# mark-load      (modal)   (default "'")
+map '
+# mark-remove    (modal)   (default '"')
+map "
+
+# Custom bindings
+map ~ cd ~
+
+map ff fzf_jump
 map md mkdir
 map mf mkfile
+map mo chmod
+map DD trash
 
