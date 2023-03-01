@@ -54,7 +54,7 @@
   },
 
   "custom/dunst_toggle": {
-    "on-click": "~/dotfiles/polybar/polybar_dunst_toggle.sh",
+    "on-click": "~/dotfiles/polybar/polybar-dunst-toggle.sh",
     "format": "  ",
     "tooltip": "Do Not Disturb Toggle",
   },
@@ -69,7 +69,7 @@
     "format": "🎜  {}",
     "max-length": 20,
     "escape": true,
-    "exec": "~/dotfiles/polybar/polybar_spotify.py",
+    "exec": "~/dotfiles/polybar/polybar-spotify.py",
   },
 
   /* Modules-Center */
@@ -117,7 +117,7 @@
   },
 
   "custom/nightlight_toggle": {
-    "on-click": "~/dotfiles/waybar/waybar_display_tools_toggle.sh nightlight",
+    "on-click": "~/dotfiles/waybar/waybar-display-tools-toggle.sh nightlight",
     "format": "盛 ",
     "tooltip": "nightlight toggle",
   },
@@ -157,7 +157,7 @@
   },
 
   "custom/weather": {
-    "on-click": "~/dotfiles/polybar/polybar_weather.sh",
+    "on-click": "~/dotfiles/polybar/polybar-weather.sh",
     "format": "摒 ",
     "tooltip": "weathre",
   },

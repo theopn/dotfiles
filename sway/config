@@ -29,7 +29,7 @@ set $notification dunst
 set $screenshot grim -g "$(slurp)"
 set $term kitty
 # External file var
-set $wallpaper $HOME/dotfiles_images/2020-11-15_TurkishGP_LH-Nord.jpeg
+set $wallpaper ~/dotfiles/assets/naomi-solarsys-draculafied.png
 # Key var
 set $left h
 set $down j
@@ -172,16 +172,10 @@ mode "$system_mode" {
 }
 bindsym $mod+Shift+c mode "$system_mode"
 bindsym $mod+Shift+e mode "$system_mode"
-# Passthrough mode
-set $passthrough_mode PASSTHROUGH MODE: (esc) Exit
-mode "$passthrough_mode" {
-  bindsym Escape mode "default"
-}
-bindsym $mod+Shift+p mode "$passthrough_mode"
 # }}}
 
 # {{{ APPEARANCE
-font pango:FantasqueSansMono Nerd Font 8
+font pango:CaskaydiaCove Nerd Font 8
 # class                 border  bground text    indicator child_border
 client.focused          #6272A4 #6272A4 #F8F8F2 #6272A4   #6272A4
 client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
