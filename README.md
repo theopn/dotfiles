@@ -240,11 +240,11 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 Formulae:
 
 
-- bat: Fancier `cat` replacement
 - fd: Fancier `find` replacement
 - **ffmpeg**: `ffmpeg -i in.xxx out.yyy`
 - **fzf**: Command line fuzzy finder
 - **figlet**: ASCII art generator
+- **lf**
 - Hugo: Static website generator
 - **htop**
 - **Lua**
@@ -252,18 +252,18 @@ Formulae:
 - **node**
 - **neofetch**
 - **neovim**
-- **ranger**: CLI file explorer
 - **tmux**
 - w3m: web browser
+- **wget**
 
-| Type              | Casks                                                                                 |
-|-------------------|---------------------------------------------------------------------------------------|
-| Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                               |
-| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**     |
-| Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                             |
-| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                                |
-| Tools             | - Bitwarden<br> - Cryptomator<br> - Nextcloud<br> - OBS<br> - Skim                    |
-| Web               | - Chromium<br> - **Firefox**<br> - Thunderbird                                        |
+| Type              | Casks                                                                                           |
+|-------------------|-------------------------------------------------------------------------------------------------|
+| Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                                         |
+| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**               |
+| Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                                       |
+| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                                          |
+| Tools             | - Bitwarden<br> - Cryptomator<br> - GIMP<br> - Nextcloud<br> - OBS<br> - Skim<br> - VLC         |
+| Web               | - Chromium<br> - **Firefox**<br> - Thunderbird                                                  |
 
 #### Settings
 
