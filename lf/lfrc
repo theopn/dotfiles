@@ -1,0 +1,92 @@
+# figlet -f avatar lf
+#  _     _____
+# / \   /    /
+# | |   |  __\
+# | |_/\| |
+# \____/\_/
+#
+
+# Documentation says that these values are boolean, but on/off or true/false doesn't do anything
+set drawbox
+set hidden
+set icons
+set ignorecase
+set incsearch
+set mouse
+set number
+set preview
+set relativenumber
+set smartcase
+
+# Automatically create trash folder upon the startup
+${{ mkdir -p ~/.trash-lf }}
+# $f = current cursor $fs = selected files $fx = $f or $fs
+cmd trash ${{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf }}
+
+# Inspiration from https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc
+cmd mkdir %{{
+  if [[ -z $1 ]]; then
+    printf ' Directory Name: '
+    read ans
+    mkdir $ans
+  else
+    mkdir $1
+  fi
+}}
+
+# % is executing within LF, $ is executing in the shell
+# think about what happens if you try to open neovim in LF - yes it will break, very badly
+cmd mkfile ${{
+  if [[ -z $1 ]]; then
+    printf ' File Name: '
+    read ans
+    nvim $ans
+  else
+    nvim $1
+  fi
+}}
+
+cmd chmod %{{
+  echo - n 'Mode Bits: '
+  read ans
+
+  for file in $fx; do
+    chmod $ans $file
+  done
+
+  lf -remote 'send reload'
+}}
+
+cmd fzf_jump ${{
+  res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
+  if [ -f "$res" ]; then
+    cmd="select"
+  elif [ -d "$res" ]; then
+    cmd="cd"
+  fi
+  lf -remote "send $id $cmd \"$res\""
+}}
+
+# Archive commands
+cmd unarchive ${{
+  case "$f" in
+      *.zip) unzip "$f" ;;
+      *.tar.gz) tar -xzvf "$f" ;;
+      *.tar.bz2) tar -xjvf "$f" ;;
+      *.tar) tar -xvf "$f" ;;
+      *) echo "Unsupported format" ;;
+  esac
+}}
+
+cmd zip %zip -r "$f" "$f"
+cmd tar %tar cvf "$f.tar" "$f"
+cmd targz %tar cvzf "$f.tar.gz" "$f"
+cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+
+# Remove default bindings
+map m
+
+# Keybindings
+map md mkdir
+map mf mkfile
+

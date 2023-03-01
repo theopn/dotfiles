@@ -97,6 +97,12 @@ No comment.
 
 Configuration includes the Dracula color scheme and a borderless look.
 
+#### lf
+
+> Best terminal file manager
+
+Very simple (as I prefer) but complete file manager for my use. Vim keybindings plus some bindings for features that I use a lot in terminal (`rm` -> `rm` or `trash`, `touch` -> `mf`, `mkdir` -> `md` etc.).
+
 #### Mutt
 
 > Command-line email client

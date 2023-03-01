@@ -100,6 +100,14 @@ function install() {
     backup_then_symlink "$DOT_DIR"/kitty/kitty.conf ~/.config/kitty/kitty.conf
   fi
 
+  if selection_prompt 'lf'; then
+    CURRENT_FILES=('lfrc' 'icons')
+    mkdir -p ~/.config/lf/
+    for FILE in ${CURRENT_FILES[@]}; do
+      backup_then_symlink "$DOT_DIR"/lf/"$FILE" ~/.config/lf/"$FILE"
+    done
+  fi
+
   if selection_prompt 'Mutt'; then
     CURRENT_FILES=('mailcap' 'muttrc')
     mkdir -p ~/.mutt/
