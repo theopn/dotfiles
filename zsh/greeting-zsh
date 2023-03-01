@@ -5,9 +5,9 @@ function get_battery() {
   batlv=-1
 
   if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    if [[ -a "/sys/class/power_supply/BAT0/capacity" ]]; then
+    if [[ -a /sys/class/power_supply/BAT0/capacity ]]; then
       batlv=$(cat /sys/class/power_supply/BAT0/capacity)
-    elif [[ -a "/sys/class/power_supply/BAT1/capacity" ]]; then
+    elif [[ -a /sys/class/power_supply/BAT1/capacity ]]; then
       batlv=$(cat /sys/class/power_supply/BAT1/capacity)
     fi
   elif command -v pmset &> /dev/null; then

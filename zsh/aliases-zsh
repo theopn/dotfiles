@@ -23,7 +23,7 @@ function trash_empty() {
   else
     for file in ~/.theoshell_trash/*
     do
-      echo "Removing ${file}..."
+      echo "Removing $file..."
       rm -rf $file
     done
   fi
@@ -65,26 +65,26 @@ function xrandr_external_off() {
 }
 
 ######### Alias w hard-coded paths ##########
-CACHE="~/Nextcloud/l1-cache/"
+CACHE='~/Nextcloud/l1-cache/'
 DAILY_WRITING_FOLDER="~/Nextcloud/dw-$(date +'%Y')/"
-DOTFILES_FOLDER="~/dotfiles/"
-QUICK_NOTES_PATH="$CACHE""quick-notes.md"
-WIKI_PATH="~/Nextcloud/theo-vimwiki/"
+DOTFILES_FOLDER='~/dotfiles/'
+QUICK_NOTES_PATH="${CACHE}quick-notes.md"
+WIKI_PATH='~/Nextcloud/theo-vimwiki/'
 
 alias l1="cd $CACHE"
-alias dw="vim $DAILY_WRITING_FOLDER""index.md"
+alias dw="vim ${DAILY_WRITING_FOLDER}index.md"
 alias dot="cd $DOTFILES_FOLDER"
 alias note="tmux display-popup -E -h 80% -w 80% 'nvim $QUICK_NOTES_PATH'"
 alias note_no_tmux="nvim $QUICK_NOTES_PATH"
-alias wiki="tmux display-popup -E -h 80% -w 80% 'vim $WIKI_PATH""index.md'"
-alias wiki_no_tmux="vim $WIKI_PATH""index.md"
+alias wiki="tmux display-popup -E -h 80% -w 80% 'vim ${WIKI_PATH}index.md'"
+alias wiki_no_tmux="vim ${WIKI_PATH}index.md"
 
 ######### Alias ##########
-alias cl="clear"
-alias google="w3m google.com"
-alias ls="ls -G"
-alias l="ls -A -l -h --color=auto" # All file except . and .., list view, display unit suffix for the size
-alias nvi="nvim"
-alias nvif="fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim"
+alias cl='clear'
+alias google='w3m google.com'
+alias ls='ls -G'
+alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
+alias nvi='nvim'
+alias nvif='fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim'
 alias weather="curl 'https://wttr.in'"
 
