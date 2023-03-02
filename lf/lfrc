@@ -19,6 +19,12 @@ set preview
 set relativenumber
 set smartcase
 
+# :  read (default)  builtin/custom command
+# $  shell           shell command
+# %  shell-pipe      shell command running with the ui
+# !  shell-wait      shell command waiting for key press
+# &  shell-async     shell command running asynchronously
+
 # Automatically create trash folder upon the startup
 ${{ mkdir -p ~/.trash-lf }}
 # $f = current cursor $fs = selected files $fx = $f or $fs
@@ -35,15 +41,14 @@ cmd mkdir %{{
   fi
 }}
 
-# % is executing within LF, $ is executing in the shell
 # think about what happens if you try to open neovim in LF - yes it will break, very badly
 cmd mkfile ${{
   if [[ -z $1 ]]; then
     printf ' File Name: '
     read ans
-    nvim $ans
+    $EDITOR $ans
   else
-    nvim $1
+    $EDITOR $1
   fi
 }}
 
@@ -84,8 +89,9 @@ cmd tar %tar cvf "$f.tar" "$f"
 cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
 
-# Reference for default bindings and removal of some
-# Default bindings that I really like:
+# Reference for default bindings and removal of some - by binding to nothing
+
+# Default bindings part 1
 # quit                     (default 'q')
 # up                       (default 'k' and '<up>')
 # half-up                  (default '<c-u>')
@@ -104,41 +110,84 @@ cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
 # high                     (default 'H')
 # middle                   (default 'M')
 # low                      (default 'L')
+# toggle
 # invert                   (default 'v')
+# invert-below
 # unselect                 (default 'u')
+# glob-select
+# glob-unselect
+# calcdirsize
 # copy                     (default 'y')
 # cut                      (default 'd')
 # paste                    (default 'p')
 # clear                    (default 'c')
+# sync
+# draw
 # redraw                   (default '<c-l>')
+# load
 # reload                   (default '<c-r>')
+# echo
+# echomsg
+# echoerr
+# cd
+# select
+# delete         (modal)
 # rename         (modal)   (default 'r')
+# source
+# push
 # read           (modal)   (default ':')
 # shell          (modal)   (default '$')
 # shell-pipe     (modal)   (default '%')
 # shell-wait     (modal)   (default '!')
 # shell-async    (modal)   (default '&')
-# search         (modal)   (default '/')
-# search-back    (modal)   (default '?')
-# search-next              (default 'n')
-# search-prev              (default 'N')
-
 map f # find           (modal)   (default 'f')
 map F # find-back      (modal)   (default 'F')
 map ; # find-next                (default ';')
 map , # find-prev                (default ',')
+# search         (modal)   (default '/')
+# search-back    (modal)   (default '?')
+# search-next              (default 'n')
+# search-prev              (default 'N')
+# filter         (modal)
+# setfilter
 map m # mark-save      (modal)   (default 'm')
+map ' # Next line:
 # mark-load      (modal)   (default "'")
-map '
+map " # Next line:
 # mark-remove    (modal)   (default '"')
-map "
+# tag
+# tag-toggle               (default 't')
+
+# Default part 2
+# map e $$EDITOR "$f"
+# map i $$PAGER "$f"
+map w # map w $$SHELL
+
+# Default part 3
+# map zh set hidden!
+# map zr set reverse!
+# map zn set info
+# map zs set info size
+# map zt set info time
+# map za set info size:time
+# map sn :set sortby natural; set info
+# map ss :set sortby size; set info size
+# map st :set sortby time; set info time
+# map sa :set sortby atime; set info atime
+# map sc :set sortby ctime; set info ctime
+# map se :set sortby ext; set info
+map gh # map gh cd ~
+# map <space> :toggle; down
+
 
 # Custom bindings
 map ~ cd ~
+map sh $$SHELL
 
 map ff fzf_jump
 map md mkdir
 map mf mkfile
 map mo chmod
 map DD trash
+map gs !git status
 

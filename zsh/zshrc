@@ -18,3 +18,5 @@ greeting_msg
 source ~/dotfiles/zsh/theoshell-plug-zsh
 theoshell_plug marlonrichert/zsh-autocomplete
 
+export EDITOR=nvim
+
