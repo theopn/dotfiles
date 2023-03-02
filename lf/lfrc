@@ -30,6 +30,12 @@ ${{ if [[ ! -d ~/.trash-lf ]]; then mkdir -p ~/.trash-lf; fi }}
 # $f = current cursor $fs = selected files $fx = $f or $fs
 cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf; printf "$fx moved to trash!" }}
 
+cmd choose_editor ${{
+  printf ' Editor to open the file with: '
+  read ans
+  $ans $f
+}}
+
 # Inspiration from https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc
 cmd mkdir %{{
   if [[ -z $1 ]]; then
@@ -159,7 +165,7 @@ map " # Next line:
 # tag-toggle               (default 't')
 
 # Default part 2
-# map e $$EDITOR "$f"
+map e # map e $$EDITOR "$f"
 # map i $$PAGER "$f"
 map w # map w $$SHELL
 
@@ -181,13 +187,15 @@ map gh # map gh cd ~
 
 
 # Custom bindings
-map ~ cd ~
+map ec choose_editor
+map ee $$EDITOR "$f"
 map sh $$SHELL
+map ~ cd ~
 
 map ff fzf_jump
+map DD trash
+map gs !git status
 map md mkdir
 map mf mkfile
 map mo chmod
-map DD trash
-map gs !git status
 
