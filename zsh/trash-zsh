@@ -1,0 +1,47 @@
+#!/bin/zsh
+
+#
+# These functions integrate with lf file manager, although they can be used separately
+# They are somewhat buggy (limitations of mv command without deleting same name files, etc.), but they are good for my use
+#
+
+function yellow_echo() {
+  echo -e "\033[0;33m[Trash] $1\033[0m"
+}
+
+function red_echo() {
+  echo -e "\033[0;31m[Trash] $1\033[0m"
+}
+
+function trash() {
+  [[ ! -d ~/.trash-lf ]] && mkdir -p ~/.trash-lf
+  if [[ -z $@ ]]; then red_echo "Please select file(s) to trash!"; return; fi
+  for file in $@; do
+    mv $file ~/.trash-lf
+    yellow_echo "$file moved to trash!"
+  done
+}
+
+function trash_print() {
+  if [[ ! -d ~/.trash-lf ]]; then
+    red_echo 'Trash direcoty does not exist! Execute LF file manager with my config to create one'
+  else
+    for file in ~/.trash-lf/*
+    do
+      yellow_echo "$file"
+    done
+  fi
+}
+
+function trash_empty() {
+  if [[ ! -d ~/.trash-lf ]]; then
+    red_echo 'Trash direcoty does not exist! Execute LF file manager with my config to create one'
+  else
+    for file in ~/.trash-lf/*
+    do
+      yellow_echo "Removing $file in trash..."
+      rm -rf $file
+    done
+  fi
+}
+

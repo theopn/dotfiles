@@ -1,4 +1,4 @@
-##############################
+#############################
 #              __
 #  ____  _____/ /_  __________
 # /_  / / ___/ __ \/ ___/ ___/
@@ -11,6 +11,7 @@ bindkey -v
 
 source ~/dotfiles/zsh/aliases-zsh
 source ~/dotfiles/zsh/prompt-zsh
+source ~/dotfiles/zsh/trash-zsh
 
 source ~/dotfiles//zsh/greeting-zsh
 greeting_msg

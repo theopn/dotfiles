@@ -5,28 +5,6 @@ function update_dotfiles() {
   cd ~/dotfiles/ && git pull && cd - &> /dev/null
 }
 
-# Trash function from LF file manager
-function trash () {
-  [[ ! -d ~/.trash-lf ]] && mkdir -p ~/.trash-lf
-  for file in $@
-  do
-    mv $file ~/.trash-lf
-    echo "$file moved to trash!"
-  done
-}
-
-function trash_empty() {
-  if [[ ! -d ~/.trash-lf ]]; then
-    echo 'Trash direcoty does not exist! Execute LF file manager with my config to create one'
-  else
-    for file in ~/.trash-lf/*
-    do
-      echo "Removing $file in trash..."
-      rm -rf $file
-    done
-  fi
-}
-
 # Tar.gz
 function tar_make() {
   tar -czvf "$1.tgz" "$1" # c for archive, z for gzip compression, -verbose, -f for output
