@@ -28,7 +28,7 @@ set smartcase
 # Automatically create trash folder upon the startup
 ${{ if [[ ! -d ~/.trash-lf ]]; then mkdir -p ~/.trash-lf; fi }}
 # $f = current cursor $fs = selected files $fx = $f or $fs
-cmd trash ${{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf }}
+cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf; printf "$fx moved to trash!" }}
 
 # Inspiration from https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc
 cmd mkdir %{{
@@ -53,7 +53,7 @@ cmd mkfile ${{
 }}
 
 cmd chmod %{{
-  echo - n ' Mode Bits: '
+  printf ' Mode Bits: '
   read ans
 
   for file in $fx; do
