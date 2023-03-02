@@ -95,6 +95,10 @@ function install() {
     done
   fi
 
+  if selection_prompt 'IdeaVim'; then
+    backup_then_symlink "$DOT_DIR"/ideavim/ideavimrc ~/.ideavimrc
+  fi
+
   if selection_prompt 'Kitty'; then
     mkdir -p ~/.config/kitty/
     backup_then_symlink "$DOT_DIR"/kitty/kitty.conf ~/.config/kitty/kitty.conf
@@ -224,32 +228,32 @@ function help() {
   -------------------------------------------------------------------
 
   args:
-    install             : Deploy configuration symlinks for cross-platform utilities
-    i3_install          : Deploy configuration symlinks for i3 WM and related utilities
-    delete_backup       : Delete $DOT_BACKUP_DIR
-    add_ssh_shortcut    : Add a new SSH shortcut at ~/.ssh/config
-    install_font <URL>  : wget a font file from URL (preferably from NERDFont website) and install it at ~/.local/share/fonts/
+    --install             : Deploy configuration symlinks for cross-platform utilities
+    --i3_install          : Deploy configuration symlinks for i3 WM and related utilities
+    --delete_backup       : Delete $DOT_BACKUP_DIR
+    --add_ssh_shortcut    : Add a new SSH shortcut at ~/.ssh/config
+    --install_font <URL>  : wget a font file from URL (preferably from NERDFont website) and install it at ~/.local/share/fonts/
   "
 }
 
 function main() {
   case $1 in
-    install)
+    "--install")
       install
     ;;
-    i3_install)
+    "--i3_install")
       i3_install
     ;;
-    delete_backup)
+    "--delete_backup")
       delete_backup
     ;;
-    add_ssh_shortcut)
+    "--add_ssh_shortcut")
       add_ssh_shortcut
     ;;
-    install_font)
+    "--install_font")
       install_font $2
     ;;
-    help)
+    "--help")
       help
     ;;
     *) # Invalid option
