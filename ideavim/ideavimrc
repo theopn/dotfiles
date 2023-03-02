@@ -1,0 +1,32 @@
+set scrolloff=7
+set list listchars=tab:t>,trail:␣,nbsp:⍽
+set hlsearch incsearch shortmess-=S
+set ignorecase smartcase
+
+let mapleader=' '
+inoremap jk <ESC>
+inoremap <C-h> <LEFT>
+inoremap <C-j> <DOWN>
+inoremap <C-k> <UP>
+inoremap <C-l> <RIGHT>
+nnoremap <leader>/ :let @/=''<CR>
+nnoremap <leader>a gg<s-v>g
+nmap <leader>\| <Action>(SplitVertically)
+nmap <leader>- <Action>(SplitHorizontally)
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
+nnoremap n nzz
+nnoremap N Nzz
+noremap <leader>, :bprev<CR>
+noremap <leader>. :bnext<CR>
+
+set clipboard+=unnamed
+" Action mapping doesn't work with noremap
+nmap <leader>z <Action>(ActivateTerminalToolWindow)
+
+nmap cd <Action>(QuickImplementations)
+nmap cr <Action>(RenameElement)
+
+nmap ff <Action>(SearchEverywhere)

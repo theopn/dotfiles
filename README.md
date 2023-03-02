@@ -23,14 +23,14 @@ brew analytics off # Sorry Brew
 
 ```bash
 git clone https://github.com/theopn/dotfiles.git ~/dotfiles
-~/dotfiles/dotfiles-util.sh install
-~/dotfiles/dotfiles-util.sh delete_backup # Optional
+~/dotfiles/dotfiles-util.sh --install
+~/dotfiles/dotfiles-util.sh --delete_backup # Optional
 ```
 
 - For Linux machine with dependencies needed for my i3 configuration:
 
 ```bash
-~/dotfiles/dotfiles-util.sh i3_install
+~/dotfiles/dotfiles-util.sh --i3_install
 ```
 
 ### Post-Installation
@@ -38,7 +38,7 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 - Add SSH shortcut for frequently used servers:
 
 ```bash
-~/dotfiles/dotfiles-util.sh add_ssh_shortcut
+~/dotfiles/dotfiles-util.sh --add_ssh_shortcut
 
 > Nickname for the host: <data>
 > Host URL: <data.cs.purdue.edu>
@@ -59,7 +59,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 3. Execute the following
 
 ```bash
-~/dotfiles/dotfiles-util.sh install_font <URL>
+~/dotfiles/dotfiles-util.sh --install_font <URL>
 ```
 
 - Install CaskayadiaCove and FantasqueSansMono Nerd Fonts using Homebrew:
@@ -91,6 +91,12 @@ I use it every day for a to-do list and project management (Org mode), file mana
 
 No comment.
 
+#### IdeaVim
+
+> Java...
+
+Probably one of the few proprietary SW in my dotfiles, but it is hard to deny that it is a great IDE for Java development. At least I can use Flatpak to sandbox it and emulate some of the Vim keybindings using IdeaVim.
+
 #### kitty
 
 > Terminal emulator
@@ -108,7 +114,6 @@ Very simple (as I prefer) but complete file manager for my use. Some keybindings
 - `mf`: Open a file with the supplied name in Neovim
 - `mo`: chmod
 - `DD`: Move a file to `~/.trash-lf`
-
 
 #### Mutt
 
