@@ -26,7 +26,7 @@ set smartcase
 # &  shell-async     shell command running asynchronously
 
 # Automatically create trash folder upon the startup
-${{ mkdir -p ~/.trash-lf }}
+${{ if [[ ! -d ~/.trash-lf ]]; then mkdir -p ~/.trash-lf; fi }}
 # $f = current cursor $fs = selected files $fx = $f or $fs
 cmd trash ${{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf }}
 
