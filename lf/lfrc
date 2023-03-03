@@ -28,7 +28,7 @@ set smartcase
 # Automatically create trash folder upon the startup
 ${{ if [[ ! -d ~/.trash-lf ]]; then mkdir -p ~/.trash-lf; fi }}
 # $f = current cursor $fs = selected files $fx = $f or $fs
-cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf; printf "$fx moved to trash!" }}
+cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf; printf "$fx moved to trash!\n" }}
 
 cmd choose_editor ${{
   printf ' Editor to open the file with: '
