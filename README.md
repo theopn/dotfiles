@@ -83,7 +83,7 @@ Basic shell settings with some aliases and prompts.
 
 > Everything you could think of but a text editor
 
-I use it every day for a to-do list and project management (Org mode), file management (Dired), and Git interaction (Magit). But I still do not understand why it is a better text editor than Neovim (sorry Emacs users).
+I use it for Org-agenda (to-do list), Org-roam (the "Second Brain"), and general note-taking in Org mode. I tried to use it as my main text editor a couple times, but I unfortunately do not see an appeal over Neovim.
 
 #### Git
 
@@ -251,15 +251,13 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 Formulae:
 
-
-- fd: Fancier `find` replacement
 - **ffmpeg**: `ffmpeg -i in.xxx out.yyy`
 - **fzf**: Command line fuzzy finder
 - **figlet**: ASCII art generator
 - **lf**
 - Hugo: Static website generator
 - **htop**
-- **Lua**
+- **lua**
 - mutt: CLI email client
 - **node**
 - **neofetch**

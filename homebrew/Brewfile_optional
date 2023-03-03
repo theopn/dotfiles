@@ -2,7 +2,6 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 
-brew "fd"
 brew "hugo"
 brew "mutt"
 brew "w3m"
