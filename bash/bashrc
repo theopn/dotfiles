@@ -1,19 +1,24 @@
-# Add cs240/bin to PATH
-export PATH=$PATH:~cs240/bin
-
-# Basic aliases to have common ls commands and add colors
-alias l="ls -A -l -h --color=auto" # All file except . and .., list view, display unit suffix for the size
-alias cl="clear"
-
 # Strip permissions from group and others when creating new files
 umask 077
 
-export TERM=xterm-256color
+# Add cs240/bin to PATH
+export PATH=$PATH:~cs240/bin
 
-PS1=" \[\e[0;96m\][ \[\e[0;35m\]\u \[\e[0m\]@ \[\e[0;36m\]\h \[\e[0m\]in \[\e[0;34m\]\w \[\e[0;96m\]] \[\e[0m\]-> "
+# Custom exports - for Kitty terminal and lf
+export TERM=xterm-256color
+export EDITOR=nvim
+
+# Not very special alias
+alias l="ls -A -l -h --color=auto" # All file except . and .., list view, display unit suffix for the size
+alias cl="clear"
 
 #Alias for those who prefer nvim appimage - Theovim
 #alias nvim=~/apps/nvim.appimage
 # 2022-02-27, Shriansh emailed ScienceHelp and they actually updated package
 # Today is a good day
+
+alias lf=~/apps/lf
+alias neofetch=~/apps/neofetch-7.1.0/neofetch
+
+PS1=" \[\e[0;96m\][ \[\e[0;35m\]\u \[\e[0m\]@ \[\e[0;36m\]\h \[\e[0m\]in \[\e[0;34m\]\w \[\e[0;96m\]] \[\e[0m\]-> "
 
