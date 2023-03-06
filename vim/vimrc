@@ -1,21 +1,15 @@
 "===============================================================================
 " "Nature is pleased with simplicity. And nature is no dummy” - Isaac Newton
 "
-"          (___)
-"   ____
-" _\___ \  |\_/|
-"\     \ \/ , , \ ___
-" \__   \ \ ="= //|||\
-"  |===  \/____)_)||||
-"  \______|    | |||||
-"      _/_|  | | =====
-"     (_/  \_)_)
-"  _________________
-" (                _)
-"  (__   '          )
-"    (___    _____)
-"        '--'
-" https://www.asciiart.eu/animals/cats - Shanaka Dias
+"     \/       \/
+"     /\_______/\
+"    /   o   o   \
+"   (  ==  ^  ==  )
+"    )           (
+"   (             )
+"   ( (  )   (  ) )
+"  (__(__)___(__)__)
+"
 "===============================================================================
 
 " {{{ Base Settings
@@ -29,7 +23,7 @@ catch
 endtry
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
-set list listchars=tab:t>,trail:␣,nbsp:⍽
+set list listchars=tab:▷▷,trail:␣,nbsp:⍽
 filetype on
 syntax on
 set hlsearch incsearch shortmess-=S
@@ -41,18 +35,32 @@ set spell spelllang=en_us spellsuggest=best,8
 " }}}
 
 " {{{ Base keybindings
+" Leader
 nnoremap <SPACE> <Nop>
 let mapleader=' '
-inoremap jk <ESC>:update<CR>
+inoremap <silent> jk <ESC>:update<CR>
+" Auto pairs
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
+" Insert navigation
 inoremap <C-h> <LEFT>
 inoremap <C-j> <DOWN>
 inoremap <C-k> <UP>
 inoremap <C-l> <RIGHT>
+" Search
 nnoremap <leader>/ :let @/=''<CR>
+nnoremap n nzz
+nnoremap N Nzz
+" Select all
 nnoremap <leader>a gg<S-v>G
+" Terminal ESC
+tnoremap <ESC> <C-\><C-n>
+" Spell check
+inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
+nnoremap <C-s> z=
+nnoremap <leader>st :set spell!<CR>
+" Split pane
 nnoremap <leader>\| :vsplit<CR><C-w>l
 nnoremap <leader>- :split<CR><C-w>j
 nnoremap <leader>q <C-w>q
@@ -64,12 +72,25 @@ nnoremap <leader><LEFT> <C-w>10<
 nnoremap <leader><DOWN> <C-w>5-
 nnoremap <leader><UP> <C-w>5+
 nnoremap <leader><RIGHT> <C-w>10>
-nnoremap n nzz
-nnoremap N Nzz
-tnoremap <ESC> <C-\><C-n>
-inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
-nnoremap <C-s> z=
-nnoremap <leader>st :set spell!<CR>
+" Tab
+nnoremap <leader>n :ls<CR>
+          \:echo 'Choose a buf or enter to create a tab with curr buf'<CR>
+          \:tab sb<SPACE>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>0 10gt
+" Buffer
+nnoremap <leader>b :ls<CR>:b<SPACE>
+nnoremap <leader>, :bprevious<CR>
+nnoremap <leader>. :bnext<CR>
+nnoremap <leader>x :ls<CR>:bdelete<SPACE>
 " Brings up auto completion menu using S-TAB, cycle through TAB and S-TAB
 inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<TAB>'
 inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
@@ -142,21 +163,17 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
-" ASCII art generator. Requires figlet installed
-Plug 'fadein/vim-figlet'
+Plug 'fadein/vim-figlet' " ASCII art generator. Requires figlet installed
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Cats.
-Plug 'MeF0504/vim-pets'
-" Personal wiki plugin
-Plug 'vimwiki/vimwiki'
+Plug 'MeF0504/vim-pets' " Cats period
+Plug 'vimwiki/vimwiki' " Personal wiki plugin
 call plug#end()
 " }}}
 
 " {{{ Plugin Keybindings
 nnoremap <leader>ff :Files<CR>
 nnoremap <leader>f/ :Lines<CR>
-nnoremap <leader>fb :Buffers<CR>
 " }}}
 
 " {{{ Vimwiki
