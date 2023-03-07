@@ -135,8 +135,7 @@ function install() {
 
   if selection_prompt 'Vim Colorscheme'; then
     mkdir -p ~/.vim/
-    mkdir -p ~/.vim/colors/
-    backup_then_symlink "$DOT_DIR"/vim/colors/drakai.vim ~/.vim/colors/drakai.vim
+    backup_then_symlink "$DOT_DIR"/vim/colors ~/.vim/colors
   fi
 
   if selection_prompt 'Zsh'; then

@@ -18,7 +18,7 @@ set cursorline cursorcolumn wildmenu termguicolors bg=dark
 set confirm
 try
   let g:vim_drakai_transparent=1
-  colo drakai
+  colo pastelcula
 catch
   colo darkblue
 endtry
