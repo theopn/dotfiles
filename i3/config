@@ -31,15 +31,15 @@ set $down j
 set $up k
 set $right l
 # workspace var
-# 1, 2 - Productivity: Emacs, calendar, daily agenda, and music
-set $ws1 "1: 󰇴 "
-set $ws2 "2:  "
-# 3, 4 - Development and web: Terminal with tmux and Neovim, Firefox
-set $ws3 "3:  "
-set $ws4 "4:  "
-# 5, 6 - Communication: Email and other communication apps
-set $ws5 "5: 󰵅 "
-set $ws6 "6: 󰏶 "
+# 1, 2 - Development and web: Terminal with tmux and Neovim, Firefox
+set $ws1 "1:  "
+set $ws2 "2:  "
+# 3, 4 - Communication: Email and other communication apps
+set $ws3 "3: 󰵅 "
+set $ws4 "4: 󰏶 "
+# 5, 6 - Productivity: Emacs, calendar, daily agenda, and music
+set $ws5 "5: 󰇴 "
+set $ws6 "6:  "
 # 7 - Park: Background processes and apps no longer used
 set $ws7 "7: 󰪭 "
 # Rest of the workspaces are often unused
