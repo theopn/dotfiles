@@ -62,8 +62,6 @@ function confirm_then_run() {
       $shutdown_cmd
     elif [[ $1 == '--reboot' ]]; then
       $reboot_cmd
-    elif [[ $1 == '--suspend' ]]; then
-      $suspend_cmd
     elif [[ $1 == '--logout' ]]; then
       exit_wm
     fi
@@ -77,7 +75,7 @@ function main() {
   chosen="$(run_rofi_selection)"
   case $chosen in
     $lock)
-      $lock_cmd # No confirmation needed for lock
+      $lock_cmd # No confirmation
     ;;
     $shutdown)
       confirm_then_run --shutdown
@@ -86,7 +84,7 @@ function main() {
       confirm_then_run --reboot
     ;;
     $suspend)
-      confirm_then_run --suspend
+      $suspend_cmd # No confirmation
     ;;
     $logout)
       confirm_then_run --logout
