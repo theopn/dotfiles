@@ -14,7 +14,7 @@
 "===============================================================================
 
 " {{{ Base Settings
-set number relativenumber ruler colorcolumn=80
+set number relativenumber numberwidth=7 ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
 set confirm
 try
