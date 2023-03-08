@@ -1,14 +1,15 @@
 "===============================================================================
 " "Nature is pleased with simplicity. And nature is no dummy” - Isaac Newton
 "
-"     \/       \/
-"     /\_______/\
-"    /   o   o   \
-"   (  ==  ^  ==  )
-"    )           (
-"   (             )
-"   ( (  )   (  ) )
-"  (__(__)___(__)__)
+"                                 \/       \/
+"                                 /\_______/\
+"                                /   o   o   \
+"                               (  ==  ^  ==  )
+"                                )           (
+"                               (             )
+"                               ( (  )   (  ) )
+"                              (__(__)___(__)__)
+"                                 O l i v e r
 "
 "===============================================================================
 
@@ -17,7 +18,7 @@ set number relativenumber ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
 set confirm
 try
-  let g:vim_drakai_transparent=1
+  let g:pastelcula_transparent=1
   colo pastelcula
 catch
   colo darkblue

@@ -389,7 +389,6 @@ call <sid>hi("rubyConstant",                s:gui0A, "", s:cterm0A, "", "", "")
 call <sid>hi("rubyInterpolationDelimiter",  s:gui0F, "", s:cterm0F, "", "", "")
 call <sid>hi("rubyRegexp",                  s:gui0C, "", s:cterm0C, "", "", "")
 call <sid>hi("rubySymbol",                  s:gui0B, "", s:cterm0B, "", "", "")
-call <sid>hi("rubyStringDelimiter",         s:gui0B, "", s:cterm0B, "", "", "")
 
 " SASS highlighting
 call <sid>hi("sassidChar",     s:gui08, "", s:cterm08, "", "", "")
@@ -404,9 +403,9 @@ call <sid>hi("SignifySignChange",  s:gui0D, s:gui01, s:cterm0D, s:cterm01, "", "
 call <sid>hi("SignifySignDelete",  s:gui08, s:gui01, s:cterm08, s:cterm01, "", "")
 
 " Spelling highlighting
-call <sid>hi("SpellBad",     "", "", "", "", "undercurl", s:gui08)
-call <sid>hi("SpellLocal",   s:gui00, s:gui07, "", "", "undercurl", s:gui0C)
-call <sid>hi("SpellCap",     "", "", "", "", "undercurl", s:gui0D)
+call <sid>hi("SpellBad",     s:gui00, s:gui0E, "", "", "undercurl", "")
+call <sid>hi("SpellLocal",   s:gui00, s:gui06, "", "", "undercurl", "")
+call <sid>hi("SpellCap",     s:gui00, s:gui07, "", "", "undercurl", "")
 call <sid>hi("SpellRare",    "", "", "", "", "undercurl", s:gui0E)
 
 " Startify highlighting
@@ -430,4 +429,8 @@ delf <sid>hi
 " Remove color variables
 unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07  s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
 unlet s:cterm00 s:cterm01 s:cterm02 s:cterm03 s:cterm04 s:cterm05 s:cterm06 s:cterm07 s:cterm08 s:cterm09 s:cterm0A s:cterm0B s:cterm0C s:cterm0D s:cterm0E s:cterm0F
+
+if exists('g:pastelcula_transparent')
+  hi Normal guibg=NONE ctermbg=NONE
+endif
 
