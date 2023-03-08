@@ -21,6 +21,7 @@ Used:
 
 - `h/j/k/l` : Navigation
 - `<Arrow>` : Resizing
+- `<C-o>`   : Move panes
 - `|`       : Split pane vertically (I know the command says -h) (OG: `"`)
 - `-`       : Split pane horizontally (OG: `%`)
 - `x`       : Kill the current pane
