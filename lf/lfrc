@@ -26,9 +26,21 @@ set smartcase
 # &  shell-async     shell command running asynchronously
 
 # Automatically create trash folder upon the startup
-${{ if [[ ! -d ~/.trash-lf ]]; then mkdir -p ~/.trash-lf; fi }}
+${{ if [ ! -d ~/.trash-lf ]; then mkdir -p ~/.trash-lf; fi }}
 # $f = current cursor $fs = selected files $fx = $f or $fs
 cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf; printf "$fx moved to trash!\n" }}
+
+# Remove command for bypassing trash
+cmd rm !{{
+  printf " Remove following files?\n $fx\n"
+  printf ' [y]es/[n]o: '
+  read ans
+  if [ $ans == 'y' ]; then
+    IFS="$(printf '\n\t')"; rm -rf $fx; printf "Following files have been removed!\n $fx\n";
+  else
+    printf ' Removal canceled '
+  fi
+}}
 
 cmd choose_editor ${{
   printf ' Editor to open the file with: '
@@ -38,7 +50,7 @@ cmd choose_editor ${{
 
 # Inspiration from https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc
 cmd mkdir %{{
-  if [[ -z $1 ]]; then
+  if [ -z $1 ]; then
     printf ' Directory Name: '
     read ans
     mkdir $ans
@@ -49,7 +61,7 @@ cmd mkdir %{{
 
 # think about what happens if you try to open neovim in LF - yes it will break, very badly
 cmd mkfile ${{
-  if [[ -z $1 ]]; then
+  if [ -z $1 ]; then
     printf ' File Name: '
     read ans
     $EDITOR $ans
