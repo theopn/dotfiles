@@ -38,7 +38,7 @@ cmd rm !{{
   if [ $ans == 'y' ]; then
     IFS="$(printf '\n\t')"; rm -rf $fx; printf "Following files have been removed!\n $fx\n";
   else
-    printf ' Removal canceled '
+    printf ' Removal canceled \n'
   fi
 }}
 
