@@ -37,7 +37,7 @@ module-margin = 1
 
 modules-left = display_settings do_not_disturb temperature memory cpu network
 modules-center = i3
-modules-right = pulseaudio backlight battery1 date spotify-simple weather
+modules-right = pulseaudio backlight battery0 battery1 date spotify-simple weather
 
 tray-position = left
 tray-padding = 1
