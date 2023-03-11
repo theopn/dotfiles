@@ -16,7 +16,7 @@ case $1 in
     fi
     ;;
   *)
-    echo Invalid option
+    echo 'Invalid option'
     exit 1;
 esac
 
