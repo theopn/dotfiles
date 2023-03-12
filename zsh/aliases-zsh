@@ -6,12 +6,13 @@ function update_dotfiles() {
 }
 
 # Tar.gz
-function tar_make() {
-  tar -czvf "$1.tgz" "$1" # c for archive, z for gzip compression, -verbose, -f for output
+function tarmake() {
+  tar -czvf "$1.tar.gz" "$1" # c for archive, z for gzip, v for verbose, f for file
 }
 
-function tar_unmake() {
-  tar -xvf "$1"
+function tarunmake() {
+  # -z (gzip) or -j (bzip) flag can be passed for unarchiving, but not necessary
+  tar -xvf "$1" # x for extracting, v for verbose, f for file
 }
 
 function xrandr_external_on() {
