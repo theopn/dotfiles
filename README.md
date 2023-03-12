@@ -115,12 +115,6 @@ Very simple (as I prefer) but complete file manager for my use. Some keybindings
 - `mo`: chmod
 - `DD`: Move a file to `~/.trash-lf`
 
-#### Mutt
-
-> Command-line email client
-
-Configuration includes automatically opening HTML contents in w3m, Vim style keybindings, and Dracula theme. Templates to add a new email account are included.
-
 #### Neofetch
 
 > Essential
@@ -217,7 +211,7 @@ List of keybindings differing from the default
 
 > The bar
 
-Colorful Dracula themed bar.
+Colorful Dracula themed bar. I change this a lot so I will not comment further.
 
 #### Rofi
 
