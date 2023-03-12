@@ -16,7 +16,7 @@
 " {{{ Base Settings
 set number relativenumber numberwidth=7 ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
-set confirm
+set confirm showtabline=2
 try
   let g:pastelcula_transparent=1
   colo pastelcula
