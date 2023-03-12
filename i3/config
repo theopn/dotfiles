@@ -13,7 +13,7 @@ set $mod Mod4
 set $lock ~/dotfiles/i3/i3-lock.sh
 set $rofi_powermenu ~/dotfiles/rofi/rofi-powermenu.sh
 # Program var
-set $bar polybar -c=~/dotfiles/polybar/config.inl -r -q
+set $bar ~/dotfiles/polybar/polybar-launch.sh dracula
 set $clipboard clipit
 set $compositor picom
 set $menu "rofi -modi drun,run -show drun"
