@@ -234,12 +234,10 @@ Formulae:
 - Hugo: Static website generator
 - **htop**
 - **lua**
-- mutt: CLI email client
 - **node**
 - **neofetch**
 - **neovim**
 - **tmux**
-- w3m: web browser
 - **wget**
 
 | Type              | Casks                                                                                           |

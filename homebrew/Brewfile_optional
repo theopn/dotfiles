@@ -3,8 +3,6 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 brew "hugo"
-brew "mutt"
-brew "w3m"
 
 cask "appcleaner"
 cask "chromium"
