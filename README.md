@@ -217,31 +217,13 @@ List of keybindings differing from the default
 
 > The bar
 
-```
-tray | disp_opt | do_not_disturb | temp | mem | CPU | wifi    workspaces    volume | brightness | battery | date-time | music | weather
-```
+Colorful Dracula themed bar.
 
 #### Rofi
 
 > The launcher
 
 Dracula theme ~~and Vim keybindings for selection~~. Some simple utilities like `rofi-powermenu.sh` is included.
-
-#### Sway
-
-> Sorry Wayland, I don't think you are quite ready yet
-
-- Clipman & wl-clipboard: Wayland clipboard utility (wl-clipboard) and terminal command-line clipboard history manager (clipman).
-- fzf: Fuzzy finder is needed to launch the [sway-launcher-desktop](https://github.com/Biont/sway-launcher-desktop).
-- Gammastep: Redshift replacement
-- Grim & Slurp: Select a region in Wayland compositor (Slurp) and take a screenshot (Grim).
-- Waybar: Polybar replacement, arguably better
-
-#### Waybar
-
-> Bar 2
-
-I like the look better than Polybar. A colorful top bar contains all the necessary information.
 
 ### macOS
 
