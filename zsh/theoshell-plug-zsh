@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export THEOSHELL_PLUGIN_DIR=$HOME/.theoshell_zsh_plugins
+export THEOSHELL_PLUGIN_DIR=$HOME/.theoshell-zsh-plugins
 
 # Double check double check
 function source_file() {
