@@ -1,9 +1,6 @@
 #!/bin/bash
 
 case $1 in
-  transparent)
-    bar=~/dotfiles/polybar/config-transparent.inl
-    ;;
   dracula)
     bar=~/dotfiles/polybar/config-dracula.inl
     ;;
