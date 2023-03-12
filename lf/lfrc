@@ -103,9 +103,9 @@ cmd unarchive ${{
 }}
 
 cmd zip %zip -r "$f" "$f"
-cmd tar %tar cvf "$f.tar" "$f"
-cmd targz %tar cvzf "$f.tar.gz" "$f"
-cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
+cmd tar %tar -cvf "$f.tar" "$f"
+cmd targz %tar -czvf "$f.tar.gz" "$f"
+cmd tarbz2 %tar -cjvf "$f.tar.bz2" "$f"
 
 # Reference for default bindings and removal of some - by binding to nothing
 
