@@ -3,7 +3,7 @@
 > Collection of my configuration files. The reason why this README is so long is that I forget things often, definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
 ![macos-sc](./assets/macos-rice-sc-2023-02-15.jpg)
-![fedora-sc](./assets/fedora-rice-sc-2023-02-25.png)
+![fedora-sc](./assets/2023-03-12-fedora-rice-sc.png)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad X270 (6th-gen i5).
 MBA runs the latest version of macOS, and X270 runs the latest version of Fedora i3 Spin with i3 and Sway window manager (actually, Sway is a Wayland compositor :nerd-emoji:).
