@@ -112,14 +112,6 @@ function install() {
     done
   fi
 
-  if selection_prompt 'Mutt'; then
-    CURRENT_FILES=('mailcap' 'muttrc')
-    mkdir -p ~/.mutt/
-    for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink "$DOT_DIR"/mutt/"$FILE" ~/.mutt/"$FILE"
-    done
-  fi
-
   if selection_prompt 'Neofetch'; then
     mkdir -p ~/.config/neofetch/
     backup_then_symlink "$DOT_DIR"/neofetch/config.conf ~/.config/neofetch/config.conf
