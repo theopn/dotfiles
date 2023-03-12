@@ -35,7 +35,7 @@ cmd rm !{{
   printf " Remove following files?\n $fx\n"
   printf ' [y]es/[n]o: '
   read ans
-  if [ $ans == 'y' ]; then
+  if [ "$ans" = 'y' ]; then # this is the syntax for [ ... ], use == for [[ ... ]]
     IFS="$(printf '\n\t')"; rm -rf $fx; printf "Following files have been removed!\n $fx\n";
   else
     printf ' Removal canceled \n'
