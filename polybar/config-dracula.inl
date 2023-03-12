@@ -31,7 +31,7 @@ foreground = ${colors.foreground}
 line-size = 3pt
 
 border-size = 2pt
-border-color = ${colors.comment}
+border-color = ${colors.pink}
 
 padding-left = 0
 padding-right = 1
@@ -41,47 +41,51 @@ module-margin = 1
 separator =
 separator-foreground = ${colors.comment}
 
-font-0 = CaskaydiaCove Nerd Font:size=11;1
+font-0 = CaskaydiaCove Nerd Font:size=12;1
 
-modules-left = display-opt dnd temperature memory cpu network
-modules-center = i3
-modules-right = pulseaudio backlight battery0 battery1 date spotify weather
+modules-left = stuff temperature memory cpu network
+modules-center = i3 xwindow
+modules-right = pulseaudio backlight battery0 battery1 date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
 enable-ipc = true
 
-tray-position = left
+tray-position = right
 tray-padding = 1
 
-wm-restack = i3
+; wm-restack = i3
 
 ;;;;;;;;;; Right  Modules ;;;;;;;;;;
-[module/display-opt]
+[module/stuff]
 type = custom/menu
 expand-right = true
 format-spacing = 1
 
 ; Icons for the module itself
-label-open = "  "
-label-open-foreground = ${colors.cyan}
-label-close = "  "
+label-open = " 󰄛 >"
+label-open-foreground = ${colors.purple}
+label-close = " 󰄛 >"
 label-close-foreground = ${colors.comment}
 
 ; Icons for the menu within
 label-separator = |
 label-separator-foreground = ${colors.comment}
-menu-0-0 = "  Compositor"
-menu-0-0-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh compositor
-menu-0-1 = "盛  Bluelight filter"
-menu-0-1-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh nightlight
 
-[module/dnd]
-type = custom/text
-content = " "
-content-foreground = ${colors.cyan}
-click-left = ~/dotfiles/polybar/polybar-dunst-toggle.sh
+; Fun stuff
+menu-0-0 = "ﱘ"
+menu-0-0-exec = notify-send "$(~/dotfiles/polybar/polybar-spotify.py)"
+menu-0-1 = "摒"
+menu-0-1-exec = ~/dotfiles/polybar/polybar-weather.sh
+menu-0-2 = ""
+menu-0-2-exec = ~/dotfiles/polybar/polybar-dunst-toggle.sh
+
+; Display options
+menu-0-3 = " Picom"
+menu-0-3-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh compositor
+menu-0-4 = "盛 Redshift"
+menu-0-4-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh nightlight
 
 [module/temperature]
 type = internal/temperature
@@ -148,7 +152,7 @@ fuzzy-match = false
 label-mode = %mode%
 label-mode-padding = 2
 label-mode-background = ${colors.current-line}
-label-mode-foreground = ${colors.current-line}
+label-mode-foreground = ${colors.foreground}
 
 ; Current WS
 label-focused = %index%: %name%
@@ -165,6 +169,11 @@ label-urgent = %index%: %name%
 label-urgent-background = ${colors.red}
 label-urgent-padding = 2
 
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:40:...%
+format = 󱂬  <label>
+
 ;;;;;;;;;; Left   Modules ;;;;;;;;;;
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -180,7 +189,7 @@ label-volume = %percentage%%
 format-volume = <ramp-volume> <label-volume>
 
 ; Icon for volume mute
-label-muted = 婢 off
+label-muted = 婢 muted
 label-muted-foreground = ${colors.comment}
 
 [module/backlight]
@@ -251,17 +260,6 @@ format-prefix = "  "
 format-prefix-foreground = ${colors.orange}
 ; A1 Left click, A2 middle, A3 right click, A4 Scroll up, A5 scroll down, etc
 format = %{A1:~/dotfiles/polybar/polybar-calendar.sh curr:}%{A3:~/dotfiles/polybar/polybar-calendar.sh next:}<label>%{A}%{A}
-[module/spotify]
-type = custom/text
-content = "ﱘ "
-content-foreground = ${colors.cyan}
-click-left = notify-send "$(~/dotfiles/polybar/polybar-spotify.py)"
-
-[module/weather]
-type = custom/text
-content = "摒 "
-content-foreground = ${colors.cyan}
-click-left = ~/dotfiles/polybar/polybar-weather.sh
 
 ;;;;;;;;;; Unused Modules ;;;;;;;;;;
 [module/xworkspaces]
