@@ -206,7 +206,7 @@ format-prefix-foreground = ${colors.orange}
 type = internal/battery
 battery = BAT0
 adapter = ADP1
-full-at = 100
+full-at = 99
 poll-interval = 5
 
 ; Icons for normal battery operation
@@ -215,14 +215,14 @@ ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1 = 
 ramp-capacity-1-foreground = ${colors.orange}
 ramp-capacity-2 = 
-ramp-capacity-2-foreground = ${colors.orange}
+ramp-capacity-2-foreground = ${colors.cyan}
 ramp-capacity-3 = 
-ramp-capacity-3-foreground = ${colors.orange}
+ramp-capacity-3-foreground = ${colors.yellow}
 format-discharging = <ramp-capacity> <label-discharging>
 
 ; Icons for full and charging
 format-full =  <label-full>
-format-full-foreground = ${colors.yellow}
+format-full-foreground = ${colors.green}
 format-charging =  <label-charging>
 
 [module/battery1]
@@ -230,7 +230,7 @@ format-charging =  <label-charging>
 type = internal/battery
 battery = BAT1
 adapter = ADP1
-full-at = 100
+full-at = 99
 poll-interval = 5
 
 ; Icons for normal battery operation
@@ -239,19 +239,19 @@ ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1 = 
 ramp-capacity-1-foreground = ${colors.orange}
 ramp-capacity-2 = 
-ramp-capacity-2-foreground = ${colors.orange}
+ramp-capacity-2-foreground = ${colors.cyan}
 ramp-capacity-3 = 
-ramp-capacity-3-foreground = ${colors.orange}
+ramp-capacity-3-foreground = ${colors.yellow}
 format-discharging = <ramp-capacity> <label-discharging>
 
 ; Icons for full and charging
 format-full =  <label-full>
-format-full-foreground = ${colors.yellow}
+format-full-foreground = ${colors.green}
 format-charging =  <label-charging>
 
 [module/date]
 type = internal/date
-interval = 1
+interval = 5
 
 date = %a %m-%d
 time = %H:%M
