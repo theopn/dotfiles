@@ -43,8 +43,8 @@ separator-foreground = ${colors.comment}
 
 font-0 = CaskaydiaCove Nerd Font:size=12;1
 
-modules-left = stuff temperature memory cpu network
-modules-center = i3 xwindow
+modules-left = super-cat-menu i3 xwindow
+modules-center = temperature memory cpu network
 modules-right = pulseaudio backlight battery0 battery1 date
 
 cursor-click = pointer
@@ -58,7 +58,7 @@ tray-padding = 1
 ; wm-restack = i3
 
 ;;;;;;;;;; Right  Modules ;;;;;;;;;;
-[module/stuff]
+[module/super-cat-menu]
 type = custom/menu
 expand-right = true
 format-spacing = 1
@@ -155,7 +155,7 @@ label-mode-background = ${colors.current-line}
 label-mode-foreground = ${colors.foreground}
 
 ; Current WS
-label-focused = %index%: %name%
+label-focused = %name%
 label-focused-background = ${colors.background}
 label-focused-underline = ${colors.orange}
 label-focused-padding = 2
