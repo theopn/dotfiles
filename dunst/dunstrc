@@ -14,13 +14,13 @@
     progress_bar_min_width = 150
     progress_bar_max_width = 300
     indicate_hidden = yes
-    transparency = 30
+    transparency = 0
     separator_height = 2
     padding = 8
     horizontal_padding = 8
     text_icon_padding = 0
     frame_width = 3
-    frame_color = "#282a36"
+    frame_color = "#282A36"
     separator_color = frame
     sort = yes
     font = CaskaydiaCove Nerd Font 12
