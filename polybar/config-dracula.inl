@@ -8,7 +8,7 @@
 ;=======================================
 
 [colors]
-background = #00282A36
+background = #282A36
 current-line = #44475A
 foreground = #F8F8F2
 comment = #6272A4
