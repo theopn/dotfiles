@@ -127,6 +127,12 @@ Happy ricing!
 
 Due to requests from my friends, my Neovim configuration has migrated to a separate repository [Theovim](https://github.com/theopn/theovim)
 
+#### Qutebrowser
+
+> Modern keyboard based browser
+
+It's based on modern Chromium engine, uses Vim keybindings, and configured through Python. What more can I ask.
+
 #### tmux
 
 > Actual terminal emulator
@@ -247,7 +253,7 @@ Formulae:
 | Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                                       |
 | System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                                          |
 | Tools             | - Bitwarden<br> - Cryptomator<br> - GIMP<br> - Nextcloud<br> - OBS<br> - Skim<br> - VLC         |
-| Web               | - Chromium<br> - **Firefox**<br> - Thunderbird                                                  |
+| Web               | - **Firefox**<br> - Qutebrowser<br> - Thunderbird                                               |
 
 #### Settings
 
