@@ -44,7 +44,7 @@ separator-foreground = ${colors.comment}
 font-0 = CaskaydiaCove Nerd Font:size=12;1
 
 modules-left = super-cat-menu i3 xwindow
-modules-center = temperature memory cpu network
+modules-center = temperature cpu memory network
 modules-right = pulseaudio backlight battery0 battery1 date
 
 cursor-click = pointer
@@ -87,6 +87,47 @@ menu-0-3-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh compositor
 menu-0-4 = "盛 Redshift"
 menu-0-4-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh nightlight
 
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = false
+
+; i3 mode
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = ${colors.current-line}
+label-mode-foreground = ${colors.foreground}
+
+; Current WS
+label-focused = %name%
+label-focused-foreground = ${colors.cyan}
+label-focused-underline = ${colors.orange}
+label-focused-padding = 2
+
+; Other WS
+label-unfocused = %index%: %name%
+label-unfocused-foreground = ${colors.comment}
+label-unfocused-padding = 2
+
+; Urgent WS
+label-urgent = %index%: %name%
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:40:...%
+format-prefix = "󱂬  "
+format-prefix-foreground = ${colors.orange}
+format = <label>
+
+;;;;;;;;;; Middle Modules ;;;;;;;;;;
 [module/temperature]
 type = internal/temperature
 interval = 5
@@ -99,20 +140,20 @@ label = %temperature-c%
 format-prefix = "  "
 format-prefix-foreground = ${colors.orange}
 
-[module/memory]
-type = internal/memory
-interval = 5
-
-label = %gb_used%
-format-prefix = "  "
-format-prefix-foreground = ${colors.orange}
-
 [module/cpu]
 type = internal/cpu
 interval = 5
 
 label = %percentage:2%%
 format-prefix = " "
+format-prefix-foreground = ${colors.orange}
+
+[module/memory]
+type = internal/memory
+interval = 5
+
+label = %gb_used%
+format-prefix = "  "
 format-prefix-foreground = ${colors.orange}
 
 [module/network]
@@ -135,44 +176,6 @@ format-connected-prefix-foreground = ${colors.orange}
 ; Icons for wifi off
 label-disconnected = 睊  no wifi?
 label-disconnected-foreground = ${colors.comment}
-
-;;;;;;;;;; Middle Modules ;;;;;;;;;;
-[module/i3]
-type = internal/i3
-pin-workspaces = true
-strip-wsnumbers = true
-index-sort = true
-enable-click = true
-enable-scroll = false
-wrapping-scroll = false
-reverse-scroll = false
-fuzzy-match = false
-
-; i3 mode
-label-mode = %mode%
-label-mode-padding = 2
-label-mode-background = ${colors.current-line}
-label-mode-foreground = ${colors.foreground}
-
-; Current WS
-label-focused = %name%
-label-focused-background = ${colors.background}
-label-focused-underline = ${colors.orange}
-label-focused-padding = 2
-
-; Other WS
-label-unfocused = %index%: %name%
-label-unfocused-padding = 2
-
-; Urgent WS
-label-urgent = %index%: %name%
-label-urgent-background = ${colors.red}
-label-urgent-padding = 2
-
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:40:...%
-format = 󱂬  <label>
 
 ;;;;;;;;;; Left   Modules ;;;;;;;;;;
 [module/pulseaudio]
