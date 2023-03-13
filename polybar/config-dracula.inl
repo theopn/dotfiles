@@ -218,15 +218,16 @@ ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1 = 
 ramp-capacity-1-foreground = ${colors.orange}
 ramp-capacity-2 = 
-ramp-capacity-2-foreground = ${colors.cyan}
+ramp-capacity-2-foreground = ${colors.yellow}
 ramp-capacity-3 = 
-ramp-capacity-3-foreground = ${colors.yellow}
+ramp-capacity-3-foreground = ${colors.green}
 format-discharging = <ramp-capacity> <label-discharging>
 
 ; Icons for full and charging
 format-full =  <label-full>
 format-full-foreground = ${colors.green}
 format-charging =  <label-charging>
+format-charging-foreground = ${colors.pink}
 
 [module/battery1]
 ; External (top) battery of X270/T460
@@ -242,15 +243,16 @@ ramp-capacity-0-foreground = ${colors.red}
 ramp-capacity-1 = 
 ramp-capacity-1-foreground = ${colors.orange}
 ramp-capacity-2 = 
-ramp-capacity-2-foreground = ${colors.cyan}
+ramp-capacity-2-foreground = ${colors.yellow}
 ramp-capacity-3 = 
-ramp-capacity-3-foreground = ${colors.yellow}
+ramp-capacity-3-foreground = ${colors.green}
 format-discharging = <ramp-capacity> <label-discharging>
 
 ; Icons for full and charging
 format-full =  <label-full>
 format-full-foreground = ${colors.green}
 format-charging =  <label-charging>
+format-charging-foreground = ${colors.pink}
 
 [module/date]
 type = internal/date
