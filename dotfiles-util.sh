@@ -117,6 +117,16 @@ function install() {
     backup_then_symlink "$DOT_DIR"/neofetch/config.conf ~/.config/neofetch/config.conf
   fi
 
+  if selection_prompt 'Qutebrowser'; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+      mkdir -p ~/.qutebrowser/
+      backup_then_symlink "$DOT_DIR"/qutebrowser/config.py ~/.qutebrowser/config.py
+    elif [[ "$OSTYPE" == "linux-gnu"* ]];then
+      mkdir -p ~/.config/qutebrowser/
+      backup_then_symlink "$DOT_DIR"/qutebrowser/config.py ~/.config/qutebrowser/config.py
+    fi
+  fi
+
   if selection_prompt 'Tmux'; then
     backup_then_symlink "$DOT_DIR"/tmux/tmux.conf ~/.tmux.conf
   fi
