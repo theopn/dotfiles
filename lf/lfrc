@@ -201,6 +201,9 @@ map gh # map gh cd ~
 # Custom bindings
 map ec choose_editor
 map ee $$EDITOR "$f"
+map ml mark-load
+map mr mark-remove
+map ms mark-save
 map sh $$SHELL
 map ~ cd ~
 
