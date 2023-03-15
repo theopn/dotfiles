@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+# A good reference: https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 # Dock hide delay
