@@ -110,10 +110,15 @@ Configuration includes the Dracula color scheme and a borderless look.
 Very simple (as I prefer) but complete file manager for my use. Some keybindings other than default vim-style bindings:
 
 - `~` : Go to the home directory
+- `ee`: Open a file in `$EDITOR`
+- `ec`: You choose what editor you want to open a file in
+- `DD`: Move a file to `~/.trash-lf`
+- `gs`: [g]it [s]tatus
 - `md`: mkdir
 - `mf`: Open a file with the supplied name in Neovim
+- `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
 - `mo`: chmod
-- `DD`: Move a file to `~/.trash-lf`
+- `sh`: Launch `$SHELL` at the current directory
 
 #### Neofetch
 
