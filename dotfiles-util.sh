@@ -223,11 +223,11 @@ function delete_backup() {
 function add_ssh_shortcut() {
   mkdir -p ~/.ssh/
   [[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config
-  echo -n 'add_ssh_shortcut) Enter host nickname: '
+  echo -n 'add_ssh_shortcut) Enter host nickname (e.g. data): '
   read host_nickname
-  echo -n 'add_ssh_shortcut) Enter host URL; '
+  echo -n 'add_ssh_shortcut) Enter host URL (e.g. data.cs.best.school.in.the.world.located.in.west.lafayette.edu): '
   read host_url
-  echo -n 'add_ssh_shortcut) Enter username for the host: '
+  echo -n 'add_ssh_shortcut) Enter username for the host (e.g. good_student_69): '
   read username
   echo "Host $host_nickname
     Hostname $host_url
@@ -258,6 +258,7 @@ function help() {
 
   args:
     --install             : Deploy configuration symlinks for cross-platform utilities
+    --macos-install       : Deploy configuration symlinks for macOS and related utilities
     --i3-install          : Deploy configuration symlinks for i3 WM and related utilities
     --delete-backup       : Delete $DOT_BACKUP_DIR
     --add-ssh-shortcut    : Add a new SSH shortcut at ~/.ssh/config
@@ -278,7 +279,7 @@ function main() {
     "--i3-install")
       i3_install
     ;;
-    "--delete=backup")
+    "--delete-backup")
       delete_backup
     ;;
     "--add-ssh-shortcut")
