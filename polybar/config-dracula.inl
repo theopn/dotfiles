@@ -44,8 +44,8 @@ separator-foreground = ${colors.comment}
 font-0 = CaskaydiaCove Nerd Font:size=12;1
 
 modules-left = super-cat-menu i3 xwindow
-modules-center = date pulseaudio backlight
-modules-right = battery0 battery1 network temperature cpu memory
+modules-center = temperature cpu memory network
+modules-right = pulseaudio backlight battery0 battery1 date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
