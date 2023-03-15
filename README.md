@@ -49,9 +49,9 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ```bash
 ~/dotfiles/dotfiles-util.sh --add-ssh-shortcut
 
-> Nickname for the host: <data>
-> Host URL: <data.cs.purdue.edu>
-> Username for the server: <my_username>
+# add_ssh_shortcut) Enter host nickname (e.g. data):
+# add_ssh_shortcut) Enter host URL (e.g. data.cs.best.school.in.the.world.located.in.west.lafayette.edu):
+# add_ssh_shortcut) Enter username for the host (e.g. good_student_69):
 ```
 
 - Install fonts using `fontconfig` and the included function in `dotfiles-util.sh`:
