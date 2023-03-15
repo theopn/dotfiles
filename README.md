@@ -12,7 +12,7 @@ You are welcome to take inspiration from any file in this repository, but I do n
 
 ## Installation
 
-- `If you_have_unix_or_unix_like_operating_system:`
+- Configure cross-platform utilities:
 
 ```bash
 git clone https://github.com/theopn/dotfiles.git ~/dotfiles
@@ -20,7 +20,7 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh --delete-backup # Optional
 ```
 
-- `If you_have_mac:`
+- Configure macOS specific utilities and settings:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -29,7 +29,7 @@ brew analytics off
 ~/dotfiles/dotfiles-util.sh --macos-install
 ```
 
-- `If you_are_running_i3_wm_with_all_the_dependencies:`
+- Configure i3 WM and related utilities:
 
 ```bash
 ~/dotfiles/dotfiles-util.sh --i3-install
@@ -48,10 +48,6 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 
 ```bash
 ~/dotfiles/dotfiles-util.sh --add-ssh-shortcut
-
-# add_ssh_shortcut) Enter host nickname (e.g. data):
-# add_ssh_shortcut) Enter host URL (e.g. data.cs.best.school.in.the.world.located.in.west.lafayette.edu):
-# add_ssh_shortcut) Enter username for the host (e.g. good_student_69):
 ```
 
 - Install fonts using `fontconfig` and the included function in `dotfiles-util.sh`:
@@ -61,7 +57,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 3. Execute the following
 
 ```bash
-~/dotfiles/dotfiles-util.sh --install-font <URL>
+~/dotfiles/dotfiles-util.sh --install-font #URL
 ```
 
 - Install CaskayadiaCove and FantasqueSansMono Nerd Fonts using Homebrew:
