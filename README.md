@@ -12,14 +12,7 @@ You are welcome to take inspiration from any file in this repository, but I do n
 
 ## Installation
 
-- Install Homebrew:
-
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew analytics off # Sorry Brew
-```
-
-- **Install packages and make symlinks using `dotfiles-util.sh`**:
+- `If you_have_unix_or_unix_like_operating_system:`
 
 ```bash
 git clone https://github.com/theopn/dotfiles.git ~/dotfiles
@@ -27,7 +20,16 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh --delete-backup # Optional
 ```
 
-- For Linux machine with dependencies needed for my i3 configuration:
+- `If you_have_mac:`
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew analytics off
+
+~/dotfiles/dotfiles-util.sh --macos-install
+```
+
+- `If you_are_running_i3_wm_with_all_the_dependencies:`
 
 ```bash
 ~/dotfiles/dotfiles-util.sh --i3-install

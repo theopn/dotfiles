@@ -70,16 +70,6 @@ function install() {
 
   verify_script_dir
 
-  green_echo 'Homebrew Core Formulae/Casks:
-  Existing formulae will be uninstalled.
-  Some casks might not be compitable with non-macOS systems.
-  Do you want to proceed?'
-  if selection_prompt 'Homebrew Core'; then
-    #brew remove --force $(brew list --formula)
-    #brew remove --cask --force $(brew list)
-    brew bundle --file "$DOT_DIR"/homebrew/Brewfile_core
-  fi
-
   if selection_prompt 'Bash'; then # Do not use bracket around a function that returns command (which true/false are)
     backup_then_symlink "$DOT_DIR"/bash/bashrc ~/.bashrc
   fi
@@ -148,17 +138,6 @@ function install() {
     backup_then_symlink "$DOT_DIR"/zsh/zshrc ~/.zshrc
   fi
 
-  if selection_prompt 'macOS Settings'; then
-    source "${DOT_DIR}/macos/macos-settings.sh"
-  fi
-
-  green_echo 'Homebrew Optional Formulae/Casks:
-  This might take a while, and I honestly recommend you to go through each program manually.
-  Do you want to proceed?'
-  if selection_prompt 'Homebrew Optional'; then
-    brew bundle --file "$DOT_DIR"/homebrew/Brewfile_optional
-  fi
-
   yellow_echo 'Ending the dotfiles installation...'
 
   green_echo "
@@ -172,7 +151,50 @@ function install() {
   "
 }
 
+function macos-install() {
+  green_echo "Starting macOS specific installlation process..."
+
+  verify_script_dir
+
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    red_echo "Theo it seems like you are not rich enough to afford a MacBook. OSTYPE == $OSTYPE"
+    exit 1
+  fi
+
+  green_echo 'Homebrew Core Formulae/Casks:
+  Existing formulae will be uninstalled.
+  Some casks might not be compitable with non-macOS systems.
+  Do you want to proceed?'
+  if selection_prompt 'Homebrew Core'; then
+    #brew remove --force $(brew list --formula)
+    #brew remove --cask --force $(brew list)
+    brew bundle --file "$DOT_DIR"/homebrew/Brewfile_core
+  fi
+
+  if selection_prompt 'macOS Settings'; then
+    source "${DOT_DIR}/macos/macos-settings.sh"
+  fi
+
+  green_echo 'Homebrew Optional Formulae/Casks:
+  This might take a while, and I honestly recommend you to go through each program manually.
+  Do you want to proceed?'
+  if selection_prompt 'Homebrew Optional'; then
+    brew bundle --file "$DOT_DIR"/homebrew/Brewfile_optional
+  fi
+
+  yellow_echo 'Ending the macos specific installation...'
+}
+
 function i3_install() {
+  green_echo "Starting i3 WM specific installlation process..."
+
+  verify_script_dir
+
+  if [[ "$OSTYPE" != "linux-gnu"* ]]; then
+    red_echo "Theo you are not using Linux and therefore you are uncool. OSTYPE == $OSTYPE"
+    exit 1
+  fi
+
   if selection_prompt 'i3'; then
     mkdir -p ~/.config/i3/
     backup_then_symlink "$DOT_DIR"/i3/config ~/.config/i3/config
@@ -249,6 +271,9 @@ function main() {
   case $1 in
     "--install")
       install
+    ;;
+    "--macos-install")
+      macos-install
     ;;
     "--i3-install")
       i3_install
