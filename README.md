@@ -24,32 +24,32 @@ brew analytics off # Sorry Brew
 ```bash
 git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh --install
-~/dotfiles/dotfiles-util.sh --delete_backup # Optional
+~/dotfiles/dotfiles-util.sh --delete-backup # Optional
 ```
 
 - For Linux machine with dependencies needed for my i3 configuration:
 
 ```bash
-~/dotfiles/dotfiles-util.sh --i3_install
+~/dotfiles/dotfiles-util.sh --i3-install
 ```
 
 ### Post-Installation
-
-- Add SSH shortcut for frequently used servers:
-
-```bash
-~/dotfiles/dotfiles-util.sh --add_ssh_shortcut
-
-> Nickname for the host: <data>
-> Host URL: <data.cs.purdue.edu>
-> Username for the server: <my_username>
-```
 
 - Install Doom Emacs:
 
 ```bash
 git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 ~/.emacs.d/bin/doom install
+```
+
+- Add SSH shortcut for frequently used servers:
+
+```bash
+~/dotfiles/dotfiles-util.sh --add-ssh-shortcut
+
+> Nickname for the host: <data>
+> Host URL: <data.cs.purdue.edu>
+> Username for the server: <my_username>
 ```
 
 - Install fonts using `fontconfig` and the included function in `dotfiles-util.sh`:
@@ -59,7 +59,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 3. Execute the following
 
 ```bash
-~/dotfiles/dotfiles-util.sh --install_font <URL>
+~/dotfiles/dotfiles-util.sh --install-font <URL>
 ```
 
 - Install CaskayadiaCove and FantasqueSansMono Nerd Fonts using Homebrew:

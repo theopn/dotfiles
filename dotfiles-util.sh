@@ -3,6 +3,8 @@
 DOT_DIR=~/dotfiles
 DOT_BACKUP_DIR=~/dotfiles.bu
 
+########## HELPER FUNCTIONS ##########
+
 # From https://github.com/vsbuffalo/dotfiles/blob/master/setup.sh
 # For regular messages
 function green_echo() {
@@ -55,6 +57,8 @@ function backup_then_symlink() {
   green_echo "Creating symlink for $1 at $2..."
   ln -s $1 $2
 }
+
+########## INSTALL FUNCTIONS ##########
 
 function install() {
   green_echo "
@@ -168,11 +172,6 @@ function install() {
   "
 }
 
-function delete_backup() {
-  yellow_echo "Deleting $DOT_BACKUP_DIR..."
-  rm -rf $DOT_BACKUP_DIR
-}
-
 function i3_install() {
   if selection_prompt 'i3'; then
     mkdir -p ~/.config/i3/
@@ -190,6 +189,13 @@ function i3_install() {
     mkdir -p ~/.config/rofi/
     backup_then_symlink "$DOT_DIR"/rofi/config.rasi ~/.config/rofi/config.rasi
   fi
+}
+
+########## AUXILIARY FUNCTIONS ##########
+
+function delete_backup() {
+  yellow_echo "Deleting $DOT_BACKUP_DIR..."
+  rm -rf $DOT_BACKUP_DIR
 }
 
 function add_ssh_shortcut() {
@@ -230,34 +236,36 @@ function help() {
 
   args:
     --install             : Deploy configuration symlinks for cross-platform utilities
-    --i3_install          : Deploy configuration symlinks for i3 WM and related utilities
-    --delete_backup       : Delete $DOT_BACKUP_DIR
-    --add_ssh_shortcut    : Add a new SSH shortcut at ~/.ssh/config
-    --install_font <URL>  : wget a font file from URL (preferably from NERDFont website) and install it at ~/.local/share/fonts/
+    --i3-install          : Deploy configuration symlinks for i3 WM and related utilities
+    --delete-backup       : Delete $DOT_BACKUP_DIR
+    --add-ssh-shortcut    : Add a new SSH shortcut at ~/.ssh/config
+    --install-font <URL>  : wget a font file from URL (preferably from NERDFont website) and install it at ~/.local/share/fonts/
   "
 }
 
+########### MAIN CALL HERE ##########
+#
 function main() {
   case $1 in
     "--install")
       install
     ;;
-    "--i3_install")
+    "--i3-install")
       i3_install
     ;;
-    "--delete_backup")
+    "--delete=backup")
       delete_backup
     ;;
-    "--add_ssh_shortcut")
+    "--add-ssh-shortcut")
       add_ssh_shortcut
     ;;
-    "--install_font")
+    "--install-font")
       install_font $2
     ;;
     "--help")
       help
     ;;
-    *) # Invalid option
+    *)
      red_echo 'Invalid option'
      help
     ;;
@@ -266,7 +274,7 @@ function main() {
   exit 0
 }
 
-########### MAIN CALL HERE ##########
 main $@
+
 ########### MAIN CALL HERE ##########
 
