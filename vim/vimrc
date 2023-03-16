@@ -137,74 +137,53 @@ set statusline+=\ \|%{''}                             " Space, Bar, and empty ch
 " }}}
 
 " {{{ Tabline
-" https://stackoverflow.com/questions/33710069/how-to-write-tabline-function-in-vim
-set tabline=%!MyTabLine()  " custom tab pages line
-function! MyTabLine()
-  let s = ' Theovim '
-  for i in range(tabpagenr('$')) " loop through each tab page
-    " Highlighting tab number. If inactive, slightly darker color
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#'
-    else
-      let s .= '%#TabLine#'
-    endif
-    " Highlighting tab name. If inactive, grey
-    if i + 1 == tabpagenr()
-      let s .= '%#TabLineSel#' " WildMenu
-    else
-      let s .= '%#Title#'
-    endif
+function! TheovimTabLine()
+  let s = ' Theovim '  " Set the base tabline
+  for i in range(tabpagenr('$'))  " loop through each tab page
+    " Setting highlights for number in the tab
+    " Yellow for active, blue-ish color (darker than highlight for buf names)
+    let s .= (i + 1 == tabpagenr()) ? ('%#TabLineSel#') : ('%#Title#')
+    " Set tab number
+    let s .= '%' . (i + 1) . 'T '  " set the tab page number (for mouse clicks)
+    let s .= i + 1 . ''            " set page number string
 
-    let s .= '%' . (i + 1) . 'T '   " set the tab page number (for mouse clicks)
-    let s .= i + 1 . ''             " set page number string
-
-    " get buffer names and statuses
-    let n = ''  " temp str for buf names
-    let m = 0   " &modified counter
-    let buflist = tabpagebuflist(i + 1)
-
-    for b in buflist " loop through each buffer in a tab
-      " Format help and non-modifiable buffer
-      if getbufvar(b, "&modifiable")
-        let n .= pathshorten(bufname(b)) . ' | '
+    " For loop making a formatted strings for each buffer in a tab
+    let buflist = tabpagebuflist(i + 1)  " get buffer names and statuses
+    let n = ''  " Temp str for buffer name, since n appends to s after highlight
+    for b in buflist
+      " If buffer is new, give it a name
+      if bufname(b) == ''
+        let n .= '[New]'
       endif
-      " Add count to modified buffer
-      if getbufvar(b, "&modified")
-        let m += 1
+      " Format buffer based on modifi-ability
+      if getbufvar(b, "&modifiable")
+        " Modifiable buffer: trimmed directory
+        let n .= pathshorten(bufname(b))
+        let n .= (getbufvar(b, "&modified")) ? (' [+] | ') : (' | ')
+      else
+        " Unmodifiable buffer: simply the file name
+        let n .= fnamemodify(bufname(b), ':t') . ' [RO] | '
       endif
     endfor
 
-    "let n .= fnamemodify(bufname(buflist[tabpagewinnr(i + 1) - 1]), ':t')
+    " Set the highlight for buffer names in the tab
+    " Yellow for current (same as number), light grey for inactive
+    let s .= (i + 1 == tabpagenr()) ? (' %#TabLineSel#') : (' %#TabLine#')
+    " Append the temp string we made earlier
     let n = substitute(n, ', $', '', '')
-
-    " Add modified label if there are more than one modified buffer in the tab
-    if (m > 0)
-      let s .= ' [' . m . '+]'
-    endif
-
-    if i + 1 == tabpagenr()
-      let s .= ' %#TabLineSel#'
-    else
-      let s .= ' %#TabLine#'
-    endif
-
-    " add buffer names
-    if n == ''
-      let s.= '[New]'
-    else
-      let s .= n
-    endif
-
-    " switch to no underlining and add final space
-    let s .= ' '
+    let s .= n
   endfor
-  let s .= '%#TabLineFill#%T'  " Reset highlight
+  let s .= '%#TabLineFill#%T'  " Reset highlight, else close button is yellow
 
-  " Close button on the right if there are multiple tabs. Why ternary? Why not
-  let s .= (tabpagenr('$') > 1) ? ('%=%999X close') : ('')
+  " Close button on the right if there are multiple tabs
+  if tabpagenr('$') > 1
+    let s .= '%=%999X close'
+  endif
 
   return s
 endfunction
+
+set tabline=%!TheovimTabLine()  " Assign the tabline
 " }}}
 
 " {{{ netrw
