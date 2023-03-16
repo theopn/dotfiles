@@ -117,12 +117,14 @@ set statusline+=\ %f                                  " Current file
 set statusline+=\ %m                                  " [+] for modified, [-] for !modifiable
 set statusline+=%r                                    " [RO] for read only
 set statusline+=%=                                    " Spacer
+set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " No particular reason why it's in {}
+set statusline+=%=                                    " Spacer
 set statusline+=\ %Y                                  " Filetype
 set statusline+=\ %{&ff}                              " File format
-set statusline+=%{':'}                                " Colon
+set statusline+=:                                     " Colon
 set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
 set statusline+=\ %l                                  " Current line num
-set statusline+=%{':'}                                " Colon
+set statusline+=:                                     " Colon
 set statusline+=%c                                    " Current column num
 set statusline+=\ %P                                  " Percentage file displayed in win
 set statusline+=\ %{''}                               " Empty space
