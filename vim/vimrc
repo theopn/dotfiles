@@ -114,12 +114,12 @@ set laststatus=2                                      " Always show statusline
 set statusline=\|                                     " Reset statusline w/ bar
 set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
 set statusline+=\ %f                                  " Current file
-set statusline+=\ %m                                  " [+] for modified, [-] for !modifiable
+set statusline+=\ %m                                  " [+] for modified
 set statusline+=%r                                    " [RO] for read only
 set statusline+=\|                                    " Bar
 set statusline+=%=                                    " Spacer
-set statusline+=%<                                    " Truncate the following modules if win too small
-set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " No particular reason why it's in {}
+set statusline+=%<                                    " Truncation point
+set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " Why in {}? Why not
 set statusline+=%=                                    " Spacer
 set statusline+=\ \|                                  " Space + Bar
 set statusline+=\ FT:\ %Y                             " Filetype
@@ -132,14 +132,14 @@ set statusline+=\ @                                   " At
 set statusline+=\ %l                                  " Current line num
 set statusline+=:                                     " Colon
 set statusline+=%c                                    " Current column num
-set statusline+=\ %P                                  " Percentage file displayed in win
-set statusline+=\ \|%{''}                             " Space, Bar, and empty char
+set statusline+=\ %P                                  " Percent file displayed
+set statusline+=\ \|%{''}                             " Space, bar, empty char
 " }}}
 
 " {{{ Tabline
 function! TheovimTabLine()
-  let s = ' Theovim '  " Set the base tabline
-  for i in range(tabpagenr('$'))  " loop through each tab page
+  let s = ' Theovim '
+  for i in range(tabpagenr('$'))  " Loop through num tab
     " Setting highlights for number in the tab
     " Yellow for active, blue-ish color (darker than highlight for buf names)
     let s .= (i + 1 == tabpagenr()) ? ('%#TabLineSel#') : ('%#Title#')
@@ -151,11 +151,9 @@ function! TheovimTabLine()
     let buflist = tabpagebuflist(i + 1)  " get buffer names and statuses
     let n = ''  " Temp str for buffer name, since n appends to s after highlight
     for b in buflist
-      " If buffer is new, give it a name
       if bufname(b) == ''
-        let n .= '[New]'
+        let n .= '[New]'  " If buffer is new, give it a name
       endif
-      " Format buffer based on modifi-ability
       if getbufvar(b, "&modifiable")
         " Modifiable buffer: trimmed directory
         let n .= pathshorten(bufname(b))
@@ -246,7 +244,6 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
-Plug 'fadein/vim-figlet' " ASCII art generator. Requires figlet installed
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'MeF0504/vim-pets' " Cats period
