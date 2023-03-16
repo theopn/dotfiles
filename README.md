@@ -146,7 +146,7 @@ Keybindings that are drastically different from stock bindings (that make more s
 
 > Focused note taker
 
-- Very simple configurations for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
+- Very simple configurations (almost everything is without plugin, including TabLine and StatusLine!) for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
 - `pastelcula.vim`, a custom-made [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included - thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping your colorblind friend
 
 #### Zsh
