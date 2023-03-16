@@ -93,6 +93,9 @@ nnoremap <leader>b :ls<CR>:b<SPACE>
 nnoremap <leader>, :bprevious<CR>
 nnoremap <leader>. :bnext<CR>
 nnoremap <leader>x :ls<CR>:bdelete<SPACE>
+" Some bindings from Theovim
+nnoremap <leader>t :call ToggleNetrw()<CR>
+nnoremap <leader>z :botright term<CR>
 " Brings up auto completion menu using S-TAB, cycle through TAB and S-TAB
 inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<TAB>'
 inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
@@ -100,40 +103,128 @@ inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
 
 " {{{ Statusline
 let g:currentmode={
-  \ 'n' : 'Normal', 'no' : 'Normal·Operator Pending',
-  \ 'v' : 'Visual', 'V' : 'V·Line', "\<C-V>" : 'V·Block',
-  \ 's' : 'Select', 'S' : 'S·Line', "\<C-S>" : 'S·Block',
-  \ 'i' : 'Insert', 'R' : 'Replace', 'Rv' : 'V·Replace',
-  \ 'c' : 'Command', 'cv' : 'Vim Ex', 'ce' : 'Ex',
-  \ 'r' : 'Prompt', 'rm' : 'More', 'r?' : 'Confirm',
-  \ '!' : 'Shell', 't' : 'Terminal' }
-set laststatus=2
+  \ 'n' : 'N', 'no' : 'N OPERATOR PENDING',
+  \ 'v' : 'V', 'V' : 'V LINE', "\<C-V>" : 'V BLOCK',
+  \ 's' : 'SELECT', 'S' : 'S LINE', "\<C-S>" : 'S BLOCK',
+  \ 'i' : 'I', 'R' : 'R', 'Rv' : 'V REPLACE',
+  \ 'c' : 'CMD', 'cv' : 'VIM EX', 'ce' : 'EX',
+  \ 'r' : 'PROMPT', 'rm' : 'MORE', 'r?' : 'CONFIRM',
+  \ '!' : 'SH', 't' : 'TERM', 'nt' : 'N TERM' }
+set laststatus=2                                      " Always show statusline
 set statusline=
-set statusline+=%*\[%n] " Buffer number
-set statusline+=%*\ %#BLUE#[%{toupper(g:currentmode[mode()])}] " Current mode
-set statusline+=%*\ %m%<%F\  " + for change in buffer, full file path
-set statusline+=%*\ %y\  " File Type
-set statusline+=%*\ %#ORANGE#%{'Messing'}\ %{'w'}\ %{'vimrc'}\ %{'againʕ•́ᴥ•̀?'}
-set statusline+=%=
-set statusline+=%*\ %{''.(&fenc!=''?&fenc:&enc).''} " Encoding
-set statusline+=%*\ %{(&bomb?\",BOM\":\"\")}\  " Encoding2
-set statusline+=%*\ %{&ff}\  " File Format (dos/unix..)
-set statusline+=%*\ %=\ row:%l/%L\  " Row number
-set statusline+=%*\ col:%03c\  " Column number
-set statusline+=%*\ \ %r%w\ %P\  " Percentage
+set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
+set statusline+=\ %f                                  " Current file
+set statusline+=\ %m                                  " [+] for modified, [-] for !modifiable
+set statusline+=%r                                    " [RO] for read only
+set statusline+=%=                                    " Spacer
+set statusline+=\ %Y                                  " Filetype
+set statusline+=\ %{&ff}                              " File format
+set statusline+=%{':'}                                " Colon
+set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
+set statusline+=\ %l                                  " Current line num
+set statusline+=%{':'}                                " Colon
+set statusline+=%c                                    " Current column num
+set statusline+=\ %P                                  " Percentage file displayed in win
+set statusline+=\ %{''}                               " Empty space
+" }}}
+
+" {{{ Tabline
+" https://stackoverflow.com/questions/33710069/how-to-write-tabline-function-in-vim
+set tabline=%!MyTabLine()  " custom tab pages line
+function! MyTabLine()
+  let s = ''
+  " loop through each tab page
+  for i in range(tabpagenr('$'))
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#'
+    else
+      let s .= '%#TabLine#'
+    endif
+    if i + 1 == tabpagenr()
+      let s .= '%#TabLineSel#' " WildMenu
+    else
+      let s .= '%#Title#'
+    endif
+    " set the tab page number (for mouse clicks)
+    let s .= '%' . (i + 1) . 'T '
+    " set page number string
+    let s .= i + 1 . ''
+    " get buffer names and statuses
+    let n = ''  " temp str for buf names
+    let m = 0   " &modified counter
+    let buflist = tabpagebuflist(i + 1)
+    " loop through each buffer in a tab
+    for b in buflist
+      if getbufvar(b, "&buftype") == 'help'
+        " let n .= '[H]' . fnamemodify(bufname(b), ':t:s/.txt$//')
+      elseif getbufvar(b, "&buftype") == 'quickfix'
+        " let n .= '[Q]'
+      elseif getbufvar(b, "&modifiable")
+        let n .= fnamemodify(bufname(b), ':t') . ', ' " pathshorten(bufname(b))
+      endif
+      if getbufvar(b, "&modified")
+        let m += 1
+      endif
+    endfor
+    " let n .= fnamemodify(bufname(buflist[tabpagewinnr(i + 1) - 1]), ':t')
+    let n = substitute(n, ', $', '', '')
+    " add modified label
+    if m > 0
+      let s .= '+'
+      " let s .= '[' . m . '+]'
+    endif
+    if i + 1 == tabpagenr()
+      let s .= ' %#TabLineSel#'
+    else
+      let s .= ' %#TabLine#'
+    endif
+    " add buffer names
+    if n == ''
+      let s.= '[New]'
+    else
+      let s .= n
+    endif
+    " switch to no underlining and add final space
+    let s .= ' '
+  endfor
+  let s .= '%#TabLineFill#%T'
+  " right-aligned close button
+  " if tabpagenr('$') > 1
+  "   let s .= '%=%#TabLineFill#%999Xclose'
+  " endif
+  return s
+endfunction
 " }}}
 
 " {{{ netrw
 autocmd VimEnter * :Vexplore | wincmd p
-let g:netrw_banner=0 " No guide on the top, turn on if error occurs
-let g:netrw_liststyle=0 " 0 simple, 1 detailed, 2 thick, 3 tree
-let g:netrw_browse_split=3
+let g:netrw_banner = 0 " No guide on the top, turn on if error occurs
+let g:netrw_liststyle = 0 " 0 simple, 1 detailed, 2 thick, 3 tree
+let g:netrw_browse_split = 3
 let g:netrw_winsize = 15
 aug netrw_auto_close
   au!
-  au WinEnter * if tabpagenr('$') == 1  && winnr('$') == 1
-  \ && getbufvar(winbufnr(winnr()), "&filetype") == "netrw" | quit | endif
+  au WinEnter * if tabpagenr('$') == 1 && winnr('$') == 1
+  \ && getbufvar(winbufnr(winnr()), "&filetype") == 'netrw' | quit | endif
 aug END
+
+" Function to toggle netrw buffer using global var and buf wipeout
+let g:NetrwIsOpen = 1 " Since I open netrw in the startup
+function! ToggleNetrw()
+  if g:NetrwIsOpen
+    " bufnr('$') returns number of last buf,
+    " and since range() isn't last index inclusive (like Python), add 1
+    for i in range(bufnr('$') + 1)
+      if (getbufvar(i, "&filetype") == 'netrw')
+        silent exe 'bwipeout ' . i
+      endif
+    endfor
+    let g:NetrwIsOpen = 0
+  else
+    let g:NetrwIsOpen = 1
+    silent Lex
+  endif
+endfunction
 " }}}
 
 " {{{ CS240 Work Environment
