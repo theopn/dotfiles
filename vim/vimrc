@@ -111,27 +111,29 @@ let g:currentmode={
   \ 'r' : 'PROMPT', 'rm' : 'MORE', 'r?' : 'CONFIRM',
   \ '!' : 'SH', 't' : 'TERM', 'nt' : 'N TERM' }
 set laststatus=2                                      " Always show statusline
-set statusline=
+set statusline=\|                                     " Reset statusline w/ bar
 set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
 set statusline+=\ %f                                  " Current file
 set statusline+=\ %m                                  " [+] for modified, [-] for !modifiable
 set statusline+=%r                                    " [RO] for read only
+set statusline+=\|                                    " Bar
 set statusline+=%=                                    " Spacer
-set statusline+=%<                                    " Truncate the next part if win too small
+set statusline+=%<                                    " Truncate the following modules if win too small
 set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " No particular reason why it's in {}
 set statusline+=%=                                    " Spacer
-set statusline+=\ ~                                   " Tilde
-set statusline+=\ %Y                                  " Filetype
-set statusline+=\ \|                                  " Bar
-set statusline+=\ %{&ff}                              " File format
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ FT:\ %Y                             " Filetype
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ %{toupper(&ff)}                     " File format
 set statusline+=:                                     " Colon
 set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
-set statusline+=\ \|                                  " Bar
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ @                                   " At
 set statusline+=\ %l                                  " Current line num
 set statusline+=:                                     " Colon
 set statusline+=%c                                    " Current column num
 set statusline+=\ %P                                  " Percentage file displayed in win
-set statusline+=\ \|%{''}                             " Bar and empty space
+set statusline+=\ \|%{''}                             " Space, Bar, and empty char
 " }}}
 
 " {{{ Tabline
