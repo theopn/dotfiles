@@ -120,81 +120,87 @@ set statusline+=%=                                    " Spacer
 set statusline+=%<                                    " Truncate the next part if win too small
 set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " No particular reason why it's in {}
 set statusline+=%=                                    " Spacer
+set statusline+=\ ~                                   " Tilde
 set statusline+=\ %Y                                  " Filetype
+set statusline+=\ \|                                  " Bar
 set statusline+=\ %{&ff}                              " File format
 set statusline+=:                                     " Colon
 set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
+set statusline+=\ \|                                  " Bar
 set statusline+=\ %l                                  " Current line num
 set statusline+=:                                     " Colon
 set statusline+=%c                                    " Current column num
 set statusline+=\ %P                                  " Percentage file displayed in win
-set statusline+=\ %{''}                               " Empty space
+set statusline+=\ \|%{''}                             " Bar and empty space
 " }}}
 
 " {{{ Tabline
 " https://stackoverflow.com/questions/33710069/how-to-write-tabline-function-in-vim
 set tabline=%!MyTabLine()  " custom tab pages line
 function! MyTabLine()
-  let s = ''
-  " loop through each tab page
-  for i in range(tabpagenr('$'))
+  let s = ' Theovim '
+  for i in range(tabpagenr('$')) " loop through each tab page
+    " Highlighting tab number. If inactive, slightly darker color
     if i + 1 == tabpagenr()
       let s .= '%#TabLineSel#'
     else
       let s .= '%#TabLine#'
     endif
+    " Highlighting tab name. If inactive, grey
     if i + 1 == tabpagenr()
       let s .= '%#TabLineSel#' " WildMenu
     else
       let s .= '%#Title#'
     endif
-    " set the tab page number (for mouse clicks)
-    let s .= '%' . (i + 1) . 'T '
-    " set page number string
-    let s .= i + 1 . ''
+
+    let s .= '%' . (i + 1) . 'T '   " set the tab page number (for mouse clicks)
+    let s .= i + 1 . ''             " set page number string
+
     " get buffer names and statuses
     let n = ''  " temp str for buf names
     let m = 0   " &modified counter
     let buflist = tabpagebuflist(i + 1)
-    " loop through each buffer in a tab
-    for b in buflist
-      if getbufvar(b, "&buftype") == 'help'
-        " let n .= '[H]' . fnamemodify(bufname(b), ':t:s/.txt$//')
-      elseif getbufvar(b, "&buftype") == 'quickfix'
-        " let n .= '[Q]'
-      elseif getbufvar(b, "&modifiable")
-        let n .= fnamemodify(bufname(b), ':t') . ', ' " pathshorten(bufname(b))
+
+    for b in buflist " loop through each buffer in a tab
+      " Format help and non-modifiable buffer
+      if getbufvar(b, "&modifiable")
+        let n .= pathshorten(bufname(b)) . ' | '
       endif
+      " Add count to modified buffer
       if getbufvar(b, "&modified")
         let m += 1
       endif
     endfor
-    " let n .= fnamemodify(bufname(buflist[tabpagewinnr(i + 1) - 1]), ':t')
+
+    "let n .= fnamemodify(bufname(buflist[tabpagewinnr(i + 1) - 1]), ':t')
     let n = substitute(n, ', $', '', '')
-    " add modified label
-    if m > 0
-      let s .= '+'
-      " let s .= '[' . m . '+]'
+
+    " Add modified label if there are more than one modified buffer in the tab
+    if (m > 0)
+      let s .= ' [' . m . '+]'
     endif
+
     if i + 1 == tabpagenr()
       let s .= ' %#TabLineSel#'
     else
       let s .= ' %#TabLine#'
     endif
+
     " add buffer names
     if n == ''
       let s.= '[New]'
     else
       let s .= n
     endif
+
     " switch to no underlining and add final space
     let s .= ' '
   endfor
-  let s .= '%#TabLineFill#%T'
-  " right-aligned close button
-  " if tabpagenr('$') > 1
-  "   let s .= '%=%#TabLineFill#%999Xclose'
-  " endif
+  let s .= '%#TabLineFill#%T'  " Reset highlight
+
+  " Close button on the right if there are multiple tabs. Why ternary? Why not
+  let s .= (tabpagenr('$') > 1) ? ('%=%999X close') : ('')
+
   return s
 endfunction
 " }}}
