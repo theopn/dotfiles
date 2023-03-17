@@ -140,6 +140,7 @@ set statusline+=\ \|%{''}                             " Space, bar, empty char
 " Custom bufferline function. I know, it's not the true "Vim way"
 function! SpawnBufferLine()
   let s = ' :) | '
+
   " Get the list of buffers. Use bufexists() to include hidden buffers
   let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
   " Making a buffer list on the left side
@@ -151,13 +152,12 @@ function! SpawnBufferLine()
       let s .= '[NEW]'  " Give a name to a new buffer
     endif
     if getbufvar(i, "&modifiable")
-      " Modifiable buffer: trimmed directory
-      let s .= fnamemodify(bufname(i), ':t')
+      let s .= fnamemodify(bufname(i), ':t')  " Append the file name
       " let s .= pathshorten(bufname(i))  " Use this if you want a trimmed path
       " If the buffer is modified, add + and separator. Else, add separator
       let s .= (getbufvar(i, "&modified")) ? (' [+] | ') : (' | ')
     else
-      let s .= pathshorten(bufname(i)) . ' [RO] | '  " Add read only flag
+      let s .= fnamemodify(bufname(i), ':t') . ' [RO] | '  " Add read only flag
     endif
   endfor
   let s .= '%#TabLineFill#%T'  " Reset highlight
@@ -165,7 +165,7 @@ function! SpawnBufferLine()
   let s .= '%=' " Spacer
 
   " Making a tab list on the right side
-  for i in range(1, tabpagenr('$'))
+  for i in range(1, tabpagenr('$'))  " Loop through the number of tabs
     " Highlight with yellow if it's the current tab
     let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#TabLine#')
     let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
