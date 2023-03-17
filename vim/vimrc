@@ -137,51 +137,48 @@ set statusline+=\ \|%{''}                             " Space, bar, empty char
 " }}}
 
 " {{{ Tabline
-function! TheovimTabLine()
-  let s = ' Theovim '
-  for i in range(tabpagenr('$'))  " Loop through num tab
-    " Setting highlights for number in the tab
-    " Yellow for active, blue-ish color (darker than highlight for buf names)
-    let s .= (i + 1 == tabpagenr()) ? ('%#TabLineSel#') : ('%#Title#')
-    " Set tab number
-    let s .= '%' . (i + 1) . 'T '  " set the tab page number (for mouse clicks)
-    let s .= i + 1 . ''            " set page number string
-
-    " For loop making a formatted strings for each buffer in a tab
-    let buflist = tabpagebuflist(i + 1)  " get buffer names and statuses
-    let n = ''  " Temp str for buffer name, since n appends to s after highlight
-    for b in buflist
-      if bufname(b) == ''
-        let n .= '[New]'  " If buffer is new, give it a name
-      endif
-      if getbufvar(b, "&modifiable")
-        " Modifiable buffer: trimmed directory
-        let n .= pathshorten(bufname(b))
-        let n .= (getbufvar(b, "&modified")) ? (' [+] | ') : (' | ')
-      else
-        " Unmodifiable buffer: simply the file name
-        let n .= fnamemodify(bufname(b), ':t') . ' [RO] | '
-      endif
-    endfor
-
-    " Set the highlight for buffer names in the tab
-    " Yellow for current (same as number), light grey for inactive
-    let s .= (i + 1 == tabpagenr()) ? (' %#TabLineSel#') : (' %#TabLine#')
-    " Append the temp string we made earlier
-    let n = substitute(n, ', $', '', '')
-    let s .= n
+" Custom bufferline function. I know, it's not the true "Vim way"
+function! TheovimBufferLine()
+  let s = ' Theovim  '
+  " Get the list of buffers. Use bufexists() to include hidden buffers
+  let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+  " Making a buffer list on the left side
+  for i in bufferNums
+    " Highlight if it's a current buffer
+    let s .= (i == bufnr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+    let s .= i . ' '
+    if bufname(i) == ''
+      let s .= '[NEW]'
+    endif
+    if getbufvar(i, "&modifiable")
+      " Modifiable buffer: trimmed directory
+      let s .= pathshorten(bufname(i))
+      let s .= (getbufvar(i, "&modified")) ? (' [+] | ') : (' | ')
+    else
+      " Unmodifiable buffer: Add read only flag
+      let s .= fnamemodify(bufname(i), ':t') . ' [RO] | '
+    endif
   endfor
-  let s .= '%#TabLineFill#%T'  " Reset highlight, else close button is yellow
+  let s .= '%#TabLineFill#%T'  " Reset highlight
 
+  let s .= '%=' " Spacer
+
+  " Making a tab list on the right side
+  for i in range(1, tabpagenr('$'))
+    " Highlight: yellow for active, blue-ish color for inactive
+    let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#Title#')
+    let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
+    let s .= i . ''          " set page number string
+  endfor
+  let s .= '%#TabLineFill#%T'  " Reset highlight
   " Close button on the right if there are multiple tabs
   if tabpagenr('$') > 1
-    let s .= '%=%999X close'
+    let s .= '%999X X'
   endif
-
   return s
 endfunction
 
-set tabline=%!TheovimTabLine()  " Assign the tabline
+set tabline=%!TheovimBufferLine()  " Assign the tabline
 " }}}
 
 " {{{ netrw
@@ -200,10 +197,8 @@ aug END
 let g:NetrwIsOpen = 1 " Since I open netrw in the startup
 function! ToggleNetrw()
   if g:NetrwIsOpen
-    " bufnr('$') returns number of last buf,
-    " and since range() isn't last index inclusive (like Python), add 1
-    for i in range(bufnr('$') + 1)
-      if (getbufvar(i, "&filetype") == 'netrw')
+    for i in range(1, bufnr('$'))
+      if getbufvar(i, "&filetype") == 'netrw'
         silent exe 'bwipeout ' . i
       endif
     endfor
