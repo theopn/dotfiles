@@ -36,7 +36,7 @@
 
 " GUI color definitions
 let s:gui00        = "282A35"
-let g:base16_gui00 = "282A36"
+let g:base16_gui00 = "282A35"
 let s:gui01        = "2D3344"
 let g:base16_gui01 = "2D3344"
 let s:gui02        = "343E4F"
@@ -436,7 +436,7 @@ delf <sid>hi
 unlet s:gui00 s:gui01 s:gui02 s:gui03  s:gui04  s:gui05  s:gui06  s:gui07  s:gui08  s:gui09 s:gui0A  s:gui0B  s:gui0C  s:gui0D  s:gui0E  s:gui0F
 unlet s:cterm00 s:cterm01 s:cterm02 s:cterm03 s:cterm04 s:cterm05 s:cterm06 s:cterm07 s:cterm08 s:cterm09 s:cterm0A s:cterm0B s:cterm0C s:cterm0D s:cterm0E s:cterm0F
 
-if exists('g:pastelcula_transparent')
+if exists('g:pastelcula_transparent') && g:pastelcula_transparent != 0
   hi Normal guibg=NONE ctermbg=NONE
 endif
 

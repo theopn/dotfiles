@@ -14,7 +14,7 @@
 "===============================================================================
 
 " {{{ Base Settings
-set number relativenumber numberwidth=7 ruler colorcolumn=80
+set number relativenumber numberwidth=3 ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
 set confirm showtabline=2
 try
@@ -138,25 +138,26 @@ set statusline+=\ \|%{''}                             " Space, bar, empty char
 
 " {{{ Tabline
 " Custom bufferline function. I know, it's not the true "Vim way"
-function! TheovimBufferLine()
-  let s = ' Theovim  '
+function! SpawnBufferLine()
+  let s = ' :) | '
   " Get the list of buffers. Use bufexists() to include hidden buffers
   let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
   " Making a buffer list on the left side
   for i in bufferNums
-    " Highlight if it's a current buffer
+    " Highlight with yellow if it's the current buffer
     let s .= (i == bufnr()) ? ('%#TabLineSel#') : ('%#TabLine#')
-    let s .= i . ' '
+    let s .= i . ' '  " Append the buffer number
     if bufname(i) == ''
-      let s .= '[NEW]'
+      let s .= '[NEW]'  " Give a name to a new buffer
     endif
     if getbufvar(i, "&modifiable")
       " Modifiable buffer: trimmed directory
-      let s .= pathshorten(bufname(i))
+      let s .= fnamemodify(bufname(i), ':t')
+      " let s .= pathshorten(bufname(i))  " Use this if you want a trimmed path
+      " If the buffer is modified, add + and separator. Else, add separator
       let s .= (getbufvar(i, "&modified")) ? (' [+] | ') : (' | ')
     else
-      " Unmodifiable buffer: Add read only flag
-      let s .= fnamemodify(bufname(i), ':t') . ' [RO] | '
+      let s .= pathshorten(bufname(i)) . ' [RO] | '  " Add read only flag
     endif
   endfor
   let s .= '%#TabLineFill#%T'  " Reset highlight
@@ -165,12 +166,13 @@ function! TheovimBufferLine()
 
   " Making a tab list on the right side
   for i in range(1, tabpagenr('$'))
-    " Highlight: yellow for active, blue-ish color for inactive
-    let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#Title#')
+    " Highlight with yellow if it's the current tab
+    let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#TabLine#')
     let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
     let s .= i . ''          " set page number string
   endfor
   let s .= '%#TabLineFill#%T'  " Reset highlight
+
   " Close button on the right if there are multiple tabs
   if tabpagenr('$') > 1
     let s .= '%999X X'
@@ -178,7 +180,7 @@ function! TheovimBufferLine()
   return s
 endfunction
 
-set tabline=%!TheovimBufferLine()  " Assign the tabline
+set tabline=%!SpawnBufferLine()  " Assign the tabline
 " }}}
 
 " {{{ netrw
