@@ -184,16 +184,17 @@ set tabline=%!SpawnBufferLine()  " Assign the tabline
 " }}}
 
 " {{{ netrw
-autocmd VimEnter * :Vexplore | wincmd p
 let g:netrw_banner = 0 " No guide on the top, turn on if error occurs
-let g:netrw_liststyle = 0 " 0 simple, 1 detailed, 2 thick, 3 tree
+let g:netrw_liststyle = 1 " 0 simple, 1 detailed, 2 thick, 3 tree
 let g:netrw_browse_split = 3
 let g:netrw_winsize = 15
-aug netrw_auto_close
-  au!
-  au WinEnter * if tabpagenr('$') == 1 && winnr('$') == 1
+augroup netrw_autocmds
+  autocmd!
+  " Close netrw if it is the last buffer
+  autocmd WinEnter * if tabpagenr('$') == 1 && winnr('$') == 1
   \ && getbufvar(winbufnr(winnr()), "&filetype") == 'netrw' | quit | endif
-aug END
+  autocmd VimEnter * :Vexplore | wincmd p  " Netrw open on startup
+augroup END
 
 " Function to toggle netrw buffer using global var and buf wipeout
 let g:NetrwIsOpen = 1 " Since I open netrw in the startup
