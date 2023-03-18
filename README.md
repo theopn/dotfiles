@@ -2,7 +2,7 @@
 
 > Collection of my configuration files. The reason why this README is so long is that I forget things often, definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
-![macos-sc](./assets/macos-rice-sc-2023-02-15.jpg)
+![macos-sc](./assets/2023-03-18-macos-rice-sc.jpg)
 ![fedora-sc](./assets/2023-03-12-fedora-rice-sc.png)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad X270 (6th-gen i5).
