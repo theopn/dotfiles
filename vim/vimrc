@@ -113,6 +113,7 @@ let g:currentmode={
 set laststatus=2                                      " Always show statusline
 set statusline=\|                                     " Reset statusline w/ bar
 set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
+set statusline+=\ %{fnamemodify(getcwd(),':t')}       " Current working dir
 set statusline+=\ %f                                  " Current file
 set statusline+=\ %m                                  " [+] for modified
 set statusline+=%r                                    " [RO] for read only
