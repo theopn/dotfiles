@@ -6,7 +6,7 @@
 ![fedora-sc](./assets/2023-03-12-fedora-rice-sc.png)
 
 Here are dotfiles for my systems, the 2020 MacBook Air with M1 processor and Lenovo ThinkPad X270 (6th-gen i5).
-MBA runs the latest version of macOS, and X270 runs the latest version of Fedora i3 Spin with i3 and Sway window manager (actually, Sway is a Wayland compositor :nerd-emoji:).
+MBA runs the latest version of macOS, and X270 runs the latest version of Fedora i3 Spin with different tiling WM (primarily i3 and Awesome, I used to use Sway window manager. Actually, Sway is a Wayland compositor :nerd-emoji:. I'm planning on testing out Qtile and XMonad).
 
 You are welcome to take inspiration from any file in this repository, but I do not take any responsibility for any content of the configurations. **Read the code before you use them!**
 
@@ -69,6 +69,13 @@ brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-
 
 ## Highlights
 
+### Other Projects
+
+> Shameless plugs
+
+- [Theovim](https://github.com/theopn/theovim) "is a somewhat minimal, somewhat opinionated, totally stable, and totally functional IDE layer for Neovim." Neovim is my IDE as well as primary text editor, and Theovim is a great configuration to make my Neovim experience richer
+- [Hunted Tiles](https://github.com/theopn/hunted-tiles/) "is a custom Linux window manager environment built with Awesome WM framework and other tools surrounding the X11 window server." It tries to be a desktop-environment-wannabe that fully utilizes the Awesome framework with minimal external packages.
+
 ### Cross-platform
 
 #### Bash
@@ -124,12 +131,6 @@ Very simple (as I prefer) but complete file manager for my use. Some keybindings
 
 Happy ricing!
 
-#### Neovim
-
-> I code Neovim to code in Neovim
-
-Due to requests from my friends, my Neovim configuration has migrated to a separate repository [Theovim](https://github.com/theopn/theovim)
-
 #### Qutebrowser
 
 > Modern keyboard based browser
@@ -167,12 +168,6 @@ echo "
 ### Linux
 
 Fedora Fedora Fedora.
-
-#### Awesome
-
-> Software engineering project, except it's in Lua
-
-Migrated to a separate [repository](https://github.com/theopn/hunted-tiles).
 
 #### Dunst
 
