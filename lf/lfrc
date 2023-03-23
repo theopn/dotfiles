@@ -26,9 +26,9 @@ set smartcase
 # &  shell-async     shell command running asynchronously
 
 # Automatically create trash folder upon the startup
-${{ if [ ! -d ~/.trash-lf ]; then mkdir -p ~/.trash-lf; fi }}
+${{ if [ ! -d ~/.theoshell/trash ]; then mkdir -p ~/.theoshell/trash; fi }}
 # $f = current cursor $fs = selected files $fx = $f or $fs
-cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.trash-lf && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n" }}
+cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.theoshell/trash && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n" }}
 
 # Remove command for bypassing trash
 cmd rm !{{

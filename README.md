@@ -117,7 +117,7 @@ Very simple (as I prefer) but complete file manager for my use. Some keybindings
 - `~` : Go to the home directory
 - `ee`: Open a file in `$EDITOR`
 - `ec`: You choose what editor you want to open a file in
-- `DD`: Move a file to `~/.trash-lf`
+- `DD`: Move a file to `~/.theoshell/trash` (it integrates with ZSH trash functions)
 - `gs`: [g]it [s]tatus
 - `md`: mkdir
 - `mf`: Open a file with the supplied name in Neovim
@@ -156,6 +156,7 @@ Keybindings that are drastically different from stock bindings (that make more s
 
 - Greeting message
 - `theoshell_plug` and `theoshell_upgrade` automatically download and load ZSH plug-ins I need (currently only zsh-autocomplete), eliminating the need for a bloated shell plug-in manager
+- `trash`, `trash_print`, and `trash_empty` commands
 - Aliases utilizing Tmux pop-up window (`nvif`, `note`, `wiki`) and miscellaneous functions like `trash()` and `update_dotfiles()`
 - Set theory themed prompt:
 
