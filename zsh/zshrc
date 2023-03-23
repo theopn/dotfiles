@@ -16,7 +16,7 @@ source ~/dotfiles/zsh/trash-zsh
 source ~/dotfiles//zsh/greeting-zsh
 greeting_msg
 
-source ~/dotfiles/zsh/theoshell-plug-zsh
+source ~/dotfiles/zsh/plug-zsh
 theoshell_plug marlonrichert/zsh-autocomplete
 
 export EDITOR=nvim
