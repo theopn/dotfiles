@@ -14,19 +14,21 @@ function red_echo() {
 }
 
 function trash() {
-  [[ ! -d ~/.trash-lf ]] && mkdir -p ~/.trash-lf
-  if [[ -z $@ ]]; then red_echo "Please select file(s) to trash!"; return; fi
+  [[ ! -d ~/.theoshell/trash ]] && mkdir -p ~/.theoshell/trash
+  if [[ -z $@ ]]; then red_echo 'Please select file(s) to trash!'; return; fi
   for file in $@; do
-    mv $file ~/.trash-lf
-    yellow_echo "$file moved to trash!"
+    mv $file ~/.theoshell/trash && yellow_echo ":) $file moved to trash!" ||red_echo ":( Failed to move $file to trash"
   done
 }
 
 function trash_print() {
-  if [[ ! -d ~/.trash-lf ]]; then
+  if [[ ! -d ~/.theoshell/trash ]]; then
     red_echo 'Trash direcoty does not exist! Execute LF file manager with my config to create one'
   else
-    for file in ~/.trash-lf/*
+    # You can use {.[!.]*,*}, but that does not exist if directory does not contain BOTH .* and *
+    # Separate for loop will not work since ZSH will terminate if no wild card match is found (requires nullglob)
+    # So settle for *
+    for file in ~/.theoshell/trash/*
     do
       yellow_echo "$file"
     done
@@ -34,10 +36,10 @@ function trash_print() {
 }
 
 function trash_empty() {
-  if [[ ! -d ~/.trash-lf ]]; then
-    red_echo 'Trash direcoty does not exist! Execute LF file manager with my config to create one'
+  if [[ ! -d ~/.theoshell/trash ]]; then
+    red_echo 'Trash direcoty does not exist! Execute LF file manager with my config or trash() command to create one'
   else
-    for file in ~/.trash-lf/*
+    for file in ~/.theoshell/trash/*
     do
       yellow_echo "Removing $file in trash..."
       rm -rf $file
