@@ -1,5 +1,53 @@
 #!/bin/zsh
 
+# Get more Oliver
+function print_oliver() {
+  olivers=(
+    '
+         \/   \/
+         |\__/,|     _
+       _.|o o  |_   ) )
+      -(((---(((--------
+    ' \
+    '
+          \/ \/
+          /\_/\ _______
+         = o_o =  _ _  \     _
+         (__^__)   __(  \.__) )
+      (@)<_____>__(_____)____/
+        ♡ ~~ ♡ OLIVER ♡ ~~ ♡
+    ' \
+    '
+         \/       \/
+         /\_______/\
+        /   o   o   \
+       (  ==  ^  ==  )
+        )           (
+       (             )
+       ( (  )   (  ) )
+      (__(__)___(__)__)
+    ' \
+    '
+       \/   \/
+       |\__/,|        _
+       |_ _  |.-----.) )
+       ( T   ))        )
+      (((^_(((/___(((_/
+    ' \
+    '
+                             _
+            |\      _-``---,) )
+      ZZZzz /,`.-```    -.   /
+           |,4-  ) )-,_. ,\ (
+          `---``(_/--`  `-`\_)
+    '
+    )
+    # 1. RANDOM is biased toward the lower index
+    # 2. Array index in ZSH starts at 1
+    oliver=${olivers[ $(( RANDOM % ${#olivers[@]} + 1 )) ]}
+    echo -e "\033[0;31m${oliver}\033[0m"
+}
+
 # Inspired by https://github.com/G2-Games/welcome.sh/
 function get_battery() {
   batlv=-1
@@ -30,5 +78,6 @@ function get_battery() {
 function greeting_msg() {
   echo "\e[38;2;200;107;209mWhat's up $USER\e[0m, \e[38;2;224;146;252;1mshell opened on $(date -I) @ $(date +"%T") :)"
   get_battery
+  print_oliver
 }
 
