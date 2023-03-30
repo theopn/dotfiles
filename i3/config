@@ -12,6 +12,7 @@ set $mod Mod4
 # Script var
 set $lock ~/dotfiles/i3/i3-lock.sh
 set $rofi_powermenu ~/dotfiles/rofi/rofi-powermenu.sh
+set $volume_ctrl ~/dotfiles/i3/volume-ctrl.sh
 # Program var
 set $bar ~/dotfiles/polybar/polybar-launch.sh dracula
 set $clipboard clipit
@@ -50,9 +51,12 @@ set $ws10 "10"
 
 # {{{ BASE KEYBINDINGS
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id $volume_ctrl up
+bindsym XF86AudioLowerVolume exec --no-startup-id $volume_ctrl down
+bindsym XF86AudioMute exec --no-startup-id $volume_ctrl mute
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 # Use brightnessctl to adjust brightness with function row keys
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
