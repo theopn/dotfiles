@@ -235,6 +235,7 @@ Formulae:
 - **ffmpeg**: `ffmpeg -i in.xxx out.yyy`
 - **fzf**: Command line fuzzy finder
 - **figlet**: ASCII art generator
+- imagemagick
 - **lf**
 - Hugo: Static website generator
 - **htop**
@@ -248,7 +249,7 @@ Formulae:
 | Type              | Casks                                                                                           |
 |-------------------|-------------------------------------------------------------------------------------------------|
 | Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                                         |
-| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**               |
+| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**<br> - Neo4j   |
 | Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                                       |
 | System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                                          |
 | Tools             | - Bitwarden<br> - Cryptomator<br> - GIMP<br> - Nextcloud<br> - OBS<br> - Skim<br> - VLC         |
