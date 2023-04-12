@@ -251,7 +251,7 @@ Formulae:
 | Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                                         |
 | Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**<br> - Neo4j   |
 | Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                                       |
-| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats                                                          |
+| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats<br> - Spaceid                                            |
 | Tools             | - Bitwarden<br> - Cryptomator<br> - GIMP<br> - Nextcloud<br> - OBS<br> - Skim<br> - VLC         |
 | Web               | - **Firefox**<br> - Qutebrowser<br> - Thunderbird                                               |
 
