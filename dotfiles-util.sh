@@ -1,11 +1,10 @@
 #!/bin/bash
 
-DOT_DIR=~/dotfiles
-DOT_BACKUP_DIR=~/dotfiles.bu
+export DOT_DIR=~/dotfiles
+export DOT_BACKUP_DIR=~/dotfiles.bu
 
 ########## HELPER FUNCTIONS ##########
 
-# From https://github.com/vsbuffalo/dotfiles/blob/master/setup.sh
 # For regular messages
 function green_echo() {
   echo -e "\033[0;32m[Message] ${1}\033[0m"
@@ -35,27 +34,27 @@ function verify_script_dir() {
 
 # $1 = Name of the related files, $2 command to be prompt when user selected yes
 function selection_prompt() {
-  yellow_echo "Would you like to install ${1} related files?"
+  yellow_echo "Would you like to install $1 related files?"
   read -p "y/n? > " -n1 -r REPLY # -p for prompt, -n1 for reading 1 character, -r for reading literally
   echo
   if [[ ${REPLY} =~ ^[Yy]$ ]]; then
-    green_echo "Deploying ${1} related files..."
+    green_echo "Deploying $1 related files..."
     true
   else
-    green_echo "Skipping ${1} related files..."
+    green_echo "Skipping $1 related files..."
     false
   fi
 }
 
 # $1 = Current location, $2 Target location
 function backup_then_symlink() {
-  if [[ -f ${2} ]]; then
-    green_echo "Existing ${2} will be moved to ${DOT_BACKUP_DIR}."
+  if [[ -f $2 ]]; then
+    green_echo "Existing $2 will be moved to ${DOT_BACKUP_DIR}."
     mkdir -p ${DOT_BACKUP_DIR}
     mv $2 ${DOT_BACKUP_DIR}/
   fi
-  green_echo "Creating symlink for ${1} at ${2}..."
-  ln -s ${1} ${2}
+  green_echo "Creating symlink for $1 at $2..."
+  ln -s $1 $2
 }
 
 ########## INSTALL FUNCTIONS ##########
@@ -236,15 +235,15 @@ function add_ssh_shortcut() {
 }
 
 function install_font() {
-  if [[ ! ${2} ]]; then red_echo 'Target URL is missing!'; exit 1; fi
+  if [[ ! $1 ]]; then red_echo 'Target URL is missing!'; exit 1; fi
   mkdir -p ~/.local/share/fonts
   cd ~/.local/share/fonts
-  wget -O temp-font.zip ${1}
+  wget -O temp-font.zip $1
   unzip temp-font.zip
   rm temp-font.zip
   fc-cache -vf
   cd - > /dev/null 2>&1
-  green_echo "A font from ${1} successfully installed!"
+  green_echo "A font from $1 successfully installed!"
 }
 
 function help() {
@@ -269,7 +268,7 @@ function help() {
 ########### MAIN CALL HERE ##########
 #
 function main() {
-  case ${1} in
+  case $1 in
     "--install")
       install
     ;;
@@ -286,7 +285,7 @@ function main() {
       add_ssh_shortcut
     ;;
     "--install-font")
-      install_font ${2}
+      install_font $2
     ;;
     "--help")
       help
@@ -300,7 +299,7 @@ function main() {
   exit 0
 }
 
-main ${@}
+main $@
 
 ########### MAIN CALL HERE ##########
 
