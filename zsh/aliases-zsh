@@ -7,17 +7,17 @@ function update_dotfiles() {
 
 # Tar.gz
 function tarmake() {
-  tar -czvf "$1.tar.gz" "$1" # c for archive, z for gzip, v for verbose, f for file
+  tar -czvf ${1}.tar.gz ${1} # c for archive, z for gzip, v for verbose, f for file
 }
 
 function tarunmake() {
   # -z (gzip) or -j (bzip) flag can be passed for unarchiving, but not necessary
-  tar -xvf "$1" # x for extracting, v for verbose, f for file
+  tar -xvf $1 # x for extracting, v for verbose, f for file
 }
 
 function xrandr_external_on() {
-  if [[ "$OSTYPE" != "linux-gnu"* ]]; then
-    echo -e "\033[0;31m[Fatal] You are on $OSTYPE\033[0m"
+  if [[ "${OSTYPE}" != "linux-gnu"* ]]; then
+    echo -e "\033[0;31m[Fatal] You are on ${OSTYPE}\033[0m"
     return 1
   fi
   if [[ $# != 1 ]]; then
@@ -29,8 +29,8 @@ function xrandr_external_on() {
 }
 
 function xrandr_external_off() {
-  if [[ "$OSTYPE" != "linux-gnu"* ]]; then
-    echo -e "\033[0;31m[Fatal] You are on $OSTYPE\033[0m"
+  if [[ "${OSTYPE}" != "linux-gnu"* ]]; then
+    echo -e "\033[0;31m[Fatal] You are on ${OSTYPE}\033[0m"
     return 1
   fi
   if [[ $# != 1 ]]; then
@@ -42,19 +42,19 @@ function xrandr_external_off() {
 }
 
 ######### Alias w hard-coded paths ##########
-CACHE='~/Nextcloud/l1-cache/'
-DAILY_WRITING_FOLDER="~/Nextcloud/dw-$(date +'%Y')/"
-DOTFILES_FOLDER='~/dotfiles/'
-QUICK_NOTES_PATH="${CACHE}quick-notes.md"
-WIKI_PATH='~/Nextcloud/theo-vimwiki/'
+CACHE='~/Nextcloud/l1-cache'
+DAILY_WRITING_FOLDER="~/Nextcloud/dw-$(date +'%Y')"
+DOTFILES_FOLDER='~/dotfiles'
+QUICK_NOTES_PATH="${CACHE}/quick-notes.md"
+WIKI_PATH='~/Nextcloud/theo-vimwiki'
 
 alias l1="cd $CACHE"
-alias dw="vim ${DAILY_WRITING_FOLDER}index.md"
+alias dw="vim ${DAILY_WRITING_FOLDER}/index.md"
 alias dot="cd $DOTFILES_FOLDER"
-alias note="tmux display-popup -E -h 80% -w 80% 'nvim $QUICK_NOTES_PATH'"
+alias note="tmux display-popup -E -h 80% -w 80% 'nvim ${QUICK_NOTES_PATH}'"
 alias note_no_tmux="nvim $QUICK_NOTES_PATH"
-alias wiki="tmux display-popup -E -h 80% -w 80% 'vim ${WIKI_PATH}index.md'"
-alias wiki_no_tmux="vim ${WIKI_PATH}index.md"
+alias wiki="tmux display-popup -E -h 80% -w 80% 'vim ${WIKI_PATH}/index.md'"
+alias wiki_no_tmux="vim ${WIKI_PATH}/index.md"
 
 ######### Alias ##########
 alias cl='clear'
