@@ -41,8 +41,8 @@
       user-mail-address "no.email.for.you@theo.com")
 
 ;; `doom-big-font' may be used for presentation
-(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 14) ; `describe-font', `eval-region', `doom/reload-font'
-      doom-variable-pitch-font (font-spec :family "FantasqueSansMono Nerd Font" :size 15)) ; non-monospace font
+(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13) ; `describe-font', `eval-region', `doom/reload-font'
+      doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13)) ; non-monospace font
 (setq doom-theme 'doom-dracula) ; `doom-theme' or `load-theme'
 
 ;; APPERANCE
