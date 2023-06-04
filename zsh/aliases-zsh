@@ -1,5 +1,15 @@
 #!/bin/zsh
 
+######### Alias ##########
+alias cl='clear'
+alias google='w3m google.com'
+alias ls='ls -G'
+alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
+alias nvif='fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim'
+alias weather="curl 'https://wttr.in'"
+
+########## Functions ###########
+
 # Updating dotfiles
 function update_dotfiles() {
   cd ~/dotfiles/ && git pull && cd - &> /dev/null
@@ -42,26 +52,13 @@ function xrandr_external_off() {
 }
 
 ######### Alias w hard-coded paths ##########
-CACHE='~/Nextcloud/l1-cache'
-DAILY_WRITING_FOLDER="~/Nextcloud/dw-$(date +'%Y')"
-DOTFILES_FOLDER='~/dotfiles'
-QUICK_NOTES_PATH="${CACHE}/quick-notes.md"
-WIKI_PATH='~/Nextcloud/theo-vimwiki'
+# Requires various other env var from .zshrc
 
-alias l1="cd $CACHE"
-alias dw="vim ${DAILY_WRITING_FOLDER}/index.md"
-alias dot="cd $DOTFILES_FOLDER"
+alias l1="cd $CACHE_DIR"
+alias dw="vim ${DAILY_WRITING_DIR}/index.md"
+alias dot="cd $DOT_DIR"
 alias note="tmux display-popup -E -h 80% -w 80% 'nvim ${QUICK_NOTES_PATH}'"
 alias note_no_tmux="nvim $QUICK_NOTES_PATH"
 alias wiki="tmux display-popup -E -h 80% -w 80% 'vim ${WIKI_PATH}/index.md'"
 alias wiki_no_tmux="vim ${WIKI_PATH}/index.md"
-
-######### Alias ##########
-alias cl='clear'
-alias google='w3m google.com'
-alias ls='ls -G'
-alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
-alias nvi='nvim'
-alias nvif='fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim'
-alias weather="curl 'https://wttr.in'"
 

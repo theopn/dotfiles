@@ -1,7 +1,6 @@
 #!/bin/zsh
 
-export THEOSHELL_TRASH_DIR=~/.theoshell/trash
-
+##### Make sure "THEOSHELL_TRASH_DIR" env var is set (mine is in .zshrc) #####
 #
 # These functions integrate with lf file manager, although they can be used separately
 # They are somewhat buggy (limitations of mv command without deleting same name files, etc.), but they are good for my use

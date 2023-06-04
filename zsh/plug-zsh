@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-export THEOSHELL_PLUGIN_DIR=~/.theoshell/zsh-plugins
+##### Make sure "THEOSHELL_PLUGIN_DIR" env var is set (mine is in .zshrc) #####
 
 # Double check double check
 function source_file() {

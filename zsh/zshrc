@@ -9,6 +9,21 @@
 # Vim mode
 bindkey -v
 
+# Env Var
+export EDITOR=nvim
+
+export THEOSHELL_PLUGIN_DIR=~/.theoshell/zsh-plugins
+export THEOSHELL_TRASH_DIR=~/.theoshell/trash
+
+export CLOUD_STORAGE_DIR='~/Nextcloud'
+export CACHE_DIR="${CLOUD_STORAGE_DIR}/l1-cache"
+export DOT_DIR='~/dotfiles'
+
+export DAILY_WRITING_DIR="${CLOUD_STORAGE_DIR}/dw-$(date +'%Y')"
+export QUICK_NOTES_PATH="${CACHE_DIR}/quick-notes.md"
+export WIKI_PATH="${CLOUD_STORAGE_DIR}/theo-vimwiki"
+
+# Sourcing
 source ~/dotfiles/zsh/aliases-zsh
 source ~/dotfiles/zsh/prompt-zsh
 source ~/dotfiles/zsh/trash-zsh
@@ -19,5 +34,4 @@ greeting_msg
 source ~/dotfiles/zsh/plug-zsh
 theoshell_plug marlonrichert/zsh-autocomplete
 
-export EDITOR=nvim
 
