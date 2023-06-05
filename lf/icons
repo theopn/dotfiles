@@ -1,5 +1,4 @@
 # vim:ft=conf
-
 # From https://github.com/gokcehan/lf/blob/master/etc/icons.example
 
 # These examples require Nerd Fonts or a compatible font to be used.
@@ -89,7 +88,7 @@ fi             # FILE
 *.cc            
 *.cp            
 *.c             
-*.cs            
+*.cs            󰌛
 *.h             
 *.hh            
 *.hpp           
@@ -150,14 +149,14 @@ fi             # FILE
 *.tsx           
 *.jl            
 *.pp            
-*.vue           ﵂
+*.vue           
 *.elm           
 *.swift         
 *.xcplayground  
-*.tex           ﭨ
-*.r             ﳒ
-*.rproj         鉶
-*.sol           ﲹ
+*.tex           󰙩
+*.r             󰟔
+*.rproj         󰗆
+*.sol           󰡪
 *.pem           
 
 # file names (vim-devicons) (case-insensitive not supported in lf)
@@ -195,7 +194,7 @@ fi             # FILE
 *gemfile                
 *makefile               
 *cmakelists.txt         
-*robots.txt             ﮧ
+*robots.txt             󰚩
 
 # file names (case-sensitive adaptations)
 *Gruntfile.coffee       
