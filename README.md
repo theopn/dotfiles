@@ -74,7 +74,7 @@ brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-
 > Shameless plugs
 
 - [Theovim](https://github.com/theopn/theovim) "is a somewhat minimal, somewhat opinionated, totally stable, and totally functional IDE layer for Neovim." Neovim is my IDE as well as primary text editor, and Theovim is a great configuration to make my Neovim experience richer
-- [Hunted Tiles](https://github.com/theopn/hunted-tiles/) "is a custom Linux window manager environment built with Awesome WM framework and other tools surrounding the X11 window server." It tries to be a desktop-environment-wannabe that fully utilizes the Awesome framework with minimal external packages.
+- [Hunted Tiles](https://github.com/theopn/hunted-tiles/) is a collection of my Wayland compositor configurations (Sway and Hyperland) along with scripts to provide a better Wayland experience
 
 ### Cross-platform
 
@@ -243,6 +243,7 @@ Formulae:
 - **node**
 - **neofetch**
 - **neovim**
+- **rust**
 - **tmux**
 - **wget**
 

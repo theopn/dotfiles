@@ -12,6 +12,7 @@ brew "neofetch"
 brew "neovim"
 brew "node"
 brew "tmux"
+brew "rust"
 brew "wget"
 
 cask "bitwarden"
