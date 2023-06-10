@@ -74,17 +74,17 @@ label-separator = |
 label-separator-foreground = ${colors.comment}
 
 ; Fun stuff
-menu-0-0 = "ﱘ"
+menu-0-0 = "󰝚"
 menu-0-0-exec = notify-send "$(~/dotfiles/polybar/polybar-spotify.py)"
-menu-0-1 = "摒"
+menu-0-1 = "󰖐"
 menu-0-1-exec = ~/dotfiles/polybar/polybar-weather.sh
 menu-0-2 = ""
 menu-0-2-exec = ~/dotfiles/polybar/polybar-dunst-toggle.sh
 
 ; Display options
-menu-0-3 = " Picom"
+menu-0-3 = "󰀿 Picom"
 menu-0-3-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh compositor
-menu-0-4 = "盛 Redshift"
+menu-0-4 = "󰖦 Redshift"
 menu-0-4-exec = ~/dotfiles/polybar/polybar-display-tools-toggle.sh nightlight
 
 [module/i3]
@@ -137,7 +137,7 @@ base-temperature = 0
 units = true
 
 label = %temperature-c%
-format-prefix = "  "
+format-prefix = "󰏈  "
 format-prefix-foreground = ${colors.orange}
 
 [module/cpu]
@@ -145,7 +145,7 @@ type = internal/cpu
 interval = 5
 
 label = %percentage:2%%
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.orange}
 
 [module/memory]
@@ -170,11 +170,11 @@ ramp-signal-4 = ::
 ramp-signal-5 = .::
 label-connected = %essid%
 format-connected = <label-connected> <ramp-signal>
-format-connected-prefix = "直  "
+format-connected-prefix = "󰖩  "
 format-connected-prefix-foreground = ${colors.orange}
 
 ; Icons for wifi off
-label-disconnected = 睊  no wifi?
+label-disconnected = 󰖪  no wifi?
 label-disconnected-foreground = ${colors.comment}
 
 ;;;;;;;;;; Left   Modules ;;;;;;;;;;
@@ -184,15 +184,15 @@ use-ui-max = true
 click-right = pavucontrol
 
 ; Icons for volume on
-ramp-volume-0 = 奄
-ramp-volume-1 = 奔
-ramp-volume-2 = 墳
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
 ramp-volume-foreground = ${colors.orange}
 label-volume = %percentage%%
 format-volume = <ramp-volume> <label-volume>
 
 ; Icon for volume mute
-label-muted = 婢 muted
+label-muted = 󰖁 muted
 label-muted-foreground = ${colors.comment}
 
 [module/backlight]
@@ -201,7 +201,7 @@ card = intel_backlight
 use-actual-brightness = true
 
 label = %percentage%%
-format-prefix = "  "
+format-prefix = "󰃝  "
 format-prefix-foreground = ${colors.orange}
 
 [module/battery0]
@@ -213,20 +213,20 @@ full-at = 99
 poll-interval = 5
 
 ; Icons for normal battery operation
-ramp-capacity-0 = 
+ramp-capacity-0 = 󰁺
 ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1 = 
+ramp-capacity-1 = 󰁼
 ramp-capacity-1-foreground = ${colors.orange}
-ramp-capacity-2 = 
+ramp-capacity-2 = 󰁾
 ramp-capacity-2-foreground = ${colors.yellow}
-ramp-capacity-3 = 
+ramp-capacity-3 = 󰂀
 ramp-capacity-3-foreground = ${colors.green}
 format-discharging = <ramp-capacity> <label-discharging>
 
 ; Icons for full and charging
-format-full =  <label-full>
+format-full = 󰁹 <label-full>
 format-full-foreground = ${colors.green}
-format-charging =  <label-charging>
+format-charging = 󰂄 <label-charging>
 format-charging-foreground = ${colors.pink}
 
 [module/battery1]
@@ -238,20 +238,20 @@ full-at = 99
 poll-interval = 5
 
 ; Icons for normal battery operation
-ramp-capacity-0 = 
+ramp-capacity-0 = 󰁺
 ramp-capacity-0-foreground = ${colors.red}
-ramp-capacity-1 = 
+ramp-capacity-1 = 󰁼
 ramp-capacity-1-foreground = ${colors.orange}
-ramp-capacity-2 = 
+ramp-capacity-2 = 󰁾
 ramp-capacity-2-foreground = ${colors.yellow}
-ramp-capacity-3 = 
+ramp-capacity-3 = 󰂀
 ramp-capacity-3-foreground = ${colors.green}
 format-discharging = <ramp-capacity> <label-discharging>
 
 ; Icons for full and charging
-format-full =  <label-full>
+format-full = 󰁹 <label-full>
 format-full-foreground = ${colors.green}
-format-charging =  <label-charging>
+format-charging = 󰂄 <label-charging>
 format-charging-foreground = ${colors.pink}
 
 [module/date]
