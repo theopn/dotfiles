@@ -8,11 +8,34 @@ alias l='ls -A -l -h --color=auto' # All file except . and .., list view, displa
 alias nvif='fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim'
 alias weather="curl 'https://wttr.in'"
 
+######### Alias w hard-coded paths ##########
+# Requires various other env var from .zshrc
+
+alias l1="cd $CACHE_DIR"
+alias dw="vim ${DAILY_WRITING_DIR}/index.md"
+alias dot="cd $DOT_DIR"
+alias note="nvim \"+normal G\" \"+put =strftime('- %Y-%m-%d %H:%M:%S:')\" \"+normal $\" $CAPTURE_PATH" # :normal G -> :put strftime() -> ...
+alias wiki="tmux display-popup -E -h 80% -w 80% 'vim ${WIKI_PATH}/index.md'"
+alias wiki_no_tmux="vim ${WIKI_PATH}/index.md"
+
 ########## Functions ###########
 
-# Updating dotfiles
-function update_dotfiles() {
-  cd ~/dotfiles/ && git pull && cd - &> /dev/null
+# Preview option for fzf
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+    cd) fzf "$@" --preview 'tree -C {} | head -200' ;;
+    *)  fzf "$@" --preview 'cat {}' ;;
+  esac
+}
+
+# Favorite path to cd into using fzf
+function cdf() {
+  dir=("$CLOUD_DIR" "$CACHE_DIR" "$DOT_DIR" "$THEOSHELL_TRASH_DIR")
+  selected=$(printf "%s\n" "${dir[@]}" | fzf --reverse --border=rounded --no-info --cycle --header='Pick a directory to navigate to')
+  cd "$selected"
 }
 
 # Tar.gz
@@ -25,8 +48,14 @@ function tarunmake() {
   tar -xvf $1 # x for extracting, v for verbose, f for file
 }
 
+# Updating dotfiles
+function update_dotfiles() {
+  cd ~/dotfiles/ && git pull && cd - &> /dev/null
+}
+
+# Quickly switching external display on/off using xrandr
 function xrandr_external_on() {
-  if [[ "${OSTYPE}" != "linux-gnu"* ]]; then
+  if [[ "$OSTYPE" != "linux-gnu"* ]]; then
     echo -e "\033[0;31m[Fatal] You are on ${OSTYPE}\033[0m"
     return 1
   fi
@@ -39,7 +68,7 @@ function xrandr_external_on() {
 }
 
 function xrandr_external_off() {
-  if [[ "${OSTYPE}" != "linux-gnu"* ]]; then
+  if [[ "$OSTYPE" != "linux-gnu"* ]]; then
     echo -e "\033[0;31m[Fatal] You are on ${OSTYPE}\033[0m"
     return 1
   fi
@@ -51,14 +80,4 @@ function xrandr_external_off() {
   fi
 }
 
-######### Alias w hard-coded paths ##########
-# Requires various other env var from .zshrc
-
-alias l1="cd $CACHE_DIR"
-alias dw="vim ${DAILY_WRITING_DIR}/index.md"
-alias dot="cd $DOT_DIR"
-alias note="tmux display-popup -E -h 80% -w 80% 'nvim ${QUICK_NOTES_PATH}'"
-alias note_no_tmux="nvim $QUICK_NOTES_PATH"
-alias wiki="tmux display-popup -E -h 80% -w 80% 'vim ${WIKI_PATH}/index.md'"
-alias wiki_no_tmux="vim ${WIKI_PATH}/index.md"
 
