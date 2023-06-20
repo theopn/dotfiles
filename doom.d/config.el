@@ -1,47 +1,38 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Cat: https://www.asciiart.eu/animals/cats
-;;      I added a few layers of belly so it looks more like my cat Oliver
-;; Logo: figlet -f soft Theomacs
+;;      Jonathan added a few layers of belly so it looks more like my cat Oliver
+;; Logo: figlet -f small Theomacs
 ;;       soft.flf file can be found in my "Theovim" repository
-;; "                                                                    "
-;; "                             .---....___                            "
-;; "                    __..--''``          `` _..._    __              "
-;; "          /// //_.-'    .-/';  `         `<._  ``.''_ `. / // /     "
-;; "         ///_.-' _..--.'_    ;                    `( ) ) // //      "
-;; "         / (_..-' // (< _     ;_..__               ; `' / ///       "
-;; "          / // // //  `-._,_)' // / ``--...____..-' /// / //        "
-;; "                                                                    "
-;; " ------------------------- Hi I'm Oliver -------------------------- "
-;; "                                                                    "
-;; " ,--------.,--.                                                     "
-;; " '--.  .--'|  ,---.  ,---.  ,---. ,--,--,--. ,--,--. ,---. ,---.    "
-;; "    |  |   |  .-.  || .-. :| .-. ||        |' ,-.  || .--'(  .-'    "
-;; "    |  |   |  | |  |\   --.' '-' '|  |  |  |\ '-'  |\ `--..-'  `)   "
-;; "    `--'   `--' `--' `----' `---' `--`--`--' `--`--' `---'`----'    "
-;; "                                                                    "
+;;  "            \/       \/              "
+;;  "            /\_______/\              "
+;;  "           /   o   o   \             "
+;;  "          (  ==  ^  ==  )            "
+;;  "           )           (             "
+;;  "          (             )            "
+;;  "          ( (  )   (  ) )            "
+;;  "         (__(__)___(__)__)           "
+;;  ""
+;;  "  _   _                              "
+;;  " | |_| |_  ___ ___ _ __  __ _ __ ___ "
+;;  " |  _| ' \/ -_) _ \ '  \/ _` / _(_-< "
+;;  "  \__|_||_\___\___/_|_|_\__,_\__/__/ "
+;;  ""
 
 ;; Things that Doom does by default that Emacs don't
 ;; - jk for ESC
 ;; - Tab character highlighting
 ;; - Spell checker
 ;; - Changing backup directory - Doom does in ~/.emacs.d/.local/
-;; Commenting out code block:
+
 (when nil ; Evaluates to nothing
- (setq backup-directory-alist `(("." . "~/.emacs_backup"))
+ (setq backup-directory-alist `(("." . "~/.emacs_backup")) ; Backup is handled by Doom
        backup-by-copying-when-linked t ; For symlinks I think?
        delete-old-versions t
        kept-new-versions 6
        kept-old-versions 2
        version-control t)
   )
-'( ; Evaluates to a list
-  (setq hi)
-  )
-[ ; Evaluates to a vector
- (setq hello)
- ]
-;;
 
 ;; Info
 (setq user-full-name "Theo Park"
@@ -114,7 +105,6 @@
             "          ( (  )   (  ) )            "
             "         (__(__)___(__)__)           "
             ""
-            ;; figlet -f small theomacs
             "  _   _                              "
             " | |_| |_  ___ ___ _ __  __ _ __ ___ "
             " |  _| ' \\/ -_) _ \\ '  \\/ _` / _(_-< "

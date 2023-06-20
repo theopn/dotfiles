@@ -19,14 +19,22 @@
 
   ;; Org file locations
   (setq org-agenda-files
-        '("educatio.org"
-          "habitus.org"
-          "officium.org"
-          "proiecta_gaudia.org"
-          "vita.org"))
+        '("capture.org"
+          "education.org"
+          "habits.org"
+          "projects.org"
+          "vita.org"
+          "work.org"))
 
   ;; Org capture file
   (setq org-default-notes-file (concat org-directory "/capture.org"))
+  (setq org-capture-templates
+        '(("t" "Todo" entry
+            (file+headline org-default-notes-file "Tasks")
+            "* IDEA %?\n  %i\n  %a" :empty-lines 1)
+           ("j" "Journal"
+            entry (file+datetree org-default-notes-file)
+            "* %?\nEntered on %U\n  %i\n  %a")))
 
   ;; Archive can be acheived with C-c C-w
   (setq org-refile-targets ; Default current buffer + archive.org file
@@ -34,29 +42,21 @@
   (advice-add 'org-refile :after 'org-save-all-org-buffers) ; Automatically save after refiling
 
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "INPR(i)" "NEXT(n)" "|" "DONE(d)" "CANC(c)")))
+        '((sequence "TODO(t)" "IDEA(i)" "|" "DONE(d)" "CANC(c)")))
 
   (setq org-agenda-span 8 ; Agenda shows 8 day
         org-deadline-warning-days 2
         org-agenda-start-on-weekday nil
         org-agenda-start-day "-3d") ; Shows 3 days before
 
-  ;; Configure custom agenda views
+  ;; Configure custom agenda view with unspecified todo items from Org Capture (capture.org)
   (setq org-agenda-custom-commands
-        '(("d" "Dashboard"
-           ((agenda "" ((org-deadline-warning-days 3)))
-            (todo "TODO"
-                  ((org-agenda-overriding-header "TO-DO")
+        '(("d" "Theo's Dashboard"
+           ((agenda "")
+            (todo "IDEA"
+                  ((org-agenda-overriding-header "Captured Ideas/Tasks")
                    (org-agenda-files org-agenda-files)))
-            (todo "INPR"
-                  ((org-agenda-overriding-header "In Progress")
-                   (org-agenda-todo-list-sublevels nil)
-                   (org-agenda-files org-agenda-files)))
-            (todo "NEXT"
-                  ((org-agenda-overriding-header "Next")
-                   (org-agenda-todo-list-sublevels nil)
-                   (org-agenda-files org-agenda-files)))
-            )))) ; Honestly never uses it until I figure out how to launch it by default
+            ))))
 
   ) ; after! org ends
 
