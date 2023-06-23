@@ -62,7 +62,14 @@
 
   ) ; after! org ends
 
+;; Shortcuts for agenda and capture
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
+
+; Function to search for all Org headers using Occur
+(defun org-outline()
+  (interactive)
+  (occur "^*+ "))
+(global-set-key (kbd "C-c t") #'org-outline)
 
 ;;; org-config.el ends here
