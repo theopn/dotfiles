@@ -47,6 +47,7 @@
 (setq frame-title-format "%b - Theomacs :)") ; Window title
 
 (setq display-line-numbers-type 'relative) ; t/nil for regular on and off
+(setq scroll-margin 10) ; Vim scrolloff
 
 (column-number-mode) ; Colume line in the Modeline
 (display-time) ; Display the time on the modeline
