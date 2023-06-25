@@ -1,7 +1,7 @@
 (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org")
 
-                                        ; Org syntax
 (after! org
+  ;; Org syntax
   (setq org-ellipsis " ▾") ; S-TAB view icon
   (setq org-log-done 'time) ; Record the time stamp of when things were done
   (setq org-log-into-drawer t) ; Idk what it does, but I heard it's related to repeating task organizatioon
@@ -41,14 +41,15 @@
 
 
   ;; Org capture
-  (setq org-default-notes-file (concat org-directory "/capture.org"))
+  (setq org-default-notes-file (concat org-directory "/capture.org")) ; Default capture file
   (setq org-capture-templates
         '(("t" "Todo/Idea Capture"
            entry (file+headline org-default-notes-file "Task Ideas")
-           "* IDEA %?\n %U\n %a") ; %u/%U: Inactive timestamp, %t/%T: Active timestamp, %a: Annotation, %?: Cursor
+           ;; %u/%U: Inactive timestamp, %t/%T: Active timestamp, %a: Annotation, %?: Cursor
+           "* IDEA %?\n %U\n %a" :empty-lines-after 1)
           ("w" "Writing Idea"
            entry (file+headline org-default-notes-file "Writing Ideas")
-           "* %?\nEntered on %U\n  %i\n  %a" :empty-lines 1)))
+           "* %?\n" :empty-lines 1)))
 
   ;; Archive with C-c C-w
   (setq org-refile-targets ; Default current buffer + archive.org file
