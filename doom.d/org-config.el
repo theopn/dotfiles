@@ -1,3 +1,12 @@
+;;; $DOOMDIR/org-config.el -*- lexical-binding: t; -*-
+
+;; Org Mode configuration for my Doom Emacs environment
+;; Author: Theo Park
+;; Created: 2023-05-xx
+;; Keywords: Emacs, Doom Emacs, Org Mode
+;; Copyright (C) 2022-2023 Theo Park
+;; This file is licensed under MIT license. See <https://github.com/theopn/dotfiles>
+
 (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org")
 ;;(setq org-directory "~/My Drive/l1-cache/theo-org")
 

@@ -1,9 +1,15 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;; General configuration for my Doom Emacs environment
+;; Author: Theo Park
+;; Created: 2023-05-xx
+;; Keywords: Emacs, Doom Emacs, Org Mode
+;; Copyright (C) 2022-2023 Theo Park
+;; This file is licensed under MIT license. See <https://github.com/theopn/dotfiles>
+
 ;; Cat: https://www.asciiart.eu/animals/cats
 ;;      Jonathan added a few layers of belly so it looks more like my cat Oliver
 ;; Logo: figlet -f small Theomacs
-;;       soft.flf file can be found in my "Theovim" repository
 ;;  "            \/       \/              "
 ;;  "            /\_______/\              "
 ;;  "           /   o   o   \             "
@@ -24,15 +30,6 @@
 ;; - Tab character highlighting
 ;; - Spell checker
 ;; - Changing backup directory - Doom does in ~/.emacs.d/.local/
-
-(when nil ; Evaluates to nothing
- (setq backup-directory-alist `(("." . "~/.emacs_backup")) ; Backup is handled by Doom
-       backup-by-copying-when-linked t ; For symlinks I think?
-       delete-old-versions t
-       kept-new-versions 6
-       kept-old-versions 2
-       version-control t)
-  )
 
 ;; Info
 (setq user-full-name "Theo Park"
@@ -79,15 +76,10 @@
 
 ;; Custom evil keybindings figure this by using <C-h> k <key u want>
 (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state) ; C-g in insert is ESC
-(define-key evil-insert-state-map (kbd "C-h") 'evil-backward-char) ; Sorry you are not getting help in insert mode
-(define-key evil-insert-state-map (kbd "C-j") 'evil-next-visual-line)
-(define-key evil-insert-state-map (kbd "C-k") 'evil-previous-visual-line)
-(define-key evil-insert-state-map (kbd "C-l") 'evil-forward-char)
 ;; C-x o (other-window)
 ;; C-x { } enlarge/shrink-window-horizontally C-x ^ enlarge-window
 ;; C-x 0 (delete-window)
 ;; C-x 2 (split-window-below) C-x 3 (split-window-right)
-(define-key evil-normal-state-map (kbd "SPC w") 'delete-window)
 
 ;; Org config
 (load "~/dotfiles/doom.d/org-config.el")
