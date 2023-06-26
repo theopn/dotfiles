@@ -1,4 +1,5 @@
 (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org")
+;;(setq org-directory "~/My Drive/l1-cache/theo-org")
 
 (after! org
   ;; Org syntax
@@ -66,11 +67,10 @@
 ;; Shortcuts for agenda and capture
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
-
-; Function to search for all Org headers using Occur
-(defun org-outline()
-  (interactive)
-  (occur "^*+ "))
-(global-set-key (kbd "C-c t") #'org-outline)
+;; Org header outline using occur
+(global-set-key (kbd "C-c t")
+                (lambda()
+                  (interactive)
+                  (occur "^*+ ")))
 
 ;;; org-config.el ends here
