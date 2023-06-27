@@ -15,13 +15,13 @@ export EDITOR=nvim
 export THEOSHELL_PLUGIN_DIR=~/.theoshell/zsh-plugins
 export THEOSHELL_TRASH_DIR=~/.theoshell/trash
 
-export CLOUD_DIR=~/Nextcloud
-export CACHE_DIR=~/Nextcloud/l1-cache
+export CLOUD_DIR=~/My\ Drive
+export CACHE_DIR=~/My\ Drive/l1-cache
 export DOT_DIR=~/dotfiles
 
-export DAILY_WRITING_DIR="${CLOUD_DIR}/dw-$(date +'%Y')"
+export DAILY_WRITING_DIR="${CACHE_DIR}/dw-$(date +'%Y')"
 export CAPTURE_PATH="${CACHE_DIR}/capture.md"
-export WIKI_PATH="${CLOUD_DIR}/theo-vimwiki"
+export WIKI_PATH="${CACHE_DIR}/theo-vimwiki"
 
 # Sourcing
 source ~/dotfiles/zsh/aliases-zsh
