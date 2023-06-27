@@ -2,8 +2,10 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 
+brew "figlet"
 brew "hugo"
 brew "imagemagick"
+brew "rclone"
 
 cask "appcleaner"
 cask "cryptomator"

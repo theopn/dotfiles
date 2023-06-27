@@ -3,7 +3,6 @@ tap "homebrew/cask"
 tap "homebrew/core"
 
 brew "ffmpeg"
-brew "figlet"
 brew "fzf"
 brew "htop"
 brew "lf"

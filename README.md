@@ -238,7 +238,7 @@ Formulae:
 
 - **ffmpeg**: `ffmpeg -i in.xxx out.yyy`
 - **fzf**: Command line fuzzy finder
-- **figlet**: ASCII art generator
+- figlet: ASCII art generator
 - imagemagick
 - **lf**
 - Hugo: Static website generator
@@ -247,6 +247,7 @@ Formulae:
 - **node**
 - **neofetch**
 - **neovim**
+- rclone
 - **rust**
 - **tmux**
 - **wget**
