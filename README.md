@@ -88,7 +88,11 @@ Basic shell settings with some aliases and prompts.
 
 > Everything you could think of but a text editor
 
-I use it for Org-agenda (to-do list), Org-roam (the "Second Brain"), and general note-taking in Org mode. I tried to use it as my main text editor a couple times, but I unfortunately do not see an appeal over Neovim.
+My setup is focused on making Emacs the ultimate "Second Brain." Org-capture captures my to-do item, writing drafts, and project ideas, Org-agenda displays everything I need to do, and Org-roam is my knowledge database. I tried using Emacs as my text editor a couple times, but Neovim's simplicity won me over every time.
+
+#### Fish
+
+//TODO
 
 #### Git
 
@@ -247,14 +251,14 @@ Formulae:
 - **tmux**
 - **wget**
 
-| Type              | Casks                                                                                           |
-|-------------------|-------------------------------------------------------------------------------------------------|
-| Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                                         |
-| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**<br> - Neo4j   |
-| Productivity      | - **Emacs** (GUI version)<br> - Notion<br> - **Obsidian**                                       |
-| System (MacOS)    | - AppCleaner<br> - Raycast<br> - Stats<br> - Spaceman                                           |
-| Tools             | - Bitwarden<br> - Cryptomator<br> - GIMP<br> - Nextcloud<br> - OBS<br> - Skim<br> - VLC         |
-| Web               | - **Firefox**<br> - Qutebrowser<br> - Thunderbird                                               |
+| Type              | Casks                                                                                  |
+|-------------------|----------------------------------------------------------------------------------------|
+| Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                                |
+| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**<br>  |
+| Productivity      | - **Emacs**<br> - Notion<br> - **Obsidian**                                            |
+| System (MacOS)    | - AppCleaner<br> - **Raycast**<br> - Stats<br> - **Spaceman**                          |
+| Tools             | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC        |
+| Web               | - **Firefox**<br> - Qutebrowser<br> - Thunderbird                                      |
 
 #### Settings
 
