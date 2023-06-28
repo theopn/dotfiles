@@ -14,7 +14,7 @@
   ;; Org syntax
   (setq org-ellipsis " ▾") ; S-TAB view icon
   (setq org-log-done 'time) ; Record the time stamp of when things were done
-  (setq org-log-into-drawer t) ; Idk what it does, but I heard it's related to repeating task organizatioon
+  (setq org-log-into-drawer t) ; Make "logbook" property for recurring tasks
   (setq org-agenda-start-with-log-mode nil) ; This will display bunch of time stamp on the agenda by default, not a big fan
   (setq org-agenda-window-setup 'current-window) ; Lauch Org agenda on a current window, needed to launch one on the startup
   (setq org-agenda-skip-timestamp-if-done t) ; Don't show DONE item on the agenda
@@ -23,8 +23,14 @@
 
   (add-hook 'auto-save-hook 'org-save-all-org-buffers) ; Auto save every 30 seconds
 
+  ;; Org keyword
+  ;; TODO: tasks that require my effort
+  ;; IDEA: unpolished task ideas captured using Org Capture
+  ;; RMDR: Reminder, tasks that I simply have to check if it was complete (usually recurring)
+  ;; DONE: task was completed successfully
+  ;; CANC: task was not completed successfully
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "IDEA(i)" "|" "DONE(d)" "CANC(c)")))
+        '((sequence "TODO(t)" "IDEA(i)" "RMDR(r)" "|" "DONE(d)" "CANC(c)")))
 
   ;; Org agenda
   (setq org-agenda-files
