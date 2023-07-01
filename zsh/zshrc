@@ -24,13 +24,13 @@ export CAPTURE_PATH="${CACHE_DIR}/capture.md"
 export WIKI_PATH="${CACHE_DIR}/theo-vimwiki"
 
 # Sourcing
-source ~/dotfiles/zsh/aliases-zsh
-source ~/dotfiles/zsh/prompt-zsh
-source ~/dotfiles/zsh/trash-zsh
+source $DOT_DIR/zsh/aliases-zsh
+source $DOT_DIR/zsh/prompt-zsh
+source $DOT_DIR/zsh/trash-zsh
 
-source ~/dotfiles//zsh/greeting-zsh
+source $DOT_DIR/zsh/greeting-zsh
 greeting_msg
 
-source ~/dotfiles/zsh/plug-zsh
+source $DOT_DIR/zsh/plug-zsh
 theoshell_plug marlonrichert/zsh-autocomplete
 
