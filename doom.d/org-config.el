@@ -9,6 +9,7 @@
 
 (setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org")
 ;;(setq org-directory "~/My Drive/l1-cache/theo-org")
+(setq org-roam-directory "~/org-roam-test-2")
 
 (after! org
   ;; Org syntax
@@ -87,5 +88,12 @@
                 (lambda()
                   (interactive)
                   (occur "^*+ ")))
+
+;; org-roam
+(global-set-key (kbd "C-c f") #'org-roam-node-find)
+(global-set-key (kbd "C-c r f") #'org-roam-node-find)
+(global-set-key (kbd "C-c r i") #'org-roam-node-insert)
+(global-set-key (kbd "C-c r b") #'org-roam-buffer-toggle)
+(global-set-key (kbd "C-c r r") #'org-roam-db-sync)
 
 ;;; org-config.el ends here
