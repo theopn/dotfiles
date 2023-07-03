@@ -45,6 +45,7 @@
 
 (setq display-line-numbers-type 'relative) ; t/nil for regular on and off
 (setq scroll-margin 10) ; Vim scrolloff
+(setq global-visual-line-mode t) ; Soft wrap -- hard wrap (auto-fill-mode) will alter the text
 
 (column-number-mode) ; Colume line in the Modeline
 (display-time) ; Display the time on the modeline
