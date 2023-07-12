@@ -3,7 +3,7 @@
 ######### Alias ##########
 alias cl='clear'
 alias google='w3m google.com'
-alias histgrep='history -i | grep' # -i for the timestamp
+alias histgrep='echo "[Tip] Use !number to execute the command" && history -i | grep' # -i for the timestamp
 alias ls='ls -G'
 alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
 alias nvif='fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim'
@@ -11,11 +11,10 @@ alias weather="curl 'https://wttr.in'"
 
 ######### Alias w hard-coded paths ##########
 # Requires various other env var from .zshrc
-
-alias l1="cd $CACHE_DIR"
+alias l1="cd \"$CACHE_DIR\""
 alias dw="vim \"${DAILY_WRITING_DIR}/index.md\""
-alias dot="cd $DOT_DIR"
-alias note="nvim \"+normal G\" \"+put =strftime('- %Y-%m-%d %H:%M:%S:')\" \"+normal $\" \"$CAPTURE_PATH\"" # :normal G -> :put strftime() -> ...
+alias dot="cd \"$DOT_DIR\""
+alias note="nvim \"+normal G\" \"+put =strftime('- %Y-%m-%d %H:%M:%S:')\" \"+normal $\" \"$CAPTURE_PATH\"" # G -> :put strftime() -> ...
 alias wiki="tmux display-popup -E -h 80% -w 80% 'vim \"${WIKI_PATH}/index.md\"'"
 alias wiki_no_tmux="vim \"${WIKI_PATH}/index.md\""
 
@@ -27,6 +26,14 @@ function cdf() {
   cd "$selected"
 }
 function mkcd() { mkdir -p $1; cd $1 }
+function numfiles() { 
+  num="$(ls -a $1 | wc -l)";
+  echo "$num files in $1";
+}
+# c for archive, z for gzip, v for verbose, f for file
+function tarmake() { tar -czvf ${1}.tar.gz $1 }
+# x for extracting, v for verbose, f for file
+function tarunmake() { tar -zxvf $1 }
 function update_dotfiles() { cd ~/dotfiles/ && git pull && cd - &> /dev/null }
 
 ########## Big Functions ###########
@@ -40,19 +47,6 @@ _fzf_comprun() {
     cd) fzf "$@" --preview 'tree -C {} | head -200' ;;
     *)  fzf "$@" --preview 'cat {}' ;;
   esac
-}
-
-# Tar.gz
-function tarmake() {
-  if [[ $2 ]]; then
-    tar -czvf ${1}.tar.gz 
-  fi
-  tar -czvf ${1}.tar.gz ${1} # c for archive, z for gzip, v for verbose, f for file
-}
-
-function tarunmake() {
-  # -z (gzip) or -j (bzip) flag can be passed for unarchiving, but not necessary
-  tar -xvf $1 # x for extracting, v for verbose, f for file
 }
 
 # Quickly switching external display on/off using xrandr
@@ -81,5 +75,4 @@ function xrandr_external_off() {
     xrandr --output $1 --off
   fi
 }
-
 
