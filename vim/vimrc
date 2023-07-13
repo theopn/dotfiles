@@ -45,11 +45,6 @@ inoremap <silent> jk <ESC>:update<CR>
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
-" Insert navigation
-inoremap <C-h> <LEFT>
-inoremap <C-j> <DOWN>
-inoremap <C-k> <UP>
-inoremap <C-l> <RIGHT>
 " Search
 nnoremap <leader>/ :let @/=''<CR>
 nnoremap n nzz
@@ -82,16 +77,10 @@ nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
 nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-nnoremap <leader>6 6gt
-nnoremap <leader>7 7gt
-nnoremap <leader>8 8gt
-nnoremap <leader>9 9gt
-nnoremap <leader>0 10gt
 " Buffer
 nnoremap <leader>b :ls<CR>:b<SPACE>
-nnoremap <leader>, :bprevious<CR>
-nnoremap <leader>. :bnext<CR>
+nnoremap <leader>[ :bprevious<CR>
+nnoremap <leader>] :bnext<CR>
 nnoremap <leader>x :ls<CR>:bdelete<SPACE>
 " Some bindings from Theovim
 nnoremap <leader>t :call ToggleNetrw()<CR>
