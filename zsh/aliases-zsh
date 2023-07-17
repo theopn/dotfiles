@@ -20,21 +20,21 @@ alias wiki_no_tmux="vim \"${WIKI_PATH}/index.md\""
 
 ########## Small Functions ##########
 
-function cdf() {
+cdf() {
   dir=("$CLOUD_DIR" "$CACHE_DIR" "$DOT_DIR" "$THEOSHELL_TRASH_DIR")
-  selected=$(printf "%s\n" "${dir[@]}" | fzf --reverse --border=rounded --no-info --cycle --header='Pick a directory to navigate to')
+  selected=$(printf "%s\n" "${dir[@]}" | fzf --reverse --border=rounded --cycle --height=10 --header='Pick a directory to navigate to')
   cd "$selected"
 }
-function mkcd() { mkdir -p $1; cd $1 }
-function numfiles() { 
+mkcd() { mkdir -p $1; cd $1 }
+numfiles() { 
   num="$(ls -a $1 | wc -l)";
   echo "$num files in $1";
 }
 # c for archive, z for gzip, v for verbose, f for file
-function tarmake() { tar -czvf ${1}.tar.gz $1 }
+tarmake() { tar -czvf ${1}.tar.gz $1 }
 # x for extracting, v for verbose, f for file
-function tarunmake() { tar -zxvf $1 }
-function update_dotfiles() { cd ~/dotfiles/ && git pull && cd - &> /dev/null }
+tarunmake() { tar -zxvf $1 }
+update_dotfiles() { cd ~/dotfiles/ && git pull && cd - &> /dev/null }
 
 ########## Big Functions ###########
 
@@ -49,8 +49,18 @@ _fzf_comprun() {
   esac
 }
 
+# Using fzf to prompt hosts in ~/.ssh/config
+sshf() {
+  [[ ! -e ~/.ssh/config ]] && echo "There are is SSH config file!" && return 1
+  hostnames=$(awk ' $1 == "Host" { print $2 } ' ~/.ssh/config )
+  [[ -z "${hostnames}" ]] && echo "There are no host param in SSH config file" && return 1
+  selected=$(printf "%s\n" "${hostnames[@]}" | fzf --reverse --border=rounded --cycle --height=10 --header='Pick a host')
+  [[ -z "${selected}" ]] && echo "Nothing was selected :(" && return 1
+  echo "SSH to ${selected}..." && ssh "$selected"
+}
+
 # Quickly switching external display on/off using xrandr
-function xrandr_external_on() {
+xrandr_external_on() {
   if [[ "$OSTYPE" != "linux-gnu"* ]]; then
     echo -e "\033[0;31m[Fatal] You are on ${OSTYPE}\033[0m"
     return 1
@@ -63,7 +73,7 @@ function xrandr_external_on() {
   fi
 }
 
-function xrandr_external_off() {
+xrandr_external_off() {
   if [[ "$OSTYPE" != "linux-gnu"* ]]; then
     echo -e "\033[0;31m[Fatal] You are on ${OSTYPE}\033[0m"
     return 1
