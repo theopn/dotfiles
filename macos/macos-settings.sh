@@ -30,7 +30,7 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 killall Finder
 
 # Set the screenshot location
-defaults write com.apple.screencapture location -string "${HOME}/Pictures"
+defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 # Set the screenshot format to be jpeg
 defaults write com.apple.screencapture type -string "jpg"
 
