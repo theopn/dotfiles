@@ -22,7 +22,7 @@ alias wiki_no_tmux="vim \"${WIKI_PATH}/index.md\""
 
 cdf() {
   dir=("$CLOUD_DIR" "$CACHE_DIR" "$DOT_DIR" "$THEOSHELL_TRASH_DIR")
-  selected=$(printf "%s\n" "${dir[@]}" | fzf --reverse --border=rounded --cycle --height=10 --header='Pick a directory to navigate to')
+  selected=$(printf "%s\n" "${dir[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='Pick a directory to navigate to')
   cd "$selected"
 }
 mkcd() { mkdir -p $1; cd $1 }
@@ -54,7 +54,7 @@ sshf() {
   [[ ! -e ~/.ssh/config ]] && echo "There are is SSH config file!" && return 1
   hostnames=$(awk ' $1 == "Host" { print $2 } ' ~/.ssh/config )
   [[ -z "${hostnames}" ]] && echo "There are no host param in SSH config file" && return 1
-  selected=$(printf "%s\n" "${hostnames[@]}" | fzf --reverse --border=rounded --cycle --height=10 --header='Pick a host')
+  selected=$(printf "%s\n" "${hostnames[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='Pick a host')
   [[ -z "${selected}" ]] && echo "Nothing was selected :(" && return 1
   echo "SSH to ${selected}..." && ssh "$selected"
 }
