@@ -7,10 +7,11 @@
 ;; Copyright (C) 2022-2023 Theo Park
 ;; This file is licensed under MIT license. See <https://github.com/theopn/dotfiles>
 
-(setq org-directory "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/theo-org")
-;;(setq org-directory "~/My Drive/l1-cache/theo-org")
-(setq org-roam-directory "~/org-roam-test-2")
+;; Variables
+(setq org-directory "~/My Drive/l1-cache/theo-org")
+(setq org-roam-directory "~/My Drive/l1-cache/theo-org-roam")
 
+;; Make sure Doom initialize the base config (keybindings, etc.) first
 (after! org
   ;; Org syntax
   (setq org-ellipsis " ▾") ; S-TAB view icon
@@ -84,15 +85,15 @@
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
 ;; Org header outline using occur
-(global-set-key (kbd "C-c t")
+(global-set-key (kbd "C-c o")
                 (lambda()
+                  "Display All Headings for an Org File Using Occur"
                   (interactive)
                   (occur "^*+ ")))
 
 ;; org-roam
 (global-set-key (kbd "C-c f") #'org-roam-node-find)
-(global-set-key (kbd "C-c r f") #'org-roam-node-find)
-(global-set-key (kbd "C-c r i") #'org-roam-node-insert)
+(global-set-key (kbd "C-c i") #'org-roam-node-insert)
 (global-set-key (kbd "C-c r b") #'org-roam-buffer-toggle)
 (global-set-key (kbd "C-c r r") #'org-roam-db-sync)
 
