@@ -34,7 +34,6 @@ numfiles() {
 tarmake() { tar -czvf ${1}.tar.gz $1 }
 # x for extracting, v for verbose, f for file
 tarunmake() { tar -zxvf $1 }
-update_dotfiles() { cd ~/dotfiles/ && git pull && cd - &> /dev/null }
 
 ########## Big Functions ###########
 
@@ -54,9 +53,50 @@ sshf() {
   [[ ! -e ~/.ssh/config ]] && echo "There are is SSH config file!" && return 1
   hostnames=$(awk ' $1 == "Host" { print $2 } ' ~/.ssh/config )
   [[ -z "${hostnames}" ]] && echo "There are no host param in SSH config file" && return 1
-  selected=$(printf "%s\n" "${hostnames[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='Pick a host')
+  selected=$(printf "%s\n" "${hostnames[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='pick a host')
   [[ -z "${selected}" ]] && echo "Nothing was selected :(" && return 1
   echo "SSH to ${selected}..." && ssh "$selected"
+}
+
+# Hub for updating bunch of stuff at once using fzf
+updater () {
+  # Make list of things to update
+  stuff=('dotfiles'  'zsh plugins' 'doom emacs' 'theovim' 'hunted-tiles')
+  if [[ "${OSTYPE}" == "linux-gnu"* ]]; then
+    stuff+=('dnf' 'flatpak')
+  elif [[ "${OSTYPE}" == "darwin"* ]]; then
+    stuff+=('homebrew')
+  fi
+  # Repeat until user uses C-c
+  while true; do
+    # Prompt and check for the existence of $selected
+    selected=$(printf "%s\n" "${stuff[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='[Updater] What are you going to update?')
+    [[ -z "${selected}" ]] && echo '[Updater] No selection registered -- ending the updater' && return 0
+    printf "[Updater] Updating %s\n" $selected
+        echo -e "-----\n"
+    case "${selected}" in
+      'dotfiles')
+        cd ~/dotfiles/ && git pull && cd - &> /dev/null ;;
+      'zsh plugins')
+        theoshell_upgrade
+        ;;
+      'doom emacs')
+        ~/.emacs.d/bin/doom upgrade ;;
+      'theovim')
+        cd ~/.config/nvim && git pull && cd - &> /dev/null ;;
+      'hunted-tiles')
+        cd ~/.config/hunted-tiles && git pull && cd - &> /dev/null ;;
+      'homebrew')
+        brew upgrade ;;
+      'dnf')
+        sudo dnf upgrade ;;
+      'flatpak')
+        flatpak upgrade ;;
+      *) echo -e "\n[DEBUG] This shouldn't happen bc -z should've checked for no selection -- debug time Theo\n" ;;
+    esac
+    echo -e "\n-----"
+    echo "[Updater] Done updating"
+  done
 }
 
 # Quickly switching external display on/off using xrandr
