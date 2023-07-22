@@ -20,7 +20,7 @@ git clone https://github.com/theopn/dotfiles.git ~/dotfiles
 ~/dotfiles/dotfiles-util.sh --delete-backup # Optional
 ```
 
-- Configure macOS specific utilities and settings:
+- Configure macOS-specific utilities and settings:
 
 ```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -53,7 +53,7 @@ git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
 - Install fonts using `fontconfig` and the included function in `dotfiles-util.sh`:
 
 1. Navigate to [NERD Fonts download](https://www.nerdfonts.com/font-downloads) website
-2. Right click on the font download and copy the link
+2. Right-click on the font download and copy the link
 3. Execute the following
 
 ```bash
@@ -73,8 +73,8 @@ brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-
 
 > Shameless plugs
 
-- [Theovim](https://github.com/theopn/theovim) "is a somewhat minimal, somewhat opinionated, totally stable, and totally functional IDE layer for Neovim." Neovim is my IDE as well as primary text editor, and Theovim is a great configuration to make my Neovim experience richer
-- [Hunted Tiles](https://github.com/theopn/hunted-tiles/) is a collection of my Wayland compositor configurations (Sway and Hyperland) along with scripts to provide a better Wayland experience
+- [Theovim](https://github.com/theopn/theovim) "is a somewhat minimal, somewhat opinionated, totally stable, and totally functional IDE layer for Neovim." Neovim is my IDE as well as my primary text editor, and Theovim is a great configuration to make my Neovim experience richer
+- [Hunted Tiles](https://github.com/theopn/hunted-tiles/) is a collection of my Wayland compositor configurations (Sway and Hyprland) along with scripts to provide a better Wayland experience
 
 ### Cross-platform
 
@@ -88,11 +88,11 @@ Basic shell settings with some aliases and prompts.
 
 > Everything you could think of but a text editor
 
-My setup is focused on making Emacs the ultimate "Second Brain." Org-capture captures my to-do item, writing drafts, and project ideas, Org-agenda displays everything I need to do, and Org-roam is my knowledge database. I tried using Emacs as my text editor a couple times, but Neovim's simplicity won me over every time.
+My setup is focused on making Emacs the ultimate "Second Brain." Org-capture captures my to-do item, writing drafts, and project ideas, Org-agenda displays everything I need to do, and Org-roam is my knowledge database. I tried using Emacs as my text editor a couple of times, but Neovim's simplicity won me over every time.
 
 #### Fish
 
-//TODO
+> The shell part 2
 
 #### Git
 
@@ -116,7 +116,7 @@ Configuration includes the Dracula color scheme and a borderless look.
 
 > Best terminal file manager
 
-Very simple (as I prefer) but complete file manager for my use. Some keybindings other than default vim-style bindings:
+Very simple (as I prefer) but a complete file manager for my use. Some keybindings other than default Vim-style bindings:
 
 - `~` : Go to the home directory
 - `ee`: Open a file in `$EDITOR`
@@ -137,22 +137,28 @@ Happy ricing!
 
 #### Qutebrowser
 
-> Modern keyboard based browser
+> Modern keyboard-based browser
 
-It's based on modern Chromium engine, uses Vim keybindings, and configured through Python. What more can I ask.
+It's based on the Chromium engine, uses Vim keybindings, and is configured through Python. What more can I ask?
 
 #### tmux
 
 > Actual terminal emulator
 
-Keybindings that are drastically different from stock bindings (that make more sense to me), Dracula theme, and status bar with time, current command, and uptime information. No external plugins.
+Keybindings are drastically different from stock bindings so use the `<C-a> ?` key to read the help documentation. Statusbar with various information without using any external plugins.
 
 #### Vim
 
 > Focused note taker
 
-- Very simple configurations (almost everything is without plugin, including TabLine and StatusLine!) for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
+- Very simple configurations (almost everything is built without a plugin, including TabLine and StatusLine!) for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
 - `pastelcula.vim`, a custom-made [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included - thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping your colorblind friend
+
+#### Wezterm
+
+> Lua lover's dream
+
+It's a very performant GPU-accelerated term emulator with a built-in multiplexer. Until the day I use Neovim running on Wezterm running on Awesome WM...
 
 #### Zsh
 
@@ -161,8 +167,8 @@ Keybindings that are drastically different from stock bindings (that make more s
 - Greeting message
 - `theoshell_plug` and `theoshell_upgrade` automatically download and load ZSH plug-ins I need (currently only zsh-autocomplete), eliminating the need for a bloated shell plug-in manager
 - `trash`, `trash_print`, and `trash_empty` commands
-- Aliases utilizing Tmux pop-up window (`nvif`, `note`, `wiki`) and miscellaneous functions like `trash()` and `update_dotfiles()`
-- Set theory themed prompt:
+- Aliases utilizing Tmux pop-up window (`nvif`, `note`, `wiki`) and miscellaneous functions like `trash()` and `updater()`
+- Set-theory-themed prompt:
 
 ```bash
 echo "
@@ -184,7 +190,7 @@ Dracula theme, that's it.
 
 > Tiling WM that just works
 
-List of packages needed for my configuration:
+List of packages required for my configuration:
 
 - Brightnessctl: Backlight control
 - Clipit: Clipboard manager
@@ -210,7 +216,7 @@ Not necessary but helpful packages:
 List of keybindings differing from the default
 
 - `jkl;` -> `hjkl`
-- `$mod + h` -> `$mod + z`: "horiZontal" split
+- `$mod + h` -> `$mod + z`: "hori[z]ontal" split
 - `$mod + Space`: launches Rofi as well as the default `$mod+d`
 - `$mod + Shift + c/r/e`: launches `i3_mode`, from which you can choose config reload, restart, or exit i3
 - `$mod + Shift + p`: launches a Rofi menu with power options (lock, suspend, shutdown, etc.)
