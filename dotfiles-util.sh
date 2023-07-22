@@ -133,6 +133,11 @@ function install() {
     backup_then_symlink ${DOT_DIR}/vim/colors ~/.vim/colors
   fi
 
+  if selection_prompt 'wezterm'; then
+    mkdir -p ~/.config/wezterm/
+    backup_then_symlink ${DOT_DIR}/wezterm/wezterm.lua ~/.config/wezterm/wezterm.lua
+  fi
+
   if selection_prompt 'Zsh'; then
     backup_then_symlink ${DOT_DIR}/zsh/zshrc ~/.zshrc
   fi
