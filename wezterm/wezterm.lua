@@ -15,20 +15,24 @@ if wezterm.config_builder then config = wezterm.config_builder() end
 
 -- {{{ Settings
 config.window_close_confirmation = "AlwaysPrompt"
-config.default_workspace = "home"
+config.default_workspace = "ws home"
 -- }}}
 
 -- {{{ Colors & Appearance
-local schemes = {}
-for name, scheme in pairs(wezterm.get_builtin_color_schemes()) do
-  table.insert(schemes, name)
-end
-local scheme = schemes[math.random(#schemes)]
+local fav_colorschemes = {
+  "Catppuccin Frappe",
+  "Dracula",
+  "Tokyo Night",
+  "Tokyo Night Moon",
+}
+config.color_scheme = fav_colorschemes[math.random(#fav_colorschemes)]
 wezterm.on("window-config-reloaded", function(window, pane)
-  if not window:get_config_overrides() then
-    window:set_config_overrides { color_scheme = scheme, }
+  if not window:get_config_overrides() then --> if there is no override, it's a new colorscheme
+    local colorscheme = fav_colorschemes[math.random(#fav_colorschemes)]
+    window:set_config_overrides { color_scheme = colorscheme, }
   end
 end)
+
 
 config.colors = {
   tab_bar = {
@@ -74,6 +78,11 @@ config.status_update_interval = 1000
 wezterm.on("update-right-status", function(window, pane)
   -- Workspace name
   local ws = window:active_workspace()
+  -- Current window colorscheme
+  local colorscheme = "Err"
+  local win_info = window:get_config_overrides()
+  if win_info then colorscheme = win_info.color_scheme end
+
   -- Status display
   local status = "N"
   local name = window:active_key_table()
@@ -82,7 +91,7 @@ wezterm.on("update-right-status", function(window, pane)
 
   -- cwd
   local cwd = pane:get_current_working_dir()
-  cwd = cwd:sub(cwd:match("^.*()/")) --> or /[^/]*$
+  cwd = cwd:sub(cwd:match("^.*()/")) --> Strip everything but last folder name. Alt: /[^/]*$
 
   -- Current command
   local cmd = pane:get_title()
@@ -96,6 +105,8 @@ wezterm.on("update-right-status", function(window, pane)
     { Text = " " },
     "ResetAttributes",
     { Text = wezterm.nerdfonts.oct_table .. "  " .. ws },
+    { Text = " | " },
+    { Text = wezterm.nerdfonts.fa_paint_brush .. "  " .. colorscheme },
     { Text = " | " },
     { Text = wezterm.nerdfonts.md_folder .. " " .. cwd },
     { Text = " | " },
@@ -162,12 +173,12 @@ config.keys = {
 
 config.key_tables = {
   resize_pane = {
-    { key = 'h',      action = act.AdjustPaneSize { 'Left', 1 } },
-    { key = 'l',      action = act.AdjustPaneSize { 'Right', 1 } },
-    { key = 'k',      action = act.AdjustPaneSize { 'Up', 1 } },
-    { key = 'j',      action = act.AdjustPaneSize { 'Down', 1 } },
-    { key = 'Enter',  action = 'PopKeyTable' },
-    { key = 'Escape', action = 'PopKeyTable' },
+    { key = "h",      action = act.AdjustPaneSize { "Left", 1 } },
+    { key = "l",      action = act.AdjustPaneSize { "Right", 1 } },
+    { key = "k",      action = act.AdjustPaneSize { "Up", 1 } },
+    { key = "j",      action = act.AdjustPaneSize { "Down", 1 } },
+    { key = "Enter",  action = "PopKeyTable" },
+    { key = "Escape", action = "PopKeyTable" },
   }
 }
 -- }}}
