@@ -15,7 +15,8 @@ if wezterm.config_builder then config = wezterm.config_builder() end
 
 -- {{{ Settings
 config.window_close_confirmation = "AlwaysPrompt"
-config.default_workspace = "ws home"
+config.default_workspace = "home"
+config.tab_and_split_indices_are_zero_based = false
 -- }}}
 
 -- {{{ Colors & Appearance
@@ -27,7 +28,7 @@ local fav_colorschemes = {
 }
 config.color_scheme = fav_colorschemes[math.random(#fav_colorschemes)]
 wezterm.on("window-config-reloaded", function(window, pane)
-  if not window:get_config_overrides() then --> if there is no override, it's a new colorscheme
+  if not window:get_config_overrides() then --> if there is no override, time to assign a colorscheme
     local colorscheme = fav_colorschemes[math.random(#fav_colorschemes)]
     window:set_config_overrides { color_scheme = colorscheme, }
   end
@@ -36,20 +37,20 @@ end)
 
 config.colors = {
   tab_bar = {
-    background = "#0B0022",
+    background = "#282A36",
     active_tab = {
-      bg_color = "#2B2042",
-      fg_color = "#C0C0C0",
+      bg_color = "#FF79C6",
+      fg_color = "#F8F8F2",
       italic = false,
     },
     inactive_tab = {
-      bg_color = "#1B1032",
-      fg_color = "#808080",
+      bg_color = "#282A36",
+      fg_color = "#F8F8F2",
       italic = false,
     },
     inactive_tab_hover = {
-      bg_color = "#3B3052",
-      fg_color = "#909090",
+      bg_color = "#6272A4",
+      fg_color = "#F8F8F2",
       italic = true,
     },
   },
@@ -79,21 +80,20 @@ wezterm.on("update-right-status", function(window, pane)
   -- Workspace name
   local ws = window:active_workspace()
   -- Current window colorscheme
-  local colorscheme = "Err"
-  local win_info = window:get_config_overrides()
-  if win_info then colorscheme = win_info.color_scheme end
+  local colorscheme = config.color_scheme
+  local win_override = window:get_config_overrides()
+  if win_override and win_override.color_scheme then colorscheme = win_override.color_scheme end
 
-  -- Status display
-  local status = "N"
+  -- leader or active key table
+  local mode = "N"
   local name = window:active_key_table()
-  if name then status = name end
-  if window:leader_is_active() then status = "LDR" end
+  if name then mode = name end
+  if window:leader_is_active() then mode = "LDR" end
 
   -- cwd
   local cwd = pane:get_current_working_dir()
   cwd = cwd:sub(cwd:match("^.*()/")) --> Strip everything but last folder name. Alt: /[^/]*$
-
-  -- Current command
+  -- current command
   local cmd = pane:get_title()
 
   -- time
@@ -101,22 +101,21 @@ wezterm.on("update-right-status", function(window, pane)
 
   -- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
   window:set_right_status(wezterm.format({
-    { Foreground = { AnsiColor = "Teal" } },
-    { Text = " " },
-    "ResetAttributes",
     { Text = wezterm.nerdfonts.oct_table .. "  " .. ws },
     { Text = " | " },
     { Text = wezterm.nerdfonts.fa_paint_brush .. "  " .. colorscheme },
     { Text = " | " },
     { Text = wezterm.nerdfonts.md_folder .. " " .. cwd },
     { Text = " | " },
+    { Foreground = { Color = "#FFB86C" } },
     { Text = wezterm.nerdfonts.fa_code .. " " .. cmd },
+    "ResetAttributes",
     { Text = " | " },
-    { Text = wezterm.nerdfonts.md_creation .. " Mode: " .. status },
+    { Text = wezterm.nerdfonts.md_creation .. " Mode: " .. mode },
     { Text = " | " },
     { Text = wezterm.nerdfonts.md_clock_alert .. time },
     "ResetAttributes",
-    { Foreground = { AnsiColor = "Teal" } },
+    { Foreground = { Color = "#6272a4" } },
     { Text = " " },
   }))
 end)
@@ -135,7 +134,7 @@ config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
   -- Send "CTRL-A" to the terminal when pressing CTRL-A, CTRL-A
   { key = "a", mods = "LEADER|CTRL",  action = act.SendKey { key = "a", mods = "CTRL" }, },
-  { key = "[", mods = "LEADER",       action = act.ActivateCopyMode, },
+  { key = "c", mods = "LEADER",       action = act.ActivateCopyMode, },
   -- Pane bindings
   { key = "h", mods = "LEADER",       action = act.ActivatePaneDirection("Left"), },
   { key = "j", mods = "LEADER",       action = act.ActivatePaneDirection("Down"), },
@@ -148,7 +147,10 @@ config.keys = {
   -- Tab bindings
   { key = "t", mods = "LEADER",       action = act.ShowTabNavigator },
   { key = "n", mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain"), },
-  { key = "w", mods = "CMD",          action = wezterm.action.CloseCurrentTab { confirm = true }, },
+  { key = "w", mods = "CMD",          action = act.CloseCurrentTab { confirm = true }, },
+  { key = "[", mods = "LEADER",       action = act.ActivateTabRelative(-1) },
+  { key = "]", mods = "LEADER",       action = act.ActivateTabRelative(1) },
+  { key = "m", mods = "LEADER",       action = act.ActivateKeyTable { name = "move_tab", one_shot = false, }, },
   {
     key = ",",
     mods = "LEADER",
@@ -170,16 +172,42 @@ config.keys = {
   { key = "w", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES", }, },
   { key = "?", mods = "LEADER", action = act.ShowLauncherArgs { flags = "FUZZY|KEY_ASSIGNMENTS", }, },
 }
+-- Tab navigation
+for i = 1, 9 do
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = "LEADER",
+    action = wezterm.action.ActivateTab(i - 1),
+  })
+end
 
 config.key_tables = {
   resize_pane = {
-    { key = "h",      action = act.AdjustPaneSize { "Left", 1 } },
-    { key = "l",      action = act.AdjustPaneSize { "Right", 1 } },
-    { key = "k",      action = act.AdjustPaneSize { "Up", 1 } },
-    { key = "j",      action = act.AdjustPaneSize { "Down", 1 } },
+    { key = "h", action = act.AdjustPaneSize { "Left", 1 } },
+    { key = "j", action = act.AdjustPaneSize { "Down", 1 } },
+    { key = "k", action = act.AdjustPaneSize { "Up", 1 } },
+    { key = "l", action = act.AdjustPaneSize { "Right", 1 } },
+    {
+      key = "r",
+      mods = "LEADER",
+      action = "PopKeyTable"
+    },
     { key = "Enter",  action = "PopKeyTable" },
     { key = "Escape", action = "PopKeyTable" },
-  }
+  },
+  move_tab = {
+    { key = "h", action = act.MoveTabRelative(-1) },
+    { key = "j", action = act.MoveTabRelative(-1) },
+    { key = "k", action = act.MoveTabRelative(1) },
+    { key = "l", action = act.MoveTabRelative(1) },
+    {
+      key = "m",
+      mods = "LEADER",
+      action = "PopKeyTable"
+    },
+    { key = "Enter",  action = "PopKeyTable" },
+    { key = "Escape", action = "PopKeyTable" },
+  },
 }
 -- }}}
 
