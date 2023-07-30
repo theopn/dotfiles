@@ -14,6 +14,8 @@ local config = {}
 if wezterm.config_builder then config = wezterm.config_builder() end
 
 -- {{{ Settings
+config.scrollback_lines = 3500
+config.enable_scroll_bar = true
 config.window_close_confirmation = "AlwaysPrompt"
 config.default_workspace = "home"
 config.tab_and_split_indices_are_zero_based = false
@@ -124,7 +126,7 @@ end)
 -- }}}
 
 -- {{{ Launching Programs
---config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
+config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
 -- }}}
 
 -- {{{ Keys
@@ -145,6 +147,7 @@ config.keys = {
   { key = "-",          mods = "LEADER",       action = act.SplitVertical { domain = "CurrentPaneDomain" }, },
   { key = "x",          mods = "LEADER",       action = act.CloseCurrentPane { confirm = true } },
   { key = "r",          mods = "LEADER",       action = act.ActivateKeyTable { name = "resize_pane", one_shot = false, }, },
+  { key = "f",          mods = "LEADER",       action = act.TogglePaneZoomState },
   -- Tab bindings
   { key = "t",          mods = "LEADER",       action = act.ShowTabNavigator },
   { key = "n",          mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain"), },
