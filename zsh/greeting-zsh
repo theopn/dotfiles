@@ -9,14 +9,14 @@ function print_oliver() {
        _.|o o  |_   ) )
       -(((---(((--------
     ' \
-    '
-          \/ \/
-          /\_/\ _______
-         = o_o =  _ _  \     _
-         (__^__)   __(  \.__) )
-      (@)<_____>__(_____)____/
-        ♡ ~~ ♡ OLIVER ♡ ~~ ♡
-    ' \
+    # '
+    #       \/ \/
+    #       /\_/\ _______
+    #      = o_o =  _ _  \     _
+    #      (__^__)   __(  \.__) )
+    #   (@)<_____>__(_____)____/
+    #     ♡ ~~ ♡ OLIVER ♡ ~~ ♡
+    # ' \
     '
          \/       \/
          /\_______/\
@@ -27,13 +27,13 @@ function print_oliver() {
        ( (  )   (  ) )
       (__(__)___(__)__)
     ' \
-    '
-       \/   \/
-       |\__/,|        _
-       |_ _  |.-----.) )
-       ( T   ))        )
-      (((^_(((/___(((_/
-    ' \
+    # '
+    #    \/   \/
+    #    |\__/,|        _
+    #    |_ _  |.-----.) )
+    #    ( T   ))        )
+    #   (((^_(((/___(((_/
+    # ' \
     '
                              _
             |\      _-``---,) )
@@ -61,23 +61,27 @@ function get_battery() {
   elif command -v pmset &> /dev/null; then
     batlv=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
   else
+    batlv="No battery info"
     return
   fi
 
   if [[ $batlv -eq -1 ]]; then
-    echo -e "\033[0;31m[Battery] Error, time to work on your dotfiles Theo\033[0m"
+    echo -e "\033[0;31mError, time to work on your dotfiles Theo\033[0m"
   elif [[ $batlv -ge 100 ]]; then
-    echo -e "\033[0;33mBattery fully charged!!!\033[0m" # Yellow
+    echo -e "\033[0;33m${batlv}%\033[0m" # Yellow
   elif [[ $batlv -gt 40 ]]; then
-    echo -e "\033[0;32mBattery $batlv%, good to go!\033[0m" # Green
+    echo -e "\033[0;32m${batlv}%\033[0m" # Green
   else
-    echo -e "\033[0;31mBattery $batlv%, charge your laptop Theo!!\033[0m" # Red
+    echo -e "\033[0;31m${batlv}%\033[0m" # Red
   fi
 }
 
 function greeting_msg() {
-  echo "\e[38;2;200;107;209mWhat's up $USER\e[0m, \e[38;2;224;146;252;1mshell opened on $(date -I) @ $(date +"%T") :)"
-  get_battery
   print_oliver
+  echo "
+  \e[38;2;200;107;209mUser: $USER\e[0m
+  \e[38;2;224;146;252;1mShell open: $(date -I) $(date +"%T")
+  \e[38;2;159;121;147mBattery: $(get_battery)
+  "
 }
 
