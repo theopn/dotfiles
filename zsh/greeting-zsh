@@ -79,9 +79,9 @@ function get_battery() {
 function greeting_msg() {
   print_oliver
   echo "
-  \e[38;2;200;107;209mUser: $USER\e[0m
-  \e[38;2;224;146;252;1mShell open: $(date -I) $(date +"%T")
-  \e[38;2;159;121;147mBattery: $(get_battery)
+  \e[38;2;200;107;209mUser: \t $USER\e[0m
+  \e[38;2;224;146;252;1mShell Open: \t $(date -I) $(date +"%T")
+  \e[38;2;159;121;147mBattery: \t $(get_battery)
   "
 }
 
