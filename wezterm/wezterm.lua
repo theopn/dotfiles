@@ -10,12 +10,14 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local fish_path = "/opt/homebrew/bin/fish"
+
 local config = {}
 -- Use config builder object if possible
 if wezterm.config_builder then config = wezterm.config_builder() end
 
 -- Settings
-config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
+config.default_prog = { fish_path, "-l" }
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
@@ -78,7 +80,7 @@ config.keys = {
       end)
     }
   },
-
+  { key = "v", mods = "LEADER", action = act.SpawnCommandInNewTab { args = { "top" }, } },
   -- Key table for moving tabs around
   { key = "m", mods = "LEADER", action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
 
@@ -141,6 +143,7 @@ wezterm.on("update-right-status", function(window, pane)
   -- Let's add color to one of the components
   window:set_right_status(wezterm.format({
     -- Wezterm has a built-in nerd fonts
+    -- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
     { Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
     { Text = " | " },
     { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
