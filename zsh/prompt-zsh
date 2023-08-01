@@ -20,7 +20,7 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
 # Left prompt
 # %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
-one_line_prompt=" %F{245}⦰%f %F{245}[%f %B%F{038}%n%f%b %F{245}ϵ%f %B%F{075}%(5~|%-1~/.../%3~|%4~)%f%b %F{245}]%f %B%F{013}{\$vcs_info_msg_0_}%f%b %F{245}\$%f "
+one_line_prompt=" %F{245}[%f %B%F{075}%(5~|%-1~/.../%3~|%4~)%f%b %F{245}]%f %B%F{013}{\$vcs_info_msg_0_}%f%b %F{245}\$%f "
 
 two_line_prompt="╭─ %F{245}⊊%f %F{005}%n%f %F{245}@%f %F{002}%m%f %F{245}ϵ%f %F{010}%~%f %F{245}⊋%f
 ╰─ %F{245}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{245}⊅%f %F{245}\$%f "
