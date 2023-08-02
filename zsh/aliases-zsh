@@ -27,8 +27,8 @@ cdf() {
 }
 mkcd() { mkdir -p $1; cd $1 }
 numfiles() { 
-  num="$(ls -a $1 | wc -l)";
-  echo "$num files in $1";
+  num=$(ls -A $1 | wc -l)
+  echo "$num files in $1"
 }
 # c for archive, z for gzip, v for verbose, f for file
 tarmake() { tar -czvf ${1}.tar.gz $1 }
