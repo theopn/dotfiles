@@ -40,7 +40,7 @@ config.inactive_pane_hsb = {
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
   -- Send C-a when pressing C-a twice
-  { key = "a",          mods = "LEADER",       action = act.SendKey { key = "a", mods = "CTRL" } },
+  { key = "a",          mods = "LEADER|CTRL",  action = act.SendKey { key = "a", mods = "CTRL" } },
   { key = "c",          mods = "LEADER",       action = act.ActivateCopyMode },
   { key = "phys:Space", mods = "LEADER",       action = act.ActivateCommandPalette },
 
@@ -120,6 +120,7 @@ config.key_tables = {
 -- I don't like the look of "fancy" tab bar
 config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
+config.tab_bar_at_bottom = false
 wezterm.on("update-right-status", function(window, pane)
   -- Workspace name
   local stat = window:active_workspace()
