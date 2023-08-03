@@ -71,8 +71,9 @@ nnoremap <leader><UP> <C-w>5+
 nnoremap <leader><RIGHT> <C-w>10>
 " Tab
 nnoremap <leader>n :ls<CR>
-          \:echo 'Choose a buf or enter to create a tab with curr buf'<CR>
-          \:tab sb<SPACE>
+      \:echo '[Theovim] Choose a buf to create a new tab w/
+      \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
+      \:tab sb<SPACE>
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
@@ -81,7 +82,10 @@ nnoremap <leader>4 4gt
 nnoremap <leader>b :ls<CR>:b<SPACE>
 nnoremap <leader>[ :bprevious<CR>
 nnoremap <leader>] :bnext<CR>
-nnoremap <leader>x :ls<CR>:bdelete<SPACE>
+nnoremap <leader>x :ls<CR>
+      \: echo '[Theovim] Choose a buf to delete
+      \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
+      \:bdelete<SPACE>
 " Some bindings from Theovim
 nnoremap <leader>t :call ToggleNetrw()<CR>
 nnoremap <leader>z :botright term<CR>
