@@ -126,9 +126,6 @@ function install() {
 
   if selection_prompt 'Vim'; then
     backup_then_symlink ${DOT_DIR}/vim/vimrc ~/.vimrc
-  fi
-
-  if selection_prompt 'Vim Colorscheme'; then
     mkdir -p ~/.vim/
     backup_then_symlink ${DOT_DIR}/vim/colors ~/.vim/colors
   fi
