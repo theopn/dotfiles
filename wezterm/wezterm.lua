@@ -52,7 +52,7 @@ config.keys = {
   { key = "j",          mods = "LEADER",       action = act.ActivatePaneDirection("Down") },
   { key = "k",          mods = "LEADER",       action = act.ActivatePaneDirection("Up") },
   { key = "l",          mods = "LEADER",       action = act.ActivatePaneDirection("Right") },
-  { key = "x",          mods = "LEADER",       action = act.CloseCurrentPane { confirm = true } },
+  { key = "q",          mods = "LEADER",       action = act.CloseCurrentPane { confirm = true } },
   { key = "z",          mods = "LEADER",       action = act.TogglePaneZoomState },
   { key = "s",          mods = "LEADER",       action = act.RotatePanes "Clockwise" },
   -- We can make separate keybindings for resizing panes
@@ -60,10 +60,10 @@ config.keys = {
   { key = "r",          mods = "LEADER",       action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
 
   -- Tab keybindings
-  { key = "n",          mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") },
+  { key = "t",          mods = "LEADER",       action = act.SpawnTab("CurrentPaneDomain") },
   { key = "[",          mods = "LEADER",       action = act.ActivateTabRelative(-1) },
   { key = "]",          mods = "LEADER",       action = act.ActivateTabRelative(1) },
-  { key = "t",          mods = "LEADER",       action = act.ShowTabNavigator },
+  { key = "n",          mods = "LEADER",       action = act.ShowTabNavigator },
   {
     key = "e",
     mods = "LEADER",
@@ -80,7 +80,6 @@ config.keys = {
       end)
     }
   },
-  { key = "v", mods = "LEADER", action = act.SpawnCommandInNewTab { args = { "top" }, } },
   -- Key table for moving tabs around
   { key = "m", mods = "LEADER", action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
 
