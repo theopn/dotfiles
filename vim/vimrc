@@ -14,26 +14,25 @@
 "===============================================================================
 
 " {{{ Base Settings
-set number relativenumber numberwidth=3 ruler colorcolumn=80
+set number relativenumber ruler colorcolumn=80
 set cursorline cursorcolumn wildmenu termguicolors bg=dark
-set confirm showtabline=2
+set confirm showtabline=2 scrolloff=7
+set splitright splitbelow
+set tabstop=2 shiftwidth=2 expandtab autoindent
+set mouse=a
+set list listchars=tab:▷▷,trail:␣,nbsp:⍽
+filetype on
+syntax on
+set hlsearch incsearch shortmess-=S ignorecase smartcase
+set foldmethod=marker foldlevel=0
+set wildmenu
+set spell spelllang=en_us spellsuggest=best,8
 try
   let g:pastelcula_transparent=1
   colo pastelcula
 catch
   colo darkblue
 endtry
-set tabstop=2 shiftwidth=2 expandtab autoindent
-set mouse=a
-set list listchars=tab:▷▷,trail:␣,nbsp:⍽
-filetype on
-syntax on
-set hlsearch incsearch shortmess-=S
-set ignorecase smartcase
-set scrolloff=7
-set foldmethod=marker foldlevel=0
-set wildmenu wildmode=longest,list,full
-set spell spelllang=en_us spellsuggest=best,8
 " }}}
 
 " {{{ Base keybindings
@@ -45,53 +44,52 @@ inoremap <silent> jk <ESC>:update<CR>
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
+" Terminal ESC
+tnoremap <ESC> <C-\><C-n>
+" Select all
+nnoremap <leader>a gg<S-v>G
 " Search
 nnoremap <leader>/ :let @/=''<CR>
 nnoremap n nzz
 nnoremap N Nzz
-" Select all
-nnoremap <leader>a gg<S-v>G
-" Terminal ESC
-tnoremap <ESC> <C-\><C-n>
+" Copy and paste
+xnoremap <leader>y "+y
+nnoremap <leader>p :reg<CR>
+xnoremap <leader>p "_dp
 " Spell check
 inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
 nnoremap <C-s> z=
 nnoremap <leader>st :set spell!<CR>
-" Split pane
-nnoremap <leader>\| :vsplit<CR><C-w>l
-nnoremap <leader>- :split<CR><C-w>j
-nnoremap <leader>q <C-w>q
-nnoremap <leader>h <C-w>h
-nnoremap <leader>j <C-w>j
-nnoremap <leader>k <C-w>k
-nnoremap <leader>l <C-w>l
-nnoremap <leader><LEFT> <C-w>10<
-nnoremap <leader><DOWN> <C-w>5-
-nnoremap <leader><UP> <C-w>5+
-nnoremap <leader><RIGHT> <C-w>10>
-" Tab
-nnoremap <leader>n :ls<CR>
-      \:echo '[Theovim] Choose a buf to create a new tab w/
-      \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
-      \:tab sb<SPACE>
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
 " Buffer
 nnoremap <leader>b :ls<CR>:b<SPACE>
 nnoremap <leader>[ :bprevious<CR>
 nnoremap <leader>] :bnext<CR>
-nnoremap <leader>x :ls<CR>
+nnoremap <leader>k :ls<CR>
       \: echo '[Theovim] Choose a buf to delete
       \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
       \:bdelete<SPACE>
-" Some bindings from Theovim
-nnoremap <leader>t :call ToggleNetrw()<CR>
-nnoremap <leader>z :botright term<CR>
+" Window
+nnoremap <leader>+ :exe 'resize ' . (winheight(0) * 3/2)<CR>
+nnoremap <leader>- :exe 'resize ' . (winheight(0) * 2/3)<CR>
+nnoremap <leader>> :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
+nnoremap <leader>< :exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>
+" Tab
+nnoremap <leader>t :ls<CR>
+      \:echo '[Theovim] Choose a buf to create a new tab w/
+      \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
+      \:tab sb<SPACE>
+nnoremap <leader>q :tabclose<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
 " Brings up auto completion menu using S-TAB, cycle through TAB and S-TAB
 inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<TAB>'
 inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
+" Some bindings from Theovim
+nnoremap <leader>n :call ToggleNetrw()<CR>
+nnoremap <leader>z :botright term<CR>
 " }}}
 
 " {{{ Statusline
