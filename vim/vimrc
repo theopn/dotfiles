@@ -39,13 +39,11 @@ endtry
 " Leader
 nnoremap <SPACE> <Nop>
 let mapleader=' '
-inoremap <silent> jk <ESC>:update<CR>
+inoremap <silent> jk <ESC>
 " Auto pairs
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
-" Terminal ESC
-tnoremap <ESC> <C-\><C-n>
 " Select all
 nnoremap <leader>a gg<S-v>G
 " Search
@@ -55,7 +53,10 @@ nnoremap N Nzz
 " Copy and paste
 xnoremap <leader>y "+y
 nnoremap <leader>p :reg<CR>
-xnoremap <leader>p "_dp
+xnoremap <leader>p "_dP
+" Terminal
+tnoremap <ESC> <C-\><C-n>
+nnoremap <leader>z :botright term<CR>
 " Spell check
 inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
 nnoremap <C-s> z=
@@ -89,7 +90,6 @@ inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<TAB>'
 inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
 " Some bindings from Theovim
 nnoremap <leader>n :call ToggleNetrw()<CR>
-nnoremap <leader>z :botright term<CR>
 " }}}
 
 " {{{ Statusline
