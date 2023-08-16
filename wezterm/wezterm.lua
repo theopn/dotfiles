@@ -133,9 +133,12 @@ wezterm.on("update-right-status", function(window, pane)
     -- Nothign a little regex can't fix
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
   end
-  local cwd = basename(pane:get_current_working_dir())
+  -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l). Not a big deal, but check in case
+  local cwd = pane:get_current_working_dir()
+  cwd = cwd and basename(cwd) or ""
   -- Current command
-  local cmd = basename(pane:get_foreground_process_name())
+  local cmd = pane:get_foreground_process_name()
+  cmd = cmd and basename(cmd) or ""
 
   -- Time
   local time = wezterm.strftime("%H:%M")
