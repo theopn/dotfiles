@@ -2,11 +2,9 @@
 
 ######### Alias ##########
 alias cl='clear'
-alias google='w3m google.com'
 alias histgrep='echo "[Tip] Use !number to execute the command" && history -i | grep' # -i for the timestamp
 alias ls='ls -G'
 alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
-alias nvif='fd --type f --hidden --exclude .git | fzf-tmux --height 40% --reverse -p | xargs nvim'
 alias weather="curl 'https://wttr.in'"
 
 ######### Alias w hard-coded paths ##########
@@ -14,9 +12,7 @@ alias weather="curl 'https://wttr.in'"
 alias l1="cd \"$CACHE_DIR\""
 alias dw="vim \"${DAILY_WRITING_DIR}/index.md\""
 alias dot="cd \"$DOT_DIR\""
-alias note="nvim \"+normal G\" \"+put =strftime('- %Y-%m-%d %H:%M:%S:')\" \"+normal $\" \"$CAPTURE_PATH\"" # G -> :put strftime() -> ...
-alias wiki="tmux display-popup -E -h 80% -w 80% 'vim \"${WIKI_PATH}/index.md\"'"
-alias wiki_no_tmux="vim \"${WIKI_PATH}/index.md\""
+alias note="nvim \"$CAPTURE_PATH\""
 
 ########## Small Functions ##########
 
@@ -36,17 +32,6 @@ tarmake() { tar -czvf ${1}.tar.gz $1 }
 tarunmake() { tar -zxvf $1 }
 
 ########## Big Functions ###########
-
-# Preview option for fzf
-_fzf_comprun() {
-  local command=$1
-  shift
-
-  case "$command" in
-    cd) fzf "$@" --preview 'tree -C {} | head -200' ;;
-    *)  fzf "$@" --preview 'cat {}' ;;
-  esac
-}
 
 # Using fzf to prompt hosts in ~/.ssh/config
 sshf() {
