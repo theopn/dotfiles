@@ -11,17 +11,17 @@ bindkey -v
 
 # Env Var
 export EDITOR=nvim
+export XDG_CONFIG=~/.config
 
-export THEOSHELL_PLUGIN_DIR=~/.theoshell/zsh-plugins
 export THEOSHELL_TRASH_DIR=~/.theoshell/trash
+export THEOSHELL_PLUGIN_DIR=~/.theoshell/zsh-plugins
 
 export CLOUD_DIR=~/My\ Drive
 export CACHE_DIR=~/My\ Drive/l1-cache
 export DOT_DIR=~/dotfiles
 
-export DAILY_WRITING_DIR="${CACHE_DIR}/dw-$(date +'%Y')"
 export CAPTURE_PATH="${CACHE_DIR}/capture.md"
-export WIKI_PATH="${CACHE_DIR}/theo-vimwiki"
+export DAILY_WRITING_DIR="${CACHE_DIR}/dw-$(date +'%Y')"
 
 # Sourcing
 source $DOT_DIR/zsh/aliases-zsh
@@ -29,7 +29,7 @@ source $DOT_DIR/zsh/prompt-zsh
 source $DOT_DIR/zsh/trash-zsh
 
 source $DOT_DIR/zsh/greeting-zsh
-greeting_msg
+zsh_greeting
 
 source $DOT_DIR/zsh/plug-zsh
 theoshell_plug marlonrichert/zsh-autocomplete
