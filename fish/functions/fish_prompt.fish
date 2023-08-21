@@ -1,5 +1,5 @@
-# Based on "Arrow" prompt from `fish_config`
-# Changes are indicated in comments
+# Based on "Arrow" prompt from `fish_config`. Changes are indicated in comments
+# Its Git mechanism is faster than `fish_git_prompt` (test with `time fish_prompt`)
 function fish_prompt
     set -l __last_command_exit_status $status
 
@@ -94,20 +94,5 @@ function fish_prompt
 
     # Add an arrow after the exit status
     echo -n -s $arrow ' '$cwd $repo_info $normal $exit_stats ' ❱' $normal ' '
-end
-
-# Right prompt with command duration
-function fish_right_prompt
-  set -l __last_command_duration $CMD_DURATION
-
-  set -l colo (set_color -o magenta)
-
-  if test $__last_command_duration -gt 1000
-    set __last_command_duration (math $__last_command_duration / 1000) 's'
-    set colo (set_color -o red)
-  else
-    set __last_command_duration $__last_command_duration 'ms'
-  end
-  echo $colo $__last_command_duration (set_color normal)
 end
 
