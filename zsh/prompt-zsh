@@ -10,9 +10,9 @@ setopt prompt_subst
 
 zstyle ':vcs_info:*' check-for-changes true
 
-zstyle ':vcs_info:*' unstagedstr ' *'
-zstyle ':vcs_info:*' stagedstr ' +'
-zstyle ':vcs_info:git:*' formats       '%b%u%c'
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats '%b%u%c'
 # Only displayed in Git action like rebase, merge, cherry-pick
 zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
@@ -20,12 +20,7 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
 # Left prompt
 # %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
-one_line_prompt=" %F{245}[%f %B%F{075}%(5~|%-1~/.../%3~|%4~)%f%b %F{245}]%f %B%F{013}{\$vcs_info_msg_0_}%f%b %F{245}\$%f "
-
-two_line_prompt="╭─ %F{245}⊊%f %F{005}%n%f %F{245}@%f %F{002}%m%f %F{245}ϵ%f %F{010}%~%f %F{245}⊋%f
-╰─ %F{245}⊄%f %F{009}(\$vcs_info_msg_0_)%f %F{013}%*%f %F{245}⊅%f %F{245}\$%f "
-
-PROMPT=$one_line_prompt
+PROMPT="➜ %F{075}%(5~|%-1~/.../%3~|%4~)%f %F{013}\$vcs_info_msg_0_%f %F{245}|%f %F{009}%?%f %F{245}❱%f "
 
 # Right prompt with execution time
 # https://gist.github.com/knadh/123bca5cfdae8645db750bfb49cb44b0 - comment by sudocurse
@@ -46,30 +41,3 @@ function precmd() {
     unset timer
   fi
 }
-
-# Function for color testing
-# https://github.com/ohmyzsh/ohmyzsh/blob/master/lib/spectrum.zsh
-typeset -AHg FX FG BG
-
-FX=(
-  reset     "%{[00m%}"
-  bold      "%{[01m%}" no-bold      "%{[22m%}"
-  italic    "%{[03m%}" no-italic    "%{[23m%}"
-  underline "%{[04m%}" no-underline "%{[24m%}"
-  blink     "%{[05m%}" no-blink     "%{[25m%}"
-  reverse   "%{[07m%}" no-reverse   "%{[27m%}"
-)
-
-for color in {000..255}; do
-  FG[$color]="%{[38;5;${color}m%}"
-  BG[$color]="%{[48;5;${color}m%}"
-done
-
-function spectrum_ls() {
-  setopt localoptions nopromptsubst
-  local ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
-  for code in {000..255}; do
-    print -P -- "$code: ${FG[$code]}${ZSH_SPECTRUM_TEXT}%{$reset_color%}"
-  done
-}
-
