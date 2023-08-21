@@ -1,9 +1,8 @@
+# Based on "Arrow" prompt from `fish_config`
+# Changes are indicated in comments
 function fish_prompt
-    # Saving var
     set -l __last_command_exit_status $status
-    set -l __last_command_duration $CMD_DURATION
 
-    # Git status
     if not set -q -g __fish_arrow_functions_defined
         set -g __fish_arrow_functions_defined
         function _git_branch_name
@@ -59,7 +58,6 @@ function fish_prompt
         end
     end
 
-    # Colors
     set -l cyan (set_color -o cyan)
     set -l yellow (set_color -o yellow)
     set -l red (set_color -o red)
@@ -67,19 +65,19 @@ function fish_prompt
     set -l blue (set_color -o blue)
     set -l normal (set_color normal)
 
-    set -l magenta (set_color -o magenta)
-    set -l brmagenta (set_color -o brmagenta)
-
-    # Root user status
-    set -l arrow "➜ "
-    if fish_is_root_user
-        set arrow "# "
+    set -l arrow_color "$green"
+    if test $__last_command_exit_status != 0
+        set arrow_color "$red"
     end
 
-    # CWD (prompt_pwd) function automatically trucates
+    set -l arrow "$arrow_color➜ "
+    if fish_is_root_user
+        set arrow "$arrow_color# "
+    end
+
+    # Removed (basename (prompt_pwd)) since prompt_pwd truncates long path by default
     set -l cwd $cyan(prompt_pwd)
 
-    # Putting Git info together
     set -l repo_info
     if set -l repo_type (_repo_type)
         set -l repo_branch $red(_repo_branch_name $repo_type)
@@ -91,14 +89,25 @@ function fish_prompt
         end
     end
 
-    # Last command exit code and duration
-    if test $__last_command_duration -gt 1000
-      set __last_command_duration (math $__last_command_duration / 1000) 's'
-    else
-      set __last_command_duration $__last_command_duration 'ms'
-    end
-    set -l cmd_info $magenta ' ?:' $__last_command_exit_status $normal ' ' $brmagenta $__last_command_duration $normal
+    # My addition: exit stats
+    set -l exit_stats ' ?:' $arrow_color $__last_command_exit_status
 
-    # Putting everything together
-    echo -n -s $arrow $cwd $repo_info $normal $cmd_info $normal ' ❱ '
+    # Add an arrow after the exit status
+    echo -n -s $arrow ' '$cwd $repo_info $normal $exit_stats ' ❱' $normal ' '
 end
+
+# Right prompt with command duration
+function fish_right_prompt
+  set -l __last_command_duration $CMD_DURATION
+
+  set -l colo (set_color -o magenta)
+
+  if test $__last_command_duration -gt 1000
+    set __last_command_duration (math $__last_command_duration / 1000) 's'
+    set colo (set_color -o red)
+  else
+    set __last_command_duration $__last_command_duration 'ms'
+  end
+  echo $colo $__last_command_duration (set_color normal)
+end
+
