@@ -81,6 +81,16 @@ function install() {
     done
   fi
 
+  if selection_prompt 'Fish'; then
+    CURRENT_FILES=("config.fish" "alias.fish")
+    mkdir -p ~/.config/fish/
+    for FILE in ${CURRENT_FILES[@]}; do
+      backup_then_symlink ${DOT_DIR}/fish/${FILE} ~/.config/fish/${FILE}
+    done
+    mkdir -p ~/.config/fish/functions/
+    backup_then_symlink ${DOT_DIR}/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
+  fi
+
   if selection_prompt 'Git'; then
     CURRENT_FILES=("gitignore_global" "gitconfig")
     for FILE in ${CURRENT_FILES[@]}; do
