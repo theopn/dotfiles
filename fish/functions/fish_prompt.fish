@@ -90,9 +90,9 @@ function fish_prompt
     end
 
     # My addition: exit stats
-    set -l exit_stats ' ?:' $arrow_color $__last_command_exit_status
+    set -l exit_stats ' | ' $arrow_color $__last_command_exit_status
 
     # Add an arrow after the exit status
-    echo -n -s $arrow ' '$cwd $repo_info $normal $exit_stats ' ❱' $normal ' '
+    echo -n -s $arrow ' ' $cwd $repo_info $normal $exit_stats ' ❱' $normal ' '
 end
 
