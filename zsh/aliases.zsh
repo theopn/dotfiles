@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 ######### Alias ##########
-alias cdf='cd $(find * -maxdepth 1 -type d | fzf)'
 alias cl='clear'
 alias histgrep='echo "[Tip] Use !number to execute the command" && history -i | grep' # -i for the timestamp
 alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
@@ -15,18 +14,31 @@ alias note="nvim \"$CAPTURE_PATH\""
 
 ########## Small Functions ##########
 
+cdf() {
+  selected=$(find * -maxdepth 1 -type d 2>/dev/null | fzf \
+    --reverse --border=rounded --cycle --height=50% \
+    --header='Pick a directory to navigate to')
+  [[ -z $selected ]] && echo 'Nothing was selected :(' || cd "$selected"
+}
+
 fav() {
   dir=("$CLOUD_DIR" "$CACHE_DIR" "$DOT_DIR" "$THEOSHELL_TRASH_DIR")
-  selected=$(printf "%s\n" "${dir[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='Pick a directory to navigate to')
-  cd "$selected"
+  selected=$(printf "%s\n" "${dir[@]}" | fzf \
+    --reverse --border=rounded --cycle --height=30% \
+    --header='Pick a directory to navigate to')
+  [[ -z $selected ]] && echo 'Nothing was selected :(' || cd "$selected"
 }
+
 mkcd() { mkdir -p $1; cd $1 }
+
 numfiles() { 
   num=$(ls -A $1 | wc -l)
   echo "$num files in $1"
 }
+
 # c for archive, z for gzip, v for verbose, f for file
 tarmake() { tar -czvf ${1}.tar.gz $1 }
+
 # x for extracting, v for verbose, f for file
 tarunmake() { tar -zxvf $1 }
 
@@ -34,11 +46,13 @@ tarunmake() { tar -zxvf $1 }
 
 # Using fzf to prompt hosts in ~/.ssh/config
 sshf() {
-  [[ ! -e ~/.ssh/config ]] && echo "There are is SSH config file!" && return 1
+  [[ ! -e ~/.ssh/config ]] && echo 'There are is SSH config file!'
   hostnames=$(awk ' $1 == "Host" { print $2 } ' ~/.ssh/config )
-  [[ -z "${hostnames}" ]] && echo "There are no host param in SSH config file" && return 1
-  selected=$(printf "%s\n" "${hostnames[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='pick a host')
-  [[ -z "${selected}" ]] && echo "Nothing was selected :(" && return 1
+  [[ -z "${hostnames}" ]] && echo 'There are no host param in SSH config file'
+  selected=$(printf "%s\n" "${hostnames[@]}" | fzf \
+    --reverse --border=rounded --cycle --height=30% \
+    --header='pick a host')
+  [[ -z "${selected}" ]] && echo 'Nothing was selected :('
   echo "SSH to ${selected}..." && ssh "$selected"
 }
 
@@ -55,7 +69,7 @@ updater () {
   while true; do
     # Prompt and check for the existence of $selected
     selected=$(printf "%s\n" "${stuff[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='[Updater] What are you going to update?')
-    [[ -z "${selected}" ]] && echo '[Updater] No selection registered -- ending the updater' && return 0
+    [[ -z "${selected}" ]] && echo '[Updater] No selection registered -- ending the updater'
     printf "[Updater] Updating %s\n" $selected
         echo -e "-----\n"
     case "${selected}" in
@@ -79,7 +93,7 @@ updater () {
       *) echo -e "\n[DEBUG] This shouldn't happen bc -z should've checked for no selection -- debug time Theo\n" ;;
     esac
     echo -e "\n-----"
-    echo "[Updater] Done updating"
+    echo '[Updater] Done updating'
   done
 }
 

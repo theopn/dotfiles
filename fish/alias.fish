@@ -5,7 +5,6 @@
 #
 # Functions and aliases (which are just a wrapper for functions in Fish)
 
-alias cdf 'cd $(find * -maxdepth 1 -type d | fzf)'
 alias cl "clear"
 alias l "ls -Alh" # [A]lmost all (except . && ..), [l]ist, [h]: display unit
 alias weather "curl 'https://wttr.in'"
@@ -14,14 +13,19 @@ alias l1="cd \"$CACHE_DIR\""
 alias dw="vim \"$DAILY_WRITING_DIR/index.md\""
 alias dot="cd \"$DOT_DIR\""
 
+function cdf -d "Navigate to directories using fzf"
+  set selected $(find * -maxdepth 1 -type d 2>/dev/null | fzf \
+    --reverse --border=rounded --cycle --height=50% \
+    --header='Pick a directory to navigate to')
+  [ -z $selected ]; and echo 'Nothing was selected :('; or cd "$selected"
+end
+
 function fav -d "Navigate to my favorite directories using fzf"
   set -l fav_dir "$CLOUD_DIR" "$CACHE_DIR" "$DOT_DIR"
-  set selected $(printf "%s\n" $fav_dir | fzf --reverse --border=rounded --cycle --height=30% --header='Pick a directory to navigate to')
-  if [ -z "$selected" ]
-    echo "Nothing was selected :("
-    return 1
-  end
-  cd "$selected"
+  set selected $(printf "%s\n" $fav_dir | fzf \
+    --reverse --border=rounded --cycle --height=50% \
+    --header='Pick a directory to navigate to')
+  [ -z $selected ]; and echo 'Nothing was selected :('; or cd "$selected"
 end
 
 function mkcd -d "Create a directory and set CWD"
