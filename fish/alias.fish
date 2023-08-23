@@ -43,7 +43,7 @@ end
 
 function numfiles -d "Count the number of file in the directory"
   set -l num $(ls -A $argv | wc -l)
-  [ -z $num ] && echo "$num files in $argv"
+  [ -n $num ]; and echo "$num files in $argv"
 end
 
 function updater -d "Place to update all the different stuff"

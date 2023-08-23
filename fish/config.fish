@@ -9,7 +9,7 @@
 
 # Env var
 set -gx EDITOR nvim
-set -gx XDG_CONFIG ~/.config
+set -gx XDG_CONFIG_HOME "$HOME/.config"
 
 # Personal variables
 # tilde expansion in quote doesn't work, so either use ~/My\ Drive or $HOME
