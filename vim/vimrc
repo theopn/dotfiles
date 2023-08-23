@@ -20,7 +20,8 @@ set confirm showtabline=2 scrolloff=7
 set splitright splitbelow
 set tabstop=2 shiftwidth=2 expandtab autoindent
 set mouse=a
-set list listchars=tab:▷▷,trail:␣,nbsp:⍽
+set list listchars=tab:>-,leadmultispace:\|\ ,trail:_,nbsp:+ showbreak=$
+"set list listchars=tab:>-,lead:\|,trail:_,nbsp:+ showbreak=$ " < 0.9
 filetype on
 syntax on
 set hlsearch incsearch shortmess-=S ignorecase smartcase
@@ -85,11 +86,19 @@ nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
 nnoremap <leader>4 4gt
 nnoremap <leader>5 5gt
-" Brings up auto completion menu using S-TAB, cycle through TAB and S-TAB
+" Completion
 inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<TAB>'
 inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
-" Some bindings from Theovim
-nnoremap <leader>n :call ToggleNetrw()<CR>
+" }}}
+
+" {{{ Commends
+fun! TrimWhitespace()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//e
+  call winrestview(l:save)
+endfun
+command TrimWhiespace call TrimWhitespace()
+command CD :lcd %:h
 " }}}
 
 " {{{ Statusline
@@ -130,7 +139,7 @@ set statusline+=\ \|%{''}                             " Space, bar, empty char
 
 " {{{ Tabline
 " Custom bufferline function. I know, it's not the true "Vim way"
-function! SpawnBufferLine()
+fun! SpawnBufferLine()
   let s = ' :) | '
 
   " Get the list of buffers. Use bufexists() to include hidden buffers
@@ -170,7 +179,7 @@ function! SpawnBufferLine()
     let s .= '%999X X'
   endif
   return s
-endfunction
+endfun
 
 set tabline=%!SpawnBufferLine()  " Assign the tabline
 " }}}
@@ -190,7 +199,7 @@ augroup END
 
 " Function to toggle netrw buffer using global var and buf wipeout
 let g:NetrwIsOpen = 1 " Since I open netrw in the startup
-function! ToggleNetrw()
+fun! ToggleNetrw()
   if g:NetrwIsOpen
     for i in range(1, bufnr('$'))
       if getbufvar(i, "&filetype") == 'netrw'
@@ -202,7 +211,9 @@ function! ToggleNetrw()
     let g:NetrwIsOpen = 1
     silent Lex
   endif
-endfunction
+endfun
+
+nnoremap <leader>n :call ToggleNetrw()<CR>
 " }}}
 
 " {{{ CS240 Work Environment
