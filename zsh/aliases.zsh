@@ -1,9 +1,9 @@
 #!/bin/zsh
 
 ######### Alias ##########
+alias cdf='cd $(find * -maxdepth 1 -type d | fzf)'
 alias cl='clear'
 alias histgrep='echo "[Tip] Use !number to execute the command" && history -i | grep' # -i for the timestamp
-alias ls='ls -G'
 alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
 alias weather="curl 'https://wttr.in'"
 
@@ -15,7 +15,7 @@ alias note="nvim \"$CAPTURE_PATH\""
 
 ########## Small Functions ##########
 
-cdf() {
+fav() {
   dir=("$CLOUD_DIR" "$CACHE_DIR" "$DOT_DIR" "$THEOSHELL_TRASH_DIR")
   selected=$(printf "%s\n" "${dir[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='Pick a directory to navigate to')
   cd "$selected"
