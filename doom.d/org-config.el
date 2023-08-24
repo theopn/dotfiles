@@ -37,7 +37,6 @@
   ;; Org agenda
   (setq org-agenda-files
         '("capture.org"
-          "education.org"
           "habits.org"
           "projects.org"
           "vita.org"
