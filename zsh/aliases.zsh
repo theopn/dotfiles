@@ -52,7 +52,7 @@ sshf() {
   selected=$(printf "%s\n" "${hostnames[@]}" | fzf \
     --reverse --border=rounded --cycle --height=30% \
     --header='pick a host')
-  [[ -z "${selected}" ]] && echo 'Nothing was selected :(' && exit 1
+  [[ -z "${selected}" ]] && echo 'Nothing was selected :(' && return
   echo "SSH to ${selected}..." && ssh "$selected"
 }
 
@@ -69,7 +69,7 @@ updater () {
   while true; do
     # Prompt and check for the existence of $selected
     selected=$(printf "%s\n" "${stuff[@]}" | fzf --reverse --border=rounded --cycle --height=30% --header='[Updater] What are you going to update?')
-    [[ -z $selected ]] && echo '[Updater] No selection registered -- ending the updater' && exit 1
+    [[ -z $selected ]] && echo '[Updater] No selection registered -- ending the updater' && return
     printf "[Updater] Updating %s\n" $selected
         echo -e "-----\n"
     case "${selected}" in
@@ -92,7 +92,7 @@ updater () {
         flatpak upgrade ;;
       *)
         echo -e "\n[DEBUG] This shouldn't happen bc -z should've checked for no selection -- debug time Theo\n"
-        exit 1
+        return
         ;;
     esac
     echo -e "\n-----"
