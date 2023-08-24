@@ -6,5 +6,6 @@ Use the following commands to create symlink for these files
 
 ```bash
 ln -sf ~/dotfiles/misc/.bashrc ~/.bashrc
+mkdir -p ~/.config/kitty && ln -sf ~/dotfiles/misc/kitty.conf ~/.config/kitty/
 ```
 
