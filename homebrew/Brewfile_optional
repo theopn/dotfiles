@@ -7,6 +7,7 @@ brew "fish"
 brew "hugo"
 brew "imagemagick"
 brew "rclone"
+brew "tree"
 
 cask "appcleaner"
 cask "cryptomator"
