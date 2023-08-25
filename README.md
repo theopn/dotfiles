@@ -2,38 +2,43 @@
 
 > Collection of my configuration files. The reason why this README is so long is definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
-![macos-sc](./assets/2023-03-18-macos-rice-sc.jpg)
-![fedora-sc](./assets/2023-03-12-fedora-rice-sc.png)
+| ![macos-sc](./assets/2023-03-18-macos-rice-sc.jpg) |
+|:--:|
+| macOS |
 
-Here are dotfiles for my systems, 2020 MacBook Air with M1 processor and Lenovo ThinkPad X270 (6th-gen i5).
-MBA runs the latest version of macOS, and X270 runs the latest version of Fedora i3 Spin with different tiling WM (primarily i3, AwesomeWM, and Sway window manager -- *actually, Sway is a Wayland compositor :nerd-emoji:*).
+| ![fedora-sc](./assets/2023-03-12-fedora-rice-sc.png) |
+|:--:|
+| Fedora w/ i3 WM |
 
-You are welcome to take inspirations from any files in this repository, but I do not take any responsibility for any of the contents of the configurations. **Read the code before you use them!**
+Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
+MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin with i3 WM installed (Wayland is *almost* there).
+
+You are welcome to take inspiration from any files in this repository, but I do not take any responsibility for any of the contents of the configurations.
+**Read the code before you use it!**
 
 ## Installation
 
-- To configure cross-platform utilities:
+- Configure cross-platform utilities using following commands:
+    ```bash
+    git clone https://github.com/theopn/dotfiles.git ~/dotfiles
+    ~/dotfiles/dotfiles-util.sh --install
+    ~/dotfiles/dotfiles-util.sh --delete-backup # Optional
+    ```
 
-```bash
-git clone https://github.com/theopn/dotfiles.git ~/dotfiles
-~/dotfiles/dotfiles-util.sh --install
-~/dotfiles/dotfiles-util.sh --delete-backup # Optional
-```
+- Configure macOS-specific utilities and settings using following commands:
+    ```bash
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    brew analytics off
 
-- To configure macOS-specific utilities and settings:
+    ~/dotfiles/dotfiles-util.sh --macos-install
+    ```
 
-```bash
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew analytics off
+- Configure i3 WM and related utilities using following commands:
+    ```bash
+    ~/dotfiles/dotfiles-util.sh --i3-install
+    ```
 
-~/dotfiles/dotfiles-util.sh --macos-install
-```
-
-- To configure i3 WM and related utilities:
-
-```bash
-~/dotfiles/dotfiles-util.sh --i3-install
-```
+- Choose configurations in `misc` directory and manually copy them! Follow the commands in `./misc/README.md`.
 
 ### Install My Other Projects
 
@@ -44,59 +49,60 @@ brew analytics off
 
 ### Post-Installation
 
-- To install Doom Emacs:
+- Install Doom Emacs:
+    ```bash
+    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
+    ~/.emacs.d/bin/doom install
+    ```
 
-```bash
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
-~/.emacs.d/bin/doom install
-```
-
-- To add SSH shortcut for frequently used servers:
-
-```bash
-~/dotfiles/dotfiles-util.sh --add-ssh-shortcut
-```
+- Add SSH shortcut for frequently used servers:
+    ```bash
+    ~/dotfiles/dotfiles-util.sh --add-ssh-shortcut
+    # Follow the prompt
+    ```
 
 - To install fonts using `fontconfig` and the included function in `dotfiles-util.sh`:
-
-1. Navigate to [NERD Fonts download](https://www.nerdfonts.com/font-downloads) website
-2. Right-click on the font download and copy the link
-3. Execute the following
-
-```bash
-~/dotfiles/dotfiles-util.sh --install-font <URL>
-```
+    1. Navigate to [NERD Fonts download](https://www.nerdfonts.com/font-downloads) website
+    2. Right-click on the font download and copy the link
+    3. Execute the following
+        ```bash
+        $FONT_URL=thing-you-just-copied
+        ~/dotfiles/dotfiles-util.sh --install-font $FONT_URL
+        ```
 
 - To install CaskayadiaCove and FantasqueSansMono Nerd Fonts using Homebrew:
-
-```bash
-brew tap homebrew/cask-fonts &&
-brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-font
-```
+    ```bash
+    brew tap homebrew/cask-fonts &&
+    brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-font
+    ```
 
 ## Shells
-
-### Bash
-
-> Mother of all shells
-
-- Usage: the default shell for my college SSH server and most of the scripts I write
-- Config: kept to minimum with basic aliases and env var exports
 
 ### Fish
 
 > Rich built-in features, questionable syntax
 
-- Usage: de factor default shell that launches with Wezterm open. Fantastic built-in auto-completion and asynchronous Git status make my life easier. But it ain't my default shell -- zsh is my `$SHELL` for its POSIX computability. In fact, it's not even in my `/etc/shells`
-- Config: Cute greeting message, simple prompt with CWD and Git status, and many aliases/functions I use on daily basis
+It's the de-facto default shell that launches when Wezterm opens.
+It has a fantastic built-in auto-completion and stupidly fast asynchronous Git status, but I frankly don't like the syntax.
+Because it's not POSIX compatible, Zsh is my `$SHELL`.
+
+Config: tries to mimic my Zsh setup, but takes advantage of better built-in interactive functions
 
 #### Zsh
 
 > The shell
 
-- Greeting message with Oliver ASCII arts
-- `theoshell_plug` and `theoshell_upgrade` automatically download and load ZSH plug-ins I need (currently only zsh-autocomplete), eliminating the need for a bloated shell plug-in manager
-- Miscellaneous functions like `trash()` and `updater()`
+- Usage:
+    - Prompt:
+        ```
+        [vi-mode]` ➜ /current/path/ git-branch(* for unstaged, + for staged changes) | last-exit-code ❱
+        ```
+    - Basic aliases: `cdf` to navigate directories quickly using `fzf`,
+        `cl` to `clear`, `l` to `ls` with list view and other options, `histgrep` to look up previous commands
+    - `trash`, `trash_cd`, `trash_empty`, `trash_print`: trash related functions.
+        The trash directory is located in `~/.theoshell/trash`. This directory will be used again for LF
+    - `theoshell_plug <github-username>/<repo-name>`: installs Zsh plug-in from a GitHub repository (to `~/.theoshell/zsh-plugins`) and/or source it
+    - `theoshell_upgrade`: Upgrade all Zsh plug-ins in `~/.theoshell/zsh-plugins`
 
 ## Terminal Emulators
 
@@ -104,8 +110,9 @@ brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-
 
 > Feature-rich terminal emulator. Maybe too many features
 
-- Usage: my secondary terminal emulator due to lack of multiplexer and weird font rendering. Intended to use with Tmux
-- Config: kept minimal with borderless look and Dracula theme
+Kitty is my secondary terminal emulator due to the lack of a multiplexer and weird font rendering. I usually pair it with Tmux.
+
+- Config: kept minimal with a borderless look and Dracula theme
 
 ### tmux
 
@@ -115,11 +122,27 @@ Keybindings are drastically different from stock bindings so use the `<C-a> ?` k
 
 ### Wezterm
 
-> Over-engineered terminal emulator, nailed the fundamental features. And it's configured int Lua!
+> Over-engineered terminal emulator, nailed the fundamental features, and it's configured in Lua!
 
-- Usage
+Wezterm is my primary terminal emulator/multiplexer!
+Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
 
-Most of the keybindings are same as my tmux bindings, except I utilize key table feature to create a custom mode.
+- Usage:
+    - `LDR` = `C-a`
+    - `LDR c`: Copy mode
+    - `LDR -/|`: Create split pane
+    - `LDR hjkl`: Navigate pane
+    - `LDR q`: Close pane
+    - `LDR z`: Zoom pane
+    - `LDR r`: `resize_pane` mode. Use `hjkl` to resize pane and `ESC` or `Enter` to confirm
+    - `LDR t`: New tab
+    - `LDR [/]` Navigate tab
+    - `LDR 1-9`: Navigate tab by index
+    - `LDR n`: Launch tab navigator
+    - `LDR e`: Rename tab title
+    - `LDR m`: `move_tab` mode. Use `hj`/`kl` to move tabs and `ESC` or `Enter` to confirm
+    - `LDR w`: Workspace launcher
+    - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
 
 ## Text Editor
 
@@ -127,52 +150,57 @@ Most of the keybindings are same as my tmux bindings, except I utilize key table
 
 > Good OS, mediocre text editor even with Evil mode
 
-- Usage: to-do list, idea capture, knowledge databases, and other [Second Brain](https://fortelabs.com/blog/basboverview/) functionalities
-- Config: includes settings for Org-roam, Org-agenda, and Org-capture along with custom keybindings and functions (e.g. `%` to jump to a matching parenthesis) to make a better editing experience
+Emacs is my to-do list, idea capture, knowledge databases, and tools for other [Second Brain](https://fortelabs.com/blog/basboverview/) functionalities.
+
+- Usage:
+    - All the stock Emacs + Evil mode keybindings
+    - `C-c a`: Org Agenda
+    - `C-c c`: Org Capture
+    - `C-c o`: Display Org file outline using `occur`
+    - `C-c f`: Find Org-roam node
+    - `C-c i`: Insert Org-roam node
+    - `C-c r b`: List all Org-roam references in the current buffer
+    - `C-c r r`: Sync Org-roam database
 
 ### Vim
 
-> Focused note taker
+> Focused note-taker
 
-- Very simple configurations (almost everything is built without a plugin, including TabLine and StatusLine!) for [Vimwiki](https://github.com/vimwiki/vimwiki) and other note-taking related plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug)
-- `pastelcula.vim`, a custom-made [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included - thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping your colorblind friend
+Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), Vim is kept simple with Vimwiki plug-in.
+
+- Config:
+    - Handmade TabLine (buffer line) and StatusLine, sensible default settings, and handful of plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug), including [Vimwiki](https://github.com/vimwiki/vimwiki)
+    - `pastelcula.vim`, a custom [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included.
+        Thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping his colorblind friend
+    - `:CD`: Change buffer working directory to the parent directory of the buffer
+    - `:TrimWhitespace`: Remove all trailing whitespace
+    - Reference the `vimrc` for the list of keybindings
 
 ## Other Tools
 
 ### Git
 
-> Hail Linus
+> Thanks Linus
 
-No comment.
-
-### IdeaVim
-
-> Java...
-
-Probably one of the few proprietary SW in my dotfiles, but it is hard to deny that it is a great IDE for Java development.
-
-#### Neofetch
-
-> Essential
-
-Happy ricing!
+No comments.
 
 #### lf
 
 > Best terminal file manager
 
-Very simple (as I prefer) but a complete file manager for my use. Here are my keybindings other than default Vim-style bindings:
+[Ranger](https://github.com/ranger/ranger) but simpler, which is better for me.
 
-- `~` : Go to the home directory
-- `ee`: Open a file in `$EDITOR`
-- `ec`: You choose what editor you want to open a file in
-- `DD`: Move a file to `~/.theoshell/trash` (it integrates with ZSH trash functions)
-- `gs`: [g]it [s]tatus
-- `md`: mkdir
-- `mf`: Open a file with the supplied name in Neovim
-- `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
-- `mo`: chmod
-- `sh`: Launch `$SHELL` at the current directory
+- Usage:
+    - `~` : Go to the home directory
+    - `ee`: Open a file in `$EDITOR`
+    - `ec`: You choose what editor you want to open a file in
+    - `DD`: Move a file to `~/.theoshell/trash` (it integrates with my Zsh trash functions)
+    - `gs`: [g]it [s]tatus
+    - `md`: mkdir
+    - `mf`: Open a file with the supplied name in Neovim
+    - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
+    - `mo`: chmod
+    - `sh`: Launch `$SHELL` at the current directory
 
 #### Qutebrowser
 
@@ -266,7 +294,7 @@ Formulae:
 | Type              | Casks                                                                                            |
 |-------------------|--------------------------------------------------------------------------------------------------|
 | Anti-Productivity | - Discord<br> - Minecraft<br> - Spotify                                                          |
-| Development       | - Docker<br> - **kitty**<br> - IntelliJ CE<br> - MacTex (No GUI)<br> - **MacVim**<br> - Wezterm  |
+| Development       | - Docker<br> - IntelliJ CE<br> - **kitty**<br> - MacTex (No GUI)<br> - **MacVim**<br> - Wezterm  |
 | Productivity      | - **Emacs**<br> - Notion<br> - **Obsidian**                                                      |
 | System (MacOS)    | - AppCleaner<br> - **Raycast**<br> - Stats<br> - **Spaceman**                                    |
 | Tools             | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC                  |
@@ -275,4 +303,20 @@ Formulae:
 ### Settings
 
 Remove Dock unhide animation, add a Dock spacer, Finder hidden file, screenshot format and location, etc.
+
+## Misc
+
+These are single-file, simple configurations that do not change very often.
+These are meant to be manually deployed as needed.
+Use the commands in `./misc/README.md` to deploy these configurations.
+
+- `.bashrc`: I prioritize simplicity and performance, since zsh and Fish take care of my interactive uses and most of my scripts are written in Bash. Thus, my `.bashrc` is kept minimal with a simple prompt, some alases, and variables
+- `kitty.conf`: Kitty is my secondary terminal emulator. The configuration is kept minimal, since I always pair it up with Tmux
+- `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
+- `neofetch.conf`: It includes a prompt inspried by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes)
+
+## Deprecated
+
+These are dotfiles that are no longer used, either because I do not use the utility or made a new configuration.
+Reference `./deprecated/README.md` for more information.
 
