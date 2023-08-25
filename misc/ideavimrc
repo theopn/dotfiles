@@ -1,32 +1,35 @@
+set number relativenumber
 set scrolloff=7
 set list listchars=tab:t>,trail:␣,nbsp:⍽
 set hlsearch incsearch shortmess-=S
 set ignorecase smartcase
 
+set showmode
+set clipboard+=unnamed
+
 let mapleader=' '
+
+" Convenience
 inoremap jk <ESC>
-inoremap <C-h> <LEFT>
-inoremap <C-j> <DOWN>
-inoremap <C-k> <UP>
-inoremap <C-l> <RIGHT>
-nnoremap <leader>/ :let @/=''<CR>
 nnoremap <leader>a gg<s-v>g
-nmap <leader>\| <Action>(SplitVertically)
-nmap <leader>- <Action>(SplitHorizontally)
-nnoremap <leader>h <C-W>h
-nnoremap <leader>j <C-W>j
-nnoremap <leader>k <C-W>k
-nnoremap <leader>l <C-W>l
+" Search
+nnoremap <leader>/ :noh<CR>
 nnoremap n nzz
 nnoremap N Nzz
-noremap <leader>, :bprev<CR>
-noremap <leader>. :bnext<CR>
-
-set clipboard+=unnamed
-" Action mapping doesn't work with noremap
+" Terminal -- Action mapping doesn't work with noremap
 nmap <leader>z <Action>(ActivateTerminalToolWindow)
+" Buffer
+nnoremap <leader>b :ls<CR>:b<SPACE>
+nmap <leader>[ <Action>(PreviousTab)
+nmap <leader>] <Action>(NextTab)
 
-nmap cd <Action>(QuickImplementations)
-nmap cr <Action>(RenameElement)
+" LSP
+nmap <leader>ca <Action>(Refactorings.QuickListPopupAction)
+nmap <leader>cd <Action>(QuickJavaDoc)
+nmap <leader>ce <Action>(ShowErrorDescription)
+nmap <leader>cr <Action>(RenameElement)
+nmap <leader>cp <Action>(GotoPreviousError)
+nmap <leader>cn <Action>(GotoNextError)
 
+" Telescope
 nmap ff <Action>(SearchEverywhere)
