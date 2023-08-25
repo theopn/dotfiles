@@ -6,7 +6,7 @@
 |:--:|
 | macOS |
 
-| ![fedora-sc](./assets/2023-03-12-fedora-rice-sc.png) |
+| ![fedora-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/main/assets/i3-sc.png) |
 |:--:|
 | Fedora w/ i3 WM |
 
