@@ -5,39 +5,40 @@ export DOT_BACKUP_DIR=~/dotfiles.bu
 
 ########## HELPER FUNCTIONS ##########
 
-# For regular messages
+# Prints regular messages
 function green_echo() {
   echo -e "\033[0;32m[Message] ${1}\033[0m"
 }
 
-# For prompts requiring user attention
+# Prints prompts requiring user attention
 function yellow_echo() {
   echo
   echo -e "\033[0;33m[Attention] ${1}\033[0m"
   echo
 }
 
-# For error prompts
+# Prints error prompts
 function red_echo() {
   echo
   echo -e "\033[0;31m[Fatal] ${1}\033[0m"
   echo
 }
 
+# Checks if the script is located in $DOT_DIR. Else, end the script
 function verify_script_dir() {
   script_dir=$( cd -- "$( dirname -- ${BASH_SOURCE[0]} )" &> /dev/null && pwd )
-  if [[ ${script_dir} != ${DOT_DIR} || ! -d ${DOT_DIR} ]]; then
+  if [[ "$script_dir" != "$DOT_DIR" ]]; then
     red_echo "${DOT_DIR} directory not found"
     exit 1
   fi
 }
 
-# $1 = Name of the related files, $2 command to be prompt when user selected yes
+# Prompts user yes/no for the installation of $1
 function selection_prompt() {
   yellow_echo "Would you like to install $1 related files?"
   read -p "y/n? > " -n1 -r REPLY # -p for prompt, -n1 for reading 1 character, -r for reading literally
   echo
-  if [[ ${REPLY} =~ ^[Yy]$ ]]; then
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
     green_echo "Deploying $1 related files..."
     true
   else
@@ -46,11 +47,13 @@ function selection_prompt() {
   fi
 }
 
-# $1 = Current location, $2 Target location
+# Creates a symlink for $1 at $2
+# If a file/dir already exists at $2, move to $DOT_BACKUP_DIR
+# E.g.: backup_then_symlink ~/dotfiles/i3/config ~/.config/i3/config
 function backup_then_symlink() {
-  if [[ -f $2 ]]; then
-    green_echo "Existing $2 will be moved to ${DOT_BACKUP_DIR}."
-    mkdir -p ${DOT_BACKUP_DIR}
+  if [[ -e $2 ]]; then
+    yellow_echo "Existing $2 will be moved to ${DOT_BACKUP_DIR}."
+    mkdir -p $DOT_BACKUP_DIR
     mv $2 ${DOT_BACKUP_DIR}/
   fi
   green_echo "Creating symlink for $1 at $2..."
@@ -59,6 +62,7 @@ function backup_then_symlink() {
 
 ########## INSTALL FUNCTIONS ##########
 
+# Installs cross-platform core utilities
 function install() {
   green_echo "
    _____ _              ___      _    __ _ _
@@ -68,10 +72,6 @@ function install() {
   "
 
   verify_script_dir
-
-  if selection_prompt 'Bash'; then # Do not use bracket around a function that returns command (which true/false are)
-    backup_then_symlink ${DOT_DIR}/bash/bashrc ~/.bashrc
-  fi
 
   if selection_prompt 'Doom'; then
     CURRENT_FILES=("init.el" "config.el" "packages.el")
@@ -87,8 +87,12 @@ function install() {
     for FILE in ${CURRENT_FILES[@]}; do
       backup_then_symlink ${DOT_DIR}/fish/${FILE} ~/.config/fish/${FILE}
     done
+    # Fish functions
+    CURRENT_FILES=("fish_prompt.fish")
     mkdir -p ~/.config/fish/functions/
-    backup_then_symlink ${DOT_DIR}/fish/functions/fish_prompt.fish ~/.config/fish/functions/fish_prompt.fish
+    for FILE in ${CURRENT_FILES[@]}; do
+      backup_then_symlink ${DOT_DIR}/fish/functions/${FILE} ~/.config/fish/functions/${FILE}
+    done
   fi
 
   if selection_prompt 'Git'; then
@@ -98,26 +102,12 @@ function install() {
     done
   fi
 
-  if selection_prompt 'IdeaVim'; then
-    backup_then_symlink ${DOT_DIR}/ideavim/ideavimrc ~/.ideavimrc
-  fi
-
-  if selection_prompt 'Kitty'; then
-    mkdir -p ~/.config/kitty/
-    backup_then_symlink ${DOT_DIR}/kitty/kitty.conf ~/.config/kitty/kitty.conf
-  fi
-
   if selection_prompt 'lf'; then
     CURRENT_FILES=('lfrc' 'icons')
     mkdir -p ~/.config/lf/
     for FILE in ${CURRENT_FILES[@]}; do
       backup_then_symlink ${DOT_DIR}/lf/${FILE} ~/.config/lf/${FILE}
     done
-  fi
-
-  if selection_prompt 'Neofetch'; then
-    mkdir -p ~/.config/neofetch/
-    backup_then_symlink ${DOT_DIR}/neofetch/config.conf ~/.config/neofetch/config.conf
   fi
 
   if selection_prompt 'Qutebrowser'; then
@@ -162,13 +152,14 @@ function install() {
   "
 }
 
+# Installs Homebrew formulae and runs macOS specific 
 function macos-install() {
   green_echo "Starting macOS specific installlation process..."
 
   verify_script_dir
 
-  if [[ "${OSTYPE}" != "darwin"* ]]; then
-    red_echo "Theo it seems like you are not rich enough to afford a MacBook. OSTYPE == ${OSTYPE}"
+  if [[ "$OSTYPE" != "darwin"* ]]; then
+    red_echo "You are not using macOS! OSTYPE == $OSTYPE"
     exit 1
   fi
 
@@ -177,13 +168,13 @@ function macos-install() {
   Some casks might not be compitable with non-macOS systems.
   Do you want to proceed?'
   if selection_prompt 'Homebrew Core'; then
-    #brew remove --force $(brew list --formula)
-    #brew remove --cask --force $(brew list)
+    # brew remove --force $(brew list --formula)
+    # brew remove --cask --force $(brew list)
     brew bundle --file ${DOT_DIR}/homebrew/Brewfile_core
   fi
 
   if selection_prompt 'macOS Settings'; then
-    ${DOT_DIR}/macos/macos-settings.sh
+    . "${DOT_DIR}/macos/macos-settings.sh"
   fi
 
   green_echo 'Homebrew Optional Formulae/Casks:
@@ -202,7 +193,7 @@ function i3_install() {
   verify_script_dir
 
   if [[ "${OSTYPE}" != "linux-gnu"* ]]; then
-    red_echo "Theo you are not using Linux and therefore you are uncool. OSTYPE == ${OSTYPE}"
+    red_echo "Theo you are not using Linux and therefore you are uncool. OSTYPE == $OSTYPE"
     exit 1
   fi
 
@@ -226,11 +217,13 @@ function i3_install() {
 
 ########## AUXILIARY FUNCTIONS ##########
 
+# Deletes $DOT_BACKUP_DIR directory
 function delete_backup() {
   yellow_echo "Deleting ${DOT_BACKUP_DIR}..."
-  rm -rf ${DOT_BACKUP_DIR}
+  rm -rf $DOT_BACKUP_DIR
 }
 
+# Prompts user and adds SSH host and user to ~/.ssh/config
 function add_ssh_shortcut() {
   mkdir -p ~/.ssh/
   [[ ! -e ~/.ssh/config ]] && touch ~/.ssh/config
@@ -240,12 +233,15 @@ function add_ssh_shortcut() {
   read host_url
   echo -n 'add_ssh_shortcut) Enter username for the host (e.g. good_student_69): '
   read username
-  echo "Host ${host_nickname}
-    Hostname ${host_url}
-    User ${username}" >> ~/.ssh/config
+  echo "Host $host_nickname
+    Hostname $host_url
+    User $username" >> ~/.ssh/config
   green_echo "${username}@${host_url} has been added to the SSH config! Try <ssh ${host_nickname}>."
 }
 
+# Installs font from the supplied URL to ~/.local/share/fonts
+# $1: URL of the font zip file to be installed
+#     It is highly recommended that the URL comes from https://nerdfonts.com/font-downloads
 function install_font() {
   if [[ ! $1 ]]; then red_echo 'Target URL is missing!'; exit 1; fi
   mkdir -p ~/.local/share/fonts
@@ -258,6 +254,7 @@ function install_font() {
   green_echo "A font from $1 successfully installed!"
 }
 
+# Prints help message about this script
 function help() {
   green_echo "
                     Dotfiles Utility Script Usage
@@ -270,7 +267,6 @@ function help() {
   args:
     --install             : Deploy configuration symlinks for cross-platform utilities
     --macos-install       : Deploy configuration symlinks for macOS and related utilities
-    --i3-install          : Deploy configuration symlinks for i3 WM and related utilities
     --delete-backup       : Delete $DOT_BACKUP_DIR
     --add-ssh-shortcut    : Add a new SSH shortcut at ~/.ssh/config
     --install-font <URL>  : wget a font file from URL (preferably from NERDFont website) and install it at ~/.local/share/fonts/
@@ -278,7 +274,8 @@ function help() {
 }
 
 ########### MAIN CALL HERE ##########
-#
+
+# Executes util functionalities based on the supplied flag ($1)
 function main() {
   case $1 in
     "--install")
@@ -286,9 +283,6 @@ function main() {
     ;;
     "--macos-install")
       macos-install
-    ;;
-    "--i3-install")
-      i3_install
     ;;
     "--delete-backup")
       delete_backup
