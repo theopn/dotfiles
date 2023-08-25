@@ -29,7 +29,7 @@ set foldmethod=marker foldlevel=0
 set wildmenu
 set spell spelllang=en_us spellsuggest=best,8
 try
-  let g:pastelcula_transparent=1
+  " let g:pastelcula_transparent=1
   colo pastelcula
 catch
   colo darkblue
@@ -48,7 +48,7 @@ inoremap {<CR> {<CR>}<ESC>ko<TAB>
 " Select all
 nnoremap <leader>a gg<S-v>G
 " Search
-nnoremap <leader>/ :let @/=''<CR>
+nnoremap <leader>/ :noh<CR>
 nnoremap n nzz
 nnoremap N Nzz
 " Copy and paste
