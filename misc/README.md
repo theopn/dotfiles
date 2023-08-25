@@ -7,7 +7,7 @@ Use the following commands to create symlink for these files
 ```bash
 ln -sf ~/dotfiles/misc/bashrc ~/.bashrc
 mkdir -p ~/.config/kitty && ln -sf ~/dotfiles/misc/kitty.conf ~/.config/kitty/kitty.conf
-mkdir -p ~/.config/neofetch && ln -sf ~/dotfiles/misc/neofetch.conf ~/.config/neofetch/neofetch.conf
+mkdir -p ~/.config/neofetch && ln -sf ~/dotfiles/misc/neofetch.conf ~/.config/neofetch/config.conf
 ln -sf ~/dotfiles/misc/ideavimrc ~/.ideavimrc
 ```
 
