@@ -59,7 +59,7 @@ sshf() {
 # Hub for updating bunch of stuff at once using fzf
 updater () {
   # Make list of things to update
-  stuff=('dotfiles'  'zsh plugins' 'doom emacs' 'theovim' 'hunted-tiles')
+  stuff=('dotfiles' 'zsh plugins' 'doom emacs' 'theovim')
   if [[ "${OSTYPE}" == "linux-gnu"* ]]; then
     stuff+=('dnf' 'flatpak')
   elif [[ "${OSTYPE}" == "darwin"* ]]; then
@@ -82,8 +82,6 @@ updater () {
         ~/.emacs.d/bin/doom upgrade ;;
       'theovim')
         cd ~/.config/nvim && git pull && cd - &> /dev/null ;;
-      'hunted-tiles')
-        cd ~/.config/hunted-tiles && git pull && cd - &> /dev/null ;;
       'homebrew')
         brew upgrade ;;
       'dnf')
