@@ -2,7 +2,7 @@
 
 > Collection of my configuration files. The reason why this README is so long is definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
-| ![macos-sc](./assets/2023-03-18-macos-rice-sc.jpg) |
+| ![macos-sc](./assets/macos-rice-sc.jpg) |
 |:--:|
 | macOS |
 
@@ -146,7 +146,7 @@ Keybindings are drastically different from stock bindings so use the `<C-a> ?` k
 
 > Focused note-taker
 
-Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), Vim is kept simple with Vimwiki plug-in.
+Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), Vim is kept minimal as my journal writer with the Vimwiki plug-in.
 
 - Config:
     - Handmade TabLine (buffer line) and StatusLine, sensible default settings, and handful of plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug), including [Vimwiki](https://github.com/vimwiki/vimwiki)
@@ -194,11 +194,12 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
     - `trash`, `trash_cd`, `trash_empty`, `trash_print`: trash related functions.
         The trash directory is located in `~/.theoshell/trash`. This directory will be used again for LF
     - `theoshell_plug <github-username>/<repo-name>`: installs Zsh plug-in from a GitHub repository (to `~/.theoshell/zsh-plugins`) and/or source it
+        - By default, zsh auto completion is installed
     - `theoshell_upgrade`: Upgrade all Zsh plug-ins in `~/.theoshell/zsh-plugins`
 
 ## Miscellaneous Configurations
 
-These are single-file, simple configurations that do not change very often.
+These are single-file, minimal configurations that do not change very often.
 These are meant to be manually deployed as needed.
 Use the commands in `./misc/README.md` to deploy these configurations.
 
@@ -225,7 +226,7 @@ Formulae:
 - **lf**: My favorite CLI file manager
 - **lua**
 - **neofetch**: Happy ricing!
-- **neovim**: Where I live.
+- **neovim**: Where I live
 - **node**
 - rclone: Cloud storage management
 - **rust**
