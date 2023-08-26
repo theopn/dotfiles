@@ -47,7 +47,40 @@ function numfiles -d "Count the number of file in the directory"
 end
 
 function updater -d "Place to update all the different stuff"
-  echo "what's up"
+  # Construct a lsit of stuff to update
+  set -l stuff 'dotfiles' 'doom emacs' 'theovim'
+  if [ $OSTYPE = 'Linux' ]
+    set -a stuff 'dnf' 'flatpak'
+  else if [ $OSTYPE = 'macOS' ]
+    set -a stuff 'homebrew'
+  end
+
+  while true
+    # Prompt user and check for C-c and no input
+    set selected $(printf "%s\n" $stuff | fzf \
+      --reverse --border=rounded --cycle --height=50% \
+      --header='[Updater] What are you updating today?')
+    [ -z $selected ]; and echo '[Updater] Ending the updater...'; and return
+
+    echo '[Updater] Updating' $selected '...'
+    switch $selected
+      case 'dotfiles'
+        cd ~/dotfiles/ && git pull && cd - &> /dev/null
+      case 'doom emacs'
+        ~/.emacs.d/bin/doom upgrade
+      case 'theovim'
+        cd ~/.config/nvim && git pull && cd - &> /dev/null
+      case 'dnf'
+        sudo dnf upgrade
+      case 'flatpak'
+        flatpak upgrade
+      case 'homebrew'
+        brew upgrade
+      case '*'
+        echo "[Updater] Error. Switch couldn't match anything -- this shoudln't happen"
+        return
+    end # End switch
+  end # End while true
 end
 
 
