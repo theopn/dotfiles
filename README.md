@@ -13,19 +13,19 @@
 Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
 MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin with i3 WM installed (Wayland is *almost* there).
 
-You are welcome to take inspiration from any files in this repository, but I do not take any responsibility for any of the contents of the configurations.
+You are welcome to take inspiration from any files in this repository, but I do not claim any responsibility for any of the contents of the configurations.
 **Read the code before you use it!**
 
 ## Installation
 
-- Configure cross-platform utilities using following commands:
+- Configure cross-platform utilities using the following commands:
     ```bash
     git clone https://github.com/theopn/dotfiles.git ~/dotfiles
     ~/dotfiles/dotfiles-util.sh --install
     ~/dotfiles/dotfiles-util.sh --delete-backup # Optional
     ```
 
-- Configure macOS-specific utilities and settings using following commands:
+- Configure macOS-specific utilities and settings using the following commands:
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew analytics off
@@ -33,12 +33,12 @@ You are welcome to take inspiration from any files in this repository, but I do 
     ~/dotfiles/dotfiles-util.sh --macos-install
     ```
 
-- Configure i3 WM and related utilities using following commands:
+- Configure i3 WM and related utilities using the following commands:
     ```bash
     ~/dotfiles/dotfiles-util.sh --i3-install
     ```
 
-- Choose configurations in `misc` directory and manually copy them! Follow the commands in `./misc/README.md`.
+- Choose configurations in the `misc` directory and manually copy them! Follow the commands in `./misc/README.md`.
 
 ### Install My Other Projects
 
@@ -100,11 +100,12 @@ Emacs is my to-do list, idea capture, knowledge databases, and tools for other [
 
 > Rich built-in features, questionable syntax
 
-It's the de-facto default shell that launches when Wezterm opens.
-It has a fantastic built-in auto-completion and stupidly fast asynchronous Git status, but I frankly don't like the syntax.
+It's the de facto default shell that launches when Wezterm opens.
+It has a fantastic built-in auto-completion and stupidly fast asynchronous Git status, but I cannot say I prefer the syntax over POSIX contrary to the popular opinion.
 Because it's not POSIX compatible, Zsh is my `$SHELL`.
 
-Config: It tries to mimic my Zsh setup but takes advantage of better built-in interactive functions
+Config: It is very similar to my Zsh setup but takes advantage of better built-in interactive functions
+
 
 ### Git
 
@@ -116,7 +117,7 @@ No comments.
 
 > My favorite terminal file manager
 
-When I see a CLI file manager with Vim keybindings and minimalistic feature set, I like it.
+When I see a CLI file manager with Vim keybindings and minimalistic feature set, I like it. I use it.
 
 - Usage:
     - `~` : Go to the home directory
@@ -146,13 +147,13 @@ Keybindings are drastically different from stock bindings so use the `<C-a> ?` k
 
 > Focused note-taker
 
-Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), Vim is kept minimal as my journal writer with the Vimwiki plug-in.
+Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), My Vimrc is kept minimal as my journal writer with the Vimwiki plug-in.
 
 - Config:
-    - Handmade TabLine (buffer line) and StatusLine, sensible default settings, and handful of plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug), including [Vimwiki](https://github.com/vimwiki/vimwiki)
+    - Handmade TabLine (buffer line) and StatusLine, sensible default settings, and a handful of plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug), including [Vimwiki](https://github.com/vimwiki/vimwiki)
     - `pastelcula.vim`, a custom [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included.
         Thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping his colorblind friend
-    - `:CD`: Change buffer working directory to the parent directory of the buffer
+    - `:CD`: Change the buffer working directory to the parent directory of the buffer
     - `:TrimWhitespace`: Remove all trailing whitespace
     - Reference the `vimrc` for the list of keybindings
 
@@ -194,7 +195,7 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
     - `trash`, `trash_cd`, `trash_empty`, `trash_print`: trash related functions.
         The trash directory is located in `~/.theoshell/trash`. This directory will be used again for LF
     - `theoshell_plug <github-username>/<repo-name>`: installs Zsh plug-in from a GitHub repository (to `~/.theoshell/zsh-plugins`) and/or source it
-        - By default, zsh auto completion is installed
+        - I only install [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete) by default
     - `theoshell_upgrade`: Upgrade all Zsh plug-ins in `~/.theoshell/zsh-plugins`
 
 ## Miscellaneous Configurations
@@ -203,10 +204,10 @@ These are single-file, minimal configurations that do not change very often.
 These are meant to be manually deployed as needed.
 Use the commands in `./misc/README.md` to deploy these configurations.
 
-- `bashrc`: I prioritize simplicity and performance, since zsh and Fish take care of my interactive uses and most of my scripts are written in Bash. Thus, my `.bashrc` is kept minimal with a simple prompt, some alases, and variables
-- `kitty.conf`: Kitty is my secondary terminal emulator. The configuration is kept minimal, since I always pair it up with Tmux
+- `bashrc`: I prioritize simplicity and performance since zsh and Fish take care of my interactive uses and most of my scripts are written in Bash. Thus, my `.bashrc` is kept minimal with a simple prompt, some aliases, and variables
+- `kitty.conf`: Kitty is my secondary terminal emulator. The configuration is kept minimal since I always pair it up with Tmux
 - `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
-- `neofetch.conf`: It includes a prompt inspried by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes)
+- `neofetch.conf`: It includes a prompt inspired by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes)
 
 ## macOS
 
@@ -245,10 +246,10 @@ Formulae:
 
 ### Settings
 
-Remove Dock unhide animation, add a Dock spacer, Finder hidden file, screenshot format and location, etc.
+Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, change screenshot format and location (I like having every temporary file in `~/Downloads/`), etc.
 
 ## Deprecated
 
-These are dotfiles that are no longer used, either because I do not use the utility or made a new configuration.
-Reference `./deprecated/README.md` for more information.
+These dotfiles are unused either because I stopped using the utility or developed a new configuration.
+Read `./deprecated/README.md` for more information.
 
