@@ -41,6 +41,18 @@ function mkcd -d "Create a directory and set CWD"
   end
 end
 
+function note -d "A place to quickly write something down"
+  set -l note "$CACHE_DIR/quick-note.md"
+  if [ ! -e $note ]
+    echo "# Quick Note
+
+> A place to quickly write something down.
+> Theo, please do not store info here long-term
+> Move to other sources like Org-roam" > $note
+  end
+  nvim $note
+end
+
 function numfiles -d "Count the number of file in the directory"
   set -l num $(ls -A $argv | wc -l)
   [ -n $num ]; and echo "$num files in $argv"
@@ -81,10 +93,5 @@ function updater -d "Place to update all the different stuff"
         return
     end # End switch
   end # End while true
-end
-
-
-function note -d "Quick note"
-  
 end
 
