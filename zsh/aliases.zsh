@@ -10,7 +10,6 @@ alias weather="curl 'https://wttr.in'"
 alias l1="cd \"$CACHE_DIR\""
 alias dw="vim \"${DAILY_WRITING_DIR}/index.md\""
 alias dot="cd \"$DOT_DIR\""
-alias note="nvim \"$CAPTURE_PATH\""
 
 ########## Small Functions ##########
 
@@ -43,6 +42,19 @@ tarmake() { tar -czvf ${1}.tar.gz $1 }
 tarunmake() { tar -zxvf $1 }
 
 ########## Big Functions ###########
+
+# A place to quickly write something down
+note() {
+  note="$QUICK_NOTE_PATH"
+  if [[ ! -e $note ]]; then
+    echo "# Quick Note
+
+> A place to quickly write something down.
+> Theo, please do not store info here long-term
+> Move to other sources like Org-roam" > $note
+  fi
+  nvim $note
+}
 
 # Using fzf to prompt hosts in ~/.ssh/config
 sshf() {

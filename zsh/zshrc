@@ -20,7 +20,7 @@ export CLOUD_DIR=~/My\ Drive
 export CACHE_DIR=~/My\ Drive/l1-cache
 export DOT_DIR=~/dotfiles
 
-export CAPTURE_PATH="${CACHE_DIR}/capture.md"
+export QUICK_NOTE_PATH="${CACHE_DIR}/quick-note.md"
 export DAILY_WRITING_DIR="${CACHE_DIR}/dw-$(date +'%Y')"
 
 # Sourcing
