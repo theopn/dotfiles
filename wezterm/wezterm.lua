@@ -28,7 +28,7 @@ config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
 config.scrollback_lines = 3000
-config.default_workspace = "home"
+config.default_workspace = "main"
 
 -- Dim inactive panes
 config.inactive_pane_hsb = {
@@ -120,17 +120,24 @@ config.key_tables = {
 config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
 config.tab_bar_at_bottom = false
-wezterm.on("update-right-status", function(window, pane)
+wezterm.on("update-status", function(window, pane)
   -- Workspace name
   local stat = window:active_workspace()
+  local stat_color = "#f7768e"
   -- It's a little silly to have workspace name all the time
   -- Utilize this to display LDR or current key table name
-  if window:active_key_table() then stat = window:active_key_table() end
-  if window:leader_is_active() then stat = "LDR" end
+  if window:active_key_table() then
+    stat = window:active_key_table()
+    stat_color = "#7dcfff"
+  end
+  if window:leader_is_active() then
+    stat = "LDR"
+    stat_color = "#bb9af7"
+  end
 
   -- Current working directory
   local basename = function(s)
-    -- Nothign a little regex can't fix
+    -- Nothing a little regex can't fix
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
   end
   -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l). Not a big deal, but check in case
@@ -143,20 +150,26 @@ wezterm.on("update-right-status", function(window, pane)
   -- Time
   local time = wezterm.strftime("%H:%M")
 
-  -- Let's add color to one of the components
+  -- Left status (left of the tab line)
+  window:set_left_status(wezterm.format({
+    { Foreground = { Color = stat_color } },
+    { Text = "  " },
+    { Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
+    { Text = " |" },
+  }))
+
+  -- Right status
   window:set_right_status(wezterm.format({
     -- Wezterm has a built-in nerd fonts
     -- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
-    { Text = wezterm.nerdfonts.oct_table .. "  " .. stat },
-    { Text = " | " },
     { Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
     { Text = " | " },
-    { Foreground = { Color = "FFB86C" } },
+    { Foreground = { Color = "#e0af68" } },
     { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
     "ResetAttributes",
     { Text = " | " },
     { Text = wezterm.nerdfonts.md_clock .. "  " .. time },
-    { Text = " |" },
+    { Text = "  " },
   }))
 end)
 
