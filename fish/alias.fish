@@ -42,7 +42,7 @@ function mkcd -d "Create a directory and set CWD"
 end
 
 function note -d "A place to quickly write something down"
-  set -l note "$CACHE_DIR/quick-note.md"
+  set -l note "$QUICK_NOTE_PATH"
   if [ ! -e $note ]
     echo "# Quick Note
 

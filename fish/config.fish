@@ -17,7 +17,7 @@ set -gx CACHE_DIR "$HOME/My Drive/l1-cache"
 set -gx CLOUD_DIR "$HOME/My Drive"
 set -gx DOT_DIR ~/dotfiles
 
-set -gx CAPTURE_PATH "$CACHE_DIR/capture.md"
+set -gx QUICK_NOTE_PATH "$CACHE_DIR/quick-note.md"
 set -gx DAILY_WRITING_DIR "$CACHE_DIR/dw-$(date +'%Y')"
 
 switch $(uname)
