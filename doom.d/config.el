@@ -36,7 +36,8 @@
       user-mail-address "no.email.for.you@theo.com")
 
 ;; Apperance
-(setq doom-theme 'doom-dracula) ; `doom-theme' or `load-theme'
+;;(setq doom-theme 'doom-gruvbox) ; `doom-theme' or `load-theme'
+(setq doom-theme 'doom-tokyo-night) ; `doom-theme' or `load-theme'
 ;; `doom-big-font' may be used for presentation
 (setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13) ; `describe-font', `eval-region', `doom/reload-font'
       doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13)) ; non-monospace font
@@ -52,8 +53,15 @@
 (setq display-time-day-and-date t ; Date on the modeline
       display-time-24hr-format t) ; 24 hour
 
-(set-frame-parameter (selected-frame) 'alpha '(90 90)) ; Transparency
-(add-to-list 'default-frame-alist '(alpha 90 90)) ; ^
+;;(set-frame-parameter nil 'alpha-background 70)
+;;(add-to-list 'default-frame-alist '(alpha-background . 70))
+(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
+(add-to-list 'default-frame-alist '(alpha . (85 . 50)))
+(defun on-after-init ()
+  (unless (display-graphic-p (selected-frame))
+    (set-face-background 'default "unspecified-bg" (selected-frame))))
+
+(add-hook 'window-setup-hook 'on-after-init)
 
 ;; File editing
 (setq tab-width 2) ; 2 character as tab

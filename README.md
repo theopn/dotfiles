@@ -6,9 +6,9 @@
 |:--:|
 | macOS |
 
-| ![fedora-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/main/assets/i3-sc.png) |
+| ![fedora-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/main/assets/sway-sc.png) |
 |:--:|
-| Fedora w/ i3 WM |
+| Fedora w/ Sway WM |
 
 Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
 MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin with i3 WM installed (Wayland is *almost* there).
