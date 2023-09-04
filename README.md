@@ -13,7 +13,8 @@
 Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
 MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin with i3 WM installed (Wayland is *almost* there).
 
-You are welcome to take inspiration from any files in this repository, but I do not claim any responsibility for any of the contents of the configurations.
+Tools in this repository are mostly open-source utilities for development.
+You are welcome to take inspiration from any files in this repository, but I do not claim any responsibility for any of the contents of the configurations (licensed under the MIT License).
 **Read the code before you use it!**
 
 ## Installation
@@ -309,4 +310,15 @@ Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, ch
 
 These dotfiles are unused either because I stopped using the utility or developed a new configuration.
 Read `./deprecated/README.md` for more information.
+
+## Credits
+
+- The macOS wallpaper is by [arsenicxs](https://www.deviantart.com/arsenixc/art/Tokyo-Street-Night-684804497)
+- [hb's dotfiles](https://github.com/hbthen3rd/dotfiles) and [FelixKratz's dotfiles](https://github.com/FelixKratz/dotfiles) (the creator of Sketchybar) inspired my Sketchybar looks
+- Other than that, all of the config/code is mine.
+    - I do not like using code that I don't understand, especially in my day-to-day development environment.
+        I try to understand and rewrite configurations on my own
+    - I give credit to all the amazing developers and the open-source community who developed all these tools I rely on every day and wrote documentation for them
+    - I also need to thank people in communities like [Dotfyle](https://dotfyle.com/) and [r/unixporn](https://www.reddit.com/r/unixporn/) who share their dotfiles that indirectly helped/inspired me
+    - If you have any questions, concerns, or suggestions, do not hesitate to let me know through issues or PR!
 
