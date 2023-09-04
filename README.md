@@ -78,23 +78,7 @@ You are welcome to take inspiration from any files in this repository, but I do 
     brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-font
     ```
 
-## Highlights
-
-### Doom Emacs
-
-> Good OS, mediocre text editor even with Evil mode
-
-Emacs is my to-do list, idea capture, knowledge databases, and tools for other [Second Brain](https://fortelabs.com/blog/basboverview/) functionalities.
-
-- Usage:
-    - All the stock Emacs + Evil mode keybindings
-    - `C-c a`: Org Agenda
-    - `C-c c`: Org Capture
-    - `C-c o`: Display Org file outline using `occur`
-    - `C-c f`: Find Org-roam node
-    - `C-c i`: Insert Org-roam node
-    - `C-c r b`: List all Org-roam references in the current buffer
-    - `C-c r r`: Sync Org-roam database
+## Shells
 
 ### Fish
 
@@ -106,56 +90,30 @@ Because it's not POSIX compatible, Zsh is my `$SHELL`.
 
 Config: It is very similar to my Zsh setup but takes advantage of better built-in interactive functions
 
+### Zsh
 
-### Git
-
-> Thanks Linus
-
-No comments.
-
-### lf
-
-> My favorite terminal file manager
-
-When I see a CLI file manager with Vim keybindings and minimalistic feature set, I like it. I use it.
+> The shell
 
 - Usage:
-    - `~` : Go to the home directory
-    - `ee`: Open a file in `$EDITOR`
-    - `ec`: You choose what editor you want to open a file in
-    - `DD`: Move a file to `~/.theoshell/trash` (it integrates with my Zsh trash functions)
-    - `gs`: [g]it [s]tatus
-    - `md`: mkdir
-    - `mf`: Open a file with the supplied name in Neovim
-    - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
-    - `mo`: chmod
-    - `sh`: Launch `$SHELL` at the current directory
+    - Prompt:
+        ```
+        [vi-mode]` ➜ /current/path/ git-branch(* for unstaged, + for staged changes) | last-exit-code ❱
+        ```
+    - Basic aliases: `cdf` to navigate directories quickly using `fzf`,
+        `cl` to `clear`, `l` to `ls` with list view and other options, `histgrep` to look up previous commands
+    - `trash`, `trash_cd`, `trash_empty`, `trash_print`: trash related functions.
+        The trash directory is located in `~/.theoshell/trash`. This directory will be used again for LF
+    - `theoshell_plug <github-username>/<repo-name>`: installs Zsh plug-in from a GitHub repository (to `~/.theoshell/zsh-plugins`) and/or source it
+        - I only install [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete) by default
+    - `theoshell_upgrade`: Upgrade all Zsh plug-ins in `~/.theoshell/zsh-plugins`
 
-### TODO Qutebrowser
-
-> Modern keyboard-based browser
-
-It's based on the Chromium engine, uses Vim keybindings, and is configured through Python. What more can I ask?
+## Terminal Emulators and Multiplxers
 
 ### TODO tmux -- Add list of keybindings
 
 > Actual terminal emulator
 
 Keybindings are drastically different from stock bindings so use the `<C-a> ?` key to read the help documentation. Statusbar with various information without using any external plugins.
-
-### Vim
-
-> Focused note-taker
-
-Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), My Vimrc is kept minimal as my journal writer with the Vimwiki plug-in.
-
-- Config:
-    - Handmade TabLine (buffer line) and StatusLine, sensible default settings, and a handful of plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug), including [Vimwiki](https://github.com/vimwiki/vimwiki)
-    - `pastelcula.vim`, a custom [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included.
-        Thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping his colorblind friend
-    - `:CD`: Change the buffer working directory to the parent directory of the buffer
-    - `:TrimWhitespace`: Remove all trailing whitespace
-    - Reference the `vimrc` for the list of keybindings
 
 ### Wezterm
 
@@ -181,22 +139,71 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
     - `LDR w`: Workspace launcher
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
 
-### Zsh
+## Text Editors (besides Neovim)
 
-> The shell
+### Doom Emacs
+
+> Good OS, mediocre text editor even with Evil mode
+
+Emacs is my to-do list, idea capture, knowledge databases, and tools for other [Second Brain](https://fortelabs.com/blog/basboverview/) functionalities.
 
 - Usage:
-    - Prompt:
-        ```
-        [vi-mode]` ➜ /current/path/ git-branch(* for unstaged, + for staged changes) | last-exit-code ❱
-        ```
-    - Basic aliases: `cdf` to navigate directories quickly using `fzf`,
-        `cl` to `clear`, `l` to `ls` with list view and other options, `histgrep` to look up previous commands
-    - `trash`, `trash_cd`, `trash_empty`, `trash_print`: trash related functions.
-        The trash directory is located in `~/.theoshell/trash`. This directory will be used again for LF
-    - `theoshell_plug <github-username>/<repo-name>`: installs Zsh plug-in from a GitHub repository (to `~/.theoshell/zsh-plugins`) and/or source it
-        - I only install [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete) by default
-    - `theoshell_upgrade`: Upgrade all Zsh plug-ins in `~/.theoshell/zsh-plugins`
+    - All the stock Emacs + Evil mode keybindings
+    - `C-c a`: Org Agenda
+    - `C-c c`: Org Capture
+    - `C-c o`: Display Org file outline using `occur`
+    - `C-c f`: Find Org-roam node
+    - `C-c i`: Insert Org-roam node
+    - `C-c r b`: List all Org-roam references in the current buffer
+    - `C-c r r`: Sync Org-roam database
+
+### Vim
+
+> Focused note-taker
+
+Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), My Vimrc is kept minimal as my journal writer with the Vimwiki plug-in.
+
+- Config:
+    - Handmade TabLine (buffer line) and StatusLine, sensible default settings, and a handful of plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug), including [Vimwiki](https://github.com/vimwiki/vimwiki)
+    - `pastelcula.vim`, a custom [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included.
+        Thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping his colorblind friend
+    - `:CD`: Change the buffer working directory to the parent directory of the buffer
+    - `:TrimWhitespace`: Remove all trailing whitespace
+    - Reference the `vimrc` for the list of keybindings
+
+## File Manager
+
+### lf
+
+> My favorite terminal file manager
+
+When I see a CLI file manager with Vim keybindings and minimalistic feature set, I like it. I use it.
+
+- Usage:
+    - `~` : Go to the home directory
+    - `ee`: Open a file in `$EDITOR`
+    - `ec`: You choose what editor you want to open a file in
+    - `DD`: Move a file to `~/.theoshell/trash` (it integrates with my Zsh trash functions)
+    - `gs`: [g]it [s]tatus
+    - `md`: mkdir
+    - `mf`: Open a file with the supplied name in Neovim
+    - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
+    - `mo`: chmod
+    - `sh`: Launch `$SHELL` at the current directory
+
+## Other Tools
+
+### Git
+
+> Thanks Linus
+
+No comments.
+
+### TODO Qutebrowser
+
+> Modern keyboard-based browser
+
+It's based on the Chromium engine, uses Vim keybindings, and is configured through Python. What more can I ask?
 
 ## Miscellaneous Configurations
 
@@ -204,10 +211,32 @@ These are single-file, minimal configurations that do not change very often.
 These are meant to be manually deployed as needed.
 Use the commands in `./misc/README.md` to deploy these configurations.
 
-- `bashrc`: I prioritize simplicity and performance since zsh and Fish take care of my interactive uses and most of my scripts are written in Bash. Thus, my `.bashrc` is kept minimal with a simple prompt, some aliases, and variables
+- `bashrc`: I prioritize simplicity and performance since zsh and Fish take care of my interactive uses and most of my scripts are written in Bash.
+    Thus, my `.bashrc` is kept minimal with a simple prompt, some aliases, and variables
 - `kitty.conf`: Kitty is my secondary terminal emulator. The configuration is kept minimal since I always pair it up with Tmux
 - `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
 - `neofetch.conf`: It includes a prompt inspired by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes)
+
+## macOS Tiling WM Setup -- Yabai, Skhd, Sketchybar
+
+These three tools are used to 
+
+Keybindings:
+
+- `alt`/`opt` key is the modifier
+- `mod + ret`: Open Wezterm
+- `mod + hjkl`: Navigate 
+
+Yabai is a fantastic tool, but 
+
+- Layout not persisting after exiting Firefox full screen video play
+- Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
+- Emacs not tiling (even with `(menu-bar-mode t)`)
+- Kitty with window decoration removed not tiling
+- (with border color and blur on) lag
+- (with border color and blur on) cursor not changing for resizing
+- Being unable to delete a Mission Control desktop with Yabai running
+- High CPU usage of `WindowServer`
 
 ## macOS
 
