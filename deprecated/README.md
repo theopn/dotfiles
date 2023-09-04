@@ -14,9 +14,3 @@ It's the best CLI email client.
 But that doesn't say a lot these days where all emails are essentially embedded HTML websites.
 Even with `w3m` integration, I found myself not using Mutt at all as I always have Thunderbird open on my computer.
 
-## Skhd & Yabai
-
-Trying to use a fully featured tiling WM emulator in macOS is like having a chihuahua and a grumpy cat in the same house (and yes, I have done that).
-They constantly argue about who should take priority, and I am tired of window layout breaking and disrupting my workflow (I also noticed slightly high CPU usage when using Yabai).
-I wish I can disable Quartz and give Yabai full control, but for now, I will have to settle for Raycast's "Maximize," "Left Half," and "First Two Thirds" commands.
-
