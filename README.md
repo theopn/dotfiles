@@ -219,21 +219,48 @@ Use the commands in `./misc/README.md` to deploy these configurations.
 
 ## macOS Tiling WM Setup -- Yabai, Skhd, Sketchybar
 
-These three tools are used to 
+I use these three tools to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
+
+To install, first, modify the macOS settings as follows:
+
+- "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
+- "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
+- Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Skhd for this, it requires disabling SIP)
+    - Create 4 Mission Control desktops
+    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n"
+    - Set the shortcut to `^n` (`Ctrl n`)
+    - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
+
+Install Yabai, Skhd, and Sketchybar:
+
+```bash
+brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai FelixKratz/formulae/sketchybar
+```
+
+Start the Skhd:
+
+```bash
+skhd --start-service
+```
+
+Use `ctrl + alt - s` keybinding (ctrl + opt + s) to start sketchybar and Yabai.
+Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
 
 Keybindings:
 
-- `alt`/`opt` key is the modifier
+- The `alt`/`opt` key is the modifier
 - `mod + ret`: Open Wezterm
-- `mod + hjkl`: Navigate 
+- `mod + hjkl`: Navigate windows
+- `mod + f`: Toggle fullscreen
 
-Yabai is a fantastic tool, but 
+Yabai is a fantastic tool, but because it's running on top of the macOS default WM, there are limitations.
+Here are some bugs I encountered, all to blame Apple for not letting users change the default WM.
 
-- Layout not persisting after exiting Firefox full screen video play
+- Layout not persisting after exiting a full-screen video play in Firefox
 - Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
 - Emacs not tiling (even with `(menu-bar-mode t)`)
 - Kitty with window decoration removed not tiling
-- (with border color and blur on) lag
+- (with border color and blur on) lagging
 - (with border color and blur on) cursor not changing for resizing
 - Being unable to delete a Mission Control desktop with Yabai running
 - High CPU usage of `WindowServer`
