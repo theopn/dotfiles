@@ -1,3 +1,4 @@
+
 # figlet -f avatar lf
 #  _     _____
 # / \   /    /
@@ -8,7 +9,7 @@
 # Official Document: https://pkg.go.dev/github.com/gokcehan/lf
 
 # Like vim settings, put no in front ot the arrtibute to negate
-set drawbox
+set nodrawbox
 set hidden
 set icons
 set ignorecase
