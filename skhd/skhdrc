@@ -1,0 +1,49 @@
+#      _    _
+#     | |  | |       |
+#  ,  | |  | |     __|
+# / \_|/_) |/ \   /  |
+#  \/ | \_/|   |_/\_/|_/
+
+# Applications
+alt - return : open -a Wezterm
+
+# Changing window focus
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+# Modifying window size
+alt - f : yabai -m window --toggle zoom-fullscreen
+alt - e : yabai -m space --balance
+
+# Rotating layouts
+shift + alt - r : yabai -m space --rotate 270
+shift + alt - y : yabai -m space --mirror y-axis
+shift + alt - x : yabai -m space --mirror x-axis
+shift + alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# Swapping window
+shift + alt - j : yabai -m window --swap south
+shift + alt - k : yabai -m window --swap north
+shift + alt - h : yabai -m window --swap west
+shift + alt - l : yabai -m window --swap east
+# Move window and tile with what already there
+ctrl + alt - j : yabai -m window --warp south
+ctrl + alt - k : yabai -m window --warp north
+ctrl + alt - h : yabai -m window --warp west
+ctrl + alt - l : yabai -m window --warp east
+
+# Moving window to ws
+shift + alt - 1 : yabai -m window --space 1 # ; yabai -m space --focus 1 -- requires disabling SIP
+shift + alt - 2 : yabai -m window --space 2
+shift + alt - 3 : yabai -m window --space 3
+shift + alt - 4 : yabai -m window --space 4
+shift + alt - 5 : yabai -m window --space 5
+shift + alt - 6 : yabai -m window --space 6
+shift + alt - 7 : yabai -m window --space 7
+
+# Turning Yabai related stuff on and off
+ctrl + alt - q : yabai --stop-service; brew services stop sketchybar
+ctrl + alt - s : yabai --start-service; brew services start sketchybar
+

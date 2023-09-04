@@ -1,0 +1,205 @@
+#      _                _           _
+#     | |              | |         | |
+#  ,  | |   _ _|_  __  | |         | |   __,   ,_
+# / \_|/_) |/  |  /    |/ \   |   ||/ \_/  |  /  |
+#  \/ | \_/|__/|_/\___/|   |_/ \_/|/\_/ \_/|_/   |_/
+#                                /|
+#                                \|
+# figlet -f script sketchybar
+#
+# sketchybar --reload
+
+source "$CONFIG_DIR/colors.sh"
+source "$CONFIG_DIR/icons.sh"
+
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+
+FONT="CaskaydiaCove Nerd Font"
+PADDING_L=5
+PADDING_R=5
+RADIUS=7
+HEIGHT=30
+
+##### Bar Appearance #####
+# https://felixkratz.github.io/SketchyBar/config/bar
+bar=(
+  color=$COLOR_TRANSPARENT
+  position=top
+  height=$HEIGHT              # Bar height
+  margin=7                    # Overall margin around the bar
+  y_offset=5                  # Space b/w top of the screen and the bar
+  corner_radius=$RADIUS       # Bar corner radius
+  border_width=0              # 0 for no border
+  blur_radius=0               # 0 for the full transparency
+  padding_left=$PADDING_L
+  padding_right=$PADDING_R
+  topmost=off                 # Draw the bar over a window and the stock menubar
+  #sticky=on                   # Bar stays on when changing workspace
+)
+
+sketchybar --bar "${bar[@]}"
+
+##### Changing Defaults #####
+# https://felixkratz.github.io/SketchyBar/config/items
+default=(
+  padding_left=$PADDING_L
+  padding_right=$PADDING_R
+
+  background.color=$COLOR_BACKGROUND
+  background.border_color=$COLOR_BLUE
+  background.border_width=0
+  background.corner_radius=$RADIUS
+  background.height=$HEIGHT
+  background.drawing=off
+
+  icon.font="$FONT:Regular:14.24"
+  icon.color=$COLOR_FOREGROUND
+  icon.highlight_color=$COLOR_PURPLE
+  icon.padding_left=$PADDING_L
+  icon.padding_right=$PADDING_R
+  icon.drawing=on
+
+  label.font="$FONT:Regular:14.24"
+  label.color=$COLOR_FOREGROUND
+  label.highlight_color=$COLOR_PURPLE
+  label.padding_left=$PADDING_L
+  label.padding_right=$PADDING_R
+  label.drawing=on
+)
+
+sketchybar --default "${default[@]}"
+
+##### Adding Left Items #####
+
+# Simple pop-up menu
+sketchybar --add item command.logo left                                                                     \
+           --set      command.logo background.color=$COLOR_BACKGROUND                                       \
+                                   icon=$ICON_CAT                                                           \
+                                   icon.color=$COLOR_RED                                                    \
+                                   icon.padding_left=$PADDING_L                                             \
+                                   icon.padding_right=$PADDING_R                                            \
+                                   padding_left=0                                                           \
+                                   label.drawing=off                                                        \
+                                   click_script="sketchybar -m --set \$NAME popup.drawing=toggle"           \
+                                   popup.height=$HEIGHT                                                     \
+                                   popup.background.color=$COLOR_BACKGROUND                                 \
+                                   popup.background.border_width=2                                          \
+                                   popup.background.corner_radius=12                                        \
+                                   popup.background.border_color=$COLOR_BACKGROUND                          \
+                                                                                                            \
+           --add item command.preferences popup.command.logo                                                \
+           --set      command.preferences icon=$ICON_SETTINGS                                               \
+                                          icon.color=$COLOR_BLUE                                            \
+                                          icon.padding_left=4                                               \
+                                          icon.padding_right=2                                              \
+                                          label="System Preferences"                                        \
+                                          label.color=$COLOR_FOREGROUND                                     \
+                                          label.padding_left=2                                              \
+                                          label.padding_right=4                                             \
+                                          click_script="open -a 'System Preferences';
+                                                        sketchybar -m --set command.logo popup.drawing=off" \
+           --add item command.activity popup.command.logo                                                   \
+           --set      command.activity icon=$ICON_TASKMANAGER                                               \
+                                       icon.color=$COLOR_RED                                                \
+                                       icon.padding_left=4                                                  \
+                                       icon.padding_right=2                                                 \
+                                       label="Activity Monitor"                                             \
+                                       label.color=$COLOR_FOREGROUND                                        \
+                                       label.padding_left=2                                                 \
+                                       label.padding_right=4                                                \
+                                       click_script="open -a 'Activity Monitor';
+                                                     sketchybar -m --set command.logo popup.drawing=off"
+
+# Add separator. Adjust the length by turning icon/label on/off (built-in paddings)
+sketchybar --add item seperator.l1 left                   \
+           --set      seperator.l1 padding_left=0         \
+                                   padding_right=0        \
+                                   background.drawing=off \
+                                   icon.drawing=off       \
+                                   label.drawing=off
+
+# Mission control items
+SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7")
+SPACE_LABELS=("$ICON_PRODUCTIVITY" "$ICON_DEV" "$ICON_WEB" "$ICON_CHAT" "" "" "")
+
+# Border will be drawn to current WS only
+for i in "${!SPACE_ICONS[@]}"
+do
+  sid=$(($i+1))
+  sketchybar --add space space.$sid left                                 \
+             --set space.$sid associated_space=$sid                      \
+                              icon=${SPACE_ICONS[i]}                     \
+                              label=${SPACE_LABELS[i]}                   \
+                              background.border_width=1                  \
+                              script="$PLUGIN_DIR/space.sh" # Highlights the current ws
+done
+
+# Group all spaces together
+sketchybar --add bracket spaces '/space\..*/'                      \
+           --set         spaces background.color=$COLOR_BACKGROUND \
+                                background.drawing=on
+
+# Separator
+sketchybar --add item seperator.l2 left                   \
+           --set      seperator.l2 padding_left=4         \
+                                   padding_right=4        \
+                                   background.drawing=off \
+                                   icon.drawing=off       \
+                                   label.drawing=off
+
+# Current app
+sketchybar --add item space_separator left                         \
+           --set space_separator icon=                            \
+                                 icon.padding_right=0              \
+                                 label.drawing=off                 \
+                                                                   \
+           --add item front_app left                               \
+           --set front_app       script="$PLUGIN_DIR/front_app.sh" \
+                                 label.padding_left=0              \
+                                 icon.drawing=off                  \
+           --subscribe front_app front_app_switched
+
+# Group the separator and app name together
+sketchybar --add bracket curr_app space_separator front_app          \
+           --set         curr_app background.color=$COLOR_BACKGROUND \
+                                  background.drawing=on
+
+##### Adding Right Items #####
+
+sketchybar --add item clock right                              \
+           --set clock   update_freq=10                        \
+                         icon=                                \
+                         script="$PLUGIN_DIR/clock.sh"         \
+                                                               \
+           --add item wifi right                               \
+           --set wifi    script="$PLUGIN_DIR/wifi.sh"          \
+                         icon=                                \
+           --subscribe wifi wifi_change
+
+sketchybar --add bracket one clock wifi \
+           --set         one background.color=$COLOR_BACKGROUND \
+                                  background.drawing=on
+
+# Separator
+sketchybar --add item seperator.r2 right                  \
+           --set      seperator.r2 padding_left=4         \
+                                   padding_right=4        \
+                                   background.drawing=off \
+                                   icon.drawing=off       \
+                                   label.drawing=off
+
+sketchybar --add item volume right                             \
+           --set volume  script="$PLUGIN_DIR/volume.sh"        \
+           --subscribe volume volume_change                    \
+                                                               \
+           --add item battery right                            \
+           --set battery script="$PLUGIN_DIR/battery.sh"       \
+                         update_freq=120                       \
+           --subscribe battery system_woke power_source_change
+
+sketchybar --add bracket two volume battery \
+           --set         two background.color=$COLOR_BACKGROUND \
+                                  background.drawing=on
+
+##### Finalizing Setup #####
+sketchybar --update

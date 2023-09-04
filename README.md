@@ -33,10 +33,11 @@ You are welcome to take inspiration from any files in this repository, but I do 
     ~/dotfiles/dotfiles-util.sh --macos-install
     ```
 
-- Configure i3 WM and related utilities using the following commands:
+- Configure Yabai, Skhd, and Sketchybar for macOS tiling WM setup using the following commands:
     ```bash
-    ~/dotfiles/dotfiles-util.sh --i3-install
+    ~/dotfiles/dotfiles-util.sh --yabai-install
     ```
+    Don't forget to follow the further instructions in [the macOS tiling WM section](#macos-tiling-wm-setup)
 
 - Choose configurations in the `misc` directory and manually copy them! Follow the commands in `./misc/README.md`.
 
@@ -217,9 +218,9 @@ Use the commands in `./misc/README.md` to deploy these configurations.
 - `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
 - `neofetch.conf`: It includes a prompt inspired by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes)
 
-## macOS Tiling WM Setup -- Yabai, Skhd, Sketchybar
+## macOS Tiling WM Setup
 
-I use these three tools to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
+I use these [Yabai](https://github.com/koekeishiya/yabai), [Skhd](https://github.com/koekeishiya/skhd), and [Sketchybar](https://github.com/FelixKratz/SketchyBar) to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
 
 To install, first, modify the macOS settings as follows:
 
@@ -260,8 +261,8 @@ Here are some bugs I encountered, all to blame Apple for not letting users chang
 - Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
 - Emacs not tiling (even with `(menu-bar-mode t)`)
 - Kitty with window decoration removed not tiling
-- (with border color and blur on) lagging
-- (with border color and blur on) cursor not changing for resizing
+- (with border color and blur on) lagging when switching focus
+- (with a border width greater than 4) cursor not changing for resizing
 - Being unable to delete a Mission Control desktop with Yabai running
 - High CPU usage of `WindowServer`
 
