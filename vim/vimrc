@@ -92,13 +92,17 @@ inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
 " }}}
 
 " {{{ Commends
+command CD :lcd %:h
+fun! SeparateCurrLineByPeriod()
+  keeppatterns s/\. /.\r/gec
+endfun
+command SeparateCurrLineByPeriod call SeparateCurrLineByPeriod()
 fun! TrimWhitespace()
   let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
+  keeppatterns %s/\s\+$//ec
   call winrestview(l:save)
 endfun
 command TrimWhiespace call TrimWhitespace()
-command CD :lcd %:h
 " }}}
 
 " {{{ Statusline
@@ -269,23 +273,3 @@ let g:pets_garden_height = 10
 let g:pets_default_pet = 'cat'
 " }}}
 
-
-" split automatically if window doesn't exist
-function! WinMove(key)
-  let t:curwin = winnr()
-  exec "wincmd ".a:key
-  if (t:curwin == winnr()) "we haven't moved
-    if (match(a:key,'[jk]')+1) "we want to go up/down
-      wincmd s
-    elseif (match(a:key,'[hl]')+1) "we want to go left/right
-      wincmd v
-    endif
-    exec "wincmd ".a:key
-  endif
-endfunction
-
-""remap our split keys
-map <C-h> :call WinMove('h')<cr>
-map <C-k> :call WinMove('k')<cr>
-map <C-l> :call WinMove('l')<cr>
-map <C-j> :call WinMove('j')<cr>
