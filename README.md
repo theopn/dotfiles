@@ -228,9 +228,9 @@ To install, first, modify the macOS settings as follows:
 - "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
 - "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
 - Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Skhd for this, it requires disabling SIP)
-    - Create 4 Mission Control desktops
-    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n"
-    - Set the shortcut to `^n` (`Ctrl n`)
+    - Create 5 Mission Control desktops
+    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 5)
+    - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
     - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
 
 Install Yabai, Skhd, and Sketchybar:
@@ -250,7 +250,7 @@ Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
 
 Keybindings:
 
-- The `alt`/`opt` key is the modifier
+- The `opt`/`alt` (`⌥`) key is the modifier
 - `mod + ret`: Open Wezterm
 - `mod + hjkl`: Navigate windows
 - `mod + f`: Toggle fullscreen

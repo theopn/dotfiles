@@ -120,7 +120,7 @@ sketchybar --add item seperator.l1 left                   \
 
 # Mission control items
 SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7")
-SPACE_LABELS=("$ICON_PRODUCTIVITY" "$ICON_DEV" "$ICON_WEB" "$ICON_CHAT" "" "" "")
+SPACE_LABELS=("$ICON_PRODUCTIVITY" "$ICON_DEV" "$ICON_WEB" "$ICON_CHAT" "$ICON_SPACE" "" "")
 
 # Border will be drawn to current WS only
 for i in "${!SPACE_ICONS[@]}"
