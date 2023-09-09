@@ -13,15 +13,19 @@ alt - k : yabai -m window --focus north
 alt - h : yabai -m window --focus west
 alt - l : yabai -m window --focus east
 
-# Modifying window size
+# Modifying layout
 alt - f : yabai -m window --toggle zoom-fullscreen
-alt - e : yabai -m space --balance
-
-# Rotating layouts
 shift + alt - r : yabai -m space --rotate 270
 shift + alt - y : yabai -m space --mirror y-axis
 shift + alt - x : yabai -m space --mirror x-axis
 shift + alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
+
+# Resizing
+alt - e : yabai -m space --balance
+#shift + alt - h : yabai -m window --resize left:-20:0
+#shift + alt - j : yabai -m window --resize bottom:0:20
+#shift + alt - k : yabai -m window --resize top:0:-20
+#shift + alt - l : yabai -m window --resize right:20:0
 
 # Swapping window
 shift + alt - j : yabai -m window --swap south
@@ -35,7 +39,7 @@ ctrl + alt - h : yabai -m window --warp west
 ctrl + alt - l : yabai -m window --warp east
 
 # Moving window to ws
-shift + alt - 1 : yabai -m window --space 1 # ; yabai -m space --focus 1 -- requires disabling SIP
+shift + alt - 1 : yabai -m window --space 1 #; yabai -m space --focus 1 -- requires disabling SIP
 shift + alt - 2 : yabai -m window --space 2
 shift + alt - 3 : yabai -m window --space 3
 shift + alt - 4 : yabai -m window --space 4

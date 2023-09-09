@@ -254,6 +254,13 @@ Keybindings:
 - `mod + ret`: Open Wezterm
 - `mod + hjkl`: Navigate windows
 - `mod + f`: Toggle fullscreen
+- `mod + shift + r`: Rotate tree
+- `mod + shift + y/x`: Mirror x-axis/y-axis
+- `mod + shift + SPC`: Toggle floating
+- `mod + shift + e`: Balance all window size
+- `mod + shift + hjkl`: ~~Resize window (h to shrink left, j to grow above, k to shrink below, l to grow right)~~ Swap window (use mouse for resizing)
+- `mod + ctrl + hjkl`: Move window and tile with what was already there
+- `mod + shift + 1-5`: Move to WS 1-5
 
 Yabai is a fantastic tool, but because it's running on top of the macOS default WM, there are limitations.
 Here are some bugs I encountered, all to blame Apple for not letting users change the default WM.
