@@ -223,7 +223,7 @@ Use the commands in `./misc/README.md` to deploy these configurations.
 
 I use these [Yabai](https://github.com/koekeishiya/yabai), [Skhd](https://github.com/koekeishiya/skhd), and [Sketchybar](https://github.com/FelixKratz/SketchyBar) to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
 
-To install, first, modify the macOS settings as follows:
+First, modify the macOS settings as follows:
 
 - "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
 - "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
@@ -233,20 +233,18 @@ To install, first, modify the macOS settings as follows:
     - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
     - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
 
-Install Yabai, Skhd, and Sketchybar:
+Install and start utilities:
 
-```bash
-brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai FelixKratz/formulae/sketchybar
-```
-
-Start the Skhd:
-
-```bash
-skhd --start-service
-```
-
-Use `ctrl + alt - s` keybinding (ctrl + opt + s) to start sketchybar and Yabai.
-Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
+- Install Yabai, Skhd, and Sketchybar:
+    ```bash
+    brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai FelixKratz/formulae/sketchybar
+    ```
+- Start Skhd:
+    ```bash
+    skhd --start-service
+    ```
+- Use `ctrl + alt - s` keybinding (ctrl + opt + s) to start sketchybar and Yabai.
+- Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
 
 Keybindings:
 
@@ -262,17 +260,19 @@ Keybindings:
 - `mod + ctrl + hjkl`: Move window and tile with what was already there
 - `mod + shift + 1-5`: Move to WS 1-5
 
-Yabai is a fantastic tool, but because it's running on top of the macOS default WM, there are limitations.
-Here are some bugs I encountered, all to blame Apple for not letting users change the default WM.
+Yabai is a fantastic tool, but because it's running on top of Aqua (macOS default WM), there are a few limitations.
+Here are some bugs I encountered, all to blame Apple for not letting users change Aqua.
 
 - Layout not persisting after exiting a full-screen video play in Firefox
 - Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
 - Emacs not tiling (even with `(menu-bar-mode t)`)
-- Kitty with window decoration removed not tiling
+- Kitty not tiling (with the window decorations removed)
 - (with border color and blur on) lagging when switching focus
 - (with a border width greater than 4) cursor not changing for resizing
 - Being unable to delete a Mission Control desktop with Yabai running
 - High CPU usage of `WindowServer`
+
+Use `cat /tmp/skhd_$USER.err.log` (or `yabai_$USER.err.log`) to view the log messages.
 
 ## macOS
 
