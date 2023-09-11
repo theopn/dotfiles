@@ -1,5 +1,6 @@
 # Theo's dotfiles
 
+> [!NOTE]
 > Collection of my configuration files. The reason why this README is so long is definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
 | ![macos-sc](./assets/macos-sc.jpg) |
