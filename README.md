@@ -15,8 +15,10 @@ Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
 MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin with i3 WM installed (Wayland is *almost* there).
 
 Tools in this repository are mostly open-source utilities for development.
-You are welcome to take inspiration from any files in this repository, but I do not claim any responsibility for any of the contents of the configurations (licensed under the MIT License).
-**Read the code before you use it!**
+
+> [!IMPORTANT]
+> You are welcome to take inspiration from any files in this repository, but I do not claim any responsibility for any of the contents of the configurations (licensed under the MIT License).
+> **Read the code before you use it!**
 
 ## Installation
 
@@ -45,6 +47,7 @@ You are welcome to take inspiration from any files in this repository, but I do 
 
 ### Install My Other Projects
 
+> [!NOTE]
 > Shameless plugs
 
 - [Theovim](https://github.com/theopn/theovim) "is my Neovim configuration, geared toward my CS studies (C, Python, Java, LaTeX, LaTeX, and LaTeX).
@@ -210,9 +213,10 @@ It's based on the Chromium engine, uses Vim keybindings, and is configured throu
 
 ## Miscellaneous Configurations
 
-These are single-file, minimal configurations that do not change very often.
-These are meant to be manually deployed as needed.
-Use the commands in `./misc/README.md` to deploy these configurations.
+> [!NOTE]
+> These are single-file, minimal configurations that do not change very often.
+> These are meant to be manually deployed as needed.
+> Use the commands in `./misc/README.md` to deploy these configurations.
 
 - `bashrc`: I prioritize simplicity and performance since zsh and Fish take care of my interactive uses and most of my scripts are written in Bash.
     Thus, my `.bashrc` is kept minimal with a simple prompt, some aliases, and variables
@@ -316,8 +320,9 @@ Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, ch
 
 ## Deprecated
 
-These dotfiles are unused either because I stopped using the utility or developed a new configuration.
-Read `./deprecated/README.md` for more information.
+> [!WARNING]
+> These dotfiles are unused either because I stopped using the utility or developed a new configuration.
+> Read `./deprecated/README.md` for more information.
 
 ## Credits
 
