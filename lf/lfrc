@@ -1,4 +1,3 @@
-
 # figlet -f avatar lf
 #  _     _____
 # / \   /    /
@@ -28,7 +27,7 @@ set smartcase
 
 # Automatically create trash folder upon the startup
 ${{ if [ ! -d ~/.theoshell/trash ]; then mkdir -p ~/.theoshell/trash; fi }}
-# $f = current cursor $fs = selected files $fx = $f or $fs
+# $f = current cursor, $fs = selected files, $fx = ($fs exists) ? ($fs) : ($f)
 cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.theoshell/trash && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n" }}
 
 # Remove command for bypassing trash
@@ -46,7 +45,7 @@ cmd rm !{{
 cmd choose_editor ${{
   printf ' Editor to open the file with: '
   read ans
-  $ans $f
+  $ans "$f"
 }}
 
 # Inspiration from https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc
