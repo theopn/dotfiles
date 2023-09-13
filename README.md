@@ -115,11 +115,28 @@ Config: It is very similar to my Zsh setup but takes advantage of better built-i
 
 ## Terminal Emulators and Multiplxers
 
-### TODO tmux -- Add list of keybindings
+### tmux
 
-> Actual terminal emulator
+> Universal terminal multiplexer
 
-Keybindings are drastically different from stock bindings so use the `<C-a> ?` key to read the help documentation. Statusbar with various information without using any external plugins.
+I usually pair tmux with a simple terminal emulator like Kitty or Alacritty.
+I do not like the default keybindings, so many keybindings are unbound and rebound to Vim-style navigation and window/pane management.
+
+- Usage:
+    - For the complete list of keybindings, disabled default keybindings, and frequently used default bindings, use `C-a ?` and read the comment in line 20
+    - `C-a` is the prefix
+    - `PFX c`: Copy mode
+    - `PFX hjkl`: Pane navigation
+    - `PFX r/x`: Swap panes
+    - `PFX s/v`: Create a split horizontally/vertically
+    - `PFX -+<>`: Resize pane
+    - `PFX C-s`: Send the current pane to the window of the given index (will be prompted for the index)
+    - `PFX C-j`: Join the pane from the window of the given index (will be prompted for the index)
+    - `PFX t`: Create a new window
+    - `PFX q`: Kill a pane (there is no separate `kill-window` binding; close all panes to kill a window)
+    - `PFX [/]`: Navigate windows
+    - `PFX {/}`: Swap window indices with adjacent windows
+    - `PFX ?`: Open `~/.tmux.conf` in a floating popup
 
 ### Wezterm
 
