@@ -149,10 +149,11 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
 - Usage:
     - `LDR` = `C-a`
     - `LDR c`: Copy mode
-    - `LDR -/|`: Create split pane
+    - `LDR s/v`: Create split pane
     - `LDR hjkl`: Navigate pane
     - `LDR q`: Close pane
     - `LDR z`: Zoom pane
+    - `LDR o`: Rotate pane
     - `LDR r`: `resize_pane` mode. Use `hjkl` to resize pane and `ESC` or `Enter` to confirm
     - `LDR t`: New tab
     - `LDR [/]` Navigate tab
@@ -160,6 +161,7 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
     - `LDR n`: Launch tab navigator
     - `LDR e`: Rename tab title
     - `LDR m`: `move_tab` mode. Use `hj`/`kl` to move tabs and `ESC` or `Enter` to confirm
+        - `LDR {/}`: Move tab without entering the `move_tab` mode
     - `LDR w`: Workspace launcher
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
 
