@@ -69,7 +69,7 @@ Tools in this repository are mostly open-source utilities for development.
     # Follow the prompt
     ```
 
-- To install fonts using `fontconfig` and the included function in `dotfiles-util.sh`:
+- To install fonts via `fontconfig` and the included function in `dotfiles-util.sh`:
     1. Navigate to [NERD Fonts download](https://www.nerdfonts.com/font-downloads) website
     2. Right-click on the font download and copy the link
     3. Execute the following
@@ -91,10 +91,10 @@ Tools in this repository are mostly open-source utilities for development.
 > Rich built-in features, questionable syntax
 
 It's the de facto default shell that launches when Wezterm opens.
-It has a fantastic built-in auto-completion and stupidly fast asynchronous Git status, but I cannot say I prefer the syntax over POSIX contrary to the popular opinion.
+It has a fantastic built-in auto-completion and stupidly fast asynchronous Git status, but I cannot say I prefer the syntax over POSIX in contrary to the popular opinion.
 Because it's not POSIX compatible, Zsh is my `$SHELL`.
 
-Config: It is very similar to my Zsh setup but takes advantage of better built-in interactive functions
+Usage: Most of the aliases and functions of my Zsh config are supported in Fish.
 
 ### Zsh
 
@@ -113,14 +113,14 @@ Config: It is very similar to my Zsh setup but takes advantage of better built-i
         - I only install [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete) by default
     - `theoshell_upgrade`: Upgrade all Zsh plug-ins in `~/.theoshell/zsh-plugins`
 
-## Terminal Emulators and Multiplxers
+## Terminal Emulators and Multiplexers
 
 ### tmux
 
 > Universal terminal multiplexer
 
-I usually pair tmux with a simple terminal emulator like Kitty or Alacritty.
-I do not like the default keybindings, so many keybindings are unbound and rebound to Vim-style navigation and window/pane management.
+I usually pair Tmux with a simple terminal emulator like Kitty or Alacritty.
+Because I am not the biggest fan of the default keybindings, many are unbound and rebound to Vim-style navigation and window/pane management.
 
 - Usage:
     - For the complete list of keybindings, disabled default keybindings, and frequently used default bindings, use `C-a ?` and read the comment in line 20
@@ -141,7 +141,7 @@ I do not like the default keybindings, so many keybindings are unbound and rebou
 
 ### Wezterm
 
-> Over-engineered terminal emulator, nailed the fundamental features, and it's configured in Lua!
+> Over-engineered terminal emulator, nailed the fundamental features, and it is configured in Lua!
 
 Wezterm is my primary terminal emulator/multiplexer!
 Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
@@ -149,7 +149,7 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
 - Usage:
     - `LDR` = `C-a`
     - `LDR c`: Copy mode
-    - `LDR s/v`: Create split pane
+    - `LDR s/v`: Create a split pane
     - `LDR hjkl`: Navigate pane
     - `LDR q`: Close pane
     - `LDR z`: Zoom pane
@@ -205,7 +205,7 @@ Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), 
 
 > My favorite terminal file manager
 
-When I see a CLI file manager with Vim keybindings and minimalistic feature set, I like it. I use it.
+When I see a CLI file manager with Vim keybindings and a minimalistic feature set, I like it. I use it.
 
 - Usage:
     - `~` : Go to the home directory
@@ -240,7 +240,7 @@ It's based on the Chromium engine, uses Vim keybindings, and is configured throu
 > These are meant to be manually deployed as needed.
 > Use the commands in `./misc/README.md` to deploy these configurations.
 
-- `bashrc`: I prioritize simplicity and performance since zsh and Fish take care of my interactive uses and most of my scripts are written in Bash.
+- `bashrc`: I prioritize simplicity and performance since Zsh and Fish take care of my interactive uses and most of my scripts are written in Bash.
     Thus, my `.bashrc` is kept minimal with a simple prompt, some aliases, and variables
 - `kitty.conf`: Kitty is my secondary terminal emulator. The configuration is kept minimal since I always pair it up with Tmux
 - `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
@@ -343,7 +343,7 @@ Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, ch
 ## Deprecated
 
 > [!WARNING]
-> These dotfiles are unused either because I stopped using the utility or developed a new configuration.
+> These dotfiles are unused because either I stopped using the utility or developed a new configuration.
 > Read `./deprecated/README.md` for more information.
 
 ## Credits
@@ -351,9 +351,9 @@ Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, ch
 - The macOS wallpaper is by [arsenicxs](https://www.deviantart.com/arsenixc/art/Tokyo-Street-Night-684804497)
 - [hb's dotfiles](https://github.com/hbthen3rd/dotfiles) and [FelixKratz's dotfiles](https://github.com/FelixKratz/dotfiles) (the creator of Sketchybar) inspired my Sketchybar looks
 - Other than that, all of the config/code is mine.
-    - I do not like using code that I don't understand, especially in my day-to-day development environment.
+    - I dislike having code I don't understand, especially in my day-to-day development environment.
         I try to understand and rewrite configurations on my own
     - I give credit to all the amazing developers and the open-source community who developed all these tools I rely on every day and wrote documentation for them
-    - I also need to thank people in communities like [Dotfyle](https://dotfyle.com/) and [r/unixporn](https://www.reddit.com/r/unixporn/) who share their dotfiles that indirectly helped/inspired me
+    - I also would like to thank people in communities like [Dotfyle](https://dotfyle.com/) and [r/unixporn](https://www.reddit.com/r/unixporn/) who share their dotfiles that helped and inspired me
     - If you have any questions, concerns, or suggestions, do not hesitate to let me know through issues or PR!
 
