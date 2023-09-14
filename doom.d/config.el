@@ -36,8 +36,12 @@
       user-mail-address "no.email.for.you@theo.com")
 
 ;; Apperance
-;;(setq doom-theme 'doom-gruvbox) ; `doom-theme' or `load-theme'
-(setq doom-theme 'doom-tokyo-night) ; `doom-theme' or `load-theme'
+;; Themes -- use `doom-theme' or `load-theme'
+(when nil
+(setq doom-theme 'doom-gruvbox)
+(setq doom-theme 'doom-dracula)
+)
+(setq doom-theme 'doom-tokyo-night)
 ;; `doom-big-font' may be used for presentation
 (setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13) ; `describe-font', `eval-region', `doom/reload-font'
       doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13)) ; non-monospace font
@@ -53,15 +57,22 @@
 (setq display-time-day-and-date t ; Date on the modeline
       display-time-24hr-format t) ; 24 hour
 
-;;(set-frame-parameter nil 'alpha-background 70)
-;;(add-to-list 'default-frame-alist '(alpha-background . 70))
+;; Tranparency
 (set-frame-parameter (selected-frame) 'alpha '(85 . 50))
 (add-to-list 'default-frame-alist '(alpha . (85 . 50)))
-(defun on-after-init ()
-  (unless (display-graphic-p (selected-frame))
-    (set-face-background 'default "unspecified-bg" (selected-frame))))
 
-(add-hook 'window-setup-hook 'on-after-init)
+(defun toggle-transparency ()
+  (interactive)
+  (let ((alpha (frame-parameter nil 'alpha)))
+    (set-frame-parameter
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
+                    ((numberp (cdr alpha)) (cdr alpha))
+                    ;; Also handle undocumented (<active> <inactive>) form.
+                    ((numberp (cadr alpha)) (cadr alpha)))
+              100)
+         '(85 . 50) '(100 . 100)))))
+(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;; File editing
 (setq tab-width 2) ; 2 character as tab

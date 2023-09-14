@@ -173,6 +173,8 @@ Emacs is my to-do list, idea capture, knowledge databases, and tools for other [
 
 - Usage:
     - All the stock Emacs + Evil mode keybindings
+    - `%`: Jump between parenthesis like in Vim
+    - `C-c t`: Toggle transparency
     - `C-c a`: Org Agenda
     - `C-c c`: Org Capture
     - `C-c o`: Display Org file outline using `occur`
