@@ -136,6 +136,7 @@ I do not like the default keybindings, so many keybindings are unbound and rebou
     - `PFX q`: Kill a pane (there is no separate `kill-window` binding; close all panes to kill a window)
     - `PFX [/]`: Navigate windows
     - `PFX {/}`: Swap window indices with adjacent windows
+    - `PFX m`: Move the current window to the given index
     - `PFX ?`: Open `~/.tmux.conf` in a floating popup
 
 ### Wezterm
