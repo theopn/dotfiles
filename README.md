@@ -308,15 +308,13 @@ After installing Rectangle, execute the following command to make Rectangle awar
 defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 30 # 0 to reset
 ```
 
-My Vim-inspired Rectangle keybindings:
+My Vim-inspired Rectangle keybindings (restore them using ./macos/vimtangle.json):
 
 - `control + command` (`⌃⌘`) is the modifier
 - `mod + h/l`: Left/right half
-- `mod + j/k`: Top/bottom half
-- `mod + z`: Maximize
+- `mod + j/k`: First two-thirds/last third
+- `mod + n/m`: Almost maximize/maximize
 - `mod + -/=`: Smaller/larger
-- `mod + 1/2/3`: First/center/last third
-- `mod + a/s`: First/last two-thirds
 
 ## macOS
 
