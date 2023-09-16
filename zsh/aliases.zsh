@@ -95,7 +95,11 @@ updater () {
       'theovim')
         cd ~/.config/nvim && git pull && cd - &> /dev/null ;;
       'homebrew')
-        brew upgrade ;;
+        brew upgrade
+        brew update
+        brew cleanup
+        echo "[Updater] Perodically 'brew untap' unnecessary sources"
+        ;;
       'dnf')
         sudo dnf upgrade ;;
       'flatpak')
