@@ -298,13 +298,14 @@ Here are some bugs I encountered, all to blame Apple for not letting users chang
 - (with a border width greater than 4) cursor not changing for resizing
 - Being unable to delete a Mission Control desktop with Yabai running
 - High CPU usage of `WindowServer`
-- (Use `cat /tmp/yabai_$USER.err.log` or `cat /tmp/skhd_$USER.err.log` to view the log messages)
+
+Use `cat /tmp/yabai_$USER.err.log` and `cat /tmp/skhd_$USER.err.log` to view the Yabai and Skhd log messages.
 
 Because of Yabai's limitations, I prefer using [Rectangle](https://github.com/rxhanson/Rectangle) and manually tiling windows when using a small laptop screen.
-Execute the following command to make Rectangle aware of Sketchybar:
+After installing Rectangle, execute the following command to make Rectangle aware of Sketchybar:
 
 ```bash
-defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 30 # 30 for my Sketchybar config, 0 to reset
+defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 30 # 0 to reset
 ```
 
 My Vim-inspired Rectangle keybindings:
@@ -345,10 +346,10 @@ Formulae:
 
 | Type            | Casks                                                                                                 |
 |-----------------|-------------------------------------------------------------------------------------------------------|
-| Development     | - Docker<br> - IntelliJ CE<br> - **kitty**<br> - MacTex (No GUI)<br> - **MacVim**<br> - **Wezterm**   |
+| Development     | - Docker<br> - IntelliJ CE<br> - kitty<br> - MacTex (No GUI)<br> - **MacVim**<br> - **Wezterm**       |
 | Fun             | - Discord<br> - Minecraft<br> - Spotify                                                               |
 | Productivity    | - **Emacs**<br> - Notion<br> - **Obsidian**                                                           |
-| System (macOS)  | - AppCleaner<br> - **Rectangle**<br> - **Stats**<br> - **Spaceman**                                   |
+| System (macOS)  | - AppCleaner<br> - **Maccy**<br> - **Rectangle**<br> - **Stats**<br> - **Spaceman**                   |
 | Tools           | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC                       |
 | Web             | - **Firefox**<br> - Qutebrowser<br> - Thunderbird                                                     |
 
