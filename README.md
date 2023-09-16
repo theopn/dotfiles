@@ -250,7 +250,7 @@ It's based on the Chromium engine, uses Vim keybindings, and is configured throu
 
 I use these [Yabai](https://github.com/koekeishiya/yabai), [Skhd](https://github.com/koekeishiya/skhd), and [Sketchybar](https://github.com/FelixKratz/SketchyBar) to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
 
-First, modify the macOS settings as follows:
+To begin, modify the macOS settings as follows:
 
 - "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
 - "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
@@ -298,8 +298,24 @@ Here are some bugs I encountered, all to blame Apple for not letting users chang
 - (with a border width greater than 4) cursor not changing for resizing
 - Being unable to delete a Mission Control desktop with Yabai running
 - High CPU usage of `WindowServer`
+- (Use `cat /tmp/yabai_$USER.err.log` or `cat /tmp/skhd_$USER.err.log` to view the log messages)
 
-Use `cat /tmp/skhd_$USER.err.log` (or `yabai_$USER.err.log`) to view the log messages.
+Because of Yabai's limitations, I prefer using [Rectangle](https://github.com/rxhanson/Rectangle) and manually tiling windows when using a small laptop screen.
+Execute the following command to make Rectangle aware of Sketchybar:
+
+```bash
+defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 30 # 30 for my Sketchybar config, 0 to reset
+```
+
+My Vim-inspired Rectangle keybindings:
+
+- `control + command` (`⌃⌘`) is the modifier
+- `mod + h/l`: Left/right half
+- `mod + j/k`: Top/bottom half
+- `mod + z`: Maximize
+- `mod + -/=`: Smaller/larger
+- `mod + 1/2/3`: First/center/last third
+- `mod + a/s`: First/last two-thirds
 
 ## macOS
 
@@ -332,7 +348,7 @@ Formulae:
 | Development     | - Docker<br> - IntelliJ CE<br> - **kitty**<br> - MacTex (No GUI)<br> - **MacVim**<br> - **Wezterm**   |
 | Fun             | - Discord<br> - Minecraft<br> - Spotify                                                               |
 | Productivity    | - **Emacs**<br> - Notion<br> - **Obsidian**                                                           |
-| System (macOS)  | - AppCleaner<br> - **Raycast**<br> - **Stats**<br> - **Spaceman**                                     |
+| System (macOS)  | - AppCleaner<br> - **Rectangle**<br> - **Stats**<br> - **Spaceman**                                   |
 | Tools           | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC                       |
 | Web             | - **Firefox**<br> - Qutebrowser<br> - Thunderbird                                                     |
 
