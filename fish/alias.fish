@@ -88,6 +88,9 @@ function updater -d "Place to update all the different stuff"
         flatpak upgrade
       case 'homebrew'
         brew upgrade
+        brew update
+        brew cleanup
+        echo "[Updater] Perodically 'brew untap' unnecessary sources"
       case '*'
         echo "[Updater] Error. Switch couldn't match anything -- this shoudln't happen"
         return
