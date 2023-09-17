@@ -58,8 +58,8 @@
       display-time-24hr-format t) ; 24 hour
 
 ;; Tranparency
-(set-frame-parameter (selected-frame) 'alpha '(85 . 50))
-(add-to-list 'default-frame-alist '(alpha . (85 . 50)))
+(set-frame-parameter (selected-frame) 'alpha '(85 . 70))
+(add-to-list 'default-frame-alist '(alpha . (85 . 70)))
 
 (defun toggle-transparency ()
   (interactive)
