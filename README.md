@@ -62,6 +62,12 @@ Tools in this repository are mostly open-source utilities for development.
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.emacs.d
     ~/.emacs.d/bin/doom install
     ```
+    - I had the best experience running natively-compiled [emacs-plus](https://github.com/d12frosted/homebrew-emacs-plus) in macOS
+    ```bash
+    brew tap d12frosted/emacs-plus
+    brew install emacs-plus --with-native-comp --with-modern-doom3-icon
+    ~/.emacs.d/bin/doom sync # if you have already initialized Doom with other version of Emacs
+    ```
 
 - Add SSH shortcut for frequently used servers:
     ```bash
