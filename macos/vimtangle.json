@@ -220,7 +220,7 @@
       "keyCode" : 45,
       "modifierFlags" : 1310720
     },
-    "firstTwoThirds" : {
+    "firstThird" : {
       "keyCode" : 38,
       "modifierFlags" : 1310720
     },
@@ -228,7 +228,7 @@
       "keyCode" : 24,
       "modifierFlags" : 1310720
     },
-    "lastThird" : {
+    "lastTwoThirds" : {
       "keyCode" : 40,
       "modifierFlags" : 1310720
     },

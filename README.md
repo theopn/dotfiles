@@ -318,7 +318,7 @@ My Vim-inspired Rectangle keybindings (restore them using ./macos/vimtangle.json
 
 - `control + command` (`⌃⌘`) is the modifier
 - `mod + h/l`: Left/right half
-- `mod + j/k`: First two-thirds/last third
+- `mod + j/k`: First thirds/last two thirds
 - `mod + n/m`: Almost maximize/maximize
 - `mod + -/=`: Smaller/larger
 
