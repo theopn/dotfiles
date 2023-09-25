@@ -32,7 +32,7 @@ try
   " let g:pastelcula_transparent=1
   colo pastelcula
 catch
-  colo darkblue
+  colo quiet
 endtry
 " }}}
 
@@ -71,6 +71,22 @@ nnoremap <leader>k :ls<CR>
       \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
       \:bdelete<SPACE>
 " Window
+fun! SmartWinMove(key)
+  let t:currwin = winnr()
+  exec 'wincmd ' . a:key
+  if t:currwin == winnr()
+    if a:key == 'h' || a:key == 'l'
+      wincmd v
+    else
+      wincmd s
+    endif
+    exec 'wincmd ' . a:key
+  endif
+endfun
+nnoremap <C-h> :call SmartWinMove('h')<CR>
+nnoremap <C-j> :call SmartWinMove('j')<CR>
+nnoremap <C-k> :call SmartWinMove('k')<CR>
+nnoremap <C-l> :call SmartWinMove('l')<CR>
 nnoremap <leader>+ :exe 'resize ' . (winheight(0) * 3/2)<CR>
 nnoremap <leader>- :exe 'resize ' . (winheight(0) * 2/3)<CR>
 nnoremap <leader>> :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
@@ -93,10 +109,6 @@ inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
 
 " {{{ Commends
 command CD :lcd %:h
-fun! SeparateCurrLineByPeriod()
-  keeppatterns s/\. /.\r/gec
-endfun
-command SeparateCurrLineByPeriod call SeparateCurrLineByPeriod()
 fun! TrimWhitespace()
   let l:save = winsaveview()
   keeppatterns %s/\s\+$//ec
@@ -162,10 +174,10 @@ fun! SpawnBufferLine()
       " If the buffer is modified, add + and separator. Else, add separator
       let s .= (getbufvar(i, "&modified")) ? (' [+] | ') : (' | ')
     else
-      let s .= fnamemodify(bufname(i), ':t') . ' [RO] | '  " Add read only flag
+      let s .= fnamemodify(bufname(i), ':t') . ' [RO] |'  " Add read only flag
     endif
   endfor
-  let s .= '%#TabLineFill#%T'  " Reset highlight
+  let s .= '%#TabLineFill#%T '  " Reset highlight
 
   let s .= '%=' " Spacer
 
