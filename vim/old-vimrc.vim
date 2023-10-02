@@ -1,0 +1,287 @@
+"===============================================================================
+" "Nature is pleased with simplicity. And nature is no dummy” - Isaac Newton
+"
+"                                 \/       \/
+"                                 /\_______/\
+"                                /   o   o   \
+"                               (  ==  ^  ==  )
+"                                )           (
+"                               (             )
+"                               ( (  )   (  ) )
+"                              (__(__)___(__)__)
+"                                 O l i v e r
+"
+"===============================================================================
+
+" {{{ Base Settings
+set number relativenumber ruler colorcolumn=80
+set cursorline cursorcolumn wildmenu termguicolors bg=dark
+set confirm showtabline=2 scrolloff=7
+set splitright splitbelow
+set tabstop=2 shiftwidth=2 expandtab autoindent
+set mouse=a
+set list listchars=tab:>-,leadmultispace:\|\ ,trail:_,nbsp:+ showbreak=$
+"set list listchars=tab:>-,lead:\|,trail:_,nbsp:+ showbreak=$ " < 0.9
+filetype on
+syntax on
+set hlsearch incsearch shortmess-=S ignorecase smartcase
+set foldmethod=marker foldlevel=0
+set wildmenu
+set spell spelllang=en_us spellsuggest=best,8
+try
+  " let g:pastelcula_transparent=1
+  colo pastelcula
+catch
+  colo quiet
+endtry
+" }}}
+
+" {{{ Base keybindings
+" Leader
+nnoremap <SPACE> <Nop>
+let mapleader=' '
+inoremap <silent> jk <ESC>
+" Auto pairs
+inoremap ( ()<LEFT>
+inoremap [ []<LEFT>
+inoremap {<CR> {<CR>}<ESC>ko<TAB>
+" Select all
+nnoremap <leader>a gg<S-v>G
+" Search
+nnoremap <leader>/ :noh<CR>
+nnoremap n nzz
+nnoremap N Nzz
+" Copy and paste
+xnoremap <leader>y "+y
+nnoremap <leader>p :reg<CR>
+xnoremap <leader>p "_dP
+" Terminal
+tnoremap <ESC> <C-\><C-n>
+nnoremap <leader>z :botright term<CR>
+" Spell check
+inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
+nnoremap <C-s> z=
+nnoremap <leader>st :set spell!<CR>
+" Buffer
+nnoremap <leader>b :ls<CR>:b<SPACE>
+nnoremap <leader>[ :bprevious<CR>
+nnoremap <leader>] :bnext<CR>
+nnoremap <leader>k :ls<CR>
+      \: echo '[Theovim] Choose a buf to delete
+      \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
+      \:bdelete<SPACE>
+" Window
+fun! SmartWinMove(key)
+  let t:currwin = winnr()
+  exec 'wincmd ' . a:key
+  if t:currwin == winnr()
+    if a:key == 'h' || a:key == 'l'
+      wincmd v
+    else
+      wincmd s
+    endif
+    exec 'wincmd ' . a:key
+  endif
+endfun
+nnoremap <C-h> :call SmartWinMove('h')<CR>
+nnoremap <C-j> :call SmartWinMove('j')<CR>
+nnoremap <C-k> :call SmartWinMove('k')<CR>
+nnoremap <C-l> :call SmartWinMove('l')<CR>
+nnoremap <leader>+ :exe 'resize ' . (winheight(0) * 3/2)<CR>
+nnoremap <leader>- :exe 'resize ' . (winheight(0) * 2/3)<CR>
+nnoremap <leader>> :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
+nnoremap <leader>< :exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>
+" Tab
+nnoremap <leader>t :ls<CR>
+      \:echo '[Theovim] Choose a buf to create a new tab w/
+      \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
+      \:tab sb<SPACE>
+nnoremap <leader>q :tabclose<CR>
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+" Completion
+inoremap <expr><TAB> pumvisible() ? '<C-n>' : '<TAB>'
+inoremap <expr><S-TAB> pumvisible() ? '<C-p>' : '<C-n>'
+" }}}
+
+" {{{ Commends
+command CD :lcd %:h
+fun! TrimWhitespace()
+  let l:save = winsaveview()
+  keeppatterns %s/\s\+$//ec
+  call winrestview(l:save)
+endfun
+command TrimWhiespace call TrimWhitespace()
+" }}}
+
+" {{{ Statusline
+let g:currentmode={
+  \ 'n' : 'N', 'no' : 'N OPERATOR PENDING',
+  \ 'v' : 'V', 'V' : 'V LINE', "\<C-V>" : 'V BLOCK',
+  \ 's' : 'SELECT', 'S' : 'S LINE', "\<C-S>" : 'S BLOCK',
+  \ 'i' : 'I', 'R' : 'R', 'Rv' : 'V REPLACE',
+  \ 'c' : 'CMD', 'cv' : 'VIM EX', 'ce' : 'EX',
+  \ 'r' : 'PROMPT', 'rm' : 'MORE', 'r?' : 'CONFIRM',
+  \ '!' : 'SH', 't' : 'TERM', 'nt' : 'N TERM' }
+set laststatus=2                                      " Always show statusline
+set statusline=\|                                     " Reset statusline w/ bar
+set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
+set statusline+=\ %{fnamemodify(getcwd(),':t')}       " Current working dir
+set statusline+=\ %f                                  " Current file
+set statusline+=\ %m                                  " [+] for modified
+set statusline+=%r                                    " [RO] for read only
+set statusline+=\|                                    " Bar
+set statusline+=%=                                    " Spacer
+set statusline+=%<                                    " Truncation point
+set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " Why in {}? Why not
+set statusline+=%=                                    " Spacer
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ FT:\ %Y                             " Filetype
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ %{toupper(&ff)}                     " File format
+set statusline+=:                                     " Colon
+set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ @                                   " At
+set statusline+=\ %l                                  " Current line num
+set statusline+=:                                     " Colon
+set statusline+=%c                                    " Current column num
+set statusline+=\ %P                                  " Percent file displayed
+set statusline+=\ \|%{''}                             " Space, bar, empty char
+" }}}
+
+" {{{ Tabline
+" Custom bufferline function. I know, it's not the true "Vim way"
+fun! SpawnBufferLine()
+  let s = ' :) | '
+
+  " Get the list of buffers. Use bufexists() to include hidden buffers
+  let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+  " Making a buffer list on the left side
+  for i in bufferNums
+    " Highlight with yellow if it's the current buffer
+    let s .= (i == bufnr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+    let s .= i . ' '  " Append the buffer number
+    if bufname(i) == ''
+      let s .= '[NEW]'  " Give a name to a new buffer
+    endif
+    if getbufvar(i, "&modifiable")
+      let s .= fnamemodify(bufname(i), ':t')  " Append the file name
+      " let s .= pathshorten(bufname(i))  " Use this if you want a trimmed path
+      " If the buffer is modified, add + and separator. Else, add separator
+      let s .= (getbufvar(i, "&modified")) ? (' [+] | ') : (' | ')
+    else
+      let s .= fnamemodify(bufname(i), ':t') . ' [RO] |'  " Add read only flag
+    endif
+  endfor
+  let s .= '%#TabLineFill#%T '  " Reset highlight
+
+  let s .= '%=' " Spacer
+
+  " Making a tab list on the right side
+  for i in range(1, tabpagenr('$'))  " Loop through the number of tabs
+    " Highlight with yellow if it's the current tab
+    let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+    let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
+    let s .= i . ''          " set page number string
+  endfor
+  let s .= '%#TabLineFill#%T'  " Reset highlight
+
+  " Close button on the right if there are multiple tabs
+  if tabpagenr('$') > 1
+    let s .= '%999X X'
+  endif
+  return s
+endfun
+
+set tabline=%!SpawnBufferLine()  " Assign the tabline
+" }}}
+
+" {{{ netrw
+let g:netrw_banner = 0 " No guide on the top, turn on if error occurs
+let g:netrw_liststyle = 1 " 0 simple, 1 detailed, 2 thick, 3 tree
+let g:netrw_browse_split = 3
+let g:netrw_winsize = 15
+augroup netrw_autocmds
+  autocmd!
+  " Close netrw if it is the last buffer
+  autocmd WinEnter * if tabpagenr('$') == 1 && winnr('$') == 1
+  \ && getbufvar(winbufnr(winnr()), "&filetype") == 'netrw' | quit | endif
+  autocmd VimEnter * :Vexplore | wincmd p  " Netrw open on startup
+augroup END
+
+" Function to toggle netrw buffer using global var and buf wipeout
+let g:NetrwIsOpen = 1 " Since I open netrw in the startup
+fun! ToggleNetrw()
+  if g:NetrwIsOpen
+    for i in range(1, bufnr('$'))
+      if getbufvar(i, "&filetype") == 'netrw'
+        silent exe 'bwipeout ' . i
+      endif
+    endfor
+    let g:NetrwIsOpen = 0
+  else
+    let g:NetrwIsOpen = 1
+    silent Lex
+  endif
+endfun
+
+nnoremap <leader>n :call ToggleNetrw()<CR>
+" }}}
+
+" {{{ CS240 Work Environment
+" By Theo Park, special thanks to Shriansh Chari
+" function CS240(hwNum)
+"   exec 'cd ' . $HOME. '/cs240/' . a:hwNum . '/'
+"   set colorcolumn=80
+"   vs
+"   " R source code file
+"   winc l
+"   exec 'open '. a:hwNum . '.c'
+"   " Top L terminal
+"   winc h
+"   term
+"   5winc+
+"   " Bottom L header file
+"   winc j
+"   exec 'open '. a:hwNum . '.h'
+"   winc l
+" endfunction
+" }}}
+
+
+" {{{ Vim Plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'MeF0504/vim-pets' " Cats period
+Plug 'vimwiki/vimwiki' " Personal wiki plugin
+call plug#end()
+" }}}
+
+" {{{ Plugin Keybindings
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>f/ :Lines<CR>
+" }}}
+
+" {{{ Vimwiki
+let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
+       \ 'syntax':'markdown', 'ext': '.md' }]
+let g:vimwiki_global_ext = 1
+" }}}
+
+" {{{ Vim-pets
+let g:pets_garden_width = 25
+let g:pets_garden_height = 10
+let g:pets_default_pet = 'cat'
+" }}}
+

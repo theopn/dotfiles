@@ -38,9 +38,9 @@
   (setq org-agenda-files
         '("capture.org"
           "habits.org"
-          "projects.org"
-          "vita.org"
-          "work.org"))
+          "pj-with-deadlines.org"
+          "pj-wo-deadlines.org"
+          "tasks.org"))
 
   (setq org-agenda-span 8 ; Agenda shows 8 day
         org-deadline-warning-days 2
