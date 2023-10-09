@@ -14,3 +14,7 @@ It's the best CLI email client.
 But that doesn't say a lot these days where all emails are essentially embedded HTML websites.
 Even with `w3m` integration, I found myself not using Mutt at all as I always have Thunderbird open on my computer.
 
+## Qutebrowser
+
+Firefox + Vimium add-on is good enough for me.
+
