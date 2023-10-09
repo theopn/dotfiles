@@ -95,5 +95,3 @@
 (global-set-key (kbd "C-c i") #'org-roam-node-insert)
 (global-set-key (kbd "C-c r b") #'org-roam-buffer-toggle)
 (global-set-key (kbd "C-c r r") #'org-roam-db-sync)
-
-;;; org-config.el ends here

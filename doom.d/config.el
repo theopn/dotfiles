@@ -36,47 +36,23 @@
       user-mail-address "no.email.for.you@theo.com")
 
 ;; Apperance
-;; Themes -- use `doom-theme' or `load-theme'
+;; Themes
 (when nil
 (setq doom-theme 'doom-gruvbox)
 (setq doom-theme 'doom-dracula)
 )
 (setq doom-theme 'doom-tokyo-night)
 ;; `doom-big-font' may be used for presentation
-(setq doom-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13) ; `describe-font', `eval-region', `doom/reload-font'
-      doom-variable-pitch-font (font-spec :family "CaskaydiaCove Nerd Font" :size 13)) ; non-monospace font
+(setq doom-font (font-spec :family "Iosevka Nerd Font" :size 13) ; `describe-font', `eval-region', `doom/reload-font'
+      doom-variable-pitch-font (font-spec :family "Iosevka Nerd Font" :size 13)) ; non-monospace font
 
 (setq frame-title-format "%b - Theomacs :)") ; Window title
 
 (setq display-line-numbers-type 'relative) ; t/nil for regular on and off
 (setq scroll-margin 10) ; Vim scrolloff
-(setq global-visual-line-mode t) ; Soft wrap -- hard wrap (auto-fill-mode) will alter the text
-
-(column-number-mode) ; Colume line in the Modeline
-(display-time) ; Display the time on the modeline
-(setq display-time-day-and-date t ; Date on the modeline
-      display-time-24hr-format t) ; 24 hour
-
-;; Tranparency
-(set-frame-parameter (selected-frame) 'alpha '(85 . 70))
-(add-to-list 'default-frame-alist '(alpha . (85 . 70)))
-
-(defun toggle-transparency ()
-  (interactive)
-  (let ((alpha (frame-parameter nil 'alpha)))
-    (set-frame-parameter
-     nil 'alpha
-     (if (eql (cond ((numberp alpha) alpha)
-                    ((numberp (cdr alpha)) (cdr alpha))
-                    ;; Also handle undocumented (<active> <inactive>) form.
-                    ((numberp (cadr alpha)) (cadr alpha)))
-              100)
-         '(85 . 50) '(100 . 100)))))
-(global-set-key (kbd "C-c t") 'toggle-transparency)
 
 ;; File editing
 (setq tab-width 2) ; 2 character as tab
-(setq display-fill-column-indicator-column 80) ; ruler 80
 (setq backward-delete-char-untabify-method 'hungry) ; Make backspace delete a whole character rather than once space
 
 (setq whitespace-style '(face tabs tab-mark trailing)) ; Trailing whitespace
@@ -135,5 +111,3 @@
                                    32)))
                "\n"))
      'face 'doom-dashboard-banner)))
-
-;; EOF
