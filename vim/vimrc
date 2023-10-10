@@ -3,15 +3,18 @@
 " =========================== KICKSTART.VIM ===========================
 " =====================================================================
 "
-" This is Theo's version of Kickstart.vim
-" for note taking with Vimwiki and no LSP.
+" This is Theo's version of Kickstart.vim:
 " https://github.com/theopn/kickstart.vim
+"
+" My version focuses on
+" - Note taking using Vimwiki
+" - Custom Bufferline
 "
 
 let mapleader=' '
 let maplocalleader = ' '
 
-" [[ Plugins ]]
+" [[ Vim-plug ]]
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -19,97 +22,91 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 endif
 
 call plug#begin()
-" Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-Plug 'airblade/vim-gitgutter'
-" Automatic tabstop settings
 Plug 'tpope/vim-sleuth'
-" LSP and cmp
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 Plug 'ervandew/supertab'
-" Which key
 Plug 'liuchengxu/vim-which-key'
-" Theme inspired by Atom
+Plug 'airblade/vim-gitgutter'
 Plug 'joshdick/onedark.vim'
-" Set airline as statusline
 Plug 'vim-airline/vim-airline'
-" Add indentation guides even on blank lines
-"Plug 'Yggdroot/indentLine'
-" "gc" to comment visual regions/lines
+Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-commentary'
-" Fuzzy Finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-" Personal wiki
 Plug 'vimwiki/vimwiki'
 call plug#end()
 
 
-" [[ Setting sensible default options ]]
+" [[ (most of) Neovim defaults ]]
 filetype on
 syntax on
-set autoindent autoread background=dark backspace=indent,eol,start
-set belloff=all display=lastline encoding=utf-8 hidden
-set history=10000 hlsearch incsearch nojoinspaces
-set laststatus=2 ruler showcmd
-"listchars=tab:>\ ,trail:-,nbsp:+
-set smarttab switchbuf=uselast wildmenu
+set autoindent autoread background=dark backspace=indent,eol,start belloff=all
+set display=lastline encoding=utf-8 hidden history=10000 hlsearch
+set incsearch nojoinspaces laststatus=2 listchars=tab:>\ ,trail:-,nbsp:+ ruler
+set showcmd smarttab nostartofline switchbuf=uselast wildmenu
+set wildoptions=pum,tagfile
 
 
-" [[ Settings other options ]]
-" UI
+" [[ My options ]]
 set number relativenumber
 set cursorline cursorcolumn colorcolumn=80
-set list listchars=leadmultispace:\|\ ,tab:>\ ,trail:-,nbsp:+ showbreak=$
+set list listchars+=leadmultispace:\|\  showbreak=$
 set showtabline=2 scrolloff=7 termguicolors signcolumn=yes
 " Split
 set splitright splitbelow
 " Search
 set ignorecase smartcase
 " Spell
-set spell spelllang=en_us spellsuggest=best,8
+set spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
 " Others
 set updatetime=250 timeoutlen=300
+set confirm
 set mouse=a
 set breakindent
 set completeopt=menuone,noselect
+set autochdir
 
 
-" [[ Basic Keymaps ]]
-
-" Keymaps for better default experience
+" [[ Personal Keymaps ]]
 nnoremap <silent> <Space> <Nop>
 xnoremap <silent> <Space> <Nop>
 
-" Remap for dealing with word wrap
+" Default keymap overrides
+tnoremap <ESC> <C-\><C-n>
 nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+nnoremap <C-w>+ <C-w>+:call feedkeys("\<lt>C-w>")<CR>
+nnoremap <C-w>- <C-w>-:call feedkeys("\<lt>C-w>")<CR>
 
-" I need this keybinding or I will die
-inoremap <silent> jk <ESC>
 " Auto pairs
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
-" Select all
+
+" I will die without this one
+inoremap <silent> jk <ESC>
+" Convenience
 nnoremap <leader>a gg<S-v>G
-" Search
 nnoremap <leader>/ :noh<CR>
-nnoremap n nzz
-nnoremap N Nzz
 " Copy and paste
 xnoremap <leader>y "+y
 nnoremap <leader>p :reg<CR>
 xnoremap <leader>p "_dP
 " Terminal
-tnoremap <ESC> <C-\><C-n>
-nnoremap <leader>z :botright term<CR>
+nnoremap <leader>t :botright term<CR>
 " Spell check
 inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
 " Buffer
 nnoremap <leader>b :ls<CR>:b<SPACE>
-nnoremap <leader>[ :bprevious<CR>
-nnoremap <leader>] :bnext<CR>
+nnoremap [b :bprevious<CR>
+nnoremap ]b :bnext<CR>
 nnoremap <leader>k :ls<CR>
       \: echo '[Theovim] Choose a buf to delete
       \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
@@ -131,23 +128,8 @@ nnoremap <C-h> :call SmartWinMove('h')<CR>
 nnoremap <C-j> :call SmartWinMove('j')<CR>
 nnoremap <C-k> :call SmartWinMove('k')<CR>
 nnoremap <C-l> :call SmartWinMove('l')<CR>
-nnoremap <leader>+ :exe 'resize ' . (winheight(0) * 3/2)<CR>
-nnoremap <leader>- :exe 'resize ' . (winheight(0) * 2/3)<CR>
-nnoremap <leader>> :exe 'vertical resize ' . (winwidth(0) * 3/2)<CR>
-nnoremap <leader>< :exe 'vertical resize ' . (winwidth(0) * 2/3)<CR>
-" Tab
-nnoremap <leader>t :ls<CR>
-      \:echo '[Theovim] Choose a buf to create a new tab w/
-      \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
-      \:tab sb<SPACE>
-nnoremap <leader>q :tabclose<CR>
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
 
-" [[ User commands ]]
+" [[ Commands ]]
 fun! TrimWhitespace()
   let l:save = winsaveview()
   keeppatterns %s/\s\+$//ec
@@ -156,7 +138,6 @@ endfun
 command TrimWhiespace call TrimWhitespace()
 
 " [[ Bufferline ]]
-" Custom bufferline function. I know, it's not the true "Vim way"
 fun! SpawnBufferLine()
   let s = ' :) | '
 
@@ -203,16 +184,13 @@ set tabline=%!SpawnBufferLine()  " Assign the tabline
 
 
 " [[ Configure plugins ]]
-" Make <Space> trigger key map guide
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-" Set color scheme
 colorscheme onedark
-" Characters to render for indentation guide
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " Vimwiki
 let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
        \ 'syntax':'markdown', 'ext': '.md' }]
 let g:vimwiki_global_ext = 1
+
 
 " [[ Configure Netrw ]]
 let g:netrw_banner = 0 " No guide on the top, turn on if error occurs
@@ -246,31 +224,101 @@ endfun
 nnoremap <leader>n :call ToggleNetrw()<CR>
 
 
+" [[ Configure vim-which-key ]]
+call which_key#register('<Space>', "g:which_key_map")
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  '<Space>'<CR>
+
+" document key chains
+let g:which_key_map =  {}
+let g:which_key_map.c = { 'name' : '[C]ode' }
+let g:which_key_map.d = { 'name' : '[D]ocument' }
+let g:which_key_map.g = { 'name' : '[G]it' }
+let g:which_key_map.h = {
+      \ 'name' : 'More git',
+      \ 'p' : 'Preview git hunk',
+      \}
+let g:which_key_map.r = { 'name' : '[R]ename' }
+let g:which_key_map.s = { 'name' : '[S]earch' }
+let g:which_key_map.w = { 'name' : '[W]orkspace' }
+
+" Adding personal keybindings
+let g:which_key_map.a = 'Select all'
+let g:which_key_map['/'] = 'Clear search highlights'
+
+
 " [[ Configure fzf.vim ]]
-" See `:help fzf-vim`
-
-" [?] Find recently opened files
 nmap <leader>? :History<CR>
-" [ ] Find existing buffers
+let g:which_key_map['?'] = '[?] Find recently opened files'
 nmap <leader><space> :Buffers<CR>
-" [/] Fuzzily search in current buffer
+let g:which_key_map[' '] = '[ ] Find existing buffers'
 nmap <leader>/ :BLines<CR>
-" Search [G]it [F]iles
+let g:which_key_map['/'] = '[/] Fuzzily search in current buffer'
+
 nmap <leader>gf :GFiles<CR>
-" [S]earch [F]iles
+let g:which_key_map.g.f = 'Search [G]it [F]iles'
 nmap <leader>sf :Files<CR>
-" [S]earch [H]elp
+let g:which_key_map.s.f = '[S]earch [F]iles'
 nmap <leader>sh :Helptags<CR>
+let g:which_key_map.s.h = '[S]earch [H]elp'
 
 
-" [[ Configure built-in keyword completion ]]
-" Set Omni Completion
-"  See `:help compl-omni` and `:help omnifunc`
+" [[ Configure completion ]]
+filetype plugin on
 set omnifunc=syntaxcomplete#Complete
-
-" Enter key confirms the current selection when completion is open
 inoremap <expr> <CR> pumvisible() ? '<C-y>' : '<CR>'
+let g:SuperTabDefaultCompletionType = "context"
 
+" [[ Configure LSP ]]
+" Performance related settings, requires Vim 8.2+
+let g:lsp_use_native_client = 1
+let g:lsp_semantic_enabled = 0
+let g:lsp_format_sync_timeout = 1000
 
-" The line beneath this is called `modeline`. See `:help modeline`
+function! s:on_lsp_buffer_enabled() abort
+  setlocal omnifunc=lsp#complete
+  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+
+  " Keymaps
+  " Go to previous diagnostic message
+  nmap <buffer> [d <plug>(lsp-previous-diagnostic)
+  " Go to next diagnostic message
+  nmap <buffer> ]d <plug>(lsp-next-diagnostic)
+
+  nmap <buffer> <leader>rn <plug>(lsp-rename)
+  let g:which_key_map.r.n = '[R]e[n]ame'
+  nmap <buffer> <leader>ca <plug>(lsp-code-action-float)
+  let g:which_key_map.c.a = '[C]ode [A]ction'
+
+  " [G]oto [D]efinition
+  nmap <buffer> gd <plug>(lsp-definition)
+  " [G]oto [R]eferences
+  nmap <buffer> gr <plug>(lsp-references)
+  " [G]oto [I]mplementation
+  nmap <buffer> gI <plug>(lsp-implementation)
+
+  nmap <buffer> <leader>D <plug>(lsp-peek-type-definition)
+  let g:which_key_map.D = 'Type [D]efinition'
+  nmap <buffer> <leader>ds <plug>(lsp-document-symbol-search)
+  let g:which_key_map.d.s = '[D]ocument [S]ymbols'
+  nmap <buffer> <leader>ws <plug>(lsp-workspace-symbol-search)
+  let g:which_key_map.w.s = '[W]orkspace [S]ymbols'
+
+  " Hover Documentation
+  nmap <buffer> K <plug>(lsp-hover)
+  " Signature Documentation
+  nmap <buffer> <C-k> <plug>(lsp-signature-help)
+
+  " [G]oto [D]eclaration
+  nmap <buffer> gD <plug>(lsp-declaration)
+
+  " Create a command `:Format` local to the LSP buffer
+  command Format LspDocumentFormatSync
+endfunction
+
+augroup lsp_install
+  au!
+  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
 " vim: ts=2 sts=2 sw=2 et
