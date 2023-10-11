@@ -200,11 +200,9 @@ Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), 
 My Vimrc is built using [Kickstart.vim](https://github.com/theopn/kickstart.vim).
 
 - Config:
-    - Handmade TabLine (buffer line) and StatusLine, sensible default settings, and a handful of plug-ins managed by [vim-plug](https://github.com/junegunn/vim-plug), including [Vimwiki](https://github.com/vimwiki/vimwiki)
-    - `pastelcula.vim`, a custom [base16](https://github.com/chriskempson/base16-vim) theme loosely based on Dracula is included.
-        Thanks [Jonathan](https://github.com/JonathanOppenheimer) for helping his colorblind friend
-    - `:TrimWhitespace`: Remove all trailing whitespace
-    - Reference the `vimrc` for the list of keybindings
+    - Kickstart.vim contents, including sensible defaults and LSP setup
+    - [Handmade TabLine](https://theopark.me/writing/2023-03-17-vimscript-bufferline/)
+    - Vimwiki setup for my personal journal writing
 
 ## File Manager
 
@@ -356,7 +354,7 @@ Formulae:
 | Productivity    | - **Emacs**<br> - **Itsycal**<br> - Notion<br>                                                        |
 | System (macOS)  | - AppCleaner<br> - **Maccy**<br> - **Rectangle**<br> - **Stats**<br> - **Spaceman**                   |
 | Tools           | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC                       |
-| Web             | - **Firefox**<br> - Qutebrowser<br> - Thunderbird                                                     |
+| Web             | - **Firefox**<br> - Thunderbird                                                                       |
 
 ### Settings
 
