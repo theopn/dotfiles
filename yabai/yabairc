@@ -21,12 +21,12 @@ yabai -m config window_gap 10
 # Sketchybar support
 yabai -m config external_bar main:30:0
 
-# Window borders
-yabai -m config window_border on
-yabai -m config window_border_width 2
-yabai -m config window_border_blur on
-yabai -m config active_window_border_color 0xff7aa2f7 # Tokyonight blue
-yabai -m config normal_window_border_color 0xfff7768e # Tokyonight red
+# Window borders -- Removed: https://github.com/koekeishiya/yabai/issues/1889
+#yabai -m config window_border on
+#yabai -m config window_border_width 2
+#yabai -m config window_border_blur on
+#yabai -m config active_window_border_color 0xff7aa2f7 # Tokyonight blue
+#yabai -m config normal_window_border_color 0xfff7768e # Tokyonight red
 
 # Split ratio
 yabai -m config auto_balance on

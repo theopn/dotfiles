@@ -299,10 +299,8 @@ Here are some bugs I encountered, all to blame Apple for not letting users chang
 - Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
 - Emacs not tiling (even with `(menu-bar-mode t)`)
 - Kitty not tiling (with the window decorations removed)
-- (with border color and blur on) lagging when switching focus
-- (with a border width greater than 4) cursor not changing for resizing
 - Being unable to delete a Mission Control desktop with Yabai running
-- High CPU usage of `WindowServer`
+- High CPU usage of `WindowServer` process
 
 Use `cat /tmp/yabai_$USER.err.log` and `cat /tmp/skhd_$USER.err.log` to view the Yabai and Skhd log messages.
 
