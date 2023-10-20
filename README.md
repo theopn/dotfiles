@@ -84,7 +84,7 @@ Tools in this repository are mostly open-source utilities for development.
         ~/dotfiles/dotfiles-util.sh --install-font $FONT_URL
         ```
 
-- To install CaskayadiaCove and FantasqueSansMono Nerd Fonts using Homebrew:
+- To install Iosevka Nerd Font (for terminal emulators and text editors) and CaskayadiaCove Nerd Fonts (for window managers) using Homebrew:
     ```bash
     brew tap homebrew/cask-fonts &&
     brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-font
