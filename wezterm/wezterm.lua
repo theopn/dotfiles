@@ -1,12 +1,12 @@
---[[ wezterm.lua
--- $ figlet -f small Wezterm
--- __      __      _
--- \ \    / /__ __| |_ ___ _ _ _ __
---  \ \/\/ / -_)_ /  _/ -_) '_| '  \
---   \_/\_/\___/__|\__\___|_| |_|_|_|
---
--- My Wezterm config file
---]]
+--- wezterm.lua
+--- $ figlet -f small Wezterm
+--- __      __      _
+--- \ \    / /__ __| |_ ___ _ _ _ __
+---  \ \/\/ / -_)_ /  _/ -_) '_| '  \
+---   \_/\_/\___/__|\__\___|_| |_|_|_|
+---
+--- My Wezterm config file
+
 local wezterm = require("wezterm")
 local act = wezterm.action
 
@@ -21,8 +21,8 @@ config.default_prog = { fish_path, "-l" }
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
+  { family = "Iosevka Nerd Font",  scale = 1.24, weight = "Medium", },
   { family = "CaskaydiaCove Nerd Font",  scale = 1.2 },
-  { family = "FantasqueSansM Nerd Font", scale = 1.2 },
 })
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
