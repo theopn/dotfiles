@@ -21,8 +21,8 @@ config.default_prog = { fish_path, "-l" }
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
-  { family = "Iosevka Nerd Font",  scale = 1.24, weight = "Medium", },
-  { family = "CaskaydiaCove Nerd Font",  scale = 1.2 },
+  { family = "Iosevka Nerd Font",       scale = 1.24, weight = "Medium", },
+  { family = "CaskaydiaCove Nerd Font", scale = 1.2 },
 })
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
@@ -137,16 +137,28 @@ wezterm.on("update-status", function(window, pane)
     stat_color = "#bb9af7"
   end
 
-  -- Current working directory
   local basename = function(s)
     -- Nothing a little regex can't fix
     return string.gsub(s, "(.*[/\\])(.*)", "%2")
   end
-  -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l). Not a big deal, but check in case
+
+  -- Current working directory
   local cwd = pane:get_current_working_dir()
-  cwd = cwd and basename(cwd) or ""
+  if cwd then
+    if type(cwd) == "userdata" then
+      -- Wezterm introduced the URL object in 20240127-113634-bbcac864
+      cwd = basename(cwd.file_path)
+    else
+      -- 20230712-072601-f4abf8fd or earlier version
+      cwd = basename(cwd)
+    end
+  else
+    cwd = ""
+  end
+
   -- Current command
   local cmd = pane:get_foreground_process_name()
+  -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l)
   cmd = cmd and basename(cmd) or ""
 
   -- Time
