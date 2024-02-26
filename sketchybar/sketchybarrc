@@ -14,7 +14,7 @@ source "$CONFIG_DIR/icons.sh"
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
-FONT="CaskaydiaCove Nerd Font"
+FONT="FantasqueSansM Nerd Font"
 PADDING_L=5
 PADDING_R=5
 RADIUS=7
