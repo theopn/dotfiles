@@ -84,10 +84,10 @@ Tools in this repository are mostly open-source utilities for development.
         ~/dotfiles/dotfiles-util.sh --install-font $FONT_URL
         ```
 
-- To install Iosevka Nerd Font (for terminal emulators and text editors) and CaskayadiaCove Nerd Fonts (for window managers) using Homebrew:
+- To install Iosevka Nerd Font (for terminal emulators and text editors) and FantasqueSansM Nerd Fonts (for window managers) using Homebrew:
     ```bash
     brew tap homebrew/cask-fonts &&
-    brew install --cask font-caskaydia-cove-nerd-font font-fantasque-sans-mono-nerd-font
+    brew install --cask font-iosevka-nerd-font font-fantasque-sans-mono-nerd-font
     ```
 
 ## Shells
@@ -231,12 +231,6 @@ When I see a CLI file manager with Vim keybindings and a minimalistic feature se
 > Thanks Linus
 
 No comments.
-
-### TODO Qutebrowser
-
-> Modern keyboard-based browser
-
-It's based on the Chromium engine, uses Vim keybindings, and is configured through Python. What more can I ask?
 
 ## Miscellaneous Configurations
 
