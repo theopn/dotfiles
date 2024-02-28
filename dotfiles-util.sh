@@ -110,16 +110,6 @@ function install() {
     done
   fi
 
-  if selection_prompt 'Qutebrowser'; then
-    if [[ "${OSTYPE}" == "darwin"* ]]; then
-      mkdir -p ~/.qutebrowser/
-      backup_then_symlink ${DOT_DIR}/qutebrowser/config.py ~/.qutebrowser/config.py
-    elif [[ "${OSTYPE}" == "linux-gnu"* ]];then
-      mkdir -p ~/.config/qutebrowser/
-      backup_then_symlink ${DOT_DIR}/qutebrowser/config.py ~/.config/qutebrowser/config.py
-    fi
-  fi
-
   if selection_prompt 'Tmux'; then
     backup_then_symlink ${DOT_DIR}/tmux/tmux.conf ~/.tmux.conf
   fi
@@ -187,35 +177,6 @@ function macos-install() {
   yellow_echo 'Ending the macos specific installation...'
 }
 
-function yabai_install() {
-  green_echo "Starting i3 WM specific installlation process..."
-
-  verify_script_dir
-
-  if [[ "$OSTYPE" != "darwin"* ]]; then
-    red_echo "You are not using macOS! OSTYPE == $OSTYPE"
-    exit 1
-  fi
-
-  if selection_prompt 'Sketchybar'; then
-    CURRENT_FILES=(plugins colors.sh icons.sh sketchybarrc)
-    mkdir -p ~/.config/sketchybar
-    for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ${DOT_DIR}/sketchybar/${FILE} ~/.config/sketchybar/${FILE}
-    done
-  fi
-
-  if selection_prompt 'Yabai'; then
-    mkdir -p ~/.config/yabai/
-    backup_then_symlink ${DOT_DIR}/yabai/yabairc ~/.config/yabai/yabairc
-  fi
-  
-  if selection_prompt 'Skhd'; then
-    mkdir -p ~/.config/skhd/
-    backup_then_symlink ${DOT_DIR}/skhd/skhdrc ~/.config/skhd/skhdrc
-  fi
-}
-
 ########## AUXILIARY FUNCTIONS ##########
 
 # Deletes $DOT_BACKUP_DIR directory
@@ -268,7 +229,6 @@ function help() {
   args:
     --install             : Deploy configuration symlinks for cross-platform utilities
     --macos-install       : Deploy configuration symlinks for macOS and related utilities
-    --yabai-install       : Deploy configuration symlinks for Yabai and macOS Tiling WM utilities
     --delete-backup       : Delete $DOT_BACKUP_DIR
     --add-ssh-shortcut    : Add a new SSH shortcut at ~/.ssh/config
     --install-font <URL>  : wget a font file from URL (preferably from NERDFont website) and install it at ~/.local/share/fonts/
@@ -285,9 +245,6 @@ function main() {
     ;;
     "--macos-install")
       macos-install
-    ;;
-    "--yabai-install")
-      yabai_install
     ;;
     "--delete-backup")
       delete_backup

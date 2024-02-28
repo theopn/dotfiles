@@ -5,11 +5,11 @@
 
 | ![macos-sc](./assets/macos-sc.jpg) |
 |:--:|
-| macOS |
+| macOS (my Yabai setup is no longer in use, see [Deprecated](./deprecated/) |
 
 | ![fedora-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/main/assets/sway-sc.png) |
 |:--:|
-| Fedora w/ Sway WM |
+| Fedora w/ Sway WM (~~ackchyually, it is a Wayland compositor~~) |
 
 Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
 MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin with i3 WM installed (Wayland is *almost* there).
@@ -29,19 +29,13 @@ Tools in this repository are mostly open-source utilities for development.
     ~/dotfiles/dotfiles-util.sh --delete-backup # Optional
     ```
 
-- Configure macOS-specific utilities and settings using the following commands:
+- Install Homebrew and configure macOS-specific utilities and settings using the following commands:
     ```bash
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     brew analytics off
 
     ~/dotfiles/dotfiles-util.sh --macos-install
     ```
-
-- Configure Yabai, Skhd, and Sketchybar for macOS tiling WM setup using the following commands:
-    ```bash
-    ~/dotfiles/dotfiles-util.sh --yabai-install
-    ```
-    Don't forget to follow the further instructions in [the macOS tiling WM section](#macos-tiling-wm-setup)
 
 - Choose configurations in the `misc` directory and manually copy them! Follow the commands in `./misc/README.md`.
 
@@ -245,65 +239,9 @@ No comments.
 - `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
 - `neofetch.conf`: It includes a prompt inspired by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes)
 
-## macOS Tiling WM Setup
+## macOS
 
-I use these [Yabai](https://github.com/koekeishiya/yabai), [Skhd](https://github.com/koekeishiya/skhd), and [Sketchybar](https://github.com/FelixKratz/SketchyBar) to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
-
-To begin, modify the macOS settings as follows:
-
-- "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
-- "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
-- Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Skhd for this, it requires disabling SIP)
-    - Create 5 Mission Control desktops
-    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 5)
-    - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
-    - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
-
-Install and start utilities:
-
-- Install Yabai, Skhd, and Sketchybar:
-    ```bash
-    brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai FelixKratz/formulae/sketchybar
-    ```
-- Start Skhd:
-    ```bash
-    skhd --start-service
-    ```
-- Use `ctrl + alt - s` keybinding (ctrl + opt + s) to start sketchybar and Yabai.
-- Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
-
-Keybindings:
-
-- The `opt`/`alt` (`⌥`) key is the modifier
-- `mod + ret`: Open Wezterm
-- `mod + hjkl`: Navigate windows
-- `mod + f`: Toggle fullscreen
-- `mod + shift + r`: Rotate tree
-- `mod + shift + y/x`: Mirror x-axis/y-axis
-- `mod + shift + SPC`: Toggle floating
-- `mod + shift + e`: Balance all window size
-- `mod + shift + hjkl`: ~~Resize window (h to shrink left, j to grow above, k to shrink below, l to grow right)~~ Swap window (use mouse for resizing)
-- `mod + ctrl + hjkl`: Move window and tile with what was already there
-- `mod + shift + 1-5`: Move to WS 1-5
-
-Yabai is a fantastic tool, but because it's running on top of Aqua (macOS default WM), there are a few limitations.
-Here are some bugs I encountered, all to blame Apple for not letting users change Aqua.
-
-- Layout not persisting after exiting a full-screen video play in Firefox
-- Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
-- Emacs not tiling (even with `(menu-bar-mode t)`)
-- Kitty not tiling (with the window decorations removed)
-- Being unable to delete a Mission Control desktop with Yabai running
-- High CPU usage of `WindowServer` process
-
-Use `cat /tmp/yabai_$USER.err.log` and `cat /tmp/skhd_$USER.err.log` to view the Yabai and Skhd log messages.
-
-Because of Yabai's limitations, I prefer using [Rectangle](https://github.com/rxhanson/Rectangle) and manually tiling windows when using a small laptop screen.
-After installing Rectangle, execute the following command to make Rectangle aware of Sketchybar:
-
-```bash
-defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 30 # 0 to reset
-```
+### Rectangle
 
 My Vim-inspired Rectangle keybindings (restore them using ./macos/vimtangle.json):
 
@@ -313,7 +251,19 @@ My Vim-inspired Rectangle keybindings (restore them using ./macos/vimtangle.json
 - `mod + n/m`: Almost maximize/maximize
 - `mod + -/=`: Smaller/larger
 
-## macOS
+If you use a third-party menubar-replacement (e.g., Sketchybar), execute the following command to make Rectangle aware of the bar
+
+```bash
+defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 30 # or thickness of the bar in pixel. 0 to reset
+```
+
+I also recommends you to 
+
+- Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Skhd for this, it requires disabling SIP)
+    - Create 5 Mission Control desktops
+    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 5)
+    - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
+    - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
 
 ### Homebrew
 
@@ -339,14 +289,14 @@ Formulae:
 - tree: Tree-like directory view
 - **wget**: Be careful with what you download
 
-| Type            | Casks                                                                                                 |
-|-----------------|-------------------------------------------------------------------------------------------------------|
-| Development     | - Docker<br> - IntelliJ CE<br> - kitty<br> - MacTex (No GUI)<br> - **MacVim**<br> - **Wezterm**       |
-| Fun             | - Discord<br> - Minecraft<br> - Spotify                                                               |
-| Productivity    | - **Emacs**<br> - **Itsycal**<br> - Notion<br>                                                        |
-| System (macOS)  | - AppCleaner<br> - **Maccy**<br> - **Rectangle**<br> - **Stats**<br> - **Spaceman**                   |
-| Tools           | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC                       |
-| Web             | - **Firefox**<br> - Thunderbird                                                                       |
+| Type            | Casks                                                                                              |
+|-----------------|----------------------------------------------------------------------------------------------------|
+| Development     | - Docker<br> - IntelliJ CE<br> - kitty<br> - MacTex (No GUI)<br> - **MacVim**<br> - **Wezterm**    |
+| Fun             | - Discord<br> - Minecraft<br> - Spotify                                                            |
+| Productivity    | - **Emacs**<br> - **Itsycal**<br> - Notion<br>                                                     |
+| System (macOS)  | - AppCleaner<br> - **Maccy**<br> - **Rectangle**<br> - **Stats**<br> - **Spaceman**                |
+| Tools           | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC                    |
+| Web             | - **Firefox**<br> - Thunderbird                                                                    |
 
 ### Settings
 
@@ -356,7 +306,8 @@ Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, ch
 
 > [!WARNING]
 > These dotfiles are unused because either I stopped using the utility or developed a new configuration.
-> Read `./deprecated/README.md` for more information.
+
+Read the [list of deprecated configurations](./deprecated/README.md) for more information.
 
 ## Credits
 
