@@ -79,7 +79,7 @@ function updater -d "Place to update all the different stuff"
       case 'dotfiles'
         cd ~/dotfiles/ && git pull && cd - &> /dev/null
       case 'doom emacs'
-        ~/.emacs.d/bin/doom upgrade
+        ~/.config/emacs/bin/doom upgrade
       case 'theovim'
         cd ~/.config/nvim && git pull && cd - &> /dev/null
       case 'dnf'

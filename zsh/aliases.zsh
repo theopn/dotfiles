@@ -91,7 +91,7 @@ updater () {
         theoshell_upgrade
         ;;
       'doom emacs')
-        ~/.emacs.d/bin/doom upgrade ;;
+        ~/.config/emacs/bin/doom upgrade ;;
       'theovim')
         cd ~/.config/nvim && git pull && cd - &> /dev/null ;;
       'homebrew')
