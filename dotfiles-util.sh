@@ -74,10 +74,10 @@ function install() {
   verify_script_dir
 
   if selection_prompt 'Doom'; then
-    CURRENT_FILES=("init.el" "config.el" "packages.el")
-    mkdir -p ~/.doom.d/
+    CURRENT_FILES=("init.el" "config.el" "packages.el" "org-config.el")
+    mkdir -p ~/.config/doom/
     for FILE in ${CURRENT_FILES[@]}; do
-      backup_then_symlink ${DOT_DIR}/doom.d/${FILE} ~/.doom.d/${FILE}
+      backup_then_symlink ${DOT_DIR}/doom/${FILE} ~/.config/doom/${FILE}
     done
   fi
 
