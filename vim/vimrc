@@ -1,81 +1,101 @@
+"===============================================================================
+" "Nature is pleased with simplicity. And nature is no dummy” - Isaac Newton
 "
+"                                 \/       \/
+"                                 /\_______/\
+"                                /   o   o   \
+"                               (  ==  ^  ==  )
+"                                )           (
+"                               (             )
+"                               ( (  )   (  ) )
+"                              (__(__)___(__)__)
+"                                 O l i v e r
+"
+"===============================================================================
+"
+" Theo's .vimrc based on:
 " =====================================================================
 " =========================== KICKSTART.VIM ===========================
 " =====================================================================
 " ========                                    .-----.          ========
 " ========         .----------------------.   | === |          ========
 " ========         |.-""""""""""""""""""-.|   |-----|          ========
-" ========         ||                    ||   | === |          ========
+" ========         || GITHUB.COM/THEOPN/ ||   | === |          ========
 " ========         ||   KICKSTART.VIM    ||   |-----|          ========
 " ========         ||                    ||   | === |          ========
-" ========         ||                    ||   |-----|          ========
-" ========         ||:Tutor              ||   |:::::|          ========
-" ========         |'-..................-'|   |____o|          ========
-" ========         `"")----------------(""`   ___________      ========
-" ========        /::::::::::|  |::::::::::\  \ no mouse \     ========
-" ========       /:::========|  |==hjkl==:::\  \ required \    ========
-" ========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
-" ========                                                     ========
+" ========                                       ---|          ========
+" ========                                        ::|          ========
 " =====================================================================
 "
-" This is Theo's version of Kickstart.vim:
-" https://github.com/theopn/kickstart.vim
-"
-" My version focuses on
-" - Note taking using Vimwiki
-" - Custom UI components and opinionated settings
-"
 
-" [[ Leader ]]
+" {{{ Options
 let mapleader=' '
 let maplocalleader = ' '
 
-
-" [[ Neovim default options ]]
 filetype on
 syntax on
-set autoindent autoread background=dark
-set backspace=indent,eol,start belloff=all
-set display=lastline encoding=utf-8 hidden
-set history=10000 incsearch
-set nojoinspaces laststatus=2 ruler
-set showcmd smarttab nostartofline
-set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
 
+" Text editing
+set backspace=indent,eol,start
+set completeopt=menuone,noselect
+set encoding=utf-8
+set nojoinspaces  " prevent automatic space insertion when using J
 
-" [[ Kickstart options ]]
-set number
-set relativenumber
+" Behavior
+set autoread  " reflect changes made outside of Vim
+set autochdir  " change CWD to the parent dir of the buf
+set belloff=all
+set confirm  " ask to save
 set mouse=a
-set noshowmode
-"set clipboard=unnamedplus
-set breakindent
-set ignorecase
-set smartcase
-set signcolumn=yes
-set updatetime=250
-set timeoutlen=300
-set splitright
-set splitbelow
-set list
-set listchars=tab:»\ ,trail:·,nbsp:␣
-"set listchars=tab:>\ ,trail:-,nbsp:+
-set cursorline
+set nostartofline  " keep the cursor in the same column when navigating
 set scrolloff=10
 
+" Buffer
+set hidden switchbuf=uselast
 
-" [[ My options ]]
-set autochdir
-set confirm
-set completeopt=menuone,noselect
-set cursorcolumn colorcolumn=80
-set showbreak=$
-set showtabline=2 termguicolors signcolumn=yes
+" Command
+set history=10000 wildmenu "wildoptions=pum,tagfile
+
+" Performance
+set updatetime=250 timeoutlen=300
+
+" Indentation
+" copies indentation of prev line, read help for smarttab
+set autoindent smarttab
+set tabstop=2 shiftwidth=2 expandtab  " C-centric indentation settings
+
+" Appearance
+set background=dark
+set breakindent  " give wrapped lines visual indentation
+let &showbreak="> "  " indicate wrapped lines
+set display=lastline  " display @@@ in the truncated last line
+set ruler
+set number relativenumber
+set laststatus=2 showtabline=2 signcolumn=yes showcmd
+set list listchars=tab:»\ ,trail:·,nbsp:␣,leadmultispace:\|\  " lms req. > 0.9
+set cursorline cursorcolumn colorcolumn=80
+
+" Search
+set incsearch hlsearch
+set ignorecase smartcase
+set shortmess-=S  " enable search count in the ruler (off by default)
+
+" Split
+set splitright splitbelow
+
+" Spell
 set spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
 
+" Fold
+set foldmethod=marker foldlevel=0
+" }}}
+
+
+" {{{ Keymaps
+
+" }}}
 
 " [[ Kickstart keymaps ]]
-set hlsearch
 nnoremap <Esc> :nohlsearch<CR>
 tnoremap <Esc><Esc> <C-\><C-n>
 nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
@@ -310,7 +330,7 @@ let g:which_key_map['/'] = '[/] Fuzzily search in current buffer'
 " [[ Configure LSP ]]
 " Performance related settings, requires Vim 8.2+
 let g:lsp_use_native_client = 1
-let g:lsp_semantic_enabled = 1
+let g:lsp_semantic_enabled = 0
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
