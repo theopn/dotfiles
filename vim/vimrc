@@ -1,5 +1,4 @@
 "===============================================================================
-" "Nature is pleased with simplicity. And nature is no dummy” - Isaac Newton
 "
 "                                 \/       \/
 "                                 /\_______/\
@@ -49,6 +48,7 @@ set confirm  " ask to save
 set mouse=a
 set nostartofline  " keep the cursor in the same column when navigating
 set scrolloff=10
+set matchpairs+=<:>,=:;  " pairs to register for %
 
 " Buffer
 set hidden switchbuf=uselast
@@ -63,6 +63,7 @@ set updatetime=250 timeoutlen=300
 " copies indentation of prev line, read help for smarttab
 set autoindent smarttab
 set tabstop=2 shiftwidth=2 expandtab  " C-centric indentation settings
+set shiftround  " indent to a multiple of shiftwidth when using <. >
 
 " Appearance
 set background=dark
@@ -92,18 +93,9 @@ set foldmethod=marker foldlevel=0
 
 
 " {{{ Keymaps
-
-" }}}
-
-" [[ Kickstart keymaps ]]
-nnoremap <Esc> :nohlsearch<CR>
-tnoremap <Esc><Esc> <C-\><C-n>
+" Default overrides
 nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
-
-
-" [[ Personal Keymaps ]]
-" Default overrides
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-d> <C-d>zz
@@ -111,23 +103,30 @@ nnoremap <C-u> <C-u>zz
 nnoremap <C-w>+ <C-w>+:call feedkeys("\<lt>C-w>")<CR>
 nnoremap <C-w>- <C-w>-:call feedkeys("\<lt>C-w>")<CR>
 
+" ESC's
+inoremap <silent> jk <ESC>
+nnoremap <Esc> :nohlsearch<CR>
+tnoremap <Esc><Esc> <C-\><C-n>
+
 " Auto pairs
 inoremap ( ()<LEFT>
 inoremap [ []<LEFT>
 inoremap {<CR> {<CR>}<ESC>ko<TAB>
 
-" I will die without this one
-inoremap <silent> jk <ESC>
-" Convenience
-nnoremap <leader>a gg<S-v>G
 " Copy and paste
+nnoremap <leader>a gg<S-v>G
 xnoremap <leader>y "+y
 nnoremap <leader>p :reg<CR>
+      \:echo '[Theovim] e.g., `:normal "+p` to paste from the register +'<CR>
+      \:normal "
 xnoremap <leader>p "_dP
+
 " Terminal
 nnoremap <leader>t :botright term<CR>
+
 " Spell check
 inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
+
 " Buffer
 nnoremap <leader>b :ls<CR>:b<SPACE>
 nnoremap [b :bprevious<CR>
@@ -136,6 +135,7 @@ nnoremap <leader>k :ls<CR>
       \: echo '[Theovim] Choose a buf to delete
       \(blank: choose curr buf, RET: confirm, ESC: cancel)'<CR>
       \:bdelete<SPACE>
+
 " Window
 fun! SmartWinMove(key)
   let t:currwin = winnr()
@@ -153,18 +153,20 @@ nnoremap <C-h> :call SmartWinMove('h')<CR>
 nnoremap <C-j> :call SmartWinMove('j')<CR>
 nnoremap <C-k> :call SmartWinMove('k')<CR>
 nnoremap <C-l> :call SmartWinMove('l')<CR>
+" }}}
 
 
-" [[ Commands ]]
+" {{{ Commands
 fun! TrimWhitespace()
   let l:save = winsaveview()
   keeppatterns %s/\s\+$//ec
   call winrestview(l:save)
 endfun
 command TrimWhiespace call TrimWhitespace()
+" }}}
 
 
-" [[ Bufferline ]]
+" {{{ Bufferline
 fun! SpawnBufferLine()
   let s = ' :) '
 
@@ -218,9 +220,10 @@ fun! SpawnBufferLine()
 endfun
 
 set tabline=%!SpawnBufferLine()  " Assign the tabline
+" }}}
 
 
-" [[ Netrw ]]
+" {{{ netrw
 let g:netrw_banner = 0 " No guide on the top, turn on if error occurs
 let g:netrw_liststyle = 1 " 0 simple, 1 detailed, 2 thick, 3 tree
 let g:netrw_browse_split = 3
@@ -250,9 +253,10 @@ fun! ToggleNetrw()
 endfun
 
 nnoremap <leader>n :call ToggleNetrw()<CR>
+" }}}
 
 
-" [[ Vim-plug ]]
+" {{{ vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
   silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -275,26 +279,22 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'vimwiki/vimwiki'
 call plug#end()
+" }}}
 
 
-" [[ Configure plugins ]]
+" {{{ colorscheme
 set termguicolors
 let g:tokyonight_style = 'night'  " available: night, storm
 let g:tokyonight_enable_italic = 0
 colorscheme tokyonight
-
-" Vimwiki
-let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
-       \ 'syntax':'markdown', 'ext': '.md' }]
-let g:vimwiki_global_ext = 1
+" }}}
 
 
-" [[ Configure vim-which-key ]]
+" {{{ vim-which-key
 call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  '<Space>'<CR>
 
-" Document existing key chains
 let g:which_key_map =  {}
 let g:which_key_map.c = { 'name' : '[C]ode' }
 let g:which_key_map.d = { 'name' : '[D]ocument' }
@@ -304,12 +304,16 @@ let g:which_key_map.w = { 'name' : '[W]orkspace' }
 let g:which_key_map.t = { 'name' : '[T]oggle' }
 let g:which_key_map.h = { 'name' : 'Git [H]unk' }
 
-" Adding personal keybindings
+" Adding non-plugin keybindings defined above
 let g:which_key_map.a = 'Select all'
-let g:which_key_map['/'] = 'Clear search highlights'
+let g:which_key_map.b = 'Switch buffer'
+let g:which_key_map.k = 'Kill buffer'
+let g:which_key_map.n = 'Toggle netrw'
+let g:which_key_map.p = 'Choose from a register'
+" }}}
 
 
-" [[ Configure fzf.vim ]]
+" {{{ fzf.vim
 nmap <leader>sh :Helptags<CR>
 let g:which_key_map.s.h = '[S]earch [H]elp'
 nmap <leader>sk :Maps<CR>
@@ -322,24 +326,21 @@ nmap <leader>s. :History<CR>
 let g:which_key_map.s['.'] = '[S]earch Recent Files ("." for repeat)'
 nmap <leader><leader> :Buffers<CR>
 let g:which_key_map[' '] = '[ ] Find existing buffers'
-
 nmap <leader>/ :BLines<CR>
 let g:which_key_map['/'] = '[/] Fuzzily search in current buffer'
+" }}}
 
 
-" [[ Configure LSP ]]
-" Performance related settings, requires Vim 8.2+
-let g:lsp_use_native_client = 1
-let g:lsp_semantic_enabled = 0
+" {{{ vim-lsp
+let g:lsp_use_native_client = 1  " Requires Vim 8.2+
+let g:lsp_semantic_enabled = 0  " Can cause a lot of lag
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 
   " Keymaps
-  " Go to previous diagnostic message
   nmap <buffer> [d <plug>(lsp-previous-diagnostic)
-  " Go to next diagnostic message
   nmap <buffer> ]d <plug>(lsp-next-diagnostic)
 
   nmap <buffer> <leader>rn <plug>(lsp-rename)
@@ -347,11 +348,8 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>ca <plug>(lsp-code-action-float)
   let g:which_key_map.c.a = '[C]ode [A]ction'
 
-  " [G]oto [D]efinition
   nmap <buffer> gd <plug>(lsp-definition)
-  " [G]oto [R]eferences
   nmap <buffer> gr <plug>(lsp-references)
-  " [G]oto [I]mplementation
   nmap <buffer> gI <plug>(lsp-implementation)
 
   nmap <buffer> <leader>D <plug>(lsp-peek-type-definition)
@@ -361,34 +359,37 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>ws <plug>(lsp-workspace-symbol-search)
   let g:which_key_map.w.s = '[W]orkspace [S]ymbols'
 
-  " See `:help K` for why this keymap
-  " Hover Documentation
   nmap <buffer> K <plug>(lsp-hover)
-  " Signature Documentation
   nmap <buffer> <C-k> <plug>(lsp-signature-help)
 
-  " Lesser used LSP functionality
-  " [G]oto [D]eclaration
   nmap <buffer> gD <plug>(lsp-declaration)
 
-  " Create a command `:Format` local to the LSP buffer
   let g:lsp_format_sync_timeout = 1000
   command! Format LspDocumentFormatSync
 endfunction
 
 augroup lsp_install
   au!
-  " call s:on_lsp_buffer_enabled only for languages that has the server registered.
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+" }}}
 
 
-" [[ Configure completion ]]
+" {{{ asyncomplete.vim
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>""
 
 let g:asyncomplete_auto_completeopt = 0
 set completeopt=menuone,noinsert,noselect,preview
+" }}}
+
+
+" {{{ Vimwiki
+let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
+       \ 'syntax':'markdown', 'ext': '.md' }]
+let g:vimwiki_global_ext = 1
+" }}}
+
 
 " vim: ts=2 sts=2 sw=2 et
