@@ -30,6 +30,7 @@
 let mapleader=' '
 let maplocalleader = ' '
 
+
 " [[ Neovim default options ]]
 filetype on
 syntax on
@@ -40,6 +41,7 @@ set history=10000 incsearch
 set nojoinspaces laststatus=2 ruler
 set showcmd smarttab nostartofline
 set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
+
 
 " [[ Kickstart options ]]
 set number
@@ -61,6 +63,7 @@ set listchars=tab:»\ ,trail:·,nbsp:␣
 set cursorline
 set scrolloff=10
 
+
 " [[ My options ]]
 set autochdir
 set confirm
@@ -70,12 +73,14 @@ set showbreak=$
 set showtabline=2 termguicolors signcolumn=yes
 set spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
 
+
 " [[ Kickstart keymaps ]]
 set hlsearch
 nnoremap <Esc> :nohlsearch<CR>
 tnoremap <Esc><Esc> <C-\><C-n>
 nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
+
 
 " [[ Personal Keymaps ]]
 " Default overrides
@@ -129,6 +134,7 @@ nnoremap <C-j> :call SmartWinMove('j')<CR>
 nnoremap <C-k> :call SmartWinMove('k')<CR>
 nnoremap <C-l> :call SmartWinMove('l')<CR>
 
+
 " [[ Commands ]]
 fun! TrimWhitespace()
   let l:save = winsaveview()
@@ -137,32 +143,43 @@ fun! TrimWhitespace()
 endfun
 command TrimWhiespace call TrimWhitespace()
 
+
 " [[ Bufferline ]]
 fun! SpawnBufferLine()
-  let s = ' :) | '
+  let s = ' :) '
 
-  " Get the list of buffers. Use bufexists() to include hidden buffers
+  " Gets the list of buffers. Use bufexists() to include hidden buffers
   let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
-  " Making a buffer list on the left side
   for i in bufferNums
-    " Highlight with yellow if it's the current buffer
-    let s .= (i == bufnr()) ? ('%#TabLineSel#') : ('%#TabLine#')
-    let s .= i . ' '  " Append the buffer number
-    if bufname(i) == ''
-      let s .= '[NEW]'  " Give a name to a new buffer
-    endif
-    if getbufvar(i, "&modifiable")
-      let s .= fnamemodify(bufname(i), ':t')  " Append the file name
-      " let s .= pathshorten(bufname(i))  " Use this if you want a trimmed path
-      " If the buffer is modified, add + and separator. Else, add separator
-      let s .= (getbufvar(i, "&modified")) ? (' [+] | ') : (' | ')
-    else
-      let s .= fnamemodify(bufname(i), ':t') . ' [RO] |'  " Add read only flag
-    endif
-  endfor
-  let s .= '%#TabLineFill#%T '  " Reset highlight
+    let s .= '%#TabLineFill#%T|'  " Resets highlight and adds a left separator
 
-  let s .= '%=' " Spacer
+    " Highlights if it's the current buffer
+    let s .= (i == bufnr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+    let s .= ' ' . i . ' '  " Appends the buffer number
+
+    " Gives a [NEW] flag to an unnamed buffer
+    if bufname(i) == ''
+      let s .= '[NEW]'
+    endif
+
+    if getbufvar(i, "&modifiable")
+      let s .= fnamemodify(bufname(i), ':t')  " Appends the file name
+      " let s .= pathshorten(bufname(i))  " Use this if you want a trimmed path
+
+      " If the buffer is modified, add [+] flag
+      if getbufvar(i, "&modified")
+        let s .= ' [+]'
+      endif
+
+    else
+      let s .= fnamemodify(bufname(i), ':t') . ' [RO]'  " Add read only flag
+    endif
+
+    let s .= ' %#TabLineFill#%T'  " Resets highlight and adds a spacer
+  endfor
+  let s .= '|'  " Adds a right separator to the last buffer
+
+  let s .= '%='  " Adds a spacer
 
   " Making a tab list on the right side
   for i in range(1, tabpagenr('$'))  " Loop through the number of tabs
@@ -181,6 +198,7 @@ fun! SpawnBufferLine()
 endfun
 
 set tabline=%!SpawnBufferLine()  " Assign the tabline
+
 
 " [[ Netrw ]]
 let g:netrw_banner = 0 " No guide on the top, turn on if error occurs
@@ -292,8 +310,7 @@ let g:which_key_map['/'] = '[/] Fuzzily search in current buffer'
 " [[ Configure LSP ]]
 " Performance related settings, requires Vim 8.2+
 let g:lsp_use_native_client = 1
-let g:lsp_semantic_enabled = 0
-let g:lsp_format_sync_timeout = 1000
+let g:lsp_semantic_enabled = 1
 
 function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
@@ -335,7 +352,8 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> gD <plug>(lsp-declaration)
 
   " Create a command `:Format` local to the LSP buffer
-  command Format LspDocumentFormatSync
+  let g:lsp_format_sync_timeout = 1000
+  command! Format LspDocumentFormatSync
 endfunction
 
 augroup lsp_install
