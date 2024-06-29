@@ -2,82 +2,83 @@
 " =====================================================================
 " =========================== KICKSTART.VIM ===========================
 " =====================================================================
+" ========                                    .-----.          ========
+" ========         .----------------------.   | === |          ========
+" ========         |.-""""""""""""""""""-.|   |-----|          ========
+" ========         ||                    ||   | === |          ========
+" ========         ||   KICKSTART.VIM    ||   |-----|          ========
+" ========         ||                    ||   | === |          ========
+" ========         ||                    ||   |-----|          ========
+" ========         ||:Tutor              ||   |:::::|          ========
+" ========         |'-..................-'|   |____o|          ========
+" ========         `"")----------------(""`   ___________      ========
+" ========        /::::::::::|  |::::::::::\  \ no mouse \     ========
+" ========       /:::========|  |==hjkl==:::\  \ required \    ========
+" ========      '""""""""""""'  '""""""""""""'  '""""""""""'   ========
+" ========                                                     ========
+" =====================================================================
 "
 " This is Theo's version of Kickstart.vim:
 " https://github.com/theopn/kickstart.vim
 "
 " My version focuses on
 " - Note taking using Vimwiki
-" - Custom Bufferline
+" - Custom UI components and opinionated settings
 "
 
+" [[ Leader ]]
 let mapleader=' '
 let maplocalleader = ' '
 
-" [[ Vim-plug ]]
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rhubarb'
-Plug 'tpope/vim-sleuth'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'ervandew/supertab'
-Plug 'liuchengxu/vim-which-key'
-Plug 'airblade/vim-gitgutter'
-Plug 'joshdick/onedark.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'Yggdroot/indentLine'
-Plug 'tpope/vim-commentary'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'vimwiki/vimwiki'
-call plug#end()
-
-
-" [[ (most of) Neovim defaults ]]
+" [[ Neovim default options ]]
 filetype on
 syntax on
-set autoindent autoread background=dark backspace=indent,eol,start belloff=all
-set display=lastline encoding=utf-8 hidden history=10000 hlsearch
-set incsearch nojoinspaces laststatus=2 listchars=tab:>\ ,trail:-,nbsp:+ ruler
-set showcmd smarttab nostartofline switchbuf=uselast wildmenu
-set wildoptions=pum,tagfile
+set autoindent autoread background=dark
+set backspace=indent,eol,start belloff=all
+set display=lastline encoding=utf-8 hidden
+set history=10000 incsearch
+set nojoinspaces laststatus=2 ruler
+set showcmd smarttab nostartofline
+set switchbuf=uselast wildmenu "wildoptions=pum,tagfile
 
+" [[ Kickstart options ]]
+set number
+set relativenumber
+set mouse=a
+set noshowmode
+"set clipboard=unnamedplus
+set breakindent
+set ignorecase
+set smartcase
+set signcolumn=yes
+set updatetime=250
+set timeoutlen=300
+set splitright
+set splitbelow
+set list
+set listchars=tab:»\ ,trail:·,nbsp:␣
+"set listchars=tab:>\ ,trail:-,nbsp:+
+set cursorline
+set scrolloff=10
 
 " [[ My options ]]
-set number relativenumber
-set cursorline cursorcolumn colorcolumn=80
-set list listchars+=leadmultispace:\|\  showbreak=$
-set showtabline=2 scrolloff=7 termguicolors signcolumn=yes
-" Split
-set splitright splitbelow
-" Search
-set ignorecase smartcase
-" Spell
-set spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
-" Others
-set updatetime=250 timeoutlen=300
-set confirm
-set mouse=a
-set breakindent
-set completeopt=menuone,noselect
 set autochdir
+set confirm
+set completeopt=menuone,noselect
+set cursorcolumn colorcolumn=80
+set showbreak=$
+set showtabline=2 termguicolors signcolumn=yes
+set spell spelllang=en_us spellsuggest=best,8 spelloptions=camel
 
-
-" [[ Personal Keymaps ]]
-nnoremap <silent> <Space> <Nop>
-xnoremap <silent> <Space> <Nop>
-
-" Default keymap overrides
-tnoremap <ESC> <C-\><C-n>
+" [[ Kickstart keymaps ]]
+set hlsearch
+nnoremap <Esc> :nohlsearch<CR>
+tnoremap <Esc><Esc> <C-\><C-n>
 nnoremap <expr> <silent> k v:count == 0 ? 'gk' : 'k'
 nnoremap <expr> <silent> j v:count == 0 ? 'gj' : 'j'
+
+" [[ Personal Keymaps ]]
+" Default overrides
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap <C-d> <C-d>zz
@@ -94,7 +95,6 @@ inoremap {<CR> {<CR>}<ESC>ko<TAB>
 inoremap <silent> jk <ESC>
 " Convenience
 nnoremap <leader>a gg<S-v>G
-nnoremap <leader>/ :noh<CR>
 " Copy and paste
 xnoremap <leader>y "+y
 nnoremap <leader>p :reg<CR>
@@ -182,17 +182,7 @@ endfun
 
 set tabline=%!SpawnBufferLine()  " Assign the tabline
 
-
-" [[ Configure plugins ]]
-colorscheme onedark
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-" Vimwiki
-let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
-       \ 'syntax':'markdown', 'ext': '.md' }]
-let g:vimwiki_global_ext = 1
-
-
-" [[ Configure Netrw ]]
+" [[ Netrw ]]
 let g:netrw_banner = 0 " No guide on the top, turn on if error occurs
 let g:netrw_liststyle = 1 " 0 simple, 1 detailed, 2 thick, 3 tree
 let g:netrw_browse_split = 3
@@ -224,23 +214,57 @@ endfun
 nnoremap <leader>n :call ToggleNetrw()<CR>
 
 
+" [[ Vim-plug ]]
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+call plug#begin()
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-commentary'
+Plug 'airblade/vim-gitgutter'
+Plug 'liuchengxu/vim-which-key'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'ghifarit53/tokyonight-vim'
+Plug 'vim-airline/vim-airline'
+
+Plug 'vimwiki/vimwiki'
+call plug#end()
+
+
+" [[ Configure plugins ]]
+set termguicolors
+let g:tokyonight_style = 'night'  " available: night, storm
+let g:tokyonight_enable_italic = 0
+colorscheme tokyonight
+
+" Vimwiki
+let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
+       \ 'syntax':'markdown', 'ext': '.md' }]
+let g:vimwiki_global_ext = 1
+
+
 " [[ Configure vim-which-key ]]
 call which_key#register('<Space>', "g:which_key_map")
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  '<Space>'<CR>
 
-" document key chains
+" Document existing key chains
 let g:which_key_map =  {}
 let g:which_key_map.c = { 'name' : '[C]ode' }
 let g:which_key_map.d = { 'name' : '[D]ocument' }
-let g:which_key_map.g = { 'name' : '[G]it' }
-let g:which_key_map.h = {
-      \ 'name' : 'More git',
-      \ 'p' : 'Preview git hunk',
-      \}
 let g:which_key_map.r = { 'name' : '[R]ename' }
 let g:which_key_map.s = { 'name' : '[S]earch' }
 let g:which_key_map.w = { 'name' : '[W]orkspace' }
+let g:which_key_map.t = { 'name' : '[T]oggle' }
+let g:which_key_map.h = { 'name' : 'Git [H]unk' }
 
 " Adding personal keybindings
 let g:which_key_map.a = 'Select all'
@@ -248,26 +272,22 @@ let g:which_key_map['/'] = 'Clear search highlights'
 
 
 " [[ Configure fzf.vim ]]
-nmap <leader>? :History<CR>
-let g:which_key_map['?'] = '[?] Find recently opened files'
-nmap <leader><space> :Buffers<CR>
+nmap <leader>sh :Helptags<CR>
+let g:which_key_map.s.h = '[S]earch [H]elp'
+nmap <leader>sk :Maps<CR>
+let g:which_key_map.s.k = '[S]earch [K]eymaps'
+nmap <leader>sf :Files<CR>
+let g:which_key_map.s.f = '[S]earch [F]iles'
+nmap <leader>sg :Rg<CR>
+let g:which_key_map.s.g = '[S]earch by [G]rep'
+nmap <leader>s. :History<CR>
+let g:which_key_map.s['.'] = '[S]earch Recent Files ("." for repeat)'
+nmap <leader><leader> :Buffers<CR>
 let g:which_key_map[' '] = '[ ] Find existing buffers'
+
 nmap <leader>/ :BLines<CR>
 let g:which_key_map['/'] = '[/] Fuzzily search in current buffer'
 
-nmap <leader>gf :GFiles<CR>
-let g:which_key_map.g.f = 'Search [G]it [F]iles'
-nmap <leader>sf :Files<CR>
-let g:which_key_map.s.f = '[S]earch [F]iles'
-nmap <leader>sh :Helptags<CR>
-let g:which_key_map.s.h = '[S]earch [H]elp'
-
-
-" [[ Configure completion ]]
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-inoremap <expr> <CR> pumvisible() ? '<C-y>' : '<CR>'
-let g:SuperTabDefaultCompletionType = "context"
 
 " [[ Configure LSP ]]
 " Performance related settings, requires Vim 8.2+
@@ -304,11 +324,13 @@ function! s:on_lsp_buffer_enabled() abort
   nmap <buffer> <leader>ws <plug>(lsp-workspace-symbol-search)
   let g:which_key_map.w.s = '[W]orkspace [S]ymbols'
 
+  " See `:help K` for why this keymap
   " Hover Documentation
   nmap <buffer> K <plug>(lsp-hover)
   " Signature Documentation
   nmap <buffer> <C-k> <plug>(lsp-signature-help)
 
+  " Lesser used LSP functionality
   " [G]oto [D]eclaration
   nmap <buffer> gD <plug>(lsp-declaration)
 
@@ -318,7 +340,17 @@ endfunction
 
 augroup lsp_install
   au!
+  " call s:on_lsp_buffer_enabled only for languages that has the server registered.
   autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+
+" [[ Configure completion ]]
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>""
+
+let g:asyncomplete_auto_completeopt = 0
+set completeopt=menuone,noinsert,noselect,preview
 
 " vim: ts=2 sts=2 sw=2 et
