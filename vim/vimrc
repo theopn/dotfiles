@@ -74,6 +74,7 @@ set ruler
 set number relativenumber
 set laststatus=2 showtabline=2 signcolumn=yes showcmd
 set list listchars=tab:»\ ,trail:·,nbsp:␣,leadmultispace:\|\  " lms req. > 0.9
+set fillchars=stlnc:-
 set cursorline cursorcolumn colorcolumn=80
 
 " Search
