@@ -87,3 +87,17 @@ The workaround is to `awk` the SSID from Apple's Airport Framework file (https:/
 \+ I am deprecating my tiling WM setup since I feel like too many "hacks" are involved to make things work.
 Also, I have grown to not mind manually tiling windows using Rectangle.
 
+## Neofetch
+
+> Last updated: 2023-08-24
+
+Neofetch is deprecated as of 2024-04-26.
+I was looking for a replacement and tried out:
+
+- [FastFetch](https://github.com/fastfetch-cli/fastfetch)
+- [HyFetch](https://github.com/hykilpikonna/hyfetch)
+- [NerdFetch](https://github.com/ThatOneCalculator/NerdFetch)
+- [screenFetch](https://github.com/KittyKatt/screenFetch)
+
+Then I realized that they are basically the same thing and that I really do not need any *fetch program.
+
