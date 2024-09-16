@@ -271,19 +271,21 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 Formulae:
 
+- fd: faster alternative to `find` (Neovim Telescope dependency)
 - ffmpeg: `ffmpeg -i in.xxx out.yyy`
 - figlet: ASCII art generator
 - **fish**: De facto default shell
 - **fzf**: Command line fuzzy finder
+- git-filter-repo: tool to rewrite Git history
 - **htop**: System monitor
 - hugo: Static website generator
 - imagemagick: Command line image manipulation
 - **lf**: My favorite CLI file manager
 - **lua**
-- **neofetch**: Happy ricing!
 - **neovim**: Where I live
 - **node**
 - rclone: Cloud storage management
+- ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
 - **tmux**: Universal terminal multiplexer
 - tree: Tree-like directory view
