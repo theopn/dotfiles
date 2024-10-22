@@ -284,7 +284,6 @@ Formulae:
 - **lua**
 - **neovim**: Where I live
 - **node**
-- rclone: Cloud storage management
 - ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
 - **tmux**: Universal terminal multiplexer
