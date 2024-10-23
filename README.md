@@ -238,7 +238,6 @@ No comments.
     Thus, my `.bashrc` is kept minimal with a simple prompt, some aliases, and variables
 - `kitty.conf`: Kitty is my secondary terminal emulator. The configuration is kept minimal since I always pair it up with Tmux
 - `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
-- `neofetch.conf`: It includes a prompt inspired by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes)
 
 ## macOS
 
@@ -336,12 +335,12 @@ Formulae:
 
 Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, change screenshot format and location (I like having every temporary file in `~/Downloads/`), etc.
 
-## Deprecated
+## Archive
 
 > [!WARNING]
-> These dotfiles are unused because either I stopped using the utility or developed a new configuration.
+> Configuration files in the archive directory are no longer maintained
 
-Read the [list of deprecated configurations](./deprecated/README.md) for more information.
+See the [list of archived configurations](./archive/README.md).
 
 ## Credits
 
