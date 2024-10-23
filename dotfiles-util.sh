@@ -148,7 +148,7 @@ function macos-install() {
 
   verify_script_dir
 
-  if [[ "$OSTYPE" != "darwin"* ]]; then
+  if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "macOS" ]]; then
     red_echo "You are not using macOS! OSTYPE == $OSTYPE"
     exit 1
   fi
@@ -165,6 +165,19 @@ function macos-install() {
 
   if selection_prompt 'macOS Settings'; then
     . "${DOT_DIR}/macos/macos-settings.sh"
+  fi
+
+  if selection_prompt 'macOS Tiling WM Utilities'; then
+    mkdir -p ~/.config/yabai
+    backup_then_symlink ${DOT_DIR}/yabai/yabairc ~/.config/yabai/yabairc
+    mkdir -p ~/.config/skhd
+    backup_then_symlink ${DOT_DIR}/skhd/skhdrc ~/.config/skhd/skhdrc
+
+    CURRENT_FILES=(plugins colors.sh icons.sh sketchybarrc)
+    mkdir -p ~/.config/sketchybar
+    for FILE in ${CURRENT_FILES[@]}; do
+      backup_then_symlink ${DOT_DIR}/sketchybar/${FILE} ~/.config/sketchybar/${FILE}
+    done
   fi
 
   green_echo 'Homebrew Optional Formulae/Casks:

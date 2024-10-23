@@ -5,7 +5,7 @@
 
 | ![macos-sc](./assets/macos-sc.jpg) |
 |:--:|
-| macOS (my Yabai setup is no longer in use, see [Deprecated](./deprecated/) |
+| macOS |
 
 | ![fedora-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/main/assets/sway-sc.png) |
 |:--:|
@@ -36,6 +36,7 @@ Tools in this repository are mostly open-source utilities for development.
 
     ~/dotfiles/dotfiles-util.sh --macos-install
     ```
+    Don't forget to follow the further instructions in [the macOS tiling WM section](#macos-tiling-wm-setup)!
 
 - Choose configurations in the `misc` directory and manually copy them! Follow the commands in `./misc/README.md`.
 
@@ -241,29 +242,61 @@ No comments.
 
 ## macOS
 
-### Rectangle
+### macOS Tiling WM Setup
 
-My Vim-inspired Rectangle keybindings (restore them using ./macos/vimtangle.json):
+I use [Yabai](https://github.com/koekeishiya/yabai), [Skhd](https://github.com/koekeishiya/skhd), and [Sketchybar](https://github.com/FelixKratz/SketchyBar) to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
 
-- `control + command` (`⌃⌘`) is the modifier
-- `mod + h/l`: Left/right half
-- `mod + j/k`: First thirds/last two thirds
-- `mod + n/m`: Almost maximize/maximize
-- `mod + -/=`: Smaller/larger
+To begin, modify the macOS settings as follows:
 
-If you use a third-party menubar-replacement (e.g., Sketchybar), execute the following command to make Rectangle aware of the bar
-
-```bash
-defaults write com.knollsoft.Rectangle screenEdgeGapTop -int 30 # or thickness of the bar in pixel. 0 to reset
-```
-
-I also recommends you to 
-
+- "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
+- "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
 - Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Skhd for this, it requires disabling SIP)
     - Create 5 Mission Control desktops
     - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 5)
     - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
     - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
+
+Copy or create symlinks for Yabai, Skhd, and Sketchybar configuration files.
+
+Install and start utilities:
+
+- Install Yabai, Skhd, and Sketchybar:
+    ```bash
+    brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai FelixKratz/formulae/sketchybar
+    ```
+- Start Skhd:
+    ```bash
+    skhd --start-service
+    ```
+- Use `ctrl + alt - s` keybinding (ctrl + opt + s) to start sketchybar and Yabai.
+- Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
+
+Keybindings:
+
+- The `opt`/`alt` (`⌥`) key is the modifier
+- `mod + ret`: Open Wezterm
+- `mod + hjkl`: Navigate windows
+- `mod + f`: Toggle fullscreen
+- `mod + shift + r`: Rotate tree
+- `mod + shift + y/x`: Mirror x-axis/y-axis
+- `mod + shift + SPC`: Toggle floating
+- `mod + shift + e`: Balance all window size
+- `mod + shift + hjkl`: ~~Resize window (h to shrink left, j to grow above, k to shrink below, l to grow right)~~ Swap window (use mouse for resizing)
+- `mod + ctrl + hjkl`: Move window and tile with what was already there
+- `mod + shift + 1-5`: Move to WS 1-5
+
+Yabai is a fantastic tool, but because it's running on top of Aqua (macOS default WM), there are a few limitations.
+Here are some bugs I encountered, all to blame Apple for not letting users change Aqua.
+
+- Layout not persisting after exiting a full-screen video play in Firefox
+- Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
+- Emacs not tiling (even with `(menu-bar-mode t)`)
+- Kitty not tiling (with the window decorations removed)
+- Being unable to delete a Mission Control desktop with Yabai running
+- High CPU usage of `WindowServer` process
+
+Use `cat /tmp/yabai_$USER.err.log` and `cat /tmp/skhd_$USER.err.log` to view the Yabai and Skhd log messages.
+
 
 ### Homebrew
 
