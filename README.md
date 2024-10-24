@@ -1,7 +1,7 @@
 # Theo's dotfiles
 
 > [!NOTE]
-> Collection of my configuration files. The reason why this README is so long is definitely not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
+> Collection of my configuration files. The reason why this README is so long is totally not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
 
 | ![macos-sc](./assets/macos-sc.jpg) |
 |:--:|
@@ -243,15 +243,19 @@ No comments.
 
 ### macOS Tiling WM Setup
 
-I use [Yabai](https://github.com/koekeishiya/yabai), [Skhd](https://github.com/koekeishiya/skhd), and [Sketchybar](https://github.com/FelixKratz/SketchyBar) to make a Tokyo-Night-themed tiling WM setup for my macOS environment.
+Tools used to create my Tokyo-Night-themed tiling WM setup for my macOS environment:
+
+- [Yabai](https://github.com/koekeishiya/yabai)
+- [Skhd](https://github.com/koekeishiya/skhd)
+- [Sketchybar](https://github.com/FelixKratz/SketchyBar)
 
 To begin, modify the macOS settings as follows:
 
 - "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
 - "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
-- Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Skhd for this, it requires disabling SIP)
-    - Create 5 Mission Control desktops
-    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 5)
+- Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Yabai for this, it requires disabling SIP)
+    - Create 6 Mission Control desktops
+    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 6)
     - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
     - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
 
@@ -275,17 +279,18 @@ Keybindings:
 - The `opt`/`alt` (`⌥`) key is the modifier
 - `mod + ret`: Open Wezterm
 - `mod + hjkl`: Navigate windows
-- `mod + f`: Toggle fullscreen
-- `mod + shift + r`: Rotate tree
-- `mod + shift + y/x`: Mirror x-axis/y-axis
-- `mod + shift + SPC`: Toggle floating
-- `mod + shift + e`: Balance all window size
-- `mod + shift + hjkl`: ~~Resize window (h to shrink left, j to grow above, k to shrink below, l to grow right)~~ Swap window (use mouse for resizing)
-- `mod + ctrl + hjkl`: Move window and tile with what was already there
-- `mod + shift + 1-5`: Move to WS 1-5
+- `mod + shift + hjkl`: Swap windows
+- `mod + ctrl + hjkl`: Move the focused window (tiled with what is already there)
+- `mod + shift + y/x`: Mirror left and right/top and bottom
+- `mod + shift + r`: Rotate 270 degrees
+- `mod + shift + f`: Toggle fullscreen
+- `mod + shift + SPC`: Toggle fullscreen
+- `mod + shift + 0`: Balance all window size
+- `mod + shift + <>`: Increase or decrease window size horizontally
+- `mod + shift + =-`: Increase (`=`, meant to represent `+`) or decrease (`-`) window size vertically
+- `mod + shift + 1-6`: Move the window to WS 1-6
 
-Yabai is a fantastic tool, but because it's running on top of Aqua (macOS default WM), there are a few limitations.
-Here are some bugs I encountered, all to blame Apple for not letting users change Aqua.
+Yabai is a fantastic tool, but there is a few limitations due to the nature of macOS.
 
 - Layout not persisting after exiting a full-screen video play in Firefox
 - Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
@@ -314,7 +319,7 @@ Formulae:
 - imagemagick: Command line image manipulation
 - **lf**: My favorite CLI file manager
 - **lua**
-- **neovim**: Where I live
+- **neovim**: My second home
 - **node**
 - ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
@@ -322,18 +327,20 @@ Formulae:
 - tree: Tree-like directory view
 - **wget**: Be careful with what you download
 
-| Type            | Casks                                                                                              |
-|-----------------|----------------------------------------------------------------------------------------------------|
-| Development     | - Docker<br> - IntelliJ CE<br> - kitty<br> - MacTex (No GUI)<br> - **MacVim**<br> - **Wezterm**    |
-| Fun             | - Discord<br> - Minecraft<br> - Spotify                                                            |
-| Productivity    | - **Emacs**<br> - **Itsycal**<br> - Notion<br>                                                     |
-| System (macOS)  | - AppCleaner<br> - **Maccy**<br> - **Rectangle**<br> - **Stats**<br> - **Spaceman**                |
-| Tools           | - **Bitwarden**<br> - Cryptomator<br> - GIMP<br> - OBS<br> - **Skim**<br> - VLC                    |
-| Web             | - **Firefox**<br> - Thunderbird                                                                    |
+Casks:
+
+| Development     | Fun       | Productivity | System (macOS) | Tools       | Web         |
+|-----------------|-----------|--------------|----------------|-------------|-------------|
+| Docker          | Discord   | Emacs        | App Cleaner    | Bitwarden   | Firefox     |
+| IntelliJ CE     | Minecraft | **Itsycal**  | Maccy          | Cryptomator | Thunderbird |
+| kitty           | Spotify   | Notion       | **Rectangle**  | GIMP        |             |
+| MacTex (no GUI) |           |              | **Stats**      | OBS         |             |
+| **Wezterm**     |           |              | **Spaceman**   | **Skim**    |             |
+|                 |           |              |                | VLC         |             |
 
 ### Settings
 
-Remove Dock unhide animation, add a Dock spacer, show hidden files in Finder, change screenshot format and location (I like having every temporary file in `~/Downloads/`), etc.
+`./macos/macos-settings.sh` includes some macOS settings like adding a Dock spacer, show hidden files in Finder, changing screenshot format and location, etc.
 
 ## Archive
 
@@ -345,11 +352,10 @@ See the [list of archived configurations](./archive/README.md).
 ## Credits
 
 - The macOS wallpaper is by [arsenicxs](https://www.deviantart.com/arsenixc/art/Tokyo-Street-Night-684804497)
-- [hb's dotfiles](https://github.com/hbthen3rd/dotfiles) and [FelixKratz's dotfiles](https://github.com/FelixKratz/dotfiles) (the creator of Sketchybar) inspired my Sketchybar looks
-- Other than that, all of the config/code is mine.
-    - I dislike having code I don't understand, especially in my day-to-day development environment.
+- I drew inspirations from a lot of difference places, but I am confident to say that all of the config/code in this repository is mine (besides some default configurations)
+    - I dislike having code that I do not understand, especially in my day-to-day development environment.
         I try to understand and rewrite configurations on my own
-    - I give credit to all the amazing developers and the open-source community who developed all these tools I rely on every day and wrote documentation for them
-    - I also would like to thank people in communities like [Dotfyle](https://dotfyle.com/) and [r/unixporn](https://www.reddit.com/r/unixporn/) who share their dotfiles that helped and inspired me
-    - If you have any questions, concerns, or suggestions, do not hesitate to let me know through issues or PR!
+- I give credit to all the amazing developers and the open-source community who developed all these tools I rely on everyday
+- and people in communities like [Dotfyle](https://dotfyle.com/) and [r/unixporn](https://www.reddit.com/r/unixporn/) who share their dotfiles
+- If you have any questions, concerns, or suggestions, do not hesitate to let me know through issues or PR!
 

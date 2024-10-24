@@ -1,10 +1,12 @@
-#            _
-#           | |        o
-#       __, | |   __,
-#|   | /  | |/ \_/  |  |
-# \_/|/\_/|_/\_/ \_/|_/|_/
-#   /|
-#   \|
+#             _
+#            | |        o
+#        __, | |   __,
+# |   | /  | |/ \_/  |  |
+#  \_/|/\_/|_/\_/ \_/|_/|_/
+#    /|
+#    \|
+# https://github.com/koekeishiya/yabai/wiki/Configuration
+
 
 # Binary space partitioning, stack, or float
 yabai -m config layout bsp
@@ -14,28 +16,30 @@ yabai -m config window_placement second_child
 
 # Gap
 yabai -m config top_padding 10
-yabai -m config bottom_padding 10
-yabai -m config left_padding 10
-yabai -m config right_padding 10
-yabai -m config window_gap 10
-# Sketchybar support
-yabai -m config external_bar main:30:0
+yabai -m config bottom_padding 7
+yabai -m config left_padding 7
+yabai -m config right_padding 7
+yabai -m config window_gap 7
 
-# Window borders -- Removed: https://github.com/koekeishiya/yabai/issues/1889
+# Window borders -- removed: https://github.com/koekeishiya/yabai/issues/1889
 #yabai -m config window_border on
 #yabai -m config window_border_width 2
 #yabai -m config window_border_blur on
 #yabai -m config active_window_border_color 0xff7aa2f7 # Tokyonight blue
 #yabai -m config normal_window_border_color 0xfff7768e # Tokyonight red
 
-# Split ratio
-yabai -m config auto_balance on
-
 # Mouse
-yabai -m config mouse_follows_focus off
 yabai -m config mouse_modifier alt
+# left click + drag
+yabai -m config mouse_action1 move
 # right click + drag
 yabai -m config mouse_action2 resize
+
+yabai -m config focus_follows_mouse off
+yabai -m config mouse_follows_focus off
+
+# Sketchybar support
+yabai -m config external_bar main:30:0
 
 # No tiling
 yabai -m rule --add app="^Calculator$" manage=off

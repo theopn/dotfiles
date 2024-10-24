@@ -4,6 +4,10 @@
 # / \_|/_) |/ \   /  |
 #  \/ | \_/|   |_/\_/|_/
 
+# Turning Yabai related stuff on and off
+ctrl + alt - q : yabai --stop-service; brew services stop sketchybar
+ctrl + alt - s : yabai --start-service; brew services start sketchybar
+
 # Applications
 alt - return : open -a Wezterm
 
@@ -12,31 +16,50 @@ alt - j : yabai -m window --focus south
 alt - k : yabai -m window --focus north
 alt - h : yabai -m window --focus west
 alt - l : yabai -m window --focus east
+alt - p : yabai -m window --focus prev
+alt - n : yabai -m window --focus next
 
-# Modifying layout
-alt - f : yabai -m window --toggle zoom-fullscreen
-shift + alt - r : yabai -m space --rotate 270
-shift + alt - y : yabai -m space --mirror y-axis
-shift + alt - x : yabai -m space --mirror x-axis
-shift + alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
-
-# Resizing
-alt - e : yabai -m space --balance
-#shift + alt - h : yabai -m window --resize left:-20:0
-#shift + alt - j : yabai -m window --resize bottom:0:20
-#shift + alt - k : yabai -m window --resize top:0:-20
-#shift + alt - l : yabai -m window --resize right:20:0
-
-# Swapping window
+# Swapping windows
 shift + alt - j : yabai -m window --swap south
 shift + alt - k : yabai -m window --swap north
 shift + alt - h : yabai -m window --swap west
 shift + alt - l : yabai -m window --swap east
-# Move window and tile with what already there
+# Move window (tiled with what is already there)
 ctrl + alt - j : yabai -m window --warp south
 ctrl + alt - k : yabai -m window --warp north
 ctrl + alt - h : yabai -m window --warp west
 ctrl + alt - l : yabai -m window --warp east
+
+# Mirror left and right
+shift + alt - y : yabai -m space --mirror y-axis
+# Mirror top and down
+shift + alt - x : yabai -m space --mirror x-axis
+# Rotate
+shift + alt - r : yabai -m space --rotate 270
+
+# Toggle full screen
+shift + alt - f : yabai -m window --toggle zoom-fullscreen
+# Toggle float
+# grid: <rows>:<cols>:<start-x>:<start-y>:<width>:<height>
+#shift + alt - space : yabai -m window --toggle float --grid 4:4:1:1:2:2
+shift + alt - space : yabai -m window --toggle float --grid 20:20:1:1:18:18
+
+# Resizing
+shift + alt - 0 : yabai -m space --balance
+# https://github.com/koekeishiya/skhd/issues/1
+# 0x2B: < 0x18: - 0x1B: = 0x2F: >
+shift + alt - 0x2B : \
+    yabai -m window --resize left:-20:0 ; \
+    yabai -m window --resize right:-20:0
+shift + alt - 0x18 : \
+    yabai -m window --resize bottom:0:20 ; \
+    yabai -m window --resize top:0:20
+shift + alt - 0x1B : \
+    yabai -m window --resize top:0:-20 ; \
+    yabai -m window --resize bottom:0:-20
+shift + alt - 0x2F : \
+    yabai -m window --resize right:20:0 ; \
+    yabai -m window --resize left:20:0
 
 # Moving window to ws
 shift + alt - 1 : yabai -m window --space 1 #; yabai -m space --focus 1 -- requires disabling SIP
@@ -44,8 +67,5 @@ shift + alt - 2 : yabai -m window --space 2
 shift + alt - 3 : yabai -m window --space 3
 shift + alt - 4 : yabai -m window --space 4
 shift + alt - 5 : yabai -m window --space 5
-
-# Turning Yabai related stuff on and off
-ctrl + alt - q : yabai --stop-service; brew services stop sketchybar
-ctrl + alt - s : yabai --start-service; brew services start sketchybar
+shift + alt - 6 : yabai -m window --space 5
 
