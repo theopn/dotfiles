@@ -333,7 +333,7 @@ Casks:
 |-----------------|-----------|--------------|----------------|-------------|-------------|
 | Docker          | Discord   | Emacs        | App Cleaner    | Bitwarden   | Firefox     |
 | IntelliJ CE     | Minecraft | **Itsycal**  | Maccy          | Cryptomator | Thunderbird |
-| kitty           | Spotify   | Notion       | **Rectangle**  | GIMP        |             |
+| kitty           | Spotify   | Notion       | **Rectangle**  | GIMP        | Zen Browser |
 | MacTex (no GUI) |           |              | **Stats**      | OBS         |             |
 | **Wezterm**     |           |              | **Spaceman**   | **Skim**    |             |
 |                 |           |              |                | VLC         |             |
