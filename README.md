@@ -331,11 +331,11 @@ Casks:
 
 | Development     | Fun       | Productivity | System (macOS) | Tools       | Web         |
 |-----------------|-----------|--------------|----------------|-------------|-------------|
-| Docker          | Discord   | Emacs        | App Cleaner    | Bitwarden   | Firefox     |
-| IntelliJ CE     | Minecraft | **Itsycal**  | Maccy          | Cryptomator | Thunderbird |
-| kitty           | Spotify   | Notion       | **Rectangle**  | GIMP        | Zen Browser |
+| Docker          | Discord   | Emacs        | **Aerospace**  | Bitwarden   | Firefox     |
+| IntelliJ CE     | Minecraft | **Itsycal**  | App Cleaner    | Cryptomator | Thunderbird |
+| kitty           | Spotify   | Notion       | Maccy          | GIMP        | Zen Browser |
 | MacTex (no GUI) |           |              | **Stats**      | OBS         |             |
-| **Wezterm**     |           |              | **Spaceman**   | **Skim**    |             |
+| **Wezterm**     |           |              |                | **Skim**    |             |
 |                 |           |              |                | VLC         |             |
 
 ### Settings
