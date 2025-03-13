@@ -22,68 +22,8 @@ Tools in this repository are mostly open-source utilities for development.
 
 ## Installation
 
-- Configure cross-platform utilities using the following commands:
-    ```bash
-    git clone https://github.com/theopn/dotfiles.git ~/dotfiles
-    ~/dotfiles/dotfiles-util.sh --install
-    ~/dotfiles/dotfiles-util.sh --delete-backup # Optional
-    ```
-
-- Install Homebrew and configure macOS-specific utilities and settings using the following commands:
-    ```bash
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew analytics off
-
-    ~/dotfiles/dotfiles-util.sh --macos-install
-    ```
-    Don't forget to follow the further instructions in [the macOS tiling WM section](#macos-tiling-wm-setup)!
-
-- Choose configurations in the `misc` directory and manually copy them! Follow the commands in `./misc/README.md`.
-
-### Install My Other Projects
-
-> [!NOTE]
-> Shameless plugs
-
-- [Theovim](https://github.com/theopn/theovim) "is my Neovim configuration, geared toward my CS studies (C, Python, Java, LaTeX, LaTeX, and LaTeX).
-    It features opinionated base Vim settings and keybindings, ~30 carefully selected plug-ins, and custom UI components written 100% in Lua."
-- [Haunted Tiles](https://github.com/theopn/haunted-tiles/) "is my personal i3 WM and Sway setup, along with essential tiling WM tools.
-    It used to be a part of my dotfiles repository, and with the growing size of configurations and shared scripts between i3 and Sway, I made a separate repository for it."
-
-### Post-Installation
-
-- Install Doom Emacs:
-    ```bash
-    git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-    ~/.config/emacs/bin/doom install
-    ```
-    - I had the best experience running natively-compiled [emacs-plus](https://github.com/d12frosted/homebrew-emacs-plus) in macOS
-    ```bash
-    brew tap d12frosted/emacs-plus
-    brew install emacs-plus --with-native-comp --with-modern-doom3-icon
-    ~/.emacs.d/bin/doom sync # if you have already initialized Doom with other version of Emacs
-    ```
-
-- Add SSH shortcut for frequently used servers:
-    ```bash
-    ~/dotfiles/dotfiles-util.sh --add-ssh-shortcut
-    # Follow the prompt
-    ```
-
-- To install fonts via `fontconfig` and the included function in `dotfiles-util.sh`:
-    1. Navigate to [NERD Fonts download](https://www.nerdfonts.com/font-downloads) website
-    2. Right-click on the font download and copy the link
-    3. Execute the following
-        ```bash
-        $FONT_URL=thing-you-just-copied
-        ~/dotfiles/dotfiles-util.sh --install-font $FONT_URL
-        ```
-
-- To install Iosevka Nerd Font (for terminal emulators and text editors) and FantasqueSansM Nerd Fonts (for window managers) using Homebrew:
-    ```bash
-    brew tap homebrew/cask-fonts &&
-    brew install --cask font-iosevka-nerd-font font-fantasque-sans-mono-nerd-font
-    ```
+TODO: Stow manual, Homebrew installation & Brewfile deployment, macOS settings
+TOOD: Adding SSH shortcut, installing fonts
 
 ## Shells
 
