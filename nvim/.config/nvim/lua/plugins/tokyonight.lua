@@ -1,4 +1,4 @@
-local is_transparent = false --> To disable transparency, set this to false
+local is_transparent = true --> To disable transparency, set this to false
 
 return {
   "folke/tokyonight.nvim",
