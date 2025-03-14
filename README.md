@@ -126,6 +126,12 @@ Emacs is my to-do list, idea capture, knowledge databases, and tools for other [
     - `C-c r b`: List all Org-roam references in the current buffer
     - `C-c r r`: Sync Org-roam database
 
+### Neovim
+
+> IDE, main text editor, and much more
+
+So many things to talk about, use `:h theovim` to access the documentation I wrote.
+
 ### Vim
 
 > Focused note-taker
