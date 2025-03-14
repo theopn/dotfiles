@@ -14,8 +14,6 @@ Tools in this repository are mostly open-source utilities for development.
 
 ## Installation
 
-- Install Homebrew, Homebrew formulae, and run settings script (macOS)
-
 ```sh
 # Homebrew bootstrap
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -26,24 +24,16 @@ cd dotfiles
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
 
-# macOS settings
-zsh ./macos/macos-settings.sh
-```
+# tap font repository and install fonts you want
+brew tap homebrew/cask-fonts &&
+brew install --cask font-iosevka-nerd-font font-fantasque-sans-mono-nerd-font
 
-- Install Stow (dnf)
-
-```sh
-dnf install stow
-```
-
-- Deploy dotfiles
-
-```sh
+# Deploy dotfiles
 stow ~/dotfiles/
-```
 
-TODO: Stow manual, Homebrew installation & Brewfile deployment, macOS settings
-TOOD: Adding SSH shortcut, installing fonts
+# macOS settings
+zsh ./misc/macos-settings.sh
+```
 
 ## Shells
 
