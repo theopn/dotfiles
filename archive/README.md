@@ -27,6 +27,59 @@ The included theme is inspired by "insert name" from [Neofetch Themes](https://g
 > Last Updated: 2024-10-24
 
 I now use Aerospace, which feels much snappier and intuitive for me.
+Below are the instructions.
+
+To begin, modify the macOS settings as follows:
+
+- "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
+- "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
+- Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Yabai for this, it requires disabling SIP)
+    - Create 6 Mission Control desktops
+    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 6)
+    - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
+    - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
+
+Copy or create symlinks for Yabai, Skhd, and Sketchybar configuration files.
+
+Install and start utilities:
+
+- Install Yabai, Skhd, and Sketchybar:
+    ```bash
+    brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai FelixKratz/formulae/sketchybar
+    ```
+- Start Skhd:
+    ```bash
+    skhd --start-service
+    ```
+- Use `ctrl + alt - s` keybinding (ctrl + opt + s) to start sketchybar and Yabai.
+- Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
+
+Keybindings:
+
+- The `opt`/`alt` (`⌥`) key is the modifier
+- `mod + ret`: Open Wezterm
+- `mod + hjkl`: Navigate windows
+- `mod + shift + hjkl`: Swap windows
+- `mod + ctrl + hjkl`: Move the focused window (tiled with what is already there)
+- `mod + shift + y/x`: Mirror left and right/top and bottom
+- `mod + shift + r`: Rotate 270 degrees
+- `mod + shift + f`: Toggle fullscreen
+- `mod + shift + SPC`: Toggle fullscreen
+- `mod + shift + 0`: Balance all window size
+- `mod + shift + <>`: Increase or decrease window size horizontally
+- `mod + shift + =-`: Increase (`=`, meant to represent `+`) or decrease (`-`) window size vertically
+- `mod + shift + 1-6`: Move the window to WS 1-6
+
+Yabai is a fantastic tool, but there is a few limitations due to the nature of macOS.
+
+- Layout not persisting after exiting a full-screen video play in Firefox
+- Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
+- Emacs not tiling (even with `(menu-bar-mode t)`)
+- Kitty not tiling (with the window decorations removed)
+- Being unable to delete a Mission Control desktop with Yabai running
+- High CPU usage of `WindowServer` process
+
+Use `cat /tmp/yabai_$USER.err.log` and `cat /tmp/skhd_$USER.err.log` to view the Yabai and Skhd log messages.
 
 ## Installation Script
 

@@ -211,62 +211,35 @@ No comments.
 
 Tools used to create my Tokyo-Night-themed tiling WM setup for my macOS environment:
 
-- [Yabai](https://github.com/koekeishiya/yabai)
-- [Skhd](https://github.com/koekeishiya/skhd)
+- [Aerospace](https://github.com/nikitabobko/AeroSpace)
 - [Sketchybar](https://github.com/FelixKratz/SketchyBar)
 
-To begin, modify the macOS settings as follows:
+Install Aerospace and Sketchybar
 
-- "Desktop & Dock" (Mission Control) -> "Displays have separate Spaces" -> On
-- "Desktop & Dock" (Menu Bar) -> "Automatically hide and show the menu bar" -> "Always"
-- Make shortcuts for switching desktops using a built-in macOS key modifier (if you are to use Yabai for this, it requires disabling SIP)
-    - Create 6 Mission Control desktops
-    - "Keyboard" -> "Keyboard Shortcuts" -> "Mission Control" -> "Mission Control" -> Turn on "Switch to Desktop n" (where "n" is the number 1 - 6)
-    - Set the shortcut to `^n` (`Ctrl n`) or `⌥n` (`Opt n`)
-    - While you are at it, go to "Modifier Keys" and switch "Caps Lock key" and "Control key". Your pinky will thank you
+```bash
+brew install nikitabobko/tap/aerospace FelixKratz/formulae/sketchybar
+```
 
-Copy or create symlinks for Yabai, Skhd, and Sketchybar configuration files.
+Add Aerospace to your login item in System Settings.
+Aerospace will automatically launch Sketchybar on the startup.
 
-Install and start utilities:
+The configuration and keybindings are very close to the default with a couple of tweaks (the `opt`/`alt`/`⌥` key is the modifier):
 
-- Install Yabai, Skhd, and Sketchybar:
-    ```bash
-    brew install koekeishiya/formulae/skhd koekeishiya/formulae/yabai FelixKratz/formulae/sketchybar
-    ```
-- Start Skhd:
-    ```bash
-    skhd --start-service
-    ```
-- Use `ctrl + alt - s` keybinding (ctrl + opt + s) to start sketchybar and Yabai.
-- Use `ctrl + alt - q` keybinding (ctrl + opt + q) to stop sketchybar and Yabai.
-
-Keybindings:
-
-- The `opt`/`alt` (`⌥`) key is the modifier
-- `mod + ret`: Open Wezterm
-- `mod + hjkl`: Navigate windows
-- `mod + shift + hjkl`: Swap windows
-- `mod + ctrl + hjkl`: Move the focused window (tiled with what is already there)
-- `mod + shift + y/x`: Mirror left and right/top and bottom
-- `mod + shift + r`: Rotate 270 degrees
-- `mod + shift + f`: Toggle fullscreen
-- `mod + shift + SPC`: Toggle fullscreen
-- `mod + shift + 0`: Balance all window size
-- `mod + shift + <>`: Increase or decrease window size horizontally
-- `mod + shift + =-`: Increase (`=`, meant to represent `+`) or decrease (`-`) window size vertically
-- `mod + shift + 1-6`: Move the window to WS 1-6
-
-Yabai is a fantastic tool, but there is a few limitations due to the nature of macOS.
-
-- Layout not persisting after exiting a full-screen video play in Firefox
-- Windows with minimum width (e.g., Apple Calendar, Spotify, Discord) not tiling nicely
-- Emacs not tiling (even with `(menu-bar-mode t)`)
-- Kitty not tiling (with the window decorations removed)
-- Being unable to delete a Mission Control desktop with Yabai running
-- High CPU usage of `WindowServer` process
-
-Use `cat /tmp/yabai_$USER.err.log` and `cat /tmp/skhd_$USER.err.log` to view the Yabai and Skhd log messages.
-
+- `alt-shift-space`: Toggle between floating and tiling for the current window
+- `alt-enter`: Open Wezterm
+- `alt-slash`: Toggle between horizontal and vertical tiling
+- `alt-comma`: Toggle between horizontal and vertical accordion mode
+- `alt-h/j/k/l`: Focus windows
+- `alt-shift-h/j/k/l`: Move windows
+- `alt-minus/equal` (`-/+`): Resize window
+- `alt-1 - 6`: Move to workspace 1 - 6
+- `alt-shift-1 - 6`: Move the current tree to workspace 1 - 6
+- `alt-tab`: Switch between previously used workspaces
+- `alt-shift-tab`: Move current workspace to a different monitor
+- `alt-shift-space`: Enter the service mode
+    - `esc`: Reload the config and exit the service mode
+    - `r`: Reset layout and exit the service mode
+    - `alt-shift-h/j/k/l`: Join windows into different trees
 
 ### Homebrew
 

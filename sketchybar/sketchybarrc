@@ -118,20 +118,31 @@ sketchybar --add item seperator.l1 left                   \
                                    icon.drawing=off       \
                                    label.drawing=off
 
-# Mission control items
-SPACE_ICONS=("1" "2" "3" "4" "5" "6" "7")
-SPACE_LABELS=("$ICON_PRODUCTIVITY" "$ICON_DEV" "$ICON_WEB" "$ICON_MAIL" "$ICON_SPACE" "$ICON_MUSIC" "")
 
-# Border will be drawn to current WS only
-for i in "${!SPACE_ICONS[@]}"
-do
-  sid=$(($i+1))
-  sketchybar --add space space.$sid left                                 \
-             --set space.$sid associated_space=$sid                      \
-                              icon=${SPACE_ICONS[i]}                     \
-                              label=${SPACE_LABELS[i]}                   \
-                              background.border_width=1                  \
-                              script="$PLUGIN_DIR/space.sh" # Highlights the current ws
+SPACE_LABELS=("$ICON_PRODUCTIVITY" "$ICON_DEV" "$ICON_WEB" "$ICON_MAIL" "$ICON_SPACE" "$ICON_MUSIC" "")
+# Mission control items, border will be drawn to current WS only
+#for i in "${!SPACE_ICONS[@]}"
+#do
+#  sid=$(($i+1))
+#  sketchybar --add space space.$sid left                                 \
+#             --set space.$sid associated_space=$sid                      \
+#                              icon="$sid"                                \
+#                              label=${SPACE_LABELS[i]}                   \
+#                              background.border_width=1                  \
+#                              script="$PLUGIN_DIR/space.sh" # Highlights the current ws
+#done
+
+# If you are using Aerospace instead of the macOS Mission Control
+sketchybar --add event aerospace_workspace_change
+for sid in $(aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left                       \
+        --subscribe space.$sid aerospace_workspace_change       \
+        --set space.$sid                                        \
+        icon="$sid"                                             \
+        label=${SPACE_LABELS[sid - 1]}                          \
+        background.border_width=1                               \
+        click_script="aerospace workspace $sid"                 \
+        script="$PLUGIN_DIR/aerospace.sh $sid"
 done
 
 # Group all spaces together
@@ -168,12 +179,12 @@ sketchybar --add bracket curr_app space_separator front_app          \
 
 sketchybar --add item clock right                              \
            --set clock   update_freq=10                        \
-                         icon=                                \
+                         icon="$ICON_CLOCK"                    \
                          script="$PLUGIN_DIR/clock.sh"         \
                                                                \
            --add item wifi right                               \
            --set wifi    script="$PLUGIN_DIR/wifi.sh"          \
-                         icon=                                \
+                         icon="$ICON_WIFI"                     \
            --subscribe wifi wifi_change
 
 sketchybar --add bracket one clock wifi \
