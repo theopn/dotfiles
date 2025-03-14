@@ -101,11 +101,6 @@ set("n", "N", "Nzz")
 set("n", "<C-u>", "<C-u>zz")
 set("n", "<C-d>", "<C-d>zz")
 
-set("n", "<C-w>+", "<C-w>+<CMD>call feedkeys('<C-w>')<CR>", { desc = "Increase the window height (press + to repeat)" })
-set("n", "<C-w>-", "<C-w>-<CMD>call feedkeys('<C-w>')<CR>", { desc = "Decrease the window height (press - to repeat)" })
-set("n", "<C-w>>", "<C-w>><CMD>call feedkeys('<C-w>')<CR>", { desc = "Increase the window width (press > to repeat)" })
-set("n", "<C-w><", "<C-w><<CMD>call feedkeys('<C-w>')<CR>", { desc = "Decrease the window width (press < to repeat)" })
-
 -- Custom keymaps
 set("i", "jk", "<ESC>", { desc = "Better ESC" })
 set("i", "<C-s>", "<C-g>u<ESC>[s1z=`]a<C-g>u", { desc = "Fix nearest [S]pelling error and put the cursor back" })
@@ -300,34 +295,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- }}}
 
 
--- {{{ netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 0    --> 0: Simple, 1: Detailed, 2: Thick, 3: Tree
-vim.g.netrw_browse_split = 3 --> Open file in 0: Reuse the same win, 1: Horizontal split, 2: Vertical split, 3: New tab
-vim.g.netrw_winsize = 25     --> seems to be in percentage
-
-vim.g.is_netrw_open = false
---- Toggles netrw
---- Requires vim.g.is_netrw_open global variable to function properly
-local function toggle_netrw()
-  local fn = vim.fn
-  if vim.g.is_netrw_open then
-    for i = 1, fn.bufnr("$") do
-      if fn.getbufvar(i, "&filetype") == "netrw" then
-        vim.cmd("bwipeout " .. i)
-      end
-    end
-    vim.g.is_netrw_open = false
-  else
-    vim.cmd("Lex")
-    vim.g.is_netrw_open = true
-  end
-end
-vim.keymap.set("n", "<leader>n", toggle_netrw,
-  { silent = true, noremap = true, desc = "Toggle [N]etrw" })
--- }}}
-
-
 -- {{{ diagnostic
 -- Diagnostic appearance
 vim.diagnostic.config({
@@ -375,7 +342,6 @@ require("lazy").setup("plugins")
 -- {{{ UI module calls
 require("ui.statusline").setup()
 require("ui.tabline").setup()
-require("ui.dashboard").setup()
 -- }}}
 
 -- {{{ Neovide settings

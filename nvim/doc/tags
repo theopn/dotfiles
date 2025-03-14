@@ -6,7 +6,6 @@ theovim-init-autocmds	theovim.txt	/*theovim-init-autocmds*
 theovim-init-commands	theovim.txt	/*theovim-init-commands*
 theovim-init-ftplugins	theovim.txt	/*theovim-init-ftplugins*
 theovim-init-keymaps	theovim.txt	/*theovim-init-keymaps*
-theovim-init-netrw	theovim.txt	/*theovim-init-netrw*
 theovim-init-options	theovim.txt	/*theovim-init-options*
 theovim-lsp	theovim.txt	/*theovim-lsp*
 theovim-plugins	theovim.txt	/*theovim-plugins*
