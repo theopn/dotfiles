@@ -1,26 +1,46 @@
 # Theo's dotfiles
 
-> [!NOTE]
-> Collection of my configuration files. The reason why this README is so long is totally not because I like wasting time writing documentation that no one will ever read instead of doing actual work.
-
 | ![macos-sc](./assets/macos-sc.jpg) |
 |:--:|
-| macOS |
-
-| ![fedora-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/main/assets/sway-sc.png) |
-|:--:|
-| Fedora w/ Sway WM (~~ackchyually, it is a Wayland compositor~~) |
+| my macbook |
 
 Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
-MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin with i3 WM installed (Wayland is *almost* there).
+MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin.
 
 Tools in this repository are mostly open-source utilities for development.
 
 > [!IMPORTANT]
-> You are welcome to take inspiration from any files in this repository, but I do not claim any responsibility for any of the contents of the configurations (licensed under the MIT License).
-> **Read the code before you use it!**
+> **Read the code if you decide to use them!**
 
 ## Installation
+
+- Install Homebrew, Homebrew formulae, and run settings script (macOS)
+
+```sh
+# Homebrew bootstrap
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew analytics off
+
+# Install formulae
+cd dotfiles
+brew bundle --file ./homebrew/Brewfile_core
+brew bundle --file ./homebrew/Brewfile_optional
+
+# macOS settings
+zsh ./macos/macos-settings.sh
+```
+
+- Install Stow (dnf)
+
+```sh
+dnf install stow
+```
+
+- Deploy dotfiles
+
+```sh
+stow ~/dotfiles/
+```
 
 TODO: Stow manual, Homebrew installation & Brewfile deployment, macOS settings
 TOOD: Adding SSH shortcut, installing fonts
