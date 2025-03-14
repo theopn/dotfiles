@@ -1,0 +1,878 @@
+*theovim.txt*             Theo's Neovim Configuration
+*theovim*
+
+                                \/       \/          ~
+                                /\_______/\          ~
+                               /   o   o   \         ~
+                              (  ==  ^  ==  )        ~
+                               )           (         ~
+                              (             )        ~
+                              ( (  )   (  ) )        ~
+                             (__(__)___(__)__)       ~
+                            ___                      ~
+                             | |_  _  _     o __     ~
+                             | | |(/_(_)\_/ | |||    ~
+
+==============================================================================
+
+Welcome back Theo, what did you forget this time?
+
+- Type |gO| to see the table of contents
+- Use |K| (or |CTRL-]|) to jump to the tag under cursor, |CTRL-T| to comeback
+- If you see a path to another file, use |gd| to open the file
+- If you see a hyperlink, use |gx| to open it in your default browser
+  - Try this out with Vim Cheat Sheet website:
+    https://vim.rtorr.com/
+
+==============================================================================
+Tl;dr                                                           *theovim-tldr*
+
+Housekeeping:
+- |:checkhealth| to see if you are missing any runtime files
+- |:messages| to check previous error messages and notifications
+- Run `:Lazy sync` to update plugins
+  - This runs `:TSUpdate` at the same time
+- Run `:MasonUpdate` to update LSP servers
+
+Initialization:
+- Spaces over tabs, but you can change it in `~/.config/nvim/after/ftplugin/`
+- Use `<C-s>` in the insert mode to quickly fix spelling mistakes
+- `zR` to close all folds and `zM` to open all folds, `zx` if fold glitches
+  - `zA` to toggle folds recursively under the cursor
+- Keymaps for "navigating to prev/next something" are prefixed by `[` and `]`
+
+Plugins:
+- Netrw is a decoration, use Oil.nvim to manage files
+- `<leader>gd` opens a diff view for a Git file
+- If you forgot a keymap, use `:WhichKey`
+- Use `:MarkdownPreviewToggle` and `:VimtexCompile`
+
+Telescope:
+- `<leader><leader>`: Open buffers
+- `<leader>/`: Find a word in the current buffer
+- `<leader>s.`: Recent files
+- `<leader>sf`: File files in the directory
+- `<leader>sg`: Find a word in all files of the directory (using ripgrep)
+- `<leader>s/`: Find a word in open files (using ripgrep)
+
+Treesitter:
+- `<C-Space>`: Incremental selection
+
+LSP:
+- Install new langauge server using :MasonInstall {LSP}
+- `<leader>F` to format
+- `<leader>rn` to rename
+- `K` for hover doc
+- `gd`, `gr` to get the list of definitions/references
+- `<leader>ds`, `<leader>ws` to get symbols in the buffer/workspace
+
+Documentation:
+- `K` to jump into a tag, `<C-t>` to come back
+
+==============================================================================
+Initialization - Options                                *theovim-init-options*
+
+Theovim creates a solid base Neovim experience by maximizing built-in
+features.
+This section discusses some of the notable Neovim settings in Theovim.
+Read `init.lua` for the complete list of options.
+
+Nerd Font:
+
+`vim.g.have_nerd_font` variable located in the very top of the init.lua
+controls the display of Nerd Font in Theovim UI elements. Set it true or false
+based on your preference.
+
+Tab/Indentation:
+
+By default,
+- |'tabstop'| (how many char Vim renders <Tab> as) = 4
+- |'softtabstop'| (how many char the cursor moves with <Tab> and <BS>) = 0
+  - 0 disables 'softtabstop'
+- |'extandtab'| (uses spaces instead of <Tab> when on) = true
+  - To insert <Tab> with with 'expandtab' on, use |i_CTRL-v| followed by <Tab>
+  - To change the type of indentations in an existing file, use |:retab|
+- |'shiftwidth'| (number of spaces used for indentation) = 2
+- Read the below section for how <Tab> and indentation spaces are rendered
+
+For certain filetypes, indentation settings are handled by |ftplugin|.
+See |theovim-ftplugin| for more information.
+
+See also:
+- |'tabstop'| documentation outlines four main ways to configure tab in Vim.
+  Theovim uses the number 2. Tab lovers will like number 1.
+
+Character rendering:
+>
+  function example()
+  ┊ ┊ str = "A line indented with four spaces"
+  ⇥   str = "A line followed by <Tab> ('tabstop=4')"
+
+  ┊ str = "A line followed by two trailing whitespaces"␣␣
+
+  ┊ str = "Pretend that this line is really really really long and is wrap
+    ↪ped. Notice how a wrapped line is also indented (`:h showbreak`)"
+
+  ┊ str = "If you don't have 'showbreak' enabled, wrapped lines would look
+  ↪ like this"
+  end
+<
+Note that |lcs-leadmultispace| (indentation guide for space-base indentations)
+change dynamically based on |'shiftwidth'| value.
+See |theovim-core-autocmds| for more information.
+
+Spell check:
+
+Similarly to indentation settings, spell check is enabled in markdown, TeX,
+and plain text buffers using |ftplugin|.
+See |theovim-ftplugin| for more information.
+
+- Words unrecognized by the spell checker will be underlined
+- |z=| gives the suggestions for the word under the cursor
+- `<C-s>` in insert mode fixes the closest error and put the cursor back
+- `:set spell!` toggles spell check
+
+See also:
+- |spell|
+
+Fold:
+The tree-sitter fold can neatly organize not only programming language
+components (functions, loops, etc.) but also markdown and LaTeX sections.
+
+char            action
+----------------------------------------------------------------------
+
+|za|            Toggle one fold
+|zA|            Toggle all folds under the cursor recursively
+|zo|            Open one fold
+|zO|            Open all folds under the cursor recursively
+|zc|            Close one fold
+|zC|            Close all folds under the cursor recursively
+
+|zM|            Close all folds
+|zR|            Open all folds
+
+|zx|            Update fold. Given the nature of fold as an experimental
+              treesitter feature, fold might work unexpectedly. Use this
+              keybinding to fix any issue
+
+See also:
+- |folding|
+- |nvim_treesitter#foldexpr()|
+- |theovim-treesitter|
+
+==============================================================================
+Initialization - ftplugins                            *theovim-init-ftplugins*
+
+|ftplugin| provides options and commands specific to certain filetypes.
+
+Theovim uses them to control:
+- Indentation settings
+- Coding style settings (|'colorcolumn'|, |textwidth|)
+- Command to (compile) and execute the current file using a stadard tool
+- Spell check
+
+These files are located in `after/ftplugin/filetype.vim`.
+
+For example, the following is the content of `python.vim`:
+>
+  " As suggested by PEP8.
+  setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
+  " Bar at the 80th column
+  setlocal colorcolumn=80
+  " Break line at the 79th char
+  setlocal textwidth=79
+  " Commnd to run the current file
+  command RunPython !python3 %:p
+<
+You may change the settings to your preferred settings.
+
+Built-in Neovim ftplugins are located in `$VIMRUNTIME/ftplugin/`.
+To copy your |$VIMRUNTIME| to your system clipboard (|quoteplus|), use
+|:redir| command: `:redir @+> | echo $VIMRUNTIME | redir END`
+
+Alternatively, Neovim supports |editorconfig| out of the box. These are
+projet-specific coding style files.
+They will override `ftplugin` or other Vim settings.
+
+See also:
+- |write-filetype-plugin|
+
+==============================================================================
+Initialization - User Commands                         *theovim-init-commands*
+
+- `:TrimWhitespace`: Trim trailing whitespaces. It will prompts you with
+  confirmations for each whitespace.
+- `:CD`: Change the local directory to the parent directory of the current
+  file. For example, when the current directory is `nvim` and you open
+  `doc/theovim.txt`, invoke the command to change the directory to `doc`.
+  This is useful when narrowing down the scope of a Telescope search.
+
+==============================================================================
+Initialization - autocmds                              *theovim-init-autocmds*
+
+Organized based on |autocmd-groups|.
+- `YankHighlight`: Highlight the yanked text. See |TextYankPost|
+- `SpellCheck`: Spell check is turned on in Markdown, TeX, and text filetypes
+- `Terminal`: When you open or navigate to a terminal buffer, automatically
+  starts the insert mode
+- `UpdateLeadmultispace`: Update |lcs-leadmultispace| value (i.e., indentation
+  guide) based on the |'shiftwidth'| value. It is triggered when you manually
+  change the |'shiftwidth'| value or enter the buffer for the first time.
+
+>
+    ... A buffer with shiftwidth set to 2
+    ┊ ┊ str = "A line indented with 4 spaces"
+    ...
+    ... `:set shiftwidth 4`
+    ...
+    ┊   str = "A line indented with 4 spaces"
+<
+  |autocmd-once| is used to make sure that the indentation guide is consistent
+  with indentation settings set by |ftplugin|.
+
+==============================================================================
+Initialization - Keymaps                                *theovim-init-keymaps*
+
+Theovim overrides the following default keybindings.
+They do not change the way you interact with Vim but provides
+quality-of-life improvements.
+
+char            action
+----------------------------------------------------------------------
+
+<ESC>           (normal mode) Clears search highlight (|nohlsearch|).
+
+<ESC><ESC>      (terminal mode) Exits the terminal insert mode.
+                See |CTRL-\_CTRL-N|.
+
+j               If the line at the cursor is not wrapped, perform |j|.
+                If the line is wrapped, perform |gj|.
+k               If the line at the cursor is not wrapped, perform |k|.
+                If the line is wrapped, perform |gk|.
+
+n               Highlight the next search result (|n|) and center the
+                screen (|zz|).
+N               Highlight the prev search result (|N|) and center the
+                screen (|zz|).
+
+<C-u>           Scroll up by half a page (|CTRL-U|, or by the value
+                of |scroll|) and center the screen (|zz|).
+<C-d>           Scroll down by half a page (|CTRL-U|, or by the value
+                of |scroll|) and center the screen (|zz|).
+
+                For the following window adjustment keybindings,
+                you have to be quite rapid about the repeating keys
+                due to the default |'timeoutlen'|.
+
+<C-w>+          Increase the current window height by 1 (|CTRL-W_+|)
+                and feed `<C-w>` again so that you can repeatedly
+                type +, -, <, or > to resize the window.
+<C-w>-          Decrease the current window height by 1 (|CTRL-W_-|)
+                and feed `<C-w>` again so that you can repeatedly
+                type +, -, <, or > to resize the window.
+<C-w><          Decrease the current window width by 1 (|CTRL-W_<|)
+                and feed `<C-w>` again so that you can repeatedly
+                type +, -, <, or > to resize the window.
+<C-w><          Increase the current window width by 1 (|CTRL-W_>|)
+                and feed `<C-w>` again so that you can repeatedly
+                type +, -, <, or > to resize the window.
+
+
+Theovim defines keybindings for frequently used actions that require more than
+three keystrokes. For example, there is no keybinding to go to a tab since
+{count}|gt| is a two-keystrokes away.
+Following is the complete list of custom keybindings defined in `init.lua`:
+
+char            action
+----------------------------------------------------------------------
+
+jk              (insert mode) ESC.
+<C-s>           (insert mode) Fix the nearest spelling error and put
+                the cursor back.
+
+<leader>a       Select all.
+<leader>y       (visual mode) Copy to the system clipboard
+                (|quoteplus|).
+<leader>p       List register contents (|reg|) and fill the command line
+                with `normal "`.
+                From there, you can type the register to paste from,
+                followed by `p` to paste.
+                For example, `<leader>p` followed by `+p<CR>` will
+                paste the contents of register + at the cursor.
+<leader>p       (visual mode) Paste the current selection without
+                overriding the register.
+                For example, if you have TODO: Finish the example
+
+[b              Navigate to the previous buffer (|bprev|).
+]b              Navigate to the next buffer (|bnext|).
+<leader>b       List open buffers (|ls|) and fill the command line
+                with |:b| followed by `<Space>`.
+                From there, you can type bthe uffer number to navigate
+                to a buffer.
+                See the `<leader>k` section for how the picker works.
+<leader>k       List open buffers (|ls|) and fill the command line
+                with |:bdelete| followed by `<Space>`.
+                From there, you can type a buffer number to create
+                to a buffer.
+                For example, `<leader>k` followed by `69<CR>` will
+                kill buffer 69.
+                Type `<CR>` without a number to kill the curr buf.
+
+<leader>tt      Toggle a floating terminal (the terminal state persists)
+<leader>tb      Launch a terminal in the bottom
+<leader>tr      Launch a terminal to the right
+                See |:terminal| to learn more about Neovim terminal.
+                See |:lefta|, |:rightb|, |:topleft|, and |:bo| to
+                learn more about opening a window.
+
+<C-h>           If there is a window to the left: navigate to the window
+                Else: Create a window to the left and navigate to it
+<C-j>           If there is a window below: navigate to the window
+                Else: Create a window below and navigate to it
+<C-k>           If there is a window above: navigate to the window
+                Else: Create a window above and navigate to it
+<C-k>           If there is a window to the right: navigate to the window
+                Else: Create a window to the right and navigate to it
+
+==============================================================================
+Initialization - netrw                                    *theovim-init-netrw*
+
+Netrw is a built-in file manager for Vim and Neovim.
+Netrw is intended to be used for visualizing directories and centering the
+buffer.
+For actual file management, use |oil.nvim| explained in the |theovim-plugins|
+section.
+
+char            action
+----------------------------------------------------------------------
+
+<leader>n       Toggle Netrw by calling a custom toggle function.
+                The function uses `vim.g.netrw_is_open` global variable,
+                meaning if you enable Netrw through another way
+                (e.g., |:Sexplore| command) it will effectively break
+                this keybinding.
+
+See also:
+- |netrw|
+
+==============================================================================
+Plugins                                                      *theovim-plugins*
+
+|lazy.nvim| is a Neovim plugin manager.
+- Its installation bootstrap is defined in `init.lua`
+- `:Lazy` opens a dashboard for all Lazy functionalities
+- Alternatively, you can specify an action (e.g., `:Lazy sync`) to perform
+
+Plugin specs are located in the `lua/plugins` directory
+(see |lazy.nvim-lazy.nvim-plugin-spec| for how they are configured).
+This section highlights some of the commonly used plugins.
+
+|oil.nvim| is a file manager that lets you manage files like a Vim buffer.
+- `:Oil` to open Oil in the current working directory
+- Use - to navigate to the parent directory (and <CR> to `cd` into a dir)
+- Rename, delete, or create files by modifying the buffer texts
+- To create a directory, append "/" in the end of the name (e.g: "new_dir/")
+- You can also copy or move files with |yy| and |dd|
+  - Creating split windows can be helpful
+- `:w` prompts for your confirmation of the changes you made
+
+|nvim-autopairs| automatically insert matching parentheses, quotes, etc.
+
+|which-key.nvim| displays a popup with possible keybindings.
+The delay for WhichKey is controlled by 'timeoutlen' set in core.lua (300ms).
+WhichKey also includes other features:
+- ' in normal mode displays marks.
+  Set a marker with |m|{char}!
+- " in normal mode or `<C-r>` insert mode displays register contents
+- WhichKey displays help for built-in motions such as |z| and |g|
+  - You can list all one-key-stroke keybindings using `:WhichKey`
+- WhichKey hijacks spell suggestions (|z=|) UI
+
+|colorizer.lua| highlights color codes (hex codes, ANSI color name such as
+"Magenta", CSS functions, etc.). Use `:ColorizerReloadAllBuffers` to reload.
+
+|todo-comments.nvim| highlights keywords such as `TODO`, `WARN`, etc.
+Use `:TodoQuickFix` to see the list of all TODO's in the open files.
+Use `]t` and `[t` to jump between TODO's.
+
+|gitsigns.nvim| provides Git signs in the gutter (+, -, ~, etc.) as well as
+other useful Git functionalities.
+The following keybinding is enabled for Git buffers:
+
+char            action
+----------------------------------------------------------------------
+
+<leader>gd      [G]it [D]iff current buffer.
+                Calls |gitsigns.diffthis()|.
+
+|tokyonight.nvim| is the default theme for Theovim.
+Transparency is enabled for all elements, including sidebars and floats.
+toggle transparency, locate `is_transparnt` variable in the `config`
+function and set it to false.
+
+|markdown-preview.nvim| offers a real-time previewer for markdown files in
+your browser (`:MarkdownPreviewToggle`).
+
+|vimtex| is a LaTeX integration for Vim, providing syntax highlights and
+real-time compilation.
+- You need to install and configure PDF viewer first.
+  - In Linux, use Zathura (https://pwmt.org/projects/zathura/)
+  - In macOS, use Skim (https://skim-app.sourceforge.io/)
+  - Change the `vim.g.vimtex_view_method` in the plugins.lua
+- `:VimtexCompile` starts a real-time compilation process
+
+==============================================================================
+Telescope                                                  *theovim-telescope*
+
+Telescope is a fuzzy finder for Neovim.
+It allows you to find anything you want in just a few keystrokes.
+
+Telescope works out of the box, but for faster search and live grep features,
+the following dependencies are needed:
+- CMake, make, and GCC or Clang to compiler |telescope-fzf-native.nvim|
+- ripgrep: https://github.com/BurntSushi/ripgrep
+- fd: https://github.com/sharkdp/fd
+
+char            action
+----------------------------------------------------------------------
+
+<leader>sh      [S]earch [H]elp.
+                Calls |telescope.builtin.help_tags()|.
+
+<leader>sk      [S]earch [K]eymaps.
+                Calls |telescope.builtin.keymaps()|.
+
+<leader>sf      [S]earch [F]iles.
+                Searches files in the current and the child dir.
+                Respects .gitignore if one exists.
+                `fd` is not required but recommended for faster search.
+                Calls |telescope.builtin.find_files()|.
+
+<leader>ss      [S]earch [S]elect Telescope.
+                Searches all the Telescope built-in functions.
+                Calls |telescope.builtin.builtin()|.
+
+<leader>sw      [S]earch current [W]ord.
+                Searches for the string under the cursor in the CWD.
+                `ripgrep` is required for the search.
+                Calls |telescope.builtin.grep_string()|.
+
+<leader>sg      [S]earch by [G]rep.
+                Searches words in the CWD.
+                Respects .gitignore if one exists.
+                `ripgrep` is required for the search.
+                Calls |telescope.builtin.live_grep()|.
+
+<leader>sd      [S]earch [D]iagnostics.
+                Calls |telescope.builtin.diagnostics()|.
+
+<leader>sr      [S]earch [R]esume.
+                Opens the previously used Telescope picker.
+                Calls |telescope.builtin.resume()|.
+
+<leader>s.      [S]earch Recent Files ("." for repeat).
+                Calls |telescope.builtin.oldfiles()|.
+
+<leader><leader>Find open buffers.
+                Calls |telescope.builtin.buffers()|.
+
+<leader>/       Open fuzzy finder for the current buffer words.
+                The previewer is disabled to minimize distractions.
+                Calls |telescope.builtin.current_buffer_fuzzy_find()|
+                with a parameter to disable the previewer
+                (see |telescope.themes.get_dropdown()|).
+
+<leader>s/      Live grep in open files.
+                Searches by grep in open buffers.
+                `ripgrep` is required for the search.
+                Calls |telescope.builtin.live_grep()|
+                with a parameter to restrict the search scope.
+
+<leader>sn      [S]earch [N]eovim files.
+                Calls |telescope.builtin.find_files()|
+                with a parameter to restrict the search scope to
+                the Neovim config directory.
+                (see |stdpath()).
+
+
+<leader>gf      Search [G]it [F]iles.
+                Calls |telescope.builtin.find_files()|.
+
+<leader>gc      Search [G]it [C]ommits.
+                Calls |telescope.builtin.git_commits()|.
+
+<leader>gs      Search [G]it [S]tatus.
+                Calls |telescope.builtin.git_status()|.
+
+
+<leader>fb      File [B]rowser.
+                Calls |telescope.file-browser.finders|
+
+
+Within the Telescope window, the following keybindings are available:
+
+char            action
+----------------------------------------------------------------------
+
+<C-j>           Select the next item
+<C-n>           Select the next item
+
+<C-k>           Select the prev item
+<C-p>           Select the prev item
+
+<C-d>           Scroll the preview window down
+<C-u>           Scroll the preview window up
+
+<C-c>           Close the Telescope window
+
+<CR>            Open the selection in the current window
+<C-v>           Open the selection in a vertical split
+<C-x>           Open the selection in a horizontal split
+<C-t>           Open the selection in a new tab
+
+
+See also:
+- |telescope.nvim|: About the fuzzy finder itself
+- |telescope.builtin|: Builtin modules of Telescope
+- |telescope.file-browser.nvim|: File browser extension
+
+==============================================================================
+Treesitter                                                *theovim-treesitter*
+
+Treesitter (TS) is an incremental parser generator for more accurate syntax
+highlighting compared to the default regex-based highlighting.
+TS also integrates with Vim's folding and selection mechanism to provide a
+more efficient navigation and editing experience.
+
+Theovim installs the following TS servers out of the box:
+
+- Bash
+- C
+- C++
+- LaTeX
+- Lua
+- Python
+
+In these filetypes, TS highlight (|nvim-treesitter-highlight-mod|), incremental
+selection (|nvim-treesitter-incremental-selection-mod|), and indentation
+(|nvim-treesitter-indentation-mod|) will be enabled.
+
+To disable TS or add other parsers, use the following frequently used commands
+provided by the nvim-treesitter plugin:
+
+- :TSInstall {language} ...
+- :TSUpdate {language} ...
+- :TSDisable {module} [{language}]
+  - A list of modules can be found at |:TSModuleInfo|
+  - A list of languages can be found at |:TSInstallInfo|
+- :TSToggle {module} [{language}]
+  - A list of modules can be found at |:TSModuleInfo|
+  - A list of languages can be found at |:TSInstallInfo|
+
+The following keybindings are provided when a TS parser is enabled:
+
+char            action
+----------------------------------------------------------------------
+
+<C-space>       Start incremental selection
+<C-space>       (in visual mode) Perform node incremental selection
+<C-s>           (in visual mode) Perform scope incremental selection
+<M-space>       (in visual mode) Perform node decremental selection
+
+Incremental selection example:
+
+>
+  local function treesitter-incremental-example()
+    local sysname = vim.loop.os_uname().sysname
+    if sysname == "Linux" then
+      vim.notify("You are using Linux!")
+    else
+      vim.notify("Ew")
+    end
+  end
+<
+
+- When you start node incremental selection at the "vim" keyword (<C-space>),
+  it will incrementally select:
+  - "vim" -> "vim.notify" -> "vim.notify(...)" -> if statement
+    -> function body -> function
+- When you start scope incremental selection at the "vim" keyword
+  (<C-space> to initialize then <C-s>), it will incrementally select:
+  - "vim" -> if statement -> function
+- You should try it out with the language of your choice to see how it behaves
+
+See also:
+- |nvim-treesitter|: Configuration and abstract layer for the built-in TS
+- |treesitter|: Neovim built-in treesitter library
+
+==============================================================================
+Diagnostic                                                *theovim-diagnostic*
+
+Neovim has a built-in diagnostic framework to display errors or warning
+messages from external tools like LSP or linters.
+Unless you configure an external tool, it will most likely be from LSP.
+
+For example, here is how diagnostic displays errors for the following
+diastrous Lua code.
+>
+  H  1 local function func()     ■■ Unused local `func`.
+  I  2 ┊ lowercase = ""     ■ Global variable in lowercase initial, Did you
+  W  3 ┊ undefined_func(syntax, err,)     ■■■■ Undefined global `err`.
+     4 end
+<
+
+In Neovim 0.10, Neovim creates some default mappings for diagnostics.
+- |]d-default|
+- |[d-default|
+- |CTRL-W_d-default|
+- For Neovim default mappings, see |default-mappings|
+
+The following keybindings are available for buffer with
+diagnostic information:
+
+char            action
+----------------------------------------------------------------------
+
+<leader>q       Open diagnostic list in |location-list|.
+                Calls |vim.diagnostic.setloclist()|.
+
+See also:
+- |diagnostic.txt|
+
+==============================================================================
+LSP                                                              *theovim-lsp*
+
+|mason.nvim| lets you install and manage LSP servers within Neovim.
+- |:Mason| opens the graphical manager for available LSP servers
+- |:MasonUpdate| updates all LSP servers
+- |:MasonInstall| {LSP} ... installs LSP server(s)
+- |:MasonUnInstall| {LSP} ... uninstalls LSP server(s)
+- There are also |:LspInstall| and |:LspUninstall| provided by
+  |mason-lspconfig|, which are "more or less an alias of the :MasonInstall
+  command."
+- The following LSP servers are installed by default:
+  - Bash (`bashls`)
+  - C/C++ (`clangd`)
+  - LaTeX (`texlab`)
+  - Lua (`lua_ls`)
+  - Python (`pyright`)
+
+
+When LSP server(s) is active in the buffer, it will be displayed in the
+Statusline:
+
+>
+  Code with one error and one warning from the Lua LSP server...
+  ---
+  N   luafile.lua[+]    E1 W1 |  git_branch +69 ~420
+<
+
+You can also use the follwing commands to control the LSP servers:
+- `:LspInfo`
+- `:LspStop`
+- `:LspRestart`
+
+In Neovim 0.10, `K` is mapped to |vim.lsp.buf.hover()|. See |K-lsp-default|.
+
+When LSP server(s) is active in the buffer, following are available locally:
+
+Autocmd:
+- Symbol under the cursor (i.e., variables, functions, etc.) are highlighted.
+
+Keybindings:
+
+char            action
+----------------------------------------------------------------------
+
+<leader>F       Format the buffer
+                - calls |vim.lsp.buf.format()|
+
+gd              Jumps to the definition of the symbol under the
+                cursor.
+                Lists all definitions if there is a multiple.
+                When Telescope is available:
+                - calls |telescope.builtin.lsp_definitions()|
+                When Telescope is not available:
+                - calls |vim.lsp.buf.definition()|
+
+gr              Lists references of the symbol under the cursor.
+                When Telescope is available:
+                - calls |telescope.builtin.lsp_references()|
+                When Telescope is not available:
+                - calls |vim.lsp.buf.references()|
+
+gI              Lists implementations of the symbol under the cursor.
+                When Telescope is available:
+                - calls |telescope.builtin.lsp_implementations()|
+                When Telescope is not available:
+                - calls |vim.lsp.buf.implementations()|
+
+<leader>D       Jumps to the definition of the type of the symbol
+                under the cursor.
+                Lists all type definitions if there is a multiple.
+                When Telescope is available:
+                - calls |telescope.builtin.lsp_type_definitions()|
+                When Telescope is not available:
+                - calls |vim.lsp.buf.type_definition()|
+
+<leader>ds      Lists all symbols in the current buffer.
+                When Telescope is available:
+                - calls |telescope.builtin.lsp_document_symbols()|
+                When Telescope is not available:
+                - calls |vim.lsp.buf.document_symbols()|
+
+<leader>ws      Lists all symbols in the current workspace (project).
+                When Telescope is available:
+                - calls |telescope.builtin.lsp_workspace_symbols()|
+                When Telescope is not available:
+                - calls |vim.lsp.buf.workspace_symbols()|
+
+<leader>rn      Renames the symbol (e.g., variable, function) under
+                the cursor and refactors all the references.
+                Calls |vim.lsp.buf.rename()|.
+
+<leader>ca      Selects a code action available under the cursor.
+                the cursor and refactor the workspace.
+                Calls |vim.lsp.buf.code_action()|.
+
+gD              Jumps to the declaration of the symbol under the
+                cursor.
+                For example, the keymap can take you to the C header
+                file where the function is declared.
+                For the most situation, you would want to use `gd`.
+                Calls |vim.lsp.buf.declaration()|.
+
+
+See also:
+- |lsp|: Built-in LSP framework
+- |mason.nvim|: LSP server manager
+- |lspconfig|: LSP configuration mechanism, provider of `:LspInfo`,
+  `:LspStart`, `:LspStop`, etc.
+- |mason-lspconfig.nvim|: Bridge between Mason and lspconfig, mostly a backend
+  work that you do not have to worry about
+
+==============================================================================
+Completion                                                *theovim-completion*
+
+Auto-completion is available in any buffer, and they work like any other
+modern IDEs.
+
+Available sources when an LSP server is active and snippets are provided:
+- |nvim-nvim-lsp|: Keywords and variables from the LSP
+- |luasnip.txt|: Snippet engine for code templates
+  - |friendly-snippets-friendly-snippets| provides the snippets themselves
+
+Available sources for all buffers:
+- |cmp-buffer|: Words in the buffer
+- |cmp-path|: Filesystem paths (your terminal emulator must have permission to
+  your files)
+- |cmp-cmdline|: Completion for Vim commands (`:`) and search (`/`, `?`).
+
+When `nvim-lsp` and/or `luasnip` sources are available, you will not see
+`cmp-buffer` and `cmp-path` items. To disable this, combine two tables in
+the `sources` attribute in the |cmp.setup()| function together.
+See:
+- |cmp-config.sources|
+- |cmp-config.sources[n].group_index|
+
+char            action
+----------------------------------------------------------------------
+
+<C-n>           Select the next item
+<C-j>           Select the next item
+                |cmp.mapping.select_next_item|
+<C-p>           Select the prev item
+<C-k>           Select the prev item
+                |cmp.mapping.select_prev_item|
+
+<C-e>           Close the completion menu
+                |cmp.mapping.abort()|
+
+<C-Space>       Open the completion menu if it is not already open
+
+<C-y>           Confirm the selection.
+<CR>            Confirm the selection.
+                - `select = false`: If nothing is selected, close the
+                  completion menu. Set true to choose the first item
+                - `behavior = cmp.ConfirmBehavior.Replace`: controls
+                  the behavior when completion is done adjacent to an
+                  existing word. For example ("|" is the cursor):
+
+>
+                    |uire
+                    ╭─────────────────────────────────╮
+                    │ require(modname)  Function [LSP]│
+                    │ req~           Snippet [LuaSnip]│
+
+                    ... confirming the first item ...
+
+                    require|
+<
+
+                  If `behavior = cmp.confirmBehavior.Insert`, it
+                  would insert "requireuire"
+                See |cmp.confirm|.
+
+<C-l>           Moves to the next available expansion.
+<C-h>           Moves to the previously available expansion.
+
+<Tab>           - When the completion menu is open:
+                  select the next item
+                - After selecting an expandable LuaSnip snippet
+                  (e.g., function with multiple parameters):
+                  jump to the next snippet items
+                - Else:
+                  sends <Tab> (i.e., inserts <Tab>)
+
+<S-Tab>         - When the completion menu is open:
+                  select the prev item
+                - After selecting an expandable LuaSnip snippet
+                  (e.g., function with multiple parameters):
+                  jump to the prev snippet items
+                - Else:
+                  sends <S-Tab>
+
+
+See also:
+- |nvim-cmp|: Completion plugin for LSP and snippet integration
+- |cmp-cmdline-setup|: How to set the command line and search completion
+- |ins-completion|: Default Vim completion library
+
+==============================================================================
+UI Components                                                     *theovim-ui*
+
+Theovim features unique UI components written in Lua.
+
+- A simple Tabline to maximize Vim's built |tabpage|, featuring:
+  - Number of windows in the current tab
+  - Modified status of the current window in the tab
+  - Number of buffers and tabs
+- A simple Statusline featuring:
+  - Diagnostics & Git information
+  - Dynamic content adjustment based on the current window size
+- Startup Dashboard featuring:
+  - ASCII art of my chunky cat Oliver (randomly selected from the pool)
+
+See also:
+- |setting-tabline|: Guide on configuring Tabline
+- |'statusline'|: Information about Vim Statusline and built-in items
+- |'winbar'|: Neovim window bar, currently not in use
+
+==============================================================================
+Documentation                                          *theovim-documentation*
+
+This file (|theovim.txt|) contains the complete list of all Theovim features.
+
+- README.md: Outlines a brief overview for each Theovim module.
+  It is more of a sales pitch than a serious documentation.
+- CHANGELOG.md: has the list of options, keybindings, Lua functions, plugins,
+  and other Neovim features I tried that did not work out for me.
+- LICENSE.md: MIT license
+
+See also:
+- |help-writing|: Guide on Vim help syntax
+- |:helptags|: Generating help tags files
+
+
+ vim:tw=78:ts=8:ft=help:norl:

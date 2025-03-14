@@ -1,0 +1,17 @@
+theovim	theovim.txt	/*theovim*
+theovim-completion	theovim.txt	/*theovim-completion*
+theovim-diagnostic	theovim.txt	/*theovim-diagnostic*
+theovim-documentation	theovim.txt	/*theovim-documentation*
+theovim-init-autocmds	theovim.txt	/*theovim-init-autocmds*
+theovim-init-commands	theovim.txt	/*theovim-init-commands*
+theovim-init-ftplugins	theovim.txt	/*theovim-init-ftplugins*
+theovim-init-keymaps	theovim.txt	/*theovim-init-keymaps*
+theovim-init-netrw	theovim.txt	/*theovim-init-netrw*
+theovim-init-options	theovim.txt	/*theovim-init-options*
+theovim-lsp	theovim.txt	/*theovim-lsp*
+theovim-plugins	theovim.txt	/*theovim-plugins*
+theovim-telescope	theovim.txt	/*theovim-telescope*
+theovim-tldr	theovim.txt	/*theovim-tldr*
+theovim-treesitter	theovim.txt	/*theovim-treesitter*
+theovim-ui	theovim.txt	/*theovim-ui*
+theovim.txt	theovim.txt	/*theovim.txt*
