@@ -17,6 +17,22 @@ M.dependencies = {
 }
 
 M.config = function()
+  -- Built-in diagnostic diagnostic appearance and keymap
+  vim.diagnostic.config({
+    float = {
+      border = "rounded",
+      format = function(diagnostic)
+        -- "ERROR (line n): message"
+        return string.format("%s (line %i): %s",
+          vim.diagnostic.severity[diagnostic.severity],
+          diagnostic.lnum + 1,
+          diagnostic.message)
+      end
+    },
+    update_in_insert = false,
+  })
+  vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
   -- Sets the LSP UI look
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     vim.lsp.handlers.hover, {
@@ -32,10 +48,10 @@ M.config = function()
   )
 
   -- Makes autocmd for LSP functionalities
-  local theovim_lsp_config_group = vim.api.nvim_create_augroup("TheovimLspConfig", { clear = true, })
+  local lsp_config_group = vim.api.nvim_create_augroup("TheovimLspConfig", { clear = true, })
 
   vim.api.nvim_create_autocmd("LspAttach", {
-    group = theovim_lsp_config_group,
+    group = lsp_config_group,
     callback = function(event)
       local map = function(keys, func, desc)
         vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
