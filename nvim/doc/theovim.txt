@@ -42,7 +42,7 @@ Initialization:
 - Keymaps for "navigating to prev/next something" are prefixed by `[` and `]`
 
 Plugins:
-- Netrw is a decoration, use Oil.nvim to manage files
+- Use `:Oil` to manage files
 - `<leader>gd` opens a diff view for a Git file
 - If you forgot a keymap, use `:WhichKey`
 - Use `:MarkdownPreviewToggle` and `:VimtexCompile`
@@ -111,7 +111,7 @@ Character rendering:
   ┊ str = "A line followed by two trailing whitespaces"␣␣
 
   ┊ str = "Pretend that this line is really really really long and is wrap
-    ↪ped. Notice how a wrapped line is also indented (`:h showbreak`)"
+    ↪ ped. Notice how a wrapped line is also indented (`:h showbreak`)"
 
   ┊ str = "If you don't have 'showbreak' enabled, wrapped lines would look
   ↪ like this"
@@ -265,19 +265,6 @@ N               Highlight the prev search result (|N|) and center the
                 you have to be quite rapid about the repeating keys
                 due to the default |'timeoutlen'|.
 
-<C-w>+          Increase the current window height by 1 (|CTRL-W_+|)
-                and feed `<C-w>` again so that you can repeatedly
-                type +, -, <, or > to resize the window.
-<C-w>-          Decrease the current window height by 1 (|CTRL-W_-|)
-                and feed `<C-w>` again so that you can repeatedly
-                type +, -, <, or > to resize the window.
-<C-w><          Decrease the current window width by 1 (|CTRL-W_<|)
-                and feed `<C-w>` again so that you can repeatedly
-                type +, -, <, or > to resize the window.
-<C-w><          Increase the current window width by 1 (|CTRL-W_>|)
-                and feed `<C-w>` again so that you can repeatedly
-                type +, -, <, or > to resize the window.
-
 
 Theovim defines keybindings for frequently used actions that require more than
 three keystrokes. For example, there is no keybinding to go to a tab since
@@ -334,27 +321,6 @@ jk              (insert mode) ESC.
                 Else: Create a window above and navigate to it
 <C-k>           If there is a window to the right: navigate to the window
                 Else: Create a window to the right and navigate to it
-
-==============================================================================
-Initialization - netrw                                    *theovim-init-netrw*
-
-Netrw is a built-in file manager for Vim and Neovim.
-Netrw is intended to be used for visualizing directories and centering the
-buffer.
-For actual file management, use |oil.nvim| explained in the |theovim-plugins|
-section.
-
-char            action
-----------------------------------------------------------------------
-
-<leader>n       Toggle Netrw by calling a custom toggle function.
-                The function uses `vim.g.netrw_is_open` global variable,
-                meaning if you enable Netrw through another way
-                (e.g., |:Sexplore| command) it will effectively break
-                this keybinding.
-
-See also:
-- |netrw|
 
 ==============================================================================
 Plugins                                                      *theovim-plugins*
@@ -658,17 +624,7 @@ LSP                                                              *theovim-lsp*
   - Lua (`lua_ls`)
   - Python (`pyright`)
 
-
-When LSP server(s) is active in the buffer, it will be displayed in the
-Statusline:
-
->
-  Code with one error and one warning from the Lua LSP server...
-  ---
-  N   luafile.lua[+]    E1 W1 |  git_branch +69 ~420
-<
-
-You can also use the follwing commands to control the LSP servers:
+You can use the follwing commands to control the LSP servers:
 - `:LspInfo`
 - `:LspStop`
 - `:LspRestart`
@@ -851,8 +807,6 @@ Theovim features unique UI components written in Lua.
 - A simple Statusline featuring:
   - Diagnostics & Git information
   - Dynamic content adjustment based on the current window size
-- Startup Dashboard featuring:
-  - ASCII art of my chunky cat Oliver (randomly selected from the pool)
 
 See also:
 - |setting-tabline|: Guide on configuring Tabline
@@ -863,12 +817,6 @@ See also:
 Documentation                                          *theovim-documentation*
 
 This file (|theovim.txt|) contains the complete list of all Theovim features.
-
-- README.md: Outlines a brief overview for each Theovim module.
-  It is more of a sales pitch than a serious documentation.
-- CHANGELOG.md: has the list of options, keybindings, Lua functions, plugins,
-  and other Neovim features I tried that did not work out for me.
-- LICENSE.md: MIT license
 
 See also:
 - |help-writing|: Guide on Vim help syntax
