@@ -17,6 +17,8 @@
 
 -- Global variables
 vim.g.have_nerd_font = true
+vim.g.have_transparent_bg = true
+
 -- Neovide
 if vim.g.neovide then
   local padding = 10
