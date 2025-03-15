@@ -101,12 +101,13 @@ end
 -- Long statusline:
 -- [Mode] path/filename.txt[mod][RO] diagnostic git      filetype ff enc line/total : col/total
 Statusline.getActiveStatusline = function()
-  local modeInfo = Statusline.getMode()
-  --local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-  local filemodifier = "%m%r "
-
   local curWidth = vim.o.laststatus == 3 and vim.o.columns or vim.api.nvim_win_get_width(0)
   local isShort = (curWidth < 100)
+
+  local modeInfo = Statusline.getMode()
+  local filepath = isShort and "%t" or "%f"
+  local filemodifier = "%m%r "
+
   if isShort then
     local location = " %l:%v "
 
@@ -116,7 +117,8 @@ Statusline.getActiveStatusline = function()
       modeInfo.name,
       " ",
       "%#MiniStatuslineFilename#",
-      " %t", --> tail
+      " ",
+      filepath,
       filemodifier,
       "%#MiniStatuslineInactive#",
       "%=", --> spacer
@@ -139,7 +141,8 @@ Statusline.getActiveStatusline = function()
     modeInfo.name,
     " ",
     "%#MiniStatuslineFilename#",
-    " %t", --> tail
+    " ",
+    filepath,
     filemodifier,
     "%#MiniStatuslineDevinfo#",
     diagnostics,
