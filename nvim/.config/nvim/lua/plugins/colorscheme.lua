@@ -1,5 +1,3 @@
-local colorscheme = "tokyongiht-night"
-
 return {
   {
     "folke/tokyonight.nvim",
@@ -17,7 +15,7 @@ return {
           mini_starter = true,
         },
       })
-      --vim.cmd.colorscheme("tokyonight-night")
+      vim.cmd.colorscheme("tokyonight-night")
     end,
   },
   {
@@ -32,14 +30,26 @@ return {
     end,
   },
   {
-    "Mofiqul/dracula.nvim",
+    "navarasu/onedark.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      require("dracula").setup({
-        transparent_bg = vim.g.have_transparent_bg,
+      require("onedark").setup({
+        style = "cool",
+        transparent = vim.g.have_transparent_bg,
       })
-      vim.cmd.colorscheme("dracula")
+      --vim.cmd.colorscheme("onedark")
     end,
-  }
+  },
+  {
+    "EdenEast/nightfox.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("nightfox").setup({
+        transparent = vim.g.have_transparent_bg,
+      })
+      --vim.cmd.colorscheme("nightfox")
+    end,
+  },
 }
