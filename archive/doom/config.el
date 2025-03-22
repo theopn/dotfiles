@@ -78,7 +78,7 @@
 ;; C-x 2 (split-window-below) C-x 3 (split-window-right)
 
 ;; Org config
-(load "~/dotfiles/doom.d/org-config.el")
+(load "~/.config/doom/org-config.el")
 
 ;; Doom Dashboard ascii banner
 (defun doom-dashboard-draw-ascii-banner-fn ()
