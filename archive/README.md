@@ -135,4 +135,22 @@ Below is the instruction on how I set up dotfiles with the script.
     brew tap homebrew/cask-fonts &&
     brew install --cask font-iosevka-nerd-font font-fantasque-sans-mono-nerd-font
     ```
+## Doom Emacs
+
+> Last Updated: 2025-03-15
+
+I used it for Org-mode, which was a great multi-purpose productivity tools for to-do list, idea capture, and knowledge database.
+I started preferring simpler productivity system focused on analogue tools and plain text files, now I am using Vim/Neovim to do most of my productivity work.
+
+- Usage:
+    - All the stock Emacs + Evil mode keybindings
+    - `%`: Jump between parenthesis like in Vim
+    - `C-c t`: Toggle transparency
+    - `C-c a`: Org Agenda
+    - `C-c c`: Org Capture
+    - `C-c o`: Display Org file outline using `occur`
+    - `C-c f`: Find Org-roam node
+    - `C-c i`: Insert Org-roam node
+    - `C-c r b`: List all Org-roam references in the current buffer
+    - `C-c r r`: Sync Org-roam database
 
