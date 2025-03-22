@@ -26,7 +26,7 @@ brew bundle --file ./homebrew/Brewfile_optional
 
 # tap font repository and install fonts you want
 brew tap homebrew/cask-fonts &&
-brew install --cask font-iosevka-nerd-font font-fantasque-sans-mono-nerd-font
+brew install --cask font-ubuntu-mono-nerd-font font-iosevka-nerd-font
 
 # Deploy dotfiles
 stow ~/dotfiles/
@@ -34,6 +34,38 @@ stow ~/dotfiles/
 # macOS settings
 zsh ./misc/macos-settings.sh
 ```
+
+## Utilities
+
+### Shells
+
+Bash:
+
+Fish:
+
+Zsh
+
+### Terminal emulators and multiplexers
+
+Tmux:
+
+Kitty:
+
+Wezterm
+
+### Text editors:
+
+Neovim
+
+Vim
+
+### Others
+
+- LF
+
+- Git
+
+---
 
 ## Shells
 
@@ -117,24 +149,6 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
 
 ## Text Editors (besides Neovim)
-
-### Doom Emacs
-
-> Good OS, mediocre text editor even with Evil mode
-
-Emacs is my to-do list, idea capture, knowledge databases, and tools for other [Second Brain](https://fortelabs.com/blog/basboverview/) functionalities.
-
-- Usage:
-    - All the stock Emacs + Evil mode keybindings
-    - `%`: Jump between parenthesis like in Vim
-    - `C-c t`: Toggle transparency
-    - `C-c a`: Org Agenda
-    - `C-c c`: Org Capture
-    - `C-c o`: Display Org file outline using `occur`
-    - `C-c f`: Find Org-roam node
-    - `C-c i`: Insert Org-roam node
-    - `C-c r b`: List all Org-roam references in the current buffer
-    - `C-c r r`: Sync Org-roam database
 
 ### Neovim
 
@@ -258,18 +272,18 @@ Formulae:
 
 Casks:
 
-| Development     | Fun       | Productivity | System (macOS) | Tools       | Web         |
-|-----------------|-----------|--------------|----------------|-------------|-------------|
-| Docker          | Discord   | Emacs        | **Aerospace**  | Bitwarden   | Firefox     |
-| IntelliJ CE     | Minecraft | **Itsycal**  | App Cleaner    | Cryptomator | Thunderbird |
-| kitty           | Spotify   | Notion       | Maccy          | GIMP        | Zen Browser |
-| MacTex (no GUI) |           |              | **Stats**      | OBS         |             |
-| **Wezterm**     |           |              |                | **Skim**    |             |
-|                 |           |              |                | VLC         |             |
+| Development     | Fun       | Productivity | System (macOS) | Tools         | Web         |
+|-----------------|-----------|--------------|----------------|---------------|-------------|
+| Docker          | Discord   | **Itsycal**  | **Aerospace**  | **Bitwarden** | **Firefox** |
+| IntelliJ CE     | Minecraft | Notion       | App Cleaner    | Cryptomator   | Thunderbird |
+| kitty           | Spotify   |              | **Ice**        | GIMP          | Zen Browser |
+| MacTex (no GUI) |           |              | Maccy          | OBS           |             |
+| **Macvim**      |           |              | **Stats**      | **Skim**      |             |
+| **Wezterm**     |           |              |                | VLC           |             |
 
 ### Settings
 
-`./macos/macos-settings.sh` includes some macOS settings like adding a Dock spacer, show hidden files in Finder, changing screenshot format and location, etc.
+`./misc/macos-settings.sh` includes some macOS settings like adding a Dock spacer, show hidden files in Finder, changing screenshot format and location, etc.
 
 ## Archive
 
