@@ -2,16 +2,16 @@
 
 # aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
 
-after-startup-command = ['exec-and-forget sketchybar']
-# Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
-]
+# Uncomment to use with sketchybar
+#after-startup-command = ['exec-and-forget sketchybar']
+#exec-on-workspace-change = ['/bin/bash', '-c',
+#    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+#]
 
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-accordion-padding = 200
+accordion-padding = 100
 
 default-root-container-layout = 'tiles'
 
@@ -31,16 +31,18 @@ run = ['layout floating']
     preset = 'qwerty'
 
 [gaps]
-    inner.horizontal = 10
-    inner.vertical =   10
-    outer.left =       10
-    outer.bottom =     10
-    outer.top =        40
-    outer.right =      10
+    inner.horizontal = 5
+    inner.vertical =   5
+    outer.left =       5
+    outer.bottom =     5
+    outer.top =        5   # With macOS menubar
+    #outer.top =        40  # With sketchybar
+    outer.right =      5
 
 [mode.main.binding]
     # toggle floating and tiling
     alt-shift-space = 'layout floating tiling'
+
     alt-enter = 'exec-and-forget open -n /Applications/Wezterm.app'
 
     # All possible keys:
