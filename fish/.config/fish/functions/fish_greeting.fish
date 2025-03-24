@@ -1,40 +1,3 @@
-# $figlet -f fuzzy fish
-#  .--. _       .-.
-# : .-':_;      : :
-# : `; .-. .--. : `-.
-# : :  : :`._-.': .. :
-# :_;  :_;`.__.':_;:_;
-#
-# Theo's Fish config
-
-# Env var
-set -gx EDITOR nvim
-set -gx XDG_CONFIG_HOME "$HOME/.config"
-
-# Personal variables
-# tilde expansion in quote doesn't work, so either use ~/My\ Drive or $HOME
-set -gx CACHE_DIR "$HOME/My Drive/l1-cache"
-set -gx CLOUD_DIR "$HOME/My Drive"
-set -gx DOT_DIR ~/dotfiles
-
-set -gx QUICK_NOTE_PATH "$CACHE_DIR/quick-note.md"
-set -gx DAILY_WRITING_DIR "$CACHE_DIR/dw-$(date +'%Y')"
-
-switch $(uname)
-  case "Linux"
-    set -x OSTYPE 'Linux'
-  case "Darwin"
-    set -x OSTYPE 'macOS'
-  case '*BSD' 'DragonFly'
-    set -x OSTYPE 'BSD'
-  case '*'
-    set -x OSTYPE 'UNKNOWN'
-end
-
-if [ $OSTYPE = 'macOS' ]
-  fish_add_path /opt/homebrew/bin/
-end
-
 function fish_greeting -d "Theo's Custom Greetin Msg"
   # Getting the battery info
   set -l batlv -1
@@ -143,30 +106,3 @@ function fish_greeting -d "Theo's Custom Greetin Msg"
   echo -e "  " "$cyan"    "󱈏 Battery  :\t"    "$batcolo$batlv%"         "$normal"
   echo
 end
-
-function fish_right_prompt -d "Theo's custom right prompt displaying command duration"
-  set -l __last_command_duration $CMD_DURATION
-
-  set -l colo (set_color -o magenta)
-
-  if test $__last_command_duration -gt 1000
-    set __last_command_duration (math $__last_command_duration / 1000) 's'
-    set colo (set_color -o red)
-  else
-    set __last_command_duration $__last_command_duration 'ms'
-  end
-  echo $colo $__last_command_duration (set_color normal)
-end
-
-if status is-interactive
-
-  set -l func_dir $DOT_DIR/fish/alias.fish
-  [ -f $func_dir ] && source $func_dir || echo -e (set_color -o red) "[ERR] $func_dir does not exist!"
-
-  # Enable Vi keybinding
-  fish_vi_key_bindings
-  set fish_cursor_default block
-  set fish_cursor_insert line
-  set fish_vi_force_cursor
-end
-
