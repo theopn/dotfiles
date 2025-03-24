@@ -6,6 +6,7 @@
 # \____/\_/
 #
 # Official Document: https://pkg.go.dev/github.com/gokcehan/lf
+# Example config: https://github.com/gokcehan/lf/blob/master/etc/lfrc.example
 
 # Like vim settings, put no in front ot the arrtibute to negate
 set nodrawbox
@@ -25,41 +26,80 @@ set smartcase
 # !  shell-wait      shell command waiting for key press
 # &  shell-async     shell command running asynchronously
 
-# Automatically create trash folder upon the startup
-${{ if [ ! -d ~/.theoshell/trash ]; then mkdir -p ~/.theoshell/trash; fi }}
-# $f = current cursor, $fs = selected files, $fx = ($fs exists) ? ($fs) : ($f)
-cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.theoshell/trash && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n" }}
-
-# Remove command for bypassing trash
-cmd rm !{{
-  printf " Remove following files?\n $fx\n"
-  printf ' [y]es/[n]o: '
-  read ans
-  if [ "$ans" = 'y' ]; then # this is the syntax for [ ... ], use == for [[ ... ]]
-    IFS="$(printf '\n\t')"; rm -rf $fx; printf "Following files have been removed!\n $fx\n";
-  else
-    printf ' Removal canceled \n'
-  fi
+# Archive commands
+cmd unarchive ${{
+  set -f
+  case "$f" in
+      *.tar.bz|*.tar.bz2|*.tbz|*.tbz2) tar xjvf $f;;
+      *.tar.gz|*.tgz) tar xzvf $f;;
+      *.tar.xz|*.txz) tar xJvf $f;;
+      *.zip) unzip $f;;
+      *.rar) unrar x $f;;
+      *.7z) 7z x $f;;
+      *) echo "Unsupported format" ;;
+  esac
 }}
+
+cmd tar ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    tar czf $1.tar.gz $1
+    rm -rf $1
+}}
+
+cmd zip ${{
+    set -f
+    mkdir $1
+    cp -r $fx $1
+    zip -r $1.zip $1
+    rm -rf $1
+}}
+
+# Reference for default bindings and removal of some - by binding to nothing
+
+# Some commonly used default bindings:
+# q -> quit
+# hjkl, gg, G -> navigation
+# v -> invert
+# u -> unselect
+# y -> copy
+# d -> cut
+# p -> paste
+# c -> clear (selection)
+# r -> rename
+# f -> find
+# /, n, N -> search and next/prev
+# w shell
+# z<suffix> -> set info
+# s<suffix> -> set sort
+
+map gs !git status
+
 
 cmd choose_editor ${{
   printf ' Editor to open the file with: '
   read ans
   $ans "$f"
 }}
+# unbind by setting it to nothing
+map e # map e $$EDITOR "$f"
+map ec choose_editor
+map ee $$EDITOR "$f"
 
-# Inspiration from https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc
-cmd mkdir %{{
-  if [ -z $1 ]; then
-    printf ' Directory Name: '
-    read ans
-    mkdir $ans
-  else
-    mkdir $1
-  fi
-}}
 
-# think about what happens if you try to open neovim in LF - yes it will break, very badly
+# mark-save      (modal)   (default 'm')
+map m
+# mark-load      (modal)   (default "'")
+map ' 
+# mark-remove    (modal)   (default '"')
+map "
+map ml mark-load
+map mr mark-remove
+map ms mark-save
+
+
+# $: Since we do not want to open $EDITOR in the small LF command line
 cmd mkfile ${{
   if [ -z $1 ]; then
     printf ' File Name: '
@@ -69,6 +109,9 @@ cmd mkfile ${{
     $EDITOR $1
   fi
 }}
+map mf mkfile
+map md :push %mkdir<space>
+
 
 cmd chmod %{{
   printf ' Mode Bits: '
@@ -80,6 +123,8 @@ cmd chmod %{{
 
   lf -remote 'send reload'
 }}
+map mo chmod
+
 
 cmd fzf_jump ${{
   res="$(find . -maxdepth 3 | fzf --reverse --header='Jump to location')"
@@ -90,127 +135,24 @@ cmd fzf_jump ${{
   fi
   lf -remote "send $id $cmd \"$res\""
 }}
-
-# Archive commands
-cmd unarchive ${{
-  case "$f" in
-      *.zip) unzip "$f" ;;
-      *.tar.gz) tar -xzvf "$f" ;;
-      *.tar.bz2) tar -xjvf "$f" ;;
-      *.tar) tar -xvf "$f" ;;
-      *) echo "Unsupported format" ;;
-  esac
-}}
-
-cmd zip %zip -r "$f" "$f"
-cmd tar %tar -cvf "$f.tar" "$f"
-cmd targz %tar -czvf "$f.tar.gz" "$f"
-cmd tarbz2 %tar -cjvf "$f.tar.bz2" "$f"
-
-# Reference for default bindings and removal of some - by binding to nothing
-
-# Default bindings part 1
-# quit                     (default 'q')
-# up                       (default 'k' and '<up>')
-# half-up                  (default '<c-u>')
-# page-up                  (default '<c-b>' and '<pgup>')
-# scroll-up                (default '<c-y>')
-# down                     (default 'j' and '<down>')
-# half-down                (default '<c-d>')
-# page-down                (default '<c-f>' and '<pgdn>')
-# scroll-down              (default '<c-e>')
-# updir                    (default 'h' and '<left>')
-# open                     (default 'l' and '<right>')
-# jump-next                (default ']')
-# jump-prev                (default '[')
-# top                      (default 'gg' and '<home>')
-# bottom                   (default 'G' and '<end>')
-# high                     (default 'H')
-# middle                   (default 'M')
-# low                      (default 'L')
-# toggle
-# invert                   (default 'v')
-# invert-below
-# unselect                 (default 'u')
-# glob-select
-# glob-unselect
-# calcdirsize
-# copy                     (default 'y')
-# cut                      (default 'd')
-# paste                    (default 'p')
-# clear                    (default 'c')
-# sync
-# draw
-# redraw                   (default '<c-l>')
-# load
-# reload                   (default '<c-r>')
-# echo
-# echomsg
-# echoerr
-# cd
-# select
-# delete         (modal)
-# rename         (modal)   (default 'r')
-# source
-# push
-# read           (modal)   (default ':')
-# shell          (modal)   (default '$')
-# shell-pipe     (modal)   (default '%')
-# shell-wait     (modal)   (default '!')
-# shell-async    (modal)   (default '&')
 map f # find           (modal)   (default 'f')
 map F # find-back      (modal)   (default 'F')
 map ; # find-next                (default ';')
 map , # find-prev                (default ',')
-# search         (modal)   (default '/')
-# search-back    (modal)   (default '?')
-# search-next              (default 'n')
-# search-prev              (default 'N')
-# filter         (modal)
-# setfilter
-map m # mark-save      (modal)   (default 'm')
-map ' # Next line:
-# mark-load      (modal)   (default "'")
-map " # Next line:
-# mark-remove    (modal)   (default '"')
-# tag
-# tag-toggle               (default 't')
-
-# Default part 2
-map e # map e $$EDITOR "$f"
-# map i $$PAGER "$f"
-map w # map w $$SHELL
-
-# Default part 3
-# map zh set hidden!
-# map zr set reverse!
-# map zn set info
-# map zs set info size
-# map zt set info time
-# map za set info size:time
-# map sn :set sortby natural; set info
-# map ss :set sortby size; set info size
-# map st :set sortby time; set info time
-# map sa :set sortby atime; set info atime
-# map sc :set sortby ctime; set info ctime
-# map se :set sortby ext; set info
-map gh # map gh cd ~
-# map <space> :toggle; down
-
-
-# Custom bindings
-map ec choose_editor
-map ee $$EDITOR "$f"
-map ml mark-load
-map mr mark-remove
-map ms mark-save
-map sh $$SHELL
-map ~ cd ~
-
 map ff fzf_jump
+
+# Automatically create trash folder upon the startup
+${{ if [ ! -d ~/.theoshell/trash ]; then mkdir -p ~/.theoshell/trash; fi }}
+# $f = current cursor, $fs = selected files, $fx = ($fs exists) ? ($fs) : ($f)
+cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.theoshell/trash && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n" }}
 map DD trash
-map gs !git status
-map md mkdir
-map mf mkfile
-map mo chmod
+
+# Remove command for bypassing trash
+cmd rm ${{
+  set -f
+  printf "$fx\n"
+  printf "delete?[y/n]"
+  read ans
+  [ "$ans" = "y" ] && rm -rf $fx
+}}
 
