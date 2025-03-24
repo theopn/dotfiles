@@ -39,73 +39,13 @@ zsh ./misc/macos-settings.sh
 
 ### Shells
 
-Bash:
-
-Fish:
-
-Zsh
+- Bash: Because everyone needs bash
+- Zsh: Main `$SHELL` with custom plugin manager (`theoshell_plug`), trash (`theoshell_trash`), and other custom functions
+- Fish: Main interactive shell, mostly mirroring my Zsh config
 
 ### Terminal emulators and multiplexers
 
-Tmux:
-
-Kitty:
-
-Wezterm
-
-### Text editors:
-
-Neovim
-
-Vim
-
-### Others
-
-- LF
-
-- Git
-
----
-
-## Shells
-
-### Fish
-
-> Rich built-in features, questionable syntax
-
-It's the de facto default shell that launches when Wezterm opens.
-It has a fantastic built-in auto-completion and stupidly fast asynchronous Git status, but I cannot say I prefer the syntax over POSIX in contrary to the popular opinion.
-Because it's not POSIX compatible, Zsh is my `$SHELL`.
-
-Usage: Most of the aliases and functions of my Zsh config are supported in Fish.
-
-### Zsh
-
-> The shell
-
-- Usage:
-    - Prompt:
-        ```
-        [vi-mode]` ➜ /current/path/ git-branch(* for unstaged, + for staged changes) | last-exit-code ❱
-        ```
-    - Basic aliases: `cdf` to navigate directories quickly using `fzf`,
-        `cl` to `clear`, `l` to `ls` with list view and other options, `histgrep` to look up previous commands
-    - `trash`, `trash_cd`, `trash_empty`, `trash_print`: trash related functions.
-        The trash directory is located in `~/.theoshell/trash`. This directory will be used again for LF
-    - `theoshell_plug <github-username>/<repo-name>`: installs Zsh plug-in from a GitHub repository (to `~/.theoshell/zsh-plugins`) and/or source it
-        - I only install [zsh-autocomplete](https://github.com/marlonrichert/zsh-autocomplete) by default
-    - `theoshell_upgrade`: Upgrade all Zsh plug-ins in `~/.theoshell/zsh-plugins`
-
-## Terminal Emulators and Multiplexers
-
-### tmux
-
-> Universal terminal multiplexer
-
-I usually pair Tmux with a simple terminal emulator like Kitty or Alacritty.
-Because I am not the biggest fan of the default keybindings, many are unbound and rebound to Vim-style navigation and window/pane management.
-
-- Usage:
+- Tmux:
     - For the complete list of keybindings, disabled default keybindings, and frequently used default bindings, use `C-a ?` and read the comment in line 20
     - `C-a` is the prefix
     - `PFX c`: Copy mode
@@ -122,14 +62,8 @@ Because I am not the biggest fan of the default keybindings, many are unbound an
     - `PFX m`: Move the current window to the given index
     - `PFX ?`: Open `~/.tmux.conf` in a floating popup
 
-### Wezterm
-
-> Over-engineered terminal emulator, nailed the fundamental features, and it is configured in Lua!
-
-Wezterm is my primary terminal emulator/multiplexer!
-Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
-
-- Usage:
+- Kitty: The secondary terminal
+- Wezterm: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
     - `LDR` = `C-a`
     - `LDR c`: Copy mode
     - `LDR s/v`: Create a split pane
@@ -148,66 +82,24 @@ Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR
     - `LDR w`: Workspace launcher
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
 
-## Text Editors (besides Neovim)
+### Text editors:
 
-### Neovim
+- Neovim: So many things to talk about, use `:h theovim` to access the help documentation I wrote
+- Vim: Because Neovim is my main text editor, Vim is kept as a simple Vim config with Vimwiki for my journal writing
+    - My Vimrc is built using [Kickstart.vim](https://github.com/theopn/kickstart.vim), features [40-line Vimscript bufferline](https://theopark.me/i-made-a-bufferline-with-40-lines-of-vimscript/)
 
-> IDE, main text editor, and much more
+### Others
 
-So many things to talk about, use `:h theovim` to access the documentation I wrote.
-
-### Vim
-
-> Focused note-taker
-
-Because of [my extensive Neovim IDE config](https://github.com/theopn/theovim), My Vimrc is kept minimal as my journal writer with the Vimwiki plug-in.
-
-My Vimrc is built using [Kickstart.vim](https://github.com/theopn/kickstart.vim).
-
-- Config:
-    - Kickstart.vim contents, including sensible defaults and LSP setup
-    - [Handmade TabLine](https://theopark.me/writing/2023-03-17-vimscript-bufferline/)
-    - Vimwiki setup for my personal journal writing
-
-## File Manager
-
-### lf
-
-> My favorite terminal file manager
-
-When I see a CLI file manager with Vim keybindings and a minimalistic feature set, I like it. I use it.
-
-- Usage:
-    - `~` : Go to the home directory
+- LF: Simple and fast terminal file manager
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
-    - `DD`: Move a file to `~/.theoshell/trash` (it integrates with my Zsh trash functions)
+    - `DD`: Move a file to `~/.theoshell/trash`
     - `gs`: [g]it [s]tatus
-    - `md`: mkdir
-    - `mf`: Open a file with the supplied name in Neovim
     - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
+    - `md`: mkdir
+    - `mf`: Create a file and open in `$EDITOR`
     - `mo`: chmod
-    - `sh`: Launch `$SHELL` at the current directory
-
-## Other Tools
-
-### Git
-
-> Thanks Linus
-
-No comments.
-
-## Miscellaneous Configurations
-
-> [!NOTE]
-> These are single-file, minimal configurations that do not change very often.
-> These are meant to be manually deployed as needed.
-> Use the commands in `./misc/README.md` to deploy these configurations.
-
-- `bashrc`: I prioritize simplicity and performance since Zsh and Fish take care of my interactive uses and most of my scripts are written in Bash.
-    Thus, my `.bashrc` is kept minimal with a simple prompt, some aliases, and variables
-- `kitty.conf`: Kitty is my secondary terminal emulator. The configuration is kept minimal since I always pair it up with Tmux
-- `ideavimrc`: Sorry to disappoint you, but I code in Java sometimes
+- Git: Some Git settings and global `.gitignore` file
 
 ## macOS
 
