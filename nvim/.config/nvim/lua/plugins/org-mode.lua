@@ -13,7 +13,7 @@ return {
       org_agenda_files = { caos_dir .. "projects/active/*", caos_dir .. "capture/refile.org" },
       org_default_notes_file = caos_dir .. "capture/refile.org",
 
-      org_todo_keywords = { "TODO", "|", "DONE" },
+      org_todo_keywords = { "TODO", "|", "DONE", "CANC" },
       org_deadline_warning_days = 3,
 
       org_capture_templates = {
