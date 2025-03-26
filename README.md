@@ -24,15 +24,15 @@ cd dotfiles
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
 
-# tap font repository and install fonts you want
+# tap font repository and install Ubuntu Mono Nerd Font
 brew tap homebrew/cask-fonts &&
-brew install --cask font-ubuntu-mono-nerd-font font-iosevka-nerd-font
+brew install --cask font-ubuntu-mono-nerd-font
 
-# Deploy dotfiles
-stow ~/dotfiles/
+# Deploy dotfiles using custom Stow bootstrap script
+./bootstrap.sh
 
 # macOS settings
-zsh ./misc/macos-settings.sh
+./misc/macos-settings.sh
 ```
 
 ## Utilities
