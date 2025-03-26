@@ -25,49 +25,96 @@ Welcome back Theo, what did you forget this time?
     https://vim.rtorr.com/
 
 ==============================================================================
-Tl;dr                                                           *theovim-tldr*
+Housekeeping                                            *theovim-housekeeping*
 
-Housekeeping:
 - |:checkhealth| to see if you are missing any runtime files
 - |:messages| to check previous error messages and notifications
 - Run `:Lazy sync` to update plugins
   - This runs `:TSUpdate` at the same time
 - Run `:MasonUpdate` to update LSP servers
 
-Initialization:
-- Spaces over tabs, but you can change it in `~/.config/nvim/after/ftplugin/`
-- Use `<C-s>` in the insert mode to quickly fix spelling mistakes
-- `zR` to close all folds and `zM` to open all folds, `zx` if fold glitches
-  - `zA` to toggle folds recursively under the cursor
-- Keymaps for "navigating to prev/next something" are prefixed by `[` and `]`
+See also:
+- |pi_health.txt|: About Neovim's healthcheck framework
 
-Plugins:
-- Use `:Oil` to manage files
-- `<leader>gd` opens a diff view for a Git file
-- If you forgot a keymap, use `:WhichKey`
-- Use `:MarkdownPreviewToggle` and `:VimtexCompile`
+==============================================================================
+UI Components                                                     *theovim-ui*
 
-Telescope:
-- `<leader><leader>`: Open buffers
-- `<leader>/`: Find a word in the current buffer
-- `<leader>s.`: Recent files
-- `<leader>sf`: File files in the directory
-- `<leader>sg`: Find a word in all files of the directory (using ripgrep)
-- `<leader>s/`: Find a word in open files (using ripgrep)
+UI components are located in the `lua/ui` directory.
 
-Treesitter:
-- `<C-Space>`: Incremental selection
+See also:
+- |setting-tabline|: Guide on configuring Tabline
+- |'statusline'|: Information about Vim Statusline and built-in items
+- |'winbar'|: Neovim window bar, currently not in use
 
-LSP:
-- Install new langauge server using :MasonInstall {LSP}
-- `<leader>F` to format
-- `<leader>rn` to rename
-- `K` for hover doc
-- `gd`, `gr` to get the list of definitions/references
-- `<leader>ds`, `<leader>ws` to get symbols in the buffer/workspace
+==============================================================================
+Theovim - nvim-org-mode                                *theovim-nvim-org-mode*
 
-Documentation:
-- `K` to jump into a tag, `<C-t>` to come back
+char            action
+----------------------------------------------------------------------
+
+g?              Opens the built-in keymap help pop-up
+
+<leader>oa      Opens Org-agenda
+r               Refreshes Org-agenda
+]               Moves to the later week
+[               Moves to the earlier week
+
+<leader>oc      Opens Org-capture
+<C-c><C-c>      Finalizes the capture
+<C-c><C-k>      Aborts the capture
+
+<C-c>,          Sets the priority of the headline
+<S-RIGHT>       Cycles the TODO keywords forward
+<S-LEFT>        Cycles the TODO keywords backward
+<C-CR>          Inserts a new TODO headline, respecting the previous contents
+<C-c><C-d>      Inserts a deadline
+<C-c><C-s>      Inserts a schedule date
+
+See also:
+- |orgmode.txt|
+
+==============================================================================
+Theovim - neocodeium                                      *theovim-neocodeium*
+
+Run `:Neocodeium auth` and provide the API key to complete the initial setup.
+Neocodeium will install the language server binary and other files in:
+`vim.env.HOME .. "/.codeium"`.
+
+char            action
+----------------------------------------------------------------------
+
+<leader>cc      Toggle Neocodeium completion.
+                When turning off, this keybinding completely halts
+                the Codeium server.
+                To toggle only the completion on/off, use
+                `:Neocodeium toggle`.
+
+<C-e>           Tries to show a suggestion if none is visible.
+                Otherwise, cycle through the suggestions.
+                The status of the suggestion will be indicated in
+                the |signcolumn|
+                ('*' for loading, '1/n' for 1 out of n suggestions).
+<C-r>           `<C-e>` but cycles backwards.
+<C-f>           Accepts the current suggestion
+
+Neocodeium creates a autocmd to send abort signal to |nvim-cmp| if a Codeium
+completion is displayed.
+As a double-safeguard, `<C-e>` in nvim-cmp is mapped to abort the completion
+window.
+Thus, using `<C-e>` to toggle a suggestion when nvim-cmp window is open will
+safely close the nvim-cmp window first before Neocodeium kicks in.
+
+See also:
+- |Neocodeium|
+
+==============================================================================
+Theovim - fzf-lua                                            *theovim-fzf-lua*
+
+Y
+
+----
+
+Below are old documentation
 
 ==============================================================================
 Initialization - Options                                *theovim-init-options*
@@ -795,23 +842,6 @@ See also:
 - |cmp-cmdline-setup|: How to set the command line and search completion
 - |ins-completion|: Default Vim completion library
 
-==============================================================================
-UI Components                                                     *theovim-ui*
-
-Theovim features unique UI components written in Lua.
-
-- A simple Tabline to maximize Vim's built |tabpage|, featuring:
-  - Number of windows in the current tab
-  - Modified status of the current window in the tab
-  - Number of buffers and tabs
-- A simple Statusline featuring:
-  - Diagnostics & Git information
-  - Dynamic content adjustment based on the current window size
-
-See also:
-- |setting-tabline|: Guide on configuring Tabline
-- |'statusline'|: Information about Vim Statusline and built-in items
-- |'winbar'|: Neovim window bar, currently not in use
 
 ==============================================================================
 Documentation                                          *theovim-documentation*
