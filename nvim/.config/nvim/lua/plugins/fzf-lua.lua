@@ -26,7 +26,6 @@ M.config = function()
   vim.keymap.set("n", "<leader>gs", fzf.git_status, { desc = "[G]it [S]tatus" })
 
   -- Others
-  vim.keymap.set("n", "<leader>sd", fzf.diagnostics_document, { desc = "[S]earch [D]iagnostics" })
 
   fzf.register_ui_select() --> register fzf-lua as the UI interface for vim.ui.select
 end
