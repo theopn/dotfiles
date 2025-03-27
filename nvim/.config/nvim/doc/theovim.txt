@@ -37,6 +37,277 @@ See also:
 - |pi_health.txt|: About Neovim's healthcheck framework
 
 ==============================================================================
+Options                                                      *theovim-options*
+
+Tab/Indentation:
+
+By default,
+- |'tabstop'| (how many char Vim renders <Tab> as) = 4
+- |'softtabstop'| (how many char the cursor moves with <Tab> and <BS>) = 0
+  - 0 disables 'softtabstop'
+- |'extandtab'| (uses spaces instead of <Tab> when on) = true
+  - To insert <Tab> with with 'expandtab' on, use |i_CTRL-v| followed by <Tab>
+  - To change the type of indentations in an existing file, use |:retab|
+- |'shiftwidth'| (number of spaces used for indentation) = 2
+- Read the below section for how <Tab> and indentation spaces are rendered
+
+For certain filetypes, indentation settings are handled by |ftplugin|.
+See |theovim-ftplugins| for more information.
+
+See also:
+- |'tabstop'| documentation outlines four main ways to configure tab in Vim.
+  Theovim uses the number 2. Tab lovers will like number 1.
+
+Character rendering:
+>
+  function example()
+  ┊ ┊ str = "A line indented with four spaces"
+  ⇥   str = "A line followed by <Tab> ('tabstop=4')"
+
+  ┊ str = "A line followed by two trailing whitespaces"␣␣
+
+  ┊ str = "Pretend that this line is really really really long and is wrap
+    ↪ ped. Notice how a wrapped line is also indented (`:h showbreak`)"
+
+  ┊ str = "If you don't have 'showbreak' enabled, wrapped lines would look
+  ↪ like this"
+  end
+<
+Note that |lcs-leadmultispace| (indentation guide for space-base indentations)
+change dynamically based on |'shiftwidth'| value.
+See |theovim-core-autocmds| for more information.
+
+Spell check:
+
+Spell check is enabled using |theovim-ftplugins|
+
+- |z=| gives the suggestions for the word under the cursor
+- `<C-s>` in insert mode fixes the closest error and put the cursor back
+- `:set spell!` toggles spell check
+
+See also:
+- |spell|
+
+Fold:
+
+char            action
+----------------------------------------------------------------------
+
+|za|            Toggle one fold
+|zA|            Toggle all folds under the cursor recursively
+|zo|            Open one fold
+|zO|            Open all folds under the cursor recursively
+|zc|            Close one fold
+|zC|            Close all folds under the cursor recursively
+
+|zM|            Close all folds
+|zR|            Open all folds
+
+|zx|            Update fold. Given the nature of fold as an experimental
+              treesitter feature, fold might work unexpectedly. Use this
+              keybinding to fix any issue
+
+See also:
+- |folding|
+- |nvim_treesitter#foldexpr()|
+
+==============================================================================
+Keymaps                                                      *theovim-keymaps*
+
+Default overrides:
+
+char            action
+----------------------------------------------------------------------
+
+<ESC>           (normal mode) Clears search highlight (|nohlsearch|).
+
+<ESC><ESC>      (terminal mode) Exits the terminal insert mode.
+                See |CTRL-\_CTRL-N|.
+
+j               If the line at the cursor is not wrapped, perform |j|.
+                If the line is wrapped, perform |gj|.
+k               If the line at the cursor is not wrapped, perform |k|.
+                If the line is wrapped, perform |gk|.
+
+n               Highlight the next search result (|n|) and center the
+                screen (|zz|).
+N               Highlight the prev search result (|N|) and center the
+                screen (|zz|).
+
+<C-u>           Scroll up by half a page (|CTRL-U|, or by the value
+                of |scroll|) and center the screen (|zz|).
+<C-d>           Scroll down by half a page (|CTRL-U|, or by the value
+                of |scroll|) and center the screen (|zz|).
+
+                For the following window adjustment keybindings,
+                you have to be quite rapid about the repeating keys
+                due to the default |'timeoutlen'|.
+
+Custom:
+
+char            action
+----------------------------------------------------------------------
+
+jk              (insert mode) ESC.
+<C-s>           (insert mode) Fix the nearest spelling error and put
+                the cursor back.
+
+<leader>a       Select all.
+<leader>y       (visual mode) Copy to the system clipboard
+                (|quoteplus|).
+<leader>p       (visual mode) Paste the current selection without
+                overriding the register.
+                For example, if you have TODO: Finish the example
+
+[b              Navigate to the previous buffer (|bprev|).
+]b              Navigate to the next buffer (|bnext|).
+<leader>k       List open buffers (|ls|) and fill the command line
+                with |:bdelete| followed by `<Space>`.
+                From there, you can type a buffer number to create
+                to a buffer.
+                For example, `<leader>k` followed by `69<CR>` will
+                kill buffer 69.
+                Type `<CR>` without a number to kill the curr buf.
+
+<leader>tt      Toggle a floating terminal (the terminal state persists)
+<leader>tb      Launch a terminal in the bottom
+<leader>tr      Launch a terminal to the right
+                See |:terminal| to learn more about Neovim terminal.
+                See |:lefta|, |:rightb|, |:topleft|, and |:bo| to
+                learn more about opening a window.
+
+<C-h>           If there is a window to the left: navigate to the window
+                Else: Create a window to the left and navigate to it
+<C-j>           If there is a window below: navigate to the window
+                Else: Create a window below and navigate to it
+<C-k>           If there is a window above: navigate to the window
+                Else: Create a window above and navigate to it
+<C-k>           If there is a window to the right: navigate to the window
+                Else: Create a window to the right and navigate to it
+
+==============================================================================
+Commands                                                    *theovim-commands*
+
+- `:TrimWhitespace`: Trim trailing whitespaces. It will prompts you with
+  confirmations for each whitespace.
+- `:CD`: Change the local directory to the parent directory of the current
+  file. For example, when the current directory is `nvim` and you open
+  `doc/theovim.txt`, invoke the command to change the directory to `doc`.
+  This is useful when narrowing down the scope of a Telescope search.
+
+==============================================================================
+autocmds                                                    *theovim-autocmds*
+
+Organized based on |autocmd-groups|.
+- `YankHighlight`: Highlight the yanked text. See |TextYankPost|
+- `SpellCheck`: Spell check is turned on in Markdown, TeX, and text filetypes
+- `Terminal`: When you open or navigate to a terminal buffer, automatically
+  starts the insert mode
+- `UpdateLeadmultispace`: Update |lcs-leadmultispace| value (i.e., indentation
+  guide) based on the |'shiftwidth'| value. It is triggered when you manually
+  change the |'shiftwidth'| value or enter the buffer for the first time.
+
+>
+    ... A buffer with shiftwidth set to 2
+    ┊ ┊ str = "A line indented with 4 spaces"
+    ...
+    ... `:set shiftwidth 4`
+    ...
+    ┊   str = "A line indented with 4 spaces"
+<
+  |autocmd-once| is used to make sure that the indentation guide is consistent
+  with indentation settings set by |ftplugin|.
+
+==============================================================================
+ftplugins                                                  *theovim-ftplugins*
+
+Built-in Neovim ftplugins are located in `$VIMRUNTIME/ftplugin/`.
+To copy your |$VIMRUNTIME| to your system clipboard (|quoteplus|), use
+|:redir| command: `:redir @+> | echo $VIMRUNTIME | redir END`
+
+Alternatively, Neovim supports |editorconfig| out of the box. These are
+projet-specific coding style files.
+They will override `ftplugin` or other Vim settings.
+
+See also:
+- |write-filetype-plugin|
+
+==============================================================================
+UI Components                                                     *theovim-ui*
+
+UI components are located in the `lua/ui` directory.
+
+See also:
+- |setting-tabline|: Guide on configuring Tabline
+- |'statusline'|: Information about Vim Statusline and built-in items
+- |'winbar'|: Neovim window bar, currently not in use
+
+==============================================================================
+Oil.nvim                                                         *theovim-oil*
+
+- `:Oil` to open Oil in the current working directory
+- Use - to navigate to the parent directory (and <CR> to `cd` into a dir)
+- Rename, delete, or create files by modifying the buffer texts
+- To create a directory, append "/" in the end of the name (e.g: "new_dir/")
+- You can also copy or move files with |yy| and |dd|
+  - Creating split windows can be helpful
+- `:w` prompts for your confirmation of the changes you made
+
+==============================================================================
+gitsigns.nvim                                               *theovim-gitsigns*
+
+|gitsigns.nvim| provides Git signs in the gutter (+, -, ~, etc.) as well as
+other useful Git functionalities.
+The following keybinding is enabled for Git buffers:
+
+char            action
+----------------------------------------------------------------------
+
+<leader>gd      [G]it [D]iff current buffer.
+                Calls |gitsigns.diffthis()|.
+
+|tokyonight.nvim| is the default theme for Theovim.
+Transparency is enabled for all elements, including sidebars and floats.
+toggle transparency, locate `is_transparnt` variable in the `config`
+function and set it to false.
+
+==============================================================================
+Vimtex                                                        *theovim-vimtex*
+
+- You need to install and configure PDF viewer first.
+  - In Linux, use Zathura (https://pwmt.org/projects/zathura/)
+  - In macOS, use Skim (https://skim-app.sourceforge.io/)
+  - Change the `vim.g.vimtex_view_method` in the plugins.lua
+- `:VimtexCompile` starts a real-time compilation process
+
+==============================================================================
+nvim-org-mode                                          *theovim-nvim-org-mode*
+
+char            action
+----------------------------------------------------------------------
+
+g?              Opens the built-in keymap help pop-up
+
+<leader>oa      Opens Org-agenda
+r               Refreshes Org-agenda
+]               Moves to the later week
+[               Moves to the earlier week
+
+<leader>oc      Opens Org-capture
+<C-c><C-c>      Finalizes the capture
+<C-c><C-k>      Aborts the capture
+
+<C-c>,          Sets the priority of the headline
+<S-RIGHT>       Cycles the TODO keywords forward
+<S-LEFT>        Cycles the TODO keywords backward
+<C-CR>          Inserts a new TODO headline, respecting the previous contents
+<C-c><C-d>      Inserts a deadline
+<C-c><C-s>      Inserts a schedule date
+
+See also:
+- |orgmode.txt|
+
+==============================================================================
 LSP                                                              *theovim-lsp*
 
 Step 1: Installing the language server
@@ -127,43 +398,6 @@ char            action
 
 
 ==============================================================================
-UI Components                                                     *theovim-ui*
-
-UI components are located in the `lua/ui` directory.
-
-See also:
-- |setting-tabline|: Guide on configuring Tabline
-- |'statusline'|: Information about Vim Statusline and built-in items
-- |'winbar'|: Neovim window bar, currently not in use
-
-==============================================================================
-nvim-org-mode                                          *theovim-nvim-org-mode*
-
-char            action
-----------------------------------------------------------------------
-
-g?              Opens the built-in keymap help pop-up
-
-<leader>oa      Opens Org-agenda
-r               Refreshes Org-agenda
-]               Moves to the later week
-[               Moves to the earlier week
-
-<leader>oc      Opens Org-capture
-<C-c><C-c>      Finalizes the capture
-<C-c><C-k>      Aborts the capture
-
-<C-c>,          Sets the priority of the headline
-<S-RIGHT>       Cycles the TODO keywords forward
-<S-LEFT>        Cycles the TODO keywords backward
-<C-CR>          Inserts a new TODO headline, respecting the previous contents
-<C-c><C-d>      Inserts a deadline
-<C-c><C-s>      Inserts a schedule date
-
-See also:
-- |orgmode.txt|
-
-==============================================================================
 Neocodeium                                                *theovim-neocodeium*
 
 Run `:Neocodeium auth` and provide the API key to complete the initial setup.
@@ -200,407 +434,29 @@ See also:
 ==============================================================================
 fzf-lua                                                      *theovim-fzf-lua*
 
-Y
-
-----
-
-Below are old documentation
-
-==============================================================================
-Initialization - Options                                *theovim-init-options*
-
-Theovim creates a solid base Neovim experience by maximizing built-in
-features.
-This section discusses some of the notable Neovim settings in Theovim.
-Read `init.lua` for the complete list of options.
-
-Nerd Font:
-
-`vim.g.have_nerd_font` variable located in the very top of the init.lua
-controls the display of Nerd Font in Theovim UI elements. Set it true or false
-based on your preference.
-
-Tab/Indentation:
-
-By default,
-- |'tabstop'| (how many char Vim renders <Tab> as) = 4
-- |'softtabstop'| (how many char the cursor moves with <Tab> and <BS>) = 0
-  - 0 disables 'softtabstop'
-- |'extandtab'| (uses spaces instead of <Tab> when on) = true
-  - To insert <Tab> with with 'expandtab' on, use |i_CTRL-v| followed by <Tab>
-  - To change the type of indentations in an existing file, use |:retab|
-- |'shiftwidth'| (number of spaces used for indentation) = 2
-- Read the below section for how <Tab> and indentation spaces are rendered
-
-For certain filetypes, indentation settings are handled by |ftplugin|.
-See |theovim-ftplugin| for more information.
-
-See also:
-- |'tabstop'| documentation outlines four main ways to configure tab in Vim.
-  Theovim uses the number 2. Tab lovers will like number 1.
-
-Character rendering:
->
-  function example()
-  ┊ ┊ str = "A line indented with four spaces"
-  ⇥   str = "A line followed by <Tab> ('tabstop=4')"
-
-  ┊ str = "A line followed by two trailing whitespaces"␣␣
-
-  ┊ str = "Pretend that this line is really really really long and is wrap
-    ↪ ped. Notice how a wrapped line is also indented (`:h showbreak`)"
-
-  ┊ str = "If you don't have 'showbreak' enabled, wrapped lines would look
-  ↪ like this"
-  end
-<
-Note that |lcs-leadmultispace| (indentation guide for space-base indentations)
-change dynamically based on |'shiftwidth'| value.
-See |theovim-core-autocmds| for more information.
-
-Spell check:
-
-Similarly to indentation settings, spell check is enabled in markdown, TeX,
-and plain text buffers using |ftplugin|.
-See |theovim-ftplugin| for more information.
-
-- Words unrecognized by the spell checker will be underlined
-- |z=| gives the suggestions for the word under the cursor
-- `<C-s>` in insert mode fixes the closest error and put the cursor back
-- `:set spell!` toggles spell check
-
-See also:
-- |spell|
-
-Fold:
-The tree-sitter fold can neatly organize not only programming language
-components (functions, loops, etc.) but also markdown and LaTeX sections.
-
-char            action
-----------------------------------------------------------------------
-
-|za|            Toggle one fold
-|zA|            Toggle all folds under the cursor recursively
-|zo|            Open one fold
-|zO|            Open all folds under the cursor recursively
-|zc|            Close one fold
-|zC|            Close all folds under the cursor recursively
-
-|zM|            Close all folds
-|zR|            Open all folds
-
-|zx|            Update fold. Given the nature of fold as an experimental
-              treesitter feature, fold might work unexpectedly. Use this
-              keybinding to fix any issue
-
-See also:
-- |folding|
-- |nvim_treesitter#foldexpr()|
-- |theovim-treesitter|
-
-==============================================================================
-Initialization - ftplugins                            *theovim-init-ftplugins*
-
-|ftplugin| provides options and commands specific to certain filetypes.
-
-Theovim uses them to control:
-- Indentation settings
-- Coding style settings (|'colorcolumn'|, |textwidth|)
-- Command to (compile) and execute the current file using a stadard tool
-- Spell check
-
-These files are located in `after/ftplugin/filetype.vim`.
-
-For example, the following is the content of `python.vim`:
->
-  " As suggested by PEP8.
-  setlocal expandtab tabstop=4 softtabstop=4 shiftwidth=4
-  " Bar at the 80th column
-  setlocal colorcolumn=80
-  " Break line at the 79th char
-  setlocal textwidth=79
-  " Commnd to run the current file
-  command RunPython !python3 %:p
-<
-You may change the settings to your preferred settings.
-
-Built-in Neovim ftplugins are located in `$VIMRUNTIME/ftplugin/`.
-To copy your |$VIMRUNTIME| to your system clipboard (|quoteplus|), use
-|:redir| command: `:redir @+> | echo $VIMRUNTIME | redir END`
-
-Alternatively, Neovim supports |editorconfig| out of the box. These are
-projet-specific coding style files.
-They will override `ftplugin` or other Vim settings.
-
-See also:
-- |write-filetype-plugin|
-
-==============================================================================
-Initialization - User Commands                         *theovim-init-commands*
-
-- `:TrimWhitespace`: Trim trailing whitespaces. It will prompts you with
-  confirmations for each whitespace.
-- `:CD`: Change the local directory to the parent directory of the current
-  file. For example, when the current directory is `nvim` and you open
-  `doc/theovim.txt`, invoke the command to change the directory to `doc`.
-  This is useful when narrowing down the scope of a Telescope search.
-
-==============================================================================
-Initialization - autocmds                              *theovim-init-autocmds*
-
-Organized based on |autocmd-groups|.
-- `YankHighlight`: Highlight the yanked text. See |TextYankPost|
-- `SpellCheck`: Spell check is turned on in Markdown, TeX, and text filetypes
-- `Terminal`: When you open or navigate to a terminal buffer, automatically
-  starts the insert mode
-- `UpdateLeadmultispace`: Update |lcs-leadmultispace| value (i.e., indentation
-  guide) based on the |'shiftwidth'| value. It is triggered when you manually
-  change the |'shiftwidth'| value or enter the buffer for the first time.
-
->
-    ... A buffer with shiftwidth set to 2
-    ┊ ┊ str = "A line indented with 4 spaces"
-    ...
-    ... `:set shiftwidth 4`
-    ...
-    ┊   str = "A line indented with 4 spaces"
-<
-  |autocmd-once| is used to make sure that the indentation guide is consistent
-  with indentation settings set by |ftplugin|.
-
-==============================================================================
-Initialization - Keymaps                                *theovim-init-keymaps*
-
-Theovim overrides the following default keybindings.
-They do not change the way you interact with Vim but provides
-quality-of-life improvements.
-
-char            action
-----------------------------------------------------------------------
-
-<ESC>           (normal mode) Clears search highlight (|nohlsearch|).
-
-<ESC><ESC>      (terminal mode) Exits the terminal insert mode.
-                See |CTRL-\_CTRL-N|.
-
-j               If the line at the cursor is not wrapped, perform |j|.
-                If the line is wrapped, perform |gj|.
-k               If the line at the cursor is not wrapped, perform |k|.
-                If the line is wrapped, perform |gk|.
-
-n               Highlight the next search result (|n|) and center the
-                screen (|zz|).
-N               Highlight the prev search result (|N|) and center the
-                screen (|zz|).
-
-<C-u>           Scroll up by half a page (|CTRL-U|, or by the value
-                of |scroll|) and center the screen (|zz|).
-<C-d>           Scroll down by half a page (|CTRL-U|, or by the value
-                of |scroll|) and center the screen (|zz|).
-
-                For the following window adjustment keybindings,
-                you have to be quite rapid about the repeating keys
-                due to the default |'timeoutlen'|.
-
-
-Theovim defines keybindings for frequently used actions that require more than
-three keystrokes. For example, there is no keybinding to go to a tab since
-{count}|gt| is a two-keystrokes away.
-Following is the complete list of custom keybindings defined in `init.lua`:
-
-char            action
-----------------------------------------------------------------------
-
-jk              (insert mode) ESC.
-<C-s>           (insert mode) Fix the nearest spelling error and put
-                the cursor back.
-
-<leader>a       Select all.
-<leader>y       (visual mode) Copy to the system clipboard
-                (|quoteplus|).
-<leader>p       List register contents (|reg|) and fill the command line
-                with `normal "`.
-                From there, you can type the register to paste from,
-                followed by `p` to paste.
-                For example, `<leader>p` followed by `+p<CR>` will
-                paste the contents of register + at the cursor.
-<leader>p       (visual mode) Paste the current selection without
-                overriding the register.
-                For example, if you have TODO: Finish the example
-
-[b              Navigate to the previous buffer (|bprev|).
-]b              Navigate to the next buffer (|bnext|).
-<leader>b       List open buffers (|ls|) and fill the command line
-                with |:b| followed by `<Space>`.
-                From there, you can type bthe uffer number to navigate
-                to a buffer.
-                See the `<leader>k` section for how the picker works.
-<leader>k       List open buffers (|ls|) and fill the command line
-                with |:bdelete| followed by `<Space>`.
-                From there, you can type a buffer number to create
-                to a buffer.
-                For example, `<leader>k` followed by `69<CR>` will
-                kill buffer 69.
-                Type `<CR>` without a number to kill the curr buf.
-
-<leader>tt      Toggle a floating terminal (the terminal state persists)
-<leader>tb      Launch a terminal in the bottom
-<leader>tr      Launch a terminal to the right
-                See |:terminal| to learn more about Neovim terminal.
-                See |:lefta|, |:rightb|, |:topleft|, and |:bo| to
-                learn more about opening a window.
-
-<C-h>           If there is a window to the left: navigate to the window
-                Else: Create a window to the left and navigate to it
-<C-j>           If there is a window below: navigate to the window
-                Else: Create a window below and navigate to it
-<C-k>           If there is a window above: navigate to the window
-                Else: Create a window above and navigate to it
-<C-k>           If there is a window to the right: navigate to the window
-                Else: Create a window to the right and navigate to it
-
-==============================================================================
-Plugins                                                      *theovim-plugins*
-
-|lazy.nvim| is a Neovim plugin manager.
-- Its installation bootstrap is defined in `init.lua`
-- `:Lazy` opens a dashboard for all Lazy functionalities
-- Alternatively, you can specify an action (e.g., `:Lazy sync`) to perform
-
-Plugin specs are located in the `lua/plugins` directory
-(see |lazy.nvim-lazy.nvim-plugin-spec| for how they are configured).
-This section highlights some of the commonly used plugins.
-
-|oil.nvim| is a file manager that lets you manage files like a Vim buffer.
-- `:Oil` to open Oil in the current working directory
-- Use - to navigate to the parent directory (and <CR> to `cd` into a dir)
-- Rename, delete, or create files by modifying the buffer texts
-- To create a directory, append "/" in the end of the name (e.g: "new_dir/")
-- You can also copy or move files with |yy| and |dd|
-  - Creating split windows can be helpful
-- `:w` prompts for your confirmation of the changes you made
-
-|nvim-autopairs| automatically insert matching parentheses, quotes, etc.
-
-|which-key.nvim| displays a popup with possible keybindings.
-The delay for WhichKey is controlled by 'timeoutlen' set in core.lua (300ms).
-WhichKey also includes other features:
-- ' in normal mode displays marks.
-  Set a marker with |m|{char}!
-- " in normal mode or `<C-r>` insert mode displays register contents
-- WhichKey displays help for built-in motions such as |z| and |g|
-  - You can list all one-key-stroke keybindings using `:WhichKey`
-- WhichKey hijacks spell suggestions (|z=|) UI
-
-|colorizer.lua| highlights color codes (hex codes, ANSI color name such as
-"Magenta", CSS functions, etc.). Use `:ColorizerReloadAllBuffers` to reload.
-
-|todo-comments.nvim| highlights keywords such as `TODO`, `WARN`, etc.
-Use `:TodoQuickFix` to see the list of all TODO's in the open files.
-Use `]t` and `[t` to jump between TODO's.
-
-|gitsigns.nvim| provides Git signs in the gutter (+, -, ~, etc.) as well as
-other useful Git functionalities.
-The following keybinding is enabled for Git buffers:
-
-char            action
-----------------------------------------------------------------------
-
-<leader>gd      [G]it [D]iff current buffer.
-                Calls |gitsigns.diffthis()|.
-
-|tokyonight.nvim| is the default theme for Theovim.
-Transparency is enabled for all elements, including sidebars and floats.
-toggle transparency, locate `is_transparnt` variable in the `config`
-function and set it to false.
-
-|markdown-preview.nvim| offers a real-time previewer for markdown files in
-your browser (`:MarkdownPreviewToggle`).
-
-|vimtex| is a LaTeX integration for Vim, providing syntax highlights and
-real-time compilation.
-- You need to install and configure PDF viewer first.
-  - In Linux, use Zathura (https://pwmt.org/projects/zathura/)
-  - In macOS, use Skim (https://skim-app.sourceforge.io/)
-  - Change the `vim.g.vimtex_view_method` in the plugins.lua
-- `:VimtexCompile` starts a real-time compilation process
-
-==============================================================================
-Telescope                                                  *theovim-telescope*
-
-Telescope is a fuzzy finder for Neovim.
-It allows you to find anything you want in just a few keystrokes.
-
-Telescope works out of the box, but for faster search and live grep features,
+fzf-lua works out of the box, but for faster search and live grep features,
 the following dependencies are needed:
-- CMake, make, and GCC or Clang to compiler |telescope-fzf-native.nvim|
-- ripgrep: https://github.com/BurntSushi/ripgrep
-- fd: https://github.com/sharkdp/fd
+- fzf
+- fd
+- ripgrep
 
 char            action
 ----------------------------------------------------------------------
 
-<leader>sh      [S]earch [H]elp.
-                Calls |telescope.builtin.help_tags()|.
+<leader>sf      [S]earch [F]iles
 
-<leader>sk      [S]earch [K]eymaps.
-                Calls |telescope.builtin.keymaps()|.
+<leader>s.      [S]earch the Parent Dir [..]
 
-<leader>sf      [S]earch [F]iles.
-                Searches files in the current and the child dir.
-                Respects .gitignore if one exists.
-                `fd` is not required but recommended for faster search.
-                Calls |telescope.builtin.find_files()|.
+<leader>so      [S]earch [O]ldfiles
 
-<leader>ss      [S]earch [S]elect Telescope.
-                Searches all the Telescope built-in functions.
-                Calls |telescope.builtin.builtin()|.
-
-<leader>sw      [S]earch current [W]ord.
-                Searches for the string under the cursor in the CWD.
-                `ripgrep` is required for the search.
-                Calls |telescope.builtin.grep_string()|.
+<leader><leader>Search open buffers
 
 <leader>sg      [S]earch by [G]rep.
                 Searches words in the CWD.
-                Respects .gitignore if one exists.
                 `ripgrep` is required for the search.
-                Calls |telescope.builtin.live_grep()|.
-
-<leader>sd      [S]earch [D]iagnostics.
-                Calls |telescope.builtin.diagnostics()|.
-
-<leader>sr      [S]earch [R]esume.
-                Opens the previously used Telescope picker.
-                Calls |telescope.builtin.resume()|.
-
-<leader>s.      [S]earch Recent Files ("." for repeat).
-                Calls |telescope.builtin.oldfiles()|.
-
-<leader><leader>Find open buffers.
-                Calls |telescope.builtin.buffers()|.
 
 <leader>/       Open fuzzy finder for the current buffer words.
-                The previewer is disabled to minimize distractions.
-                Calls |telescope.builtin.current_buffer_fuzzy_find()|
-                with a parameter to disable the previewer
-                (see |telescope.themes.get_dropdown()|).
 
-<leader>s/      Live grep in open files.
-                Searches by grep in open buffers.
-                `ripgrep` is required for the search.
-                Calls |telescope.builtin.live_grep()|
-                with a parameter to restrict the search scope.
-
-<leader>sn      [S]earch [N]eovim files.
-                Calls |telescope.builtin.find_files()|
-                with a parameter to restrict the search scope to
-                the Neovim config directory.
-                (see |stdpath()).
-
-
-<leader>gf      Search [G]it [F]iles.
-                Calls |telescope.builtin.find_files()|.
 
 <leader>gc      Search [G]it [C]ommits.
                 Calls |telescope.builtin.git_commits()|.
@@ -609,36 +465,50 @@ char            action
                 Calls |telescope.builtin.git_status()|.
 
 
-<leader>fb      File [B]rowser.
-                Calls |telescope.file-browser.finders|
-
-
 Within the Telescope window, the following keybindings are available:
 
 char            action
 ----------------------------------------------------------------------
 
-<C-j>           Select the next item
-<C-n>           Select the next item
+<S-DOWN>        Scrolls preview page down
+<S-UP>          Scrolls preview page up
 
-<C-k>           Select the prev item
-<C-p>           Select the prev item
+<C-j>           Selects the next item
+<C-n>           Selects the next item
 
-<C-d>           Scroll the preview window down
-<C-u>           Scroll the preview window up
+<C-k>           Selects the prev item
+<C-p>           Selects the prev item
 
-<C-c>           Close the Telescope window
+<C-c>           Closes the window
 
-<CR>            Open the selection in the current window
-<C-v>           Open the selection in a vertical split
-<C-x>           Open the selection in a horizontal split
-<C-t>           Open the selection in a new tab
+<CR>            Opens the selection in the current window
+<C-v>           Opens the selection in a vertical split
+<C-s>           Opens the selection in a horizontal split
+<C-t>           Opens the selection in a new tab
 
 
-See also:
-- |telescope.nvim|: About the fuzzy finder itself
-- |telescope.builtin|: Builtin modules of Telescope
-- |telescope.file-browser.nvim|: File browser extension
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----
+
+Below are old documentation
+
+
 
 ==============================================================================
 Treesitter                                                *theovim-treesitter*
