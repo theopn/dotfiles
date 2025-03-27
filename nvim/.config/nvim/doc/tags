@@ -1,6 +1,5 @@
 theovim	theovim.txt	/*theovim*
 theovim-completion	theovim.txt	/*theovim-completion*
-theovim-diagnostic	theovim.txt	/*theovim-diagnostic*
 theovim-documentation	theovim.txt	/*theovim-documentation*
 theovim-fzf-lua	theovim.txt	/*theovim-fzf-lua*
 theovim-housekeeping	theovim.txt	/*theovim-housekeeping*

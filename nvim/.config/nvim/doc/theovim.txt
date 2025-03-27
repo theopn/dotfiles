@@ -37,6 +37,96 @@ See also:
 - |pi_health.txt|: About Neovim's healthcheck framework
 
 ==============================================================================
+LSP                                                              *theovim-lsp*
+
+Step 1: Installing the language server
+
+You need to have a language server available in your `$PATH`.
+You can use a package manager of your operating system or |mason.nvim|.
+Mason installs the the LSP server in data directory (` echo stdpath("data")`)
+and makes it available to Neovim's `PATH`.
+- |:Mason| to launch the graphical Mason UI
+- |:MasonInstall| {server} to install packages
+
+
+Step 2: Adding configuration for the language server
+
+Neovim configures LSP servers with configuration tables from:
+1. Parameters of |vim.lsp.config()|
+2. Merged tables returned from `lsp/<name>.lua`
+For more information, see |lsp-config|.
+
+After you installed the language server, create a new config file.
+Besides the example comments in `lua/theovim/lsp.lua`, all my config files are
+located in `lsp/`.
+Good references can be found in nvim-lspconfig repository:
+https://github.com/neovim/nvim-lspconfig/tree/master/lua/lspconfig/configs
+
+In `lua/theovim/lsp.lua`, add the name of the config file you created to the
+`servers` table to be passed to |vim.lsp.enable()|
+The config file could be named to anything as long as you match the name in
+this table.
+
+Now, open a buffer of the filetype you specified in the config and run: >vim
+    :checkhealth vim.lsp
+<
+to see if it is attached to the buffer.
+
+See also:
+- |lsp-quickstart|: Guide on configuring LSP servers
+
+
+Step 3: Using LSP
+
+Starting in 0.10 and 0,11, Neovim ships with a lot of default keybindings
+for the built-in diagnostic and LSP framework.
+
+Diagnostics:
+- |]d-default|
+- |[d-default|
+- |CTRL-W_d-default|
+- |default-mappings| for more default diagnostic mappings
+
+LSP:
+- |K-lsp-default|
+- `grn`: |vim.lsp.buf.rename()|
+- `gra`: |vim.lsp.buf.code_action()|
+- `grr`: |vim.lsp.buf.references()|
+- `gri`: |vim.lsp.buf.implementations()|
+- `gO`: |vim.lsp.buf.document_symbols()|
+- |lsp-defaults| for more default LSP mappings
+
+These keybindings are overriden if conditions are met.
+
+char            action
+----------------------------------------------------------------------
+
+K               Calls |vim.lsp.buf.hover()| with rounded borders.
+gra             Calls |fzf-lua-opts-lsp_code_actions|.
+grr             Calls |fzf-lua-opts-lsp_references|.
+gri             Calls |fzf-lua-opts-lsp_implementations|.
+gO              Calls |fzf-lua-opts-lsp_document_symbols|.
+
+
+Other keymaps and commands are controlled with |lsp-attach| autocmd.
+
+Autocmd:
+- Symbol under the cursor (i.e., variables, functions, etc.) are highlighted.
+
+Keybindings:
+
+char            action
+----------------------------------------------------------------------
+
+<leader>q       Opens diagnostic list in |location-list|.
+                Calls |vim.diagnostic.setloclist()|.
+
+<leader>f       Calls |vim.lsp.buf.format()|
+
+<leader>sd      Calls |fzf-lua-opts-diagnostics_document|
+
+
+==============================================================================
 UI Components                                                     *theovim-ui*
 
 UI components are located in the `lua/ui` directory.
@@ -47,7 +137,7 @@ See also:
 - |'winbar'|: Neovim window bar, currently not in use
 
 ==============================================================================
-Theovim - nvim-org-mode                                *theovim-nvim-org-mode*
+nvim-org-mode                                          *theovim-nvim-org-mode*
 
 char            action
 ----------------------------------------------------------------------
@@ -74,7 +164,7 @@ See also:
 - |orgmode.txt|
 
 ==============================================================================
-Theovim - neocodeium                                      *theovim-neocodeium*
+Neocodeium                                                *theovim-neocodeium*
 
 Run `:Neocodeium auth` and provide the API key to complete the initial setup.
 Neocodeium will install the language server binary and other files in:
@@ -83,7 +173,7 @@ Neocodeium will install the language server binary and other files in:
 char            action
 ----------------------------------------------------------------------
 
-<leader>cc      Toggle Neocodeium completion.
+<leader>c       Toggle Neocodeium completion.
                 When turning off, this keybinding completely halts
                 the Codeium server.
                 To toggle only the completion on/off, use
@@ -108,7 +198,7 @@ See also:
 - |Neocodeium|
 
 ==============================================================================
-Theovim - fzf-lua                                            *theovim-fzf-lua*
+fzf-lua                                                      *theovim-fzf-lua*
 
 Y
 
@@ -619,141 +709,6 @@ See also:
 - |nvim-treesitter|: Configuration and abstract layer for the built-in TS
 - |treesitter|: Neovim built-in treesitter library
 
-==============================================================================
-Diagnostic                                                *theovim-diagnostic*
-
-Neovim has a built-in diagnostic framework to display errors or warning
-messages from external tools like LSP or linters.
-Unless you configure an external tool, it will most likely be from LSP.
-
-For example, here is how diagnostic displays errors for the following
-diastrous Lua code.
->
-  H  1 local function func()     ■■ Unused local `func`.
-  I  2 ┊ lowercase = ""     ■ Global variable in lowercase initial, Did you
-  W  3 ┊ undefined_func(syntax, err,)     ■■■■ Undefined global `err`.
-     4 end
-<
-
-In Neovim 0.10, Neovim creates some default mappings for diagnostics.
-- |]d-default|
-- |[d-default|
-- |CTRL-W_d-default|
-- For Neovim default mappings, see |default-mappings|
-
-The following keybindings are available for buffer with
-diagnostic information:
-
-char            action
-----------------------------------------------------------------------
-
-<leader>q       Open diagnostic list in |location-list|.
-                Calls |vim.diagnostic.setloclist()|.
-
-See also:
-- |diagnostic.txt|
-
-==============================================================================
-LSP                                                              *theovim-lsp*
-
-|mason.nvim| lets you install and manage LSP servers within Neovim.
-- |:Mason| opens the graphical manager for available LSP servers
-- |:MasonUpdate| updates all LSP servers
-- |:MasonInstall| {LSP} ... installs LSP server(s)
-- |:MasonUnInstall| {LSP} ... uninstalls LSP server(s)
-- There are also |:LspInstall| and |:LspUninstall| provided by
-  |mason-lspconfig|, which are "more or less an alias of the :MasonInstall
-  command."
-- The following LSP servers are installed by default:
-  - Bash (`bashls`)
-  - C/C++ (`clangd`)
-  - LaTeX (`texlab`)
-  - Lua (`lua_ls`)
-  - Python (`pyright`)
-
-You can use the follwing commands to control the LSP servers:
-- `:LspInfo`
-- `:LspStop`
-- `:LspRestart`
-
-In Neovim 0.10, `K` is mapped to |vim.lsp.buf.hover()|. See |K-lsp-default|.
-
-When LSP server(s) is active in the buffer, following are available locally:
-
-Autocmd:
-- Symbol under the cursor (i.e., variables, functions, etc.) are highlighted.
-
-Keybindings:
-
-char            action
-----------------------------------------------------------------------
-
-<leader>F       Format the buffer
-                - calls |vim.lsp.buf.format()|
-
-gd              Jumps to the definition of the symbol under the
-                cursor.
-                Lists all definitions if there is a multiple.
-                When Telescope is available:
-                - calls |telescope.builtin.lsp_definitions()|
-                When Telescope is not available:
-                - calls |vim.lsp.buf.definition()|
-
-gr              Lists references of the symbol under the cursor.
-                When Telescope is available:
-                - calls |telescope.builtin.lsp_references()|
-                When Telescope is not available:
-                - calls |vim.lsp.buf.references()|
-
-gI              Lists implementations of the symbol under the cursor.
-                When Telescope is available:
-                - calls |telescope.builtin.lsp_implementations()|
-                When Telescope is not available:
-                - calls |vim.lsp.buf.implementations()|
-
-<leader>D       Jumps to the definition of the type of the symbol
-                under the cursor.
-                Lists all type definitions if there is a multiple.
-                When Telescope is available:
-                - calls |telescope.builtin.lsp_type_definitions()|
-                When Telescope is not available:
-                - calls |vim.lsp.buf.type_definition()|
-
-<leader>ds      Lists all symbols in the current buffer.
-                When Telescope is available:
-                - calls |telescope.builtin.lsp_document_symbols()|
-                When Telescope is not available:
-                - calls |vim.lsp.buf.document_symbols()|
-
-<leader>ws      Lists all symbols in the current workspace (project).
-                When Telescope is available:
-                - calls |telescope.builtin.lsp_workspace_symbols()|
-                When Telescope is not available:
-                - calls |vim.lsp.buf.workspace_symbols()|
-
-<leader>rn      Renames the symbol (e.g., variable, function) under
-                the cursor and refactors all the references.
-                Calls |vim.lsp.buf.rename()|.
-
-<leader>ca      Selects a code action available under the cursor.
-                the cursor and refactor the workspace.
-                Calls |vim.lsp.buf.code_action()|.
-
-gD              Jumps to the declaration of the symbol under the
-                cursor.
-                For example, the keymap can take you to the C header
-                file where the function is declared.
-                For the most situation, you would want to use `gd`.
-                Calls |vim.lsp.buf.declaration()|.
-
-
-See also:
-- |lsp|: Built-in LSP framework
-- |mason.nvim|: LSP server manager
-- |lspconfig|: LSP configuration mechanism, provider of `:LspInfo`,
-  `:LspStart`, `:LspStop`, etc.
-- |mason-lspconfig.nvim|: Bridge between Mason and lspconfig, mostly a backend
-  work that you do not have to worry about
 
 ==============================================================================
 Completion                                                *theovim-completion*
