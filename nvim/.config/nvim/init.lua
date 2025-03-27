@@ -40,6 +40,7 @@ require("theovim.opt")
 require("theovim.keymaps")
 require("theovim.commands")
 require("theovim.autocmds")
+require("theovim.lsp")
 require("theovim.plugin-manager-bootstrap")
 
 -- Custom UI modules
