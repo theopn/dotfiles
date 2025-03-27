@@ -13,7 +13,7 @@ return {
       manual = true,
     })
 
-    vim.keymap.set("n", "<leader>cc", function()
+    vim.keymap.set("n", "<leader>c", function()
       require("neocodeium.commands").toggle(true) --> true to half the server completely
     end, { desc = "Toggle Neo[C]odeium" })
 
