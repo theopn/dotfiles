@@ -184,13 +184,13 @@ Casks:
 
 See the [list of archived configurations](./archive/README.md).
 
-## Credits
+## Inspirations and Shameless Plug
 
-- The macOS wallpaper is by [arsenicxs](https://www.deviantart.com/arsenixc/art/Tokyo-Street-Night-684804497)
-- I drew inspirations from a lot of difference places, but I am confident to say that all of the config/code in this repository is mine (besides some default configurations)
-    - I dislike having code that I do not understand, especially in my day-to-day development environment.
-        I try to understand and rewrite configurations on my own
-- I give credit to all the amazing developers and the open-source community who developed all these tools I rely on everyday
-- and people in communities like [Dotfyle](https://dotfyle.com/) and [r/unixporn](https://www.reddit.com/r/unixporn/) who share their dotfiles
-- If you have any questions, concerns, or suggestions, do not hesitate to let me know through issues or PR!
+- macOS wallpaper: [arsenicxs](https://www.deviantart.com/arsenixc/art/Tokyo-Street-Night-684804497)
+- Aerospace: [`default-config.toml`](https://nikitabobko.github.io/AeroSpace/guide.html#default-config) and [DevOps Toolbox's Dotfiles](https://github.com/omerxx/dotfiles)
+- LF: [example `lfrc`](https://github.com/gokcehan/lf/tree/master/etc) and [Brodie Robertson's Dotfiles](https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc)
+- Neovim: [Theovim](https://github.com/theopn/theovim) but it has changed a lot since Neovim 0.11
+- Sketchybar: [the default plugins](https://github.com/FelixKratz/SketchyBar/tree/master/plugins)
+- Vim: [kickstart.vim hehe](https://github.com/theopn/kickstart.vim)
+- Wezterm: [my Wezterm config video](https://www.youtube.com/watch?v=I3ipo8NxsjY)
 
