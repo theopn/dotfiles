@@ -1,7 +1,3 @@
-# https://github.com/omerxx/dotfiles/blob/master/aerospace/aerospace.toml
-
-# aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
-
 # Uncomment to use with sketchybar
 #after-startup-command = ['exec-and-forget sketchybar']
 #exec-on-workspace-change = ['/bin/bash', '-c',
@@ -11,7 +7,7 @@
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
 
-accordion-padding = 100
+accordion-padding = 50
 
 default-root-container-layout = 'tiles'
 
@@ -22,10 +18,40 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 automatically-unhide-macos-hidden-apps = false
 
 # Window rules
+# Keep in mind that Aerospace automatically puts apps w/o fullscreen button to floating
 [[on-window-detected]]
-if.during-aerospace-startup = false
-if.window-title-regex-substring = 'Picture-in-Picture'
-run = ['layout floating']
+    if.app-id = 'com.spotify.client'
+    run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+    if.window-title-regex-substring = 'Picture-in-Picture'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Preview'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.QuickTimePlayerX'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'org.videolan.vlc'
+    run = 'layout floating'
+
+# make terminals floating since they are often used for the fuzzy window picker
+# aerospace list-windows --all | fzf --bind 'enter:execute(bash -c "aerospace focus --window-id {1}")+abort'
+[[on-window-detected]]
+    if.app-id = 'net.kovidgoyal.kitty'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.github.wez.wezterm'
+    run = 'layout floating'
 
 [key-mapping]
     preset = 'qwerty'
@@ -83,6 +109,7 @@ run = ['layout floating']
     alt-4 = 'workspace 4'
     alt-5 = 'workspace 5'
     alt-6 = 'workspace 6'
+    alt-7 = 'workspace 7'
 
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
@@ -90,6 +117,7 @@ run = ['layout floating']
     alt-shift-4 = 'move-node-to-workspace 4'
     alt-shift-5 = 'move-node-to-workspace 5'
     alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
 
     alt-tab = 'workspace-back-and-forth'
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
