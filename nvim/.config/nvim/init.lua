@@ -41,7 +41,7 @@ require("theovim.keymaps")
 require("theovim.commands")
 require("theovim.autocmds")
 require("theovim.lsp")
-require("theovim.plugin-manager-bootstrap")
+require("theovim.lazy")
 
 -- Custom UI modules
 require("ui.statusline").setup()
