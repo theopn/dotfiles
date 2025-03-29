@@ -6,9 +6,14 @@ local servers = {
   "texlab",
 }
 
---vim.lsp.config()
-local lspgroup = vim.api.nvim_create_augroup("TheovimLspAttach", { clear = true, })
+-- Neovim will call config() for the merged tables in `nvim/lsp/<name>.lua` as well as explicit calls
+vim.lsp.config("*", {
+  root_markers = { ".git" },
+})
 
+
+-- Configuring keymaps and autocmd for LSP buffers
+local lspgroup = vim.api.nvim_create_augroup("TheovimLspAttach", { clear = true, })
 vim.api.nvim_create_autocmd("LspAttach", {
   group = lspgroup,
   callback = function(event)
@@ -16,16 +21,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
       vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
 
+    -- settings and mapping sfor the diagnostic framework
+    vim.diagnostic.config({
+      virtual_text = true,
+      float = {
+        border = "rounded",
+      },
+      update_in_insert = false,
+    })
+    map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
+
+    -- settings for the LSP framework
     map("K", function()
       vim.lsp.buf.hover({
         border = "rounded",
       })
     end, "LSP Hover with rounded look")
-
-    map("<leader>q", vim.diagnostic.setloclist, "Open diagnostic [Q]uickfix list")
-
     map("<leader>f", vim.lsp.buf.format, "[F]ormat buffer")
-
     -- Override default keybinding
     local status, fzf = pcall(require, "fzf-lua")
     if status then
@@ -35,7 +47,36 @@ vim.api.nvim_create_autocmd("LspAttach", {
       map("gO", fzf.lsp_document_symbols, "g Document Symbols")
       map("<leader>sd", fzf.diagnostics_document, "[S]earch [D]iagnostics")
     end
+
+    -- Symbol highlights
+    -- Creates an autocmd to highlight the symbol under the cursor
+    local client = vim.lsp.get_client_by_id(event.data.client_id)
+    -- before Neovim 0.11, use client.supports_method(method, { bufnr = bufnr })
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+      local theovim_lsp_hl_group = vim.api.nvim_create_augroup("TheovimLspHl", { clear = false, })
+      vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+        buffer = event.buf,
+        group = theovim_lsp_hl_group,
+        callback = vim.lsp.buf.document_highlight,
+      })
+
+      vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+        buffer = event.buf,
+        group = theovim_lsp_hl_group,
+        callback = vim.lsp.buf.clear_references,
+      })
+
+      vim.api.nvim_create_autocmd("LspDetach", {
+        group = vim.api.nvim_create_augroup("TheovimLspHlDetach", { clear = true, }),
+        callback = function(event2)
+          vim.lsp.buf.clear_references()
+          vim.api.nvim_clear_autocmds({ group = "TheovimLspHl", buffer = event2.buf })
+        end
+      })
+    end
   end,
 })
 
+
+-- Enable the servers!
 vim.lsp.enable(servers)
