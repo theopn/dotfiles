@@ -1,6 +1,9 @@
 ---@type vim.lsp.Config
 return {
   cmd = { "clangd" },
+  -- https://clangd.llvm.org/troubleshooting#cant-find-standard-library-headers-map-stdioh-etc
+  -- If your system does not detect stadard library, set --query-driver flag for your compiler
+  --cmd = { "clangd", "--query-driver=/usr/bin/c++" },
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
 
   root_markers = { ".clangd",
@@ -19,18 +22,4 @@ return {
     },
     offsetEncoding = { "utf-8", "utf-16" },
   },
-  commands = {
-    ClangdSwitchSourceHeader = {
-      function()
-        switch_source_header(0)
-      end,
-      description = "Switch between source/header",
-    },
-    ClangdShowSymbolInfo = {
-      function()
-        symbol_info()
-      end,
-      description = "Show symbol info",
-    },
-  }
 }
