@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # macOS utilities
-if [[ "$OSTYPE" != "darwin"* ]] && [[ "$OSTYPE" != "macOS" ]]; then
+if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "macOS" ]]; then
   stow aerospace
   stow sketchybar
 fi
