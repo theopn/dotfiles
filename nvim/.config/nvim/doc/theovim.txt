@@ -39,8 +39,11 @@ See also:
 ==============================================================================
 Options                                                      *theovim-options*
 
-Tab/Indentation:
+If you need to see the currently set option, use >
+  :lua =vim.bo.<opt>
+>
 
+Tab/Indentation:
 By default,
 - |'tabstop'| (how many char Vim renders <Tab> as) = 4
 - |'softtabstop'| (how many char the cursor moves with <Tab> and <BS>) = 0
@@ -57,6 +60,7 @@ See |theovim-ftplugins| for more information.
 See also:
 - |'tabstop'| documentation outlines four main ways to configure tab in Vim.
   Theovim uses the number 2. Tab lovers will like number 1.
+
 
 Character rendering:
 >
@@ -77,18 +81,9 @@ Note that |lcs-leadmultispace| (indentation guide for space-base indentations)
 change dynamically based on |'shiftwidth'| value.
 See |theovim-core-autocmds| for more information.
 
-Spell check:
-
-Spell check is enabled using |theovim-ftplugins|
-
-- |z=| gives the suggestions for the word under the cursor
-- `<C-s>` in insert mode fixes the closest error and put the cursor back
-- `:set spell!` toggles spell check
-
-See also:
-- |spell|
 
 Fold:
+Set to treesitter fold.
 
 char            action
 ----------------------------------------------------------------------
@@ -110,6 +105,46 @@ char            action
 See also:
 - |folding|
 - |nvim_treesitter#foldexpr()|
+
+==============================================================================
+Spell Check                                                    *theovim-spell*
+
+Spell check is enabled for some buffers using |theovim-ftplugins|.
+`:set spell!` toggles spell check manually.
+
+char            action
+----------------------------------------------------------------------
+
+|]s|            Move to the next misspelled words
+|[s|            Move to the previous misspelled words
+
+|zg|            Add the current word to the first file in |spellfile|
+
+|z=|            Find the suggestions for the word under the cursor
+
+There also is a custom keybinding `<C-s>` that fixes the nearest spelling
+error in insert mode.
+
+When you use |zg| to add a word, the word is appended to `spell/en.utf-8.add`,
+and the corresponding `.spl` binary is compiled.
+`.spl` file is in `.gitignore` for my Dotfiles, so if you would like to
+compile it manually, use: >
+  :mkspell ~/.config/nvim/spell/en.utf-8.add
+<
+
+See also:
+- |spell|
+- |spellfile|
+- |spellfile-cleanup|
+- |:mkspell|
+- |internal-wordlist|
+
+==============================================================================
+Commenting                                                *theovim-commenting*
+
+Neovim offers built-int |commenting| plugin in 0.10.
+The value is controlled by |'commentstring'|, which often treesitter sets.
+See |gc-default| for more information.
 
 ==============================================================================
 Keymaps                                                      *theovim-keymaps*
@@ -363,9 +398,9 @@ LSP:
 - `grn`: |vim.lsp.buf.rename()|
 - `gra`: |vim.lsp.buf.code_action()|
 - `grr`: |vim.lsp.buf.references()|
-- `gri`: |vim.lsp.buf.implementations()|
 - `gO`: |vim.lsp.buf.document_symbols()|
-- |lsp-defaults| for more default LSP mappings
+- |gr-defaults| for more `gr` bindings for LSP
+- |lsp-defaults| for more default LSP mappings and settings
 
 These keybindings are overriden if conditions are met.
 
@@ -513,11 +548,6 @@ Below are old documentation
 ==============================================================================
 Treesitter                                                *theovim-treesitter*
 
-Treesitter (TS) is an incremental parser generator for more accurate syntax
-highlighting compared to the default regex-based highlighting.
-TS also integrates with Vim's folding and selection mechanism to provide a
-more efficient navigation and editing experience.
-
 Theovim installs the following TS servers out of the box:
 
 - Bash
@@ -578,7 +608,6 @@ Incremental selection example:
 See also:
 - |nvim-treesitter|: Configuration and abstract layer for the built-in TS
 - |treesitter|: Neovim built-in treesitter library
-
 
 ==============================================================================
 Completion                                                *theovim-completion*
