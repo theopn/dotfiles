@@ -141,10 +141,14 @@ map ; # find-next                (default ';')
 map , # find-prev                (default ',')
 map ff fzf_jump
 
-# Automatically create trash folder upon the startup
-${{ if [ ! -d ~/.theoshell/trash ]; then mkdir -p ~/.theoshell/trash; fi }}
-# $f = current cursor, $fs = selected files, $fx = ($fs exists) ? ($fs) : ($f)
-cmd trash !{{ IFS="$(printf '\n\t')"; mv $fx ~/.theoshell/trash && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n" }}
+cmd trash !{{
+  export THEOSHELL_TRASH_DIR=~/.local/share/theoshell-trash
+  if [ ! -d ${THEOSHELL_TRASH_DIR} ]; then
+    mkdir -p ${THEOSHELL_TRASH_DIR}
+  fi
+  # $f = current cursor, $fs = selected files, $fx = ($fs exists) ? ($fs) : ($f)
+  IFS="$(printf '\n\t')"; mv $fx ${THEOSHELL_TRASH_DIR} && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n"
+}}
 map DD trash
 
 # Remove command for bypassing trash
