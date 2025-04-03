@@ -2,18 +2,6 @@
 
 # Theo's Custom Greeting Msg
 function zsh_greeting() {
-  # Getting the battery info
-  batlv=-1
-  if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    if [[ -a /sys/class/power_supply/BAT0/capacity ]]; then
-      batlv=$(cat /sys/class/power_supply/BAT0/capacity)
-    elif [[ -a /sys/class/power_supply/BAT1/capacity ]]; then
-      batlv=$(cat /sys/class/power_supply/BAT1/capacity)
-    fi
-  elif command -v pmset &> /dev/null; then
-    batlv=$(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
-  fi
-
   # Colors
   normal='\033[0m'
 
@@ -29,18 +17,6 @@ function zsh_greeting() {
   brmagenta='\033[1;35m'
   cyan='\033[0;36m'
   brcyan='\033[1;36m'
-
-  # Setting battery colors
-  if [[ $batlv == 1 ]]; then
-    batcolo="$red"
-    batlv="Error in the battery "
-  elif [[ $batlv -ge 80 ]]; then
-    batcolo="$brcyan"
-  elif [[ $batlv -gt 40 ]]; then
-    batcolo="$green"
-  else
-    batcolo="$red"
-  fi
 
   # Collection of Oliver ASCII arts
   olivers=(
@@ -109,7 +85,6 @@ function zsh_greeting() {
   echo -e "  " "$yellow"  " Zsh Open:\t"   "$bryellow$timestamp"     "$normal"
   echo -e "  " "$blue"    " Hostname:\t"   "$brmagenta$my_hostname"  "$normal"
   echo -e "  " "$magenta" " Uptime  :\t"   "$brblue$uptime"          "$normal"
-  echo -e "  " "$cyan"    "󱈏 Battery :\t"   "$batcolo$batlv%"         "$normal"
   echo
 }
 

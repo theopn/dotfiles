@@ -54,5 +54,6 @@ TRAPINT() {
 ## Setting Prompt
 
 # %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
-PROMPT="\$vi_mode_indicator ➜  %F{cyan}%(5~|%-1~/.../%3~|%4~)%f %F{blue}\$vcs_info_msg_0_%f | %(?|%F{green}|%F{red})%? ❱ %f"
+#PROMPT="\$vi_mode_indicator ➜  %F{cyan}%(5~|%-1~/.../%3~|%4~)%f %F{blue}\$vcs_info_msg_0_%f | %(?|%F{green}|%F{red})%? $ %f"
+PROMPT=" ➜  %F{cyan}%(5~|%-1~/.../%3~|%4~)%f %F{blue}\$vcs_info_msg_0_%f | %(?|%F{green}|%F{red})%? $ %f"
 

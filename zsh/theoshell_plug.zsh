@@ -14,7 +14,7 @@ function theoshell_plug() {
     source_file ${PLUGIN_NAME}/${PLUGIN_NAME}.plugin.zsh || \
     source_file ${PLUGIN_NAME}/${PLUGIN_NAME}.zsh
   else
-    git clone "https://github.com/${1}.git" ${THEOSHELL_PLUGIN_DIR}/${PLUGIN_NAME}
+    git clone --depth 1 "https://github.com/${1}.git" ${THEOSHELL_PLUGIN_DIR}/${PLUGIN_NAME}
   fi
 }
 

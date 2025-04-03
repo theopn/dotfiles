@@ -13,25 +13,17 @@ bindkey -v
 export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 
+export DOT=~/dotfiles
+
 export THEOSHELL_TRASH_DIR=~/.theoshell/trash
 export THEOSHELL_PLUGIN_DIR=~/.theoshell/zsh-plugins
 
-export CLOUD_DIR=~/My\ Drive
-export CACHE_DIR=~/My\ Drive/l1-cache
-export DOT_DIR=~/dotfiles
-
-export QUICK_NOTE_PATH="${CACHE_DIR}/quick-note.md"
-export DAILY_WRITING_DIR="${CACHE_DIR}/dw-$(date +'%Y')"
-
 # Sourcing
 if [[ -t 0 ]]; then
-  source $DOT_DIR/zsh/aliases.zsh
   source $DOT_DIR/zsh/prompt.zsh
 
-  source $DOT_DIR/zsh/theoshell_trash.zsh
-
-  source $DOT_DIR/zsh/theoshell_plug.zsh
-  theoshell_plug marlonrichert/zsh-autocomplete
+  source $DOT_DIR/zsh/aliases.zsh
+  #theoshell_plug marlonrichert/zsh-autocomplete
 
   source $DOT_DIR/zsh/greeting.zsh
   zsh_greeting
