@@ -39,9 +39,13 @@ brew install --cask font-ubuntu-mono-nerd-font
 
 ### Shells
 
-- Bash: Because everyone needs bash
-- Zsh: Main `$SHELL` with custom plugin manager (`theoshell_plug`), trash (`theoshell_trash`), and other custom functions
-- Fish: Main interactive shell, mostly mirroring my Zsh config
+- Bash: Basic configuration for my school SSH server
+- ZSH: `$SHELL`
+    - Functions utilizing fzf (`cdf`, `sshf`, etc.)
+    - Minimal plugin manager (`plug`, `update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
+    - Rudimentary implementation of trash-cli (`trash`)
+    - Git info in the prompt
+- Fish: Main interactive shell with personal env var and more weird functions
 
 ### Terminal emulators and multiplexers
 

@@ -35,7 +35,7 @@ tarmake() { tar -czvf ${1}.tar.gz $1 }
 tarunmake() { tar -zxvf $1 }
 
 # Custom trash function
-trash() {
+function trash() {
   if [[ -z "$THEOSHELL_TRASH_DIR" ]]; then
     echo "You must provide THEOSHELL_TRASH_DIR"
     return 1
@@ -76,7 +76,7 @@ function plug() {
   fi
 }
 
-function upgrade() {
+function update() {
   if [[ -z "$ZSH_PLUGIN_DIR" ]]; then
     echo "You must provide ZSH_PLUGIN_DIR"
     return 1
