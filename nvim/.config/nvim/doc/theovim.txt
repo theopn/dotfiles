@@ -349,7 +349,7 @@ Step 1: Installing the language server
 
 You need to have a language server available in your `$PATH`.
 You can use a package manager of your operating system or |mason.nvim|.
-Mason installs the the LSP server in data directory (` echo stdpath("data")`)
+Mason installs the the LSP server in data directory (`:echo stdpath("data")`)
 and makes it available to Neovim's `PATH`.
 - |:Mason| to launch the graphical Mason UI
 - |:MasonInstall| {server} to install packages
@@ -416,8 +416,9 @@ gO              Calls |fzf-lua-opts-lsp_document_symbols|.
 
 Other keymaps and commands are controlled with |lsp-attach| autocmd.
 
-Autocmd:
+Autocmd & User Commands:
 - Symbol under the cursor (i.e., variables, functions, etc.) are highlighted.
+- `:LspInfo` is an abbreviation to `:checkhealth vim.lsp`
 
 Keybindings:
 

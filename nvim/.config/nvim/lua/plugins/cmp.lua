@@ -2,6 +2,8 @@ local M = { "hrsh7th/nvim-cmp" }
 
 M.event = { "InsertEnter", "CmdlineEnter", }
 
+M.enabled = true
+
 M.dependencies = {
   {
     "L3MON4D3/LuaSnip", --> VS Code style snippet enginew

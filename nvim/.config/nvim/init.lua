@@ -17,7 +17,7 @@
 
 -- Global variables
 vim.g.have_nerd_font = true
-vim.g.have_transparent_bg = true
+vim.g.have_transparent_bg = false
 
 -- Neovide
 if vim.g.neovide then
