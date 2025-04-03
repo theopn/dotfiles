@@ -5,11 +5,13 @@
 # oP'     'Yb. 8    8 8.     8   8 `b..d'
 #`Yooo' `YooP' 8    8 `Yooo' 8   8  `YP'
 
-# Env Var
 export EDITOR=nvim
 export XDG_CONFIG_HOME="$HOME/.config"
 
 export DOT=~/dotfiles
+
+export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
+export FZF_DEFAULT_OPTS='--layout=reverse --cycle --height=50% --margin=5% --border=double'
 
 export THEOSHELL_TRASH_DIR=~/.local/share/theoshell-trash
 export ZSH_PLUGIN_DIR=~/.local/share/theoshell-zsh-plugins

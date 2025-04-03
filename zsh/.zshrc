@@ -94,6 +94,10 @@ plug marlonrichert/zsh-autocomplete
 
 
 ##### FZF #####
+# I mean it is my machine so I would assume fd is installed
+#type -P fd &> /dev/null && export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
+#whence -p fd &> /dev/null && export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
+
 source <(fzf --zsh)
 
 cdf() {
@@ -102,6 +106,8 @@ cdf() {
     --header='Pick a directory to navigate to')
   [[ -z $selected ]] && echo 'Nothing was selected :(' || cd "$selected"
 }
+
+alias manf="compgen -c | fzf | xargs man"
 
 sshf() {
   [[ ! -e ~/.ssh/config ]] && echo 'There are no SSH config file!'
