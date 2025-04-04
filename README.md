@@ -74,8 +74,8 @@ brew install --cask font-ubuntu-mono-nerd-font
     - `LDR :`: opens the command palette
     - `LDR s`: opens the fuzzy picker for workspace (similar to sessions in Tmux)
     - Tabs (similar to windows in Tmux)
-        - `LDR t`: opens the fuzzy picker for tabs
-        - `LDR c`: creates a new tab, navigate previous/next tabs
+        - `LDR w`: opens the picker for tabs
+        - `LDR c`: creates a new tab
         - `LDR p/n`: navigates previous/next tabs
         - `LDR ,`: renames the tab
         - `LDR .`: enters the `move_tab` mode where you can use `hj`/`kl` to order tabs and `ESC` or `RET` to confirm
