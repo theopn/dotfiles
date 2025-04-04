@@ -4,6 +4,8 @@ return {
     { "nvim-tree/nvim-web-devicons" },
   },
   opts = {
-    default_file_explorer = false, --> do not hijack netrw
+    view_options = {
+      show_hidden = true,
+    }
   },
 }
