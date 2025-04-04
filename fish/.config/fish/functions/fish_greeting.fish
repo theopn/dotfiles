@@ -1,16 +1,4 @@
 function fish_greeting -d "Theo's Custom Greetin Msg"
-  # Getting the battery info
-  set -l batlv -1
-  if [ $OSTYPE = 'Linux' ]
-    if test -a /sys/class/power_supply/BAT0/capacity
-      set batlv $(cat /sys/class/power_supply/BAT0/capacity)
-    elif -a /sys/class/power_supply/BAT1/capacity
-      set batlv $(cat /sys/class/power_supply/BAT1/capacity)
-    end
-  else if command -v pmset &> /dev/null
-    set batlv $(pmset -g batt | grep -Eo "\d+%" | cut -d% -f1)
-  end
-
   # Colors
   set -l normal (set_color normal)
   set -l cyan (set_color -o cyan)
@@ -26,18 +14,6 @@ function fish_greeting -d "Theo's Custom Greetin Msg"
   set -l brmagenta (set_color -o brmagenta)
   set -l yellow (set_color -o yellow)
   set -l bryellow (set_color -o bryellow)
-
-  # Setting battery colors
-  if [ $batlv -eq 1 ]
-    set batcolo $red
-    set batlv "Error in the battery "
-  else if [ $batlv -ge 80 ]
-    set batcolo $brcyan
-  else if [ $batlv -gt 40 ]
-    set batcolo $green
-  else
-    set batcolo $red
-  end
 
   # Collection of Oliver ASCII arts
   set -l olivers \
@@ -103,6 +79,5 @@ function fish_greeting -d "Theo's Custom Greetin Msg"
   echo -e "  " "$yellow"  " Fish Open:\t"    "$bryellow$timestamp"     "$normal"
   echo -e "  " "$blue"    " Hostname :\t"    "$brmagenta$my_hostname"  "$normal"
   echo -e "  " "$magenta" " Uptime   :\t"    "$brblue$uptime"          "$normal"
-  echo -e "  " "$cyan"    "󱈏 Battery  :\t"    "$batcolo$batlv%"         "$normal"
   echo
 end

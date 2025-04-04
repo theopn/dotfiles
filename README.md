@@ -15,12 +15,15 @@ Tools in this repository are mostly open-source utilities for development.
 ## Installation
 
 ```sh
+# Clone the repository
+git git@github.com:theopn/dotfiles.git
+
 # Homebrew bootstrap
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew analytics off
 
 # Install formulae
-cd dotfiles
+cd $HOME/dotfiles
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
 
@@ -45,7 +48,11 @@ brew install --cask font-ubuntu-mono-nerd-font
     - Minimal plugin manager (`plug`, `update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
     - Rudimentary implementation of trash-cli (`trash`)
     - Git info in the prompt
-- Fish: Main interactive shell with personal env var and more weird functions
+- Fish: Main interactive shell
+    - Run `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish` to create `fish_variables` that will persist
+    - Abbreviations in `conf.d/abbreviations.fish`
+    - Functions in `functions/`
+    - Other modular configurations in `conf.d` and `config.fish` (in the order of source priority)
 
 ### Terminal emulators and multiplexers
 
