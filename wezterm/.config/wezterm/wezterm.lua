@@ -47,7 +47,7 @@ config.keys = {
   { key = "s", mods = "LEADER",      action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
 
   -- Tab (similar to window in Tmux)
-  { key = "t", mods = "LEADER",      action = act.ShowTabNavigator },
+  { key = "w", mods = "LEADER",      action = act.ShowTabNavigator },
   { key = "c", mods = "LEADER",      action = act.SpawnTab("CurrentPaneDomain") },
   { key = "p", mods = "LEADER",      action = act.ActivateTabRelative(-1) },
   { key = "n", mods = "LEADER",      action = act.ActivateTabRelative(1) },
@@ -68,7 +68,7 @@ config.keys = {
     }
   },
   -- Key table for moving tabs around
-  { key = ".", mods = "LEADER",       action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
+  { key = ".",          mods = "LEADER", action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
   -- Or shortcuts to move tab w/o move_tab table. SHIFT is for when caps lock is on
   --{ key = "{", mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
   --{ key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
@@ -92,7 +92,7 @@ config.keys = {
   },
   -- We can make separate keybindings for resizing panes
   -- But Wezterm offers custom "mode" in the name of "KeyTable"
-  { key = "r", mods = "LEADER",       action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
+  { key = "r", mods = "LEADER", action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
 }
 
 -- I can use the tab navigator (LDR t), but I also want to quickly navigate tabs with index
@@ -127,7 +127,7 @@ config.key_tables = {
 -- I don't like the look of "fancy" tab bar
 config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
-config.tab_bar_at_bottom = false
+config.tab_bar_at_bottom = true
 wezterm.on("update-status", function(window, pane)
   -- Workspace name
   local stat = window:active_workspace()
@@ -151,13 +151,8 @@ wezterm.on("update-status", function(window, pane)
   -- Current working directory
   local cwd = pane:get_current_working_dir()
   if cwd then
-    if type(cwd) == "userdata" then
-      -- Wezterm introduced the URL object in 20240127-113634-bbcac864
-      cwd = basename(cwd.file_path)
-    else
-      -- 20230712-072601-f4abf8fd or earlier version
-      cwd = basename(cwd)
-    end
+    cwd = basename(cwd.file_path)  --> URL object introduced in 20240127-113634-bbcac864 (type(cwd) == "userdata")
+    -- cwd = basename(cwd) --> 20230712-072601-f4abf8fd or earlier version
   else
     cwd = ""
   end
