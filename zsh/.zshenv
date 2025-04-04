@@ -6,13 +6,14 @@
 #`Yooo' `YooP' 8    8 `Yooo' 8   8  `YP'
 
 export EDITOR=nvim
+export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CONFIG_HOME="$HOME/.config"
 
-export DOT=~/dotfiles
+export DOT="$HOME/dotfiles"
 
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
 export FZF_DEFAULT_OPTS='--layout=reverse --cycle --height=50% --margin=5% --border=double'
 
-export THEOSHELL_TRASH_DIR=~/.local/share/theoshell-trash
-export ZSH_PLUGIN_DIR=~/.local/share/theoshell-zsh-plugins
+export THEOSHELL_TRASH_DIR="$XDG_DATA_HOME/theoshell-trash"
+export ZSH_PLUGIN_DIR="$XDG_DATA_HOME/theoshell-zsh-plugins"
 
