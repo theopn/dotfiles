@@ -21,8 +21,7 @@ config.default_prog = { fish_path, "-l" }
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
-  { family = "UbuntuMono Nerd Font",       scale = 1.35, },
-  { family = "Iosevka Nerd Font",       scale = 1.2, weight = "Medium", },
+  { family = "UbuntuMono Nerd Font", scale = 1.35, },
 })
 config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
@@ -40,31 +39,20 @@ config.inactive_pane_hsb = {
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
   -- Send C-a when pressing C-a twice
-  { key = "a",          mods = "LEADER|CTRL", action = act.SendKey { key = "a", mods = "CTRL" } },
-  { key = "c",          mods = "LEADER",      action = act.ActivateCopyMode },
-  { key = "phys:Space", mods = "LEADER",      action = act.ActivateCommandPalette },
+  { key = "a", mods = "LEADER|CTRL", action = act.SendKey { key = "a", mods = "CTRL" } },
+  { key = "[", mods = "LEADER",      action = act.ActivateCopyMode },
+  { key = ":", mods = "LEADER",      action = act.ActivateCommandPalette },
 
-  -- Pane keybindings
-  { key = "s",          mods = "LEADER",      action = act.SplitVertical { domain = "CurrentPaneDomain" } },
-  { key = "v",          mods = "LEADER",      action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
-  { key = "h",          mods = "LEADER",      action = act.ActivatePaneDirection("Left") },
-  { key = "j",          mods = "LEADER",      action = act.ActivatePaneDirection("Down") },
-  { key = "k",          mods = "LEADER",      action = act.ActivatePaneDirection("Up") },
-  { key = "l",          mods = "LEADER",      action = act.ActivatePaneDirection("Right") },
-  { key = "q",          mods = "LEADER",      action = act.CloseCurrentPane { confirm = true } },
-  { key = "z",          mods = "LEADER",      action = act.TogglePaneZoomState },
-  { key = "o",          mods = "LEADER",      action = act.RotatePanes "Clockwise" },
-  -- We can make separate keybindings for resizing panes
-  -- But Wezterm offers custom "mode" in the name of "KeyTable"
-  { key = "r",          mods = "LEADER",      action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
+  -- Workspace (similar to session in Tmux)
+  { key = "s", mods = "LEADER",      action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
 
-  -- Tab keybindings
-  { key = "t",          mods = "LEADER",      action = act.SpawnTab("CurrentPaneDomain") },
-  { key = "[",          mods = "LEADER",      action = act.ActivateTabRelative(-1) },
-  { key = "]",          mods = "LEADER",      action = act.ActivateTabRelative(1) },
-  { key = "n",          mods = "LEADER",      action = act.ShowTabNavigator },
+  -- Tab (similar to window in Tmux)
+  { key = "t", mods = "LEADER",      action = act.ShowTabNavigator },
+  { key = "c", mods = "LEADER",      action = act.SpawnTab("CurrentPaneDomain") },
+  { key = "p", mods = "LEADER",      action = act.ActivateTabRelative(-1) },
+  { key = "n", mods = "LEADER",      action = act.ActivateTabRelative(1) },
   {
-    key = "e",
+    key = ",",
     mods = "LEADER",
     action = act.PromptInputLine {
       description = wezterm.format {
@@ -80,15 +68,33 @@ config.keys = {
     }
   },
   -- Key table for moving tabs around
-  { key = "m", mods = "LEADER",       action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
+  { key = ".", mods = "LEADER",       action = act.ActivateKeyTable { name = "move_tab", one_shot = false } },
   -- Or shortcuts to move tab w/o move_tab table. SHIFT is for when caps lock is on
-  { key = "{", mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
-  { key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
+  --{ key = "{", mods = "LEADER|SHIFT", action = act.MoveTabRelative(-1) },
+  --{ key = "}", mods = "LEADER|SHIFT", action = act.MoveTabRelative(1) },
 
-  -- Lastly, workspace
-  { key = "w", mods = "LEADER",       action = act.ShowLauncherArgs { flags = "FUZZY|WORKSPACES" } },
-
+  -- Pane
+  { key = "\"",         mods = "LEADER", action = act.SplitVertical { domain = "CurrentPaneDomain" } },
+  { key = "%",          mods = "LEADER", action = act.SplitHorizontal { domain = "CurrentPaneDomain" } },
+  { key = "h",          mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+  { key = "j",          mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+  { key = "k",          mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+  { key = "l",          mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+  { key = "phys:Space", mods = "LEADER", action = act.RotatePanes "Clockwise" },
+  { key = "z",          mods = "LEADER", action = act.TogglePaneZoomState },
+  { key = "x",          mods = "LEADER", action = act.CloseCurrentPane { confirm = true } },
+  {
+    key = '!',
+    mods = 'LEADER | SHIFT',
+    action = wezterm.action_callback(function(win, pane)
+      local tab, window = pane:move_to_new_tab()
+    end),
+  },
+  -- We can make separate keybindings for resizing panes
+  -- But Wezterm offers custom "mode" in the name of "KeyTable"
+  { key = "r", mods = "LEADER",       action = act.ActivateKeyTable { name = "resize_pane", one_shot = false } },
 }
+
 -- I can use the tab navigator (LDR t), but I also want to quickly navigate tabs with index
 for i = 1, 9 do
   table.insert(config.keys, {
@@ -100,10 +106,10 @@ end
 
 config.key_tables = {
   resize_pane = {
-    { key = "h",      action = act.AdjustPaneSize { "Left", 1 } },
-    { key = "j",      action = act.AdjustPaneSize { "Down", 1 } },
-    { key = "k",      action = act.AdjustPaneSize { "Up", 1 } },
-    { key = "l",      action = act.AdjustPaneSize { "Right", 1 } },
+    { key = "<",      action = act.AdjustPaneSize { "Left", 1 } },
+    { key = "-",      action = act.AdjustPaneSize { "Down", 1 } },
+    { key = "+",      action = act.AdjustPaneSize { "Up", 1 } },
+    { key = ">",      action = act.AdjustPaneSize { "Right", 1 } },
     { key = "Escape", action = "PopKeyTable" },
     { key = "Enter",  action = "PopKeyTable" },
   },
@@ -161,9 +167,6 @@ wezterm.on("update-status", function(window, pane)
   -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l)
   cmd = cmd and basename(cmd) or ""
 
-  -- Time
-  local time = wezterm.strftime("%H:%M")
-
   -- Left status (left of the tab line)
   window:set_left_status(wezterm.format({
     { Foreground = { Color = stat_color } },
@@ -180,9 +183,6 @@ wezterm.on("update-status", function(window, pane)
     { Text = " | " },
     { Foreground = { Color = "#e0af68" } },
     { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
-    "ResetAttributes",
-    { Text = " | " },
-    { Text = wezterm.nerdfonts.md_clock .. "  " .. time },
     { Text = "  " },
   }))
 end)

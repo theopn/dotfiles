@@ -60,25 +60,28 @@ brew install --cask font-ubuntu-mono-nerd-font
     - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
     - Dracula themed status bar displaying the current session & window information, CWD, and current command running
     - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
-- Kitty: The secondary terminal
 - Wezterm: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
+    - Many keybindings in the video now has been changed to match the Tmux keybindings, but the overall functionality remains the same
     - `LDR` = `C-a`
-    - `LDR c`: Copy mode
-    - `LDR s/v`: Create a split pane
-    - `LDR hjkl`: Navigate pane
-    - `LDR q`: Close pane
-    - `LDR z`: Zoom pane
-    - `LDR o`: Rotate pane
-    - `LDR r`: `resize_pane` mode. Use `hjkl` to resize pane and `ESC` or `Enter` to confirm
-    - `LDR t`: New tab
-    - `LDR [/]` Navigate tab
-    - `LDR 1-9`: Navigate tab by index
-    - `LDR n`: Launch tab navigator
-    - `LDR e`: Rename tab title
-    - `LDR m`: `move_tab` mode. Use `hj`/`kl` to move tabs and `ESC` or `Enter` to confirm
-        - `LDR {/}`: Move tab without entering the `move_tab` mode
-    - `LDR w`: Workspace launcher
+    - `LDR [`: enters the copy mode
+    - `LDR :`: opens the command palette
+    - `LDR s`: opens the fuzzy picker for workspace (similar to sessions in Tmux)
+    - Tabs (similar to windows in Tmux)
+        - `LDR t`: opens the fuzzy picker for tabs
+        - `LDR c`: creates a new tab, navigate previous/next tabs
+        - `LDR p/n`: navigates previous/next tabs
+        - `LDR ,`: renames the tab
+        - `LDR .`: enters the `move_tab` mode where you can use `hj`/`kl` to order tabs and `ESC` or `RET` to confirm
+        - `LDR 1-9`: moves to the tab with the given index
+    - Panes
+        - `LDR %/"`: creates a new pane vertically/horizontally
+        - `LDR hjkl`: navigates pane
+        - `LDR SPC`: zooms the current pane
+        - `LDR x`: closes the current pane
+        - `LDR !`: breaks the current pane into a new tab
+        - `LDR r`: enters the `resize_pane` mode where you can resize the pane with `<>-+` and `ESC` or `RET` to confirm
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
+- Kitty: The secondary terminal
 
 ### Text editors:
 
