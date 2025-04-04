@@ -49,23 +49,17 @@ brew install --cask font-ubuntu-mono-nerd-font
 
 ### Terminal emulators and multiplexers
 
-- Tmux:
-    - For the complete list of keybindings, disabled default keybindings, and frequently used default bindings, use `C-a ?` and read the comment in line 20
-    - `C-a` is the prefix
-    - `PFX c`: Copy mode
-    - `PFX hjkl`: Pane navigation
-    - `PFX r/x`: Swap panes
-    - `PFX s/v`: Create a split horizontally/vertically
-    - `PFX -+<>`: Resize pane
-    - `PFX C-s`: Send the current pane to the window of the given index (will be prompted for the index)
-    - `PFX C-j`: Join the pane from the window of the given index (will be prompted for the index)
-    - `PFX t`: Create a new window
-    - `PFX q`: Kill a pane (there is no separate `kill-window` binding; close all panes to kill a window)
-    - `PFX [/]`: Navigate windows
-    - `PFX {/}`: Swap window indices with adjacent windows
-    - `PFX m`: Move the current window to the given index
-    - `PFX ?`: Open `~/.tmux.conf` in a floating popup
-
+- Tmux - things different from the defaults:
+    - Settings: Some terminal information, all indexing starts from 1, increased history limit, and reduced escape time
+    - `C-a` is the prefix, and `PFX + C-a` sends `C-a` to the terminal
+    - `PFX + C-r` reloads the config
+    - `PFX + c` creates a new window *with the same CWD as the current pane*
+    - `PFX + %/"` creates a new pane *with the same CWD as the current pane*
+    - `PFX + hjkl` navigates panes (the default `l` is unbound which is `:last-window`)
+    - `PFX + C-s` prompts you to send the current pane to a selected window
+    - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
+    - Dracula themed status bar displaying the current session & window information, CWD, and current command running
+    - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
 - Kitty: The secondary terminal
 - Wezterm: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
     - `LDR` = `C-a`
