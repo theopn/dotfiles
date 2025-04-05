@@ -28,3 +28,6 @@ abbr -a note $EDITOR "$HOME/My\ Drive/l1-cache/note.md"
 abbr -a brup "brew update && brew upgrade"
 abbr -a brcl "brew autoremove && brew cleanup && brew doctor"
 
+# Aerospace
+abbr -a aero "aerospace list-windows --all | fzf --bind 'enter:execute($SHELL -c \"aerospace focus --window-id {1}\")+abort'"
+
