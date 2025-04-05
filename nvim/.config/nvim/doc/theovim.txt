@@ -479,29 +479,26 @@ the following dependencies are needed:
 char            action
 ----------------------------------------------------------------------
 
-<leader>sf      [S]earch [F]iles
+<leader><leader>Search open buffers
+
+<leader>/       Using Ripgrep on the current directory (`live_grep`).
+                Difference from `:FzfLua grep` is that `grep` prompts
+                the user for a word and merely lets you fuzzy find
+                from the grep result, where as `live_grep` runs
+                Ripgrep on the fly
 
 <leader>s.      [S]earch the Parent Dir [..]
 
-<leader>so      [S]earch [O]ldfiles
-
-<leader><leader>Search open buffers
-
-<leader>sg      [S]earch by [G]rep.
-                Searches words in the CWD.
-                `ripgrep` is required for the search.
-
-<leader>/       Open fuzzy finder for the current buffer words.
+<leader>ss      [S]earch [S]earch (|fzf-lua-opts-builtin|)
 
 
-<leader>gc      Search [G]it [C]ommits.
-                Calls |telescope.builtin.git_commits()|.
+<leader>gc      [G]it [C]ommits.
 
-<leader>gs      Search [G]it [S]tatus.
-                Calls |telescope.builtin.git_status()|.
+<leader>gs      [G]it [S]tatus.
 
+There are many other keybindings prefixed with `<leader>s` and `<leader>g`.
 
-Within the Telescope window, the following keybindings are available:
+Within the fzf window, the following keybindings are available:
 
 char            action
 ----------------------------------------------------------------------
@@ -522,8 +519,9 @@ char            action
 <C-s>           Opens the selection in a horizontal split
 <C-t>           Opens the selection in a new tab
 
+fzf-lua also replaces the following |ins-completion| with its own picker:
 
-
+- |compl-filename| (|i_CTRL-X_CTRL-F|)
 
 
 
