@@ -136,8 +136,8 @@ The configuration and keybindings are very close to the default with a couple of
 - `alt-h/j/k/l`: Focus windows
 - `alt-shift-h/j/k/l`: Move windows
 - `alt-minus/equal` (`-/+`): Resize window
-- `alt-1 - 6`: Move to workspace 1 - 6
-- `alt-shift-1 - 6`: Move the current tree to workspace 1 - 6
+- `alt-1 - 9`: Move to workspace 1 - 9
+- `alt-shift-1 - 9`: Move the current tree to workspace 1 - 9
 - `alt-tab`: Switch between previously used workspaces
 - `alt-shift-tab`: Move current workspace to a different monitor
 - `alt-shift-space`: Enter the service mode
@@ -172,14 +172,14 @@ Formulae:
 
 Casks:
 
-| Development     | Fun       | Productivity | System (macOS) | Tools         | Web         |
-|-----------------|-----------|--------------|----------------|---------------|-------------|
-| Docker          | Discord   | **Itsycal**  | **Aerospace**  | **Bitwarden** | **Firefox** |
-| IntelliJ CE     | Minecraft | Notion       | App Cleaner    | Cryptomator   | Thunderbird |
-| kitty           | Spotify   |              | **Ice**        | GIMP          | Zen Browser |
-| MacTex (no GUI) |           |              | Maccy          | OBS           |             |
-| **Macvim**      |           |              | **Stats**      | **Skim**      |             |
-| **Wezterm**     |           |              |                | VLC           |             |
+| Development     | Fun       | Productivity | Sync        | System        | Tools         | Web         |
+|-----------------|-----------|--------------|-------------|---------------|---------------|-------------|
+| Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | **Firefox** |
+| IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | GIMP          | Thunderbird |
+| kitty           | Spotify   |              | Syncthing   | **Maccy**     | OBS           | Zen Browser |
+| MacTex (no GUI) |           |              |             | **Stats**     | **Skim**      |             |
+| **Macvim**      |           |              |             |               | VLC           |             |
+| **Wezterm**     |           |              |             |               |               |             |
 
 ### Settings
 
