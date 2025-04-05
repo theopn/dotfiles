@@ -11,18 +11,24 @@ brew "imagemagick"
 brew "ripgrep"
 brew "tree"
 
-cask "appcleaner"
-cask "cryptomator"
-cask "discord"
 cask "docker"
-cask "gimp"
 cask "intellij-idea"
 cask "kitty"
 cask "mactex-no-gui"
+
+cask "discord"
 cask "minecraft"
-cask "notion"
-cask "obs"
 cask "spotify"
-cask "thunderbird"
+
+cask "notion"
+
+cask "cryptomator"
+cask "filen"
+cask "syncthing"
+
+cask "gimp"
+cask "obs"
 cask "vlc"
+
+cask "thunderbird"
 cask "zen-browser"

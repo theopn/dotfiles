@@ -13,13 +13,17 @@ brew "rust"
 brew "tmux"
 brew "wget"
 
-cask "aerospace"
-cask "bitwarden"
-cask "firefox"
+cask "macvim"
+cask "wezterm"
+
 cask "itsycal"
+
+cask "aerospace"
 cask "jordanbaird-ice"
 cask "maccy"
-cask "macvim"
-cask "skim"
 cask "stats"
-cask "wezterm"
+
+cask "bitwarden"
+cask "skim"
+
+cask "firefox"
