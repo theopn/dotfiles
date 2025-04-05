@@ -1,4 +1,4 @@
---- keymaps.lua
+--- lsp.lua
 ---
 ---      \/       \/
 ---      /\_______/\
@@ -13,8 +13,9 @@
 ---   | | |(/_(_)\_/ | |||
 ---
 --- LSP configuration using the built-in LSP framework
---- Server configurations are located at the $XDG_CONFIG_HOME/nvim/lsp/ directory
 
+-- Add the server configurations at the $XDG_CONFIG_HOME/nvim/lsp/ directory
+-- and name of the file name here
 local servers = {
   "bashls",
   "clangd",
@@ -97,7 +98,7 @@ local lspattach = function(event)
     })
   end
 
-  -- Auto-completion
+  -- Integration with the built-in completion
   --vim.lsp.completion.enable(true, event.data.client_id, event.buf, { autotrigger = true })
 end
 
