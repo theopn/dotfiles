@@ -443,26 +443,31 @@ Neocodeium will install the language server binary and other files in:
 char            action
 ----------------------------------------------------------------------
 
-<leader>c       Toggle Neocodeium completion.
-                When turning off, this keybinding completely halts
-                the Codeium server.
-                To toggle only the completion on/off, use
-                `:Neocodeium toggle`.
+<leader>c       Toggles Neocodeium server.
+                To toggle the completion while keeping the server on,
+                use `:Neocodeium toggle`.
 
-<C-e>           Tries to show a suggestion if none is visible.
-                Otherwise, cycle through the suggestions.
+<C-x>C-r>       Shows the Neocodeium suggestion at the cursor.
+                It can also be used to cycle through the suggestions,
+                but I recommend using the `<C-n>` and `<C-p>`
+                bindings for it.
                 The status of the suggestion will be indicated in
                 the |signcolumn|
-                ('*' for loading, '1/n' for 1 out of n suggestions).
-<C-r>           `<C-e>` but cycles backwards.
-<C-f>           Accepts the current suggestion
+                (`*` for loading, `1/n` for 1 out of n suggestions).
 
-Neocodeium creates a autocmd to send abort signal to |nvim-cmp| if a Codeium
-completion is displayed.
-As a double-safeguard, `<C-e>` in nvim-cmp is mapped to abort the completion
-window.
-Thus, using `<C-e>` to toggle a suggestion when nvim-cmp window is open will
-safely close the nvim-cmp window first before Neocodeium kicks in.
+<C-n>           Cycles through the suggestions.
+<C-p>           `<C-n>` but cycles backwards.
+<C-y>           Accepts the suggestion.
+<C-e>           Clears the suggestion.
+
+
+You need to be swift with inputting `<C-x><C-r>` keybinding,
+or the `insert_expand` mode will take over (indicated by the help messge
+in the command line), and any subsequent try will input |i_CTRL-R|.
+
+`<C-n>`, `<C-p>`, `<C-y>`, and `<C-e>` are only available when Neocodeium
+suggestion is visible, otherwise they are used as documented in
+|ins-completion|.
 
 See also:
 - |Neocodeium|

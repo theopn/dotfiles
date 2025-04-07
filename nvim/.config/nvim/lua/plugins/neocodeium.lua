@@ -24,11 +24,21 @@ return {
       callback = function() require("cmp").abort() end
     })
 
-    vim.keymap.set("i", "<C-e>", neocodeium.cycle_or_complete)
-    vim.keymap.set("i", "<C-r>", function()
-      require("neocodeium").cycle_or_complete(-1)
-    end)
+    vim.keymap.set("i", "<C-x><C-r>", neocodeium.cycle_or_complete)
+    -- Map <C-n>, <C-p>, <C-e>, etc. to do a certain thing iff neocodeium is visible to simulate native ins-completion
+    local function map_neocodeium(key, action)
+      vim.keymap.set("i", key, function()
+        if neocodeium.visible() then
+          return action()
+        else
+          return key
+        end
+      end, { expr = true })
+    end
 
-    vim.keymap.set("i", "<C-f>", neocodeium.accept)
+    map_neocodeium("<C-n>", neocodeium.cycle)
+    map_neocodeium("<C-p>", function() neocodeium.cycle(-1) end)
+    map_neocodeium("<C-y>", neocodeium.accept)
+    map_neocodeium("<C-e>", neocodeium.clear)
   end,
 }
