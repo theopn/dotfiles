@@ -19,7 +19,7 @@ return {
       org_capture_templates = {
         t = {
           description = "Task",
-          template = "* TODO %?\n  %u",
+          template = "* IDEA %?\n  SCHEDULED: %^t",
         },
         c = {
           description = "Capture Idea",
