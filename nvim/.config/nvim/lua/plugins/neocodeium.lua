@@ -17,12 +17,11 @@ return {
       require("neocodeium.commands").toggle(true) --> true to half the server completely
     end, { desc = "Toggle Neo[C]odeium" })
 
-
     -- create an autocommand which closes cmp when ai completions are displayed
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "NeoCodeiumCompletionDisplayed",
-      callback = function() require("cmp").abort() end
-    })
+    -- vim.api.nvim_create_autocmd("User", {
+    --   pattern = "NeoCodeiumCompletionDisplayed",
+    --   callback = function() require("cmp").abort() end
+    -- })
 
     vim.keymap.set("i", "<C-x><C-r>", neocodeium.cycle_or_complete)
     -- Map <C-n>, <C-p>, <C-e>, etc. to do a certain thing iff neocodeium is visible to simulate native ins-completion
