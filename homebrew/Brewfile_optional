@@ -30,5 +30,5 @@ cask "gimp"
 cask "obs"
 cask "vlc"
 
+cask "chromium"
 cask "thunderbird"
-cask "zen-browser"

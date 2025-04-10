@@ -174,9 +174,9 @@ Casks:
 
 | Development     | Fun       | Productivity | Sync        | System        | Tools         | Web         |
 |-----------------|-----------|--------------|-------------|---------------|---------------|-------------|
-| Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | **Firefox** |
-| IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | GIMP          | Thunderbird |
-| kitty           | Spotify   |              | Syncthing   | **Maccy**     | OBS           | Zen Browser |
+| Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | Chromium    |
+| IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | GIMP          | **Firefox** |
+| kitty           | Spotify   |              | Syncthing   | **Maccy**     | OBS           | Thunderbird |
 | MacTex (no GUI) |           |              |             | **Stats**     | **Skim**      |             |
 | **Macvim**      |           |              |             |               | VLC           |             |
 | **Wezterm**     |           |              |             |               |               |             |
