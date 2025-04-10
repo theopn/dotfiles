@@ -432,6 +432,61 @@ char            action
 
 <leader>sd      Calls |fzf-lua-opts-diagnostics_document|
 
+==============================================================================
+Completion                                                *theovim-completion*
+
+char            action
+----------------------------------------------------------------------
+
+<C-x><C-l>      Completes a whole line
+
+<C-x><C-n>      Completes a keyword in the current file
+
+<C-x><C-k>      Completes a word in |'dictionary'|.
+                If |'spell'| is set, the word list is used.
+
+<C-x><C-f>      Completes a file path
+                If available, fzf-lua picker 
+                (|fzf-lua-opts-complete_file|) is called.
+
+<C-x><C-o>      Triggers Omni-completion
+
+When a LSP buffer is attached, Omni-completion is set to
+|vim.lsp.omnifunc()|, and |vim.lsp.completion.enable()| is called.
+This enables
+1. accepting a snippet using `<C-y>` automatically expands the snippet
+2. triggering auto-completion with the insertion of certain characters,
+   such as `.`, `<`, etc. (handled by `triggerCharacters` from the LSP)
+
+These keybindings are available when completion window is open
+
+char            action
+----------------------------------------------------------------------
+
+<C-y>           [Y]es to the completion
+<C-e>           [E]nd the completion
+<C-n>           [N]ext completion item
+<C-p>           [P]revious completion item
+
+<TAB>           If a completion window is open, <C-n>.
+                If a snippet is expandable, move to the next item.
+                If there is a character at the cursor, trigger a
+                completion (word completion or Omni-completion, based
+                on the availability).
+                Else, insert <TAB>
+<S-TAB>         If a completion window is open, <C-p>
+                If a snippet is expandable, move to the previous item.
+                ELse, insert <S-TAB>
+
+When a snippet is expanded, you enter the |Select-mode|, which you can
+move around with <TAB> and <S-TAB>.
+
+See also:
+- |ins-completion|: native completion engine
+- |i_CTRL-X| (|insert_expand|): CTRL-X keybinding
+- |vim.snippet|: built-in snippet module
+- |lsp-completion|: overview of LSP auto-completion
+  - |compl-autocomplete|: Example of a simple implementation of trigger char
 
 ==============================================================================
 Neocodeium                                                *theovim-neocodeium*
@@ -526,28 +581,7 @@ char            action
 
 fzf-lua also replaces the following |ins-completion| with its own picker:
 
-- |compl-filename| (|i_CTRL-X_CTRL-F|)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-----
-
-Below are old documentation
-
-
+- |compl-filename| (|i_CTRL-X_CTRL-F|) -> |fzf-lua-opts-complet_file|
 
 ==============================================================================
 Treesitter                                                *theovim-treesitter*
@@ -587,9 +621,7 @@ char            action
 <C-s>           (in visual mode) Perform scope incremental selection
 <M-space>       (in visual mode) Perform node decremental selection
 
-Incremental selection example:
-
->
+Incremental selection example: >
   local function treesitter-incremental-example()
     local sysname = vim.loop.os_uname().sysname
     if sysname == "Linux" then
@@ -612,94 +644,6 @@ Incremental selection example:
 See also:
 - |nvim-treesitter|: Configuration and abstract layer for the built-in TS
 - |treesitter|: Neovim built-in treesitter library
-
-==============================================================================
-Completion                                                *theovim-completion*
-
-Auto-completion is available in any buffer, and they work like any other
-modern IDEs.
-
-Available sources when an LSP server is active and snippets are provided:
-- |nvim-nvim-lsp|: Keywords and variables from the LSP
-- |luasnip.txt|: Snippet engine for code templates
-  - |friendly-snippets-friendly-snippets| provides the snippets themselves
-
-Available sources for all buffers:
-- |cmp-buffer|: Words in the buffer
-- |cmp-path|: Filesystem paths (your terminal emulator must have permission to
-  your files)
-- |cmp-cmdline|: Completion for Vim commands (`:`) and search (`/`, `?`).
-
-When `nvim-lsp` and/or `luasnip` sources are available, you will not see
-`cmp-buffer` and `cmp-path` items. To disable this, combine two tables in
-the `sources` attribute in the |cmp.setup()| function together.
-See:
-- |cmp-config.sources|
-- |cmp-config.sources[n].group_index|
-
-char            action
-----------------------------------------------------------------------
-
-<C-n>           Select the next item
-<C-j>           Select the next item
-                |cmp.mapping.select_next_item|
-<C-p>           Select the prev item
-<C-k>           Select the prev item
-                |cmp.mapping.select_prev_item|
-
-<C-e>           Close the completion menu
-                |cmp.mapping.abort()|
-
-<C-Space>       Open the completion menu if it is not already open
-
-<C-y>           Confirm the selection.
-<CR>            Confirm the selection.
-                - `select = false`: If nothing is selected, close the
-                  completion menu. Set true to choose the first item
-                - `behavior = cmp.ConfirmBehavior.Replace`: controls
-                  the behavior when completion is done adjacent to an
-                  existing word. For example ("|" is the cursor):
-
->
-                    |uire
-                    ╭─────────────────────────────────╮
-                    │ require(modname)  Function [LSP]│
-                    │ req~           Snippet [LuaSnip]│
-
-                    ... confirming the first item ...
-
-                    require|
-<
-
-                  If `behavior = cmp.confirmBehavior.Insert`, it
-                  would insert "requireuire"
-                See |cmp.confirm|.
-
-<C-l>           Moves to the next available expansion.
-<C-h>           Moves to the previously available expansion.
-
-<Tab>           - When the completion menu is open:
-                  select the next item
-                - After selecting an expandable LuaSnip snippet
-                  (e.g., function with multiple parameters):
-                  jump to the next snippet items
-                - Else:
-                  sends <Tab> (i.e., inserts <Tab>)
-
-<S-Tab>         - When the completion menu is open:
-                  select the prev item
-                - After selecting an expandable LuaSnip snippet
-                  (e.g., function with multiple parameters):
-                  jump to the prev snippet items
-                - Else:
-                  sends <S-Tab>
-
-
-See also:
-- |nvim-cmp|: Completion plugin for LSP and snippet integration
-- |cmp-cmdline-setup|: How to set the command line and search completion
-- |ins-completion|: Default Vim completion library
-
 
 ==============================================================================
 Documentation                                          *theovim-documentation*
