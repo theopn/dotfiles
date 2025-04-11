@@ -46,3 +46,24 @@ local function run_lua()
 end
 
 vim.api.nvim_create_user_command("RunLua", run_lua, { nargs = 0 })
+
+-- _G.addSnippet(
+--   "fn",
+--   "function ${1:name}($2)\n\t${3:-- content}\nend",
+--   { buffer = 0 }
+-- )
+-- _G.addSnippet(
+--   "lfn",
+--   "local function ${1:name}($2)\n\t${3:-- content}\nend",
+--   { buffer = 0 }
+-- )
+
+_G.addSnippet({
+  prefix = "foreach",
+  body = { "for i, ${1:x} in pairs(${2:table}) do", "\t$0", "end" },
+})
+
+_G.addSnippet({
+  prefix = "for",
+  body = { "for ${1:i}=${2:1},${3:10} do", "\t$0", "end" },
+})
