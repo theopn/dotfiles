@@ -62,3 +62,41 @@ end
 vim.keymap.set({ "i", "s" }, "<Tab>", tab_complete, { expr = true, silent = true, remap = false })
 vim.keymap.set({ "i", "s" }, "<S-Tab>", s_tab_complete, { expr = true, silent = true, remap = false })
 
+vim.g.abbrev_list = {}
+-- Modified https://boltless.me/posts/neovim-config-without-plugins-2025/
+function _G.addSnippet(opts)
+  local tmp = vim.g.abbrev_list
+  table.insert(tmp, opts.prefix)
+  vim.g.abbrev_list = tmp
+
+  vim.keymap.set("ia", opts.prefix, function()
+    -- Only expand the snippet with C-]
+    local c = vim.fn.nr2char(vim.fn.getchar(0))
+    if c ~= "" then
+      vim.api.nvim_feedkeys(opts.prefix .. c, "i", true)
+      return
+    end
+
+    vim.snippet.expand(table.concat(opts.body))
+  end, { buffer = 0 })
+end
+
+-- https://dev.to/cherryramatis/how-to-create-your-own-completion-for-vim-31ip
+vim.cmd [[
+set completefunc=CompleteAbbrev
+function! CompleteAbbrev(findstart, base) abort
+    if a:findstart
+      let s:startcol = col('.') - 1
+      while s:startcol > 0 && getline('.')[s:startcol - 1] =~ '\a'
+        let s:startcol -= 1
+      endwhile
+      return s:startcol
+    endif
+
+    if a:base->len() == 0
+      return g:abbrev_list
+    endif
+
+    return g:abbrev_list->matchfuzzy(a:base)
+endfunction
+]]
