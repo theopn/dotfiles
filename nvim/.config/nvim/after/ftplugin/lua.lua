@@ -4,7 +4,7 @@
 --
 -- Language:	Lua
 -- Maintainer:	Theo P.
--- Last Change:	2023-10-14
+-- Last Change:	2025-04-13
 
 local indent = 2
 
@@ -47,17 +47,9 @@ end
 
 vim.api.nvim_create_user_command("RunLua", run_lua, { nargs = 0 })
 
--- _G.addSnippet(
---   "fn",
---   "function ${1:name}($2)\n\t${3:-- content}\nend",
---   { buffer = 0 }
--- )
--- _G.addSnippet(
---   "lfn",
---   "local function ${1:name}($2)\n\t${3:-- content}\nend",
---   { buffer = 0 }
--- )
 
+-- Add snippets with the custom function in /lua/theovim/completion.lua
+-- https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/lua/lua.json
 _G.addSnippet({
   prefix = "foreach",
   body = { "for i, ${1:x} in pairs(${2:table}) do", "\t$0", "end" },
