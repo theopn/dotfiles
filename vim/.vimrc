@@ -54,7 +54,8 @@ set matchpairs+=<:>,=:;  " pairs to register for %
 set hidden switchbuf=uselast
 
 " Command
-set history=10000 wildmenu "wildoptions=pum,tagfile
+set history=10000 wildmenu
+set wildmode=noselect:full  " do not auto-select and complete the full match
 
 " Performance
 set updatetime=250 timeoutlen=300
@@ -297,12 +298,7 @@ nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  '<Space>'<CR>
 
 let g:which_key_map =  {}
-let g:which_key_map.c = { 'name' : '[C]ode' }
-let g:which_key_map.d = { 'name' : '[D]ocument' }
-let g:which_key_map.r = { 'name' : '[R]ename' }
 let g:which_key_map.s = { 'name' : '[S]earch' }
-let g:which_key_map.w = { 'name' : '[W]orkspace' }
-let g:which_key_map.t = { 'name' : '[T]oggle' }
 let g:which_key_map.h = { 'name' : 'Git [H]unk' }
 
 " Adding non-plugin keybindings defined above
@@ -340,33 +336,23 @@ function! s:on_lsp_buffer_enabled() abort
   setlocal omnifunc=lsp#complete
   if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
 
-  " Keymaps
-  nmap <buffer> [d <plug>(lsp-previous-diagnostic)
-  nmap <buffer> ]d <plug>(lsp-next-diagnostic)
-
-  nmap <buffer> <leader>rn <plug>(lsp-rename)
-  let g:which_key_map.r.n = '[R]e[n]ame'
-  nmap <buffer> <leader>ca <plug>(lsp-code-action-float)
-  let g:which_key_map.c.a = '[C]ode [A]ction'
-
-  nmap <buffer> gd <plug>(lsp-definition)
-  nmap <buffer> gr <plug>(lsp-references)
-  nmap <buffer> gI <plug>(lsp-implementation)
-
-  nmap <buffer> <leader>D <plug>(lsp-peek-type-definition)
-  let g:which_key_map.D = 'Type [D]efinition'
-  nmap <buffer> <leader>ds <plug>(lsp-document-symbol-search)
-  let g:which_key_map.d.s = '[D]ocument [S]ymbols'
-  nmap <buffer> <leader>ws <plug>(lsp-workspace-symbol-search)
-  let g:which_key_map.w.s = '[W]orkspace [S]ymbols'
-
-  nmap <buffer> K <plug>(lsp-hover)
-  nmap <buffer> <C-k> <plug>(lsp-signature-help)
-
-  nmap <buffer> gD <plug>(lsp-declaration)
+  nnoremap <buffer> [d <plug>(lsp-previous-diagnostic)
+  nnoremap <buffer> ]d <plug>(lsp-next-diagnostic)
+  nnoremap <buffer> K <plug>(lsp-hover)
+  nnoremap <buffer> grn <plug>(lsp-rename)
+  nnoremap <buffer> gra <plug>(lsp-code-action-float)
+  nnoremap <buffer> grr <plug>(lsp-references)
+  nnoremap <buffer> gri <plug>(lsp-implementation)
+  nnoremap <buffer> gO <plug>(lsp-document-symbol-search)
+  nnoremap <buffer> <C-s> <plug>(lsp-signature-help)
+  nnoremap <buffer> grd <plug>(lsp-definition)
+  nnoremap <buffer> grD <plug>(lsp-declaration)
+  nnoremap <buffer> grt <plug>(lsp-peek-type-definition)
+  nnoremap <buffer> gW <plug>(lsp-workspace-symbol-search)
 
   let g:lsp_format_sync_timeout = 1000
-  command! Format LspDocumentFormatSync
+  nnoremap <buffer> <leader>f <plug>(lsp-document-format)
+  let g:which_key_map.f = '[F]ormat buffer'
 endfunction
 
 augroup lsp_install
