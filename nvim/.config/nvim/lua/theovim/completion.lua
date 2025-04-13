@@ -31,6 +31,10 @@ local has_words_before = function()
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+local has_lsp_completion = function()
+  return vim.bo.omnifunc == "v:lua.vim.lsp.omnifunc"
+end
+
 -- https://gist.github.com/MariaSolOs/2e44a86f569323c478e5a078d0cf98cc
 local tab_complete = function()
   if vim.fn.pumvisible() ~= 0 then                  --> completion is visible, cycle through it
@@ -39,7 +43,7 @@ local tab_complete = function()
     -- you must accept the completion item with <C-y> in order to expand
     vim.snippet.jump(1)
   elseif has_words_before() then --> has a word before, probably want a completion
-    if vim.bo.omnifunc ~= "" then
+    if has_lsp_completion() then
       return "<C-x><C-o>"
     else
       return "<C-x><C-n>"
@@ -61,6 +65,42 @@ end
 
 vim.keymap.set({ "i", "s" }, "<Tab>", tab_complete, { expr = true, silent = true, remap = false })
 vim.keymap.set({ "i", "s" }, "<S-Tab>", s_tab_complete, { expr = true, silent = true, remap = false })
+
+-- Trigger completion in `triggers` character insertion
+-- vim.api.nvim_create_autocmd("InsertCharPre", {
+--   pattern = "*",
+--   callback = function()
+--     --local triggers = { "a", "b", "c", "d" }
+--     local char = vim.api.nvim_get_vvar("char")
+--     --if vim.tbl_contains(triggers, char) then
+--     if char:match("%a") then
+--       if vim.bo.omnifunc ~= "" then
+--         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-x><C-o>", true, false, true), "n", false)
+--       else
+--         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-x><C-n>", true, false, true), "n", false)
+--       end
+--     end
+--   end,
+-- })
+
+-- Trigger hover documentation when cycling through completion
+-- vim.api.nvim_create_autocmd("CompleteChanged", {
+--   --group = vim.api.nvim_create_augroup("TheovimYankHighlight", { clear = true }),
+--   pattern = "*",
+--   callback = function()
+--     vim.lsp.buf.hover({
+--       border = "rounded",
+--       close_events = {
+--         "CompleteChanged",
+--         "CompleteDonePre",
+--         "InsertChange",
+--         "InsertCharPre",
+--         "InsertLeavePre",
+--       },
+--     })
+--   end,
+--   --desc = "Highlight yanked text",
+-- })
 
 vim.g.abbrev_list = {}
 -- Modified https://boltless.me/posts/neovim-config-without-plugins-2025/
