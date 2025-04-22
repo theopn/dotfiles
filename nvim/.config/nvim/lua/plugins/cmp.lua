@@ -70,7 +70,7 @@ M.config = function()
         end
       end,
 
-      -- Scoll the doc [b]ack / [f]orward
+      -- Scoll the doc [b]ack (down) / [f]orward (up)
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
 
