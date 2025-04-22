@@ -39,7 +39,7 @@ See also:
 ==============================================================================
 Options                                                      *theovim-options*
 
-If you need to see the currently set option, use >
+To view the currently set optioon, use: >
   :lua =vim.bo.<opt>
 >
 
@@ -301,11 +301,6 @@ char            action
 <leader>gd      [G]it [D]iff current buffer.
                 Calls |gitsigns.diffthis()|.
 
-|tokyonight.nvim| is the default theme for Theovim.
-Transparency is enabled for all elements, including sidebars and floats.
-toggle transparency, locate `is_transparnt` variable in the `config`
-function and set it to false.
-
 ==============================================================================
 Vimtex                                                        *theovim-vimtex*
 
@@ -446,7 +441,7 @@ char            action
                 If |'spell'| is set, the word list is used.
 
 <C-x><C-f>      Completes a file path
-                If available, fzf-lua picker 
+                If available, fzf-lua picker
                 (|fzf-lua-opts-complete_file|) is called.
 
 <C-x><C-o>      Triggers Omni-completion
@@ -493,7 +488,7 @@ Completion - nvim-cmp                                       *theovim-nvim-cmp*
 
 While the native ins-completion is workable, nvim-cmp and other plug-ins
 offers functionalities like grouping different completion sources, sourcing
-snippets,
+snippets, and more performance.
 
 char            action
 ----------------------------------------------------------------------
@@ -569,6 +564,8 @@ the following dependencies are needed:
 char            action
 ----------------------------------------------------------------------
 
+<leader>.       Search oldfiles
+
 <leader><leader>Search open buffers
 
 <leader>/       Using Ripgrep on the current directory (`live_grep`).
@@ -577,10 +574,10 @@ char            action
                 from the grep result, where as `live_grep` runs
                 Ripgrep on the fly
 
-<leader>s.      [S]earch the Parent Dir [..]
+<leader>s.      Prompts with parent directories and launch
+                |fzf-lua-opts-files| with the selected directory.
 
 <leader>ss      [S]earch [S]earch (|fzf-lua-opts-builtin|)
-
 
 <leader>gc      [G]it [C]ommits.
 
