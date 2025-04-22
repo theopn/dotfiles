@@ -489,6 +489,36 @@ See also:
   - |compl-autocomplete|: Example of a simple implementation of trigger char
 
 ==============================================================================
+Completion - nvim-cmp                                       *theovim-nvim-cmp*
+
+While the native ins-completion is workable, nvim-cmp and other plug-ins
+offers functionalities like grouping different completion sources, sourcing
+snippets,
+
+char            action
+----------------------------------------------------------------------
+
+<C-y>           Same as <C-y> in ins-completion
+<RET>           Same as <C-y> in ins-completion
+
+<C-e>           Same as <C-e> in ins-completion
+<C-n>           Same as <C-n> in ins-completion
+<C-p>           Same as <C-p> in ins-completion
+
+<C-b>           Scroll the documentation [b]ackward
+<C-f>           Scroll the documentation [f]orward
+
+<C-SPC>         Manually trigger the completion
+
+<TAB>           Same as <TAB> in ins-completion
+<S-TAB>         Same as <S-TAB> in ins-completion
+
+See also:
+- |nvim-cmp|
+- |cmp-mapping|: creating keymaps and examples of `fallback()`
+- |cmp-config.sources[n].group_index|: grouping completion sources
+
+==============================================================================
 Neocodeium                                                *theovim-neocodeium*
 
 Run `:Neocodeium auth` and provide the API key to complete the initial setup.

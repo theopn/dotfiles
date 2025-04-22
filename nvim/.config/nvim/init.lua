@@ -41,7 +41,7 @@ require("theovim.keymaps")
 require("theovim.commands")
 require("theovim.autocmds")
 require("theovim.lsp")
-require("theovim.completion")
+--require("theovim.completion")
 
 require("theovim.lazy")
 

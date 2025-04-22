@@ -100,14 +100,12 @@ local lspattach = function(event)
 
 
   -- Integration with the built-in completion
-  if client and client:supports_method("textDocument/completion") then
-    vim.lsp.completion.enable(true, client.id, event.buf, {
-      autotrigger = true,
-      -- convert = function(item)
-      --   return { abbr = item.label:gsub("%b()", "") }
-      -- end,
-    })
-  end
+  -- Not necessary since I am using nvim-cmp and lsp-nvim-cmp
+  -- if client and client:supports_method("textDocument/completion") then
+  --   vim.lsp.completion.enable(true, client.id, event.buf, {
+  --     autotrigger = true,
+  --   })
+  -- end
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
