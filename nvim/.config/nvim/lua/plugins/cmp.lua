@@ -59,16 +59,10 @@ M.config = function()
         select = false,
         behavior = cmp.ConfirmBehavior.Replace,
       },
-      ["<CR>"] = function(fallback)
-        if cmp.visible() then
-          cmp.confirm({
-            select = false,
-            behavior = cmp.ConfirmBehavior.Replace,
-          })
-        else
-          fallback()
-        end
-      end,
+      ["<CR>"] = cmp.mapping.confirm {
+        select = false,
+        behavior = cmp.ConfirmBehavior.Replace,
+      },
 
       -- Scoll the doc [b]ack (down) / [f]orward (up)
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
