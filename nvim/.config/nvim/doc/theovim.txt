@@ -505,8 +505,8 @@ char            action
 <C-n>           Same as <C-n> in ins-completion
 <C-p>           Same as <C-p> in ins-completion
 
-<C-b>           Scroll the documentation [b]ackward
-<C-f>           Scroll the documentation [f]orward
+<C-b>           Scroll the documentation [b]ackward (down)
+<C-f>           Scroll the documentation [f]orward (up)
 
 <C-SPC>         Manually trigger the completion
 
@@ -593,9 +593,6 @@ Within the fzf window, the following keybindings are available:
 char            action
 ----------------------------------------------------------------------
 
-<S-DOWN>        Scrolls preview page down
-<S-UP>          Scrolls preview page up
-
 <C-j>           Selects the next item
 <C-n>           Selects the next item
 
@@ -608,6 +605,10 @@ char            action
 <C-v>           Opens the selection in a vertical split
 <C-s>           Opens the selection in a horizontal split
 <C-t>           Opens the selection in a new tab
+
+<C-b>           Scrolls preview page down
+<C-f>           Scrolls preview page up
+
 
 fzf-lua also replaces the following |ins-completion| with its own picker:
 

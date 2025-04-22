@@ -11,6 +11,15 @@ local M = { "ibhagwan/fzf-lua" }
 M.config = function()
   local fzf = require("fzf-lua")
 
+  fzf.setup({
+    keymap = {
+      builtin = {
+        ["<C-b>"] = "preview-page-down",
+        ["<C-f>"] = "preview-page-up",
+      },
+    },
+  })
+
   -- Finding a file
   vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
   vim.keymap.set("n", "<leader>s.", function() fzf.files({ cwd = ".." }) end, { desc = "[S]earch the Parent Dir [..]" })
