@@ -14,15 +14,10 @@
 ---
 --- Configurations for built-in completion (:h ins-completion)
 
--- noinsert: when a completion is triggered (e.g., <C-x><C-o>), do not pre-select anything.
---          It will still select the first item
--- noselect: do not select anything upon the completion trigger. Precedes noinsert
--- menu: show the popup menu for suggestions
--- menuone: show the popup menu even where there is only one suggestion
---         kind of necessary with noselect since you want a visual guide that a completion is available
--- popup: show information for the completion item. Do not expect the level of popup from plugins like nvim-cmp.
---        They are often rendering a new hover window to give a detailed view
-vim.o.completeopt = "noselect,menu,menuone,popup"
+-- WARN: This config is currently not in use
+-- This was my attempt to replace nvim-cmp with the native ins-completion, but nvim-cmp offers far too many
+-- functionalities for the native completion engine to replace.
+-- I am saving it for the future Neovim updates when ins-completion gets better.
 
 -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
 local has_words_before = function()
@@ -66,42 +61,40 @@ end
 vim.keymap.set({ "i", "s" }, "<Tab>", tab_complete, { expr = true, silent = true, remap = false })
 vim.keymap.set({ "i", "s" }, "<S-Tab>", s_tab_complete, { expr = true, silent = true, remap = false })
 
+
+-- NOTE: Experimental
 -- Trigger completion in `triggers` character insertion
--- vim.api.nvim_create_autocmd("InsertCharPre", {
---   pattern = "*",
---   callback = function()
---     --local triggers = { "a", "b", "c", "d" }
---     local char = vim.api.nvim_get_vvar("char")
---     --if vim.tbl_contains(triggers, char) then
---     if char:match("%a") then
---       if vim.bo.omnifunc ~= "" then
---         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-x><C-o>", true, false, true), "n", false)
---       else
---         vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-x><C-n>", true, false, true), "n", false)
---       end
---     end
---   end,
--- })
+vim.api.nvim_create_autocmd("InsertCharPre", {
+  pattern = "*",
+  callback = function()
+    --local triggers = { "a", "b", "c", "d" }
+    local char = vim.api.nvim_get_vvar("char")
+    --if vim.tbl_contains(triggers, char) then
+    if char:match("%a") then  --> any alphanumeric
+      if vim.bo.omnifunc ~= "" then
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-x><C-o>", true, false, true), "n", false)
+      else
+        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-x><C-n>", true, false, true), "n", false)
+      end
+    end
+  end,
+})
 
--- Trigger hover documentation when cycling through completion
--- vim.api.nvim_create_autocmd("CompleteChanged", {
---   --group = vim.api.nvim_create_augroup("TheovimYankHighlight", { clear = true }),
---   pattern = "*",
---   callback = function()
---     vim.lsp.buf.hover({
---       border = "rounded",
---       close_events = {
---         "CompleteChanged",
---         "CompleteDonePre",
---         "InsertChange",
---         "InsertCharPre",
---         "InsertLeavePre",
---       },
---     })
---   end,
---   --desc = "Highlight yanked text",
--- })
+-- NOTE: Experimental
+-- 1. Adds a friendly-snippet like snippets to the global abbreviation list
+-- 2. Trigger abbreviation only when C-] is received
+--[[ Usage:
+-- https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/lua/lua.json
+_G.addSnippet({
+ prefix = "foreach",
+ body = { "for i, ${1:x} in pairs(${2:table}) do", "\t$0", "end" },
+})
 
+_G.addSnippet({
+ prefix = "for",
+ body = { "for ${1:i}=${2:1},${3:10} do", "\t$0", "end" },
+})
+--]]
 vim.g.abbrev_list = {}
 -- Modified https://boltless.me/posts/neovim-config-without-plugins-2025/
 function _G.addSnippet(opts)
@@ -121,6 +114,8 @@ function _G.addSnippet(opts)
   end, { buffer = 0 })
 end
 
+-- NOTE: Experimental
+-- Set the user-defined completefunc (C-x C-l) to list of abbreviation added by the _G.addSnippet function above
 -- https://dev.to/cherryramatis/how-to-create-your-own-completion-for-vim-31ip
 vim.cmd [[
 set completefunc=CompleteAbbrev

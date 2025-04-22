@@ -2,15 +2,16 @@ local M = { "hrsh7th/nvim-cmp" }
 
 M.event = { "InsertEnter", "CmdlineEnter", }
 
-M.enabled = false
+M.enabled = true
 
 M.dependencies = {
-  "hrsh7th/cmp-nvim-lsp",         --> nvim-cmp source for LSP engine
-  "hrsh7th/cmp-buffer",           --> nvim-cmp source for buffer words
-  "hrsh7th/cmp-cmdline",          --> nvim-cmp source for :commands
-  "rafamadriz/friendly-snippets", --> Snippet collections
+  "hrsh7th/cmp-nvim-lsp",
+  "hrsh7th/cmp-buffer",
+  "hrsh7th/cmp-path",
+  "hrsh7th/cmp-cmdline",
+  "rafamadriz/friendly-snippets",
   {
-    "garymjr/nvim-snippets",      --> plugin for expanding friendly_snippets
+    "garymjr/nvim-snippets", --> for expanding friendly_snippets
     opts = {
       friendly_snippets = true,
       create_cmp_source = true,
@@ -39,18 +40,39 @@ M.config = function()
       ["<C-p>"] = cmp.mapping.select_prev_item(),
       ["<C-e>"] = cmp.mapping.abort(),
 
+      -- select = false: does nothing if nothing is selected (true would insert the first item)
+      --[[ cmp.ConfirmBehavior.Replace:
+      ("|" is the cursor)
+      ```
+                    |uire
+                    ╭─────────────────────────────────╮
+                    │ require(modname)  Function [LSP]│
+                    │ req~           Snippet [LuaSnip]│
+
+                    ... confirming the first item ...
+
+                    require|
+      ```
+      If `behavior = cmp.confirmBehavior.Insert`, it would insert "requireuire"
+      --]]
+      ["<C-y>"] = cmp.mapping.confirm {
+        select = false,
+        behavior = cmp.ConfirmBehavior.Replace,
+      },
+      ["<CR>"] = function(fallback)
+        if cmp.visible() then
+          cmp.confirm({
+            select = false,
+            behavior = cmp.ConfirmBehavior.Replace,
+          })
+        else
+          fallback()
+        end
+      end,
+
       -- Scoll the doc [b]ack / [f]orward
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
       ["<C-f>"] = cmp.mapping.scroll_docs(4),
-
-      ["<C-y>"] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
-      },
-      ["<CR>"] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
-      },
 
       -- Manually trigger the completion
       ["<C-Space>"] = cmp.mapping.complete({}),
@@ -84,6 +106,7 @@ M.config = function()
       { name = "nvim_lsp" },
       { name = "snippets" },
       { name = "buffer" },
+      { name = "path" },
     }),
   })
 

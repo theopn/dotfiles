@@ -47,15 +47,3 @@ end
 
 vim.api.nvim_create_user_command("RunLua", run_lua, { nargs = 0 })
 
-
--- Add snippets with the custom function in /lua/theovim/completion.lua
--- https://github.com/rafamadriz/friendly-snippets/blob/main/snippets/lua/lua.json
-_G.addSnippet({
-  prefix = "foreach",
-  body = { "for i, ${1:x} in pairs(${2:table}) do", "\t$0", "end" },
-})
-
-_G.addSnippet({
-  prefix = "for",
-  body = { "for ${1:i}=${2:1},${3:10} do", "\t$0", "end" },
-})

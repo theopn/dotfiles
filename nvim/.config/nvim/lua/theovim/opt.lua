@@ -57,7 +57,10 @@ opt.timeoutlen     = 300
 -- Window size
 opt.winminwidth    = 3
 
+-- Completion
+opt.wildmode       = "noselect:full"            --> behavior of <TAB> in cmd completion. Do not pre-select, match full completion
+opt.completeopt    = "noselect,menu,menuone,popup" --> no pre-insert or pre-select, show menu even w/ one item, use popup
+
 -- Others
 opt.mouse          = "a"
-opt.confirm        = true            --> Confirm before exiting with unsaved bufffer(s)
-opt.wildmode       = "noselect:full" --> behavior of <TAB> in cmd completion. Do not pre-select, match full completion
+opt.confirm        = true --> Confirm before exiting with unsaved bufffer(s)
