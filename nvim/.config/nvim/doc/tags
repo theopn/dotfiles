@@ -1,6 +1,7 @@
 theovim	theovim.txt	/*theovim*
 theovim-autocmds	theovim.txt	/*theovim-autocmds*
 theovim-commands	theovim.txt	/*theovim-commands*
+theovim-commenting	theovim.txt	/*theovim-commenting*
 theovim-completion	theovim.txt	/*theovim-completion*
 theovim-documentation	theovim.txt	/*theovim-documentation*
 theovim-ftplugins	theovim.txt	/*theovim-ftplugins*
@@ -10,10 +11,13 @@ theovim-housekeeping	theovim.txt	/*theovim-housekeeping*
 theovim-keymaps	theovim.txt	/*theovim-keymaps*
 theovim-lsp	theovim.txt	/*theovim-lsp*
 theovim-neocodeium	theovim.txt	/*theovim-neocodeium*
+theovim-nvim-cmp	theovim.txt	/*theovim-nvim-cmp*
 theovim-nvim-org-mode	theovim.txt	/*theovim-nvim-org-mode*
 theovim-oil	theovim.txt	/*theovim-oil*
 theovim-options	theovim.txt	/*theovim-options*
+theovim-spell	theovim.txt	/*theovim-spell*
 theovim-treesitter	theovim.txt	/*theovim-treesitter*
 theovim-ui	theovim.txt	/*theovim-ui*
 theovim-vimtex	theovim.txt	/*theovim-vimtex*
+theovim-yanky	theovim.txt	/*theovim-yanky*
 theovim.txt	theovim.txt	/*theovim.txt*
