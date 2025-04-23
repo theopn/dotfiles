@@ -26,28 +26,27 @@ M.config = function()
   vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
   vim.keymap.set("n", "<leader>s.", function()
     -- process CWD
-    local cwd = vim.fn.expand("%:p:h")
+    local cwd = vim.uv.cwd()
     cwd = vim.fs.normalize(cwd)
+
+    -- validate the path
+    local stat = vim.uv.fs_stat(cwd)
+    if not stat or stat.type ~= "directory" then
+      print("Invalid directory!")
+      return
+    end
 
     -- Given the path, fill the dirs table with parant directories
     -- For example, if path = "/Users/someone/dotfiles/nvim"
     -- then dirs = { "/", "/Users", "/Users/someone", "/Users/someone/dotfiles" }
     local dirs = {}
-    while cwd ~= "/" do
-      cwd = vim.fn.fnamemodify(cwd, ":h")
-      -- validate the path
-      local stat = vim.uv.fs_stat(cwd)
-      if stat and stat.type == "directory" then
-        table.insert(dirs, cwd)
-      else
-        print("Invalid directory!")
-        return --> invalid path such as "term://..."
-      end
+    for dir in vim.fs.parents(cwd) do
+      table.insert(dirs, dir)
     end
 
     -- Open a custom fzf to select a directory and launch fzf-files
     fzf.fzf_exec(dirs, {
-      prompt = "Parent Directories> ",
+      prompt = "Parent Directories❯ ",
       actions = {
         ["default"] = function(selected)
           fzf.files({ cwd = selected[1] })
