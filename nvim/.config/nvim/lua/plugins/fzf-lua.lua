@@ -25,31 +25,35 @@ M.config = function()
   vim.keymap.set("n", "<leader>.", fzf.oldfiles, { desc = "[.] Search oldfiles (dot repeat)" })
   vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
   vim.keymap.set("n", "<leader>s.", function()
-    --local fzf = require("fzf-lua")
-    local opts = {
+    -- process CWD
+    local cwd = vim.fn.expand("%:p:h")
+    cwd = vim.fs.normalize(cwd)
+
+    -- Given the path, fill the dirs table with parant directories
+    -- For example, if path = "/Users/someone/dotfiles/nvim"
+    -- then dirs = { "/", "/Users", "/Users/someone", "/Users/someone/dotfiles" }
+    local dirs = {}
+    while cwd ~= "/" do
+      cwd = vim.fn.fnamemodify(cwd, ":h")
+      -- validate the path
+      local stat = vim.uv.fs_stat(cwd)
+      if stat and stat.type == "directory" then
+        table.insert(dirs, cwd)
+      else
+        print("Invalid directory!")
+        return --> invalid path such as "term://..."
+      end
+    end
+
+    -- Open a custom fzf to select a directory and launch fzf-files
+    fzf.fzf_exec(dirs, {
       prompt = "Parent Directories> ",
       actions = {
         ["default"] = function(selected)
           fzf.files({ cwd = selected[1] })
         end
       }
-    }
-
-    -- Get the CWD and validate the path
-    local path = vim.fn.expand("%:p:h")
-    -- NOTE: Improve this
-    if path:sub(1, 1) ~= "/" then return end
-
-    -- Given the path, fill the dirs table with parant directories
-    -- For example, if path = "/Users/someone/dotfiles/nvim"
-    -- then dirs = { "/", "/Users", "/Users/someone", "/Users/someone/dotfiles" }
-    local dirs = {}
-    while path ~= "/" do
-      path = vim.fn.fnamemodify(path, ":h")
-      table.insert(dirs, path)
-    end
-
-    fzf.fzf_exec(dirs, opts)
+    })
   end, { desc = "[S]earch Parent Directories [..]" })
 
   -- Finding a word
