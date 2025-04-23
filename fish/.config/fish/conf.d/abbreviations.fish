@@ -24,10 +24,3 @@ abbr -a caos cd "$HOME/My\ Drive/l1-cache/caos"
 abbr -a dw vim "$HOME/My\ Drive/l1-cache/dw-$(date +'%Y')/index.md"
 abbr -a note $EDITOR "$HOME/My\ Drive/l1-cache/note.md"
 
-# Homebrew
-abbr -a brup "brew update && brew upgrade"
-abbr -a brcl "brew autoremove && brew cleanup && brew doctor"
-
-# Aerospace
-abbr -a aero "aerospace list-windows --all | fzf --bind 'enter:execute($SHELL -c \"aerospace focus --window-id {1}\")+abort'"
-
