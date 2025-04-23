@@ -17,7 +17,7 @@
 
 Welcome back Theo, what did you forget this time?
 
-- Type |gO| to see the table of contents
+- Type |gO| to see the table of content
 - Use |K| (or |CTRL-]|) to jump to the tag under cursor, |CTRL-T| to comeback
 - If you see a path to another file, use |gd| to open the file
 - If you see a hyperlink, use |gx| to open it in your default browser
@@ -278,7 +278,26 @@ See also:
 - |'winbar'|: Neovim window bar, currently not in use
 
 ==============================================================================
-Oil.nvim                                                         *theovim-oil*
+yanky.nvim                                                     *theovim-yanky*
+
+char            action
+----------------------------------------------------------------------
+
+<leader>p       Open yank history
+p               Put yanked text after cursor
+P               Put yanked text before cursor
+gp              Put yanked text after selection
+gP              Put yanked text before selection
+<C-p>           Select previous entry through yank history
+<C-n>           Select next entry through yank history
+
+See also:
+- |yanky.txt|
+- |quote_number|: Explanations on the numbered registers that yanky uses
+- |shada|: The "shared data" file that yanky uses to save yanked content
+
+==============================================================================
+oil.nvim                                                         *theovim-oil*
 
 - `:Oil` to open Oil in the current working directory
 - Use - to navigate to the parent directory (and <CR> to `cd` into a dir)
@@ -330,7 +349,7 @@ r               Refreshes Org-agenda
 <C-c>,          Sets the priority of the headline
 <S-RIGHT>       Cycles the TODO keywords forward
 <S-LEFT>        Cycles the TODO keywords backward
-<C-CR>          Inserts a new TODO headline, respecting the previous contents
+<C-CR>          Inserts a new TODO headline, respecting the previous content
 <C-c><C-d>      Inserts a deadline
 <C-c><C-s>      Inserts a schedule date
 
@@ -484,7 +503,7 @@ See also:
   - |compl-autocomplete|: Example of a simple implementation of trigger char
 
 ==============================================================================
-Completion - nvim-cmp                                       *theovim-nvim-cmp*
+nvim-cmp                                                    *theovim-nvim-cmp*
 
 While the native ins-completion is workable, nvim-cmp and other plug-ins
 offers functionalities like grouping different completion sources, sourcing
