@@ -593,7 +593,10 @@ char            action
                 from the grep result, where as `live_grep` runs
                 Ripgrep on the fly
 
-<leader>s.      Prompts with parent directories and launch
+<leader>s-      Select a parent directory and launch
+                |fzf-lua-opts-files| with the selected directory.
+
+<leader>s.      Enter a directory and launch
                 |fzf-lua-opts-files| with the selected directory.
 
 <leader>ss      [S]earch [S]earch (|fzf-lua-opts-builtin|)
