@@ -24,23 +24,11 @@ M.config = function()
   vim.keymap.set("n", "<leader><leader>", fzf.buffers, { desc = "[ ] Search buffers" })
   vim.keymap.set("n", "<leader>.", fzf.oldfiles, { desc = "[.] Search oldfiles (dot repeat)" })
   vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
-  vim.keymap.set("n", "<leader>s.", function()
-    -- process CWD
-    local cwd = vim.uv.cwd()
-    cwd = vim.fs.normalize(cwd)
 
-    -- validate the path
-    local stat = vim.uv.fs_stat(cwd)
-    if not stat or stat.type ~= "directory" then
-      print("Invalid directory!")
-      return
-    end
-
-    -- Given the path, fill the dirs table with parant directories
-    -- For example, if path = "/Users/someone/dotfiles/nvim"
-    -- then dirs = { "/", "/Users", "/Users/someone", "/Users/someone/dotfiles" }
+  vim.keymap.set("n", "<leader>s-", function()
+    -- Fill the table with parent directories
     local dirs = {}
-    for dir in vim.fs.parents(cwd) do
+    for dir in vim.fs.parents(vim.uv.cwd()) do
       table.insert(dirs, dir)
     end
 
@@ -53,7 +41,24 @@ M.config = function()
         end
       }
     })
-  end, { desc = "[S]earch Parent Directories [..]" })
+  end, { desc = "Select & [S]earch Parent Directories [-]" })
+
+  vim.keymap.set("n", "<leader>s.", function()
+    vim.ui.input({
+      prompt = "Enter a directory: ",
+      completion = "dir",
+    }, function(input)
+      if input then
+        local dir = vim.fs.normalize(input)
+        local stat = vim.uv.fs_stat(dir)
+        if stat and stat.type == "directory" then
+          fzf.files({ cwd = dir })
+        else
+          print("Invalid directory!")
+        end
+      end
+    end)
+  end, { desc = "[S]earch the Given Directory [.]" })
 
   -- Finding a word
   vim.keymap.set("n", "<leader>/", fzf.blines, { desc = "[/] Search words in the buffer" })
