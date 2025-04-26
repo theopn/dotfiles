@@ -319,6 +319,13 @@ char            action
 
 <leader>gd      [G]it [D]iff current buffer.
                 Calls |gitsigns.diffthis()|.
+<leader>gb      [G]it [Blame] current line
+                Calls |gitsigns.blame_line()|
+                with full commit message option
+
+[c              Navigate to previous hunk
+]c              Navigate to next hunk
+
 
 ==============================================================================
 Vimtex                                                        *theovim-vimtex*
