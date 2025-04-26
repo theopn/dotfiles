@@ -17,7 +17,6 @@ function updater -d "Using fzf to pick and run update commands"
     set -a stuff '[Fedora] dnf' '[Linux] flatpak' '[Linux] Firmware Upgrade'
   else if [ $OSTYPE = 'macOS' ]
     set -a stuff '[Homebrew] Update' '[Homebrew] Cleanup' '[Homebrew] Doctor'
-    set -a stuff '[Fedora] dnf' '[Linux] flatpak' '[Linux] Firmware Upgrade'
   end
 
   while true
