@@ -10,8 +10,8 @@ return {
   config = function()
     -- Setup orgmode
     require("orgmode").setup({
-      org_agenda_files = { caos_dir .. "projects/active/*", caos_dir .. "capture/refile.org" },
-      org_default_notes_file = caos_dir .. "capture/refile.org",
+      org_agenda_files = { caos_dir .. "projects/active/*", caos_dir .. "capture.org" },
+      org_default_notes_file = caos_dir .. "capture.org",
 
       org_todo_keywords = { "TODO", "|", "DONE", "CANC" },
       org_deadline_warning_days = 3,
@@ -19,7 +19,7 @@ return {
       org_capture_templates = {
         t = {
           description = "Task",
-          template = "* IDEA %?\n  SCHEDULED: %^t",
+          template = "* TODO %?\n  SCHEDULED: %^t",
         },
         c = {
           description = "Capture Idea",
