@@ -60,6 +60,7 @@ See |theovim-ftplugins| for more information.
 See also:
 - |'tabstop'| documentation outlines four main ways to configure tab in Vim.
   Theovim uses the number 2. Tab lovers will like number 1.
+- |i_CTRL-V|: to insert `<TAB>` even when |expandtab| is set
 
 
 Character rendering:
@@ -79,7 +80,11 @@ Character rendering:
 <
 Note that |lcs-leadmultispace| (indentation guide for space-base indentations)
 change dynamically based on |'shiftwidth'| value.
-See |theovim-core-autocmds| for more information.
+See |theovim-autocmds| for more information.
+
+See also:
+- |ga|: prints the hex value of the character under the cursor
+- |\/%u|: useful when replacing non-breaking spaces (`:%s/\%u00a0/\ /g`)
 
 
 Fold:
