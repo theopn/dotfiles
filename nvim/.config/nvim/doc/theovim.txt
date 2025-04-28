@@ -159,9 +159,9 @@ Default overrides:
 char            action
 ----------------------------------------------------------------------
 
-<ESC>           (normal mode) Clears search highlight (|nohlsearch|).
+<ESC>           [Normal] Clears search highlight (|nohlsearch|).
 
-<ESC><ESC>      (terminal mode) Exits the terminal insert mode.
+<ESC><ESC>      [Terminal] Exits the terminal insert mode.
                 See |CTRL-\_CTRL-N|.
 
 j               If the line at the cursor is not wrapped, perform |j|.
@@ -188,14 +188,13 @@ Custom:
 char            action
 ----------------------------------------------------------------------
 
-jk              (insert mode) ESC.
-<C-s>           (insert mode) Fix the nearest spelling error and put
+jk              [Insert] ESC.
+<C-s>           [Insert] Fix the nearest spelling error and put
                 the cursor back.
 
 <leader>a       Select all.
-<leader>y       (visual mode) Copy to the system clipboard
-                (|quoteplus|).
-<leader>p       (visual mode) Paste the current selection without
+<leader>y       [Visual] Copy to the system clipboard (|quoteplus|)
+<leader>p       [Visual] Paste the current selection without
                 overriding the register.
                 For example, if you have TODO: Finish the example
 
@@ -322,15 +321,22 @@ The following keybinding is enabled for Git buffers:
 char            action
 ----------------------------------------------------------------------
 
-<leader>gd      [G]it [D]iff current buffer.
-                Calls |gitsigns.diffthis()|.
-<leader>gb      [G]it [Blame] current line
-                Calls |gitsigns.blame_line()|
-                with full commit message option
-
 [c              Navigate to previous hunk
 ]c              Navigate to next hunk
 
+<leader>hs      [Normal] Stage/unstage the hunk under the cursor
+                [Visual] Stage/unstage the selected area
+<leader>hr      [Normal] Reset the hunk under the cursor
+                [Visual] Reset the selected area
+<leader>hS      [H]it [S]tage current buffer
+
+<leader>hp      [H]unk [P]review
+
+<leader>hb      [H]unk [Blame] the hunk under the cursor.
+                Calls |gitsigns.blame_line()|
+                with full commit message option.
+
+<leader>hd      [H]unk [D]iff current buffer
 
 ==============================================================================
 Vimtex                                                        *theovim-vimtex*
@@ -648,16 +654,7 @@ fzf-lua also replaces the following |ins-completion| with its own picker:
 ==============================================================================
 Treesitter                                                *theovim-treesitter*
 
-Theovim installs the following TS servers out of the box:
-
-- Bash
-- C
-- C++
-- LaTeX
-- Lua
-- Python
-
-In these filetypes, TS highlight (|nvim-treesitter-highlight-mod|), incremental
+TS highlight (|nvim-treesitter-highlight-mod|), incremental
 selection (|nvim-treesitter-incremental-selection-mod|), and indentation
 (|nvim-treesitter-indentation-mod|) will be enabled.
 
@@ -679,9 +676,9 @@ char            action
 ----------------------------------------------------------------------
 
 <C-space>       Start incremental selection
-<C-space>       (in visual mode) Perform node incremental selection
-<C-s>           (in visual mode) Perform scope incremental selection
-<M-space>       (in visual mode) Perform node decremental selection
+<C-space>       [Visual] Perform node incremental selection
+<C-s>           [Visual] Perform scope incremental selection
+<M-space>       [Visual] Perform node decremental selection
 
 Incremental selection example: >
   local function treesitter-incremental-example()
