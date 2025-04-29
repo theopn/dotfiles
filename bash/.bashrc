@@ -4,7 +4,6 @@ umask 077
 export PATH=$PATH:~cs240/bin
 
 # Env var
-export TERM=xterm-256color
 export EDITOR=vi
 export LESSHISTFILE=-
 
