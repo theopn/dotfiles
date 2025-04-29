@@ -14,9 +14,9 @@ function updater -d "Using fzf to pick and run update commands"
   set -l stuff 'dotfiles'
   if [ $OSTYPE = 'Linux' ]
     # assumes Fedora
-    set -a stuff '[Fedora] dnf' '[Linux] flatpak' '[Linux] Firmware Upgrade'
+    set -a stuff 'Fedora: dnf' 'Linux: flatpak' 'Linux: Firmware Upgrade'
   else if [ $OSTYPE = 'macOS' ]
-    set -a stuff '[Homebrew] Update' '[Homebrew] Cleanup' '[Homebrew] Doctor'
+    set -a stuff 'Homebrew: Update' 'Homebrew: Cleanup' 'Homebrew: Doctor'
   end
 
   while true
@@ -30,22 +30,22 @@ function updater -d "Using fzf to pick and run update commands"
     switch $selected
       case 'dotfiles'
         cd ~/dotfiles/ && git pull && cd - &> /dev/null
-      case '[Homebrew] Update'
+      case 'Homebrew: Update'
         brew update && brew upgrade
         and echo '[Updater] Brew update && upgrade successful'
         or echo '[Updater] Brew update && upgrade failed'
-      case '[Homebrew] Cleanup'
+      case 'Homebrew: Cleanup'
         brew autoremove && brew cleanup
         and echo '[Updater] Brew autoremove && cleanup successful'
         or echo '[Updater] Brew autoremove && cleanup failed'
         echo '[Updater] TIP: Perodically `brew untap` unnecessary sources'
-      case '[Homebrew] Doctor'
+      case 'Homebrew: Doctor'
         brew doctor
-      case '[Fedora] dnf'
+      case 'Fedora: dnf'
         sudo dnf upgrade
-      case '[Linux] flatpak'
+      case 'Linux: flatpak'
         flatpak upgrade
-      case '[Linux] Firmware Upgrade'
+      case 'Linux: Firmware Upgrade'
         fwupdmgr refresh && fwupdmgr get-updates
         echo '[Updater] After confirming the updates, run `fwupdmgr update` manually'
       case '*'
