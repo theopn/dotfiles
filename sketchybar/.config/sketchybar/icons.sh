@@ -7,12 +7,15 @@ export ICON_TASKMANAGER=󱕍
 export ICON_SLEEP=󰌾
 
 # Space icons
-export ICON_PRODUCTIVITY=󰃭      # Space 1 -- Productivity: calendar, Emacs Org mode, etc.
-export ICON_DEV=               # Space 2 -- Development: terminal, code editor
-export ICON_WEB=󰖟               # Space 3 -- Web: browser
-export ICON_MAIL=󰇮              # Space 4 -- Social: email client, chat app
-export ICON_SPACE=             # Space 5 -- Space: joining multiple windows together
-export ICON_MUSIC=󰝚             # Soace 6 -- Entertainment: music player
+export ICON_ORGMODE=
+export ICON_VIM=
+export ICON_FIREFOX=
+export ICON_MAIL=󰇮
+export ICON_EMACS=
+export ICON_SPACE_SHUTTLE=
+export ICON_SPACE_INVADERS=󰯉
+export ICON_SPACE_STATION=󱎃
+export ICON_MUSIC=󰝚
 
 export ICON_CLOCK=󰥔
 export ICON_CALENDAR=󰃶 # Status
