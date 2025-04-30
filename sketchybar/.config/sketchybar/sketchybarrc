@@ -14,9 +14,8 @@ source "$CONFIG_DIR/icons.sh"
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 
-FONT="FantasqueSansM Nerd Font"
-PADDING_L=5
-PADDING_R=5
+FONT="UbuntuMono Nerd Font"
+PADDING=5
 RADIUS=7
 HEIGHT=30
 
@@ -31,8 +30,8 @@ bar=(
   corner_radius=$RADIUS       # Bar corner radius
   border_width=0              # 0 for no border
   blur_radius=0               # 0 for the full transparency
-  padding_left=$PADDING_L
-  padding_right=$PADDING_R
+  padding_left=$PADDING
+  padding_right=$PADDING
   topmost=off                 # Draw the bar over a window and the stock menubar
   #sticky=on                   # Bar stays on when changing workspace
 )
@@ -42,8 +41,8 @@ sketchybar --bar "${bar[@]}"
 ##### Changing Defaults #####
 # https://felixkratz.github.io/SketchyBar/config/items
 default=(
-  padding_left=$PADDING_L
-  padding_right=$PADDING_R
+  padding_left=$PADDING
+  padding_right=$PADDING
 
   background.color=$COLOR_BACKGROUND
   background.border_color=$COLOR_BLUE
@@ -55,15 +54,15 @@ default=(
   icon.font="$FONT:Regular:14.24"
   icon.color=$COLOR_FOREGROUND
   icon.highlight_color=$COLOR_PURPLE
-  icon.padding_left=$PADDING_L
-  icon.padding_right=$PADDING_R
+  icon.padding_left=$PADDING
+  icon.padding_right=$PADDING
   icon.drawing=on
 
   label.font="$FONT:Regular:14.24"
   label.color=$COLOR_FOREGROUND
   label.highlight_color=$COLOR_PURPLE
-  label.padding_left=$PADDING_L
-  label.padding_right=$PADDING_R
+  label.padding_left=$PADDING
+  label.padding_right=$PADDING
   label.drawing=on
 )
 
@@ -76,8 +75,8 @@ sketchybar --add item command.logo left                                         
            --set      command.logo background.color=$COLOR_BACKGROUND                                       \
                                    icon=$ICON_CAT                                                           \
                                    icon.color=$COLOR_RED                                                    \
-                                   icon.padding_left=$PADDING_L                                             \
-                                   icon.padding_right=$PADDING_R                                            \
+                                   icon.padding_left=$PADDING                                               \
+                                   icon.padding_right=$PADDING                                              \
                                    padding_left=0                                                           \
                                    label.drawing=off                                                        \
                                    click_script="sketchybar -m --set \$NAME popup.drawing=toggle"           \
@@ -119,7 +118,7 @@ sketchybar --add item seperator.l1 left                   \
                                    label.drawing=off
 
 
-SPACE_LABELS=("$ICON_PRODUCTIVITY" "$ICON_DEV" "$ICON_WEB" "$ICON_MAIL" "$ICON_SPACE" "$ICON_MUSIC" "")
+SPACE_LABELS=("$ICON_ORGMODE" "$ICON_VIM" "$ICON_FIREFOX" "$ICON_MAIL" "$ICON_EMACS" "$ICON_SPACE_SHUTTLE" "$ICON_SPACE_INVADERS" "$ICON_SPACE_STATION" "$ICON_MUSIC")
 # Mission control items, border will be drawn to current WS only
 #for i in "${!SPACE_ICONS[@]}"
 #do
