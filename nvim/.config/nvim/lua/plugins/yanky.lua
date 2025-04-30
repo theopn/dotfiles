@@ -2,7 +2,7 @@ return {
   "gbprod/yanky.nvim",
   opts = {
     ring = {
-      history_length = 100,
+      history_length = 20,
     },
     highlight = {
       on_put = true,
