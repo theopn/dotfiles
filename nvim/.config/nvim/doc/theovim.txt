@@ -295,6 +295,14 @@ gP              Put yanked text before selection
 <C-p>           Select previous entry through yank history
 <C-n>           Select next entry through yank history
 
+To clear history, use `:YankyClearHistory`.
+You need to use Yanky feature at least once (e.g., `<leader>p`) to lazy load
+the plugin first before executing the clear history command.
+
+Yanky highlight timer is set to 150ms, where as the timeout value of
+|vim.hl.on_yank()| in |TextYankPost| autocmd is set to 300ms (which Yanky
+disables when it is loaded).
+
 See also:
 - |yanky.txt|
 - |quote_number|: Explanations on the numbered registers that yanky uses
