@@ -16,7 +16,7 @@ Tools in this repository are mostly open-source utilities for development.
 
 ```sh
 # Clone the repository
-git git@github.com:theopn/dotfiles.git
+git clone git@github.com:theopn/dotfiles.git
 
 # Homebrew bootstrap
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -126,6 +126,7 @@ brew install nikitabobko/tap/aerospace FelixKratz/formulae/sketchybar
 
 Add Aerospace to your login item in System Settings.
 Aerospace will automatically launch Sketchybar on the startup.
+**Do not use `brew services start sketchybar` to launch Sketchybar** as Sketchybar needs to be launched after Aerospace has been launched (via `after-startup-command` in `aerospace.toml`) in order to correctly render workspaces.
 
 The configuration and keybindings are very close to the default with a couple of tweaks (the `opt`/`alt`/`⌥` key is the modifier):
 
