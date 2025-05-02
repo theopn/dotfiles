@@ -379,6 +379,11 @@ r               Refreshes Org-agenda
 <C-c><C-d>      Inserts a deadline
 <C-c><C-s>      Inserts a schedule date
 
+The custom Org-capture templates (`<leader>oc i` for task ideas,
+`<leader>oc t` for tasks + scheduled dates) inserts `:IDEA:` tags in the end
+of the heading.
+In my custom Org-agenda (`<leader>oa t`), you can view tasks tagged `:IDEA:`.
+
 See also:
 - |orgmode.txt|
 
