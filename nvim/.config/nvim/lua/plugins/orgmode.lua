@@ -17,18 +17,40 @@ return {
       org_deadline_warning_days = 3,
 
       org_capture_templates = {
+        c = {
+          description = "Capture Thoughts",
+          template = "* %?"
+        },
+        i = {
+          description = "Task Idea",
+          template = "* %? :IDEA:",
+        },
         t = {
           description = "Task",
-          template = "* TODO %?\n  SCHEDULED: %^t",
+          template = "* TODO %? :IDEA: \n  SCHEDULED: %^t",
         },
-        c = {
-          description = "Capture Idea",
-          template = "* "
-        }
       },
 
       org_agenda_skip_scheduled_if_done = true,
       org_agenda_skip_deadline_if_done = true,
+      org_agenda_custom_commands = {
+        t = {
+          description = "[T]heo's Personal agenda + IDEA (captured tasks)",
+          types = {
+            {
+              -- Use "tags_todo" if you do not want to see DONE or CANC tasks, but I like to view everything since
+              -- stuff in capture.org has to be refiled somewhere at one point anyway
+              type = "tags",
+              --match = 'TODO="IDEA"',  --> use this in case I decide to make IDEA into an org_todo_keywords
+              match = "IDEA",
+              org_agenda_overriding_header = "IDEA (tasks & task ideas in ~capture.org~)",
+            },
+            {
+              type = "agenda",
+            },
+          },
+        },
+      },
 
       mappings = {
         agenda = {
