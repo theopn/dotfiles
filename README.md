@@ -38,6 +38,10 @@ brew install --cask font-ubuntu-mono-nerd-font
 ./misc/macos-settings.sh
 ```
 
+## Shameless Plug
+
+- [Haunted Tiles](https://github.com/theopn/haunted-tiles/) has dotfiles for my minimal, Dracula-themed Fedora i3/Sway Spin environment.
+
 ## Utilities
 
 ### Shells
@@ -48,7 +52,7 @@ brew install --cask font-ubuntu-mono-nerd-font
     - Minimal plugin manager (`plug`, `update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
     - Rudimentary implementation of trash-cli (`trash`)
     - Git info in the prompt
-- Fish: Main interactive shell
+- **Fish**: Main interactive shell
     - Run `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish` to create `fish_variables` that will persist
     - Abbreviations in `conf.d/abbreviations.fish`
     - Functions in `functions/`
@@ -67,7 +71,7 @@ brew install --cask font-ubuntu-mono-nerd-font
     - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
     - Dracula themed status bar displaying the current session & window information, CWD, and current command running
     - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
-- Wezterm: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
+- **Wezterm**: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
     - Many keybindings in the video now has been changed to match the Tmux keybindings, but the overall functionality remains the same
     - `LDR` = `C-a`
     - `LDR [`: enters the copy mode
@@ -92,13 +96,13 @@ brew install --cask font-ubuntu-mono-nerd-font
 
 ### Text editors:
 
-- Neovim: So many things to talk about, use `:h theovim` to access the help documentation I wrote
+- **Neovim**: My IDE, to-do list, and software engineering project. Reference [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), a 700-lines of help documentation I wrote on custom functions, plugin configurations, and Vim tips I have accumulated over the years
 - Vim: Because Neovim is my main text editor, Vim is kept as a simple Vim config with Vimwiki for my journal writing
     - My Vimrc is built using [Kickstart.vim](https://github.com/theopn/kickstart.vim), features [40-line Vimscript bufferline](https://theopark.me/i-made-a-bufferline-with-40-lines-of-vimscript/)
 
 ### Others
 
-- LF: Simple and fast terminal file manager
+- **LF**: Simple and fast terminal file manager
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
     - `DD`: Move a file to `~/.theoshell/trash`
@@ -132,6 +136,8 @@ The configuration and keybindings are very close to the default with a couple of
 
 - `alt-shift-space`: Toggle between floating and tiling for the current window
 - `alt-enter`: Open Wezterm
+- `alt-w`: Open Terminal with a command to pick a window to focus
+    This feature is a workaround and should be updated when it is implemented natively, see: https://github.com/nikitabobko/AeroSpace/discussions/1371
 - `alt-slash`: Toggle between horizontal and vertical tiling
 - `alt-comma`: Toggle between horizontal and vertical accordion mode
 - `alt-h/j/k/l`: Focus windows
@@ -182,7 +188,7 @@ Casks:
 | **Macvim**      |           |              |             |               | VLC           |             |
 | **Wezterm**     |           |              |             |               |               |             |
 
-### Settings
+### macOS Settings
 
 `./misc/macos-settings.sh` includes some macOS settings like adding a Dock spacer, show hidden files in Finder, changing screenshot format and location, etc.
 
