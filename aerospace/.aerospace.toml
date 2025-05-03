@@ -72,10 +72,16 @@ automatically-unhide-macos-hidden-apps = false
 # 'main' binding mode must be always presented
 # Fallback value (if you omit the key): mode.main.binding = {}
 [mode.main.binding]
-    # toggle floating and tiling
+    # Some keybindings from my Sway config
     alt-shift-space = 'layout floating tiling'
-
     alt-enter = 'exec-and-forget open -n /Applications/Wezterm.app'
+    # you need a certain amount of sleep to avoid race condition due to unreliable macOS event loop
+    alt-w = '''exec-and-forget
+    osascript -e ' tell application "Terminal"
+        do script "aerospace focus --window-id $(aerospace list-windows --all | fzf | cut -d \" \" -f 1); sleep 1 && exit"
+        activate
+    end tell'
+    '''
 
     # All possible keys:
     # - Letters.        a, b, c, ..., z
@@ -201,11 +207,14 @@ automatically-unhide-macos-hidden-apps = false
     run = 'layout floating'
 
 # make terminals floating since they are often used for the fuzzy window picker
-# aerospace list-windows --all | fzf --bind 'enter:execute($SHELL -c "aerospace focus --window-id {1}")+abort'
 [[on-window-detected]]
     if.app-id = 'net.kovidgoyal.kitty'
     run = 'layout floating'
 
 [[on-window-detected]]
     if.app-id = 'com.github.wez.wezterm'
+    run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Terminal'
     run = 'layout floating'
