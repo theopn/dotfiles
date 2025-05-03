@@ -614,20 +614,30 @@ the following dependencies are needed:
 char            action
 ----------------------------------------------------------------------
 
-<leader>.       Search oldfiles
+<leader>.       Searches oldfiles
 
-<leader><leader>Search open buffers
+<leader><leader>Searches open buffers
 
-<leader>/       Using Ripgrep on the current directory (`live_grep`).
+<leader>/       Searches a word in the buffer
+
+<leader>sg      Uses Ripgrep on the current directory (`live_grep`).
+
+                In `setup()`, Ripgrep flags are overriden to add
+                `--hidden` on the top of the default flags
+                (reference `rg_opts` in |fzf-lua-customization|).
+
+                `<C-a>` toggles `--smart-case` flag.
+
+                `<C-g>` toggles between `grep` and `live_grep`.
                 Difference from `:FzfLua grep` is that `grep` prompts
                 the user for a word and merely lets you fuzzy find
                 from the grep result, where as `live_grep` runs
-                Ripgrep on the fly
+                Ripgrep on the fly.
 
-<leader>s-      Select a parent directory and launch
+<leader>s-      Selects a parent directory and launch
                 |fzf-lua-opts-files| with the selected directory.
 
-<leader>s.      Enter a directory and launch
+<leader>s.      Enters a directory and launch
                 |fzf-lua-opts-files| with the selected directory.
 
 <leader>ss      [S]earch [S]earch (|fzf-lua-opts-builtin|)
@@ -636,7 +646,8 @@ char            action
 
 <leader>gs      [G]it [S]tatus.
 
-There are many other keybindings prefixed with `<leader>s` and `<leader>g`.
+There are many more keybindings prefixed with `<leader>s` and `<leader>g`,
+read `plugins/fzf-lua.lua` for more information.
 
 Within the fzf window, the following keybindings are available:
 

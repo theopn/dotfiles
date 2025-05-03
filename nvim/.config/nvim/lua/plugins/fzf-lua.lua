@@ -18,6 +18,33 @@ M.config = function()
         ["<C-f>"] = "preview-page-up",
       },
     },
+    -- https://github.com/ibhagwan/fzf-lua/discussions/1488#discussioncomment-11727981
+    grep = {
+      -- default flags (scroll down in :h fzf-lua-customization) + --hidden
+      -- since -e is a flag for supplying a pattern, it must be located in the end
+      rg_opts = "--column --line-number --no-heading --color=always --smart-case --max-columns=4096 --hidden -e",
+      actions = {
+        ["ctrl-a"] = {
+          fn = function(_, opts)
+            fzf.actions.toggle_flag(
+              _,
+              vim.tbl_extend("force", opts, {
+                toggle_flag = "--smart-case",
+              })
+            )
+          end,
+          desc = "toggle-flags",
+          header = function(o)
+            local flag = o.toggle_smart_case_flag or "--smart-case"
+            if o.cmd and o.cmd:match(fzf.utils.lua_regex_escape(flag)) then
+              return "Disable smart case"
+            else
+              return "Enable smart case"
+            end
+          end,
+        },
+      },
+    },
   })
 
   -- Finding a file
@@ -66,6 +93,7 @@ M.config = function()
 
   -- Others
   vim.keymap.set("n", "<leader>sh", fzf.command_history, { desc = "[S]earch Command [H]istory" })
+  vim.keymap.set("n", "<leader>sc", fzf.colorschemes, { desc = "[S]earch [C]olorschemes" })
   vim.keymap.set("n", "<leader>ss", fzf.builtin, { desc = "[S]earch [S]earch (builtin)" })
   vim.keymap.set("n", "<leader>sr", fzf.resume, { desc = "[S]earch [R]esume" })
 
