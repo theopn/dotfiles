@@ -276,10 +276,102 @@ UI Components                                                     *theovim-ui*
 
 UI components are located in the `lua/ui` directory.
 
+1. \*line components
+For every \*line update events, Neovim translates the \*line string,
+containing "printf style '%' items."
+The list of these items are available in |'statusline'|.
+If your \*line string only contains these items, you can pass it as a
+literal string, such as >
+  vim.opt.statusline = "FILE %t MODIFIED %m %= FT %Y LOC %l:%v"
+<
+
+2. Evaluation
+If you want to pass a dynamic element, such as Git or LSP status of the
+buffer/window, you need to pass a function and evaluate.
+There are two '%' items you can use to evaluate functions:
+
+- |stl-%!|: evaluates based on the current window and buffer
+- |stl-%{|: evaluates based on the window the statusline belongs to
+
+You typically want to use |stl-%{| for window-specific things like winbar
+or statusline with |'laststatus'| is set to 2, and use |stl-%!| for global
+components like tabline or statusline with |'laststatus'| set to 3.
+For example, >
+  vim.opt.winbar = "%{bufnr('%')}"
+  vim.opt.tabline = "%!bufnr('%')"
+<
+Winbar will display the buffer number for the respective windows, and
+tabline will display the buffer number of currently focused window.
+
+`%{%...%}` is almost the same as |stl-%{|, except it expands any '%' items.
+For example, >
+  vim.cmd[[
+    func! Stl_filename() abort
+      return "%t"
+    endfunc
+  ]]
+  vim.opt.statusline = "%{Stl_filename()}"    --> %t
+  vim.opt.statusline = "%{%Stl_filename()%}"  --> theovim.txt
+<
+
+So you typically want to use it over |stl-%{|.
+
+3. Lua function evaluation
+
+To pass Lua function to be evaluated in \*line components, you have the
+following two options.
+
+- |luaeval()| (|lua-eval|): converts Lua values to Vimscript counterparts.
+- |v:lua| (|v:lua-call|): used to access Lua functions in Vimscript.
+
+Both requires the Lua function to be global.
+
+Either works fine, |v:lua| seems to be the go-to way for \*line, but I cannot
+figure out how to use |v:lua| call with arguments, so I sometimes use
+|luaeval()|.
+Following example is configuring winbar with Devicon and LSP information. >
+  Winbar = {}
+
+  Winbar.fileinfo = function()
+    local has_devicons, devicons = pcall(require, "nvim-web-devicons")
+    if not has_devicons then return "%t%m%r" end
+
+    local bufname = vim.fn.bufname()
+    local ext = vim.fn.fnamemodify(bufname, ":e")
+    local icon = devicons.get_icon(bufname, ext, { default = true })
+    return icon .. " %t%m%r"
+  end
+
+  Winbar.lsp_server = function()
+    local clients = vim.lsp.get_clients({
+      bufnr = vim.api.nvim_get_current_buf()
+    })
+    local format = ""
+    for _, client in ipairs(clients) do
+      format = string.format("%s [%s]", format, client.name)
+    end
+    return format
+  end
+
+  Winbar.build = function()
+    return table.concat({
+      Winbar.fileinfo(),
+      "%=",  --> spacer
+      Winbar.lsp_server(),
+    })
+  end
+
+  Winbar.setup = function()
+    -- Use one of the following
+    --vim.opt.winbar = "%{%luaeval('Winbar.build()')%}"
+    vim.opt.winbar = "%{%v:lua.Winbar.build()%}"
+  end
+
+  Winbar.setup()
+<
+
 See also:
-- |setting-tabline|: Guide on configuring Tabline
-- |'statusline'|: Information about Vim Statusline and built-in items
-- |'winbar'|: Neovim window bar, currently not in use
+- |setting-tabline|: a guide on configuring Tabline
 
 ==============================================================================
 yanky.nvim                                                     *theovim-yanky*
