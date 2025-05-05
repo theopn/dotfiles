@@ -7,7 +7,8 @@
 ---   |  |  |  7  ||     7|  !  ||     ||  ||  |  |  |
 ---   !__!  !__!__!!_____!!_____!!_____!!__!!__!__!__!
 ---
---- Provide functions to build a Lua table and Luaeval string used for setting up Vim statusline
+--- Creates Statusline per window, heavily inspired by Mini.Statusline
+--- To be used with laststatus=2
 
 Statusline = {}
 
@@ -163,31 +164,13 @@ end
 
 
 Statusline.setup = function()
+  vim.go.laststatus = 2
+  -- based on https://github.com/echasnovski/mini.statusline/commit/83209bfbca156f9e4a5ec47a2a8ce1e5ce26311d
   -- Safeguard
-  vim.opt.statusline = "%{%v:lua.Statusline.active()%}"
+  vim.go.statusline = "%{%v:lua.Statusline.active()%}"
 
-  local statusline_augroup = vim.api.nvim_create_augroup("Statusline", {})
-  vim.api.nvim_create_autocmd(
-    { "WinEnter", "BufEnter", },
-    {
-      group = statusline_augroup,
-      pattern = "*",
-      callback = function()
-        vim.wo.statusline = "%!v:lua.Statusline.getActiveStatusline()"
-      end,
-      desc = "Set active Statusline"
-    })
-  vim.api.nvim_create_autocmd(
-    { "WinLeave", "BufLeave", },
-    {
-      group = statusline_augroup,
-      pattern = "*",
-      callback = function()
-        -- No need for eval since inactive Statusline is a simple string
-        vim.wo.statusline = Statusline.getInactiveStatusline()
-      end,
-      desc = "Set inactive Statusline"
-    })
+  vim.go.statusline =
+  "%{%(nvim_get_current_win()==#g:actual_curwin || &laststatus==3) ? v:lua.Statusline.getActiveStatusline() : v:lua.Statusline.getInactiveStatusline()%}"
 end
 
 return Statusline
