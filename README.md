@@ -186,6 +186,7 @@ Casks:
 | kitty           | Spotify   |              | Syncthing   | **Maccy**     | OBS           | Thunderbird |
 | MacTex (no GUI) |           |              |             | **Stats**     | **Skim**      |             |
 | **Macvim**      |           |              |             |               | VLC           |             |
+| Neovide         |           |              |             |               |               |             |
 | **Wezterm**     |           |              |             |               |               |             |
 
 ### macOS Settings

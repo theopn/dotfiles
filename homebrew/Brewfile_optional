@@ -15,6 +15,7 @@ cask "docker"
 cask "intellij-idea"
 cask "kitty"
 cask "mactex-no-gui"
+cask "neovide"
 
 cask "discord"
 cask "minecraft"
