@@ -46,6 +46,8 @@ require("theovim.lsp")
 require("theovim.lazy")
 
 -- Custom UI modules
-require("ui.statusline").setup()
 require("ui.tabline").setup()
+--require("ui.statusline-single").setup()
+require("ui.statusline-multi").setup()
+--require("ui.winbar").setup()
 
