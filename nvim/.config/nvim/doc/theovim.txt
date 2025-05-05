@@ -282,7 +282,7 @@ containing "printf style '%' items."
 The list of these items are available in |'statusline'|.
 If your \*line string only contains these items, you can pass it as a
 literal string, such as >
-  vim.opt.statusline = "FILE %t MODIFIED %m %= FT %Y LOC %l:%v"
+  vim.go.statusline = "FILE %t MODIFIED %m %= FT %Y LOC %l:%v"
 <
 
 2. Evaluation
@@ -297,8 +297,8 @@ You typically want to use |stl-%{| for window-specific things like winbar
 or statusline with |'laststatus'| is set to 2, and use |stl-%!| for global
 components like tabline or statusline with |'laststatus'| set to 3.
 For example, >
-  vim.opt.winbar = "%{bufnr('%')}"
-  vim.opt.tabline = "%!bufnr('%')"
+  vim.go.winbar = "%{bufnr('%')}"
+  vim.go.tabline = "%!bufnr('%')"
 <
 Winbar will display the buffer number for the respective windows, and
 tabline will display the buffer number of currently focused window.
@@ -310,11 +310,10 @@ For example, >
       return "%t"
     endfunc
   ]]
-  vim.opt.statusline = "%{Stl_filename()}"    --> %t
-  vim.opt.statusline = "%{%Stl_filename()%}"  --> theovim.txt
+  vim.go.statusline = "%{Stl_filename()}"    --> %t
+  vim.go.statusline = "%{%Stl_filename()%}"  --> theovim.txt
 <
-
-So you typically want to use it over |stl-%{|.
+Thus, you typically want to use it over |stl-%{|.
 
 3. Lua function evaluation
 
@@ -327,8 +326,7 @@ following two options.
 Both requires the Lua function to be global.
 
 Either works fine, |v:lua| seems to be the go-to way for \*line, but I cannot
-figure out how to use |v:lua| call with arguments, so I sometimes use
-|luaeval()|.
+figure out how to use |v:lua| call with arguments.
 Following example is configuring winbar with Devicon and LSP information. >
   Winbar = {}
 
@@ -346,7 +344,9 @@ Following example is configuring winbar with Devicon and LSP information. >
     local clients = vim.lsp.get_clients({
       bufnr = vim.api.nvim_get_current_buf()
     })
-    local format = ""
+    if rawequal(next(clients), nil) then return "" end
+
+    local format = "LSP:"
     for _, client in ipairs(clients) do
       format = string.format("%s [%s]", format, client.name)
     end
@@ -363,11 +363,28 @@ Following example is configuring winbar with Devicon and LSP information. >
 
   Winbar.setup = function()
     -- Use one of the following
-    --vim.opt.winbar = "%{%luaeval('Winbar.build()')%}"
-    vim.opt.winbar = "%{%v:lua.Winbar.build()%}"
+    --vim.go.winbar = "%{%luaeval('Winbar.build()')%}"
+    vim.go.winbar = "%{%v:lua.Winbar.build()%}"
   end
 
   Winbar.setup()
+<
+
+4. Making separate /*line for active and inactive windows
+
+Inspired by Mini.Statusline (commit 83209bf): >
+  Winbar = {}
+
+  Winbar.active = function()
+    return "active Winbar"
+  end
+
+  Winbar.inactive = function()
+    return "inactive Winbar"
+  end
+
+  vim.go.winbar =
+  "%{%(nvim_get_current_win()==#g:actual_curwin) ? v:lua.Winbar.active() : v:lua.Winbar.inactive()%}"
 <
 
 See also:
