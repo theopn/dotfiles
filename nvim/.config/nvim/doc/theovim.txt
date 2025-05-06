@@ -532,6 +532,16 @@ Now, open a buffer of the filetype you specified in the config and run: >vim
 <
 to see if it is attached to the buffer.
 
+To temporarily detatch LSP client from the buffer, pass the client id >
+    assuming server clinet ID is 1 (0 is the current buffer):
+    :lua vim.lsp.buf_detatch_client(0, 1)
+    :lua vim.lsp.buf_attach_client(0, 1)
+<
+
+To stop the server altogether >
+    :lua vim.lsp.stop_client(vim.lsp.get_clients())
+<
+
 See also:
 - |lsp-quickstart|: Guide on configuring LSP servers
 
