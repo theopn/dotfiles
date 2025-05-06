@@ -16,8 +16,11 @@ theovim-nvim-org-mode	theovim.txt	/*theovim-nvim-org-mode*
 theovim-oil	theovim.txt	/*theovim-oil*
 theovim-options	theovim.txt	/*theovim-options*
 theovim-spell	theovim.txt	/*theovim-spell*
+theovim-statusline	theovim.txt	/*theovim-statusline*
+theovim-tabline	theovim.txt	/*theovim-tabline*
 theovim-treesitter	theovim.txt	/*theovim-treesitter*
 theovim-ui	theovim.txt	/*theovim-ui*
 theovim-vimtex	theovim.txt	/*theovim-vimtex*
+theovim-winbar	theovim.txt	/*theovim-winbar*
 theovim-yanky	theovim.txt	/*theovim-yanky*
 theovim.txt	theovim.txt	/*theovim.txt*
