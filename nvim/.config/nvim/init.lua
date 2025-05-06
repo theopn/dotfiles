@@ -31,8 +31,7 @@ require("theovim.lazy")
 
 -- Custom UI modules
 require("ui.tabline").setup()
---require("ui.statusline-single").setup()
-require("ui.statusline-multi").setup()
+require("ui.statusline-global").setup()
 require("ui.winbar").setup()
 
 -- Neovide

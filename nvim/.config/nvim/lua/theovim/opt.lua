@@ -30,7 +30,7 @@ opt.signcolumn     = "yes" --> Render signcolumn always to prevent text shifting
 opt.scrolloff      = 7     --> Keep minimum x number of screen lines above and below the cursor
 opt.termguicolors  = true  --> Enables 24-bit RGB color in the TUI
 opt.showtabline    = 2     --> 0: never, 1: >= 2 tabs, 2: always
-opt.laststatus     = 2     --> 0: never, 1: >= 2 windows, 2: always, 3: always and have one global statusline
+opt.laststatus     = 3     --> 0: never, 1: >= 2 windows, 2: always, 3: always and have one global statusline
 
 -- Char rendering
 opt.list           = true --> Render special char in listchars
