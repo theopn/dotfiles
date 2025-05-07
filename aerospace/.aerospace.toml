@@ -76,7 +76,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-space = 'layout floating tiling'
     alt-enter = 'exec-and-forget open -n /Applications/Wezterm.app'
     # you need a certain amount of sleep to avoid race condition due to unreliable macOS event loop
-    alt-w = '''exec-and-forget
+    alt-d = '''exec-and-forget
     osascript -e ' tell application "Terminal"
         do script "aerospace focus --window-id $(aerospace list-windows --all | fzf | cut -d \" \" -f 1); sleep 1 && exit"
         activate

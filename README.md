@@ -136,7 +136,7 @@ The configuration and keybindings are very close to the default with a couple of
 
 - `alt-shift-space`: Toggle between floating and tiling for the current window
 - `alt-enter`: Open Wezterm
-- `alt-w`: Open Terminal with a command to pick a window to focus
+- `alt-d`: Open Terminal with a command to pick a window to focus
     This feature is a workaround and should be updated when it is implemented natively, see: https://github.com/nikitabobko/AeroSpace/discussions/1371
 - `alt-slash`: Toggle between horizontal and vertical tiling
 - `alt-comma`: Toggle between horizontal and vertical accordion mode
