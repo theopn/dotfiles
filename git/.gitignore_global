@@ -30,6 +30,7 @@ npm-debug.log
 *fdb_latexmk
 *.synctex.gz
 latex.out/
+_minted/
 
 # Bibtex
 *.bbl
