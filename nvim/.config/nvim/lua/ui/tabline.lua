@@ -10,8 +10,7 @@
 --- - Theovim logo
 --- - Clickable tabs
 --- - Number of window iff there is more than one
---- - Clickable close button that changes when curr buf is modified
---- - # of buffer and # of win
+--- - List of buffers in the current tab (up to the first 3 windows)
 
 local M = {}
 
@@ -19,7 +18,7 @@ local theovimlogo = vim.g.have_nerd_font and "Theo  " or "Theovim"
 
 ---Given a list of |window-ID|, filters out abnormal (i.e., float) windows.
 ---The mechanism relies on checking the `relative` field of the window config (|api-win_config|),
----as |api-floatwin| says to "check whether a window is floating, check whether `relative` option ... is non-empty." 
+---as |api-floatwin| says to "check whether a window is floating, check whether `relative` option ... is non-empty."
 ---Example:
 ---```lua
 ---local curr_tab_non_float_wins = filter_float_windows(vim.api.nvim_tabpage_list_wins(0))
@@ -36,81 +35,48 @@ local function filter_float_windows(winids)
   return non_floats
 end
 
----Given a list of buffer numbers (e.g., return value of |bufnr()|), filters out unlisted buffers.
+---Given a list of buffer numbers (e.g., return value of |bufnr()|), filters out duplicates AND unlisted buffers.
 ---Example
 ---```lua
 ---local curr_tab_listed_buffers = filter_listed_buf(vim.fn.tabpagebuflist())
 ---````
----@param buflist table List of buffer numbers
+---@param bufnums table List of buffer numbers
 ---@return table listed List of listed buffers
-local function filter_listed_buf(buflist)
+local function filter_listed_buf(bufnums)
   local listed = {}
-  for _, buf in pairs(buflist) do
-    if vim.fn.buflisted(buf) == 1 then
+  local hash = {}
+  for _, buf in pairs(bufnums) do
+    if vim.fn.buflisted(buf) == 1 and (not hash[buf]) then
       listed[#listed + 1] = buf
+      hash[buf] = true
     end
   end
   return listed
 end
 
---- Returns the Lua list of listed buffers
----@return table listed_buf list of buffers that are loaded, valid, and listed
-local function get_listed_bufs()
-  local listed_buf = {}
-  for buf = 1, vim.fn.bufnr("$") do
-    if vim.fn.buflisted(buf) ~= 0 then
-      listed_buf[#listed_buf + 1] = buf --> direct insertion is faster than table.insert
-    end
-  end
-  return listed_buf
-end
-
---- Format a string for Vim tabline based on tabs and current buffer information
----
---- @return string s Formatted string to be used as a Vim tabline
+---Format a string for Vim tabline based on tabs and current buffer information
+---@return string s Formatted string to be used as a Vim tabline
 M.build = function()
   -- Init + %< to have truncation start after the logo
   local s = "%#TabLineFill#" .. theovimlogo .. " %<"
 
-  local curr_tabnum = vim.fn.tabpagenr()
-  for i = 1, vim.fn.tabpagenr("$") do
-    -- Variables
-    local curr_winnum = vim.fn.tabpagewinnr(i)
-    local winlist = filter_float_windows(vim.api.nvim_tabpage_list_wins(i))
-
-    local buflist = filter_listed_buf(vim.fn.tabpagebuflist(i))
-    local curr_bufnum = buflist[curr_winnum] or ""
-    local curr_bufname = vim.fn.bufname(curr_bufnum)
-    local is_curr_buff_modified = vim.fn.getbufvar(curr_bufnum, "&modified")
+  local curr_tab_id = vim.api.nvim_get_current_tabpage()
+  for _, tab_id in pairs(vim.api.nvim_list_tabpages()) do
+    local tab_num = vim.api.nvim_tabpage_get_number(tab_id)
+    local winlist = filter_float_windows(vim.api.nvim_tabpage_list_wins(tab_id))
 
     -- Basic setup
-    s = s .. ((i == curr_tabnum) and "%#TabLineSel#" or "%#TabLine#") --> diff hl for active and inactive tabs
-    s = s .. " "                                                      --> Left margin/separator
-    s = s .. "%" .. i .. "T"                                          --> make tab clickable (%nT)
-    s = s .. i .. " "                                                 --> Tab index
-
-    -- Current name of the tab
-    local display_curr_bufname = vim.fn.fnamemodify(curr_bufname, ":t")
-    -- Limiting inactive tab name to n character + 3 (... that will be appended)
-    local bufname_len_limit = 24
-    if i ~= curr_tabnum and string.len(display_curr_bufname) > bufname_len_limit + 3 then
-      display_curr_bufname = string.sub(display_curr_bufname, 1, 10) .. "..."
-    end
-    -- Append formatted bufname
-    if display_curr_bufname ~= "" then
-      s = s .. display_curr_bufname
-    else
-      s = s .. "[No Name]"
-    end
+    s = s .. ((tab_id == curr_tab_id) and "%#TabLineSel#" or "%#TabLine#") --> diff hl for active and inactive tabs
+    s = s .. " "                                                           --> Left margin/separator
+    s = s .. "%" .. tab_num .. "T"                                         --> make tab clickable (%nT)
+    s = s .. tab_num .. " "                                                --> Tab index
 
     -- Number of windows in the tab
-    if #winlist > 1 then s = s .. " [" .. (#winlist) .. " Win]" end
+    if #winlist > 1 then s = s .. "[" .. (#winlist) .. " Win]" end
 
     -- Make close button clickable ("%nX", %999X closes the current tab)
-    local curr_tab_close_btn = "%" .. i .. "X"
-    s = s .. curr_tab_close_btn
-    -- Functional close button or modified indicator
-    s = s .. ((is_curr_buff_modified == 1) and " +" or " X")
+    s = s .. "%" .. tab_num .. "X"
+    s = s .. "X"
 
     -- Reset button (%T)
     s = s .. "%T"
@@ -118,13 +84,36 @@ M.build = function()
     s = s .. " %#TabLineFill# "
   end
 
-  -- Number of buffer and tab on the far right
-  s = s .. "%="                                              --> spacer
-  s = s .. "%#TabLineSel#"                                   --> highlight
-  s = s .. string.format(" #Tab: %i", vim.fn.tabpagenr("$")) --> num tabs
-  s = s .. " |"
-  s = s .. string.format(" #Buf: %i", #get_listed_bufs())    --> num buffers
-  s = s .. " "                                               --> right margin
+  s = s .. "%="            --> spacer
+  s = s .. "%#TabLineSel#" --> highlight
+
+  -- List of buffers in the current tab
+  local buflist = filter_listed_buf(vim.fn.tabpagebuflist(vim.api.nvim_tabpage_get_number(curr_tab_id)))
+
+  local curr_bufname = vim.fn.bufname()
+  --local is_curr_buff_modified = vim.fn.getbufvar(curr_bufname, "&modified")
+
+
+  for _, buf in pairs(buflist) do
+    local display_curr_bufname = vim.fn.fnamemodify(vim.fn.bufname(buf), ":t")
+
+    -- Limiting inactive tab name to n character + 3 (... that will be appended)
+    local bufname_len_limit = 10
+    if string.len(display_curr_bufname) > bufname_len_limit + 3 then
+      display_curr_bufname = string.sub(display_curr_bufname, 1, 10) .. "..."
+    end
+
+    -- Empty buffer handling
+    if display_curr_bufname ~= "" then
+      s = s .. display_curr_bufname
+    else
+      s = s .. "[No Name]"
+    end
+
+    -- Append formatted bufname
+  end
+
+  s = s .. " " --> right margin
   return s
 end
 
