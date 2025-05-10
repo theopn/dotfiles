@@ -57,13 +57,16 @@ end
 ---Format a string for Vim tabline based on tabs and current buffer information
 ---@return string s Formatted string to be used as a Vim tabline
 M.build = function()
-  -- Init + %< to have truncation start after the logo
-  local s = "%#TabLineFill#" .. theovimlogo .. " %<"
+  local s = "%#TabLineFill#" .. theovimlogo
 
+  -- Configure left side of the tabline (list of tabs)
   local curr_tab_id = vim.api.nvim_get_current_tabpage()
   for _, tab_id in pairs(vim.api.nvim_list_tabpages()) do
+    -- should not happen
+    if not vim.api.nvim_tabpage_is_valid(tab_id) then break end
+
     local tab_num = vim.api.nvim_tabpage_get_number(tab_id)
-    local winlist = filter_float_windows(vim.api.nvim_tabpage_list_wins(tab_id))
+    local winids = filter_float_windows(vim.api.nvim_tabpage_list_wins(tab_id))
 
     -- Basic setup
     s = s .. ((tab_id == curr_tab_id) and "%#TabLineSel#" or "%#TabLine#") --> diff hl for active and inactive tabs
@@ -71,12 +74,18 @@ M.build = function()
     s = s .. "%" .. tab_num .. "T"                                         --> make tab clickable (%nT)
     s = s .. tab_num .. " "                                                --> Tab index
 
-    -- Number of windows in the tab
-    if #winlist > 1 then s = s .. "[" .. (#winlist) .. " Win]" end
+    -- Number of windows in the tab, if applicable
+    if #winids > 1 then
+      if vim.g.have_nerd_font then
+        s = s .. "[ " .. (#winids) .. "]"
+      else
+        s = s .. "[" .. (#winids) .. " WINS]"
+      end
+    end
 
     -- Make close button clickable ("%nX", %999X closes the current tab)
     s = s .. "%" .. tab_num .. "X"
-    s = s .. "X"
+    s = s .. (vim.g.have_nerd_font and "" or "X")
 
     -- Reset button (%T)
     s = s .. "%T"
@@ -84,36 +93,43 @@ M.build = function()
     s = s .. " %#TabLineFill# "
   end
 
+  -- Add an empty space in the middle
   s = s .. "%="            --> spacer
   s = s .. "%#TabLineSel#" --> highlight
 
+  -- Configure right side of the tabline (list of buffers in the current tab)
   -- List of buffers in the current tab
-  local buflist = filter_listed_buf(vim.fn.tabpagebuflist(vim.api.nvim_tabpage_get_number(curr_tab_id)))
-
-  local curr_bufname = vim.fn.bufname()
-  --local is_curr_buff_modified = vim.fn.getbufvar(curr_bufname, "&modified")
-
-
-  for _, buf in pairs(buflist) do
-    local display_curr_bufname = vim.fn.fnamemodify(vim.fn.bufname(buf), ":t")
-
-    -- Limiting inactive tab name to n character + 3 (... that will be appended)
-    local bufname_len_limit = 10
-    if string.len(display_curr_bufname) > bufname_len_limit + 3 then
-      display_curr_bufname = string.sub(display_curr_bufname, 1, 10) .. "..."
-    end
+  local bufnums = filter_listed_buf(vim.fn.tabpagebuflist(vim.api.nvim_tabpage_get_number(curr_tab_id)))
+  for _, bufnum in pairs(bufnums) do
+    local bufname = vim.fn.fnamemodify(vim.fn.bufname(bufnum), ":t")
 
     -- Empty buffer handling
-    if display_curr_bufname ~= "" then
-      s = s .. display_curr_bufname
-    else
-      s = s .. "[No Name]"
+    if bufname == "" then
+      bufname = "[No Name]"
+    end
+
+    -- Limiting bufname to n character + 3 (accounting for "..." to be appended)
+    local bufname_len_limit = 18
+    if string.len(bufname) > bufname_len_limit + 3 then
+      bufname = string.sub(bufname, 1, bufname_len_limit) .. "..."
+    end
+
+    -- Modified buffer
+    if vim.fn.getbufvar(bufnum, "&modified") == 1 then
+      bufname = bufname .. "[+]"
+    end
+
+    local hl = "%#TabLine#"
+    if vim.fn.bufnr() == bufnum then
+      hl = "%#TabLineSel#"
     end
 
     -- Append formatted bufname
+    s = s .. hl .. " " .. bufname .. " "
   end
 
-  s = s .. " " --> right margin
+  -- Truncate buffer information first
+  s = s .. "%<"
   return s
 end
 
