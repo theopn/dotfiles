@@ -12,11 +12,6 @@
 Statusline = {}
 
 
-Statusline.isNormalBuffer = function()
-  return vim.bo.buftype == ""
-end
-
-
 Statusline.getMode = function()
   local CTRL_S = vim.api.nvim_replace_termcodes("<C-S>", true, true, true)
   local CTRL_V = vim.api.nvim_replace_termcodes("<C-V>", true, true, true)
@@ -47,64 +42,12 @@ Statusline.getMode = function()
 end
 
 
-Statusline.getGit = function()
-  if not Statusline.isNormalBuffer() then return "" end
-
-  local head = vim.b.gitsigns_head or "-"
-  local signs = vim.b.gitsigns_status or ""
-  local icon = vim.g.have_nerd_font and "" or "GIT:"
-
-  if signs == "" then
-    if head == "-" or head == "" then return "" end
-    return string.format(" %s %s ", icon, head)
-  end
-  return string.format(" %s %s %s ", icon, head, signs)
-end
-
-
-Statusline.getDiagnostics = function()
-  if not Statusline.isNormalBuffer() then return "" end
-
-  local str = ""
-
-  local diagnosticLevels = {
-    e = vim.diagnostic.severity.ERROR,
-    w = vim.diagnostic.severity.WARN,
-    i = vim.diagnostic.severity.INFO,
-    h = vim.diagnostic.severity.HINT,
-  }
-
-  local count = {}
-  for name, id in pairs(diagnosticLevels) do
-    count[name] = #vim.diagnostic.get(0, { severity = id })
-  end
-
-  if count.e > 0 then
-    str = str .. " E: " .. count.e
-  end
-  if count.w > 0 then
-    str = str .. " H: " .. count.w
-  end
-  if count.i > 0 then
-    str = str .. " I: " .. count.i
-  end
-  if count.h > 0 then
-    str = str .. " W: " .. count.e
-  end
-
-  return (str ~= "" and str .. " " or "")
-end
-
-
 Statusline.build = function()
   local modeInfo = Statusline.getMode()
   local cwd = string.format("%s %s ",
     (vim.g.have_nerd_font and " " or "CWD: "), vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
   local filepath = (vim.g.have_nerd_font and " " or "") .. "%f"
   local filemodifier = "%m%r "
-
-  local diagnostics = Statusline.getDiagnostics()
-  local git = Statusline.getGit()
 
   local ff = vim.bo.fileformat
   local enc = (vim.bo.fileencoding == "") and (vim.go.encoding) or (vim.bo.fileencoding)
@@ -124,9 +67,6 @@ Statusline.build = function()
     " ",
     filepath,
     filemodifier,
-
-    --diagnostics,
-    --git,
 
     "%#MiniStatuslineInactive#",
     "%=", --> spacer
