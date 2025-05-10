@@ -455,6 +455,12 @@ oil.nvim                                                         *theovim-oil*
 - You can also copy or move files with |yy| and |dd|
   - Creating split windows can be helpful
 - `:w` prompts for your confirmation of the changes you made
+- `g?` for help
+
+Oil.nvim uses unique identifiers to keep track of each file in the buffer.
+If you delete these during the renaming process, Oil.nvim will not be able to
+process the renames. Set |'conceallevel'| to 0 to view literal characters
+containing the identifiers and |visual-block| mode when renaming.
 
 ==============================================================================
 gitsigns.nvim                                               *theovim-gitsigns*
