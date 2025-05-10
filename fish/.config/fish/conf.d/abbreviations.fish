@@ -22,5 +22,4 @@ abbr -a dot cd "$DOT"
 # Personal productivity system and journal shortcuts
 abbr -a caos cd "$HOME/My\ Drive/l1-cache/caos"
 abbr -a dw vim "$HOME/My\ Drive/l1-cache/dw-$(date +'%Y')/index.md"
-abbr -a note $EDITOR "$HOME/My\ Drive/l1-cache/note.md"
 
