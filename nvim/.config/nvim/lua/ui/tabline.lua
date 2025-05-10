@@ -21,11 +21,9 @@ local theovimlogo = vim.g.have_nerd_font and "Theo  " or "Theovim"
 ---@return table listed_buf list of buffers that are loaded, valid, and listed
 local function get_listed_bufs()
   local listed_buf = {}
-  local len = 0 --> direct insertion is faster than table.insert
   for buf = 1, vim.fn.bufnr("$") do
     if vim.fn.buflisted(buf) ~= 0 then
-      len = len + 1
-      listed_buf[len] = buf
+      listed_buf[#listed_buf + 1] = buf --> direct insertion is faster than table.insert
     end
   end
   return listed_buf
@@ -83,12 +81,12 @@ M.build = function()
   end
 
   -- Number of buffer and tab on the far right
-  s = s .. "%="                                           --> spacer
-  s = s .. "%#TabLineSel#"                                --> highlight
-  s = s .. string.format(" #Tab: %i", vim.fn.tabpagenr("$"))  --> num tabs
+  s = s .. "%="                                              --> spacer
+  s = s .. "%#TabLineSel#"                                   --> highlight
+  s = s .. string.format(" #Tab: %i", vim.fn.tabpagenr("$")) --> num tabs
   s = s .. " |"
-  s = s .. string.format(" #Buf: %i", #get_listed_bufs()) --> num buffers
-  s = s .. " "                                            --> right margin
+  s = s .. string.format(" #Buf: %i", #get_listed_bufs())    --> num buffers
+  s = s .. " "                                               --> right margin
   return s
 end
 
