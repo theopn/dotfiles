@@ -56,7 +56,7 @@ M.config = function()
     -- Fill the table with parent directories
     local dirs = {}
     for dir in vim.fs.parents(vim.uv.cwd()) do
-      table.insert(dirs, dir)
+      dirs[#dirs + 1] = dir
     end
 
     -- Open a custom fzf to select a directory and launch fzf-files
