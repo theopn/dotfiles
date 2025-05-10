@@ -17,6 +17,42 @@ local M = {}
 
 local theovimlogo = vim.g.have_nerd_font and "Theo  " or "Theovim"
 
+---Given a list of |window-ID|, filters out abnormal (i.e., float) windows.
+---The mechanism relies on checking the `relative` field of the window config (|api-win_config|),
+---as |api-floatwin| says to "check whether a window is floating, check whether `relative` option ... is non-empty." 
+---Example:
+---```lua
+---local curr_tab_non_float_wins = filter_float_windows(vim.api.nvim_tabpage_list_wins(0))
+---```
+---@param winids table List of window-iD
+---@return table non_floats List of window-ID of non-floating windows
+local function filter_float_windows(winids)
+  local non_floats = {}
+  for _, winid in pairs(winids) do
+    if vim.api.nvim_win_get_config(winid).relative == "" then
+      non_floats[#non_floats + 1] = winid
+    end
+  end
+  return non_floats
+end
+
+---Given a list of buffer numbers (e.g., return value of |bufnr()|), filters out unlisted buffers.
+---Example
+---```lua
+---local curr_tab_listed_buffers = filter_listed_buf(vim.fn.tabpagebuflist())
+---````
+---@param buflist table List of buffer numbers
+---@return table listed List of listed buffers
+local function filter_listed_buf(buflist)
+  local listed = {}
+  for _, buf in pairs(buflist) do
+    if vim.fn.buflisted(buf) == 1 then
+      listed[#listed + 1] = buf
+    end
+  end
+  return listed
+end
+
 --- Returns the Lua list of listed buffers
 ---@return table listed_buf list of buffers that are loaded, valid, and listed
 local function get_listed_bufs()
@@ -39,9 +75,11 @@ M.build = function()
   local curr_tabnum = vim.fn.tabpagenr()
   for i = 1, vim.fn.tabpagenr("$") do
     -- Variables
-    local winnum = vim.fn.tabpagewinnr(i)
-    local buflist = vim.fn.tabpagebuflist(i)
-    local curr_bufnum = buflist[winnum]
+    local curr_winnum = vim.fn.tabpagewinnr(i)
+    local winlist = filter_float_windows(vim.api.nvim_tabpage_list_wins(i))
+
+    local buflist = filter_listed_buf(vim.fn.tabpagebuflist(i))
+    local curr_bufnum = buflist[curr_winnum] or ""
     local curr_bufname = vim.fn.bufname(curr_bufnum)
     local is_curr_buff_modified = vim.fn.getbufvar(curr_bufnum, "&modified")
 
@@ -66,7 +104,7 @@ M.build = function()
     end
 
     -- Number of windows in the tab
-    if #buflist > 1 then s = s .. " [" .. (#buflist) .. " Win]" end
+    if #winlist > 1 then s = s .. " [" .. (#winlist) .. " Win]" end
 
     -- Make close button clickable ("%nX", %999X closes the current tab)
     local curr_tab_close_btn = "%" .. i .. "X"
