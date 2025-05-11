@@ -56,6 +56,7 @@ return {
         agenda = {
           org_agenda_later = { "f", "]" },
           org_agenda_earlier = { "b", "[" },
+          org_agenda_todo = { "<S-RIGHT>" }, --> Remove the default `t` keybinding
         },
         capture = {
           org_capture_finalize = { "<C-c>", "<C-c><C-c>" },

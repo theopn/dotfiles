@@ -510,6 +510,8 @@ g?              Opens the built-in keymap help pop-up
 r               Refreshes Org-agenda
 ]               Moves to the later week
 [               Moves to the earlier week
+<S-RIGHT>       Cycles the TODO keywords forward.
+                The default `t` keybinding is disabled.
 
 <leader>oc      Opens Org-capture
 <C-c><C-c>      Finalizes the capture
