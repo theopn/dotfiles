@@ -19,5 +19,5 @@ abbr --add dotdot --regex '^\.\.+$' --function multicd
 
 abbr -a dot cd "$DOT_DIR"
 
-abbr -a dw vim "$CACHE/dw-$(date +'%Y')/index.md"
+abbr -a dw vim "\"$CACHE_DIR/dw-$(date +'%Y')/index.md\""
 
