@@ -17,9 +17,7 @@ function multicd
 end
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
-abbr -a dot cd "$DOT"
+abbr -a dot cd "$DOT_DIR"
 
-# Personal productivity system and journal shortcuts
-abbr -a caos cd "$HOME/My\ Drive/l1-cache/caos"
-abbr -a dw vim "$HOME/My\ Drive/l1-cache/dw-$(date +'%Y')/index.md"
+abbr -a dw vim "$CACHE/dw-$(date +'%Y')/index.md"
 
