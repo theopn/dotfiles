@@ -4,6 +4,8 @@
 --- (___ (___  ___  ___         _ _
 --- |    |   )|___)|   ) \  )| | | )
 --- |__  |  / |__  |__/   \/ | |  /
+---
+--- Displays Git & LSP information
 
 
 Winbar = {}
@@ -82,7 +84,7 @@ Winbar.build = function(isActive)
     "%#Normal#",
     " ",
 
-    highlight("%#MiniStatuslineFilename#"),
+    highlight("%#MiniStatuslineDevinfo#"),
     getFileicon(),
     "%<", --> Truncation starts here so the icon will be visible at all time
     " ",
@@ -92,7 +94,7 @@ Winbar.build = function(isActive)
     "%m",
     "%r ",
 
-    highlight("%#MiniStatuslineDevinfo#"),
+    highlight("%#MiniStatuslineFilename#"),
     -- Git
     getGitSigns(),
 
@@ -100,7 +102,7 @@ Winbar.build = function(isActive)
     "%=",
 
     -- LSP info
-    highlight("%#MiniStatuslineFilename#"),
+    highlight("%#MiniStatuslineDevinfo#"),
     getLspServers(),
     getDiagnostics(),
 

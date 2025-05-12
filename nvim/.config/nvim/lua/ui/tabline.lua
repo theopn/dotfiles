@@ -8,9 +8,9 @@
 ---
 --- Initialize tabline with:
 --- - Theovim logo
---- - Clickable tabs
+--- - Clickable tab list
 --- - Number of window iff there is more than one
---- - List of buffers in the current tab (up to the first 3 windows)
+--- - List of buffers in the current tab
 
 Tabline = {}
 

@@ -8,6 +8,7 @@
 ---   !__!  !__!__!!_____!!_____!!_____!!__!!__!__!__!
 ---
 --- Global statusline to be used with laststatus=3 and winbar, simpler with no dynamic components
+--- Somewhat inspired by Mini.Statusline, uses its highlight groups
 
 Statusline = {}
 
@@ -52,29 +53,38 @@ Statusline.build = function()
   local ff = vim.bo.fileformat
   local enc = (vim.bo.fileencoding == "") and (vim.go.encoding) or (vim.bo.fileencoding)
   local fileInfo = string.format(" %%Y | %s | %s ", ff:upper(), enc:upper()) --> FT + format + encoding
-  local location = " %l/%L:%2v/%-2{virtcol('$') - 1} %P "
+  local location = " %l/%L:%2v/%-2{virtcol('$') - 1} "
+  local percentage = (vim.g.have_nerd_font and "  " or " ") .. "%P "
 
   return table.concat({
     modeInfo.hl,
     " ",
     modeInfo.name,
     " ",
-    "%#MiniStatuslineFilename#",
+
+    "%#MiniStatuslineDevinfo#",
     " ",
     cwd,
     "%<", --> truncation point
-    "%#MiniStatuslineDevinfo#",
+
+    "%#MiniStatuslineFilename#",
     " ",
     filepath,
     filemodifier,
 
+
     "%#MiniStatuslineInactive#",
     "%=", --> spacer
 
+
     "%#MiniStatuslineFilename#",
     fileInfo,
-    modeInfo.hl,
+
+    "%#MiniStatuslineFileinfo#",
     location,
+
+    modeInfo.hl,
+    percentage,
   })
 end
 
