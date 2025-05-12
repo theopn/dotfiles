@@ -506,7 +506,7 @@ char            action
 
 g?              Opens the built-in keymap help pop-up
 
-<leader>oa      Opens Org-agenda
+<leader>oa      Opens Org-agenda menu
 r               Refreshes Org-agenda
 ]               Moves to the later week
 [               Moves to the earlier week
@@ -524,10 +524,13 @@ r               Refreshes Org-agenda
 <C-c><C-d>      Inserts a deadline
 <C-c><C-s>      Inserts a schedule date
 
-The custom Org-capture templates (`<leader>oc i` for task ideas,
-`<leader>oc t` for tasks + scheduled dates) inserts `:IDEA:` tags in the end
-of the heading.
-In my custom Org-agenda (`<leader>oa t`), you can view tasks tagged `:IDEA:`.
+I made custom Org-capture templates (`<leader>oc i` for task ideas,
+`<leader>oc t` for tasks + scheduled dates), which inserts
+`:IDEA:` tags in the end of the heading. >
+  In `capture.org`:
+  * TODO Spend extra 3 hours to fix this tiny annoyance in Neovim :IDEA:
+<
+Use my custom Org-agenda (`<leader>oa c`) to view headings tagged `:IDEA:`.
 
 See also:
 - |orgmode.txt|

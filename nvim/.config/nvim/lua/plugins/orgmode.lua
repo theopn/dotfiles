@@ -34,8 +34,8 @@ return {
       org_agenda_skip_scheduled_if_done = true,
       org_agenda_skip_deadline_if_done = true,
       org_agenda_custom_commands = {
-        t = {
-          description = "[T]heo's Personal agenda + IDEA (captured tasks)",
+        c = {
+          description = "Theo's [C]ustom Personal agenda + IDEA (captured tasks)",
           types = {
             {
               -- Use "tags_todo" if you do not want to see DONE or CANC tasks, but I like to view everything since
