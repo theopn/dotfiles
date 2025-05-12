@@ -7,14 +7,13 @@
 ---  o  o  o o-o o-o   o   | o o o
 ---
 --- Initialize tabline with:
---- - Theovim logo
 --- - Clickable tab list
 --- - Number of window iff there is more than one
 --- - List of buffers in the current tab
 
 Tabline = {}
 
-local theovimLogo = vim.g.have_nerd_font and "Theo  " or "Theovim"
+local logo = vim.g.have_nerd_font and " 󰬛  " or "Theovim"
 
 
 ---Given a list of |window-ID|, filters out abnormal (i.e., float) windows.
@@ -63,7 +62,7 @@ end
 ---Format a string for Vim tabline based on tabs and buffers on the current tab
 ---@return string s Formatted string to be used as a Vim tabline
 Tabline.build = function()
-  local s = "%#TabLineFill#" .. theovimLogo
+  local s = "%#TabLineFill#" .. logo
 
   -- ========== Left ==========
   -- List of tabs
