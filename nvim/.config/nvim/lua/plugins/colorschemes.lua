@@ -15,7 +15,7 @@ return {
           mini_starter = true,
         },
       })
-      vim.cmd.colorscheme("tokyonight-night")
+      -- vim.cmd.colorscheme("tokyonight-night")
     end,
   },
   {
@@ -26,7 +26,7 @@ return {
       require("kanagawa").setup({
         transparent = vim.g.have_transparent_bg,
       })
-      --vim.cmd.colorscheme("kanagawa")
+      -- vim.cmd.colorscheme("kanagawa-lotus")
     end,
   },
   {
@@ -38,7 +38,7 @@ return {
         style = "cool",
         transparent = vim.g.have_transparent_bg,
       })
-      --vim.cmd.colorscheme("onedark")
+      -- vim.cmd.colorscheme("onedark")
     end,
   },
   {
@@ -47,9 +47,11 @@ return {
     priority = 1000,
     config = function()
       require("nightfox").setup({
-        transparent = vim.g.have_transparent_bg,
+        options = {
+          transparent = vim.g.have_transparent_bg,
+        },
       })
-      --vim.cmd.colorscheme("nightfox")
+      vim.cmd.colorscheme("nordfox")
     end,
   },
 }
