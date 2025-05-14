@@ -104,6 +104,7 @@ brew install --cask font-ubuntu-mono-nerd-font
 ### Others
 
 - **LF**: Simple and fast terminal file manager
+    - Install [`bat`](https://github.com/sharkdp/bat), install [Poppler](https://poppler.freedesktop.org/) for `pdftotext` command, and use a terminal emulator supporting [Kitty's icat protocol](https://sw.kovidgoyal.net/kitty/kittens/icat/) for my custom `preview` script to work
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
     - `DD`: Move a file to `~/.theoshell/trash`
@@ -159,7 +160,8 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 Formulae:
 
-- fd: faster alternative to `find` (Neovim Telescope dependency)
+- **bat**: `cat` with syntax highlighting (LF preview script dependency)
+- **fd**: faster alternative to `find` (Neovim Telescope dependency)
 - ffmpeg: `ffmpeg -i in.xxx out.yyy`
 - figlet: ASCII art generator
 - **fish**: De facto default shell
@@ -170,9 +172,10 @@ Formulae:
 - imagemagick: Command line image manipulation
 - **lf**: My favorite CLI file manager
 - **lua**
-- **neovim**: My second home
+- **neovim**: Purpose of my life
 - **node**
-- ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
+- **ripgrep**: faster alternative to `grep` (Neovim Telescope dependency)
+- **poppler**: `pdftotext in.pdf -` (LF preview script dependency)
 - **rust**
 - **tmux**: Universal terminal multiplexer
 - tree: Tree-like directory view

@@ -2,13 +2,11 @@ tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/core"
 
-brew "fd"
 brew "ffmpeg"
 brew "figlet"
 brew "git-fiter-repo"
 brew "hugo"
 brew "imagemagick"
-brew "ripgrep"
 brew "tree"
 
 cask "docker"
