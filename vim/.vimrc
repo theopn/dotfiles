@@ -276,7 +276,8 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'ghifarit53/tokyonight-vim'
+"Plug 'ghifarit53/tokyonight-vim'
+Plug 'nordtheme/vim'
 Plug 'vim-airline/vim-airline'
 
 Plug 'vimwiki/vimwiki'
@@ -286,9 +287,10 @@ call plug#end()
 
 " {{{ colorscheme
 set termguicolors
-let g:tokyonight_style = 'night'  " available: night, storm
-let g:tokyonight_enable_italic = 0
-colorscheme tokyonight
+" let g:tokyonight_style = 'night'  " available: night, storm
+" let g:tokyonight_enable_italic = 0
+" colorscheme tokyonight
+colorscheme nord
 " }}}
 
 
