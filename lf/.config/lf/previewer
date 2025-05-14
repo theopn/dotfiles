@@ -1,0 +1,36 @@
+#!/bin/sh
+draw() {
+  kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
+  exit 1
+}
+
+batorcat() {
+  file="$1"
+  shift
+  if command -v bat > /dev/null 2>&1; then
+    bat --color=always --pager=never "$file" "$@"
+  else
+    cat "$file"
+  fi
+}
+
+file="$1"
+w="$2"
+h="$3"
+x="$4"
+y="$5"
+
+case "$(file -Lb --mime-type "$file")" in
+  image/*)
+    draw "$file"
+    ;;
+  application/pdf)
+    pdftotext "$1" -
+    ;;
+  *)
+    batorcat "$1"
+    ;;
+esac
+
+
+exit 0

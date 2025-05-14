@@ -8,6 +8,12 @@
 # Official Document: https://pkg.go.dev/github.com/gokcehan/lf
 # Example config: https://github.com/gokcehan/lf/blob/master/etc/lfrc.example
 
+# Preview settings
+# Requires: bat pdftotext (poppler), Kitty (or other terminal supporting) icat protocol
+set preview
+set previewer ~/.config/lf/previewer
+set cleaner ~/.config/lf/cleaner
+
 # Like vim settings, put no in front ot the arrtibute to negate
 set nodrawbox
 set hidden
@@ -16,7 +22,6 @@ set ignorecase
 set incsearch
 set nomouse
 set number
-set preview
 set relativenumber
 set smartcase
 
