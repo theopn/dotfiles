@@ -9,8 +9,11 @@
 # Example config: https://github.com/gokcehan/lf/blob/master/etc/lfrc.example
 
 # Preview settings
-# Requires: bat pdftotext (poppler), Kitty (or other terminal supporting) icat protocol
+# Requires: bat, pdftotext (poppler),
+#           chafa + terminal with Sixel support
+#           OR a terminal with Kitty icat protocol support
 set preview
+set sixel
 set previewer ~/.config/lf/previewer
 set cleaner ~/.config/lf/cleaner
 

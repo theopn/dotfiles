@@ -104,7 +104,8 @@ brew install --cask font-ubuntu-mono-nerd-font
 ### Others
 
 - **LF**: Simple and fast terminal file manager
-    - Install [`bat`](https://github.com/sharkdp/bat), install [Poppler](https://poppler.freedesktop.org/) for `pdftotext` command, and use a terminal emulator supporting [Kitty's icat protocol](https://sw.kovidgoyal.net/kitty/kittens/icat/) for my custom `preview` script to work
+    - For my custom `preview` script support: install `bat` and Poppler (for `pdftotext` command);
+        make sure your terminal has either (1) [Sixel](https://www.arewesixelyet.com/) support and has `chafa` installed OR (2) Kitty's `icat` protocol support
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
     - `DD`: Move a file to `~/.theoshell/trash`
@@ -160,8 +161,9 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 
 Formulae:
 
-- **bat**: `cat` with syntax highlighting (LF preview script dependency)
-- **fd**: faster alternative to `find` (Neovim Telescope dependency)
+- bat: `cat` with syntax highlighting (LF preview script dependency)
+- chafa: convert images to Sixel format (Lf preview script dependency)
+- fd: faster alternative to `find` (Neovim Telescope dependency)
 - ffmpeg: `ffmpeg -i in.xxx out.yyy`
 - figlet: ASCII art generator
 - **fish**: De facto default shell
@@ -174,8 +176,8 @@ Formulae:
 - **lua**
 - **neovim**: Purpose of my life
 - **node**
-- **ripgrep**: faster alternative to `grep` (Neovim Telescope dependency)
-- **poppler**: `pdftotext in.pdf -` (LF preview script dependency)
+- poppler: `pdftotext in.pdf -` (LF preview script dependency)
+- ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
 - **tmux**: Universal terminal multiplexer
 - tree: Tree-like directory view
@@ -208,7 +210,7 @@ See the [list of archived configurations](./archive/README.md).
 
 - macOS wallpaper: [arsenicxs](https://www.deviantart.com/arsenixc/art/Tokyo-Street-Night-684804497)
 - Aerospace: [`default-config.toml`](https://nikitabobko.github.io/AeroSpace/guide.html#default-config) and [DevOps Toolbox's Dotfiles](https://github.com/omerxx/dotfiles)
-- LF: [example `lfrc`](https://github.com/gokcehan/lf/tree/master/etc) and [Brodie Robertson's Dotfiles](https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc)
+- LF: [example `lfrc`](https://github.com/gokcehan/lf/tree/master/etc), [Brodie Robertson's Dotfiles](https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc), and [`lfimg` for `batorcat` function](https://github.com/thimc/lfimg/blob/master/preview)
 - Neovim: [Theovim](https://github.com/theopn/theovim) but it has changed a lot since Neovim 0.11
 - Sketchybar: [the default plugins](https://github.com/FelixKratz/SketchyBar/tree/master/plugins)
 - Vim: [kickstart.vim hehe](https://github.com/theopn/kickstart.vim)

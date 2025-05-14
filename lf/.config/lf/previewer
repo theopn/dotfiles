@@ -1,7 +1,14 @@
 #!/bin/sh
+
+# https://github.com/gokcehan/lf/wiki/Previews
+
 draw() {
-  kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
-  exit 1
+  if [ "$TERM" == "xterm-kitty" ]; then
+    kitten icat --stdin no --transfer-mode memory --place "${w}x${h}@${x}x${y}" "$1" </dev/null >/dev/tty
+    exit 1
+  fi
+
+  chafa -f sixel -s "${w}x${h}" --animate off --polite on -t 1 --bg black "$1"
 }
 
 batorcat() {
@@ -32,5 +39,3 @@ case "$(file -Lb --mime-type "$file")" in
     ;;
 esac
 
-
-exit 0
