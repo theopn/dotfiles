@@ -106,6 +106,7 @@ brew install --cask font-ubuntu-mono-nerd-font
 - **LF**: Simple and fast terminal file manager
     - For my custom `preview` script support: install `bat` and Poppler (for `pdftotext` command);
         make sure your terminal has either (1) [Sixel](https://www.arewesixelyet.com/) support and has `chafa` installed OR (2) Kitty's `icat` protocol support
+    - If preview breaks, which might happen while displaying images in Tmux, use `C-l` to reset the screen
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
     - `DD`: Move a file to `~/.theoshell/trash`

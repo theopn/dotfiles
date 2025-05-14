@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # https://github.com/gokcehan/lf/wiki/Previews
+# https://github.com/xlucn/dotfiles/tree/master/lf
 
 draw() {
   if [ "$TERM" == "xterm-kitty" ]; then
@@ -27,15 +28,36 @@ h="$3"
 x="$4"
 y="$5"
 
+case "$file" in
+  *.tar*)
+    tar tf "$file"
+    exit
+    ;;
+  *.zip)
+    unzip -l "$file"
+    exit
+    ;;
+  *.pdf)
+    pdftotext "$file" -
+    exit
+    ;;
+  *) ;;  # fallback to mime type
+esac
+
+
 case "$(file -Lb --mime-type "$file")" in
   image/*)
     draw "$file"
+    exit
     ;;
-  application/pdf)
-    pdftotext "$1" -
+  text/*)
+    batorcat "$file"
+    exit
     ;;
-  *)
-    batorcat "$1"
-    ;;
+  *) ;;  # fallback to displaying mime type
 esac
+
+echo '----- File Type Classification -----'
+file --dereference --brief -- "$file"
+echo '------------------------------------'
 
