@@ -93,6 +93,7 @@ brew install --cask font-ubuntu-mono-nerd-font
         - `LDR r`: enters the `resize_pane` mode where you can resize the pane with `<>-+` and `ESC` or `RET` to confirm
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
 - Kitty: The secondary terminal
+    - Colorscheme can be changed with `kitten themes`
 
 ### Text editors:
 
