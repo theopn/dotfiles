@@ -9,7 +9,7 @@ draw() {
     exit 1
   fi
 
-  chafa -f sixel -s "${w}x${h}" --animate off --polite on -t 1 --bg black "$1"
+  chafa -f sixel -s "${w}x${h}" --animate off --polite on -t 1 --bg "#232831" "$1"
 }
 
 batorcat() {

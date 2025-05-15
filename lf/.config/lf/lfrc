@@ -8,6 +8,10 @@
 # Official Document: https://pkg.go.dev/github.com/gokcehan/lf
 # Example config: https://github.com/gokcehan/lf/blob/master/etc/lfrc.example
 
+# Removing username from the prompts
+#set promptfmt "\033[34;1m%d\033[0m\033[1m%f\033[0m"
+#set statfmt "\033[36m%p\033[0m| %c| %g| %S| %t| -> %l"
+
 # Preview settings
 # Requires: bat, pdftotext (poppler),
 #           chafa + terminal with Sixel support
