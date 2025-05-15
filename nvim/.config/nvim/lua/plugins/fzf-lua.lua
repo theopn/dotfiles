@@ -52,7 +52,23 @@ M.config = function()
   vim.keymap.set("n", "<leader>.", fzf.oldfiles, { desc = "[.] Search oldfiles (dot repeat)" })
   vim.keymap.set("n", "<leader>sf", fzf.files, { desc = "[S]earch [F]iles" })
 
-  vim.keymap.set("n", "<leader>s-", function()
+  -- Finding a word
+  vim.keymap.set("n", "<leader>/", fzf.blines, { desc = "[/] Search words in the buffer" })
+  vim.keymap.set("n", "<leader>sg", fzf.live_grep, { desc = "[S]earch by Live rip[G]rep (current directory)" })
+
+  -- Others
+  vim.keymap.set("n", "<leader>sj", fzf.jumps, { desc = "[S]earch [J]umplist" })
+  vim.keymap.set("n", "<leader>sh", fzf.command_history, { desc = "[S]earch Command [H]istory" })
+  vim.keymap.set("n", "<leader>sc", fzf.colorschemes, { desc = "[S]earch [C]olorschemes" })
+  vim.keymap.set("n", "<leader>ss", fzf.builtin, { desc = "[S]earch [S]earch (builtin)" })
+  vim.keymap.set("n", "<leader>sr", fzf.resume, { desc = "[S]earch [R]esume" })
+
+  -- Git
+  vim.keymap.set("n", "<leader>gc", fzf.git_commits, { desc = "Search [G]it [C]ommits" })
+  vim.keymap.set("n", "<leader>gs", fzf.git_status, { desc = "Search [G]it [S]tatus" })
+
+  -- Directory related custom functions
+  vim.keymap.set("n", "<leader>d-", function()
     -- Fill the table with parent directories
     local dirs = {}
     for dir in vim.fs.parents(vim.uv.cwd()) do
@@ -68,9 +84,9 @@ M.config = function()
         end
       }
     })
-  end, { desc = "Select & [S]earch Parent Directories [-]" })
+  end, { desc = "Select & Search Parent([-]) [D]irectories" })
 
-  vim.keymap.set("n", "<leader>s.", function()
+  vim.keymap.set("n", "<leader>di", function()
     vim.ui.input({
       prompt = "Enter a directory: ",
       completion = "dir",
@@ -85,21 +101,18 @@ M.config = function()
         end
       end
     end)
-  end, { desc = "[S]earch the Given Directory [.]" })
+  end, { desc = "Search the [D]irectory of your [I]nput" })
 
-  -- Finding a word
-  vim.keymap.set("n", "<leader>/", fzf.blines, { desc = "[/] Search words in the buffer" })
-  vim.keymap.set("n", "<leader>sg", fzf.live_grep, { desc = "[S]earch by Live rip[G]rep (current directory)" })
-
-  -- Others
-  vim.keymap.set("n", "<leader>sh", fzf.command_history, { desc = "[S]earch Command [H]istory" })
-  vim.keymap.set("n", "<leader>sc", fzf.colorschemes, { desc = "[S]earch [C]olorschemes" })
-  vim.keymap.set("n", "<leader>ss", fzf.builtin, { desc = "[S]earch [S]earch (builtin)" })
-  vim.keymap.set("n", "<leader>sr", fzf.resume, { desc = "[S]earch [R]esume" })
-
-  -- Git
-  vim.keymap.set("n", "<leader>gc", fzf.git_commits, { desc = "Search [G]it [C]ommits" })
-  vim.keymap.set("n", "<leader>gs", fzf.git_status, { desc = "Search [G]it [S]tatus" })
+  vim.keymap.set("n", "<leader>dc", function()
+    fzf.fzf_exec("fd --hidden --type d", {
+      prompt = "Directories> ",
+      actions = {
+        ["default"] = function(selected)
+          vim.cmd("cd " .. selected[1])
+        end,
+      }
+    })
+  end, { desc = "Search and [C]hange CW[D]" })
 
   -- Override Vim defaults
   vim.keymap.set({ "n", "i" }, "<C-x><C-f>",
