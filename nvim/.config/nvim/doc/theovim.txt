@@ -803,20 +803,24 @@ char            action
                 from the grep result, where as `live_grep` runs
                 Ripgrep on the fly.
 
-<leader>s-      Selects a parent directory and launch
-                |fzf-lua-opts-files| with the selected directory.
-
-<leader>s.      Enters a directory and launch
-                |fzf-lua-opts-files| with the selected directory.
-
 <leader>ss      [S]earch [S]earch (|fzf-lua-opts-builtin|)
+
+<leader>d-      Selects a parent directory and launch
+                |fzf-lua-opts-files| with the selected directory.
+
+<leader>di      Enters a directory and launch
+                |fzf-lua-opts-files| with the selected directory.
 
 <leader>gc      [G]it [C]ommits.
 
 <leader>gs      [G]it [S]tatus.
 
-There are many more keybindings prefixed with `<leader>s` and `<leader>g`,
-read `plugins/fzf-lua.lua` for more information.
+There are more custom keymaps are prefixed with one of:
+- `[S]earch`
+- `[D]irectory`
+- `[G]it`
+
+Read `plugins/fzf-lua.lua` for more information.
 
 Within the fzf window, the following keybindings are available:
 
