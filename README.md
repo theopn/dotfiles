@@ -1,6 +1,6 @@
 # Theo's dotfiles
 
-| ![macos-sc](./assets/macos-sc-nordfox.jpg) |
+| ![macos-sc](./assets/macos-sc.jpg) |
 |:--:|
 | my macbook |
 
