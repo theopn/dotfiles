@@ -39,9 +39,20 @@ See also:
 ==============================================================================
 Options                                                      *theovim-options*
 
-To view the currently set optioon, use: >
-  :lua =vim.bo.<opt>
+To view the currently set options (or any Lua object), use: >
+  := vim.o.listchars
+  # or Vimscript
+  :set listchars?
+
+  # Followings are all equivalent
+  :lua = vim.o.listchars
+  :lua vim.print(vim.o.listchars)
+  :lua print(vim.inspect(vim.o.listchars))
 >
+
+See also:
+- |:=| and |:lua|
+- |vim.print()| and |vim.inspect()|
 
 Tab/Indentation:
 By default,
@@ -887,7 +898,7 @@ See also:
 - |treesitter|: Neovim built-in treesitter library
 
 ==============================================================================
-Housekeeping                                             *theovim-colorscheme*
+Colorscheme                                              *theovim-colorscheme*
                                                             *theovim-nightfox*
 
 My favorite colorschemes:
@@ -897,7 +908,7 @@ My favorite colorschemes:
 - nordfox
 
 To get the palettes used by each Nightfox colorscheme: >
-    :lua print(vim.inspect(require("nightfox.palette").load("nordfox")))
+    := require("nightfox.palette").load("nordfox")
 <
 
 ==============================================================================
