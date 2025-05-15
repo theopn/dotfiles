@@ -76,8 +76,8 @@ function fish_greeting -d "Theo's Custom Greetin Msg"
   echo
   echo -e "  " "$brgreen" "Welcome back $USER!"                         "$normal"
   echo -e "  " "$brred"   "$oliver"                                     "$normal"
-  echo -e "  " "$yellow"  " Fish Open:\t"    "$bryellow$timestamp"     "$normal"
-  echo -e "  " "$blue"    " Hostname :\t"    "$brmagenta$my_hostname"  "$normal"
-  echo -e "  " "$magenta" " Uptime   :\t"    "$brblue$uptime"          "$normal"
+  echo -e "  " "$yellow"  " Fish Opened:\t"    "$bryellow$timestamp"     "$normal"
+  echo -e "  " "$blue"    " Hostname  :\t"    "$brmagenta$my_hostname"  "$normal"
+  echo -e "  " "$magenta" " Uptime     :\t"    "$brblue$uptime"          "$normal"
   echo
 end
