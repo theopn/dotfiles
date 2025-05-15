@@ -1,6 +1,6 @@
 # Theo's dotfiles
 
-| ![macos-sc](./assets/macos-sc.jpg) |
+| ![macos-sc](./assets/macos-sc-nordfox.jpg) |
 |:--:|
 | my macbook |
 
@@ -37,10 +37,6 @@ brew install --cask font-ubuntu-mono-nerd-font
 # macOS settings
 ./misc/macos-settings.sh
 ```
-
-## Shameless Plug
-
-- [Haunted Tiles](https://github.com/theopn/haunted-tiles/) has dotfiles for my minimal, Dracula-themed Fedora i3/Sway Spin environment.
 
 ## Utilities
 
@@ -216,4 +212,5 @@ See the [list of archived configurations](./archive/README.md).
 - Sketchybar: [the default plugins](https://github.com/FelixKratz/SketchyBar/tree/master/plugins)
 - Vim: [kickstart.vim hehe](https://github.com/theopn/kickstart.vim)
 - Wezterm: [my Wezterm config video](https://www.youtube.com/watch?v=I3ipo8NxsjY)
+- [Haunted Tiles](https://github.com/theopn/haunted-tiles/) has dotfiles for my minimal, Dracula-themed Fedora i3/Sway Spin environment.
 
