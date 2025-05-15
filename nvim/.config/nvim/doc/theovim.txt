@@ -910,6 +910,27 @@ My favorite colorschemes:
 To get the palettes used by each Nightfox colorscheme: >
     := require("nightfox.palette").load("nordfox")
 <
+==============================================================================
+Neovide                                                      *theovim-neovide*
+
+Configure application options in `$XDG_CONFIG_HOME/neovide/config.toml`: >
+  # These options are ones you can pass as command line arguments
+  # e.g., $ neovide --frame buttonless --title-hidden
+  frame = "buttonless"
+  title-hidden = true
+
+  # These are runtime options
+  [font]
+  # Will use the bundled Fira Code Nerd Font by default
+  normal = ["UbuntuMono Nerd Font"]
+  size = 16.0
+
+<
+You can also configure font using |'guifont'| option: >
+  if vim.g.neovide then
+    vim.o.guifont = "UbuntuMono Nerd Font:h16"
+  end
+<
 
 ==============================================================================
 Documentation                                          *theovim-documentation*

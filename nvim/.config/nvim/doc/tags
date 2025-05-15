@@ -12,6 +12,7 @@ theovim-housekeeping	theovim.txt	/*theovim-housekeeping*
 theovim-keymaps	theovim.txt	/*theovim-keymaps*
 theovim-lsp	theovim.txt	/*theovim-lsp*
 theovim-neocodeium	theovim.txt	/*theovim-neocodeium*
+theovim-neovide	theovim.txt	/*theovim-neovide*
 theovim-nightfox	theovim.txt	/*theovim-nightfox*
 theovim-nvim-cmp	theovim.txt	/*theovim-nvim-cmp*
 theovim-nvim-org-mode	theovim.txt	/*theovim-nvim-org-mode*
