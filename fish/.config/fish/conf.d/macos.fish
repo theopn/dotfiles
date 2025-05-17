@@ -11,5 +11,6 @@ end
 
 if [ $OSTYPE = 'macOS' ]
   fish_add_path /opt/homebrew/bin/
+  fish_add_path /opt/homebrew/sbin/
   abbr -a aero "aerospace list-windows --all | fzf --bind 'enter:execute($SHELL -c \"aerospace focus --window-id {1}\")+abort'"
 end
