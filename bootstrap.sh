@@ -13,6 +13,7 @@ stow git
 stow kitty
 stow lf
 stow nvim
+stow neovide
 stow tmux
 stow --no-folding vim
 stow wezterm

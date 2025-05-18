@@ -1,0 +1,9 @@
+# These options are ones you can pass as command line arguments
+# e.g., $ neovide --frame buttonless --title-hidden
+frame = "transparent"
+title-hidden = true
+
+# These are runtime options
+[font]
+normal = ["UbuntuMono Nerd Font"] # Will use the bundled Fira Code Nerd Font by default
+size = 16.0
