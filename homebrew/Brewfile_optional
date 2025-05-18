@@ -4,6 +4,7 @@ tap "homebrew/core"
 
 brew "bat"
 brew "chafa"
+brew "fastfetch"
 brew "fd"
 brew "ffmpeg"
 brew "figlet"
