@@ -19,7 +19,7 @@ Welcome back Theo, what did you forget this time?
 
 - Type |gO| to see the table of content
 - Use |K| (or |CTRL-]|) to jump to the tag under cursor, |CTRL-T| to comeback
-- If you see a path to another file, use |gd| to open the file
+- If you see a path to another file, use |gf| to open the file
 - If you see a hyperlink, use |gx| to open it in your default browser
   - Try this out with Vim Cheat Sheet website:
     https://vim.rtorr.com/
@@ -914,13 +914,27 @@ My favorite colorschemes:
 To get the palettes used by each Nightfox colorscheme: >
     := require("nightfox.palette").load("nordfox")
 <
+
+Transparency is controlled with `vim.g.have_transparent_bg` variable defined
+in `init.lua`, which is passed as an argument to `transparent` option of each
+colorschemes' `setup()` functions, where most colorschemes invoke >
+    :hi Normal guibg=NONE ctermbg=NONE
+<
+Thus, it is not "transparency" in true sense, it will simply use the
+background of the terminal emulator.
+For using transparency with Neovide, see |theovim-neovide|.
+
+See also:
+- `g:var`: global-variable
+- `:hi`: manually setting highlights
+
 ==============================================================================
 Neovide                                                      *theovim-neovide*
 
 Configure application options in `$XDG_CONFIG_HOME/neovide/config.toml`: >
   # These options are ones you can pass as command line arguments
-  # e.g., $ neovide --frame buttonless --title-hidden
-  frame = "buttonless"
+  # e.g., $ neovide --frame transparent --title-hidden
+  frame = "transparent"  # full or none, transparent or buttonless for macOS
   title-hidden = true
 
   # These are runtime options
@@ -933,6 +947,19 @@ Configure application options in `$XDG_CONFIG_HOME/neovide/config.toml`: >
 You can also configure font using |'guifont'| option: >
   if vim.g.neovide then
     vim.o.guifont = "UbuntuMono Nerd Font:h16"
+  end
+<
+
+As explained in the |theovim-colorscheme| section, most colorschemes set
+background highlight group to `NONE` in order to inherit the transparent
+background from the terminal emulator.
+Since Neovide does not have the default terminal background, configuring
+transparency through this way will result in black background.
+Instead, turn the colorscheme's transparency option off and set >
+  if vim.g.neovide then
+    local opacity = 0.8  --> floating point value in the range [0, 1]
+    vim.g.neovide_opacity = opacity
+    vim.g.neovide_normal_opacity = opacity
   end
 <
 
