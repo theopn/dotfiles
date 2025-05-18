@@ -1,7 +1,12 @@
 -- Neovide variables and settings
+-- `require` call for this module be wrapped in `if vim.g.neovide then require("neovide") end`
 
+-- Colorschemes' "transparency" is essentially turning off background highlight and using terminal's background
+-- Since Neovide's default background is plain black, do not invoke transparency via colorschemes, set it using
+-- `vim.g.neovide_opacity` variable
 vim.g.have_transparent_bg = false
 
+-- I prefer to set font in $XDG_CONFIG_HOME/neovide/config.toml
 --vim.o.guifont = "UbuntuMono Nerd Font:h16"
 
 local padding = 10
@@ -20,8 +25,9 @@ local opacity = 0.8
 vim.g.neovide_opacity = opacity
 vim.g.neovide_normal_opacity = opacity
 
--- Because I use 
-vim.g.neovide_input_macos_option_key_is_meta = "only_right" --> because I use opt/meta as a modifier for Aerospace
+-- Because I use opt/meta as a modifer for Aerospace,
+-- I use left opt key for Aerospace and the right one for terminal input
+vim.g.neovide_input_macos_option_key_is_meta = "only_right"
 
 vim.g.neovide_cursor_vfx_mode = "pixiedust"
 
