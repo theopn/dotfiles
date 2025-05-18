@@ -94,6 +94,7 @@ brew install --cask font-ubuntu-mono-nerd-font
 ### Text editors:
 
 - **Neovim**: My IDE, to-do list, and software engineering project. Reference [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), a 700-lines of help documentation I wrote on custom functions, plugin configurations, and Vim tips I have accumulated over the years
+- Neovide: Neovim GUI frontend with pretty animations
 - Vim: Because Neovim is my main text editor, Vim is kept as a simple Vim config with Vimwiki for my journal writing
     - My Vimrc is built using [Kickstart.vim](https://github.com/theopn/kickstart.vim), features [40-line Vimscript bufferline](https://theopark.me/i-made-a-bufferline-with-40-lines-of-vimscript/)
 
