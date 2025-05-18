@@ -22,6 +22,8 @@ Neofetch is deprecated, so I tried to look for a replacement.
 Then I realized that all *fetch programs are essentially the same thing and that I really do not need any of them.
 The included theme is inspired by "insert name" from [Neofetch Themes](https://github.com/Chick2D/neofetch-themes).
 
+2025-05-18 update: I started using Fastfetch, it is... faster.
+
 ## Yabai & SKHD
 
 > Last Updated: 2024-10-24

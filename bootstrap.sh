@@ -7,6 +7,7 @@ if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "macOS" ]]; then
 fi
 
 stow bash
+stow fastfetch
 # Create symlink for individual "leaf" files instead of directories
 stow --no-folding fish
 stow git

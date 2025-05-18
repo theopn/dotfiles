@@ -113,6 +113,7 @@ brew install --cask font-ubuntu-mono-nerd-font
     - `mf`: Create a file and open in `$EDITOR`
     - `mo`: chmod
 - Git: Some Git settings and global `.gitignore` file
+- Fastfetch: essential
 
 ## macOS
 
@@ -161,6 +162,7 @@ Formulae:
 
 - bat: `cat` with syntax highlighting (LF preview script dependency)
 - chafa: convert images to Sixel format (Lf preview script dependency)
+- fastfetch
 - fd: faster alternative to `find` (Neovim Telescope dependency)
 - ffmpeg: `ffmpeg -i in.xxx out.yyy`
 - figlet: ASCII art generator
