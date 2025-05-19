@@ -459,17 +459,25 @@ See also:
 ==============================================================================
 oil.nvim                                                         *theovim-oil*
 
-- `:Oil` to open Oil in the current working directory
-- Use - to navigate to the parent directory (and <CR> to `cd` into a dir)
+char            action
+----------------------------------------------------------------------
+
+<leader>b       Invoke |oil.toggle_float|
+
+-               Navigate to the parent directory
+<CR>            `cd` into the directory
+<C-p>           Preview files
+g.              Toggle hidden files
+g?              Open keymap help
+
 - Rename, delete, or create files by modifying the buffer texts
 - To create a directory, append "/" in the end of the name (e.g: "new_dir/")
 - You can also copy or move files with |yy| and |dd|
   - Creating split windows can be helpful
 - `:w` prompts for your confirmation of the changes you made
-- `g?` for help
 
-Oil.nvim uses unique identifiers to keep track of each file in the buffer.
-If you delete these during the renaming process, Oil.nvim will not be able to
+Oil.nvim uses prefixed identifiers to internally keep track of files.
+If you delete these during the renaming process, it will not be able to
 process the renames. Set |'conceallevel'| to 0 to view literal characters
 containing the identifiers and |visual-block| mode when renaming.
 
