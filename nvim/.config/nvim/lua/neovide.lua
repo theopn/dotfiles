@@ -33,10 +33,10 @@ vim.g.neovide_cursor_vfx_mode = "pixiedust"
 
 -- Keymaps
 vim.keymap.set({ "n", "i", "c", "v", "o", "t", "l" }, "<D-q>", "<NOP>")
-vim.keymap.set("n", "<D-v>", '"+P')         -- Paste normal mode
-vim.keymap.set("v", "<D-v>", '"+P')         -- Paste visual mode
-vim.keymap.set("c", "<D-v>", "<C-R>+")      -- Paste command mode
-vim.keymap.set("i", "<D-v>", '<ESC>l"+Pli') -- Paste insert mode
+vim.keymap.set("n", "<D-v>", '"+P')       -- Paste normal mode
+vim.keymap.set("v", "<D-v>", '"+P')       -- Paste visual mode
+vim.keymap.set("c", "<D-v>", "<C-R>+")    -- Paste command mode
+vim.keymap.set("i", "<D-v>", '<ESC>"+pa') -- Paste insert mode
 
 -- Changing scale factor with <CMD> + -/=/0
 vim.g.neovide_scale_factor = 1.0
