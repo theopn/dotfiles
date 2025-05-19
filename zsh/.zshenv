@@ -6,6 +6,7 @@
 #`Yooo' `YooP' 8    8 `Yooo' 8   8  `YP'
 
 export EDITOR=nvim
+export MANPAGER='nvim +Man!'
 export LESSHISTFILE=-
 
 export XDG_CACHE_HOME=${XDG_CACHE_HOME:="$HOME/.cache"}

@@ -1,7 +1,8 @@
 # These variables will be written in ~/.config/fish/fish_variables
 # Run them once when you set up your system
 set -Ux EDITOR nvim
-set -Ux LESSHISTFILE "-"
+set -Ux MANPAGER 'nvim +Man!'
+set -Ux LESSHISTFILE '-'
 
 set -q XDG_CACHE_HOME || set -Ux XDG_CACHE_HOME "$HOME/.cache"
 set -q XDG_CONFIG_HOME || set -Ux XDG_CONFIG_HOME "$HOME/.config"
