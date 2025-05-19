@@ -1,7 +1,7 @@
 # These variables will be written in ~/.config/fish/fish_variables
 # Run them once when you set up your system
 set -Ux EDITOR nvim
-set -Ux MANPAGER 'nvim +Man!'
+set -Ux MANPAGER "nvim +Man! +'set nocursorcolumn scrolloff=999'"
 set -Ux LESSHISTFILE '-'
 
 set -q XDG_CACHE_HOME || set -Ux XDG_CACHE_HOME "$HOME/.cache"
