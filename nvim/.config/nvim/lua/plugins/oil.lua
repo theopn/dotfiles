@@ -37,7 +37,8 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<leader>b", oil.toggle_float,
-      { desc = "Toggle File [B]rowser (Oil.nvim)" })
+    vim.keymap.set("n", "<leader>b", function()
+      oil.open_float(nil, { preview = {} })
+    end, { desc = "Toggle File [B]rowser (Oil.nvim)" })
   end,
 }
