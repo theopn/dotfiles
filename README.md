@@ -49,7 +49,9 @@ brew install --cask font-ubuntu-mono-nerd-font
     - Rudimentary implementation of trash-cli (`trash`)
     - Git info in the prompt
 - **Fish**: Main interactive shell
-    - Run `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish` to create `fish_variables` that will persist
+    - Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for better performance.
+        Thus, you need to set global variables only once for your system.
+        I created a script to set all the universal environment variables at once; run: `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish`
     - Abbreviations in `conf.d/abbreviations.fish`
     - Functions in `functions/`
     - Other modular configurations in `conf.d` and `config.fish` (in the order of source priority)
@@ -208,12 +210,12 @@ See the [list of archived configurations](./archive/README.md).
 
 ## Inspirations and Shameless Plug
 
-- macOS wallpaper: [arsenicxs](https://www.deviantart.com/arsenixc/art/Tokyo-Street-Night-684804497)
+- macOS wallpaper: "Firewatch 2" in [nordic-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers)
 - Aerospace: [`default-config.toml`](https://nikitabobko.github.io/AeroSpace/guide.html#default-config) and [DevOps Toolbox's Dotfiles](https://github.com/omerxx/dotfiles)
 - LF: [example `lfrc`](https://github.com/gokcehan/lf/tree/master/etc), [Brodie Robertson's Dotfiles](https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc), and [`lfimg` for `batorcat` function](https://github.com/thimc/lfimg/blob/master/preview)
-- Neovim: [Theovim](https://github.com/theopn/theovim) but it has changed a lot since Neovim 0.11
-- Sketchybar: [the default plugins](https://github.com/FelixKratz/SketchyBar/tree/master/plugins)
-- Vim: [kickstart.vim hehe](https://github.com/theopn/kickstart.vim)
+- Neovim: Spiritual successor of [Theovim](https://github.com/theopn/theovim)
+- Sketchybar: [default plugins](https://github.com/FelixKratz/SketchyBar/tree/master/plugins)
+- Vim: [kickstart.vim](https://github.com/theopn/kickstart.vim)
 - Wezterm: [my Wezterm config video](https://www.youtube.com/watch?v=I3ipo8NxsjY)
 - [Haunted Tiles](https://github.com/theopn/haunted-tiles/) has dotfiles for my minimal, Dracula-themed Fedora i3/Sway Spin environment.
 
