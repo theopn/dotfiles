@@ -6,7 +6,7 @@
 [core]
 	excludesfile = /Users/parktheo0/.gitignore_global
 	editor = nvim
-	pager = nvim -R +'set nomodifiable noswapfile nocursorcolumn scrolloff=999 ft=git' -
+	pager = nvim -R +'set nomodifiable noswapfile nocursorcolumn nonumber norelativenumber scrolloff=999' +'set ft=git' -
 	autocrlf = input
 [color]
 	pager = false
