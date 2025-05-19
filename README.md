@@ -114,7 +114,7 @@ brew install --cask font-ubuntu-mono-nerd-font
     - `md`: mkdir
     - `mf`: Create a file and open in `$EDITOR`
     - `mo`: chmod
-- Git: Some Git settings and global `.gitignore` file
+- Git: Some Git settings and global `.gitignore` file; `editor` and `pager` are set to require Neovim
 - Fastfetch: essential
 
 ## macOS

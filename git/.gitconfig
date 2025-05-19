@@ -5,16 +5,20 @@
 #	email = 11766464-theopn@users.noreply.gitlab.com
 [core]
 	excludesfile = /Users/parktheo0/.gitignore_global
-	editor = vim
+	editor = nvim
+	pager = nvim -R +'set nomodifiable noswapfile nocursorcolumn scrolloff=999 ft=git' -
 	autocrlf = input
+[color]
+	pager = false
 [fetch]
-  # Delete out deted branch during fetch
+	# Delete outdated branch during fetch
 	prune = true
 [init]
 	defaultBranch = main
 [status]
 	short = true
 [credential]
+	# Not recommended from security perspective, but it is my personal machine
 	helper = store
 [http]
 	postBuffer = 157286400
