@@ -1,3 +1,6 @@
+:CD	theovim.txt	/*:CD*
+:RO	theovim.txt	/*:RO*
+:TrimWhitespace	theovim.txt	/*:TrimWhitespace*
 theovim	theovim.txt	/*theovim*
 theovim-autocmds	theovim.txt	/*theovim-autocmds*
 theovim-colorscheme	theovim.txt	/*theovim-colorscheme*
