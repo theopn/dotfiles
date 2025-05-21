@@ -1,24 +1,27 @@
 -- Theovim autocmds
 
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 -- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-  group = vim.api.nvim_create_augroup("TheovimYankHighlight", { clear = true }),
+autocmd("TextYankPost", {
+  group = augroup("TheovimYankHighlight", { clear = true }),
   pattern = "*",
   callback = function() vim.hl.on_yank({ timeout = 300, }) end,
   desc = "Highlight yanked text",
 })
 
 -- Switch to insert mode when terminal is open
-vim.api.nvim_create_autocmd({ "TermOpen", "BufEnter" }, {
+autocmd({ "TermOpen", "BufEnter" }, {
   -- TermOpen: for when terminal is opened for the first time
   -- BufEnter: when you navigate to an existing terminal buffer
-  group = vim.api.nvim_create_augroup("TheovimTerminal", { clear = true }),
+  group = augroup("TheovimTerminal", { clear = true }),
   pattern = "term://*", --> only applicable for "BufEnter", an ignored Lua table key when evaluating TermOpen
   callback = function() vim.cmd("startinsert") end
 })
 
 -- Update indentation guide dynamically
-local update_leadmultispace_group = vim.api.nvim_create_augroup("UpdateLeadmultispace", { clear = true })
+local update_leadmultispace_group = augroup("UpdateLeadmultispace", { clear = true })
 
 --- Dynamically adjust `leadmultispace` in `listchars` (buffer level) based on `shiftwidth`
 local function update_leadmultispace()
@@ -30,14 +33,14 @@ local function update_leadmultispace()
 end
 
 -- When `shiftwidth` was manually changed
-vim.api.nvim_create_autocmd("OptionSet", {
+autocmd("OptionSet", {
   group = update_leadmultispace_group,
   pattern = { "shiftwidth", "filetype" },
   callback = update_leadmultispace,
 })
 
 -- When shiftwidth was changed by ftplugin
-vim.api.nvim_create_autocmd("BufEnter", {
+autocmd("BufEnter", {
   group = update_leadmultispace_group,
   pattern = "*",
   callback = update_leadmultispace,
