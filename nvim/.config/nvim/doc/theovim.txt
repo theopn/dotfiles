@@ -237,6 +237,7 @@ jk              [Insert] ESC.
 
 ==============================================================================
 Commands                                                    *theovim-commands*
+                                                 *:TrimWhitespace* *:CD* *:RO*
 
 - `:TrimWhitespace`: Trim trailing whitespaces. It will prompts you with
   confirmations for each whitespace.
@@ -244,6 +245,7 @@ Commands                                                    *theovim-commands*
   file. For example, when the current directory is `nvim` and you open
   `doc/theovim.txt`, invoke the command to change the directory to `doc`.
   This is useful when narrowing down the scope of a Telescope search.
+- `:RO`: Set |'readonly'| and |'nomodifiable'| to the buffer using |:setlocal|
 
 ==============================================================================
 autocmds                                                    *theovim-autocmds*
