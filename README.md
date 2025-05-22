@@ -156,6 +156,10 @@ The configuration and keybindings are very close to the default with a couple of
     - `r`: Reset layout and exit the service mode
     - `alt-shift-h/j/k/l`: Join windows into different trees
 
+> ![NOTE]
+> In this [commit](https://github.com/nikitabobko/AeroSpace/commit/5aabca5b4d86afa55fb5f1c6cfa06f1e413448fd), a rudimentary UI customization for the Aerospace tray icon has been added, which is frankly all I need.
+> Along with [Ice](https://github.com/jordanbaird/Ice), I am experimenting with the native menu bar.
+
 ### Homebrew
 
 Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`, either because I don't want them to be installed on every machine or are too large.
