@@ -11,7 +11,7 @@ function updater -d "Using fzf to pick and run update commands"
   end
 
   # Construct a lsit of stuff to update
-  set -l stuff 'dotfiles'
+  set -l stuff 'dotfiles' 'Nvim: Lazy' 'Vim: Plug'
   if [ $OSTYPE = 'Linux' ]
     # assumes Fedora
     set -a stuff 'Fedora: dnf' 'Linux: flatpak' 'Linux: Firmware Upgrade'
@@ -30,6 +30,10 @@ function updater -d "Using fzf to pick and run update commands"
     switch $selected
       case 'dotfiles'
         cd ~/dotfiles/ && git pull && cd - &> /dev/null
+      case 'Nvim: Lazy'
+        nvim --headless "+Lazy! sync" +qa
+      case 'Vim: Plug'
+        vim +PlugUpdate
       case 'Homebrew: Update'
         brew update && brew upgrade
         and echo '[Updater] Brew update && upgrade successful'
