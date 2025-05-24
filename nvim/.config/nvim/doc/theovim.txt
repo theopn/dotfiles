@@ -185,16 +185,18 @@ n               Highlight the next search result (|n|) and center the
 N               Highlight the prev search result (|N|) and center the
                 screen (|zz|).
 
+These keybindings are dropped as if |'wrap'| is set and if a wrapped line
+occupies the entire screen, then you might not be able to scroll down.
+
+char            action
+----------------------------------------------------------------------
+
 <C-u>           Scroll up by half a page (|CTRL-U|, or by the value
                 of |scroll|) and center the screen (|zz|).
 <C-d>           Scroll down by half a page (|CTRL-U|, or by the value
                 of |scroll|) and center the screen (|zz|).
 
-                For the following window adjustment keybindings,
-                you have to be quite rapid about the repeating keys
-                due to the default |'timeoutlen'|.
-
-Custom:
+Custom keybindings:
 
 char            action
 ----------------------------------------------------------------------
