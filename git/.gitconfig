@@ -18,7 +18,9 @@
 [status]
 	short = true
 [credential]
-	# Not recommended from security perspective, but it is my personal machine
-	helper = store
+	# It stores the credential in ~/.git-credentials; use SSH!
+	#helper = store
+	# 1 hr
+	helper = cache --timeout=3600
 [http]
 	postBuffer = 157286400
