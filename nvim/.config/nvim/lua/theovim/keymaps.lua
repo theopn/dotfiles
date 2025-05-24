@@ -15,8 +15,8 @@ set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 set("n", "n", "nzz")
 set("n", "N", "Nzz")
-set("n", "<C-u>", "<C-u>zz")
-set("n", "<C-d>", "<C-d>zz")
+--set("n", "<C-u>", "<C-u>zz")
+--set("n", "<C-d>", "<C-d>zz")
 
 -- Custom keymaps
 set("i", "jk", "<ESC>", { desc = "Better ESC" })
