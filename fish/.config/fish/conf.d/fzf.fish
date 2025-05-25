@@ -27,7 +27,7 @@ function fav -d "CD from the directory bookmark"
     return
   end
 
-  set -l dir (fzf --header="Choose from the directory bookmark" < $THEOSHELL_CD_BOOKMARK_DIR)
+  set -l dir (fzf --header="Directory bookmark" < $THEOSHELL_CD_BOOKMARK_DIR)
   not test -z $dir; and cd "$dir"
 end
 

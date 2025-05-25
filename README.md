@@ -36,6 +36,21 @@ brew install --cask font-ubuntu-mono-nerd-font
 
 # macOS settings
 ./misc/macos-settings.sh
+
+# Add SSH shortcuts
+# Fun fact: Heredoc can accept any string as End-of-Transmission delimiter (quotes prevent parameter expansion)
+cat <<"HELLO" >> ~/.ssh/config
+Host [nickname]
+    Hostname [url]
+    User [username]
+HELLO
+
+# Add directories to the bookmark file for my `fav` fish function
+mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-bookmark.txt
+cat <<BYE >> $XDG_DATA_HOME/theoshell/cd-bookmark.txt
+$XDG_CONFIG_HOME
+$XDG_DATA_HOME
+BYE
 ```
 
 ## Utilities
