@@ -19,6 +19,7 @@ alias gcm='git commit -m'
 alias gss='git status'
 alias histgrep='echo "[Tip] Use !number to execute the command" && history | grep'
 alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
+alias v=nvim
 
 #alias nvim=~/apps/nvim.appimage
 # 2022-02-27, Shriansh emailed ScienceHelp and they actually updated package
