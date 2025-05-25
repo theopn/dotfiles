@@ -154,7 +154,7 @@ map , # find-prev                (default ',')
 map ff fzf_jump
 
 cmd trash !{{
-  export THEOSHELL_TRASH_DIR="$HOME/.local/share/theoshell-trash"
+  export THEOSHELL_TRASH_DIR="$HOME/.local/share/theoshell/trash"
   if [ ! -d ${THEOSHELL_TRASH_DIR} ]; then
     mkdir -p ${THEOSHELL_TRASH_DIR}
   fi
