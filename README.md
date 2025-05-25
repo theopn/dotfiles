@@ -121,7 +121,7 @@ BYE
     - If preview breaks, which might happen while displaying images in Tmux, use `C-l` to reset the screen
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
-    - `DD`: Move a file to `~/.theoshell/trash`
+    - `DD`: Move a file to `$XDG_DATA_HOME/theoshell/trash`
     - `gs`: [g]it [s]tatus
     - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
     - `md`: mkdir

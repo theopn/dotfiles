@@ -10,7 +10,7 @@ set -q XDG_DATA_HOME || set -Ux XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_STATE_HOME || set -Ux XDG_STATE_HOME "$HOME/.local/state"
 
 set -Ux DOT_DIR ~/dotfiles
-set -Ux THEOSHELL_TRASH_DIR "$XDG_DATA_HOME/theoshell-trash"
+set -Ux THEOSHELL_TRASH_DIR "$XDG_DATA_HOME/theoshell/trash"
 set -Ux THEOSHELL_CD_BOOKMARK_DIR "$XDG_DATA_HOME/theoshell/cd-bookmark.txt"
 
 # Personal cloud drive path
