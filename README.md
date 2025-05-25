@@ -45,9 +45,9 @@ Host [nickname]
     User [username]
 HELLO
 
-# Add directories to the bookmark file for my `fav` fish function
-mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-bookmark.txt
-cat <<BYE >> $XDG_DATA_HOME/theoshell/cd-bookmark.txt
+# Create and add directories to the directory bookmark/favorites list for my `cdf` fish function
+mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-fav.txt
+cat <<BYE >> $XDG_DATA_HOME/theoshell/cd-fav.txt
 $XDG_CONFIG_HOME
 $XDG_DATA_HOME
 BYE
@@ -67,7 +67,7 @@ BYE
         Thus, you need to set global variables only once for your system.
         I created a script to set all the universal environment variables at once; run: `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish`
     - multicd: `..` to `cd ..`, `...` to `cd../..`, ...
-    - CD bookmark: `fav_add` to add current directory to the bookmark, `fav` to use FZF to search the directoy and CD into it, and `fav_open` to edit the bookmark file
+    - CD favorites/bookmark: `cdf_add` to add current directory to the list, `cdf` to use FZF to search the directoy and CD into it, and `cdf_edit` to edit the list with `$EDITOR`
 
 ### Terminal emulators and multiplexers
 
