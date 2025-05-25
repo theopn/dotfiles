@@ -6,8 +6,9 @@
 # /___/____/_/ /_/_/   \___/
 ##############################
 
-# Interactive shell config
 # .zshenv -> .zprofile -> .zshrc -> .zlogin
+#
+# Interactive shell config
 
 # Vim mode
 bindkey -v
@@ -38,7 +39,7 @@ tarmake() { tar -czvf ${1}.tar.gz $1 }
 # x for extracting, v for verbose, f for file
 tarunmake() { tar -zxvf $1 }
 
-# Custom trash function
+##### Simple Trash Function #####
 function trash() {
   if [[ -z "$THEOSHELL_TRASH_DIR" ]]; then
     echo "You must provide THEOSHELL_TRASH_DIR"
@@ -124,6 +125,33 @@ sshf() {
   echo "SSHing to ${selected}..." && ssh "$selected"
 }
 
+##### Directory Bookmark using FZF #####
+
+fav_add() {
+  if [[ -z "$THEOSHELL_CD_BOOKMARK_DIR" ]]; then
+    echo "You must provide THEOSHELL_CD_BOOKMARK_DIR"
+    return 1
+  fi
+
+  if [[ ! -e $THEOSHELL_CD_BOOKMARK_DIR ]]; then
+    mkdir -p $(dirname $THEOSHELL_CD_BOOKMARK_DIR)
+    touch $THEOSHELL_CD_BOOKMARK_DIR
+  fi
+
+  pwd >> $THEOSHELL_CD_BOOKMARK_DIR
+}
+
+fav() {
+  if [[ -z "$THEOSHELL_CD_BOOKMARK_DIR" ]]; then
+    echo "You must provide THEOSHELL_CD_BOOKMARK_DIR"
+    return 1
+  fi
+
+  dir=$(fzf --header="Directory bookmark" < $THEOSHELL_CD_BOOKMARK_DIR)
+  [[ ! -z "$dir" ]] && cd "$dir"
+}
+
+alias fav_open="$EDITOR $THEOSHELL_CD_BOOKMARK_DIR"
 
 ##### Prompt #####
 autoload -Uz vcs_info
