@@ -20,5 +20,6 @@ export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
 export FZF_DEFAULT_OPTS='--layout=reverse --cycle --height=50% --margin=5% --border=double'
 
 export THEOSHELL_TRASH_DIR="$XDG_DATA_HOME/theoshell/trash"
+export THEOSHELL_CD_BOOKMARK_DIR="$XDG_DATA_HOME/theoshell/cd-bookmark.txt"
 export ZSH_PLUGIN_DIR="$XDG_DATA_HOME/theoshell/zsh-plugins"
 
