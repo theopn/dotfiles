@@ -43,8 +43,7 @@ brew install --cask font-ubuntu-mono-nerd-font
 ### Shells
 
 - Bash: Basic configuration for my school SSH server
-- ZSH: `$SHELL`
-    - Functions utilizing fzf (`cdf`, `sshf`, etc.)
+- ZSH: My `$SHELL`
     - Minimal plugin manager (`plug`, `update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
     - Rudimentary implementation of trash-cli (`trash`)
     - Git info in the prompt
@@ -52,9 +51,8 @@ brew install --cask font-ubuntu-mono-nerd-font
     - Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for better performance.
         Thus, you need to set global variables only once for your system.
         I created a script to set all the universal environment variables at once; run: `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish`
-    - Abbreviations in `conf.d/abbreviations.fish`
-    - Functions in `functions/`
-    - Other modular configurations in `conf.d` and `config.fish` (in the order of source priority)
+    - multicd: `..` to `cd ..`, `...` to `cd../..`, ...
+    - CD bookmark: `fav_add` to add current directory to the bookmark, `fav` to use FZF to search the directoy and CD into it, and `fav_open` to edit the bookmark file
 
 ### Terminal emulators and multiplexers
 
