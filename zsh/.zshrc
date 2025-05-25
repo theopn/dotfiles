@@ -127,31 +127,31 @@ sshf() {
 
 ##### Directory Bookmark using FZF #####
 
-fav_add() {
-  if [[ -z "$THEOSHELL_CD_BOOKMARK_DIR" ]]; then
-    echo "You must provide THEOSHELL_CD_BOOKMARK_DIR"
+cdf() {
+  if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
+    echo "You must provide THEOSHELL_CDF_DIR"
     return 1
   fi
 
-  if [[ ! -e $THEOSHELL_CD_BOOKMARK_DIR ]]; then
-    mkdir -p $(dirname $THEOSHELL_CD_BOOKMARK_DIR)
-    touch $THEOSHELL_CD_BOOKMARK_DIR
-  fi
-
-  pwd >> $THEOSHELL_CD_BOOKMARK_DIR
-}
-
-fav() {
-  if [[ -z "$THEOSHELL_CD_BOOKMARK_DIR" ]]; then
-    echo "You must provide THEOSHELL_CD_BOOKMARK_DIR"
-    return 1
-  fi
-
-  dir=$(fzf --header="Directory bookmark" < $THEOSHELL_CD_BOOKMARK_DIR)
+  dir=$(fzf --header="Favorite Directories" < $THEOSHELL_CDF_DIR)
   [[ ! -z "$dir" ]] && cd "$dir"
 }
 
-alias fav_open="$EDITOR $THEOSHELL_CD_BOOKMARK_DIR"
+cdf_add() {
+  if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
+    echo "You must provide THEOSHELL_CDF_DIR"
+    return 1
+  fi
+
+  if [[ ! -e $THEOSHELL_CDF_DIR ]]; then
+    mkdir -p $(dirname $THEOSHELL_CDF_DIR)
+    touch $THEOSHELL_CDF_DIR
+  fi
+
+  pwd >> $THEOSHELL_CDF_DIR
+}
+
+alias cdf_edit="$EDITOR $THEOSHELL_CDF_DIR"
 
 ##### Prompt #####
 autoload -Uz vcs_info
