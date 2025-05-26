@@ -272,6 +272,19 @@ Organized based on |autocmd-groups|.
   |autocmd-once| is used to make sure that the indentation guide is consistent
   with indentation settings set by |ftplugin|.
 
+In 0.10, "the swapfile "ATTENTION" |E325| dialog is skipped
+if the swapfile is owned by a running Nvim process" (|news-0.10|).
+The rational behind the change is that Neovim reads any change
+made outside of the editor since |'autoread'| is set by default.
+However, I do not see any point of having two separate two Neovim instances
+with the same file opened (I would rather see a warning).
+So I disabled it with >
+    !au nvim.swapfile
+<
+The 0.10 news says the name of the |autocmd-groups| is `nvim_swapfile`, but
+they sneakly changed it in |news-0.11|.
+Augroup for all |default-autocmds| is in the form `nvim.*`, btw.
+
 ==============================================================================
 ftplugins                                                  *theovim-ftplugins*
 
