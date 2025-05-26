@@ -46,3 +46,6 @@ autocmd("BufEnter", {
   callback = update_leadmultispace,
   once = true,
 })
+
+-- Disable the autocmd disabling swap warning in starting in 0.10
+vim.cmd[[au! nvim.swapfile]]
