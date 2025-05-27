@@ -46,7 +46,7 @@ end
 Statusline.build = function()
   local modeInfo = Statusline.getMode()
   local cwd = string.format("%s %s ",
-    (vim.g.have_nerd_font and " " or "CWD: "), vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+    (vim.g.have_nerd_font and " " or "<CWD>"), vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
   local filepath = (vim.g.have_nerd_font and " " or "") .. "%f"
   local filemodifier = "%m%r "
 

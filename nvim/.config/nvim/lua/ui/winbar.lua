@@ -29,7 +29,7 @@ local function getLspServers()
   })
   if rawequal(next(clients), nil) then return "" end
 
-  local format = vim.g.have_nerd_font and "󰧑" or "LSP:"
+  local format = vim.g.have_nerd_font and "󰧑" or "<LSP>"
   for _, client in pairs(clients) do
     format = string.format(" %s [%s]", format, client.name)
   end
@@ -67,7 +67,7 @@ local function getGitSigns()
     return ""
   end
 
-  local icon = vim.g.have_nerd_font and "" or "GIT:"
+  local icon = vim.g.have_nerd_font and "" or "<GIT>"
   local head = vim.b.gitsigns_head or "-"
   local status = vim.b.gitsigns_status or ""
 
