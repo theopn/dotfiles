@@ -15,13 +15,13 @@ vim.g.neovide_padding_bottom = padding
 vim.g.neovide_padding_right = padding
 vim.g.neovide_padding_left = padding
 
-local blur_radius = 2.0
 vim.g.neovide_window_blurred = true
+local blur_radius = 2.4
 vim.g.neovide_floating_blur_amount_x = blur_radius
 vim.g.neovide_floating_blur_amount_y = blur_radius
 vim.g.neovide_floating_shadow = true
 
-local opacity = 0.8
+local opacity = 0.75
 vim.g.neovide_opacity = opacity
 vim.g.neovide_normal_opacity = opacity
 

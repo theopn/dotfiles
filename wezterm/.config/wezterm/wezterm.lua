@@ -31,7 +31,7 @@ local custom_colors = {
 config.font = wezterm.font_with_fallback({
   { family = "UbuntuMono Nerd Font", scale = 1.35, },
 })
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.8
 config.macos_window_background_blur = 24
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
