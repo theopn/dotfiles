@@ -532,8 +532,28 @@ Vimtex                                                        *theovim-vimtex*
 - You need to install and configure PDF viewer first.
   - In Linux, use Zathura (https://pwmt.org/projects/zathura/)
   - In macOS, use Skim (https://skim-app.sourceforge.io/)
-  - Change the `vim.g.vimtex_view_method` in the plugins.lua
-- `:VimtexCompile` starts a real-time compilation process
+  - Change the `vim.g.vimtex_view_method` in `vimtex.lua`
+- `:VimtexInfo` (`<leader>lo`): shows the system and project information
+                            (like `:checkhealth`)
+- `:VimtexCompile` (`<leader>ll`): toggles the real-time compilation process
+- `:VimtexCompileOutput` (`<leader>lo`)`: opens the compilation output
+- `:VimtexTocToggle` (`<leader>lT`): toggles TOC
+
+Commonly used keybindings:
+
+char            action
+----------------------------------------------------------------------
+
+[[ ]]           Move between section boundaries
+[m ]m           Move between environment boundaries
+%               Move between matching delimiters
+
+csc             [C]hange [S]urrounding [C]ommand
+cse             [C]hange [S]urrounding [E]nvironment
+
+tsd             Toggle between `( )` and `\left( \right)`
+tsb             Toggle line break (`\\`)
+]]              [Insert] Close current environment
 
 ==============================================================================
 nvim-org-mode                                          *theovim-nvim-org-mode*
