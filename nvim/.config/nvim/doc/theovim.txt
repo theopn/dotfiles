@@ -205,6 +205,10 @@ jk              [Insert] ESC.
 <C-s>           [Insert] Fix the nearest spelling error and put
                 the cursor back.
 
+<C-a>           [Insert] Move to the beginning of the lines
+<C-b>           [Insert] `<LEFT>`; one of the things I miss from Emacs
+<C-f>           [Insert] `<RIGHT>`; I have sinned, I apologize
+
 <leader>a       Select all.
 <leader>y       [Visual] Copy to the system clipboard (|quoteplus|)
 <leader>p       [Visual] Paste the current selection without
