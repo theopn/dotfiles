@@ -38,8 +38,8 @@ return {
       },
     })
 
-    vim.keymap.set("n", "<leader>b", function()
+    vim.keymap.set("n", "<leader>n", function()
       oil.open_float(nil, { preview = {} })
-    end, { desc = "Toggle File [B]rowser (Oil.nvim)" })
+    end, { desc = "Toggle [N]etrw... <<<<< Oil.nvim" })
   end,
 }
