@@ -22,6 +22,11 @@ set("n", "N", "Nzz")
 set("i", "jk", "<ESC>", { desc = "Better ESC" })
 set("i", "<C-s>", "<C-g>u<ESC>[s1z=`]a<C-g>u", { desc = "Fix nearest [S]pelling error and put the cursor back" })
 
+-- Emacs is right sometimes
+set("i", "<C-a>", "<C-o>^", { desc = "Emacs alert" })
+set("i", "<C-b>", "<LEFT>", { desc = "Sorry" })
+set("i", "<C-f>", "<RIGHT>", { desc = "Hey Emacs users use Evil all the time" })
+
 -- Copy and paste
 set({ "n", "x" }, "<leader>a", "gg<S-v>G", { desc = "Select [A]ll" })
 set("x", "<leader>y", '"+y', { desc = "[Y]ank to the system clipboard (+)" })
