@@ -479,8 +479,8 @@ oil.nvim                                                         *theovim-oil*
 char            action
 ----------------------------------------------------------------------
 
-<leader>b       Invoke |oil.open_float|
-                with the preview window on (|oil.open_preview|)
+<leader>n       Call |oil.open_float| with the preview window option
+                (|oil.open_preview|)
 
 -               Navigate to the parent directory
 <CR>            `cd` into the directory
