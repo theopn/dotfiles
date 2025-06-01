@@ -206,22 +206,41 @@ fun! SpawnBufferLine()
   let s .= '%='  " Adds a spacer
 
   " Making a tab list on the right side
-  for i in range(1, tabpagenr('$'))  " Loop through the number of tabs
-    " Highlight with yellow if it's the current tab
-    let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#TabLine#')
-    let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
-    let s .= i . ''          " set page number string
-  endfor
-  let s .= '%#TabLineFill#%T'  " Reset highlight
+  "for i in range(1, tabpagenr('$'))  " Loop through the number of tabs
+  "  " Highlight with yellow if it's the current tab
+  "  let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+  "  let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
+  "  let s .= i . ''          " set page number string
+  "endfor
+  "let s .= '%#TabLineFill#%T'  " Reset highlight
 
-  " Close button on the right if there are multiple tabs
-  if tabpagenr('$') > 1
-    let s .= '%999X X'
-  endif
+  "" Close button on the right if there are multiple tabs
+  "if tabpagenr('$') > 1
+  "  let s .= '%999X X'
+  "endif
   return s
 endfun
 
 set tabline=%!SpawnBufferLine()  " Assign the tabline
+" }}}
+
+
+" {{{ Tabpanel
+set showtabpanel=2
+set fillchars+=tpl_vert:\|
+set tabpanelopt=vert,align:left,columns:9
+set tabpanel=%!TabPanel()
+function! TabPanel() abort
+  let curr = g:actual_curtabpage
+
+  let s = printf("%2d", curr)
+  let numWin = len(tabpagebuflist(curr))
+  if numWin > 1
+    let s .= '|  ' . numWin
+  endif
+
+  return s
+endfunction
 " }}}
 
 
@@ -276,7 +295,7 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-lsp.vim'
-"Plug 'ghifarit53/tokyonight-vim'
+Plug 'ghifarit53/tokyonight-vim'
 Plug 'nordtheme/vim'
 Plug 'vim-airline/vim-airline'
 
