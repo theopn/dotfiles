@@ -181,6 +181,7 @@ Formulae:
 
 - bat: `cat` with syntax highlighting (LF preview script dependency)
 - chafa: convert images to Sixel format (Lf preview script dependency)
+- exiftool: read and modify EXIF data in image files
 - fastfetch
 - fd: faster alternative to `find` (Neovim Telescope dependency)
 - ffmpeg: `ffmpeg -i in.xxx out.yyy`
