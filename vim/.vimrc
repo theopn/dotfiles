@@ -168,7 +168,7 @@ command TrimWhiespace call TrimWhitespace()
 " }}}
 
 
-" {{{ Bufferline
+" {{{ Bufferline - not in use
 fun! SpawnBufferLine()
   let s = ' :) '
 
@@ -221,15 +221,112 @@ fun! SpawnBufferLine()
   return s
 endfun
 
-set tabline=%!SpawnBufferLine()  " Assign the tabline
+"set tabline=%!SpawnBufferLine()  " Assign the tabline
+" }}}
+
+
+" {{{ Tabline
+fun! SpawnTabline()
+  let s = ' Tabs :) '
+
+  for i in range(1, tabpagenr('$'))  " Loop through the number of tabs
+    " Highlight the current tab
+    let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+    let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
+    let s .= i               " set page number string
+
+    " Add a number of window if applicable
+    let numWin = len(tabpagebuflist(i))
+    if numWin > 1
+      let s .= '[ ' . numWin . ']'
+    endif
+
+    let s .= ' '
+  endfor
+  let s .= '%#TabLineFill#%T'  " Reset highlight
+
+  " Close button on the right if there are multiple tabs
+  if tabpagenr('$') > 1
+    let s .= '%=%#TabLineSel#%999X[X]'
+  endif
+  return s
+endfun
+
+set tabline=%!SpawnTabline()  " Assign the tabline
+" }}}
+
+
+" {{{ BufferPanel
+set showtabpanel=2
+set fillchars+=tpl_vert:\|
+set tabpanelopt=vert,align:left,columns:20
+function! BufferPanel() abort
+  let s = '%#TabPanelFill#'
+
+  " tabpanel is evaluated per tab; workaround to create the list only once
+  if g:actual_curtabpage == 1
+
+    " Get the list of buffers. Use bufexists() to include hidden buffers
+    let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+
+    for i in bufferNums
+      " Highlight if it's the current buffer
+      let s .= (i == bufnr()) ? ('%#TabPanelSel#') : ('%#TabPanel#')  
+
+      let s .= ' ' . i . ' '  " Append the buffer number
+
+      " Give a [NEW] flag to an unnamed buffer
+      if bufname(i) == ''
+        let s .= '[NEW]'
+      endif
+
+      " Append bufname
+      let bufname = fnamemodify(bufname(i), ':t')
+
+      " Truncate bufname
+      " -1 if vertical separators are on
+      " -3 for the buffer number
+      " -3 for the potential modified flag
+      " -2 for the ..
+      let lenLimit = 11
+      if len(bufname) > lenLimit
+        " expr-[:] is range-inclusive (i.e., [0:10] returns 11 char)
+        let bufname = bufname[0:lenLimit - 1] . '..'
+      endif
+
+      let s .= bufname
+
+      " Add modified & read only flag
+      if getbufvar(i, "&modified")
+        let s .= '[+]'
+      endif
+      if !getbufvar(i, "&modifiable")
+        let s .= '[-]'
+      endif
+      if getbufvar(i, "&readonly")
+        let s .= '[RO]'   
+      endif
+
+      let s .= "\n"
+    endfor
+
+    let s .= "%#TabPanelFill#"
+  endif
+
+  return s
+endfunction
+
+set tabpanel=%!BufferPanel()
+
+" Force redraw on buffer changes
+autocmd BufAdd,BufCreate,BufDelete,BufWipeout * redrawtabpanel
 " }}}
 
 
 " {{{ Tabpanel
-set showtabpanel=2
-set fillchars+=tpl_vert:\|
-set tabpanelopt=vert,align:left,columns:9
-set tabpanel=%!TabPanel()
+"set showtabpanel=2
+"set fillchars+=tpl_vert:\|
+"set tabpanelopt=vert,align:left,columns:9
 function! TabPanel() abort
   let curr = g:actual_curtabpage
 
@@ -241,6 +338,7 @@ function! TabPanel() abort
 
   return s
 endfunction
+"set tabpanel=%!TabPanel()
 " }}}
 
 
