@@ -4,6 +4,7 @@ tap "homebrew/core"
 
 brew "bat"
 brew "chafa"
+brew "exiftool"
 brew "fastfetch"
 brew "fd"
 brew "ffmpeg"
