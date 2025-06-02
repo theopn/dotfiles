@@ -9,6 +9,9 @@ let g:theoline_loaded = 1
 " {{{ Assignment
 if exists('g:theoline_buflist')
   set tabline=%!SpawnBufferline()
+
+  " Force redraw on buffer changes
+  autocmd BufAdd,BufCreate,BufDelete,BufWipeout * redrawtabline
 else
   set tabline=%!SpawnTabline()
 endif
