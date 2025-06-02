@@ -1,4 +1,20 @@
+" vi:syntax=vim
+" -----------------------------------------------------------------------------
+" ___         _
+"  ||_  _  _ |_)_.._  _ |
+"  || |(/_(_)| (_|| |(/_|
 "
+" Theo's custom simple Tabpanel and "Bufferpanel"
+"
+" Requires:
+" - Vim > 9.1.1391 for 'tabpanel' support
+" - Nerd Font for rendering the window icon
+"
+" By default, minimal tabpanel with the list of tabs and number of windows
+" is loaded.
+" Define g:theopanel_buflist to switch to the Bufferpanel
+" (list of buffer numbers, name, and modified/modifiable flags).
+" -----------------------------------------------------------------------------
 
 
 if exists('g:theopanel_loaded')

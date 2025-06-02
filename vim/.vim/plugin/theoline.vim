@@ -1,5 +1,19 @@
+" vi:syntax=vim
+" -----------------------------------------------------------------------------
+" ___
+"  ||_  _  _ | o._  _
+"  || |(/_(_)|_|| |(/_
 "
-
+" Theo's custom simple Tabline and "Bufferline"
+"
+" Requires:
+" - Nerd Font for rendering the window icon
+"
+" By default, minimal tabline with the list of tabs and number of windows
+" is loaded.
+" Define g:theoline_buflist to switch to the Bufferline
+" (list of buffer numbers, name, and modified/modifiable flags).
+" -----------------------------------------------------------------------------
 
 if exists('g:theoline_loaded')
     finish
