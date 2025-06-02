@@ -320,6 +320,10 @@ set tabpanel=%!BufferPanel()
 
 " Force redraw on buffer changes
 autocmd BufAdd,BufCreate,BufDelete,BufWipeout * redrawtabpanel
+
+" Toggle bufferpanel
+nnoremap <expr><silent> <leader>b &showtabpanel==2 ?
+                        \ ':set showtabpanel=0<CR>' : ':set showtabpanel=2<CR>'
 " }}}
 
 
