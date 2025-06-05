@@ -45,14 +45,23 @@ end
 
 Statusline.build = function()
   local modeInfo = Statusline.getMode()
+
   local cwd = string.format("%s %s ",
     (vim.g.have_nerd_font and " " or "<CWD>"), vim.fn.fnamemodify(vim.fn.getcwd(), ":t"))
+
   local filepath = (vim.g.have_nerd_font and " " or "") .. "%f"
   local filemodifier = "%m%r "
 
-  local ff = vim.bo.fileformat
+  local eol = vim.bo.fileformat
   local enc = (vim.bo.fileencoding == "") and (vim.go.encoding) or (vim.bo.fileencoding)
-  local fileInfo = string.format(" %%Y | %s | %s ", ff:upper(), enc:upper()) --> FT + format + encoding
+
+  local tab_icon = vim.g.have_nerd_font and "󰌒 " or "TAB:"
+  local width = vim.bo.tabstop
+  if vim.bo.expandtab then
+    tab_icon = vim.g.have_nerd_font and "󱁐 " or "SPC:"
+    width = vim.bo.shiftwidth
+  end
+
   local location = " %l/%L:%2v/%-2{virtcol('$') - 1} "
   local percentage = (vim.g.have_nerd_font and "  " or " ") .. "%P "
 
@@ -78,7 +87,15 @@ Statusline.build = function()
 
 
     "%#MiniStatuslineFilename#",
-    fileInfo,
+    "%Y", --> filetype
+    " | ",
+    eol:upper(),
+    " | ",
+    enc:upper(),
+    " | ",
+    tab_icon,
+    width,
+    " ",
 
     "%#MiniStatuslineFileinfo#",
     location,
