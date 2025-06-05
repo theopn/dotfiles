@@ -30,6 +30,7 @@ cask "notion"
 
 cask "cryptomator"
 cask "filen"
+cask "nextcloud"
 cask "syncthing"
 
 cask "gimp"
@@ -37,4 +38,5 @@ cask "obs"
 cask "vlc"
 
 cask "chromium"
+cask "tailscale"
 cask "thunderbird"
