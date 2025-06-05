@@ -211,9 +211,9 @@ Casks:
 |-----------------|-----------|--------------|-------------|---------------|---------------|-------------|
 | Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | Chromium    |
 | IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | GIMP          | **Firefox** |
-| kitty           | Spotify   |              | Syncthing   | **Maccy**     | OBS           | Thunderbird |
-| MacTex (no GUI) |           |              |             | **Stats**     | **Skim**      |             |
-| **Macvim**      |           |              |             |               | VLC           |             |
+| kitty           | Spotify   |              | Nextcloud   | **Maccy**     | OBS           | Tailscale   |
+| MacTex (no GUI) |           |              | Syncthing   | **Stats**     | **Skim**      | Thunderbird |
+| **Macvim**      |           |              |             |         e     | VLC           |             |
 | Neovide         |           |              |             |               |               |             |
 | **Wezterm**     |           |              |             |               |               |             |
 
