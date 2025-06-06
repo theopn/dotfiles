@@ -39,6 +39,14 @@ case "$file" in
     ;;
   *.pdf)
     pdftotext "$file" -
+
+    # Uncomment for thumbnail image preview
+    # https://vxlabs.com/2024/06/01/gokcehan-lf-image-code-archive-previews/
+    # WARNING: Cache images are not automatically deleted
+    #CACHE="$HOME/.cache/lf/thumbnail.$(sha256sum "$file" | awk '{print $1}')"
+    #[ ! -f "${CACHE}.jpg" ] && pdftoppm -jpeg -f 1 -singlefile "$file" "$CACHE"
+    #draw "${CACHE}.jpg"
+
     exit
     ;;
   *) ;;  # fallback to mime type
