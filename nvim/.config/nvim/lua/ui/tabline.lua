@@ -110,6 +110,7 @@ Tabline.build = function()
   -- ========== Right ==========
   -- List of LISTED buffers in the current tab
   -- ===========================
+  --[[ Commented as Winbar already contains this information
   local bufnums = filterUnlistedBuffers(vim.fn.tabpagebuflist(vim.api.nvim_tabpage_get_number(currTabID)))
   for _, bufnum in pairs(bufnums) do
     local bufname = vim.fn.fnamemodify(vim.fn.bufname(bufnum), ":t")
@@ -139,6 +140,7 @@ Tabline.build = function()
     -- Append formatted bufname
     s = s .. hl .. " " .. bufname .. " "
   end
+  --]]
 
   -- Add a truncation starting point: truncate buffer information first
   s = s .. "%<"
