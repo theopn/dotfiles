@@ -1,98 +1,64 @@
-# Based on "Arrow" prompt from `fish_config`. Changes are indicated in comments
-# Its Git mechanism is faster than `fish_git_prompt` (test with `time fish_prompt`)
-function fish_prompt
-    set -l __last_command_exit_status $status
+function fish_prompt -d "Theo's Vim statusline esque Fish prompt"
+  # Nordfox
+  set -l bg0 232831
+  set -l bg2 39404F
+  set -l fg2 ABB1BB
+  set -l fg3 7E8188
+  set -l cyan 88C0D0
+  set -l green A3BE8C
+  set -l purple B48EAD
+  set -l red BF616A
+  set -l blue 81A1C1
 
-    if not set -q -g __fish_arrow_functions_defined
-        set -g __fish_arrow_functions_defined
-        function _git_branch_name
-            set -l branch (git symbolic-ref --quiet HEAD 2>/dev/null)
-            if set -q branch[1]
-                echo (string replace -r '^refs/heads/' '' $branch)
-            else
-                echo (git rev-parse --short HEAD 2>/dev/null)
-            end
-        end
+  set -l normal (set_color normal)
 
-        function _is_git_dirty
-            not command git diff-index --cached --quiet HEAD -- &>/dev/null
-            or not command git diff --no-ext-diff --quiet --exit-code &>/dev/null
-        end
-
-        function _is_git_repo
-            type -q git
-            or return 1
-            git rev-parse --git-dir >/dev/null 2>&1
-        end
-
-        function _hg_branch_name
-            echo (hg branch 2>/dev/null)
-        end
-
-        function _is_hg_dirty
-            set -l stat (hg status -mard 2>/dev/null)
-            test -n "$stat"
-        end
-
-        function _is_hg_repo
-            fish_print_hg_root >/dev/null
-        end
-
-        function _repo_branch_name
-            _$argv[1]_branch_name
-        end
-
-        function _is_repo_dirty
-            _is_$argv[1]_dirty
-        end
-
-        function _repo_type
-            if _is_hg_repo
-                echo hg
-                return 0
-            else if _is_git_repo
-                echo git
-                return 0
-            end
-            return 1
-        end
+  # From Fish arrow prompt minus HG info
+  # faster than (fish_git_prompt)
+  if not set -q -g __fish_arrow_functions_defined
+    set -g __fish_arrow_functions_defined
+    function _git_branch_name
+      set -l branch (git symbolic-ref --quiet HEAD 2>/dev/null)
+      if set -q branch[1]
+        echo (string replace -r '^refs/heads/' '' $branch)
+      else
+        echo (git rev-parse --short HEAD 2>/dev/null)
+      end
     end
 
-    set -l cyan (set_color -o cyan)
-    set -l yellow (set_color -o yellow)
-    set -l red (set_color -o red)
-    set -l green (set_color -o green)
-    set -l blue (set_color -o blue)
-    set -l normal (set_color normal)
-
-    set -l arrow_color "$green"
-    if test $__last_command_exit_status != 0
-        set arrow_color "$red"
+    function _is_git_dirty
+      not command git diff-index --cached --quiet HEAD -- &>/dev/null
+      or not command git diff --no-ext-diff --quiet --exit-code &>/dev/null
     end
 
-    set -l arrow "$arrow_color➜ "
-    if fish_is_root_user
-        set arrow "$arrow_color# "
+    function _is_git_repo
+      type -q git
+      or return 1
+      git rev-parse --git-dir >/dev/null 2>&1
     end
+  end
 
-    # Removed (basename (prompt_pwd)) since prompt_pwd truncates long path by default
-    set -l cwd $cyan(prompt_pwd)
+  # CWD
+  # no need for basename() prompt_pwd does truncation by default
+  set -l cwd (set_color --bold $fg2 --background $bg0) (prompt_pwd)
 
-    set -l repo_info
-    if set -l repo_type (_repo_type)
-        set -l repo_branch $red(_repo_branch_name $repo_type)
-        set repo_info "$blue $repo_type:($repo_branch$blue)"
+  # Prompt
+  set -l prompt (set_color $fg3) '$'
+  if fish_is_root_user
+    set prompt (set_color --bold $red) '#'
+  end
 
-        if _is_repo_dirty $repo_type
-            set -l dirty "$yellow ✗"
-            set repo_info "$repo_info$dirty"
-        end
+  # Git info
+  set -l git_info
+  if _is_git_repo
+    set git_info (set_color --bold $fg3 --background $bg2) (_git_branch_name)
+
+    if _is_git_dirty
+      set git_info "$git_info ! "
+    else
+      set git_info "$git_info "
     end
+  end
 
-    # My addition: exit stats
-    set -l exit_stats ' | ' $arrow_color $__last_command_exit_status
-
-    # Add an arrow after the exit status
-    echo -n -s $arrow ' ' $cwd $repo_info $normal $exit_stats ' ❱' $normal ' '
+  echo -n -s "$cwd $git_info" $normal ' ' $prompt $normal ' '
 end
 
