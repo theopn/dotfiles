@@ -257,17 +257,15 @@ function zsh_greeting() {
   oliver=${olivers[ $(( RANDOM % ${#olivers[@]} + 1 )) ]}
 
   # Other information
-  my_hostname=$(hostname -s)
-  timestamp="$(date -I) $(date +"%T")"
+  zsh_ver="$(zsh --version)"
   uptime=$(uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 " " }')
 
   # Greeting msg
   echo
-  echo -e "  " "$brgreen" "Welcome back $USER!"                       "$normal"
-  echo -e "  " "$brred"   "$oliver"                                   "$normal"
-  echo -e "  " "$yellow"  " Zsh Open:\t"   "$bryellow$timestamp"     "$normal"
-  echo -e "  " "$blue"    " Hostname:\t"   "$brmagenta$my_hostname"  "$normal"
-  echo -e "  " "$magenta" " Uptime  :\t"   "$brblue$uptime"          "$normal"
+  echo -e "  " "$brgreen" "Meow"                             "$normal"
+  echo -e "  " "$brred"   "$oliver"                          "$normal"
+  echo -e "  " "$cyan"    "  Shell:\t"   "$brcyan$zsh_ver"  "$normal"
+  echo -e "  " "$blue"    "  Uptime:\t"  "$brblue$uptime"   "$normal"
   echo
 }
 

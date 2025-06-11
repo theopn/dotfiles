@@ -48,10 +48,10 @@ tarunmake() {
 
 # My cute greeting func
 greeting() {
+  bash_ver="$(bash --version | head -1)"
   my_hostname=$(hostname -s)
-  timestamp="$(date -I) $(date +"%T")"
   uptime=$(uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 " " }')
-  echo -e "  " "\033[0;32m" "Welcome back $USER!"                       "\033[0m"
+  echo -e "  " "\033[0;32m" "Meow"                       "\033[0m"
   echo -e "\033[0;31m" \
       '
                              _
@@ -61,8 +61,7 @@ greeting() {
           `---``(_/--`  `-`\_)
       ' \
       "\033[0;0m"
-  echo -e "  " "\033[0;33m" "Bash Open:\t" "$timestamp"   "\033[0m"
-  echo -e "  " "\033[0;34m" "Hostname :\t" "$my_hostname" "\033[0m"
+  echo -e "  " "\033[0;33m" "Shell    :\t" "$bash_ver"    "\033[0m"
   echo -e "  " "\033[0;35m" "Uptime   :\t" "$uptime"      "\033[0m"
 }
 [[ -t 0 ]] && greeting # check if file descriptor 0 (stdin) is attached to tty
