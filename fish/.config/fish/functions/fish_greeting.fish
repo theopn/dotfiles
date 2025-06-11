@@ -1,4 +1,4 @@
-function fish_greeting -d "Theo's Custom Greetin Msg"
+function fish_greeting -d "GREETINGS"
   # Colors
   set -l normal (set_color normal)
   set -l cyan (set_color -o cyan)
@@ -14,6 +14,8 @@ function fish_greeting -d "Theo's Custom Greetin Msg"
   set -l brmagenta (set_color -o brmagenta)
   set -l yellow (set_color -o yellow)
   set -l bryellow (set_color -o bryellow)
+
+  set -l beige (set_color -o bba592)
 
   # Collection of Oliver ASCII arts
   set -l olivers \
@@ -68,16 +70,12 @@ function fish_greeting -d "Theo's Custom Greetin Msg"
   set -l oliver "$(random choice $olivers)" # will break new line without the quotes
 
   # Other information
-  set -l my_hostname $(hostname -s) # -s to trim domain, hostname variable is taken by Fish
-  set -l timestamp $(date -I) $(date +"%T")
   set -l uptime $(uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 " " }')
 
   # Print the msg
   echo
-  echo -e "  " "$brgreen" "Welcome back $USER!"                         "$normal"
-  echo -e "  " "$brred"   "$oliver"                                     "$normal"
-  echo -e "  " "$yellow"  " Fish Opened:\t"    "$bryellow$timestamp"     "$normal"
-  echo -e "  " "$blue"    " Hostname  :\t"    "$brmagenta$my_hostname"  "$normal"
-  echo -e "  " "$magenta" " Uptime     :\t"    "$brblue$uptime"          "$normal"
+  echo -e "  " "$cyan"   "Meow"                           "$normal"
+  echo -e "  " "$beige"  "$oliver"                        "$normal"
+  echo -e "  " "$blue"   " Uptime:\t"  "$brblue$uptime"  "$normal"
   echo
 end
