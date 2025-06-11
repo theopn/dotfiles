@@ -13,6 +13,7 @@
 # Vim mode
 bindkey -v
 
+
 ##### Alias #####
 alias cl='clear'
 alias ga='git add'
@@ -40,6 +41,7 @@ tarmake() { tar -czvf ${1}.tar.gz $1 }
 # x for extracting, v for verbose, f for file
 tarunmake() { tar -zxvf $1 }
 
+
 ##### Simple Trash Function #####
 function trash() {
   if [[ -z "$THEOSHELL_TRASH_DIR" ]]; then
@@ -58,6 +60,7 @@ function trash() {
     mv ${file} ${THEOSHELL_TRASH_DIR} && echo ":) ${file} moved to trash!" || echo ":( Failed to move ${file} to trash"
   done
 }
+
 
 ##### Minimal Plugin Manager #####
 
@@ -126,6 +129,7 @@ sshf() {
   echo "SSHing to ${selected}..." && ssh "$selected"
 }
 
+
 ##### Directory Bookmark using FZF #####
 
 cdf() {
@@ -154,7 +158,8 @@ cdf_add() {
 
 alias cdf_edit="$EDITOR $THEOSHELL_CDF_DIR"
 
-##### Prompt #####
+
+##### Git Information #####
 autoload -Uz vcs_info
 
 zstyle ':vcs_info:*' enable git
@@ -171,17 +176,14 @@ zstyle ':vcs_info:git:*' formats '%b%u%c'
 # Only displayed in Git action like rebase, merge, cherry-pick
 zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
-# %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
-PROMPT=" ➜  %F{cyan}%(5~|%-1~/.../%3~|%4~)%f %F{blue}\$vcs_info_msg_0_%f | %(?|%F{green}|%F{red})%? $ %f"
-
 
 ##### Vim mode indicator #####
 # https://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
 # perform parameter expansion/command substitution in prompt
 setopt PROMPT_SUBST
 
-ins_mode_indicator='%F{green}[I]%f'
-norm_mode_indicator='%F{red}[N]%f'
+ins_mode_indicator="%F{yellow}[I]%f"
+norm_mode_indicator="%F{magenta}[N]%f"
 # Initial mode
 vi_mode_indicator=$ins_mode_indicator
 
@@ -209,7 +211,14 @@ TRAPINT() {
   return $(( 128 + $1 ))
 }
 
-RPROMPT="\$vi_mode_indicator"
+
+##### PROMPT #####
+
+# %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
+PROMPT=" \$vi_mode_indicator %F{blue}%(5~|%-1~/.../%3~|%4~)%f %F{cyan}\$vcs_info_msg_0_%f %F{white}❱%f "
+
+RPROMPT="%(?|%F{green}|%F{red})[%?]%f "
+
 
 ##### Greeting #####
 function zsh_greeting() {
