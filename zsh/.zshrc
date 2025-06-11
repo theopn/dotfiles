@@ -85,7 +85,7 @@ function plug() {
   fi
 }
 
-function update() {
+function plug_update() {
   if [[ -z "$ZSH_PLUGIN_DIR" ]]; then
     echo "You must provide ZSH_PLUGIN_DIR"
     return 1

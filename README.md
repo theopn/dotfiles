@@ -59,7 +59,7 @@ BYE
 
 - Bash: Basic configuration for my school SSH server
 - ZSH: My `$SHELL`
-    - Minimal plugin manager (`plug`, `update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
+    - Minimal plugin manager (`plug`, `plug_update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
     - Rudimentary implementation of trash-cli (`trash`)
     - Git info in the prompt
 - **Fish**: Main interactive shell
