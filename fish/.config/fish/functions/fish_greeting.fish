@@ -70,12 +70,14 @@ function fish_greeting -d "GREETINGS"
   set -l oliver "$(random choice $olivers)" # will break new line without the quotes
 
   # Other information
+  set -l fish_ver $(fish --version)
   set -l uptime $(uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 " " }')
 
   # Print the msg
   echo
-  echo -e "  " "$cyan"   "Meow"                           "$normal"
-  echo -e "  " "$beige"  "$oliver"                        "$normal"
-  echo -e "  " "$blue"   " Uptime:\t"  "$brblue$uptime"  "$normal"
+  echo -e "  " "$brgreen"  "Meow"                              "$normal"
+  echo -e "  " "$beige"    "$oliver"                           "$normal"
+  echo -e "  " "$cyan"     "  Shell:\t"   "$brcyan$fish_ver"  "$normal"
+  echo -e "  " "$blue"     "  Uptime:\t"  "$brblue$uptime"    "$normal"
   echo
 end
