@@ -13,7 +13,7 @@
 
 Tabline = {}
 
-local logo = vim.g.have_nerd_font and " 󰬛  " or " <Theovim> "
+local logo = vim.g.have_nerd_font and " 󰬛 󰫵󰫲󰫼 " or " <Theovim> "
 
 
 ---Given a list of |window-ID|, filters out abnormal (i.e., float) windows.
