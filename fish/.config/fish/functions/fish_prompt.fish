@@ -48,14 +48,18 @@ function fish_prompt -d "Theo's Vim statusline esque Fish prompt"
   end
 
   # Git info
+  # Hard code 
+  set -l BIG_REPOS Robot-Cello-ResidualRL Robot-Cello
   set -l git_info
-  if _is_git_repo
-    set git_info (set_color --bold $fg3 --background $bg2) (_git_branch_name)
+  if not contains (basename $PWD) $BIG_REPOS
+    if _is_git_repo
+      set git_info (set_color --bold $fg3 --background $bg2) (_git_branch_name)
 
-    if _is_git_dirty
-      set git_info "$git_info ! "
-    else
-      set git_info "$git_info "
+      if _is_git_dirty
+        set git_info "$git_info ! "
+      else
+        set git_info "$git_info "
+      end
     end
   end
 
