@@ -12,7 +12,7 @@
 --- - List of buffers in the current tab
 
 -- Intergration with ui/pomodoro.lua
-local pomodoro = require("ui.pomodoro").timerGetTime
+local pomodoro = require("ui.pomodoro").getFormattedTime
 
 Tabline = {}
 

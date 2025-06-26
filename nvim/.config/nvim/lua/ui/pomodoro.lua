@@ -5,6 +5,8 @@
 
 local M = {}
 
+---------- Enums ----------
+
 local States = {
   NONE = 0,
   RUNNING = 1,
@@ -19,10 +21,17 @@ local Icons = {
   [States.ENDED] = "󱦟",
 }
 
+
+---------- Fields ----------
+
 M.timer = nil
 M.remainingSec = 0
 M.lastFinishedTimestamp = nil
 M.state = States.NONE
+M.defaultMiniutes = 25
+
+
+---------- Helpers ----------
 
 ---@param seconds number of seconds to format.
 ---@return string of the format "HH:MM:SS".
@@ -33,6 +42,7 @@ local function formatSeconds(seconds)
     seconds % 60
   )
 end
+
 
 ---@return string|osdate the current timestamp in the format "HH:MM:SS".
 local function getCurrTime()
@@ -46,6 +56,9 @@ local function updateTabline()
     vim.api.nvim__redraw({ tabline = true })
   end, 900)
 end
+
+
+---------- Methods ----------
 
 --- Updates the M.remaining_seconds and redraws Tabline
 M.callback = function()
@@ -63,18 +76,10 @@ M.callback = function()
   updateTabline()
 end
 
---- Stops and resets the current timer object
---- Keeps the M.remaining_seconds so that it can be resumed
-M.stopTimer = function()
-  if M.timer then
-    M.timer:stop()
-    M.timer:close()
-    M.timer = nil
-    M.state = States.PAUSED
-  end
-end
 
 --- Starts a timer assuming none is running yet
+--- WARN: it is advised to use `M.restartTimer()` instead of direct calls
+---
 ---@param minutes number? of minutes to start the timer
 M.startTimer = function(minutes)
   if minutes <= 0 then
@@ -88,27 +93,61 @@ M.startTimer = function(minutes)
   M.timer:start(1000, 1000, M.callback)
 end
 
---- Safely pauses the current timer and deletes the timer object
---- before calling M.startTimer()
+
+--- Stops and resets the current timer object.
+--- If timer is not running, do not take any action.
+--- Keeps the M.remaining_seconds so that it can be resumed
+M.stopTimer = function()
+  if M.timer then
+    M.timer:stop()
+    M.timer:close()
+    M.timer = nil
+    M.state = States.PAUSED
+  end
+end
+
+
+--- Starts a new timer based on `M.remainingSec` that previous timer left before calling `M.stopTimer`
+M.resumeTimer = function()
+  if M.remainingSec > 0 then
+    M.restartTimer(M.remainingSec)
+  else
+    print("[Pomodoro] No timer is currently running")
+  end
+end
+
+
+--- Pauses the current timer, deletes the timer object, and start a new timer
 ---@param minutes number? of minutes to start the timer
-M.startTimerWrapper = function(minutes)
+M.restartTimer = function(minutes)
   M.stopTimer()
   M.startTimer(minutes)
 end
 
----@return string
-M.timerGetTime = function()
+
+---@return string Nerd font glyph indicating the status and the timestamp information to be used with tabline
+M.getFormattedTime = function()
   local stamp = "No Timer"
-  if M.remainingSec > 0 then
+
+  --if M.remainingSec > 0 then
+  if M.state == States.RUNNING or M.state == States.PAUSED then
     stamp = formatSeconds(M.remainingSec)
-  elseif M.lastFinishedTimestamp then
-    stamp = "Ended @" .. M.lastFinishedTimestamp
+  --elseif M.lastFinishedTimestamp then
+  elseif M.state == States.ENDED then
+    stamp = "Ended @ " .. M.lastFinishedTimestamp
   end
 
   return string.format("%s:%s", Icons[M.state], stamp)
 end
 
+
 M.setup = function()
+  -- TODO: Fix nil with number error in tonumber() (create a parseNumber function to provide a default 25 minutes value)
+  vim.api.nvim_create_user_command("PomodoroStartNew", function(args)
+    local minutes = args["args"]
+    M.restartTimer(tonumber(minutes))
+  end, { nargs = "?" })
+
   vim.api.nvim_create_user_command("PomodoroPause", function()
     M.stopTimer()
   end, { nargs = 0 })
@@ -117,15 +156,11 @@ M.setup = function()
     M.resumeTimer()
   end, { nargs = 0 })
 
-  vim.api.nvim_create_user_command("PomodoroStart", function(args)
-    local minutes = args["args"]
-    M.startTimerWrapper(tonumber(minutes))
-  end, { nargs = "?" })
-
   vim.api.nvim_create_user_command("PomodoroGetTime", function()
-    print(M.timerGetTime())
+    print(M.getFormattedTime())
   end, { nargs = 0 })
 end
 
+-------------------
 
 return M
