@@ -1,6 +1,6 @@
 --- Theo's simple Pomodoro Timer
 --- Supports a single instance of pause-able countdown timer
---- and integration as a tabline modue (or Statusline if you modify M.callback)
+--- and integration as a tabline module (or Statusline or Winbar if you modify updateTabline())
 --- Inspired by cbrgm's countdown.nvim
 
 local M = {}
@@ -34,19 +34,22 @@ local function formatSeconds(seconds)
   )
 end
 
----@return string|osdate of the current timestamp in the format "HH:MM:SS".
+---@return string|osdate the current timestamp in the format "HH:MM:SS".
 local function getCurrTime()
   return os.date("%H:%M:%S")
+end
+
+--- Updates the tabline every 900ms with the choice of API while avoiding |textlock| (E5560)
+local function updateTabline()
+  vim.defer_fn(function()
+    --vim.cmd("redrawtabline")
+    vim.api.nvim__redraw({ tabline = true })
+  end, 900)
 end
 
 --- Updates the M.remaining_seconds and redraws Tabline
 M.callback = function()
   M.remainingSec = M.remainingSec - 1
-
-  -- To avoid E5560
-  vim.defer_fn(function()
-    vim.cmd("redrawtabline")
-  end, 1000)
 
   if M.remainingSec <= 0 then
     M.lastFinishedTimestamp = getCurrTime()
@@ -56,6 +59,8 @@ M.callback = function()
     M.timer = nil
     M.state = States.ENDED
   end
+
+  updateTabline()
 end
 
 --- Stops and resets the current timer object
@@ -93,11 +98,11 @@ end
 
 ---@return string
 M.timerGetTime = function()
-  local stamp = ""
+  local stamp = "No Timer"
   if M.remainingSec > 0 then
     stamp = formatSeconds(M.remainingSec)
   elseif M.lastFinishedTimestamp then
-    stamp = M.lastFinishedTimestamp
+    stamp = "Ended @" .. M.lastFinishedTimestamp
   end
 
   return string.format("%s:%s", Icons[M.state], stamp)
