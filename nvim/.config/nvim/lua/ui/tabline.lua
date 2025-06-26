@@ -11,6 +11,9 @@
 --- - Number of window iff there is more than one
 --- - List of buffers in the current tab
 
+-- Intergration with ui/pomodoro.lua
+local pomodoro = require("ui.pomodoro").timerGetTime
+
 Tabline = {}
 
 local logo = vim.g.have_nerd_font and " 󰬛 󰫵󰫲󰫼 " or " <Theovim> "
@@ -106,6 +109,11 @@ Tabline.build = function()
   -- ============================
   s = s .. "%="            --> spacer
   s = s .. "%#TabLineSel#" --> highlight
+
+  -- ========== Right ==========
+  -- Timer
+  -- ===========================
+  s = s .. " " .. pomodoro()
 
   -- ========== Right ==========
   -- List of LISTED buffers in the current tab
