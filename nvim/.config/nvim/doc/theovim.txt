@@ -451,6 +451,40 @@ See also:
 - |setting-tabline|: a guide on configuring tabline with Vimscript
 
 ==============================================================================
+Pomodoro                                                    *theovim-pomodoro*
+
+`ui/pomodoro.lua` is a simple timer I wrote.
+
+:PomodoroStartNew {minutes}                                *:PomodoroStartNew*
+                                Starts the timer for {minutes} * 60 seconds.
+                                {minutes} must be a positive number.
+:PomodoroPause                                                *:PomodoroPause*
+                                Pauses the timer
+:PomodoroResume                                              *:PomodoroResume*
+                                Resumes the timer
+:PomodoroGetTime                                            *:PomodoroGetTime*
+                                Prints the formatted string with either
+                                - current remaining time
+                                - timestamp when the last timer ended
+                                in the HH:MM:SS format.
+
+The timer logic heavily relies on |uv_timer_t| object.
+It was a fun, educational experience writing it,
+you (future me) should check it out.
+
+The result of |:PomodoroGetTime| is displayed in my |theovim-tabline|.
+Tabline update triggers are very limited, even limited than Statusline,
+not even with |CursorMoved|.
+Plugins like lualine forces update using the |uv_timer_t| object.
+Anyway, I force Tabline update in the `callback` of the |uv.timer_start()|,
+using |nvim__redraw()| or |:redrawtabline|.
+But calling API functions in face event throws |E5560|, so it is wrapped in
+|vim.defer_fn()| to be called every 900ms.
+
+See also:
+- |vim.schedule()| and |vim.schedule_wrap()|
+
+==============================================================================
 yanky.nvim                                                     *theovim-yanky*
 
 char            action
