@@ -1,5 +1,5 @@
 --- Theo's simple Pomodoro Timer
---- Supports a single instance of pause-able countdown timer
+--- Supports a single instance of pause-able countdown timer per Neovim instance
 --- and integration as a tabline module (or Statusline or Winbar if you modify updateTabline())
 --- Inspired by cbrgm's countdown.nvim
 
@@ -28,8 +28,6 @@ M.timer = nil
 M.remainingSec = 0
 M.lastFinishedTimestamp = nil
 M.state = States.NONE
-M.defaultMiniutes = 25
-
 
 ---------- Helpers ----------
 
@@ -49,6 +47,7 @@ local function getCurrTime()
   return os.date("%H:%M:%S")
 end
 
+
 --- Updates the tabline every 900ms with the choice of API while avoiding |textlock| (E5560)
 local function updateTabline()
   vim.defer_fn(function()
@@ -66,11 +65,11 @@ M.callback = function()
 
   if M.remainingSec <= 0 then
     M.lastFinishedTimestamp = getCurrTime()
-    print(string.format("[Pomodoro] Time is up! (%s)", M.lastFinishedTimestamp))
     M.timer:stop()
     M.timer:close()
     M.timer = nil
     M.state = States.ENDED
+    print(string.format("[Pomodoro] Time is up! (@ %s)", M.lastFinishedTimestamp))
   end
 
   updateTabline()
@@ -80,13 +79,9 @@ end
 --- Starts a timer assuming none is running yet
 --- WARN: it is advised to use `M.restartTimer()` instead of direct calls
 ---
----@param minutes number? of minutes to start the timer
-M.startTimer = function(minutes)
-  if minutes <= 0 then
-    print("[Pomodoro] Error: Minutes should be a positive number")
-  end
-
-  M.remainingSec = minutes * 60
+---@param seconds number? of seconds to start the timer, should already be processed to a positive integer
+M.startTimer = function(seconds)
+  M.remainingSec = seconds
   M.state = States.RUNNING
 
   M.timer = vim.uv.new_timer()
@@ -118,10 +113,10 @@ end
 
 
 --- Pauses the current timer, deletes the timer object, and start a new timer
----@param minutes number? of minutes to start the timer
-M.restartTimer = function(minutes)
+---@param seconds number? of seconds to start the timer, should already be processed to a positive integer
+M.restartTimer = function(seconds)
   M.stopTimer()
-  M.startTimer(minutes)
+  M.startTimer(seconds)
 end
 
 
@@ -132,7 +127,7 @@ M.getFormattedTime = function()
   --if M.remainingSec > 0 then
   if M.state == States.RUNNING or M.state == States.PAUSED then
     stamp = formatSeconds(M.remainingSec)
-  --elseif M.lastFinishedTimestamp then
+    --elseif M.lastFinishedTimestamp then
   elseif M.state == States.ENDED then
     stamp = "Ended @ " .. M.lastFinishedTimestamp
   end
@@ -142,11 +137,14 @@ end
 
 
 M.setup = function()
-  -- TODO: Fix nil with number error in tonumber() (create a parseNumber function to provide a default 25 minutes value)
   vim.api.nvim_create_user_command("PomodoroStartNew", function(args)
-    local minutes = args["args"]
-    M.restartTimer(tonumber(minutes))
-  end, { nargs = "?" })
+    local min = tonumber(args.args)
+    if min == nil or min < 0 then
+      print("[Pomodoro] Time must be a positive number")
+    else
+      M.restartTimer(tonumber(args.args) * 60)
+    end
+  end, { nargs = 1 })
 
   vim.api.nvim_create_user_command("PomodoroPause", function()
     M.stopTimer()
