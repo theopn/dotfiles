@@ -108,7 +108,8 @@ BYE
 
 ### Text editors:
 
-- **Neovim**: My IDE, to-do list, and software engineering project. Reference [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), a 700-lines of help documentation I wrote on custom functions, plugin configurations, and Vim tips I have accumulated over the years
+- **Neovim**: My IDE, to-do list, Pomodoro timer, and a life-long software engineering project. Read [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), a ~700~ 1000 lines of help documentation I wrote on custom functions, plugin configurations, and Vim tips I have accumulated over the years
+    - Read [Neovim content](https://theopark.me/tags/neovim/) in my blog!
 - Neovide: Neovim GUI frontend with pretty animations
 - Vim: Simple config with Vimwiki for journal writing
     - My Vimrc is built with [Kickstart.vim](https://github.com/theopn/kickstart.vim), features 
