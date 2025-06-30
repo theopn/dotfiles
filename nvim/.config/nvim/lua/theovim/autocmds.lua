@@ -40,12 +40,11 @@ autocmd("OptionSet", {
 })
 
 -- When shiftwidth was changed by ftplugin
-autocmd("BufEnter", {
+autocmd({ "BufWinEnter", }, {
   group = update_leadmultispace_group,
-  pattern = "*",
   callback = update_leadmultispace,
-  once = true,
+  --once = true,
 })
 
 -- Disable the autocmd disabling swap warning in starting in 0.10
-vim.cmd[[au! nvim.swapfile]]
+vim.cmd [[au! nvim.swapfile]]
