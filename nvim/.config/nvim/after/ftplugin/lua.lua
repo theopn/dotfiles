@@ -24,7 +24,7 @@ local function run_lua()
   local x_pos = math.ceil((vim.api.nvim_win_get_width(0) - width) * 0.5) --> Center
   local y_pos = 1                                                        --> Top
 
-  local win_opts = {
+  local win_config = {
     border = "shadow", --> sigle, double, rounded, solid, shadow
     relative = "editor",
     style = "minimal", --> No number, cursorline, etc.
@@ -34,16 +34,14 @@ local function run_lua()
     col = x_pos,
   }
   local buf = vim.api.nvim_create_buf(false, true)
-  local win = vim.api.nvim_open_win(buf, true, win_opts)
+  local win = vim.api.nvim_open_win(buf, true, win_config)
 
-  -- options
-  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe") --> Kill the buffer when hidden
-  vim.api.nvim_buf_set_option(buf, "modifiable", false)
-  vim.api.nvim_win_set_option(win, "winblend", 50)      --> 80 for transparency
+  -- scratch buffers are "hide" by default,
+  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
+  vim.api.nvim_set_option_value("winblend", 10, { win = win })
 
   -- Execute the command
-  vim.fn.termopen(cmd)
+  vim.fn.jobstart(cmd, { term = true })
 end
 
 vim.api.nvim_create_user_command("RunLua", run_lua, { nargs = 0 })
-
