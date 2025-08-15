@@ -24,10 +24,23 @@ defaults write com.apple.finder ShowPathbar -bool true
 # Keep the folder first when sorting
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 # Use list view in all Finder windows by default: Four-letter codes for the other view modes: `icnv`, `clmv`, `glyv`
-defaults write com.apple.finder FXPreferredViewStyle -string "Nlsv"
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 # No animation
 defaults write com.apple.finder DisableAllAnimations -bool true
 killall Finder
+
+# Save to disk instead of iCloud by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Avoid creating .DS_Store files on network/USB drives
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+
+# Enable tap-to-click for the trackpad and show the correct state in System Preferences
+echo "> Enabling tap-to-click for the trackpad..."
+echo ""
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
 
 # Set key repeat speed
 # Initial repeat is default 15 (225ms). Don't set this too fast since it can trigger accidental key press

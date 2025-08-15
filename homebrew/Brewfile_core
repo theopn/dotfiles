@@ -12,6 +12,7 @@ brew "neovim"
 # brew "rust"
 brew "tmux"
 brew "wget"
+# brew "oven-sh/bun/bun"
 
 cask "macvim"
 cask "wezterm"

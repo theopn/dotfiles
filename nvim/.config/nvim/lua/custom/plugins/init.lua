@@ -30,6 +30,12 @@ return {
         },
       },
     },
+    views = {
+      notify = {
+        timeout = 50,
+        render = 'default',
+      },
+    },
     dependencies = {
       -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
       'MunifTanjim/nui.nvim',
@@ -103,7 +109,7 @@ return {
             return 'AutoSave: saved at ' .. vim.fn.strftime '%H:%M:%S'
           end,
           dim = 0.18,
-          cleaning_interval = 200,
+          cleaning_interval = 100,
         },
         debounce_delay = 10000,
         trigger_events = { 'InsertLeave', 'TextChanged' },

@@ -154,7 +154,7 @@ map , # find-prev                (default ',')
 map ff fzf_jump
 
 cmd trash !{{
-  export MUMBOSHELL_TRASH_DIR="$HOME/.local/share/mumboshell/trash"
+  export MUMBOSHELL_TRASH_DIR="$HOME/.local/share/mumbo/trash"
   if [ ! -d ${MUMBOSHELL_TRASH_DIR} ]; then
     mkdir -p ${MUMBOSHELL_TRASH_DIR}
   fi

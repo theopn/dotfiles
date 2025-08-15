@@ -45,8 +45,8 @@ Host [nickname]
 HELLO
 
 # Create and add directories to the directory bookmark/favorites list for my `cdf` fish function
-mkdir -p $XDG_DATA_HOME/mumboshell && touch $XDG_DATA_HOME/mumboshell/cd-fav.txt
-cat <<BYE >> $XDG_DATA_HOME/mumboshell/cd-fav.txt
+mkdir -p $XDG_DATA_HOME/mumbo && touch $XDG_DATA_HOME/mumbo/cd-fav.txt
+cat <<BYE >> $XDG_DATA_HOME/mumbo/cd-fav.txt
 $XDG_CONFIG_HOME
 $XDG_DATA_HOME
 BYE
@@ -123,7 +123,7 @@ BYE
   - If preview breaks, which might happen while displaying images in Tmux, use `C-l` to reset the screen
   - `ee`: Open a file in `$EDITOR`
   - `ec`: You choose what editor you want to open a file in
-  - `DD`: Move a file to `$XDG_DATA_HOME/mumboshell/trash`
+  - `DD`: Move a file to `$XDG_DATA_HOME/mumbo/trash`
   - `gs`: [g]it [s]tatus
   - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
   - `md`: mkdir

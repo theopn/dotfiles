@@ -5,7 +5,7 @@
 # : :  : :`._-.': .. :
 # :_;  :_;`.__.':_;:_;
 #
-# Theo's Fish config
+# Mumbo's Fish config
 # Most of them are in conf.d
 
 if status is-interactive

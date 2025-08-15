@@ -40,3 +40,8 @@ cask "obs"
 # cask "chromium"
 # cask "tailscale"
 # cask "thunderbird"
+
+cask "font-hack-nerd-font"
+cask "font-menlo-for-powerline"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
