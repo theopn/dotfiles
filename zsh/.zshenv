@@ -19,7 +19,7 @@ export DOT_DIR="$HOME/dotfiles"
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
 export FZF_DEFAULT_OPTS='--layout=reverse --cycle --height=50% --margin=5% --border=double'
 
-export THEOSHELL_TRASH_DIR="$XDG_DATA_HOME/theoshell/trash"
-export THEOSHELL_CDF_DIR="$XDG_DATA_HOME/theoshell/cd-fav.txt"
-export ZSH_PLUGIN_DIR="$XDG_DATA_HOME/theoshell/zsh-plugins"
+export MUMBOSHELL_TRASH_DIR="$XDG_DATA_HOME/mumboshell/trash"
+export MUMBOSHELL_CDF_DIR="$XDG_DATA_HOME/mumboshell/cd-fav.txt"
+export ZSH_PLUGIN_DIR="$XDG_DATA_HOME/mumboshell/zsh-plugins"
 

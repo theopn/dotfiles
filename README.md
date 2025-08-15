@@ -1,16 +1,15 @@
 # Theo's dotfiles
 
 | ![macos-sc](./assets/macos-sc.jpg) |
-|:--:|
-| my macbook |
+| :--------------------------------: |
+|             my macbook             |
 
 Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
 MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin.
 
 Tools in this repository are mostly open-source utilities for development.
 
-> [!IMPORTANT]
-> **Read the code if you decide to use them!**
+> [!IMPORTANT] > **Read the code if you decide to use them!**
 
 ## Installation
 
@@ -46,8 +45,8 @@ Host [nickname]
 HELLO
 
 # Create and add directories to the directory bookmark/favorites list for my `cdf` fish function
-mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-fav.txt
-cat <<BYE >> $XDG_DATA_HOME/theoshell/cd-fav.txt
+mkdir -p $XDG_DATA_HOME/mumboshell && touch $XDG_DATA_HOME/mumboshell/cd-fav.txt
+cat <<BYE >> $XDG_DATA_HOME/mumboshell/cd-fav.txt
 $XDG_CONFIG_HOME
 $XDG_DATA_HOME
 BYE
@@ -59,77 +58,77 @@ BYE
 
 - Bash: Basic configuration for my school SSH server
 - ZSH: My `$SHELL`
-    - Minimal plugin manager (`plug`, `plug_update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
-    - Rudimentary implementation of trash-cli (`trash`)
-    - Git info in the prompt
+  - Minimal plugin manager (`plug`, `plug_update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
+  - Rudimentary implementation of trash-cli (`trash`)
+  - Git info in the prompt
 - **Fish**: Main interactive shell
-    - Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for better performance.
-        Thus, you need to set global variables only once for your system.
-        I created a script to set all the universal environment variables at once; run: `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish`
-    - multicd: `..` to `cd ..`, `...` to `cd../..`, ...
-    - CD favorites/bookmark: `cdf_add` to add current directory to the list, `cdf` to use FZF to search the directoy and CD into it, and `cdf_edit` to edit the list with `$EDITOR`
+  - Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for better performance.
+    Thus, you need to set global variables only once for your system.
+    I created a script to set all the universal environment variables at once; run: `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish`
+  - multicd: `..` to `cd ..`, `...` to `cd../..`, ...
+  - CD favorites/bookmark: `cdf_add` to add current directory to the list, `cdf` to use FZF to search the directoy and CD into it, and `cdf_edit` to edit the list with `$EDITOR`
 
 ### Terminal emulators and multiplexers
 
 - Tmux - things different from the defaults:
-    - Settings: Some terminal information, all indexing starts from 1, increased history limit, and reduced escape time
-    - `C-a` is the prefix, and `PFX + C-a` sends `C-a` to the terminal
-    - `PFX + C-r` reloads the config
-    - `PFX + c` creates a new window *with the same CWD as the current pane*
-    - `PFX + %/"` creates a new pane *with the same CWD as the current pane*
-    - `PFX + hjkl` navigates panes (the default `l` is unbound which is `:last-window`)
-    - `PFX + C-s` prompts you to send the current pane to a selected window
-    - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
-    - Dracula themed status bar displaying the current session & window information, CWD, and current command running
-    - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
+  - Settings: Some terminal information, all indexing starts from 1, increased history limit, and reduced escape time
+  - `C-a` is the prefix, and `PFX + C-a` sends `C-a` to the terminal
+  - `PFX + C-r` reloads the config
+  - `PFX + c` creates a new window _with the same CWD as the current pane_
+  - `PFX + %/"` creates a new pane _with the same CWD as the current pane_
+  - `PFX + hjkl` navigates panes (the default `l` is unbound which is `:last-window`)
+  - `PFX + C-s` prompts you to send the current pane to a selected window
+  - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
+  - Dracula themed status bar displaying the current session & window information, CWD, and current command running
+  - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
 - **Wezterm**: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
-    - Many keybindings in the video now has been changed to match the Tmux keybindings, but the overall functionality remains the same
-    - `LDR` = `C-a`
-    - `LDR [`: enters the copy mode
-    - `LDR :`: opens the command palette
-    - `LDR s`: opens the fuzzy picker for workspace (similar to sessions in Tmux)
-    - Tabs (similar to windows in Tmux)
-        - `LDR w`: opens the picker for tabs
-        - `LDR c`: creates a new tab
-        - `LDR p/n`: navigates previous/next tabs
-        - `LDR ,`: renames the tab
-        - `LDR .`: enters the `move_tab` mode where you can use `hj`/`kl` to order tabs and `ESC` or `RET` to confirm
-        - `LDR 1-9`: moves to the tab with the given index
-    - Panes
-        - `LDR %/"`: creates a new pane vertically/horizontally
-        - `LDR hjkl`: navigates pane
-        - `LDR SPC`: zooms the current pane
-        - `LDR x`: closes the current pane
-        - `LDR !`: breaks the current pane into a new tab
-        - `LDR r`: enters the `resize_pane` mode where you can resize the pane with `<>-+` and `ESC` or `RET` to confirm
-    - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
+  - Many keybindings in the video now has been changed to match the Tmux keybindings, but the overall functionality remains the same
+  - `LDR` = `C-a`
+  - `LDR [`: enters the copy mode
+  - `LDR :`: opens the command palette
+  - `LDR s`: opens the fuzzy picker for workspace (similar to sessions in Tmux)
+  - Tabs (similar to windows in Tmux)
+    - `LDR w`: opens the picker for tabs
+    - `LDR c`: creates a new tab
+    - `LDR p/n`: navigates previous/next tabs
+    - `LDR ,`: renames the tab
+    - `LDR .`: enters the `move_tab` mode where you can use `hj`/`kl` to order tabs and `ESC` or `RET` to confirm
+    - `LDR 1-9`: moves to the tab with the given index
+  - Panes
+    - `LDR %/"`: creates a new pane vertically/horizontally
+    - `LDR hjkl`: navigates pane
+    - `LDR SPC`: zooms the current pane
+    - `LDR x`: closes the current pane
+    - `LDR !`: breaks the current pane into a new tab
+    - `LDR r`: enters the `resize_pane` mode where you can resize the pane with `<>-+` and `ESC` or `RET` to confirm
+  - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
 - Kitty: The secondary terminal
-    - Colorscheme can be changed with `kitten themes`
+  - Colorscheme can be changed with `kitten themes`
 
 ### Text editors:
 
 - **Neovim**: My IDE, to-do list, Pomodoro timer, and a life-long software engineering project. Read [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), a ~700~ 1000 lines of help documentation I wrote on custom functions, plugin configurations, and Vim tips I have accumulated over the years
-    - Read [Neovim content](https://theopark.me/tags/neovim/) in my blog!
+  - Read [Neovim content](https://theopark.me/tags/neovim/) in my blog!
 - Neovide: Neovim GUI frontend with pretty animations
 - Vim: Simple config with Vimwiki for journal writing
-    - My Vimrc is built with [Kickstart.vim](https://github.com/theopn/kickstart.vim), features 
-    - `.vim/plugin` directory features [40-line Vimscript bufferline](https://theopark.me/blog/2023-03-17-vimscript-bufferline/) and ["Bufferpanel"](https://theopark.me/blog/2025-06-01-tabpanel/)
-    - Choose between `(Bufferpanel + Tabline) || (Tabpanel + Bufferpanel)` by setting `g:theoline_buflist` and `g:theopanel:buflist` variables
+  - My Vimrc is built with [Kickstart.vim](https://github.com/theopn/kickstart.vim), features
+  - `.vim/plugin` directory features [40-line Vimscript bufferline](https://theopark.me/blog/2023-03-17-vimscript-bufferline/) and ["Bufferpanel"](https://theopark.me/blog/2025-06-01-tabpanel/)
+  - Choose between `(Bufferpanel + Tabline) || (Tabpanel + Bufferpanel)` by setting `g:theoline_buflist` and `g:theopanel:buflist` variables
 
 ### Others
 
 - **LF**: Simple and fast terminal file manager
-    - For my custom `preview` script support: install `bat` and Poppler (for `pdftotext` command);
-        make sure your terminal has either (1) [Sixel](https://www.arewesixelyet.com/) support and has `chafa` installed OR (2) Kitty's `icat` protocol support
-    - If preview breaks, which might happen while displaying images in Tmux, use `C-l` to reset the screen
-    - `ee`: Open a file in `$EDITOR`
-    - `ec`: You choose what editor you want to open a file in
-    - `DD`: Move a file to `$XDG_DATA_HOME/theoshell/trash`
-    - `gs`: [g]it [s]tatus
-    - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
-    - `md`: mkdir
-    - `mf`: Create a file and open in `$EDITOR`
-    - `mo`: chmod
+  - For my custom `preview` script support: install `bat` and Poppler (for `pdftotext` command);
+    make sure your terminal has either (1) [Sixel](https://www.arewesixelyet.com/) support and has `chafa` installed OR (2) Kitty's `icat` protocol support
+  - If preview breaks, which might happen while displaying images in Tmux, use `C-l` to reset the screen
+  - `ee`: Open a file in `$EDITOR`
+  - `ec`: You choose what editor you want to open a file in
+  - `DD`: Move a file to `$XDG_DATA_HOME/mumboshell/trash`
+  - `gs`: [g]it [s]tatus
+  - `ml`, `mr`, `ms`: [m]ark [l]oad, [m]ark [r]emove, [m]ark [s]ave
+  - `md`: mkdir
+  - `mf`: Create a file and open in `$EDITOR`
+  - `mo`: chmod
 - Git: Some Git settings and global `.gitignore` file; `editor` and `pager` are set to require Neovim
 - Fastfetch: essential
 
@@ -157,7 +156,7 @@ The configuration and keybindings are very close to the default with a couple of
 - `alt-shift-space`: Toggle between floating and tiling for the current window
 - `alt-enter`: Open Wezterm
 - `alt-d`: Open Terminal with a command to pick a window to focus
-    This feature is a workaround and should be updated when it is implemented natively, see: https://github.com/nikitabobko/AeroSpace/discussions/1371
+  This feature is a workaround and should be updated when it is implemented natively, see: https://github.com/nikitabobko/AeroSpace/discussions/1371
 - `alt-slash`: Toggle between horizontal and vertical tiling
 - `alt-comma`: Toggle between horizontal and vertical accordion mode
 - `alt-h/j/k/l`: Focus windows
@@ -168,9 +167,9 @@ The configuration and keybindings are very close to the default with a couple of
 - `alt-tab`: Switch between previously used workspaces
 - `alt-shift-tab`: Move current workspace to a different monitor
 - `alt-shift-space`: Enter the service mode
-    - `esc`: Reload the config and exit the service mode
-    - `r`: Reset layout and exit the service mode
-    - `alt-shift-h/j/k/l`: Join windows into different trees
+  - `esc`: Reload the config and exit the service mode
+  - `r`: Reset layout and exit the service mode
+  - `alt-shift-h/j/k/l`: Join windows into different trees
 
 > ![NOTE]
 > In this [commit](https://github.com/nikitabobko/AeroSpace/commit/5aabca5b4d86afa55fb5f1c6cfa06f1e413448fd), a rudimentary UI customization for the Aerospace tray icon has been added, which is frankly all I need.
@@ -209,12 +208,12 @@ Formulae:
 Casks:
 
 | Development     | Fun       | Productivity | Sync        | System        | Tools         | Web         |
-|-----------------|-----------|--------------|-------------|---------------|---------------|-------------|
+| --------------- | --------- | ------------ | ----------- | ------------- | ------------- | ----------- |
 | Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | Chromium    |
 | IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | GIMP          | **Firefox** |
 | kitty           | Spotify   |              | Nextcloud   | **Maccy**     | OBS           | Tailscale   |
 | MacTex (no GUI) |           |              | Syncthing   | **Stats**     | **Skim**      | Thunderbird |
-| **Macvim**      |           |              |             |         e     | VLC           |             |
+| **Macvim**      |           |              |             | e             | VLC           |             |
 | Neovide         |           |              |             |               |               |             |
 | **Wezterm**     |           |              |             |               |               |             |
 
@@ -239,4 +238,3 @@ See the [list of archived configurations](./archive/README.md).
 - Vim: [kickstart.vim](https://github.com/theopn/kickstart.vim)
 - Wezterm: [my Wezterm config video](https://www.youtube.com/watch?v=I3ipo8NxsjY)
 - [Haunted Tiles](https://github.com/theopn/haunted-tiles/) has dotfiles for my minimal, Dracula-themed Fedora i3/Sway Spin environment.
-

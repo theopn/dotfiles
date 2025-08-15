@@ -154,12 +154,12 @@ map , # find-prev                (default ',')
 map ff fzf_jump
 
 cmd trash !{{
-  export THEOSHELL_TRASH_DIR="$HOME/.local/share/theoshell/trash"
-  if [ ! -d ${THEOSHELL_TRASH_DIR} ]; then
-    mkdir -p ${THEOSHELL_TRASH_DIR}
+  export MUMBOSHELL_TRASH_DIR="$HOME/.local/share/mumboshell/trash"
+  if [ ! -d ${MUMBOSHELL_TRASH_DIR} ]; then
+    mkdir -p ${MUMBOSHELL_TRASH_DIR}
   fi
   # $f = current cursor, $fs = selected files, $fx = ($fs exists) ? ($fs) : ($f)
-  IFS="$(printf '\n\t')"; mv $fx ${THEOSHELL_TRASH_DIR} && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n"
+  IFS="$(printf '\n\t')"; mv $fx ${MUMBOSHELL_TRASH_DIR} && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n"
 }}
 map DD trash
 

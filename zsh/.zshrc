@@ -44,12 +44,12 @@ tarunmake() { tar -zxvf $1 }
 
 ##### Simple Trash Function #####
 function trash() {
-  if [[ -z "$THEOSHELL_TRASH_DIR" ]]; then
-    echo "You must provide THEOSHELL_TRASH_DIR"
+  if [[ -z "$MUMBOSHELL_TRASH_DIR" ]]; then
+    echo "You must provide MUMBOSHELL_TRASH_DIR"
     return 1
   fi
 
-  [[ ! -d ${THEOSHELL_TRASH_DIR} ]] && mkdir -p ${THEOSHELL_TRASH_DIR}
+  [[ ! -d ${MUMBOSHELL_TRASH_DIR} ]] && mkdir -p ${MUMBOSHELL_TRASH_DIR}
 
   if [[ -z $@ ]]; then
     echo 'Select file(s) to trash!'
@@ -57,7 +57,7 @@ function trash() {
   fi
 
   for file in $@; do
-    mv ${file} ${THEOSHELL_TRASH_DIR} && echo ":) ${file} moved to trash!" || echo ":( Failed to move ${file} to trash"
+    mv ${file} ${MUMBOSHELL_TRASH_DIR} && echo ":) ${file} moved to trash!" || echo ":( Failed to move ${file} to trash"
   done
 }
 
@@ -133,30 +133,30 @@ sshf() {
 ##### Directory Bookmark using FZF #####
 
 cdf() {
-  if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
-    echo "You must provide THEOSHELL_CDF_DIR"
+  if [[ -z "$MUMBOSHELL_CDF_DIR" ]]; then
+    echo "You must provide MUMBOSHELL_CDF_DIR"
     return 1
   fi
 
-  dir=$(fzf --header="Favorite Directories" < $THEOSHELL_CDF_DIR)
+  dir=$(fzf --header="Favorite Directories" < $MUMBOSHELL_CDF_DIR)
   [[ ! -z "$dir" ]] && cd "$dir"
 }
 
 cdf_add() {
-  if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
-    echo "You must provide THEOSHELL_CDF_DIR"
+  if [[ -z "$MUMBOSHELL_CDF_DIR" ]]; then
+    echo "You must provide MUMBOSHELL_CDF_DIR"
     return 1
   fi
 
-  if [[ ! -e $THEOSHELL_CDF_DIR ]]; then
-    mkdir -p $(dirname $THEOSHELL_CDF_DIR)
-    touch $THEOSHELL_CDF_DIR
+  if [[ ! -e $MUMBOSHELL_CDF_DIR ]]; then
+    mkdir -p $(dirname $MUMBOSHELL_CDF_DIR)
+    touch $MUMBOSHELL_CDF_DIR
   fi
 
-  pwd >> $THEOSHELL_CDF_DIR
+  pwd >> $MUMBOSHELL_CDF_DIR
 }
 
-alias cdf_edit="$EDITOR $THEOSHELL_CDF_DIR"
+alias cdf_edit="$EDITOR $MUMBOSHELL_CDF_DIR"
 
 
 ##### Git Information #####
