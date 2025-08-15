@@ -1,6 +1,6 @@
 [user]
-	name = Aditya Deshlahre
 	email = wymaditya@gmail.com
+	name = Aditya Deshlahre
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim

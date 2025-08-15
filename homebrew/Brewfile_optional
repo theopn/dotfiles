@@ -1,6 +1,6 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
+# tap "homebrew/bundle"
+# tap "homebrew/cask"
+# tap "homebrew/core"
 
 brew "bat"
 brew "chafa"
@@ -9,7 +9,7 @@ brew "fastfetch"
 brew "fd" # install fzf and find
 brew "ffmpeg"
 brew "figlet"
-brew "git-fiter-repo"
+brew "git-filter-repo"
 # brew "hugo"
 brew "imagemagick"
 brew "poppler" # install zathura and setup it

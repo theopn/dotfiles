@@ -4,6 +4,9 @@
 #  |  |_)|   |
 #
 
+set -x DOT_DIR ~/dotfiles
+set -x CACHE_DIR ~/.cache
+
 # abbr -a cl clear
 # abbr -a ga git add
 # abbr -a gcm git commit -m
@@ -17,6 +20,7 @@ abbr -a weather curl 'https://wttr.in'
 function multicd
     echo cd (string repeat -n (math (string length -- $argv[1]) - 1) ../)
 end
+
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
 abbr -a dot cd "$DOT_DIR"

@@ -467,6 +467,7 @@ require('lazy').setup({
         builtin.live_grep {
           additional_args = function()
             return {
+              '--no-ignore',
               '--glob',
               '!**/node_modules/*',
               '--glob',
@@ -475,6 +476,22 @@ require('lazy').setup({
               '!**/dist/*',
             }
           end,
+          -- vimgrep_arguments = {
+          --   'rg',
+          --   '--color=never',
+          --   '--no-heading',
+          --   '--with-filename',
+          --   '--line-number',
+          --   '--column',
+          --   '--smart-case',
+          --   '--no-ignore',
+          --   '--glob',
+          --   '!**/node_modules/*',
+          --   '--glob',
+          --   '!**/.git/*',
+          --   '--glob',
+          --   '!**/dist/*',
+          -- },
         }
       end, { desc = '[S]earch by [G]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })

@@ -1,6 +1,6 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
+# tap "homebrew/bundle"
+# tap "homebrew/cask"
+# tap "homebrew/core"
 
 brew "fish"
 brew "fzf"
@@ -19,12 +19,12 @@ cask "wezterm"
 
 cask "itsycal"
 
-cask "aerospace"
+# cask "aerospace"
 cask "jordanbaird-ice"
 cask "maccy"
 cask "stats"
 
-cask "bitwarden"
+# cask "bitwarden"
 cask "skim"
 
 # cask "firefox"
