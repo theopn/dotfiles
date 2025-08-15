@@ -1,8 +1,6 @@
 [user]
-	name = Theo P
-	email = theo.park.n@gmail.com
-#	email = 63016528+theopn@users.noreply.github.com
-#	email = 11766464-theopn@users.noreply.gitlab.com
+	name = Aditya Deshlahre
+	email = wymaditya@gmail.com
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim

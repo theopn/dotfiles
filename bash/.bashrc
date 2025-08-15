@@ -13,12 +13,12 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_STATE_HOME=${XDG_DATA_HOME:="$HOME/.local/state"}
 
 # alias
-alias cl='clear'
-alias ga='git add'
-alias gcm='git commit -m'
-alias gss='git status'
-alias histgrep='echo "[Tip] Use !number to execute the command" && history | grep'
-alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
+# alias cl='clear'
+# alias ga='git add'
+# alias gcm='git commit -m'
+# alias gss='git status'
+# alias histgrep='echo "[Tip] Use !number to execute the command" && history | grep'
+# alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
 alias nv='neovide --fork'
 alias v=nvim
 
