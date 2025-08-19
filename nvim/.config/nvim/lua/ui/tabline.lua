@@ -12,7 +12,7 @@
 --- - List of buffers in the current tab
 
 -- Intergration with ui/pomodoro.lua
-local pomodoro = require("ui.pomodoro").getFormattedTime
+local pomodoroGetFormattedTime = require("ui.pomodoro").getFormattedTime
 
 Tabline = {}
 
@@ -66,6 +66,7 @@ end
 ---@return string s Formatted string to be used as a Vim tabline
 Tabline.build = function()
   local s = "%#TabLineFill#" .. logo
+  s = s .. "%<" --> Truncation starts after the logo
 
   -- ========== Left ==========
   -- List of tabs
@@ -113,7 +114,7 @@ Tabline.build = function()
   -- ========== Right ==========
   -- Timer
   -- ===========================
-  s = s .. " " .. pomodoro()
+  s = s .. " " .. pomodoroGetFormattedTime() .. " "
 
   -- ========== Right ==========
   -- List of LISTED buffers in the current tab
@@ -150,8 +151,6 @@ Tabline.build = function()
   end
   --]]
 
-  -- Add a truncation starting point: truncate buffer information first
-  s = s .. "%<"
   return s
 end
 
