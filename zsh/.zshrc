@@ -280,3 +280,22 @@ function zsh_greeting() {
 
 zsh_greeting
 
+
+# gvm path start
+[[ -s "/Users/mumbo/.gvm/scripts/gvm" ]] && source "/Users/mumbo/.gvm/scripts/gvm"
+# gvm path end
+
+# pyenv path start
+export PYENV_ROOT="$HOME/.pyenv"
+
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+
+eval "$(pyenv init -)"
+
+eval "$(pyenv virtualenv-init -)"
+# Pyenv path end
+
+[ -s "$(brew --prefix nvm)/nvm.sh" ] && \. "$(brew --prefix nvm)/nvm.sh"
+[ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
+
+export GPG_TTY=$(tty)

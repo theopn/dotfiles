@@ -27,3 +27,4 @@ abbr -a dot cd "$DOT_DIR"
 
 abbr -a dw vim "\"$CACHE_DIR/dw-$(date +'%Y')/index.md\""
 
+abbr -a dockerps docker ps

@@ -37,8 +37,6 @@ defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # Enable tap-to-click for the trackpad and show the correct state in System Preferences
-echo "> Enabling tap-to-click for the trackpad..."
-echo ""
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults -currentHost write -g com.apple.mouse.tapBehavior -int 1
 

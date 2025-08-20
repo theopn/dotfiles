@@ -31,3 +31,15 @@ export NVM_DIR="$HOME/.nvm"
 
 # export XDG_DATA_HOME="$HOME/.local/share"
 # export XDG_CONFIG_HOME="$HOME/.config"
+#
+# Java installations (using Homebrew paths)
+export JAVA21_HOME="$(brew --prefix openjdk@21)/libexec/openjdk.jdk/Contents/Home"
+# export JAVA17_HOME="$(brew --prefix openjdk@17)/libexec/openjdk.jdk/Contents/Home"
+
+# Default Java
+export JAVA_HOME="$JAVA21_HOME"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Quick switching aliases
+# alias use-java17='export JAVA_HOME=$JAVA17_HOME && export PATH=$JAVA_HOME/bin:$PATH'
+alias use-java21='export JAVA_HOME=$JAVA21_HOME && export PATH=$JAVA_HOME/bin:$PATH'

@@ -1,6 +1,7 @@
 [user]
 	email = wymaditya@gmail.com
 	name = Aditya Deshlahre
+	signingkey = 157DD6EF1282C9D9
 [core]
 	excludesfile = ~/.gitignore_global
 	editor = nvim
@@ -12,13 +13,17 @@
 	# Delete outdated branch during fetch
 	prune = true
 [init]
-	defaultBranch = main
+	defaultBranch = master
 [status]
 	short = true
 [credential]
 	# It stores the credential in ~/.git-credentials; use SSH!
 	#helper = store
 	# 1 hr
-	helper = cache --timeout=3600
+	helper = osxkeychain
 [http]
 	postBuffer = 157286400
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true

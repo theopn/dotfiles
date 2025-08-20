@@ -42,3 +42,6 @@ Or, if you don't want/need a background service you can just run:
 https://github.com/pyenv/pyenv
 
 rubby setup
+
+
+defaults write com.apple.finder CreateDesktop false; killall Finder
