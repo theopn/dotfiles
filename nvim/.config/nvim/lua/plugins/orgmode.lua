@@ -72,5 +72,7 @@ return {
         },
       }
     })
+
+    vim.api.nvim_create_user_command("CdOrg", "lcd " .. caos_dir, {})
   end,
 }
