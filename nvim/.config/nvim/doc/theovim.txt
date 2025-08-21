@@ -627,6 +627,8 @@ I made custom Org-capture templates (`<leader>oc i` for task ideas,
 <
 Use my custom Org-agenda (`<leader>oa c`) to view headings tagged `:IDEA:`.
 
+Use `:CdOrg` to |:lcd| to Org-agenda directory (variable set in the config).
+
 See also:
 - |orgmode.txt|
 
