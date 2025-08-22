@@ -1,0 +1,5 @@
+# Decrease volume (Command + Shift + N)
+alt + shift - n : osascript -e 'set volume output volume ((output volume of (get volume settings)) - 5)'
+
+# Increase volume (Command + Shift + M)
+alt + shift - m : osascript -e 'set volume output volume ((output volume of (get volume settings)) + 5)'

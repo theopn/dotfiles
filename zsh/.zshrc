@@ -299,3 +299,5 @@ eval "$(pyenv virtualenv-init -)"
 [ -s "$(brew --prefix nvm)/etc/bash_completion.d/nvm" ] && \. "$(brew --prefix nvm)/etc/bash_completion.d/nvm"
 
 export GPG_TTY=$(tty)
+
+alias dockerps="docker ps"

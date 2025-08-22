@@ -25,6 +25,8 @@ brew "mkcert"
 brew "openjdk@21"
 brew "supabase/tap/supabase"
 brew "trash-cli"
+brew "FelixKratz/formulae/borders"
+brew "koekeishiya/formulae/skhd"
 
 cask "docker"
 # cask "intellij-idea"
