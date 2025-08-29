@@ -56,8 +56,11 @@ M.config = function()
   vim.keymap.set("n", "<leader>/", fzf.blines, { desc = "[/] Search words in the buffer" })
   vim.keymap.set("n", "<leader>sg", fzf.live_grep, { desc = "[S]earch by Live rip[G]rep (current directory)" })
 
-  -- Others
+  -- Navigation
   vim.keymap.set("n", "<leader>sj", fzf.jumps, { desc = "[S]earch [J]umplist" })
+  vim.keymap.set("n", "<leader>st", fzf.tabs, { desc = "[S]earch [T]abs" })
+
+  -- Others
   vim.keymap.set("n", "<leader>sh", fzf.command_history, { desc = "[S]earch Command [H]istory" })
   vim.keymap.set("n", "<leader>sc", fzf.colorschemes, { desc = "[S]earch [C]olorschemes" })
   vim.keymap.set("n", "<leader>ss", fzf.builtin, { desc = "[S]earch [S]earch (builtin)" })
