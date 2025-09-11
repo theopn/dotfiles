@@ -4,8 +4,8 @@
 |:--:|
 | my macbook |
 
-Here are dotfiles for my systems, M1 MacBook Air and Lenovo ThinkPad X270.
-MBA runs the latest version of macOS, and X270 runs the latest version of Fedora Sway Spin.
+Here are dotfiles for my systems, Framework 13 (AMD Ryzen AI 5 340 & 2.8k display) and M1 MacBook Air.
+MBA runs the latest version of macOS, and Framework runs the latest version of Fedora Workstation (I also run Sway alongside of Gnome, check [Haunted Tiles](https://github.com/theopn/haunted-tiles/) out for my Sway config).
 
 Tools in this repository are mostly open-source utilities for development.
 
