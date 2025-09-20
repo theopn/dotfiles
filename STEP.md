@@ -74,3 +74,5 @@ screencapture image save fix
 
 peek Installation
 
+
+### Import FlameSHOT config bruh from the folder

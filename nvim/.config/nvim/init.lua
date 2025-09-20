@@ -176,6 +176,7 @@ vim.o.confirm = true
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<leader>ft', '<cmd>FloatermToggle<CR>', { desc = 'Toggle floating terminal' })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
@@ -1180,6 +1181,7 @@ require('lazy').setup({
   require 'custom.plugins.tailwind',
   require 'custom.plugins.surround',
   require 'custom.plugins.lazygit',
+  require 'custom.plugins.floatterm',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
