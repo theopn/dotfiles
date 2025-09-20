@@ -23,26 +23,26 @@ endif
 let g:theopanel_loaded = 1
 
 " {{{ Tabline options
-set showtabpanel=2
-set fillchars+=tpl_vert:\|
-set tabpanelopt=vert,align:left
+" set showtabpanel=2
+" set fillchars+=tpl_vert:\|
+" set tabpanelopt=vert,align:left
 " }}}
 
 
 " {{{ Assignment
 if exists('g:theopanel_buflist')
-  set tabpanelopt+=columns:20
-  set tabpanel=%!Bufferpanel()
+  " set tabpanelopt+=columns:20
+  " set tabpanel=%!Bufferpanel()
 
   " Force redraw on buffer changes
-  autocmd BufAdd,BufCreate,BufDelete,BufWipeout * redrawtabpanel
+  " autocmd BufAdd,BufCreate,BufDelete,BufWipeout * redrawtabpanel
 
   " Toggle bufferpanel
-  nnoremap <expr><silent> <leader>b &showtabpanel==2 ?
-                          \ ':set showtabpanel=0<CR>' : ':set showtabpanel=2<CR>'
+  " nnoremap <expr><silent> <leader>b &showtabpanel==2 ?
+  "                         \ ':set showtabpanel=0<CR>' : ':set showtabpanel=2<CR>'
 else
-  set tabpanelopt+=columns:9
-  set tabpanel=%!Tabpanel()
+  " set tabpanelopt+=columns:9
+  " set tabpanel=%!Tabpanel()
 endif
 " }}}
 

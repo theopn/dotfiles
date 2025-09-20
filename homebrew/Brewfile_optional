@@ -33,8 +33,12 @@ cask "docker"
 cask "kitty"
 # cask "mactex-no-gui"
 cask "neovide"
-
+cask "deluge"
+cask "ungoogled-chromium"
 cask "discord"
+cask 'telegram'
+cask 'mongodb-compass'
+cask 'flameshot'
 # cask "minecraft"
 # cask "spotify"
 

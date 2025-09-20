@@ -93,6 +93,10 @@ vim.g.maplocalleader = ' '
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
+-- neo-void specific settings
+vim.g.neovide_opacity = 0.8
+vim.g.neovide_normal_opacity = 1.0
+
 -- [[ Setting options ]]
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
@@ -458,7 +462,25 @@ require('lazy').setup({
       -- vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>sf', function()
         builtin.find_files {
-          find_command = { 'rg', '--files', '--hidden', '--glob', '!.git/**', '--glob', '!node_modules/**', '--glob', '!.dist/*' },
+          find_command = {
+            'rg',
+            '--files',
+            '--hidden',
+            '--glob',
+            '!.git/**',
+            '--glob',
+            '!node_modules/**',
+            '--glob',
+            '!.dist/*',
+            '--glob',
+            '!*.lock',
+            '--glob',
+            '!.nx/**',
+            '--glob',
+            '!.next/**',
+            '--glob',
+            '!yarn.lock',
+          },
         }
       end, { desc = '[S]earch [F]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
@@ -474,6 +496,22 @@ require('lazy').setup({
               '!**/.git/*',
               '--glob',
               '!**/dist/*',
+              '--glob',
+              '!**/.next/*',
+              '--glob',
+              '!**/yarn.lock',
+              '--glob',
+              '!**/package-lock.json',
+              '--glob',
+              '!**/pnpm-lock.yaml',
+              '--glob',
+              '!**/tags',
+              '--glob',
+              '!bun.lockb',
+              '--glob',
+              '!bun.lock',
+              '--glob',
+              '!**/.DS_Store',
             }
           end,
           -- vimgrep_arguments = {
@@ -1006,8 +1044,11 @@ require('lazy').setup({
           theme_conf = { border = true },
           previewer = false,
         },
-        vim.keymap.set('n', '<leader>ls', require('auto-session.session-lens').search_session, { desc = 'Search Session', noremap = true }),
       }
+      require('telescope').load_extension 'session-lens'
+      vim.keymap.set('n', '<leader>ls', function()
+        require('telescope').extensions['session-lens'].search_session()
+      end, { desc = 'Search Session', noremap = true })
     end,
   },
   {

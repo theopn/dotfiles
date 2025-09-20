@@ -74,6 +74,7 @@ return {
             -- extra_args = { '--single-quote', '--jsx-single-quote' },
           },
           null_ls.builtins.formatting.biome.with {
+            prefer_local = 'node_modules/.bin',
             args = {
               'check',
               '--apply-unsafe',
@@ -81,8 +82,12 @@ return {
               '--organize-imports-enabled=true',
               '--skip-errors',
               '$FILENAME',
+              '%filepath',
             },
           },
+          -- null_ls.builtins.diagnostics.biome.with {
+          --   prefer_local = 'node_modules/.bin',
+          -- },
           null_ls.builtins.formatting.black.with {
             extra_args = { '--line-length=120', '--skip-string-normalization' },
           },

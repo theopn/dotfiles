@@ -16,7 +16,7 @@ return {
   opts = {
     window = {
       position = 'left', -- Position of the NeoTree window
-      width = 30,        -- Width of the NeoTree window
+      width = 30, -- Width of the NeoTree window
       mappings = {
         ['\\'] = 'close_window',
       },
@@ -31,9 +31,15 @@ return {
         hide_gitignored = true,
         hide_by_name = {
           'node_modules', -- Hides the folder by name
+          '.DS_Store',
+          'thumbs.db',
+          '.nx',
         },
         never_show = {
           'node_modules', -- Ensures it's never shown even when toggling
+          '.DS_Store',
+          'thumbs.db',
+          '.nx',
         },
       },
       follow_current_file = {

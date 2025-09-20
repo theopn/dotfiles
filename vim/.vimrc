@@ -55,7 +55,7 @@ set hidden switchbuf=uselast
 
 " Command
 set history=10000 wildmenu
-set wildmode=noselect:full  " do not auto-select and complete the full match
+set wildmode=full  " complete the full match
 
 " Performance
 set updatetime=250 timeoutlen=300
@@ -123,8 +123,8 @@ nnoremap <leader>p :reg<CR>
       \:normal "
 xnoremap <leader>p "_dP
 
-" Terminal
-nnoremap <leader>t :botright term<CR>
+ " Terminal
+ nnoremap <leader>t :FloatermToggle<CR>
 
 " Spell check
 inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
@@ -232,16 +232,19 @@ Plug 'nordtheme/vim'
 Plug 'vim-airline/vim-airline'
 
 Plug 'vimwiki/vimwiki'
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 " }}}
 
 
 " {{{ colorscheme
 set termguicolors
-" let g:tokyonight_style = 'night'  " available: night, storm
-" let g:tokyonight_enable_italic = 0
-" colorscheme tokyonight
-colorscheme nord
+let g:tokyonight_style = 'night'  " available: night, storm
+let g:tokyonight_enable_italic = 0
+colorscheme tokyonight
+" colorscheme nord
+
+
 " }}}
 
 
