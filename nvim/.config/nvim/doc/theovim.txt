@@ -574,7 +574,7 @@ Vimtex                                                        *theovim-vimtex*
 - `:VimtexInfo` (`<leader>lo`): shows the system and project information
                             (like `:checkhealth`)
 - `:VimtexCompile` (`<leader>ll`): toggles the real-time compilation process
-- `:VimtexCompileOutput` (`<leader>lo`)`: opens the compilation output
+- `:VimtexCompileOutput` (`<leader>lo`): opens the compilation output
 - `:VimtexTocToggle` (`<leader>lT`): toggles TOC
 
 Commonly used keybindings:
@@ -592,6 +592,24 @@ cse             [C]hange [S]urrounding [E]nvironment
 tsd             Toggle between `( )` and `\left( \right)`
 tsb             Toggle line break (`\\`)
 ]]              [Insert] Close current environment
+
+
+Minted package uses an external command (`pygmentize`) and requires
+`--shell-escape` flag to let external tool modify the source.
+This comes with a security risk, so add the flag only when necessary. >
+    vim.g.vimtex_compiler_latexmk = {
+      options = {
+        "-shell-escape",
+        "-verbose",
+        "-file-line-error",
+        "-synctex=1",
+        "-interaction=nonstopmode"
+      },
+    }
+<
+
+See also:
+- |g:vimtex_compiler_latexmk|
 
 ==============================================================================
 nvim-org-mode                                          *theovim-nvim-org-mode*
