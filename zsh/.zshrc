@@ -10,6 +10,9 @@
 #
 # Interactive shell config
 
+
+# Shared history across sessions
+setopt share_history
 # Vim mode
 bindkey -v
 
