@@ -14,7 +14,7 @@ return {
       org_default_notes_file = caos_dir .. "capture.org",
 
       org_todo_keywords = { "TODO", "|", "DONE", "CANC" },
-      org_deadline_warning_days = 3,
+      org_deadline_warning_days = 1,
 
       org_capture_templates = {
         c = {
@@ -52,11 +52,12 @@ return {
         },
       },
 
+      -- Keymaps from Emacs org-mode that are hard wired to my brain
       mappings = {
         agenda = {
           org_agenda_later = { "f", "]" },
           org_agenda_earlier = { "b", "[" },
-          org_agenda_todo = { "<S-RIGHT>" }, --> Remove the default `t` keybinding
+          org_agenda_todo = { "<S-RIGHT>" }, --> Remove the default `t` keybinding to avoid accidental DONE marking
         },
         capture = {
           org_capture_finalize = { "<C-c>", "<C-c><C-c>" },
@@ -64,9 +65,12 @@ return {
         },
         org = {
           org_priority = { "<C-c>,", "<prefix>," },
+          org_priority_up = { "ciR", "<S-UP>" },
+          org_priority_down = { "cir", "<S-DOWN>" },
           org_todo = { "cit", "<S-RIGHT>" },
           org_todo_prev = { "ciT", "<S-LEFT>" },
-          org_insert_todo_heading_respect_content = { "<prefix>it", "<C-CR>" }, -- Add new todo heading after current heading block (same level)
+          -- Add new todo heading after current heading block (same level)
+          org_insert_todo_heading_respect_content = { "<prefix>it", "<C-CR>" },
           org_deadline = { "<prefix>id", "<C-c><C-d>" },
           org_schedule = { "<prefix>is", "<C-c><C-s>" },
         },
