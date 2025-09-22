@@ -7,13 +7,12 @@
     "separator",
     // $ fastfetch -h title-format
     {
-      "type": "title", "format": "{host-name-colored}"
+      "type": "title", "format": "{user-name-colored} @ {host-name-colored}"
     },
 
     "separator",
     "os",
     "kernel",
-    "shell",
     "packages",
     // "de",
     "wm",
@@ -26,15 +25,16 @@
     "gpu",
     "memory",
     // "swap",
-    // "disk",
+    "disk",
     // "localip",
-    // "display",
+    "display",
     // "battery",
     // "poweradapter",
     // "uptime",
 
     "separator",
     "terminal",
+    "shell",
     // "terminalfont",
     // "cursor",
     // "icons",
