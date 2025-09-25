@@ -185,8 +185,10 @@ zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 # perform parameter expansion/command substitution in prompt
 setopt PROMPT_SUBST
 
-ins_mode_indicator="%F{yellow}[I]%f"
-norm_mode_indicator="%F{magenta}[N]%f"
+#ins_mode_indicator="%F{yellow}[I]%f"
+ins_mode_indicator="%F{black}%K{green} I %k%f"
+#norm_mode_indicator="%F{magenta}[N]%f"
+norm_mode_indicator="%F{black}%K{cyan} N %k%f"
 # Initial mode
 vi_mode_indicator=$ins_mode_indicator
 
@@ -218,9 +220,14 @@ TRAPINT() {
 ##### PROMPT #####
 
 # %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
-PROMPT=" \$vi_mode_indicator %F{blue}%(5~|%-1~/.../%3~|%4~)%f %F{cyan}\$vcs_info_msg_0_%f %F{white}❱%f "
+PROMPT="%B\
+\$vi_mode_indicator\
+%F{cyan}%K{black} %(5~|%-1~/.../%3~|%4~) %k%f\
+%F{black}%K{blue} \$vcs_info_msg_0_ %k%f\
+%F{white} ❱ %f\
+%b"
 
-RPROMPT="%(?|%F{green}|%F{red})[%?]%f "
+RPROMPT="%(?|%K{green}%F{black}|%K{red}%F{white})%B %? %b%f%k"
 
 
 ##### Greeting #####
