@@ -13,8 +13,9 @@
 
 # Shared history across sessions
 setopt share_history
-# Vim mode
+# Vim mode & faster key timeout
 bindkey -v
+KEYTIMEOUT=1
 # C-x C-e to edit the command int $EDITOR
 autoload -z edit-command-line
 zle -N edit-command-line
@@ -39,37 +40,51 @@ zstyle ':vcs_info:git:*' formats '%b%u%c'
 zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
 
 
-##### Vim mode indicator #####
-# https://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
+##### Vim mode indicator & cursor #####
+# Cursor: https://unix.stackexchange.com/questions/433273/changing-cursor-style-based-on-mode-in-both-zsh-and-vim
+# prompt: https://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
 # perform parameter expansion/command substitution in prompt
 setopt PROMPT_SUBST
 
-#ins_mode_indicator="%F{yellow}[I]%f"
 ins_mode_indicator="%F{black}%K{green} I %k%f"
-#norm_mode_indicator="%F{magenta}[N]%f"
+ins_mode_cursor="\e[6 q"        # steady bar, 5 for blinking bar
 norm_mode_indicator="%F{black}%K{cyan} N %k%f"
+norm_mode_cursor="\e[2 q"       # steady block, 1 for blinking block (default)
 # Initial mode
 vi_mode_indicator=$ins_mode_indicator
+cursor=$ins_mode_indicator
 
-# on keymap change, define the mode and redraw prompt
+# Reset to [I] cursor before each command
+# imo, this is better than modifying the `precmd_functions` array
+# since we take care of the line editor issues within the ZLE itself
+# Without this: the cursor is block upon terminal launch
+zle-line-init() {
+    echo -ne "$ins_mode_cursor"
+}
+zle -N zle-line-init
+
+# On keymap change, redraw the prompt
 zle-keymap-select() {
   if [[ "$KEYMAP" == 'vicmd' ]]; then
     vi_mode_indicator=$norm_mode_indicator
+    echo -ne "$norm_mode_cursor"
   else
     vi_mode_indicator=$ins_mode_indicator
+    echo -ne "$ins_mode_cursor"
   fi
   zle reset-prompt
 }
 zle -N zle-keymap-select
 
-# reset to default mode at the end of line input reading
+# Reset to [I] after the input reading
+# Without this: RET in [N] makes the next prompt [N] even though it is [I]
 zle-line-finish() {
   vi_mode_indicator=$ins_mode_indicator
 }
 zle -N zle-line-finish
 
-# When C-c in [N], the prompt becomes [N] even though you are in [I]
-# Fix by catching SIGNIT and set the prompt to int again, and resend SIGINT
+# Catch SIGNIT and set the prompt to int again, and resend SIGINT
+# Without this: C-c in [N] makes the next prompt [N] even though it is [I]
 TRAPINT() {
   vi_mode_indicator=$ins_mode_indicator
   return $(( 128 + $1 ))
