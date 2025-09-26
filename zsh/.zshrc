@@ -15,6 +15,78 @@
 setopt share_history
 # Vim mode
 bindkey -v
+# C-x C-e to edit the command int $EDITOR
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+
+##### Git Information #####
+autoload -Uz vcs_info
+
+zstyle ':vcs_info:*' enable git
+# Hook before every commands
+precmd_vcs_info() { vcs_info }
+precmd_functions+=( precmd_vcs_info )
+setopt prompt_subst
+
+zstyle ':vcs_info:*' check-for-changes true
+
+zstyle ':vcs_info:*' unstagedstr '*'
+zstyle ':vcs_info:*' stagedstr '+'
+zstyle ':vcs_info:git:*' formats '%b%u%c'
+# Only displayed in Git action like rebase, merge, cherry-pick
+zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
+
+
+##### Vim mode indicator #####
+# https://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
+# perform parameter expansion/command substitution in prompt
+setopt PROMPT_SUBST
+
+#ins_mode_indicator="%F{yellow}[I]%f"
+ins_mode_indicator="%F{black}%K{green} I %k%f"
+#norm_mode_indicator="%F{magenta}[N]%f"
+norm_mode_indicator="%F{black}%K{cyan} N %k%f"
+# Initial mode
+vi_mode_indicator=$ins_mode_indicator
+
+# on keymap change, define the mode and redraw prompt
+zle-keymap-select() {
+  if [[ "$KEYMAP" == 'vicmd' ]]; then
+    vi_mode_indicator=$norm_mode_indicator
+  else
+    vi_mode_indicator=$ins_mode_indicator
+  fi
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+
+# reset to default mode at the end of line input reading
+zle-line-finish() {
+  vi_mode_indicator=$ins_mode_indicator
+}
+zle -N zle-line-finish
+
+# When C-c in [N], the prompt becomes [N] even though you are in [I]
+# Fix by catching SIGNIT and set the prompt to int again, and resend SIGINT
+TRAPINT() {
+  vi_mode_indicator=$ins_mode_indicator
+  return $(( 128 + $1 ))
+}
+
+
+##### PROMPT #####
+
+# %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
+PROMPT="%B\
+\$vi_mode_indicator\
+%F{cyan}%K{black} %(5~|%-1~/.../%3~|%4~) %k%f\
+%F{black}%K{blue} \$vcs_info_msg_0_ %k%f\
+%F{white} ❱ %f\
+%b"
+
+RPROMPT="%(?|%K{green}%F{black}|%K{red}%F{white})%B %? %b%f%k"
 
 
 ##### Alias #####
@@ -160,74 +232,6 @@ cdf_add() {
 }
 
 alias cdf_edit="$EDITOR $THEOSHELL_CDF_DIR"
-
-
-##### Git Information #####
-autoload -Uz vcs_info
-
-zstyle ':vcs_info:*' enable git
-# Hook before every commands
-precmd_vcs_info() { vcs_info }
-precmd_functions+=( precmd_vcs_info )
-setopt prompt_subst
-
-zstyle ':vcs_info:*' check-for-changes true
-
-zstyle ':vcs_info:*' unstagedstr '*'
-zstyle ':vcs_info:*' stagedstr '+'
-zstyle ':vcs_info:git:*' formats '%b%u%c'
-# Only displayed in Git action like rebase, merge, cherry-pick
-zstyle ':vcs_info:git:*' actionformats '[%b | %a%u%c]'
-
-
-##### Vim mode indicator #####
-# https://superuser.com/questions/151803/how-do-i-customize-zshs-vim-mode
-# perform parameter expansion/command substitution in prompt
-setopt PROMPT_SUBST
-
-#ins_mode_indicator="%F{yellow}[I]%f"
-ins_mode_indicator="%F{black}%K{green} I %k%f"
-#norm_mode_indicator="%F{magenta}[N]%f"
-norm_mode_indicator="%F{black}%K{cyan} N %k%f"
-# Initial mode
-vi_mode_indicator=$ins_mode_indicator
-
-# on keymap change, define the mode and redraw prompt
-zle-keymap-select() {
-  if [[ "$KEYMAP" == 'vicmd' ]]; then
-    vi_mode_indicator=$norm_mode_indicator
-  else
-    vi_mode_indicator=$ins_mode_indicator
-  fi
-  zle reset-prompt
-}
-zle -N zle-keymap-select
-
-# reset to default mode at the end of line input reading
-zle-line-finish() {
-  vi_mode_indicator=$ins_mode_indicator
-}
-zle -N zle-line-finish
-
-# When C-c in [N], the prompt becomes [N] even though you are in [I]
-# Fix by catching SIGNIT and set the prompt to int again, and resend SIGINT
-TRAPINT() {
-  vi_mode_indicator=$ins_mode_indicator
-  return $(( 128 + $1 ))
-}
-
-
-##### PROMPT #####
-
-# %(5~|%-1~/…/%3~|%4~) - IF path_len > 5 THEN print 1st element; print /.../; print last 3 elem; ELSE print 4 elem;
-PROMPT="%B\
-\$vi_mode_indicator\
-%F{cyan}%K{black} %(5~|%-1~/.../%3~|%4~) %k%f\
-%F{black}%K{blue} \$vcs_info_msg_0_ %k%f\
-%F{white} ❱ %f\
-%b"
-
-RPROMPT="%(?|%K{green}%F{black}|%K{red}%F{white})%B %? %b%f%k"
 
 
 ##### Greeting #####
