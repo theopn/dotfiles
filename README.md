@@ -216,6 +216,7 @@ Casks:
 | MacTex (no GUI) |           |              | Syncthing   | **Stats**     | **Skim**      | Thunderbird |
 | **Macvim**      |           |              |             |         e     | VLC           |             |
 | Neovide         |           |              |             |               |               |             |
+| UTM             |           |              |             |               |               |             |
 | **Wezterm**     |           |              |             |               |               |             |
 
 ### macOS Settings
