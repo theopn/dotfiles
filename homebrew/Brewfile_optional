@@ -21,6 +21,7 @@ cask "intellij-idea"
 cask "kitty"
 cask "mactex-no-gui"
 cask "neovide"
+cask "utm"
 
 cask "discord"
 cask "minecraft"
