@@ -23,6 +23,9 @@ set selection-clipboard clipboard
 set window-title-basename true
 set statusbar-home-tilde  true
 set font 'monospace normal 16'
+set pages-per-row 2
+set page-padding 10
+set first-page-column 1:2
 
 # set recolor               true
 

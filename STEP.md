@@ -74,5 +74,19 @@ screencapture image save fix
 
 peek Installation
 
-
 ### Import FlameSHOT config bruh from the folder
+
+==> ollama
+To start ollama now and restart at login:
+brew services start ollama
+Or, if you don't want/need a background service you can just run:
+OLLAMA_FLASH_ATTENTION="1" OLLAMA_KV_CACHE_TYPE="q8_0" /opt/homebrew/opt/ollama/bin/ollama serve
+I ~ $
+
+## zathura-pdf-mupdf
+
+brew install zathura zathura-pdf-mupdf
+
+mkdir -p $(brew --prefix zathura)/lib/zathura
+
+ln -s $(brew --prefix zathura-pdf-mupdf)/libpdf-mupdf.dylib $(brew --prefix zathura)/lib/zathura/libpdf-mupdf.dylib
