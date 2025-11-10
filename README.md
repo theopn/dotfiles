@@ -5,7 +5,7 @@
 | my macbook |
 
 Here are dotfiles for my systems, Framework 13 (AMD Ryzen AI 5 340 & 2.8k display) and M1 MacBook Air.
-MBA runs the latest version of macOS, and Framework runs the latest version of Fedora Workstation (I also run Sway alongside of Gnome, check [Haunted Tiles](https://github.com/theopn/haunted-tiles/) out for my Sway config).
+MBA runs the latest version of macOS, and Framework runs the latest version of Fedora KDE Plasma (check out [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway config).
 
 Tools in this repository are mostly open-source utilities for development.
 
@@ -239,5 +239,5 @@ See the [list of archived configurations](./archive/README.md).
 - Sketchybar: [default plugins](https://github.com/FelixKratz/SketchyBar/tree/master/plugins)
 - Vim: [kickstart.vim](https://github.com/theopn/kickstart.vim)
 - Wezterm: [my Wezterm config video](https://www.youtube.com/watch?v=I3ipo8NxsjY)
-- [Haunted Tiles](https://github.com/theopn/haunted-tiles/) has dotfiles for my minimal, Dracula-themed Fedora i3/Sway Spin environment.
+- [Haunted Tiles](https://github.com/theopn/haunted-tiles/) has dotfiles for my minimal, Dracula-themed i3/Sway environment.
 
