@@ -159,6 +159,7 @@ cmd trash !{{
     mkdir -p ${THEOSHELL_TRASH_DIR}
   fi
   # $f = current cursor, $fs = selected files, $fx = ($fs exists) ? ($fs) : ($f)
+  # components are separated with : so mapping will not work properly when you have quotes around $fx
   IFS="$(printf '\n\t')"; mv $fx ${THEOSHELL_TRASH_DIR} && printf ":) $fx moved to trash!\n" || printf ":( Failed to move $fx to trash\n"
 }}
 map DD trash
