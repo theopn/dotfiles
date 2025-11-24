@@ -19,7 +19,9 @@ function multicd
 end
 abbr --add dotdot --regex '^\.\.+$' --function multicd
 
+# Dotfiles directory
 abbr -a dot cd "$DOT_DIR"
 
-abbr -a dw vim "\"$CACHE_DIR/dw-$(date +'%Y')/index.md\""
+# personal journal entry for the day
+abbr -a dw vim "\"$CACHE_DIR/dw-$(date +'%Y')/index.md\"" +/$(date +%Y-%m-%d)
 
