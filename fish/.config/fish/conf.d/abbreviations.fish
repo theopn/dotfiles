@@ -23,5 +23,10 @@ abbr --add dotdot --regex '^\.\.+$' --function multicd
 abbr -a dot cd "$DOT_DIR"
 
 # personal journal entry for the day
-abbr -a dw vim "\"$CACHE_DIR/dw-$(date +'%Y')/index.md\"" +/$(date +%Y-%m-%d)
+# - If I just pass the subshell without escaping (i.e., `+/$(date)`),
+#   then Fish will evaluate in the shell startup and the fixed date.
+# - I do not want to overcomplicate the command so I keep the first one as-is
+#   (since year changing does not happen very often),
+#   but I do not want to reopen the shell every 24 hours
+abbr -a dw vim \"$CACHE_DIR/dw-$(date +%Y)/index.md\" +/\$\(date +%Y-%m-%d\)
 
