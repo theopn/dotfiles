@@ -200,6 +200,7 @@ Formulae:
 - **neovim**: Purpose of my life
 - **node**
 - poppler: `pdftotext in.pdf -` (LF preview script dependency)
+- r
 - ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
 - **tmux**: Universal terminal multiplexer
@@ -211,11 +212,12 @@ Casks:
 | Development     | Fun       | Productivity | Sync        | System        | Tools         | Web         |
 |-----------------|-----------|--------------|-------------|---------------|---------------|-------------|
 | Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | Chromium    |
-| IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | GIMP          | **Firefox** |
-| kitty           | Spotify   |              | Nextcloud   | **Maccy**     | OBS           | Tailscale   |
-| MacTex (no GUI) |           |              | Syncthing   | **Stats**     | **Skim**      | Thunderbird |
-| **Macvim**      |           |              |             |         e     | VLC           |             |
-| Neovide         |           |              |             |               |               |             |
+| IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | CEmu          | **Firefox** |
+| kitty           | Spotify   |              | Nextcloud   | **Maccy**     | GIMP          | Tailscale   |
+| MacTex (no GUI) |           |              | Syncthing   | **Stats**     | OBS           | Thunderbird |
+| **Macvim**      |           |              |             |               | **Skim**      |             |
+| Neovide         |           |              |             |               | VLC           |             |
+| RStudio         |           |              |             |               |               |             |
 | UTM             |           |              |             |               |               |             |
 | **Wezterm**     |           |              |             |               |               |             |
 
