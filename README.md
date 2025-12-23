@@ -214,10 +214,10 @@ Casks:
 | Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | Chromium    |
 | IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | CEmu          | **Firefox** |
 | kitty           | Spotify   |              | Nextcloud   | **Maccy**     | GIMP          | Tailscale   |
-| MacTex (no GUI) |           |              | Syncthing   | **Stats**     | OBS           | Thunderbird |
-| **Macvim**      |           |              |             |               | **Skim**      |             |
-| Neovide         |           |              |             |               | VLC           |             |
-| RStudio         |           |              |             |               |               |             |
+| MacTex (no GUI) |           |              | Syncthing   | **Stats**     | KeyCastr      | Thunderbird |
+| **Macvim**      |           |              |             |               | OBS           |             |
+| Neovide         |           |              |             |               | **Skim**      |             |
+| RStudio         |           |              |             |               | VLC           |             |
 | UTM             |           |              |             |               |               |             |
 | **Wezterm**     |           |              |             |               |               |             |
 

@@ -37,6 +37,7 @@ cask "syncthing"
 
 cask "cemu"
 cask "gimp"
+cask "keycastr"
 cask "obs"
 cask "vlc"
 
