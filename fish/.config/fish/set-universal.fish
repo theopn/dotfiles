@@ -10,8 +10,8 @@ set -q XDG_DATA_HOME || set -Ux XDG_DATA_HOME "$HOME/.local/share"
 set -q XDG_STATE_HOME || set -Ux XDG_STATE_HOME "$HOME/.local/state"
 
 set -Ux DOT_DIR ~/dotfiles
-set -Ux THEOSHELL_TRASH_DIR "$XDG_DATA_HOME/theoshell/trash"
-set -Ux THEOSHELL_CDF_DIR "$XDG_DATA_HOME/theoshell/cd-fav.txt"
+set -Ux MUMBOSHELL_TRASH_DIR "$XDG_DATA_HOME/mumbo/trash"
+set -Ux MUMBOSHELL_CDF_DIR "$XDG_DATA_HOME/mumbo/cd-fav.txt"
 
 # Personal cloud drive path
 set -l cloud_dir "$HOME/My Drive"

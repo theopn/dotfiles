@@ -1,4 +1,4 @@
-function fish_prompt -d "Theo's Vim statusline esque Fish prompt"
+function fish_prompt -d "Mumbo's Vim statusline esque Fish prompt"
   # Nordfox
   set -l bg0 232831
   set -l bg2 39404F

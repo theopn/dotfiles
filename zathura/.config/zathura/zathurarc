@@ -1,0 +1,106 @@
+# set selection-clipboard clipboard
+
+# set statusbar-h-padding 0
+# set statusbar-v-padding 0
+# set font monospace normal 14
+# set font 'monospace normal 14'
+
+# set page-padding 1
+
+map u scroll half-up
+map d scroll half-down
+map D toggle_page_mode
+map r reload
+map R rotate
+map K zoom in
+map J zoom out
+map i recolor
+map p print
+
+
+# --------------------------------------------- #
+set selection-clipboard clipboard
+set window-title-basename true
+set statusbar-home-tilde  true
+set font 'monospace normal 16'
+set pages-per-row 2
+set page-padding 10
+set first-page-column 1:2
+
+# set recolor               true
+
+# NORD THEME
+# https://github.com/arcticicestudio/nord/issues/143
+# --------------------------------------------- #
+
+# nord0: #2e3440;
+# nord1: #3b4252;
+# nord2: #434c5e;
+# nord3: #4c566a;
+
+# nord4: #d8dee9;
+# nord5: #e5e9f0;
+# nord6: #eceff4;
+
+# nord7: #8fbcbb;
+# nord8: #88c0d0;
+# nord9: #81a1c1;
+# nord10: #5e81ac;
+
+# nord11: #bf616a;
+# nord12: #d08770;
+# nord13: #ebcb8b;
+# nord14: #a3be8c;
+# nord15: #b48ead;
+
+set default-bg                 "#2e3440"    # nord0
+set default-fg                 "#d8dee9"    # nord4
+set statusbar-bg               "#2e3440"    # nord0
+set statusbar-fg               "#d8dee9"    # nord4
+set inputbar-bg                "#2e3440"    # nord0
+set inputbar-fg                "#94E2D5"    # nord14
+set completion-bg              "#2e3440"    # nord0
+set completion-fg              "#d8dee9"    # nord4
+set completion-group-bg        "#2e3440"    # nord0
+set completion-group-fg        "#d8dee9"    # nord4
+set completion-highlight-bg    "#434c5e"    # nord2
+set completion-highlight-fg    "#d8dee9"    # nord4
+set notification-bg            "#3b4252"    # nord2
+set notification-fg            "#eceff4"    # nord6
+set notification-error-bg      "#EBA0AC"    # nord11
+set notification-error-fg      "#eceff4"    # nord6
+set notification-warning-bg    "#F5E0DC"    # nord13
+set notification-warning-fg    "#2e3440"    # nord0
+set highlight-color            "rgba(136, 192, 208, 0.5)"  # nord8
+set highlight-active-color     "rgba(136, 192, 208, 0.5)"  # nord8
+set index-bg                   "#2e3440"    # nord0
+set index-fg                   "#d8dee9"    # nord4
+
+set index-active-bg            "#434c5e"    # nord2
+set index-active-fg            "#d8dee9"    # nord4
+set recolor-darkcolor          "#d8dee9"    # nord4
+set recolor-lightcolor         "#1f2335"    # nord0
+
+set render-loading-bg          "#2e3440"    # nord0
+set render-loading-fg          "#d8dee9"    # nord4
+
+# # Decrease highlight prominence (e.g. after Vim forward search)
+# set highlight-transparency 0.8
+
+# Light
+# set recolor-lightcolor        "#fbfbfc"    # markdown body background
+# set recolor-darkcolor         "#2e3440"    # nord0
+# set default-bg                "#fbfbfc"    # markdown body background
+#
+# # Dark
+# set recolor-lightcolor        "#2e3440"    # markdown body background
+# set recolor-darkcolor         "#fbfbfc"    # nord0
+# set default-bg                "#2e3440"    # markdown body background
+
+# Switch to light recolored mode
+# map L feedkeys ':set recolor-lightcolor "#fbfbfc"<Return>:set recolor-darkcolor "#2e3440"<Return>:set default-bg "#fbfbfc"<Return>:set recolor true<Return>'
+#
+# # Switch to dark recolored mode
+# map D feedkeys ':set recolor-lightcolor "#2e3440"<Return>:set recolor-darkcolor "#fbfbfc"<Return>:set default-bg "#2e3440"<Return>:set recolor true<Return>'
+
+# See also https://unix.stackexchange.com/questions/456837/zathura-shortcut-feedkeys-configuration-for-recolouring

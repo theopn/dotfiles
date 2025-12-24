@@ -1,4 +1,4 @@
-function fish_mode_prompt -d "Theo's Vim statusline esque mode indicator"
+function fish_mode_prompt -d "Mumbo's Vim statusline esque mode indicator"
   # Nordfox
   set -l bg0 232831
   set -l cyan 88C0D0

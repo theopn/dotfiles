@@ -8,27 +8,27 @@ function fssh -d "Fuzzy-find ssh host via ag and ssh into it"
 end
 
 function cdf -d "[CDF] Directory Favorite/Bookmark using FZF"
-  if not set -q THEOSHELL_CDF_DIR
-      echo 'You must provide THEOSHELL_CDF_DIR'
+  if not set -q MUMBOSHELL_CDF_DIR
+      echo 'You must provide MUMBOSHELL_CDF_DIR'
     return 1
   end
 
-  set -l dir (fzf --header="Favorite Directories" < $THEOSHELL_CDF_DIR)
+  set -l dir (fzf --header="Favorite Directories" < $MUMBOSHELL_CDF_DIR)
   not test -z $dir; and cd "$dir"
 end
 
 function cdf_add -d "[CDF] Add CWD to the directory list"
-  if not set -q THEOSHELL_CDF_DIR
-      echo 'You must provide THEOSHELL_CDF_DIR'
+  if not set -q MUMBOSHELL_CDF_DIR
+      echo 'You must provide MUMBOSHELL_CDF_DIR'
     return 1
   end
 
-  if not test -e $THEOSHELL_CDF_DIR
-    mkdir -p (dirname $THEOSHELL_CDF_DIR)
-    touch $THEOSHELL_CDF_DIR
+  if not test -e $MUMBOSHELL_CDF_DIR
+    mkdir -p (dirname $MUMBOSHELL_CDF_DIR)
+    touch $MUMBOSHELL_CDF_DIR
   end
 
-  pwd >> $THEOSHELL_CDF_DIR
+  pwd >> $MUMBOSHELL_CDF_DIR
 end
 
-abbr cdf_edit $EDITOR $THEOSHELL_CDF_DIR
+abbr cdf_edit $EDITOR $MUMBOSHELL_CDF_DIR

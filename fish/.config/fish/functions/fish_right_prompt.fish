@@ -1,4 +1,4 @@
-function fish_right_prompt -d "Theo's custom right prompt displaying command duration"
+function fish_right_prompt -d "Mumbo's custom right prompt displaying command duration"
   # has to be on the top of the function
   set -l __last_command_exit_status $status
 
