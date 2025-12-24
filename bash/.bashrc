@@ -70,3 +70,4 @@ greeting() {
 PROMPT_DIRTRIM=3
 PS1="\[\e[1;36m\]>Hist#:\! Jobs:\j \e[0;34m\][\u\[\e[0;36m\]@\e[0;35m\h]:\e[1;31m\]\w \[\e[0m\]\$ "
 
+. "$HOME/.cargo/env"

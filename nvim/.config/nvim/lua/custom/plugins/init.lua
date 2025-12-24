@@ -52,9 +52,7 @@ return {
     keys = {
       {
         '<leader>rn',
-        function()
-          return ':IncRename ' .. vim.fn.expand '<cword>'
-        end,
+        function() return ':IncRename ' .. vim.fn.expand '<cword>' end,
         desc = 'Incremental rename',
         mode = 'n',
         noremap = true,
@@ -100,6 +98,10 @@ return {
           },
           -- null_ls.builtins.diagnostics.shellcheck,
           null_ls.builtins.formatting.goimports,
+          null_ls.builtins.formatting.gofmt,
+          null_ls.builtins.formatting.golines.with {
+            extra_args = { '--max-len=120' },
+          },
         },
       }
     end,
@@ -111,9 +113,7 @@ return {
       require('auto-save').setup {
         enabled = true, -- start auto-save when the plugin is loaded (i.e. on `require('auto-save')`)
         execution_message = {
-          message = function()
-            return 'AutoSave: saved at ' .. vim.fn.strftime '%H:%M:%S'
-          end,
+          message = function() return 'AutoSave: saved at ' .. vim.fn.strftime '%H:%M:%S' end,
           dim = 0.18,
           cleaning_interval = 100,
         },

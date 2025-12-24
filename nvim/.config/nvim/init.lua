@@ -168,8 +168,8 @@ vim.o.scrolloff = 10
 -- See `:help 'confirm'`
 vim.o.confirm = true
 
--- Disable line wrapping
-vim.o.wrap = false
+-- Enable line wrapping
+vim.o.wrap = true
 
 -- Highlight max chars per line
 -- vim.o.colorcolumn = '120'
@@ -221,6 +221,11 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Visual mode indentation
+--  Use Tab to indent and Shift+Tab to unindent selected lines
+vim.keymap.set('v', '<Tab>', '>gv', { desc = 'Indent selected lines' })
+vim.keymap.set('v', '<S-Tab>', '<gv', { desc = 'Unindent selected lines' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 -- vim.keymap.set("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
@@ -1084,9 +1089,9 @@ require('lazy').setup({
       signature = { enabled = true },
     },
   },
-  {
-    'github/copilot.vim',
-  },
+  -- {
+  --   'github/copilot.vim',
+  -- },
   {
     'rmagatti/auto-session',
     config = function()

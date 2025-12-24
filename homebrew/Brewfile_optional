@@ -11,6 +11,13 @@ brew "ffmpeg"
 brew "figlet"
 brew "git-filter-repo"
 # brew "hugo"
+brew "websocat"
+brew "zola"
+brew "kubernetes-cli"
+brew "kubectl"
+brew "minikube"
+brew "zig"
+brew "uv"
 brew "imagemagick"
 brew "poppler" # install zathura and setup it
 brew "ripgrep"
@@ -36,9 +43,12 @@ cask "neovide"
 cask "deluge"
 cask "ungoogled-chromium"
 cask "discord"
-cask 'telegram'
-cask 'mongodb-compass'
-cask 'flameshot'
+cask "telegram"
+cask "mongodb-compass"
+cask "gcloud-cli"
+cask "shottr"
+cask "dbeaver-community"
+
 # cask "minecraft"
 # cask "spotify"
 

@@ -43,3 +43,4 @@ export PATH="$JAVA_HOME/bin:$PATH"
 # Quick switching aliases
 # alias use-java17='export JAVA_HOME=$JAVA17_HOME && export PATH=$JAVA_HOME/bin:$PATH'
 alias use-java21='export JAVA_HOME=$JAVA21_HOME && export PATH=$JAVA_HOME/bin:$PATH'
+. "$HOME/.cargo/env"

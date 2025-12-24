@@ -9,6 +9,3 @@ cmd + shift - o : open -na "Brave Browser"
 
 # open discort
 cmd + shift - i : open -a "Discord"
-
-# open flameshot in capture mode
-opt + shift - p : open -a "Flameshot" --args gui

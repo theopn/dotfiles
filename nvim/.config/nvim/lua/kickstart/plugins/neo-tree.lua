@@ -38,12 +38,14 @@ return {
           '.DS_Store',
           'thumbs.db',
           '.nx',
+          '.venv',
         },
         never_show = {
           'node_modules', -- Ensures it's never shown even when toggling
           '.DS_Store',
           'thumbs.db',
           '.nx',
+          '.venv',
         },
       },
       follow_current_file = {

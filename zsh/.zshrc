@@ -301,3 +301,6 @@ eval "$(pyenv virtualenv-init -)"
 export GPG_TTY=$(tty)
 
 alias dockerps="docker ps"
+
+# Added by Antigravity
+export PATH="/Users/mumbo/.antigravity/antigravity/bin:$PATH"
