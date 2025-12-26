@@ -71,17 +71,6 @@ BYE
 
 ### Terminal emulators and multiplexers
 
-- Tmux - things different from the defaults:
-    - Settings: Some terminal information, all indexing starts from 1, increased history limit, and reduced escape time
-    - `C-a` is the prefix, and `PFX + C-a` sends `C-a` to the terminal
-    - `PFX + C-r` reloads the config
-    - `PFX + c` creates a new window *with the same CWD as the current pane*
-    - `PFX + %/"` creates a new pane *with the same CWD as the current pane*
-    - `PFX + hjkl` navigates panes (the default `l` is unbound which is `:last-window`)
-    - `PFX + C-s` prompts you to send the current pane to a selected window
-    - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
-    - Dracula themed status bar displaying the current session & window information, CWD, and current command running
-    - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
 - **Wezterm**: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
     - Many keybindings in the video now has been changed to match the Tmux keybindings, but the overall functionality remains the same
     - `LDR` = `C-a`
@@ -103,8 +92,45 @@ BYE
         - `LDR !`: breaks the current pane into a new tab
         - `LDR r`: enters the `resize_pane` mode where you can resize the pane with `<>-+` and `ESC` or `RET` to confirm
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
-- Kitty: The secondary terminal
-    - Colorscheme can be changed with `kitten themes`
+- Kitty: The secondary terminal, but its speed as well as the ability able to set scrollback pager to Neovim is slowly winning me over.
+    Since Kitty's window/tab management is vastly different from Tmux and Wezterm, keybindings are also different.
+    When I use Kitty, I tend to rely on tilign WM and Neovim for multiplexing.
+    - Scrollback history
+        - `ctrl+a > up/down`: scroll to previous/next prompt
+        - `ctrl+a > [`: open scrollback history in Neovim with special settings
+    - Windows (pane in Tmux)
+        - `ctrl+a > enter`: create a new window 
+        - `ctrl+a > x`: close a window
+        - `ctrl+a > h/j/p`: move to a previous window
+        - `ctrl+a > k/l/n`: move to a next window
+        - `ctrl+a > shift+h/j/p`: swap current window with the previous window
+        - `ctrl+a > shift+k/l/n`: swap current window with the next window
+        - `ctrl+a > shift+t`: make current window to be the "master window"
+        - `ctrl+a > r`: enter resizing mode
+        - `ctrl+a > q`: Like "Display Pane Numbers" in Tmux
+        - `ctrl+a > shift+q`: Like "Display Pane Numbers" in Tmux but for swapping windows
+    - Tab (windows in Tmux)
+        - `ctrl+a > c`: create a new tab
+        - `ctrl+a >,`: set tab title
+        - `ctrl+a > 1-9`: move to tabs 1-9
+    - Window Layout
+        - `ctrl+a > o`: cycle between tall, horizontal, vertical, and stack layouts
+        - `ctrl+a > shift+o`: reverse cycle
+        - `ctrl+a > z`: toggle stack (full screen) layout
+    - Reference the config for more
+- Tmux: Most of the time, I try to use a terminal emulator without Tmux.
+    But Tmux still comes in handy especially when working in a remote environment.
+    Following are things that are different from the defaults:
+    - Settings: Some terminal information, all indexing starts from 1, increased history limit, and reduced escape time
+    - `C-a` is the prefix, and `PFX + C-a` sends `C-a` to the application
+    - `PFX + C-r` reloads the config
+    - `PFX + c` creates a new window *with the same CWD as the current pane*
+    - `PFX + %/"` creates a new pane *with the same CWD as the current pane*
+    - `PFX + hjkl` navigates panes (the default `l` is unbound which is `:last-window`)
+    - `PFX + C-s` prompts you to send the current pane to a selected window
+    - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
+    - Dracula themed status bar displaying the current session & window information, CWD, and current command running
+    - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
 
 ### Text editors:
 
