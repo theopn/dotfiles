@@ -17,7 +17,6 @@
 #           chafa + terminal with Sixel support
 #           OR a terminal with Kitty icat protocol support
 set preview
-set sixel
 set previewer ~/.config/lf/previewer
 set cleaner ~/.config/lf/cleaner
 
