@@ -267,6 +267,7 @@ See the [list of archived configurations](./archive/README.md).
 
 ## Inspirations and Shameless Plug
 
+- Font(s): I use [Comic Code](https://tosche.net/fonts/comic-code) (yes, [I paid $30 for the monospaced Comic Sans](http://theopark.me/blog/2025-12-27-comic-code/)), [Fantasque Sans](https://github.com/belluzj/fantasque-sans), and [Ubuntu Sans Mono](https://github.com/canonical/Ubuntu-Sans-Mono-fonts); all [Nerd Font](https://www.nerdfonts.com/) patched
 - macOS wallpaper: "Firewatch 2" in [nordic-wallpapers](https://github.com/linuxdotexe/nordic-wallpapers)
 - Aerospace: [`default-config.toml`](https://nikitabobko.github.io/AeroSpace/guide.html#default-config) and [DevOps Toolbox's Dotfiles](https://github.com/omerxx/dotfiles)
 - LF: [example `lfrc`](https://github.com/gokcehan/lf/tree/master/etc), [Brodie Robertson's Dotfiles](https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc), and [`lfimg` for `batorcat` function](https://github.com/thimc/lfimg/blob/master/preview)
