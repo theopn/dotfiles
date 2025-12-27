@@ -5,5 +5,5 @@ title-hidden = true
 
 # These are runtime options
 [font]
-normal = ["UbuntuMono Nerd Font"] # Will use the bundled Fira Code Nerd Font by default
-size = 16.0
+normal = ["FantasqueSansM Nerd Font", "ComicCodeLigatures Nerd Font"] # Will use the bundled Fira Code Nerd Font by default
+size = 15.0
