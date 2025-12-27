@@ -30,7 +30,7 @@ local custom_colors = {
 }
 
 -- 12 for ComicCode, 16 for official Nerd Fonts
-local font_sizes = { 12, 16 }
+local font_sizes = { 12.5, 16 }
 config.font_size = font_sizes[1]
 config.font = wezterm.font_with_fallback({
   { family = "ComicCodeLigatures Nerd Font", },
