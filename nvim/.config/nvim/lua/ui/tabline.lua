@@ -16,7 +16,8 @@ local pomodoroGetFormattedTime = require("ui.pomodoro").getFormattedTime
 
 Tabline = {}
 
-local logo = vim.g.have_nerd_font and " 󰬛 󰫵󰫲󰫼 " or " <Theovim> "
+-- md-alpha
+local logo = vim.g.have_nerd_font and " 󰬛 󰰂 󰯸 󰰗  " or " <Theovim> "
 
 
 ---Given a list of |window-ID|, filters out abnormal (i.e., float) windows.
