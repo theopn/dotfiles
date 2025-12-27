@@ -21,7 +21,7 @@ vim.g.neovide_floating_blur_amount_x = blur_radius
 vim.g.neovide_floating_blur_amount_y = blur_radius
 vim.g.neovide_floating_shadow = true
 
-local opacity = 0.75
+local opacity = 0.85
 vim.g.neovide_opacity = opacity
 vim.g.neovide_normal_opacity = opacity
 
