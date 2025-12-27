@@ -4,8 +4,8 @@
 |:--:|
 | my macbook |
 
-Here are dotfiles for my systems, Framework 13 (AMD Ryzen AI 5 340 & 2.8k display) and M1 MacBook Air.
-MBA runs the latest version of macOS, and Framework runs the latest version of Fedora KDE Plasma (check out [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway config).
+Here are dotfiles for my systems, [Framework 13](https://theopark.me/blog/2025-11-06-framework/) and M1 MacBook Air.
+MBA runs the latest version of macOS, and Framework runs the latest version of Fedora KDE Plasma + Sway (also [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway config).
 
 Tools in this repository are mostly open-source utilities for development.
 
@@ -27,9 +27,16 @@ cd $HOME/dotfiles
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
 
-# tap font repository and install Ubuntu Mono Nerd Font
-brew tap homebrew/cask-fonts &&
-brew install --cask font-ubuntu-mono-nerd-font
+# Install Nerd Fonts
+brew install --cask font-fantasque-sans-mono-nerd-font font-ubuntu-mono-nerd-font
+# In Linux, use font-cache
+mkdir -p ~/.local/share/fonts
+# TODO: Check that this link is up-to-date before you proceed
+wget -O tmp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FantasqueSansMono.zip
+unzip tmp.zip
+fc-cache -vf
+rm tmp.zip
+cd -
 
 # Deploy dotfiles using custom Stow bootstrap script
 ./bootstrap.sh
