@@ -19,8 +19,8 @@ if wezterm.config_builder then config = wezterm.config_builder() end
 -- Settings
 config.default_prog = { fish_path, "-l" }
 
---config.color_scheme = "Tokyo Night"
-config.color_scheme = "nordfox"
+local fav_themes = { "tokyonight", "nordfox" }
+config.color_scheme = fav_themes[2]
 local custom_colors = {
   red = "#D06F79",     --> Tokyonight: "#F7768e"
   cyan = "#88C0D0",    --> Tokyonight: "#7DCFFF"
@@ -28,10 +28,16 @@ local custom_colors = {
   yellow = "#EBCB8B",  --> Tokyonight: "#E0AF68"
 
 }
+
+-- 12 for ComicCode, 16 for official Nerd Fonts
+local font_sizes = { 12, 16 }
+config.font_size = font_sizes[1]
 config.font = wezterm.font_with_fallback({
-  { family = "UbuntuMono Nerd Font", scale = 1.35, },
+  { family = "ComicCodeLigatures Nerd Font", },
+  { family = "FantasqueSansM Nerd Font", },
+  { family = "UbuntuMono Nerd Font", },
 })
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.9
 config.macos_window_background_blur = 24
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
@@ -198,7 +204,6 @@ config.window_padding = {
   right = '0.5cell',
   top = '0.5cell',
   bottom = '0cell',
-
 }
 --]]
 
