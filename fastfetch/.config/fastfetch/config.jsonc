@@ -7,41 +7,45 @@
     "separator",
     // $ fastfetch -h title-format
     {
-      "type": "title", "format": "{user-name-colored} @ {host-name-colored}"
+      "type": "title", "format": "{host-name-colored}"
+      ///"type": "title", "format": "{user-name-colored} @ {host-name-colored}"
     },
-
     "separator",
+
+    // OS-related
     "os",
-    "kernel",
+    //"kernel",
     "packages",
-    // "de",
+    //"de",
     "wm",
-    // "wmtheme",
-    // "theme",
+    //"wmtheme",
+    //"theme",
 
-    "separator",
+
+    // HW related
     "host",
-    "cpu",
-    "gpu",
-    "memory",
-    // "swap",
-    "disk",
-    // "localip",
-    "display",
-    // "battery",
-    // "poweradapter",
-    // "uptime",
+    //"cpu",
+    //"gpu",
+    //"memory",
+    //"swap",
+    //"disk",
+    //"localip",
+    //"display",
+    //"battery",
+    //"poweradapter",
+    //"uptime",
 
-    "separator",
+    // Termianl and shell related
     "terminal",
     "shell",
-    // "terminalfont",
-    // "cursor",
-    // "icons",
-    // "font",
-    // "locale",
+    "terminalfont",
+    //"cursor",
+    //"icons",
+    //"font",
+    //"locale",
 
     "break",
-    "colors"
+    "colors",
+    "break"
   ]
 }
