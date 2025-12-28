@@ -156,3 +156,12 @@ I started preferring simpler productivity system focused on analogue tools and p
     - `C-c r b`: List all Org-roam references in the current buffer
     - `C-c r r`: Sync Org-roam database
 
+## Sketchybar
+
+> Last Updated: 2025-05-14
+
+In this [commit](https://github.com/nikitabobko/AeroSpace/commit/5aabca5b4d86afa55fb5f1c6cfa06f1e413448fd), Aerospace introduced a simple yet much needed UI customization option for the menu bar icon, which is frankly all I need.
+Along with [Ice](https://github.com/jordanbaird/Ice), I decided to stick to the native menu bar.
+
+If you decide to use Sketchybar: do not use `brew services start sketchybar`, uncomment relevant code in the `aerospace.toml` in order for the bar to correctly work with Aerospace.
+
