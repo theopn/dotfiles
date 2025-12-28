@@ -29,6 +29,9 @@ cd $HOME/dotfiles
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
 
+# Install Aerospace
+brew install nikitabobko/tap/aerospace
+
 # Install Nerd Fonts
 brew install --cask font-fantasque-sans-mono-nerd-font font-ubuntu-mono-nerd-font
 # In Linux, use font-cache
@@ -178,22 +181,11 @@ BYE
 
 ### macOS Tiling WM Setup
 
-Tools used to create my Tokyo-Night-themed tiling WM setup for my macOS environment:
+> ![NOTE]
+> I no longer use Sketchybar, but the config still seems to work.
+> Please reference the [archive readme](./archive/README.md) for more information.
 
-- [Aerospace](https://github.com/nikitabobko/AeroSpace)
-- [Sketchybar](https://github.com/FelixKratz/SketchyBar)
-
-Install Aerospace and Sketchybar
-
-```bash
-brew install nikitabobko/tap/aerospace FelixKratz/formulae/sketchybar
-```
-
-Add Aerospace to your login item in System Settings.
-Aerospace will automatically launch Sketchybar on the startup.
-**Do not use `brew services start sketchybar` to launch Sketchybar** as Sketchybar needs to be launched after Aerospace has been launched (via `after-startup-command` in `aerospace.toml`) in order to correctly render workspaces.
-
-The configuration and keybindings are very close to the default with a couple of tweaks (the `opt`/`alt`/`⌥` key is the modifier):
+My Aerospace configuration is very close to the default (the `opt`/`alt`/`⌥` key is the modifier):
 
 - `alt-shift-space`: Toggle between floating and tiling for the current window
 - `alt-enter`: Open Wezterm
@@ -212,10 +204,6 @@ The configuration and keybindings are very close to the default with a couple of
     - `esc`: Reload the config and exit the service mode
     - `r`: Reset layout and exit the service mode
     - `alt-shift-h/j/k/l`: Join windows into different trees
-
-> ![NOTE]
-> In this [commit](https://github.com/nikitabobko/AeroSpace/commit/5aabca5b4d86afa55fb5f1c6cfa06f1e413448fd), a rudimentary UI customization for the Aerospace tray icon has been added, which is frankly all I need.
-> Along with [Ice](https://github.com/jordanbaird/Ice), I am experimenting with the native menu bar.
 
 ### Homebrew
 

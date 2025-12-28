@@ -3,7 +3,6 @@
 # macOS utilities
 if [[ "$OSTYPE" == "darwin"* ]] || [[ "$OSTYPE" == "macOS" ]]; then
   stow aerospace
-  stow sketchybar
 fi
 
 stow bash
