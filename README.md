@@ -14,6 +14,8 @@ Tools in this repository are mostly open-source utilities for development.
 
 ## Installation
 
+### Packages & Dotfiles Deployment
+
 ```sh
 # Clone the repository
 git clone git@github.com:theopn/dotfiles.git
@@ -43,7 +45,11 @@ cd -
 
 # macOS settings
 ./misc/macos-settings.sh
+```
 
+### Post-installation
+
+```sh
 # Add SSH shortcuts
 # Fun fact: Heredoc can accept any string as End-of-Transmission delimiter (quotes prevent parameter expansion)
 cat <<"HELLO" >> ~/.ssh/config
@@ -52,7 +58,11 @@ Host [nickname]
     User [username]
 HELLO
 
-# Create and add directories to the directory bookmark/favorites list for my `cdf` fish function
+# Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for a better performance
+# I createed a script to set global variables only once
+fish $HOME/dotfiles/fish/.config/fish/set-universal.fish
+
+# Create and add directories to the directory bookmark/favorites list for my `cdf` fish/zsh function
 mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-fav.txt
 cat <<BYE >> $XDG_DATA_HOME/theoshell/cd-fav.txt
 $XDG_CONFIG_HOME
@@ -68,11 +78,9 @@ BYE
 - ZSH: My `$SHELL`
     - Minimal plugin manager (`plug`, `plug_update`) to download and source [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete)
     - Rudimentary implementation of trash-cli (`trash`)
-    - Git info in the prompt
+    - Vim mode & Git info in the prompt
 - **Fish**: Main interactive shell
-    - Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for better performance.
-        Thus, you need to set global variables only once for your system.
-        I created a script to set all the universal environment variables at once; run: `fish $HOME/dotfiles/fish/.config/fish/set-universal.fish`
+    - Cool handmade prompt
     - multicd: `..` to `cd ..`, `...` to `cd../..`, ...
     - CD favorites/bookmark: `cdf_add` to add current directory to the list, `cdf` to use FZF to search the directoy and CD into it, and `cdf_edit` to edit the list with `$EDITOR`
 
@@ -141,11 +149,11 @@ BYE
 
 ### Text editors:
 
-- **Neovim**: My IDE, to-do list, Pomodoro timer, and a life-long software engineering project. Read [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), a ~700~ 1000 lines of help documentation I wrote on custom functions, plugin configurations, and Vim tips I have accumulated over the years
-    - Read [Neovim content](https://theopark.me/tags/neovim/) in my blog!
+- **Neovim**: My IDE, to-do list, Pomodoro timer, and a life-long software engineering project. Read [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), a ~700~ 1080 lines of help documentation I wrote on custom functions, plugin configurations, and Vim tips I have accumulated over the years
+    - Read [Neovim related posts](https://theopark.me/tags/neovim/) in my blog!
 - Neovide: Neovim GUI frontend with pretty animations
 - Vim: Simple config with Vimwiki for journal writing
-    - My Vimrc is built with [Kickstart.vim](https://github.com/theopn/kickstart.vim), features 
+    - My Vimrc is built with [Kickstart.vim](https://github.com/theopn/kickstart.vim), featuring
     - `.vim/plugin` directory features [40-line Vimscript bufferline](https://theopark.me/blog/2023-03-17-vimscript-bufferline/) and ["Bufferpanel"](https://theopark.me/blog/2025-06-01-tabpanel/)
     - Choose between `(Bufferpanel + Tabline) || (Tabpanel + Bufferpanel)` by setting `g:theoline_buflist` and `g:theopanel:buflist` variables
 
@@ -154,7 +162,7 @@ BYE
 - **LF**: Simple and fast terminal file manager
     - For my custom `preview` script support: install `bat` and Poppler (for `pdftotext` command);
         make sure your terminal has either (1) [Sixel](https://www.arewesixelyet.com/) support and has `chafa` installed OR (2) Kitty's `icat` protocol support
-    - If preview breaks, which might happen while displaying images in Tmux, use `C-l` to reset the screen
+    - If preview breaks for whatever reasons, use `C-l` to reset the screen
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
     - `DD`: Move a file to `$XDG_DATA_HOME/theoshell/trash`
@@ -163,7 +171,7 @@ BYE
     - `md`: mkdir
     - `mf`: Create a file and open in `$EDITOR`
     - `mo`: chmod
-- Git: Some Git settings and global `.gitignore` file; `editor` and `pager` are set to require Neovim
+- Git: Some Git settings and global `.gitignore` file
 - Fastfetch: essential
 
 ## macOS
