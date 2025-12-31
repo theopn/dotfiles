@@ -31,13 +31,19 @@ def draw_tab(
 
     new_draw_data = draw_data._replace(
         title_template="{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}"
-        + "{sup.index}󰘳  "
-        + layout_icon
-        + "{sub.num_windows}"
-        + " "
-        + "󰉋 {tab.active_wd.rsplit('/', 1)[-1] or '/'}"
-        + " "
-        + " {tab.active_exe}"
+        .join(
+            [
+                "{sup.index}󰘳  ",
+                layout_icon,
+                "{sub.num_windows}",
+                " ",
+                # basename(cwd)
+                "󰉋 {tab.active_wd.rsplit('/', 1)[-1] or '/'}",
+                " ",
+                " {tab.active_exe}",
+                # " {title}"
+            ]
+        )
 
         # active_title_template inherits title_template if nil
     )
