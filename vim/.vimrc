@@ -186,11 +186,11 @@ augroup netrw_autocmds
   " Close netrw if it is the last buffer
   autocmd WinEnter * if tabpagenr('$') == 1 && winnr('$') == 1
   \ && getbufvar(winbufnr(winnr()), "&filetype") == 'netrw' | quit | endif
-  autocmd VimEnter * :Lexplore! | wincmd p  " Netrw open on startup
+  " autocmd VimEnter * :Lexplore! | wincmd p  " Netrw open on startup
 augroup END
 
 " Function to toggle netrw buffer using global var and buf wipeout
-let g:NetrwIsOpen = 1 " Since I open netrw in the startup
+let g:NetrwIsOpen = 0 " Set this to 1 if netrw is open on the startup
 fun! ToggleNetrw()
   if g:NetrwIsOpen
     for i in range(1, bufnr('$'))
