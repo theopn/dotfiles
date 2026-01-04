@@ -24,3 +24,7 @@
 	helper = cache --timeout=3600
 [http]
 	postBuffer = 157286400
+[submodule]
+	recurse = true
+[push]
+	recurseSubmodules = on-demand
