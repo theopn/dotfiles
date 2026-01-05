@@ -16,6 +16,8 @@ setopt share_history
 # Vim mode & faster key timeout
 bindkey -v
 KEYTIMEOUT=1
+# By default, Normal mode -> / is search
+bindkey '^R' history-incremental-search-backward
 # C-x C-e to edit the command int $EDITOR
 autoload -z edit-command-line
 zle -N edit-command-line
