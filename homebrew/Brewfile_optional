@@ -41,6 +41,6 @@ cask "keycastr"
 cask "obs"
 cask "vlc"
 
-cask "chromium"
 cask "tailscale"
 cask "thunderbird"
+cask "ungoogled-chromium"

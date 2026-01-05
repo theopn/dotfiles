@@ -238,17 +238,17 @@ Formulae:
 
 Casks:
 
-| Development     | Fun       | Productivity | Sync        | System        | Tools         | Web         |
-|-----------------|-----------|--------------|-------------|---------------|---------------|-------------|
-| Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | Chromium    |
-| IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | CEmu          | **Firefox** |
-| kitty           | Spotify   |              | Nextcloud   | **Maccy**     | GIMP          | Tailscale   |
-| MacTex (no GUI) |           |              | Syncthing   | **Stats**     | KeyCastr      | Thunderbird |
-| **Macvim**      |           |              |             |               | OBS           |             |
-| Neovide         |           |              |             |               | **Skim**      |             |
-| RStudio         |           |              |             |               | VLC           |             |
-| UTM             |           |              |             |               |               |             |
-| **Wezterm**     |           |              |             |               |               |             |
+| Development     | Fun       | Productivity | Sync        | System        | Tools         | Web                |
+|-----------------|-----------|--------------|-------------|---------------|---------------|--------------------|
+| Docker          | Discord   | **Itsycal**  | Cryptomator | **Aerospace** | **Bitwarden** | **Firefox**        |
+| IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | CEmu          | Tailscale          |
+| kitty           | Spotify   |              | Nextcloud   | **Maccy**     | GIMP          | Thunderbird        |
+| MacTex (no GUI) |           |              | Syncthing   | **Stats**     | KeyCastr      | Ungoogled Chromium |
+| **Macvim**      |           |              |             |               | OBS           |                    |
+| Neovide         |           |              |             |               | **Skim**      |                    |
+| RStudio         |           |              |             |               | VLC           |                    |
+| UTM             |           |              |             |               |               |                    |
+| **Wezterm**     |           |              |             |               |               |                    |
 
 ### macOS Settings
 
