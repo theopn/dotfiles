@@ -33,7 +33,7 @@ brew bundle --file ./homebrew/Brewfile_optional
 brew install nikitabobko/tap/aerospace
 
 # Install Nerd Fonts
-brew install --cask font-fantasque-sans-mono-nerd-font font-ubuntu-mono-nerd-font
+brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-mono-nerd-font
 # In Linux, use font-cache
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts/
 # TODO: Check that this link is up-to-date before you proceed
