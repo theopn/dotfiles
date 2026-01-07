@@ -35,10 +35,14 @@ brew install nikitabobko/tap/aerospace
 # Install Nerd Fonts
 brew install --cask font-fantasque-sans-mono-nerd-font font-ubuntu-mono-nerd-font
 # In Linux, use font-cache
-mkdir -p ~/.local/share/fonts
+mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts/
 # TODO: Check that this link is up-to-date before you proceed
 wget -O tmp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FantasqueSansMono.zip
 unzip tmp.zip
+# -v: verbose
+# -f: force generation
+# -r: erase existing cache
+# -E: abort if no font file in CWD
 fc-cache -vf
 rm tmp.zip
 cd -
