@@ -26,11 +26,12 @@ o.splitright      = true --> Vertical split created right
 o.splitbelow      = true --> Horizontal split created below
 
 -- UI
-o.signcolumn      = "yes" --> Render signcolumn always to prevent text shifting
-o.scrolloff       = 7     --> Keep minimum x number of screen lines above and below the cursor
-o.termguicolors   = true  --> Enables 24-bit RGB color in the TUI
-o.showtabline     = 2     --> 0: never, 1: >= 2 tabs, 2: always
-o.laststatus      = 3     --> 0: never, 1: >= 2 windows, 2: always, 3: always and have one global statusline
+o.signcolumn      = "yes"     --> Render signcolumn always to prevent text shifting
+o.scrolloff       = 7         --> Keep minimum x number of screen lines above and below the cursor
+o.termguicolors   = true      --> Enables 24-bit RGB color in the TUI
+o.showtabline     = 2         --> 0: never, 1: >= 2 tabs, 2: always
+o.laststatus      = 3         --> 0: never, 1: >= 2 windows, 2: always, 3: always and have one global statusline
+o.winborder       = "rounded" --> border appearance used by some plugins (e.g., nvim-cmp)
 
 -- Char rendering
 o.list            = true --> Render special char in listchars
