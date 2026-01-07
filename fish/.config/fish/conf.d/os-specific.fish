@@ -14,15 +14,24 @@ if [ $OSTYPE = 'macOS' ]
   fish_add_path /opt/homebrew/sbin/
   abbr -a aero "aerospace list-windows --all | fzf --bind 'enter:execute($SHELL -c \"aerospace focus --window-id {1}\")+abort'"
 else if [ $OSTYPE = 'Linux' ]
-  begin
-    set -l KEYS id_rsa id_ed25519
-    if status --is-interactive
-      keychain --eval $KEYS
-    end
+  if status --is-interactive
+    # Isolation for setting up keychain
+    begin
+      # `man keychain` gives two options for loading SSH key into the shell
+      # (1) is to use --eval.
+      #     However, it uses $SHELL to find the script to source,
+      #     so for me, it will try to source ~/.keychain/${hostname}-sh
+      #     and cause syntax error in Fish
+      # (2) is to manually load the key and the sockets stored in ~/.keychain
+      #     This is the method I will be using, though I will add `--quick` flag
 
-    set -l HOSTNAME (hostname)
-    if test -f ~/.keychain/$HOSTNAME-fish
-      source ~/.keychain/$HOSTNAME-fish
+      set -l KEYS id_rsa id_ed25519
+      ## you can also add --quiet if you wish
+      keychain --quick $KEYS
+      test -z "$hostname"; and set hostname (uname -n)
+      if test -f "$HOME/.keychain/$hostname-fish"
+        source $HOME/.keychain/$hostname-fish
+      end
     end
   end
 end
