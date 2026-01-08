@@ -1,6 +1,4 @@
-tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
+cask "nikitabobko/tap/aerospace"
 
 brew "fish"
 brew "fzf"
@@ -13,12 +11,11 @@ brew "rust"
 brew "tmux"
 brew "wget"
 
-cask "macvim"
+cask "macvim-app"
 cask "wezterm"
 
 cask "itsycal"
 
-cask "aerospace"
 cask "jordanbaird-ice"
 cask "maccy"
 cask "stats"
