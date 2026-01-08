@@ -16,25 +16,35 @@ Tools in this repository are mostly open-source utilities for development.
 
 ### Packages & Dotfiles Deployment
 
-```sh
-# Clone the repository
-git clone git@github.com:theopn/dotfiles.git
+macOS:
 
+```sh
 # Homebrew bootstrap
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew analytics off
+
+# Create SSH key using `ssh-keygen` if you are using SSH.
+# Otherwise, use https for cloning
+git clone git@github.com:theopn/dotfiles.git
 
 # Install formulae
 cd $HOME/dotfiles
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
-
-# Install Aerospace
-brew install nikitabobko/tap/aerospace
-
 # Install Nerd Fonts
-brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-mono-nerd-font
-# In Linux, use font-cache
+brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-nerd-font
+
+# Deploy dotfiles using custom Stow bootstrap script
+./bootstrap.sh
+
+# macOS settings
+./misc/macos-settings.sh
+```
+
+Linux:
+
+```sh
+# requires font-cache
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts/
 # TODO: Check that this link is up-to-date before you proceed
 wget -O tmp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FantasqueSansMono.zip
@@ -46,12 +56,6 @@ unzip tmp.zip
 fc-cache -vf
 rm tmp.zip
 cd -
-
-# Deploy dotfiles using custom Stow bootstrap script
-./bootstrap.sh
-
-# macOS settings
-./misc/macos-settings.sh
 ```
 
 ### Post-installation
@@ -67,7 +71,7 @@ HELLO
 
 # Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for a better performance
 # I createed a script to set global variables only once
-fish $HOME/dotfiles/fish/.config/fish/set-universal.fish
+fish ~/dotfiles/fish/.config/fish/set-universal.fish
 
 # Create and add directories to the directory bookmark/favorites list for my `cdf` fish/zsh function
 mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-fav.txt
@@ -236,6 +240,7 @@ Formulae:
 - r
 - ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
+- **stow**: managing Dotfiles (used in `./bootstrap.sh`)
 - **tmux**: Universal terminal multiplexer
 - tree: Tree-like directory view
 - **wget**: Be careful with what you download

@@ -8,6 +8,7 @@ brew "lua"
 brew "neovim"
 brew "node"
 brew "rust"
+brew "stow"
 brew "tmux"
 brew "wget"
 
