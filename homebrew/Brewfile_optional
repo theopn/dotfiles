@@ -12,7 +12,7 @@ brew "poppler"
 brew "ripgrep"
 brew "tree"
 
-cask "docker"
+cask "docker-desktop"
 cask "intellij-idea"
 cask "kitty"
 cask "mactex-no-gui"
