@@ -4,19 +4,23 @@
 |:--:|
 | my macos |
 
-Here are dotfiles for my systems, [Framework 13](https://theopark.me/blog/2025-11-06-framework/), M4 Mac Mini, ThinkPad X270, and M1 MacBook Air.
-Mac runs the latest version of macOS, and Framework runs the latest version of Fedora KDE Plasma + Sway (see [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway config).
+Here are dotfiles for my systems:
 
-Tools in this repository are mostly open-source utilities for development.
+- [Framework 13](https://theopark.me/blog/2025-11-06-framework/): runs the latest Fedora KDE Plasma + Sway (see [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway configuration)
+- M4 Mac Mini: runs the latest macOS
+- ThinkPad X270: currently running Fedora Server, TBD for how I am going to use this
+- M1 MacBook Air: served me well since 2021, TBD for what I am going to do with this
+
+The tools in this repository are primarily open-source utilities for development.
 
 > [!IMPORTANT]
-> **Read the code if you decide to use them!**
+> **Read the code before using them!**
 
 ## Installation
 
 ### Generating SSH Key for GitHub Authentication
 
-If you are not me and just want to clone the repository, skip this section and use HTTPS cloning.
+If you are not me, skip this section and use HTTPS cloning.
 
 ```sh
 ssh-keygen -t ed25519 -C "Theo's ED25519 key @ $(hostname) for GitHub Auth"
@@ -25,10 +29,10 @@ ssh-keygen -t ed25519 -C "Theo's ED25519 key @ $(hostname) for GitHub Auth"
 cat ~/.ssh/id_ed25519.pub
 
 # Linux: my Fish config automatically launches keychain and ssh-agent
-# macOS: do the following
+# macOS: execute the following commands
 eval "$(ssh-agent -s)"
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
-# Did you know that Heredoc End-of-Transmission delimiter could be anything?
+# Did you know that the Heredoc End-of-Transmission delimiter could be anything?
 # Double quote means no parameter expansion
 cat <<"HI" >> ~/.ssh/config
 Host github.com
@@ -41,7 +45,7 @@ HI
 ### Cloning & Deploying Dotfiles - macOS
 
 ```sh
-# Change hostname
+# Change the hostname
 HOSTNAME=<my computer>; sudo scutil --set ComputerName "$HOSTNAME" && sudo scutil --set HostName "$HOSTNAME"
 
 # Install dev tools (including Git)
@@ -58,7 +62,6 @@ cd $HOME/dotfiles
 # Install formulae
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
-
 # Install Nerd Fonts
 brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-nerd-font
 
@@ -72,7 +75,7 @@ brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-nerd
 ### Cloning & Deploying Dotfiles - Fedora
 
 ```sh
-# Change hostname
+# Change the hostname
 hostnamectl set-hostname --static <my computer>
 
 # Install packages
@@ -107,7 +110,7 @@ cd -
 Now is a good time to reopen the shell.
 
 ```sh
-# Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for a better performance
+# Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for performance
 # I created a script to set global variables only once
 fish ~/dotfiles/fish/.config/fish/set-universal.fish
 
@@ -141,9 +144,9 @@ BYE
 
 ### Few More Things (for myself)
 
-- Linux systems: install Sway and follow the instructions in [Haunted Tiles repository](https://github.com/theopn/haunted-tiles)
-- Also Linux: follow the instructions for private configurations and scripts in [my Framework 13 repository (private)](https://github.com/theopn/framework-13)
-- macOS: follow the instructions for private configurations and scripts in [my script repository (private)](https://github.com/theopn/scripts)
+- Linux systems: install Sway and follow the instructions in the [Haunted Tiles repository](https://github.com/theopn/haunted-tiles)
+- Also Linux: follow the instructions for the private configurations and scripts in [my Framework 13 repository (private)](https://github.com/theopn/framework-13)
+- macOS: follow the instructions for the private configurations and scripts in [my script repository (private)](https://github.com/theopn/scripts)
 
 -----
 
@@ -159,12 +162,12 @@ BYE
 - **Fish**: Main interactive shell
     - Cool handmade prompt
     - multicd: `..` to `cd ..`, `...` to `cd../..`, ...
-    - CD favorites/bookmark: `cdf_add` to add current directory to the list, `cdf` to use FZF to search the directoy and CD into it, and `cdf_edit` to edit the list with `$EDITOR`
+    - CD favorites/bookmark: `cdf_add` to add current directory to the list, `cdf` to use FZF to search the directory and CD into it, and `cdf_edit` to edit the list with `$EDITOR`
 
 ### Terminal emulators and multiplexers
 
 - **Wezterm**: My favorite terminal emulator. Watch my YouTube video [Configure Wezterm terminal emulator in Lua with me [ASMR Coding]](https://youtu.be/I3ipo8NxsjY) :)
-    - Many keybindings in the video now has been changed to match the Tmux keybindings, but the overall functionality remains the same
+    - Many keybindings in the video now been changed to match the Tmux keybindings, but the overall functionality remains the same
     - `LDR` = `C-a`
     - `LDR [`: enters the copy mode
     - `LDR :`: opens the command palette
@@ -184,8 +187,8 @@ BYE
         - `LDR !`: breaks the current pane into a new tab
         - `LDR r`: enters the `resize_pane` mode where you can resize the pane with `<>-+` and `ESC` or `RET` to confirm
     - `$ wezterm show-keys --lua` to get the Lua table of all keybindings available
-- Kitty: The secondary terminal, but its speed as well as the ability able to set scrollback pager to Neovim is slowly winning me over.
-    Since Kitty's window/tab management is vastly different from Tmux and Wezterm, keybindings are also different.
+- Kitty: The secondary terminal, but its speed as well as the ability to set scrollback pager to Neovim is slowly winning me over.
+    As Kitty's window/tab management is vastly different from Tmux and Wezterm, so are keybindings.
     When I use Kitty, I tend to rely on tilign WM and Neovim for multiplexing.
     - Scrollback history
         - `ctrl+a > up/down`: scroll to previous/next prompt
@@ -211,8 +214,8 @@ BYE
         - `ctrl+a > z`: toggle stack (full screen) layout
     - Reference the config for more
 - Tmux: Most of the time, I try to use a terminal emulator without Tmux.
-    But Tmux still comes in handy especially when working in a remote environment.
-    Following are things that are different from the defaults:
+    But Tmux still comes in handy, especially when working in a remote environment.
+    The following are things that are different from the defaults:
     - Settings: Some terminal information, all indexing starts from 1, increased history limit, and reduced escape time
     - `C-a` is the prefix, and `PFX + C-a` sends `C-a` to the application
     - `PFX + C-r` reloads the config
@@ -221,7 +224,7 @@ BYE
     - `PFX + hjkl` navigates panes (the default `l` is unbound which is `:last-window`)
     - `PFX + C-s` prompts you to send the current pane to a selected window
     - Vi-copy-mode is set, `y` in copy mode yanks the selection -- I do not know what this is not the default since `y` is not bound to anything by default
-    - Dracula themed status bar displaying the current session & window information, CWD, and current command running
+    - Status bar displaying the current session & window information, CWD, and the current command
     - Use `PFX + ?` (list keys) and `PFX + / + <key>` (describe key) for more help
 
 ### Text editors:
@@ -239,7 +242,7 @@ BYE
 - **LF**: Simple and fast terminal file manager
     - For my custom `preview` script support: install `bat` and Poppler (for `pdftotext` command);
         make sure your terminal has either (1) [Sixel](https://www.arewesixelyet.com/) support and has `chafa` installed OR (2) Kitty's `icat` protocol support
-    - If preview breaks for whatever reasons, use `C-l` to reset the screen
+    - If preview breaks for whatever reason, use `C-l` to reset the screen
     - `ee`: Open a file in `$EDITOR`
     - `ec`: You choose what editor you want to open a file in
     - `DD`: Move a file to `$XDG_DATA_HOME/theoshell/trash`
@@ -256,7 +259,7 @@ BYE
 ### macOS Tiling WM Setup
 
 > ![NOTE]
-> I no longer use Sketchybar, but the config still seems to work.
+> I no longer use Sketchybar, but the config works just fine.
 > Please reference the [archive readme](./archive/README.md) for more information.
 
 My Aerospace configuration is very close to the default (the `opt`/`alt`/`⌥` key is the modifier):
@@ -286,30 +289,30 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 Formulae:
 
 - bat: `cat` with syntax highlighting (LF preview script dependency)
-- chafa: convert images to Sixel format (Lf preview script dependency)
+- chafa: convert images to Sixel format (Lf preview script dependency for certain terminals)
 - exiftool: read and modify EXIF data in image files
 - fastfetch
 - fd: faster alternative to `find` (Neovim Telescope dependency)
 - ffmpeg: `ffmpeg -i in.xxx out.yyy`
 - figlet: ASCII art generator
-- **fish**: De facto default shell
-- **fzf**: Command line fuzzy finder
-- git-filter-repo: tool to rewrite Git history
-- **htop**: System monitor
-- hugo: Static website generator
-- imagemagick: Command line image manipulation
-- **lf**: My favorite CLI file manager
+- **fish**: de facto default shell
+- **fzf**: command line fuzzy finder
+- git-filter-repo: a tool to rewrite Git history
+- **htop**: system monitor
+- hugo: static website generator
+- imagemagick: image manipulation
+- **lf**: my favorite CLI file manager
 - **lua**
-- **neovim**: Purpose of my life
+- **neovim**: what more can I say
 - **node**
 - poppler: `pdftotext in.pdf -` (LF preview script dependency)
 - r
 - ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
 - **stow**: managing Dotfiles (used in `./bootstrap.sh`)
-- **tmux**: Universal terminal multiplexer
-- tree: Tree-like directory view
-- **wget**: Be careful with what you download
+- **tmux**: terminal multiplexer
+- tree: tree-like directory view
+- **wget**: be careful with what you download
 
 Casks:
 
