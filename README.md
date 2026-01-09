@@ -2,10 +2,10 @@
 
 | ![macos-sc](./assets/macos-sc.jpg) |
 |:--:|
-| my macbook |
+| my macos |
 
-Here are dotfiles for my systems, [Framework 13](https://theopark.me/blog/2025-11-06-framework/) and M1 MacBook Air.
-MBA runs the latest version of macOS, and Framework runs the latest version of Fedora KDE Plasma + Sway (also [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway config).
+Here are dotfiles for my systems, [Framework 13](https://theopark.me/blog/2025-11-06-framework/), M4 Mac Mini, ThinkPad X270, and M1 MacBook Air.
+Mac runs the latest version of macOS, and Framework runs the latest version of Fedora KDE Plasma + Sway (see [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway config).
 
 Tools in this repository are mostly open-source utilities for development.
 
@@ -14,72 +14,136 @@ Tools in this repository are mostly open-source utilities for development.
 
 ## Installation
 
-### Packages & Dotfiles Deployment
+### Generating SSH Key for GitHub Authentication
 
-macOS:
+If you are not me and just want to clone the repository, skip this section and use HTTPS cloning.
 
 ```sh
+ssh-keygen -t ed25519 -C "Theo's ED25519 key @ $(hostname) for GitHub Auth"
+# Followed by RET to accept the default path + passphrase
+# Add the public key to GitHub Settings -> SSH and GPG Keys
+cat ~/.ssh/id_ed25519.pub
+
+# Linux: my Fish config automatically launches keychain and ssh-agent
+# macOS: do the following
+eval "$(ssh-agent -s)"
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+# Did you know that Heredoc End-of-Transmission delimiter could be anything?
+# Double quote means no parameter expansion
+cat <<"HI" >> ~/.ssh/config
+Host github.com
+    IdentityFile ~/.ssh/id_ed25519
+    AddKeysToAgent yes
+    UseKeychain yes
+HI
+```
+
+### Cloning & Deploying Dotfiles - macOS
+
+```sh
+# Change hostname
+HOSTNAME=<my computer>; sudo scutil --set ComputerName "$HOSTNAME" && sudo scutil --set HostName "$HOSTNAME"
+
+# Install dev tools (including Git)
+xcode-select --install
+
 # Homebrew bootstrap
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew analytics off
 
-# Create SSH key using `ssh-keygen` if you are using SSH.
-# Otherwise, use https for cloning
+cd $HOME
 git clone git@github.com:theopn/dotfiles.git
+cd $HOME/dotfiles
 
 # Install formulae
-cd $HOME/dotfiles
 brew bundle --file ./homebrew/Brewfile_core
 brew bundle --file ./homebrew/Brewfile_optional
+
 # Install Nerd Fonts
 brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-nerd-font
 
-# Deploy dotfiles using custom Stow bootstrap script
+# Deploy dotfiles using Stow
 ./bootstrap.sh
 
 # macOS settings
 ./misc/macos-settings.sh
 ```
 
-Linux:
+### Cloning & Deploying Dotfiles - Fedora
 
 ```sh
-# requires font-cache
+# Change hostname
+hostnamectl set-hostname --static <my computer>
+
+# Install packages
+sudo dnf upgrade
+# TODO: Make a DNF installation script
+sudo dnf install git keychain python3-pip stow zsh
+
+cd $HOME
+git clone git@github.com:theopn/dotfiles.git
+cd $HOME/dotfiles
+
+# Move Fedora default bashrc
+mv ~/.bashrc ~/.bashrc-fedora
+
+# Deploy dotfiles using Stow
+./bootstrap.sh
+
+# Install fonts with font-cache
 mkdir -p ~/.local/share/fonts && cd ~/.local/share/fonts/
 # TODO: Check that this link is up-to-date before you proceed
 wget -O tmp.zip https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/FantasqueSansMono.zip
-unzip tmp.zip
+unzip tmp.zip && rm tmp.zip
 # -v: verbose
 # -f: force generation
 # -r: erase existing cache
-# -E: abort if no font file in CWD
-fc-cache -vf
-rm tmp.zip
+fc-cache -vfr
 cd -
 ```
 
 ### Post-installation
 
-```sh
-# Add SSH shortcuts
-# Fun fact: Heredoc can accept any string as End-of-Transmission delimiter (quotes prevent parameter expansion)
-cat <<"HELLO" >> ~/.ssh/config
-Host [nickname]
-    Hostname [url]
-    User [username]
-HELLO
+Now is a good time to reopen the shell.
 
+```sh
 # Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for a better performance
-# I createed a script to set global variables only once
+# I created a script to set global variables only once
 fish ~/dotfiles/fish/.config/fish/set-universal.fish
 
 # Create and add directories to the directory bookmark/favorites list for my `cdf` fish/zsh function
 mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-fav.txt
-cat <<BYE >> $XDG_DATA_HOME/theoshell/cd-fav.txt
+cat <<AHH >> $XDG_DATA_HOME/theoshell/cd-fav.txt
 $XDG_CONFIG_HOME
 $XDG_DATA_HOME
+AHH
+
+# Neovim Treesitter and LSP servers
+nvim -c "TSInstall bash c cpp fish html java javascript latex lua luadoc markdown markdown_inline python sql vim vimdoc"
+nvim -c "MasonInstall bash-language-server clangd lua-language-server python-lsp-server texlab"
+
+# Generate and copy public SSH key to my school's remote server
+ssh-keygen -t rsa -b 4096 -C "Theo's RSA Key @ $(hostname) for Purdue CS servers auth"
+ssh-copy-id -i ~/.ssh/id_rsa.pub <my username>@data.cs.purdue.edu
+
+# Add SSH alias
+# The last two lines are only for macOS
+# In Linux, my Fish config handles launching Keychain and ssh-agent
+cat <<"BYE" >> ~/.ssh/config
+Host data
+    Hostname data.cs.purdue.edu
+    User <my username>
+    IdentityFile ~/.ssh/id_rsa
+    AddKeysToAgent yes
+    UseKeychain yes
 BYE
 ```
+
+### Few More Things
+
+- I have a documentation 
+
+-----
 
 ## Utilities
 
