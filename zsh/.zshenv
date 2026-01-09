@@ -27,3 +27,9 @@ export THEOSHELL_TRASH_DIR="$XDG_DATA_HOME/theoshell/trash"
 export THEOSHELL_CDF_DIR="$XDG_DATA_HOME/theoshell/cd-fav.txt"
 export ZSH_PLUGIN_DIR="$XDG_DATA_HOME/theoshell/zsh-plugins"
 
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+
