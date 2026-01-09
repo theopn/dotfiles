@@ -9,6 +9,7 @@ brew "git-filter-repo"
 brew "hugo"
 brew "imagemagick"
 brew "poppler"
+brew "r"
 brew "ripgrep"
 brew "tree"
 
