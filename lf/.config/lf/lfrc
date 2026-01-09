@@ -19,6 +19,7 @@
 set preview
 set previewer ~/.config/lf/previewer
 set cleaner ~/.config/lf/cleaner
+map i $~/.config/lf/previewer $f | less -R
 
 # Like vim settings, put no in front ot the arrtibute to negate
 set nodrawbox
