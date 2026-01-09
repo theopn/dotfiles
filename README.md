@@ -139,9 +139,11 @@ Host data
 BYE
 ```
 
-### Few More Things
+### Few More Things (for myself)
 
-- I have a documentation 
+- Linux systems: install Sway and follow the instructions in [Haunted Tiles repository](https://github.com/theopn/haunted-tiles)
+- Also Linux: follow the instructions for private configurations and scripts in [my Framework 13 repository (private)](https://github.com/theopn/framework-13)
+- macOS: follow the instructions for private configurations and scripts in [my script repository (private)](https://github.com/theopn/scripts)
 
 -----
 
