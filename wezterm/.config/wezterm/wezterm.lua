@@ -34,8 +34,8 @@ local font_sizes = { 12.5, 16 }
 config.font_size = font_sizes[1]
 config.font = wezterm.font_with_fallback({
   { family = "ComicCodeLigatures Nerd Font", },
+  { family = "ProggyClean Nerd Font", scale = 1.2 },
   { family = "FantasqueSansM Nerd Font", },
-  { family = "ProggyClean Nerd Font", },
 })
 config.window_background_opacity = 0.9
 config.macos_window_background_blur = 24
