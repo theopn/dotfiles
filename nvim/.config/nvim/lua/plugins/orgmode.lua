@@ -1,7 +1,7 @@
 -- Default config reference:
 -- https://github.com/nvim-orgmode/orgmode/blob/master/lua/orgmode/config/defaults.lua
 
-local caos_dir = "~/My Drive/l1-cache/caos/"
+local caos_dir = "~/cloud/l1-cache/caos/"
 
 return {
   "nvim-orgmode/orgmode",
