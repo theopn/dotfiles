@@ -14,7 +14,7 @@ set -Ux THEOSHELL_TRASH_DIR "$XDG_DATA_HOME/theoshell/trash"
 set -Ux THEOSHELL_CDF_DIR "$XDG_DATA_HOME/theoshell/cd-fav.txt"
 
 # Personal cloud drive path
-set -l cloud_dir "$HOME/My Drive"
+set -l cloud_dir "$HOME/cloud"
 set -Ux CLOUD_DIR "$cloud_dir"
 set -Ux ARCHIVE_DIR "$cloud_dir/archive"
 set -Ux CACHE_DIR "$cloud_dir/l1-cache"
