@@ -23,6 +23,12 @@ The tools in this repository are primarily open-source utilities for development
 If you are not me, skip this section and use HTTPS cloning.
 
 ```sh
+# Change the hostname
+# macOS:
+HOSTNAME=<my computer>; sudo scutil --set ComputerName "$HOSTNAME" && sudo scutil --set HostName "$HOSTNAME"
+# Linux:
+hostnamectl set-hostname --static <my computer>
+
 ssh-keygen -t ed25519 -C "Theo's ED25519 key @ $(hostname) for GitHub Auth"
 # Followed by RET to accept the default path + passphrase
 # Add the public key to GitHub Settings -> SSH and GPG Keys
@@ -45,13 +51,8 @@ HI
 ### Cloning & Deploying Dotfiles - macOS
 
 ```sh
-# Change the hostname
-HOSTNAME=<my computer>; sudo scutil --set ComputerName "$HOSTNAME" && sudo scutil --set HostName "$HOSTNAME"
-
 # Install dev tools (including Git)
 xcode-select --install
-
-# Homebrew bootstrap
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew analytics off
 
@@ -75,13 +76,10 @@ brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-nerd
 ### Cloning & Deploying Dotfiles - Fedora
 
 ```sh
-# Change the hostname
-hostnamectl set-hostname --static <my computer>
-
 # Install packages
 sudo dnf upgrade
 # TODO: Make a DNF installation script
-sudo dnf install git keychain python3-pip stow zsh
+sudo dnf install git keychain python3-pip stow vim zsh
 
 cd $HOME
 git clone git@github.com:theopn/dotfiles.git
@@ -127,15 +125,14 @@ nvim -c "MasonInstall bash-language-server clangd lua-language-server python-lsp
 
 # Generate and copy public SSH key to my school's remote server
 ssh-keygen -t rsa -b 4096 -C "Theo's RSA Key @ $(hostname) for Purdue CS servers auth"
-ssh-copy-id -i ~/.ssh/id_rsa.pub <my username>@data.cs.purdue.edu
+ssh-copy-id -i ~/.ssh/id_rsa.pub $(whoami)@data.cs.purdue.edu
 
 # Add SSH alias
-# The last two lines are only for macOS
-# In Linux, my Fish config handles launching Keychain and ssh-agent
-cat <<"BYE" >> ~/.ssh/config
+# Skip the last two lines in Linux (my Fish config handles launching Keychain and ssh-agent)
+cat <<BYE >> ~/.ssh/config
 Host data
     Hostname data.cs.purdue.edu
-    User <my username>
+    User $(whoami)
     IdentityFile ~/.ssh/id_rsa
     AddKeysToAgent yes
     UseKeychain yes
