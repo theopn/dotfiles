@@ -5,40 +5,36 @@
 ---
 --- Configure Neovim built-in Treesitter engine
 
-local M = { "nvim-treesitter/nvim-treesitter" }
+return {
+  "nvim-treesitter/nvim-treesitter",
+  lazy = false,
+  build = ":TSUpdate",
+  config = function()
+    require("nvim-treesitter").setup()
 
-M.build = ":TSUpdate"
+    -- Find the name of parsers with:
+    --  := require("nvim-treesitter").get_available()
+    -- (LaTeX clashes with Vimtex)
+    local languages = { "bash",
+      "c", "cpp", "fish", "html", "java", "javascript", "lua", "markdown", "markdown_inline",
+      "python", "sql", "vimscript", "vimdoc" }
 
-M.main = "nvim-treesitter.configs"
-
-M.opts = {
-  --ensure_installed = { "bash", "c", "cpp", "latex", "lua", "markdown", "python", },
-  auto_install = false,
-
-  highlight = {
-    enable = true,
-    disable = function(lang, buf)
-      local max_filesize = 100 * 1024 -- 100 KB
-      local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-      if ok and stats and stats.size > max_filesize then
-        return true
+    local filetypes = {}
+    for _, lang in ipairs(languages) do
+      for _, ft in ipairs(vim.treesitter.language.get_filetypes(lang)) do
+        table.insert(filetypes, ft)
       end
-    end,
-  },
+    end
 
-  indent = {
-    enable = true
-  },
-
-  incremental_selection = {
-    enable = true,
-    keymaps = {
-      init_selection = "<C-space>",
-      node_incremental = "<C-space>",
-      scope_incremental = "<C-s>",
-      node_decremental = "<M-space>",
-    },
-  },
+    vim.api.nvim_create_autocmd("FileType", {
+      pattern = filetypes,
+      callback = function()
+        vim.treesitter.start()
+        vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        vim.wo[0][0].foldmethod = "expr"
+        -- Indentation is Experimental
+        -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+      end,
+    })
+  end
 }
-
-return M

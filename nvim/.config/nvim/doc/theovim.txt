@@ -120,7 +120,7 @@ char            action
 
 See also:
 - |folding|
-- |nvim_treesitter#foldexpr()|
+- |vim.treesitter.foldexpr()|
 
 ==============================================================================
 Spell Check                                                    *theovim-spell*
@@ -955,54 +955,23 @@ fzf-lua also replaces the following |ins-completion| with its own picker:
 ==============================================================================
 Treesitter                                                *theovim-treesitter*
 
-TS highlight (|nvim-treesitter-highlight-mod|), incremental
-selection (|nvim-treesitter-incremental-selection-mod|), and indentation
-(|nvim-treesitter-indentation-mod|) will be enabled.
-
-To disable TS or add other parsers, use the following frequently used commands
-provided by the nvim-treesitter plugin:
+The parsers to be enabled is defined in the `language` table in the config.
 
 - :TSInstall {language} ...
+  - A list of available modules can be found with: >
+    := require("nvim-treesitter").get_available()
+<
 - :TSUpdate {language} ...
-- :TSDisable {module} [{language}]
-  - A list of modules can be found at |:TSModuleInfo|
-  - A list of languages can be found at |:TSInstallInfo|
-- :TSToggle {module} [{language}]
-  - A list of modules can be found at |:TSModuleInfo|
-  - A list of languages can be found at |:TSInstallInfo|
 
-The following keybindings are provided when a TS parser is enabled:
-
-char            action
-----------------------------------------------------------------------
-
-<C-space>       Start incremental selection
-<C-space>       [Visual] Perform node incremental selection
-<C-s>           [Visual] Perform scope incremental selection
-<M-space>       [Visual] Perform node decremental selection
-
-Incremental selection example: >
-  local function treesitter-incremental-example()
-    local sysname = vim.loop.os_uname().sysname
-    if sysname == "Linux" then
-      vim.notify("You are using Linux!")
-    else
-      vim.notify("Ew")
-    end
-  end
+- Manually start the parser that is not mentioned in the `language` table >
+  :lua vim.treesitter.start()
+<
+- Stop the parser with >
+  :lua vim.treesitter.stop()
 <
 
-- When you start node incremental selection at the "vim" keyword (<C-space>),
-  it will incrementally select:
-  - "vim" -> "vim.notify" -> "vim.notify(...)" -> if statement
-    -> function body -> function
-- When you start scope incremental selection at the "vim" keyword
-  (<C-space> to initialize then <C-s>), it will incrementally select:
-  - "vim" -> if statement -> function
-- You should try it out with the language of your choice to see how it behaves
-
 See also:
-- |nvim-treesitter|: Configuration and abstract layer for the built-in TS
+- |nvim-treesitter|: parser installer
 - |treesitter|: Neovim built-in treesitter library
 
 ==============================================================================
