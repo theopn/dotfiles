@@ -309,6 +309,7 @@ Formulae:
 - **stow**: managing Dotfiles (used in `./bootstrap.sh`)
 - **tmux**: terminal multiplexer
 - tree: tree-like directory view
+- **tree-sitter-cli**: tree-sitter parser generator (Neovim tree-sitter installer dependency)
 - **wget**: be careful with what you download
 
 Casks:

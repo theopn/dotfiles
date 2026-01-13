@@ -10,6 +10,7 @@ brew "node"
 brew "rust"
 brew "stow"
 brew "tmux"
+brew "tree-sitter-cli"
 brew "wget"
 
 cask "macvim-app"
