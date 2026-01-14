@@ -286,6 +286,7 @@ Bolded items are in `Brewfile_core`, and other items are in `Brewfile_optional`,
 Formulae:
 
 - bat: `cat` with syntax highlighting (LF preview script dependency)
+- **btop**: system monitor
 - chafa: convert images to Sixel format (Lf preview script dependency for certain terminals)
 - exiftool: read and modify EXIF data in image files
 - fastfetch
@@ -295,7 +296,6 @@ Formulae:
 - **fish**: de facto default shell
 - **fzf**: command line fuzzy finder
 - git-filter-repo: a tool to rewrite Git history
-- **htop**: system monitor
 - hugo: static website generator
 - imagemagick: image manipulation
 - **lf**: my favorite CLI file manager
