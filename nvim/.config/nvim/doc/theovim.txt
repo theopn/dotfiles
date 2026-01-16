@@ -837,45 +837,6 @@ See also:
 - |cmp-config.sources[n].group_index|: grouping completion sources
 
 ==============================================================================
-Neocodeium                                                *theovim-neocodeium*
-
-Run `:Neocodeium auth` and provide the API key to complete the initial setup.
-Neocodeium will install the language server binary and other files in:
-`vim.env.HOME .. "/.codeium"`.
-
-char            action
-----------------------------------------------------------------------
-
-<leader>c       Toggles Neocodeium server.
-                To toggle the completion while keeping the server on,
-                use `:Neocodeium toggle`.
-
-<C-x>C-r>       Shows the Neocodeium suggestion at the cursor.
-                It can also be used to cycle through the suggestions,
-                but I recommend using the `<C-n>` and `<C-p>`
-                bindings for it.
-                The status of the suggestion will be indicated in
-                the |signcolumn|
-                (`*` for loading, `1/n` for 1 out of n suggestions).
-
-<C-n>           Cycles through the suggestions.
-<C-p>           `<C-n>` but cycles backwards.
-<C-y>           Accepts the suggestion.
-<C-e>           Clears the suggestion.
-
-
-You need to be swift with inputting `<C-x><C-r>` keybinding,
-or the `insert_expand` mode will take over (indicated by the help messge
-in the command line), and any subsequent try will input |i_CTRL-R|.
-
-`<C-n>`, `<C-p>`, `<C-y>`, and `<C-e>` are only available when Neocodeium
-suggestion is visible, otherwise they are used as documented in
-|ins-completion|.
-
-See also:
-- |Neocodeium|
-
-==============================================================================
 fzf-lua                                                      *theovim-fzf-lua*
 
 fzf-lua works out of the box, but for faster search and live grep features,

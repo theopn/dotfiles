@@ -1,4 +1,8 @@
 :CD	theovim.txt	/*:CD*
+:PomodoroGetTime	theovim.txt	/*:PomodoroGetTime*
+:PomodoroPause	theovim.txt	/*:PomodoroPause*
+:PomodoroResume	theovim.txt	/*:PomodoroResume*
+:PomodoroStartNew	theovim.txt	/*:PomodoroStartNew*
 :RO	theovim.txt	/*:RO*
 :TrimWhitespace	theovim.txt	/*:TrimWhitespace*
 theovim	theovim.txt	/*theovim*
@@ -14,13 +18,13 @@ theovim-gitsigns	theovim.txt	/*theovim-gitsigns*
 theovim-housekeeping	theovim.txt	/*theovim-housekeeping*
 theovim-keymaps	theovim.txt	/*theovim-keymaps*
 theovim-lsp	theovim.txt	/*theovim-lsp*
-theovim-neocodeium	theovim.txt	/*theovim-neocodeium*
 theovim-neovide	theovim.txt	/*theovim-neovide*
 theovim-nightfox	theovim.txt	/*theovim-nightfox*
 theovim-nvim-cmp	theovim.txt	/*theovim-nvim-cmp*
 theovim-nvim-org-mode	theovim.txt	/*theovim-nvim-org-mode*
 theovim-oil	theovim.txt	/*theovim-oil*
 theovim-options	theovim.txt	/*theovim-options*
+theovim-pomodoro	theovim.txt	/*theovim-pomodoro*
 theovim-spell	theovim.txt	/*theovim-spell*
 theovim-statusline	theovim.txt	/*theovim-statusline*
 theovim-tabline	theovim.txt	/*theovim-tabline*
