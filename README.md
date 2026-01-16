@@ -344,6 +344,20 @@ See the [list of archived configurations](./archive/README.md).
 - Aerospace: [`default-config.toml`](https://nikitabobko.github.io/AeroSpace/guide.html#default-config) and [DevOps Toolbox's Dotfiles](https://github.com/omerxx/dotfiles)
 - LF: [example `lfrc`](https://github.com/gokcehan/lf/tree/master/etc), [Brodie Robertson's Dotfiles](https://github.com/BrodieRobertson/dotfiles/blob/master/config/lf/lfrc), and [`lfimg` for `batorcat` function](https://github.com/thimc/lfimg/blob/master/preview)
 - Neovim: Spiritual successor of [Theovim](https://github.com/theopn/theovim)
+    - Theovim logo and my shell startup function cats are ASCII arts of [my cat Oliver](https://theopark.me/blog/2025-11-06-framework/), many of which are taken from [ASCII Art Archive](https://www.asciiart.eu/animals/cats) or made with a help of my friend [Jonathan](https://github.com/JonathanOppenheimer)
+        ```
+            \/       \/
+            /\_______/\
+           /   o   o   \
+          (  ==  ^  ==  )
+           )  [Ollie]  (
+          (             )
+          ( (  )   (  ) )
+         (__(__)___(__)__)
+        ___
+         | |_  _  _     o __
+         | | |(/_(_)\_/ | |||
+        ```
 - Sketchybar: [default plugins](https://github.com/FelixKratz/SketchyBar/tree/master/plugins)
 - Vim: [kickstart.vim](https://github.com/theopn/kickstart.vim)
 - Wezterm: [my Wezterm config video](https://www.youtube.com/watch?v=I3ipo8NxsjY)
