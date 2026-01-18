@@ -46,10 +46,9 @@ o.spellsuggest    = "best,8" --> Suggest 8 words for spell suggestion
 o.spelloptions    = "camel"  --> Consider CamelCase when checking spelling
 
 -- Fold
-o.foldenable      = false                        --> Open all folds until I close them using zc/zC or update using zx
-o.foldmethod      = "expr"                       --> Use `foldexpr` function for folding
-o.foldexpr        = "nvim_treesitter#foldexpr()" --> Treesitter folding
---o.foldlevel      = 2                            --> Ignore n - 1 level fold
+o.foldenable      = false    --> Open all folds until I close them using zc/zC or update using zx
+o.foldmethod      = "marker" --> filetypes with treesitters enabled, it will be set to expr
+--o.foldlevel       = 2        --> Ignore n - 1 level fold
 
 -- Update time
 o.updatetime      = 250
