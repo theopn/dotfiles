@@ -16,8 +16,20 @@ return {
     --  := require("nvim-treesitter").get_available()
     -- (LaTeX clashes with Vimtex)
     local languages = { "bash",
-      "c", "cpp", "fish", "html", "java", "javascript", "lua", "markdown", "markdown_inline",
-      "python", "sql", "vimscript", "vimdoc" }
+      "c",
+      "cpp",
+      "fish",
+      "html",
+      "java",
+      "javascript",
+      "lua",
+      "markdown",
+      "markdown_inline",
+      "python",
+      "sql",
+      "vimscript",
+      "vimdoc",
+    }
 
     local filetypes = {}
     for _, lang in ipairs(languages) do
