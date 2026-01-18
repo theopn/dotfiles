@@ -23,6 +23,8 @@ Welcome back Theo, what did you forget this time?
 - If you see a hyperlink, use |gx| to open it in your default browser
   - Try this out with Vim Cheat Sheet website:
     https://vim.rtorr.com/
+- If you forgot a keymap,
+  use `<leader>?` to toggle |which-key.nvim-which-key-hydra-mode|
 
 ==============================================================================
 Housekeeping                                            *theovim-housekeeping*
@@ -99,7 +101,9 @@ See also:
 
 
 Fold:
-Set to |fold-syntax| to TODO
+Set to |fold-marker| by default.
+When treesitter is available, fold is set to |fold-expr|.
+See |theovim-treesitter| for more information.
 
 char            action
 ----------------------------------------------------------------------
@@ -120,7 +124,6 @@ char            action
 
 See also:
 - |folding|
-- |vim.treesitter.foldexpr()|
 
 ==============================================================================
 Spell Check                                                    *theovim-spell*
@@ -930,6 +933,9 @@ The parsers to be enabled is defined in the `language` table in the config.
 - Stop the parser with >
   :lua vim.treesitter.stop()
 <
+
+When treesitter is on, |foldmethod| is set to |fold-expr| and |foldexpr| is
+set to |vim.treesitter.foldexpr()|.
 
 See also:
 - |nvim-treesitter|: parser installer
