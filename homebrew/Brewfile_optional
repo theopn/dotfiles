@@ -37,6 +37,7 @@ cask "gimp"
 cask "keycastr"
 cask "obs"
 cask "vlc"
+cask "zotero"
 
 cask "tailscale-app"
 cask "thunderbird"

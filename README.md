@@ -323,7 +323,7 @@ Casks:
 | **Macvim**      |           |              |             |               | OBS           |                    |
 | Neovide         |           |              |             |               | **Skim**      |                    |
 | RStudio         |           |              |             |               | VLC           |                    |
-| UTM             |           |              |             |               |               |                    |
+| UTM             |           |              |             |               | Zotero        |                    |
 | **Wezterm**     |           |              |             |               |               |                    |
 
 ### macOS Settings
