@@ -302,6 +302,7 @@ Formulae:
 - **lua**
 - **neovim**: what more can I say
 - **node**
+- openconnet: VPN
 - poppler: `pdftotext in.pdf -` (LF preview script dependency)
 - r
 - ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
