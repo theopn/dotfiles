@@ -265,8 +265,8 @@ My Aerospace configuration is very close to the default (the `opt`/`alt`/`⌥` k
 - `alt-enter`: Open Wezterm
 - `alt-d`: Open Terminal with a command to pick a window to focus
     This feature is a workaround and should be updated when it is implemented natively, see: https://github.com/nikitabobko/AeroSpace/discussions/1371
-- `alt-slash`: Toggle between horizontal and vertical tiling
-- `alt-comma`: Toggle between horizontal and vertical accordion mode
+- `alt-e`: Toggle between horizontal and vertical tiling
+- `alt-w`: Toggle between horizontal and vertical accordion mode
 - `alt-h/j/k/l`: Focus windows
 - `alt-shift-h/j/k/l`: Move windows
 - `alt-minus/equal` (`-/+`): Resize window
