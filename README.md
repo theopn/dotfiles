@@ -1,12 +1,16 @@
 # Theo's dotfiles
 
-| ![macos-sc](./assets/macos-sc.jpg) |
+| ![fedora-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/refs/heads/main/assets/sway-sc.png) |
 |:--:|
-| my macos |
+| Fedora (SwayFX) |
+| ![macos-sc](./assets/macos-sc.jpg) |
+| macOS |
 
-Here are dotfiles for my systems:
+Here are dotfiles for my 'puters:
 
-- [Framework 13](https://theopark.me/blog/2025-11-06-framework/): runs the latest Fedora KDE Plasma + Sway (see [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway configuration)
+- [Framework 13](https://theopark.me/blog/2025-11-06-framework/): runs the latest Fedora KDE Plasma + Swayfx *at the moment*
+    - see [Haunted Tiles](https://github.com/theopn/haunted-tiles/), my Sway configuration
+    - I often experiment with a new distro and Niri with a hope that I will settle down one day; currently, I am trying out NixOS and Niri
 - M4 Mac Mini: runs the latest macOS
 - ThinkPad X270: currently running Fedora Server, TBD for how I am going to use this
 - M1 MacBook Air: served me well since 2021, TBD for what I am going to do with this
