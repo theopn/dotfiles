@@ -2,38 +2,59 @@
   let username = "theopn";
   in {
     xdg.stateHome = "/home/${username}/.local/share";
+    nixpkgs.config.allowUnfree = true;
     home = {
       inherit username;
       homeDirectory = "/home/" + username;
 
       packages = with pkgs; [
+        # CLI Tools
         bat
         chafa
         exiftool
         fastfetch
-        fd
         ffmpeg
         figlet
-        fzf
         git-filter-repo
+        keychain
         hugo
         imagemagick
-        lua
-        neovim
-        nodejs_24
-        R
-        ripgrep
-        cargo
-        rustc
-        tree
+        #tailscale
         tmux
-        vim
+        tree
         wget
 
+        # Vim
+        fd
+        fzf
+        lua
+        neovim
         neovide
+        ripgrep
+        vim
 
-
+        # Tex
         texlive.combined.scheme-full
+        poppler
+        zathura
+        zathuraPkgs.zathura_pdf_poppler
+
+        # PL
+        nodejs_24
+        R
+        cargo
+        rustc
+
+        # GUI apps
+        zotero
+
+        # Propritery apps
+        chromium
+        discord
+        #kicad
+        slack
+        spotify
+        #zoom-us
       ];
 
       file = {
@@ -43,7 +64,7 @@
       };
 
       stateVersion = "25.11";
-    };
+    };  # home
 
     programs.home-manager.enable = true;
 
@@ -57,5 +78,27 @@
     programs.lf = {
       enable = true;
     };
+
+    i18n.inputMethod = {
+      enable = true;
+      type = "fcitx5";
+      fcitx5 = {
+        waylandFrontend = true;
+        ignoreUserConfig = true;
+        addons = with pkgs; [ fcitx5-hangul fcitx5-mozc ];
+        settings = {
+          inputMethod = {
+            GroupOrder."0" = "Default";
+            "Groups/0" = {
+              Name = "Default";
+              "Default Layout" = "us";
+              DefaultIM = "hangul";
+            };
+            "Groups/0/Items/0".Name = "keyboard-us";
+            #"Groups0/Items/1".Name = "hangul";
+          };
+        };
+      };
+    };   # i118n
 
   }
