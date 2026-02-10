@@ -325,11 +325,11 @@ Casks:
 | IntelliJ CE     | Minecraft | Notion       | Filen       | **Ice**       | CEmu          | Tailscale          |
 | kitty           | Spotify   |              | Nextcloud   | **Maccy**     | GIMP          | Thunderbird        |
 | MacTex (no GUI) |           |              | Syncthing   | **Stats**     | KeyCastr      | Ungoogled Chromium |
-| **Macvim**      |           |              |             |               | OBS           |                    |
-| Neovide         |           |              |             |               | **Skim**      |                    |
-| RStudio         |           |              |             |               | VLC           |                    |
-| UTM             |           |              |             |               | Zotero        |                    |
-| **Wezterm**     |           |              |             |               |               |                    |
+| **Macvim**      |           |              |             |               | KiCad         |                    |
+| Neovide         |           |              |             |               | OBS           |                    |
+| RStudio         |           |              |             |               | **Skim**      |                    |
+| UTM             |           |              |             |               | VLC           |                    |
+| **Wezterm**     |           |              |             |               | Zotero        |                    |
 
 ### macOS Settings
 
