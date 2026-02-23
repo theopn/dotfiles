@@ -12,3 +12,9 @@
 #   but I do not want to reopen the shell every 24 hours
 abbr -a dw vim \"$CACHE_DIR/dw-$(date +%Y)/index.md\" +/\$\(date +%Y-%m-%d\)
 
+# EOD checklist ("Roll call")
+abbr -a call 'test -f $CACHE_DIR/habits-(date +%Y)/(date +%Y-%m-%d)-roll-call.md; \
+  or cat $CACHE_DIR/habits-(date +%Y)/assets/call-template.md | string replace "YYYY-MM-DD" (date +%Y-%m-%d) >> $CACHE_DIR/habits-(date +%Y)/(date +%Y-%m-%d)-roll-call.md; \
+  vim $CACHE_DIR/habits-(date +%Y)/(date +%Y-%m-%d)-roll-call.md
+'
+
