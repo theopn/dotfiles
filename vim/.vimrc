@@ -171,8 +171,8 @@ command TrimWhiespace call TrimWhitespace()
 " {{{ Custom Bufferline & Bufferpanel
 " Files located in .vim/plugin/
 " Choose between (Bufferpanel + Tabline) || (Tabpanel + Bufferpanel)
-"let g:theoline_buflist = 1
-let g:theopanel_buflist = 1
+let g:theoline_buflist = 1
+"let g:theopanel_buflist = 1
 " }}}
 
 
@@ -326,7 +326,7 @@ set completeopt=menuone,noinsert,noselect,preview
 
 
 " {{{ Vimwiki
-let g:vimwiki_list = [{ 'path': '~/Nextcloud/theo-vimwiki/',
+let g:vimwiki_list = [{ 'path': '~/cloud/l1-cache/caos/sustain',
        \ 'syntax':'markdown', 'ext': '.md' }]
 let g:vimwiki_global_ext = 1
 " }}}
