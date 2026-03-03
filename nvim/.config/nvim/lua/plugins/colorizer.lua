@@ -1,4 +1,14 @@
 return {
   "catgoose/nvim-colorizer.lua",
-  config = function() require("colorizer").setup({}) end,   --> `opts` works iff module name == plugin name
+  opts = {
+    options = {
+      parsers = {
+        css = true,  -- preset: enables names, hex, rgb, hsl, oklch
+      },
+      display = {
+        mode = "virtualtext",
+        virtualtext = { position = "after" },
+      },
+    },
+  },
 }
