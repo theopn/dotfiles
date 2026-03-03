@@ -85,17 +85,17 @@
       fcitx5 = {
         waylandFrontend = true;
         ignoreUserConfig = true;
-        addons = with pkgs; [ fcitx5-hangul fcitx5-mozc ];
+        addons = with pkgs; [ fcitx5-hangul ];
         settings = {
           inputMethod = {
             GroupOrder."0" = "Default";
             "Groups/0" = {
               Name = "Default";
               "Default Layout" = "us";
-              DefaultIM = "hangul";
+              DefaultIM = "keyboard-us";
             };
             "Groups/0/Items/0".Name = "keyboard-us";
-            #"Groups0/Items/1".Name = "hangul";
+            "Groups0/Items/1".Name = "hangul";
           };
         };
       };
