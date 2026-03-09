@@ -308,6 +308,8 @@ Formulae:
 - **node**
 - openconnet: VPN
 - poppler: `pdftotext in.pdf -` (LF preview script dependency)
+- **python**
+- qemu
 - r
 - ripgrep: faster alternative to `grep` (Neovim Telescope dependency)
 - **rust**
@@ -328,8 +330,8 @@ Casks:
 | **Macvim**      |           |              |             |               | KiCad         |                    |
 | Neovide         |           |              |             |               | OBS           |                    |
 | RStudio         |           |              |             |               | **Skim**      |                    |
-| UTM             |           |              |             |               | VLC           |                    |
-| **Wezterm**     |           |              |             |               | Zotero        |                    |
+| **Wezterm**     |           |              |             |               | VLC           |                    |
+|                 |           |              |             |               | Zotero        |                    |
 
 ### macOS Settings
 
