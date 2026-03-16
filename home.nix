@@ -19,6 +19,7 @@
         keychain
         hugo
         imagemagick
+        qemu
         #tailscale
         tmux
         tree
@@ -95,7 +96,7 @@
               DefaultIM = "keyboard-us";
             };
             "Groups/0/Items/0".Name = "keyboard-us";
-            "Groups0/Items/1".Name = "hangul";
+            "Groups/0/Items/1".Name = "hangul";
           };
         };
       };
