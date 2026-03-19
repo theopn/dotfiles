@@ -232,12 +232,13 @@ Formulae:
 
 Casks:
 
-- Development: Docker, IntelliJ CE, Kitty, MacTex (no GUI), **Macvim**, Neovide, RStudio, **Wezterm**
-- Fun & Media: Discord, Minecraft, Spotify
-- Productivity: **Itsycal**, Notion
+- Development: Docker, IntelliJ CE, KiCad, Kitty, MacTex (no GUI), **Macvim**, Neovide, RStudio, **Wezterm**
+- Fun & Media: GIMP, Minecraft, OBS, Spotify, VLC
+- Productivity: **Itsycal**, Notion, Zotero
+- Sync: Cryptomator, Filen, Nextcloud, Syncthing
 - System: **Aerospace**, **Ice**, **Maccy**, **Stats**
-- Tools: **Bitwarden**, CEmu, GIMP, KeyCastr, KiCad, OBS, **Skim**, VLC, Zotero
-- Web: **Firefox**, Tailscale, Thunderbird, Ungoogled Chromium
+- Tools: **Bitwarden**, CEmu, KeyCastr, **Skim**
+- Web: Discord, **Firefox**, Tailscale, Thunderbird, Ungoogled Chromium
 
 
 ### macOS Settings
