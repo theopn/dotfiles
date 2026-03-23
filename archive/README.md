@@ -165,3 +165,13 @@ Along with [Ice](https://github.com/jordanbaird/Ice), I decided to stick to the 
 
 If you decide to use Sketchybar: do not use `brew services start sketchybar`, uncomment relevant code in the `aerospace.toml` in order for the bar to correctly work with Aerospace.
 
+## .vim
+
+> Last Updated: 2026-03-23
+
+I have done a lot of weird things with Vim, and this directory holds some of my wildest inventions.
+
+- `pastelcula`: custom colorscheme that me and my friend Jonathan developed, a mix of pastel version of Dracula
+- `theoline`: see https://theopark.me/blog/2023-03-17-vimscript-bufferline/
+- `theopanel`: see https://theopark.me/blog/2025-06-01-tabpanel/
+

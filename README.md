@@ -179,10 +179,11 @@ Linux systems: install Sway and/or Niri and follow the instructions in the [Haun
 - **Neovim**: My life-long software engineering project. Read [`:h theovim`](./nvim/.config/nvim/doc/theovim.txt), for the ~~700~~ 1080-line help documentation I wrote on my config and Vim tips I have accumulated over the years
     - Read [Neovim related posts](https://theopark.me/tags/neovim/) in my blog!
 - Neovide: Neovim GUI frontend with pretty animations
-- Vim: Simple config with Vimwiki for journal writing
-    - built with [Kickstart.vim](https://github.com/theopn/kickstart.vim)
+- Vim: a simple config with no plugins, serving as the fallback editor when Neovim fails (which never happened before).
+    Features:
     - [40-line Vimscript bufferline](https://theopark.me/blog/2023-03-17-vimscript-bufferline/)
     - ["Bufferpanel"](https://theopark.me/blog/2025-06-01-tabpanel/)
+    - based on [Kickstart.vim](https://github.com/theopn/kickstart.vim)
 
 ### Others
 
