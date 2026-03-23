@@ -263,7 +263,7 @@ set statusline+=\ \|%{''}                             " Space, bar, empty char
 set showtabline=2
 
 fun! SpawnBufferLine()
-  let s = ' :) '
+  let s = ' ₍^. .^₎⟆ '
 
   " Gets the list of buffers. Use bufexists() to include hidden buffers
   let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
