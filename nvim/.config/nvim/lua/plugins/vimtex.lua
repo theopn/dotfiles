@@ -3,8 +3,8 @@ return {
   config = function()
     vim.g.tex_flavor = "latex"
 
-    -- vim.g.vimtex_view_method = "skim"   --> macOS
-    vim.g.vimtex_view_method = "zathura" --> Linux
+    vim.g.vimtex_view_method = "skim"   --> macOS
+    -- vim.g.vimtex_view_method = "zathura" --> Linux
 
     -- Add --shell-escape flag when external tools are required
     -- e.g., minted package requiring `pygmentize`

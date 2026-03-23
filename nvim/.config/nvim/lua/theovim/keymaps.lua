@@ -21,6 +21,12 @@ set("n", "N", "Nzz")
 -- Custom keymaps
 set("i", "jk", "<ESC>", { desc = "Better ESC" })
 set("i", "<C-s>", "<C-g>u<ESC>[s1z=`]a<C-g>u", { desc = "Fix nearest [S]pelling error and put the cursor back" })
+-- Intended to use as a replacement of Vimwiki's enter key feature ([[filename]])
+set("n", "<C-n><C-n>", "':e ' . expand('%:h') . '/<C-r><C-f>.md'", {
+  expr = true,
+  desc = "Prompt to edit the token under the cursor as a markdown file (:e thing-under-your-cursor.md)"
+})
+
 
 -- Emacs is right sometimes
 set("i", "<C-a>", "<C-o>^", { desc = "Emacs alert" })

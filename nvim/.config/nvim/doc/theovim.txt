@@ -207,6 +207,19 @@ char            action
 jk              [Insert] ESC.
 <C-s>           [Insert] Fix the nearest spelling error and put
                 the cursor back.
+<C-n><C-n>      Prompt to edit the markdown file with the token
+                under the cursor as the name.
+                For example, if your cursor is >
+                [[changelog.last-ver]]
+<
+                then you are prompted with >
+                :e ./rel/path/of/curr/buffer/changelog.last-ver.md
+<
+                This is intended to be as a rudimentary replacement of
+                Vimwiki's enter key feature.
+
+                See |c_<C-R>_<C-F>| for the function used in th map.
+
 
 <C-a>           [Insert] Move to the beginning of the lines
 <C-b>           [Insert] `<LEFT>`; one of the things I miss from Emacs
