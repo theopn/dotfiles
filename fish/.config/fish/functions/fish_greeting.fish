@@ -1,4 +1,4 @@
-function fish_greeting -d "GREETINGS"
+function fish_greeting -d "OLIVER SAYS HI"
   # Colors
   set -l normal (set_color normal)
   set -l cyan (set_color -o cyan)
@@ -75,7 +75,7 @@ function fish_greeting -d "GREETINGS"
 
   # Print the msg
   echo
-  echo -e "  " "$brgreen"  "Meow"                              "$normal"
+  echo -e "  " "$brgreen"    "Meow"                              "$normal"
   echo -e "  " "$beige"    "$oliver"                           "$normal"
   echo -e "  " "$cyan"     "  Shell:\t"   "$brcyan$fish_ver"  "$normal"
   echo -e "  " "$blue"     "  Uptime:\t"  "$brblue$uptime"    "$normal"
