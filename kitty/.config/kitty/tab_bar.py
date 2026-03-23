@@ -13,10 +13,12 @@ def draw_tab(
 ) -> int:
     """
     Kitty's DrawData is defined here:
-    https://github.com/kovidgoyal/kitty/blob/master/kitty/tab_bar.py#L58
+    https://github.com/kovidgoyal/kitty/blob/83f0d6bc1a9165acc4f938be23cf629a800781e0/kitty/tab_bar.py#L58
 
     Strat is to edit title_template and active_title_template
     and call the original draw_tab_with_* function.
+
+    See: https://github.com/kovidgoyal/kitty/discussions/4447#discussioncomment-15358832
     """
 
     layout_icon = "?"
@@ -29,19 +31,16 @@ def draw_tab(
     elif tab.layout_name == "stack":
         layout_icon = " "
 
+    # Inject tab index and layout information before the title
     new_draw_data = draw_data._replace(
         title_template="{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}"
         .join(
             [
-                "{sup.index}󰘳  ",
+                "󰘳 {sub.index} ",
                 layout_icon,
-                "{sub.num_windows}",
+                "{sup.num_windows}",
                 " ",
-                # basename(cwd)
-                "󰉋 {tab.active_wd.rsplit('/', 1)[-1] or '/'}",
-                " ",
-                " {tab.active_exe}",
-                # " {title}"
+                " {title}",
             ]
         )
 
