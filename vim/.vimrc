@@ -123,11 +123,19 @@ nnoremap <leader>p :reg<CR>
       \:normal "
 xnoremap <leader>p "_dP
 
+" Emacs navigation
+inoremap <C-a> <C-o>^
+inoremap <C-b> <LEFT>
+inoremap <C-f> <RIGHT>
+
 " Terminal
 nnoremap <leader>t :botright term<CR>
 
 " Spell check
 inoremap <C-s> <C-g>u<ESC>[s1z=`]a<C-g>u
+
+" Emulating Vimwiki's link feature
+nnoremap <expr> <C-n><C-n> ':e ' . expand('%:h') . '/<C-r><C-f>.md'
 
 " Buffer
 nnoremap <leader>b :ls<CR>:b<SPACE>
@@ -165,14 +173,9 @@ fun! TrimWhitespace()
   call winrestview(l:save)
 endfun
 command TrimWhiespace call TrimWhitespace()
-" }}}
 
-
-" {{{ Custom Bufferline & Bufferpanel
-" Files located in .vim/plugin/
-" Choose between (Bufferpanel + Tabline) || (Tabpanel + Bufferpanel)
-let g:theoline_buflist = 1
-"let g:theopanel_buflist = 1
+command CD :lcd %:h
+command RO :setlocal readonly nomodifiable
 " }}}
 
 
@@ -209,126 +212,106 @@ nnoremap <leader>n :call ToggleNetrw()<CR>
 " }}}
 
 
-" {{{ vim-plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
-
-call plug#begin()
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-commentary'
-Plug 'airblade/vim-gitgutter'
-Plug 'liuchengxu/vim-which-key'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'ghifarit53/tokyonight-vim'
-Plug 'nordtheme/vim'
-Plug 'vim-airline/vim-airline'
-
-Plug 'vimwiki/vimwiki'
-call plug#end()
-" }}}
-
-
-" {{{ colorscheme
+" {{{ Colorscheme
 set termguicolors
-" let g:tokyonight_style = 'night'  " available: night, storm
-" let g:tokyonight_enable_italic = 0
-" colorscheme tokyonight
-colorscheme nord
+colorscheme sorbet
 " }}}
 
 
-" {{{ vim-which-key
-call which_key#register('<Space>', "g:which_key_map")
-nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-nnoremap <silent> <localleader> :<c-u>WhichKey  '<Space>'<CR>
-
-let g:which_key_map =  {}
-let g:which_key_map.s = { 'name' : '[S]earch' }
-let g:which_key_map.h = { 'name' : 'Git [H]unk' }
-
-" Adding non-plugin keybindings defined above
-let g:which_key_map.a = 'Select all'
-let g:which_key_map.b = 'Switch buffer'
-let g:which_key_map.k = 'Kill buffer'
-let g:which_key_map.n = 'Toggle netrw'
-let g:which_key_map.p = 'Choose from a register'
+" {{{ Statusline
+let g:currentmode={
+  \ 'n' : 'N', 'no' : 'N OPERATOR PENDING',
+  \ 'v' : 'V', 'V' : 'V LINE', "\<C-V>" : 'V BLOCK',
+  \ 's' : 'SELECT', 'S' : 'S LINE', "\<C-S>" : 'S BLOCK',
+  \ 'i' : 'I', 'R' : 'R', 'Rv' : 'V REPLACE',
+  \ 'c' : 'CMD', 'cv' : 'VIM EX', 'ce' : 'EX',
+  \ 'r' : 'PROMPT', 'rm' : 'MORE', 'r?' : 'CONFIRM',
+  \ '!' : 'SH', 't' : 'TERM', 'nt' : 'N TERM' }
+set laststatus=2                                      " Always show statusline
+set statusline=                                       " Reset w/ nothing
+set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ %{fnamemodify(getcwd(),':t')}       " Current working dir
+set statusline+=\ %f                                  " Current file
+set statusline+=\ %m                                  " [+] for modified
+set statusline+=%r                                    " [RO] for read only
+set statusline+=\|                                    " Bar
+set statusline+=%=                                    " Spacer
+set statusline+=%<                                    " Truncation point
+set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " Why in {}? Why not
+set statusline+=%=                                    " Spacer
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ FT:\ %Y                             " Filetype
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ %{toupper(&ff)}                     " File format
+set statusline+=:                                     " Colon
+set statusline+=%{(&fenc!=''?&fenc:&enc)}             " Fileencoding or encoding
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ @                                   " At
+set statusline+=\ %l                                  " Current line num
+set statusline+=:                                     " Colon
+set statusline+=%c                                    " Current column num
+set statusline+=\ %P                                  " Percent file displayed
+set statusline+=\ \|%{''}                             " Space, bar, empty char
 " }}}
 
 
-" {{{ fzf.vim
-nmap <leader>sh :Helptags<CR>
-let g:which_key_map.s.h = '[S]earch [H]elp'
-nmap <leader>sk :Maps<CR>
-let g:which_key_map.s.k = '[S]earch [K]eymaps'
-nmap <leader>sf :Files<CR>
-let g:which_key_map.s.f = '[S]earch [F]iles'
-nmap <leader>sg :Rg<CR>
-let g:which_key_map.s.g = '[S]earch by [G]rep'
-nmap <leader>s. :History<CR>
-let g:which_key_map.s['.'] = '[S]earch Recent Files ("." for repeat)'
-nmap <leader><leader> :Buffers<CR>
-let g:which_key_map[' '] = '[ ] Find existing buffers'
-nmap <leader>/ :BLines<CR>
-let g:which_key_map['/'] = '[/] Fuzzily search in current buffer'
-" }}}
+" {{{ "Bufferline": https://theopark.me/blog/2023-03-17-vimscript-bufferline/
+set showtabline=2
 
+fun! SpawnBufferLine()
+  let s = ' :) '
 
-" {{{ vim-lsp
-let g:lsp_use_native_client = 1  " Requires Vim 8.2+
-let g:lsp_semantic_enabled = 0  " Can cause a lot of lag
+  " Gets the list of buffers. Use bufexists() to include hidden buffers
+  let bufferNums = filter(range(1, bufnr('$')), 'buflisted(v:val)')
+  for i in bufferNums
+    let s .= '%#TabLineFill#%T|'  " Resets highlight and adds a left separator
 
-function! s:on_lsp_buffer_enabled() abort
-  setlocal omnifunc=lsp#complete
-  if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    " Highlights if it's the current buffer
+    let s .= (i == bufnr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+    let s .= ' ' . i . ' '  " Appends the buffer number
 
-  nnoremap <buffer> [d <plug>(lsp-previous-diagnostic)
-  nnoremap <buffer> ]d <plug>(lsp-next-diagnostic)
-  nnoremap <buffer> K <plug>(lsp-hover)
-  nnoremap <buffer> grn <plug>(lsp-rename)
-  nnoremap <buffer> gra <plug>(lsp-code-action-float)
-  nnoremap <buffer> grr <plug>(lsp-references)
-  nnoremap <buffer> gri <plug>(lsp-implementation)
-  nnoremap <buffer> gO <plug>(lsp-document-symbol-search)
-  nnoremap <buffer> <C-s> <plug>(lsp-signature-help)
-  nnoremap <buffer> grd <plug>(lsp-definition)
-  nnoremap <buffer> grD <plug>(lsp-declaration)
-  nnoremap <buffer> grt <plug>(lsp-peek-type-definition)
-  nnoremap <buffer> gW <plug>(lsp-workspace-symbol-search)
+    " Gives a [NEW] flag to an unnamed buffer
+    if bufname(i) == ''
+      let s .= '[NEW]'
+    endif
 
-  let g:lsp_format_sync_timeout = 1000
-  nnoremap <buffer> <leader>f <plug>(lsp-document-format)
-  let g:which_key_map.f = '[F]ormat buffer'
-endfunction
+    if getbufvar(i, "&modifiable")
+      let s .= fnamemodify(bufname(i), ':t')  " Appends the file name
+      " let s .= pathshorten(bufname(i))  " Use this if you want a trimmed path
 
-augroup lsp_install
-  au!
-  autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-" }}}
+      " If the buffer is modified, add [+] flag
+      if getbufvar(i, "&modified")
+        let s .= ' [+]'
+      endif
 
+    else
+      let s .= fnamemodify(bufname(i), ':t') . ' [RO]'  " Add read only flag
+    endif
 
-" {{{ asyncomplete.vim
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <CR>    pumvisible() ? asyncomplete#close_popup() : "\<CR>""
+    let s .= ' %#TabLineFill#%T'  " Resets highlight and adds a spacer
+  endfor
+  let s .= '|'  " Adds a right separator to the last buffer
 
-let g:asyncomplete_auto_completeopt = 0
-set completeopt=menuone,noinsert,noselect,preview
-" }}}
+  let s .= '%='  " Adds a spacer
 
+  " Making a tab list on the right side
+  for i in range(1, tabpagenr('$'))  " Loop through the number of tabs
+    " Highlight with yellow if it's the current tab
+    let s .= (i == tabpagenr()) ? ('%#TabLineSel#') : ('%#TabLine#')
+    let s .= '%' . i . 'T '  " set the tab page number (for mouse clicks)
+    let s .= i . ''          " set page number string
+  endfor
+  let s .= '%#TabLineFill#%T'  " Reset highlight
 
-" {{{ Vimwiki
-let g:vimwiki_list = [{ 'path': '~/cloud/l1-cache/caos/sustain',
-       \ 'syntax':'markdown', 'ext': '.md' }]
-let g:vimwiki_global_ext = 1
+  " Close button on the right if there are multiple tabs
+  if tabpagenr('$') > 1
+    let s .= '%999X X'
+  endif
+  return s
+endfun
+
+set tabline=%!SpawnBufferLine()  " Assign the tabline
 " }}}
 
 
