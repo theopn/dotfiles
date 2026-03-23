@@ -63,7 +63,7 @@ set updatetime=250 timeoutlen=300
 " Indentation
 " copies indentation of prev line, read help for smarttab
 set autoindent smarttab
-set tabstop=2 shiftwidth=2 expandtab  " C-centric indentation settings
+set tabstop=2 shiftwidth=0 expandtab  " shiftwidth follows tabstop
 set shiftround  " indent to a multiple of shiftwidth when using <. >
 
 " Appearance
@@ -232,14 +232,17 @@ set statusline=                                       " Reset w/ nothing
 set statusline+=\ [%{toupper(g:currentmode[mode()])}] " Current mode
 set statusline+=\ \|                                  " Space + Bar
 set statusline+=\ %{fnamemodify(getcwd(),':t')}       " Current working dir
-set statusline+=\ %f                                  " Current file
+set statusline+=\ %f                                  " Current buffer name
 set statusline+=\ %m                                  " [+] for modified
 set statusline+=%r                                    " [RO] for read only
 set statusline+=\|                                    " Bar
 set statusline+=%=                                    " Spacer
 set statusline+=%<                                    " Truncation point
-set statusline+=Messing\ w\ vimrc\ again\ %{'ʕ•́ᴥ•̀?'}  " Why in {}? Why not
+set statusline+=Messing\ w\ vimrc\ again?             " Yes I am
+set statusline+=\ %{'>^•-•^<'}                        " Why in {}? Why not
 set statusline+=%=                                    " Spacer
+set statusline+=\ \|                                  " Space + Bar
+set statusline+=\ %{(&expandtab==1?'SPC':'TAB')}      " Tab or space
 set statusline+=\ \|                                  " Space + Bar
 set statusline+=\ FT:\ %Y                             " Filetype
 set statusline+=\ \|                                  " Space + Bar
