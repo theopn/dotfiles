@@ -16,3 +16,5 @@ if status is-interactive
   set fish_vi_force_cursor
 end
 
+fish_add_path ~/.local/bin
+
