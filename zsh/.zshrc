@@ -108,13 +108,16 @@ RPROMPT="%(?|%K{green}%F{black}|%K{red}%F{white})%B %? %b%f%k"
 
 ##### Alias #####
 alias cl='clear'
+
 alias ga='git add'
 alias gcm='git commit -m'
 alias gss='git status'
+
 alias histgrep='echo "[Tip] Use !number to execute the command" && history -i | grep' # -i for the timestamp
-alias l='ls -A -l -h --color=auto' # All file except . and .., list view, display unit suffix for the size
+
 alias nv='neovide --fork'
 alias v=nvim
+alias l='eza -a -l --header --git --total-size --time-style iso --icons auto --color auto'
 
 alias dot="cd \"$DOT_DIR\""
 
