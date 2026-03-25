@@ -70,26 +70,6 @@ tarunmake() {
   tar -zxvf $1
 }
 
-# My cute greeting func
-greeting() {
-  bash_ver="$(bash --version | head -1)"
-  my_hostname=$(hostname -s)
-  uptime=$(uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 " " }')
-  echo -e "  " "\033[0;32m" "Meow"                       "\033[0m"
-  echo -e "\033[0;31m" \
-      '
-                             _
-            |\      _-``---,) )
-      ZZZzz /,`.-```    -.   /
-           |,4-  ) )-,_. ,\ (
-          `---``(_/--`  `-`\_)
-      ' \
-      "\033[0;0m"
-  echo -e "  " "\033[0;33m" "Shell    :\t" "$bash_ver"    "\033[0m"
-  echo -e "  " "\033[0;35m" "Uptime   :\t" "$uptime"      "\033[0m"
-}
-[[ -t 0 ]] && greeting # check if file descriptor 0 (stdin) is attached to tty
-
 # Set prompt
 PROMPT_DIRTRIM=3
 PS1="\[\e[1;36m\] >Jobs:\j< \[\e[0;34m\][\u\[\e[0;36m\]@\[\e[0;35m\]\h]:\[\e[1;31m\]\w \[\e[0m\]\$ "
