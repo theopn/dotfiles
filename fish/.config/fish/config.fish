@@ -22,7 +22,7 @@ end
 # But there are debates about removing it: https://github.com/fish-shell/fish-shell/issues/7379
 # And I personally think it's very anti-declarative design, so I try not to use any.
 # For example, if I accidentally execute `set -u VAR oopsie`, $VAR will hunt me down until I notice it
-# and run `unset`.
+# and run `set -e VAR`.
 # So yeah, keep $XDG_CONFIG_HOME/fish/fish_variables clean (other than auto-generated variables),
 # use "global" (for Fish functions) and "export" (for child processes) instead.
 # There is barely any performance trade-off anyway.
