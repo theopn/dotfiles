@@ -109,10 +109,6 @@ cd -
 Now is a good time to reopen the shell.
 
 ```sh
-# Fish writes universal variables to `$XDG_CONFIG_HOME/fish/fish_variables` for performance
-# I created a script to set global variables only once
-fish ~/dotfiles/fish/.config/fish/set-universal.fish
-
 # Create and add directories to the directory bookmark/favorites list for my `cdf` fish/zsh function
 mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-fav.txt
 cat <<AHH >> $XDG_DATA_HOME/theoshell/cd-fav.txt
