@@ -225,11 +225,11 @@ My Aerospace configuration mostly default config.
 
 Formulae:
 
-- System tools: **btop**, fastfetch, **fish**, openconnect, **stow**, **tmux**, tree, **wget**
-- media: exiftool, ffmpeg, figlet, imagemagick
-- Development: git-filter-repo, hugo, **node**, **python**, qemu, r, **rust**
-- lf: bat, chafa, **lf**, poppler
-- Neovim: fd, **neovim**, ripgrep, **tree-sitter-cli**
+- System tools: **btop**, **fastfetch**, **fish**, openconnect, **stow**, **tmux**, **tree**, **wget**
+- media: exiftool, **ffmpeg**, figlet, **imagemagick**
+- Development: **git-filter-repo**, **hugo**, **node**, **python**, qemu, r, **rust**
+- lf: **bat**, chafa, **lf**, **poppler**
+- Neovim: **fd**, **neovim**, **ripgrep**, **tree-sitter-cli**
 
 Casks:
 
