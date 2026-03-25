@@ -14,7 +14,7 @@ abbr -a nv neovide --fork
 abbr -a v nvim
 abbr -a weather curl 'https://wttr.in'
 
-alias l="eza -a -l --header --git --total-size --time-style iso --icons auto --color auto"
+alias l="eza --color=auto --icons=auto  --long --all --header --time-style=long-iso --total-size"
 
 # .. to cd .., ... to cd ../.., etc.
 function multicd
