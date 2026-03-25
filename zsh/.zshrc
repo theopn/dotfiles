@@ -117,7 +117,7 @@ alias histgrep='echo "[Tip] Use !number to execute the command" && history -i | 
 
 alias nv='neovide --fork'
 alias v=nvim
-alias l='eza --color=auto --icons=auto  --long --all --header --time-style=long-iso --total-size'
+alias l='eza --color=auto --icons=auto  --long --all --header --time-style=long-iso'
 
 
 ##### Functions #####
