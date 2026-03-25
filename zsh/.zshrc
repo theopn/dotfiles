@@ -199,6 +199,7 @@ plug marlonrichert/zsh-autocomplete
 if (( $+commands[fd] )); then
   export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
 fi
+export FZF_DEFAULT_OPTS='--layout=reverse --cycle --height=50% --margin=5% --border=double'
 
 if (( $+commands[fzf] )); then
   source <(fzf --zsh)
