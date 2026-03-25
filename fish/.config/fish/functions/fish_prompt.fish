@@ -48,7 +48,7 @@ function fish_prompt -d "Theo's Vim statusline esque Fish prompt"
   end
 
   # Git info
-  # Hard code 
+  # Hard code repositories with stupidly large amount of data
   set -l BIG_REPOS Robot-Cello-ResidualRL Robot-Cello
   set -l git_info
   if not contains (basename $PWD) $BIG_REPOS

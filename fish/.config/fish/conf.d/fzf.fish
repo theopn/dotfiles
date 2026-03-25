@@ -3,10 +3,12 @@ set -gx FZF_DEFAULT_OPTS '--layout=reverse --cycle --height=50% --margin=5% --bo
 
 fzf --fish | source
 
-function fssh -d "Fuzzy-find ssh host via ag and ssh into it"
-  ag --ignore-case '^host [^*]' ~/.ssh/config | cut -d ' ' -f 2 | fzf | read -l result; and ssh "$result"
-end
 
+# custom "cd favorite" commands.
+# cdf_add adds the CWD to $THEOSHELL_CDF_DIR (~/.local/share/theoshell/cd-fav.txt),
+# cdf executes a fzf to search and CD to the directory in the file
+# cdf_edit edits the file
+# not really used anymore, since I started using zoxide
 function cdf -d "[CDF] Directory Favorite/Bookmark using FZF"
   if not set -q THEOSHELL_CDF_DIR
       echo 'You must provide THEOSHELL_CDF_DIR'

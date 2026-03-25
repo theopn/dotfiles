@@ -119,8 +119,6 @@ alias nv='neovide --fork'
 alias v=nvim
 alias l='eza -a -l --header --git --total-size --time-style iso --icons auto --color auto'
 
-alias dot="cd \"$DOT_DIR\""
-
 
 ##### Functions #####
 mkcd() { mkdir -p $1; cd $1 }
@@ -203,55 +201,6 @@ plug marlonrichert/zsh-autocomplete
 #whence -p fd &> /dev/null && export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
 
 source <(fzf --zsh)
-
-cdf() {
-  selected=$(find * -maxdepth 1 -type d 2>/dev/null | fzf \
-    --reverse --border=rounded --cycle --height=50% \
-    --header='Pick a directory to navigate to')
-  [[ -z $selected ]] && echo 'Nothing was selected :(' || cd "$selected"
-}
-
-alias manf="compgen -c | fzf | xargs man"
-
-sshf() {
-  [[ ! -e ~/.ssh/config ]] && echo 'There are no SSH config file!'
-  hostnames=$(awk ' $1 == "Host" { print $2 } ' ~/.ssh/config )
-  [[ -z "${hostnames}" ]] && echo 'There are no host param in the SSH config file'
-  selected=$(printf "%s\n" "${hostnames[@]}" | fzf \
-    --reverse --border=rounded --cycle --height=30% \
-    --header='pick a host')
-  [[ -z "${selected}" ]] && echo 'Nothing was selected :(' && return
-  echo "SSHing to ${selected}..." && ssh "$selected"
-}
-
-
-##### Directory Bookmark using FZF #####
-
-cdf() {
-  if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
-    echo "You must provide THEOSHELL_CDF_DIR"
-    return 1
-  fi
-
-  dir=$(fzf --header="Favorite Directories" < $THEOSHELL_CDF_DIR)
-  [[ ! -z "$dir" ]] && cd "$dir"
-}
-
-cdf_add() {
-  if [[ -z "$THEOSHELL_CDF_DIR" ]]; then
-    echo "You must provide THEOSHELL_CDF_DIR"
-    return 1
-  fi
-
-  if [[ ! -e $THEOSHELL_CDF_DIR ]]; then
-    mkdir -p $(dirname $THEOSHELL_CDF_DIR)
-    touch $THEOSHELL_CDF_DIR
-  fi
-
-  pwd >> $THEOSHELL_CDF_DIR
-}
-
-alias cdf_edit="$EDITOR $THEOSHELL_CDF_DIR"
 
 
 ##### Greeting #####
