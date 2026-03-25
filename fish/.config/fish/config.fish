@@ -16,6 +16,11 @@ if status is-interactive
   set fish_vi_force_cursor
 end
 
+
+set -gx FZF_DEFAULT_COMMAND 'fd --hidden --strip-cwd-prefix --exclude ".git"'
+set -gx FZF_DEFAULT_OPTS '--layout=reverse --cycle --height=50% --margin=5% --border=double'
+fzf --fish | source
+
 # Fish does offer "universal" variables,
 # which is essentially a global, exported variable that is written to
 # $XDG_CONFIG_HOME/fish/fish_variables (auto generated file) and persists across all Fish instances.
