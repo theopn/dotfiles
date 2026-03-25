@@ -22,6 +22,7 @@ brew "tmux"
 brew "tree"
 brew "tree-sitter-cli"
 brew "wget"
+brew "zoxide"
 
 cask "macvim-app"
 cask "wezterm"

@@ -204,6 +204,10 @@ if (( $+commands[fzf] )); then
   source <(fzf --zsh)
 fi
 
+if (( $+commands[zoxide] )); then
+  eval "$(zoxide init zsh)"
+fi
+
 
 ##### Greeting #####
 function zsh_greeting() {

@@ -17,9 +17,22 @@ if status is-interactive
 end
 
 
-set -gx FZF_DEFAULT_COMMAND 'fd --hidden --strip-cwd-prefix --exclude ".git"'
+# fzf
+if type -q fd
+  set -gx FZF_DEFAULT_COMMAND 'fd --hidden --strip-cwd-prefix --exclude ".git"'
+end
 set -gx FZF_DEFAULT_OPTS '--layout=reverse --cycle --height=50% --margin=5% --border=double'
-fzf --fish | source
+
+if type -q fzf
+  fzf --fish | source
+end
+
+
+# zoxide
+if type -q zoxide
+  zoxide init fish | source
+end
+
 
 # Fish does offer "universal" variables,
 # which is essentially a global, exported variable that is written to
