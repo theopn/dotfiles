@@ -19,7 +19,6 @@ export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_STATE_HOME=${XDG_DATA_HOME:="$HOME/.local/state"}
 
 export THEOSHELL_TRASH_DIR="$XDG_DATA_HOME/theoshell/trash"
-export THEOSHELL_CDF_DIR="$XDG_DATA_HOME/theoshell/cd-fav.txt"
 export ZSH_PLUGIN_DIR="$XDG_DATA_HOME/theoshell/zsh-plugins"
 
 export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
