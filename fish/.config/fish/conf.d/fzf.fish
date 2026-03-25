@@ -33,4 +33,4 @@ function cdf_add -d "[CDF] Add CWD to the directory list"
   pwd >> $THEOSHELL_CDF_DIR
 end
 
-abbr cdf_edit $EDITOR $THEOSHELL_CDF_DIR
+abbr -a cdf_edit '$EDITOR $THEOSHELL_CDF_DIR'
