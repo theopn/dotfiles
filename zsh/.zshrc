@@ -195,12 +195,14 @@ function plug_update() {
 plug marlonrichert/zsh-autocomplete
 
 
-##### FZF #####
-# I mean it is my machine so I would assume fd is installed
-#type -P fd &> /dev/null && export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
-#whence -p fd &> /dev/null && export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
+##### External Tools #####
+if (( $+commands[fd] )); then
+  export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude ".git"'
+fi
 
-source <(fzf --zsh)
+if (( $+commands[fzf] )); then
+  source <(fzf --zsh)
+fi
 
 
 ##### Greeting #####
