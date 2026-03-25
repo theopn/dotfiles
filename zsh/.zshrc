@@ -206,7 +206,7 @@ if (( $+commands[fzf] )); then
 fi
 
 if (( $+commands[zoxide] )); then
-  eval "$(zoxide init zsh)"
+  eval "$(zoxide init zsh --cmd c)"
 fi
 
 

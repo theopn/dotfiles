@@ -30,7 +30,7 @@ end
 
 # zoxide
 if type -q zoxide
-  zoxide init fish | source
+  zoxide init fish --cmd c | source
 end
 
 
