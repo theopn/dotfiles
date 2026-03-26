@@ -106,16 +106,9 @@ cd -
 
 ### Post-installation
 
-Now is a good time to reopen the shell.
+Now is a good time to reopen the terminal.
 
 ```sh
-# Create and add directories to the directory bookmark/favorites list for my `cdf` fish/zsh function
-mkdir -p $XDG_DATA_HOME/theoshell && touch $XDG_DATA_HOME/theoshell/cd-fav.txt
-cat <<AHH >> $XDG_DATA_HOME/theoshell/cd-fav.txt
-$XDG_CONFIG_HOME
-$XDG_DATA_HOME
-AHH
-
 # Neovim Treesitter and LSP servers
 nvim -c "TSInstall bash c cpp fish html java javascript latex lua luadoc markdown markdown_inline python sql vim vimdoc"
 nvim -c "MasonInstall bash-language-server clangd lua-language-server python-lsp-server texlab"
