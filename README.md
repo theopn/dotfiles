@@ -1,17 +1,17 @@
 # Theo's dotfiles
 
-| ![nixos-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/refs/heads/main/assets/niri-sc.png) |
-|:--:|
-| `wittgenstein` (Framework 13, NixOS, Niri) |
-| ![macos-sc](./assets/macos-sc.jpg) |
-| `lightsaber` (old M1 Macbook Air, Aerospace) |
-
 > [!NOTE]
 > I've recently moved to Nix (NixOS, nix-darwin, home-manager, and Nixvim) and ported my configs over to my [Nix conf repository](https://github.com/theopn/nix-conf).
 >
 > I will still continue to sync major updates back to this repository!
 
-These are dotfiles for my Linux (Fedora) and macOS systems.
+| ![macos-sc](./assets/macos-sc.jpg) |
+|:--:|
+| `lightsaber` (old M1 Macbook Air, Aerospace) |
+| ![nixos-sc](https://raw.githubusercontent.com/theopn/haunted-tiles/refs/heads/main/assets/niri-sc.png) |
+| `wittgenstein` (Framework 13, NixOS running Niri) |
+
+These are dotfiles for my Linux and macOS systems.
 The tools in this repository are primarily open-source utilities for development.
 
 > [!IMPORTANT]
@@ -131,6 +131,12 @@ BYE
 
 Linux systems: install Sway and/or Niri and follow the instructions in the [Haunted Tiles repository](https://github.com/theopn/haunted-tiles).
 
+All config files are 99% cross-platform, but following files require manual intervention if they are deployed in a Linux system:
+
+- `./kitty/.config/kitty/kitty.conf`: change Fish path in `shell` to `/usr/bin/fish`
+- `./nvim/.config/nvim/lua/plugins/vimtex.lua`: change `vim.g.vimtex_view_method` to `"zathura"`
+- `./wezterm/.config/wezterm/wezterm.lua`: change the `fish_path` variable to `/usr/bin/fish`
+
 -----
 
 ## Utilities
@@ -139,7 +145,10 @@ Linux systems: install Sway and/or Niri and follow the instructions in the [Haun
 
 - Bash: Basic configuration for my school SSH server
 - ZSH: My login shell (features: Vim mode, handmade prompt with Git info, basic `trash` command mimicking `trash-cli`, and a minimal plugin manager for [zsh-autocompletion](https://github.com/marlonrichert/zsh-autocomplete))
-- **Fish**: Main interactive shell (features: multicd (`...` = `cd ../..`), directory bookmarks (`cdf_add` to save, `cdf` to fuzzy-find, `cdf_edit` to modify), and all features from ZSH)
+- **Fish**: Main interactive shell (features: all features from ZSH, more performant auto-completion, and cute greeting function featuring ASCII art of my cat Oliver)
+
+I am also a big fan of `eza` (try `l` alias) and `zoxide` (try `c` and `ci`).
+
 ### Terminal emulators and multiplexers
 
 - **Wezterm**: My favorite terminal emulator. See [my YouTube video](https://youtu.be/I3ipo8NxsjY) :) (note that bindings have since been updated to match tmux)
