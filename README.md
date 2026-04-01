@@ -228,7 +228,7 @@ Casks:
 - Sync: Cryptomator, Filen, Nextcloud, Syncthing
 - System: **Aerospace**, **Ice**, **Maccy**, **Stats**
 - Tools: **Bitwarden**, CEmu, KeyCastr, **Skim**
-- Web: Discord, **Firefox**, Tailscale, Thunderbird, Ungoogled Chromium
+- Web: Brave Browser, Discord, **Firefox**, Tailscale, Thunderbird
 
 
 ### macOS Settings

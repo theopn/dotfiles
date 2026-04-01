@@ -30,7 +30,7 @@ cask "syncthing-app"
 cask "cemu"
 cask "keycastr"
 
+cask "brave-browser"
 cask "discord"
 cask "tailscale-app"
 cask "thunderbird"
-cask "ungoogled-chromium"
