@@ -2,6 +2,7 @@ brew "chafa"
 brew "exiftool"
 brew "figlet"
 brew "openconnect"
+brew "platformio"
 brew "qemu"
 brew "r"
 
