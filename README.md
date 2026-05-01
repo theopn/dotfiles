@@ -224,7 +224,7 @@ My Aerospace configuration mostly default config.
 Formulae:
 
 - System tools: **btop**, **eza**, **fastfetch**, **fish**, openconnect, **stow**, **tmux**, **tree**, **wget**, **zoxide**
-- media: exiftool, **ffmpeg**, figlet, **imagemagick**
+- media: exiftool, **ffmpeg**, figlet, **imagemagick**, **pandoc**
 - Development: **git-filter-repo**, **hugo**, **node**, platformio, **python**, qemu, r, **rust**
 - lf: **bat**, chafa, **lf**, **poppler**
 - Neovim: **fd**, **neovim**, **ripgrep**, **tree-sitter-cli**
