@@ -1,0 +1,80 @@
+{
+  "plugins": {
+    "fidget.nvim": {
+      "rev": "889e2e96edef4e144965571d46f7a77bcc4d0ddf",
+      "src": "https://github.com/j-hui/fidget.nvim"
+    },
+    "fzf-lua": {
+      "rev": "311a630292310ea3bfe46dd616e17f283e975801",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "gitsigns.nvim": {
+      "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
+      "src": "https://github.com/lewis6991/gitsigns.nvim"
+    },
+    "kanagawa.nvim": {
+      "rev": "bb85e4bfc8d89b0e62c8fa53ccdd13d12e2f77b3",
+      "src": "https://github.com/rebelot/kanagawa.nvim"
+    },
+    "lazydev.nvim": {
+      "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
+      "src": "https://github.com/folke/lazydev.nvim"
+    },
+    "mason.nvim": {
+      "rev": "8e921c2b68571e978db5d4d3fef9c9a7f8755473",
+      "src": "https://github.com/mason-org/mason.nvim"
+    },
+    "nightfox.nvim": {
+      "rev": "26b61b1f856ec37cae3cb64f5690adb955f246a1",
+      "src": "https://github.com/EdenEast/nightfox.nvim"
+    },
+    "nvim-autopairs": {
+      "rev": "7b9923abad60b903ece7c52940e1321d39eccc79",
+      "src": "https://github.com/windwp/nvim-autopairs"
+    },
+    "nvim-colorizer.lua": {
+      "rev": "5cfe7fffbd01e17b3c1e14af85d5febdef88bd8c",
+      "src": "https://github.com/catgoose/nvim-colorizer.lua"
+    },
+    "nvim-treesitter": {
+      "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
+    },
+    "nvim-web-devicons": {
+      "rev": "2795c26c916bb3c57dde308b82be51971fa92747",
+      "src": "https://github.com/nvim-tree/nvim-web-devicons"
+    },
+    "oil.nvim": {
+      "rev": "0fcc83805ad11cf714a949c98c605ed717e0b83e",
+      "src": "https://github.com/stevearc/oil.nvim"
+    },
+    "onedark.nvim": {
+      "rev": "df4792accde9db0043121f32628bcf8e645d9aea",
+      "src": "https://github.com/navarasu/onedark.nvim"
+    },
+    "orgmode": {
+      "rev": "19209e6f2483bbfa61210f24d149a69e78b93bd0",
+      "src": "https://github.com/nvim-orgmode/orgmode"
+    },
+    "plenary.nvim": {
+      "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
+      "src": "https://github.com/nvim-lua/plenary.nvim"
+    },
+    "todo-comments.nvim": {
+      "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
+      "src": "https://github.com/folke/todo-comments.nvim"
+    },
+    "tokyonight.nvim": {
+      "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
+      "src": "https://github.com/folke/tokyonight.nvim"
+    },
+    "vimtex": {
+      "rev": "182ad387e3f3107699483606c9a2b6648f8437b2",
+      "src": "https://github.com/lervag/vimtex"
+    },
+    "which-key.nvim": {
+      "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
+      "src": "https://github.com/folke/which-key.nvim"
+    }
+  }
+}
