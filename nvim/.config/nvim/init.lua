@@ -22,6 +22,9 @@ if vim.g.neovide then
   require("neovide")
 end
 
+-- Opt in for the experimental UI feature (see |ui2|)
+require("vim._core.ui2").enable({})
+
 -- Core modules
 require("theovim.opt")
 require("theovim.keymaps")
