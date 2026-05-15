@@ -31,8 +31,11 @@ require("theovim.lsp")
 --require("theovim.completion")
 
 
--- Custom UI modules
-require("ui.tabline").setup()
-require("ui.statusline").setup()
-require("ui.winbar").setup()
-require("ui.pomodoro").setup()
+-- Custom UI modules: load them after vim.pack finishes loading plugins
+vim.schedule(function()
+  require("ui.tabline").setup()
+  require("ui.statusline").setup()
+  require("ui.winbar").setup()
+  require("ui.pomodoro").setup()
+end)
+
