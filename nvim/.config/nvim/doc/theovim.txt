@@ -31,8 +31,7 @@ Housekeeping                                            *theovim-housekeeping*
 
 - |:checkhealth| to see if you are missing any runtime files
 - |:messages| to check previous error messages and notifications
-- Run `:Lazy sync` to update plugins
-  - This runs `:TSUpdate` at the same time
+- Run `:lua vim.pack.update()` to update plugins
 - Run `:MasonUpdate` to update LSP servers
 
 See also:
@@ -304,6 +303,28 @@ So I disabled it with >
 The 0.10 news says the name of the |autocmd-groups| is `nvim_swapfile`, but
 they sneakly changed it in |news-0.11|.
 Augroup for all |default-autocmds| is in the form `nvim.*`, btw.
+
+==============================================================================
+plugins                                                      *theovim-plugins*
+
+Since 0.12, I manage my plugins using |vim.pack|.
+All plugin specs are located in `$VIMRUNTIME/plugin/` directory.
+
+- `:lua vim.pack.update()`: updates all plugins.
+  Keep in mind that I utilize |vim.pack-lockfile|, so make sure to commit the
+  updated lockfile to the Dotfiles repository.
+- `:= vim.pack.get()`: lists all plugins and their status.
+- Following commands finds all inactive plugins and remove them >
+  vim.iter(vim.pack.get()):filter(function(x) return not x.active end):map(function(x) return x.spec.name end):totable()
+<
+  Keep in mind that it will attempt to remove ones that are not lazy loaded.
+- If you want to interactively delete stale plugins, use >
+  lua vim.pack.update(nil, { offline = true })
+<
+  Then navigate to the inactive plugin that you wish to delete, and invoke >
+  lua vim.lsp.buf.code_action()
+<
+  (or |gra| keymap) to get an option to delete the plugin.
 
 ==============================================================================
 ftplugins                                                  *theovim-ftplugins*
