@@ -75,7 +75,9 @@ vim.keymap.set("n", "<leader>gs", fzf.git_status, { desc = "Search [G]it [S]tatu
 vim.keymap.set("n", "<leader>d-", function()
   -- Fill the table with parent directories
   local dirs = {}
-  for dir in vim.fs.parents(vim.uv.cwd()) do
+  -- uv.cwd() WILL return something, but the type is set to string?, which generates annoying warning.
+  -- So use buf_get_name as fallback, which might not work if bufname is empty or irregular (would work in normal buffers).
+  for dir in vim.fs.parents(vim.uv.cwd() or vim.api.nvim_buf_get_name(0)) do
     dirs[#dirs + 1] = dir
   end
 
