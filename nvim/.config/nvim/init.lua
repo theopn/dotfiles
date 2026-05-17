@@ -31,7 +31,7 @@ require("theovim.keymaps")
 require("theovim.commands")
 require("theovim.autocmds")
 require("theovim.lsp")
---require("theovim.completion")
+require("theovim.completion")
 
 
 -- Custom UI modules: load them after vim.pack finishes loading plugins

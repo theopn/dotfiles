@@ -98,14 +98,21 @@ local lspattach = function(event)
     })
   end
 
-
   -- Integration with the built-in completion
-  -- Not necessary since I am using nvim-cmp and lsp-nvim-cmp
-  -- if client and client:supports_method("textDocument/completion") then
-  --   vim.lsp.completion.enable(true, client.id, event.buf, {
-  --     autotrigger = true,
-  --   })
-  -- end
+  if client and client:supports_method("textDocument/completion") then
+    vim.lsp.completion.enable(true, client.id, event.buf, {
+      --autotrigger = true,
+      convert = function(item)
+        if vim.lsp.protocol.CompletionItemKind[item.kind] ~= nil then
+          return { kind_hlgroup = "BlinkCmpKind" .. vim.lsp.protocol.CompletionItemKind[item.kind] }
+        end
+        return {}
+      end,
+    })
+  end
+  -- Not sure why this is necessary as I can use <C-x><C-o> (or 'complete' in >0.12), but the documentation
+  -- for the lsp.completion.get() recommends it so... why not
+  vim.keymap.set("i", "<C-space>", function() vim.lsp.completion.get() end, { desc = "Trigger auto-completion" })
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {

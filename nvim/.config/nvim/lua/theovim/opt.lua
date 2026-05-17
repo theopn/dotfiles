@@ -32,6 +32,7 @@ o.termguicolors   = true      --> Enables 24-bit RGB color in the TUI
 o.showtabline     = 2         --> 0: never, 1: >= 2 tabs, 2: always
 o.laststatus      = 3         --> 0: never, 1: >= 2 windows, 2: always, 3: always and have one global statusline
 o.winborder       = "rounded" --> border appearance used by some plugins (e.g., nvim-cmp)
+o.winblend        = 0         --> no transparency by default
 
 -- Char rendering
 o.list            = true --> Render special char in listchars
@@ -56,11 +57,6 @@ o.timeoutlen      = 300
 
 -- Window size
 o.winminwidth     = 3
-
--- Completion
-o.wildmode        =
-"noselect:full"                                   --> behavior of <TAB> in cmd completion. Do not pre-select, match full completion
-o.completeopt     = "noselect,menu,menuone,popup" --> no pre-insert or pre-select, show menu even w/ one item, use popup
 
 -- Others
 o.mouse           = "a"
