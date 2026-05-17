@@ -790,30 +790,22 @@ char            action
 ==============================================================================
 Completion                                                *theovim-completion*
 
-char            action
-----------------------------------------------------------------------
+Starting in 0.12, |'autocomplete'| option is enabled to trigger multi-source
+completion on every keystroke.
+The sources are set with the |'complete'| option (I set it to words from
+the current buffer, other windows, and Omni-completion).
 
-<C-x><C-l>      Completes a whole line
-
-<C-x><C-n>      Completes a keyword in the current file
-
-<C-x><C-k>      Completes a word in |'dictionary'|.
-                If |'spell'| is set, the word list is used.
-
-<C-x><C-f>      Completes a file path
-                If available, fzf-lua picker
-                (|fzf-lua-opts-complete_file|) is called.
-
-<C-x><C-o>      Triggers Omni-completion
-
-When a LSP buffer is attached, Omni-completion is set to
+When an LSP buffer is attached, Omni-completion is set to
 |vim.lsp.omnifunc()|, and |vim.lsp.completion.enable()| is called.
 This enables
-1. accepting a snippet using `<C-y>` automatically expands the snippet
-2. triggering auto-completion with the insertion of certain characters,
-   such as `.`, `<`, etc. (handled by `triggerCharacters` from the LSP)
+1. completion items from the LSP server
+2. accepting a snippet using `<C-y>` automatically expands the snippet
+(Note that, in config,  when |'autocomplete'| is enabled,
+do NOT enable the `autotrigger` option in |vim.lsp.completion.enable()|,
+which triggers compl based on certain characters like `.` and `<`,
+as they can conflict.)
 
-These keybindings are available when completion window is open
+Following keybindings are available when completion window is open
 
 char            action
 ----------------------------------------------------------------------
@@ -826,15 +818,38 @@ char            action
 <TAB>           If a completion window is open, <C-n>.
                 If a snippet is expandable, move to the next item.
                 If there is a character at the cursor, trigger a
-                completion (word completion or Omni-completion, based
-                on the availability).
+                completion.
                 Else, insert <TAB>
 <S-TAB>         If a completion window is open, <C-p>
                 If a snippet is expandable, move to the previous item.
-                ELse, insert <S-TAB>
+                Else, insert <S-TAB>
+<CR>            If a completion window is open, `<C-y>`
+                Else, insert `<CR>`
 
 When a snippet is expanded, you enter the |Select-mode|, which you can
 move around with <TAB> and <S-TAB>.
+
+While completion is triggered automatically, you can also manually trigger
+either multi-source completion or specific sources.
+
+char            action
+----------------------------------------------------------------------
+
+<C-n>           (when no completion window is open)
+                Triggers completion using the sources specified in
+                |'complete'|.
+
+<C-x><C-l>      Completes a whole line
+
+<C-x><C-n>      Completes a keyword in the current file
+
+<C-x><C-k>      Completes a word in |'dictionary'|.
+                If |'spell'| is set, the word list is used.
+
+<C-x><C-f>      Completes a file path.
+
+<C-x><C-o>      Triggers Omni-completion.
+
 
 See also:
 - |ins-completion|: native completion engine
@@ -842,36 +857,6 @@ See also:
 - |vim.snippet|: built-in snippet module
 - |lsp-completion|: overview of LSP auto-completion
   - |compl-autocomplete|: Example of a simple implementation of trigger char
-
-==============================================================================
-nvim-cmp                                                    *theovim-nvim-cmp*
-
-While the native ins-completion is workable, nvim-cmp and other plug-ins
-offers functionalities like grouping different completion sources, sourcing
-snippets, and more performance.
-
-char            action
-----------------------------------------------------------------------
-
-<C-y>           Same as <C-y> in ins-completion
-<RET>           Same as <C-y> in ins-completion
-
-<C-e>           Same as <C-e> in ins-completion
-<C-n>           Same as <C-n> in ins-completion
-<C-p>           Same as <C-p> in ins-completion
-
-<C-b>           Scroll the documentation [b]ackward (down)
-<C-f>           Scroll the documentation [f]orward (up)
-
-<C-SPC>         Manually trigger the completion
-
-<TAB>           Same as <TAB> in ins-completion
-<S-TAB>         Same as <S-TAB> in ins-completion
-
-See also:
-- |nvim-cmp|
-- |cmp-mapping|: creating keymaps and examples of `fallback()`
-- |cmp-config.sources[n].group_index|: grouping completion sources
 
 ==============================================================================
 fzf-lua                                                      *theovim-fzf-lua*
