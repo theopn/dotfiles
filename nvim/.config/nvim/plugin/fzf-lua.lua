@@ -118,13 +118,4 @@ vim.keymap.set("n", "<leader>dc", function()
   })
 end, { desc = "Search and [C]hange CW[D]" })
 
--- Override Vim defaults
-vim.keymap.set({ "n", "i" }, "<C-x><C-f>",
-function()
-  fzf.complete_file({
-    cmd = "fd --hidden",
-    winopts = { preview = { hidden = false } }
-  })
-end, { silent = true, desc = "Fuzzy complete file" })
-
 fzf.register_ui_select() --> register fzf-lua as the UI interface for vim.ui.select
