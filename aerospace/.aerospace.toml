@@ -1,10 +1,10 @@
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
+# Config version for compatibility and deprecations
+# See: https://nikitabobko.github.io/AeroSpace/guide#config-version
+# Fallback value (if you omit the key): config-version = 1
+config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
@@ -16,6 +16,10 @@ after-login-command = []
 
 # Start AeroSpace at login
 start-at-login = true
+
+# Automatically reload the config when the config file is saved
+# After setting this to true, reload once manually to start the auto-reloading
+auto-reload-config = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -46,10 +50,23 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # Also see: https://nikitabobko.github.io/AeroSpace/goodies#disable-hide-app
 automatically-unhide-macos-hidden-apps = false
 
+
+# List of workspaces that should stay alive even when they contain no windows,
+# even when they are invisible.
+# This config option is only available since 'config-version = 2'
+# Fallback value (if you omit the key): persistent-workspaces = []
+persistent-workspaces = ["1", "9" ]
+
+# A callback that runs every time binding mode changes
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+on-mode-changed = []
+
+focus-follows-mouse.enabled = false
+
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
-[key-mapping]
-    preset = 'qwerty'
+key-mapping.preset = 'qwerty'
 
 # Gaps between windows (inner-*) and between monitor edges (outer-*).
 # Possible values:
@@ -59,13 +76,12 @@ automatically-unhide-macos-hidden-apps = false
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See:
 #                 https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
-[gaps]
-    inner.horizontal = 5
-    inner.vertical =   5
-    outer.left =       5
-    outer.bottom =     5
-    outer.top =        5    # Set to 40 to use with my Sketchybar config
-    outer.right =      5
+gaps.inner.horizontal = 5
+gaps.inner.vertical =   5
+gaps.outer.left =       5
+gaps.outer.bottom =     5
+gaps.outer.top =        5    # Set to 40 to use with my Sketchybar config
+gaps.outer.right =      5
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -161,6 +177,7 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-semicolon = 'mode service'
 
 # 'service' binding mode declaration.
+# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
     esc = ['reload-config', 'mode main']
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
@@ -175,9 +192,6 @@ automatically-unhide-macos-hidden-apps = false
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
 
-    #down = 'volume down'
-    #up = 'volume up'
-    #shift-down = ['volume set 0', 'mode main']
 
 
 # Window rules
