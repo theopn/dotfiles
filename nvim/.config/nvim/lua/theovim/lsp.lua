@@ -101,7 +101,7 @@ local lspattach = function(event)
   -- Integration with the built-in completion
   if client and client:supports_method("textDocument/completion") then
     vim.lsp.completion.enable(true, client.id, event.buf, {
-      --autotrigger = true,
+      --autotrigger = true,  --> enables keyword trigger
       convert = function(item)
         if vim.lsp.protocol.CompletionItemKind[item.kind] ~= nil then
           return { kind_hlgroup = "BlinkCmpKind" .. vim.lsp.protocol.CompletionItemKind[item.kind] }

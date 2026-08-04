@@ -25,7 +25,7 @@ vim.o.completeopt = "noselect,menu,menuone,popup"
 -- (obviously irrelevant to insert completion, but I thought it was fitting here)
 vim.o.wildmode = "noselect:full"
 -- o: Omnifunc, .: curr buf, w: other windows, b: other loaded buffers
-vim.o.complete = "o,.,w"
+vim.o.complete = "o,.,w,b"
 -- Neovim 0.12 option, automatically trigger completion.
 -- Back in the day... I would have to create an autocmd to trigger C-x C-n for each keystroke:
 -- https://github.com/theopn/dotfiles/commit/62d22a174ac6d44fe027fcaadda72733512e7f0c#diff-5148363aa126ba5c07771546e2e27979606cc84c727f26eeadc264feb92321b7
@@ -33,9 +33,9 @@ vim.o.complete = "o,.,w"
 vim.o.autocomplete = true
 
 -- completion popup apperance
-vim.o.pumblend = 10;
-vim.o.pumborder = "rounded";
-vim.o.pumheight = 5;
+vim.o.pumblend = 10
+vim.o.pumborder = "rounded"
+vim.o.pumheight = 5
 
 
 -- Tab completion and <CR> to select
@@ -75,7 +75,7 @@ local s_tab_complete = function()
 end
 
 local cr_complete = function()
-  if vim.fn.pumvisible() ~= 0 then
+  if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ "selected" }).selected ~= -1 then
     return "<C-y>"
   else
     return "<CR>"
