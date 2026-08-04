@@ -11,7 +11,7 @@ function updater -d "Using fzf to pick and run update commands"
   end
 
   # Construct a lsit of stuff to update
-  set -l stuff 'dotfiles' 'Nvim: Lazy' 'Vim: Plug'
+  set -l stuff 'dotfiles' 'Nvim: vim.pack' 'Vim: Plug'
   if [ $OSTYPE = 'Linux' ]
     # assumes Fedora
     set -a stuff 'Fedora: dnf' 'Linux: flatpak' 'Linux: Firmware Upgrade'
@@ -30,8 +30,8 @@ function updater -d "Using fzf to pick and run update commands"
     switch $selected
       case 'dotfiles'
         cd ~/dotfiles/ && git pull && cd - &> /dev/null
-      case 'Nvim: Lazy'
-        nvim --headless "+Lazy! sync" +qa
+      case 'Nvim: vim.pack'
+        nvim --headless "+lua vim.pack.update()" +wqa
       case 'Vim: Plug'
         vim +PlugUpdate
       case 'Homebrew: Update'
