@@ -25,7 +25,8 @@ vim.o.completeopt = "noselect,menu,menuone,popup"
 -- (obviously irrelevant to insert completion, but I thought it was fitting here)
 vim.o.wildmode = "noselect:full"
 -- o: Omnifunc, .: curr buf, w: other windows, b: other loaded buffers
-vim.o.complete = "o,.,w,b"
+-- Ommitting b as it can be annnoying. Just open the buffer you need and maximize the other window
+vim.o.complete = "o,.,w"
 -- Neovim 0.12 option, automatically trigger completion.
 -- Back in the day... I would have to create an autocmd to trigger C-x C-n for each keystroke:
 -- https://github.com/theopn/dotfiles/commit/62d22a174ac6d44fe027fcaadda72733512e7f0c#diff-5148363aa126ba5c07771546e2e27979606cc84c727f26eeadc264feb92321b7
