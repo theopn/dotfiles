@@ -11,12 +11,12 @@ function updater -d "Using fzf to pick and run update commands"
   end
 
   # Construct a lsit of stuff to update
-  set -l stuff 'dotfiles' 'Nvim: vim.pack' 'Vim: Plug'
+  set -l stuff 'dotfiles' 'nvim: vim.pack' 'Vim: Plug'
   if [ $OSTYPE = 'Linux' ]
     # assumes Fedora
     set -a stuff 'Fedora: dnf' 'Linux: flatpak' 'Linux: Firmware Upgrade'
   else if [ $OSTYPE = 'macOS' ]
-    set -a stuff 'Homebrew: Update' 'Homebrew: Cleanup' 'Homebrew: Doctor'
+    set -a stuff 'Homebrew: Update' 'Homebrew: Cleanup'
   end
 
   while true
@@ -30,7 +30,7 @@ function updater -d "Using fzf to pick and run update commands"
     switch $selected
       case 'dotfiles'
         cd ~/dotfiles/ && git pull && cd - &> /dev/null
-      case 'Nvim: vim.pack'
+      case 'nvim: vim.pack'
         nvim --headless "+lua vim.pack.update()" +wqa
       case 'Vim: Plug'
         vim +PlugUpdate
@@ -39,11 +39,12 @@ function updater -d "Using fzf to pick and run update commands"
         and echo '[Updater] Brew update && upgrade successful'
         or echo '[Updater] Brew update && upgrade failed'
       case 'Homebrew: Cleanup'
-        brew autoremove && brew cleanup
-        and echo '[Updater] Brew autoremove && cleanup successful'
-        or echo '[Updater] Brew autoremove && cleanup failed'
-        echo '[Updater] TIP: Perodically `brew untap` unnecessary sources'
-      case 'Homebrew: Doctor'
+        brew bundle cleanup --file=~/dotfiles/homebrew/Brewfile  # zapping undeclared packages
+        and echo '[Updater] Undeclared package zapped'
+        or echo '[Updater] brew zap skipped, removing orphan dependencies instead' && brew autoremove
+
+        brew cleanup   # remove cache
+        echo '[Updater] Running brew doctor...'
         brew doctor
       case 'Fedora: dnf'
         sudo dnf upgrade
