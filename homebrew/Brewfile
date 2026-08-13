@@ -1,0 +1,95 @@
+
+# Theo's almost all macOS packages
+# - Packages that are commented out are... well, no longer used
+# - For maximum declarative-ness, use `TODO`
+
+##### Formulae #####
+brew "bat"
+brew "btop"
+brew "eza"
+brew "fastfetch"
+brew "fd"
+brew "ffmpeg"
+brew "fish"
+brew "fzf"
+brew "git-filter-repo"
+brew "hugo"
+brew "imagemagick"
+brew "lf"
+brew "lua"
+brew "neovim"
+brew "node"
+brew "poppler"
+brew "python"
+brew "ripgrep"
+brew "rust"
+brew "stow"
+brew "tmux"
+brew "tree"
+brew "tree-sitter"
+brew "tree-sitter-cli"
+brew "wget"
+brew "zoxide"
+
+brew "chafa"
+brew "exiftool"
+brew "figlet"
+brew "openconnect"
+#brew "platformio"
+brew "qemu"
+#brew "r"
+
+##### Casks #####
+
+# dev
+cask "docker-desktop", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
+cask "macvim-app"
+cask "wezterm"
+#cask "intellij-idea"
+#cask "kicad"
+cask "kitty"
+cask "mactex-no-gui"
+cask "neovide-app"
+#cask "rstudio"
+
+# Tools
+cask "itsycal"
+cask "gimp"
+#cask "minecraft"
+cask "obs", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
+cask "spotify"
+cask "vlc"
+
+# sync
+#cask "cryptomator"
+cask "filen"
+#cask "nextcloud"
+cask "syncthing-app"
+
+# Productivity
+cask "notion"
+cask "zotero", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
+
+# 
+tap "nikitabobko/tap", trusted: true
+cask "nikitabobko/tap/aerospace"
+#cask "maccy"
+cask "stats"
+#cask "thaw"
+
+cask "bitwarden"
+cask "skim"
+
+#cask "cemu"
+cask "keycastr"
+
+cask "firefox"
+cask "brave-browser", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
+cask "discord"
+cask "tailscale-app"
+cask "thunderbird"
+
+
+##### Fonts #####
+cask "font-fantasque-sans-mono-nerd-font"
+cask "font-proggy-clean-tt-nerd-font"
