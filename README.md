@@ -62,8 +62,7 @@ git clone git@github.com:theopn/dotfiles.git
 cd $HOME/dotfiles
 
 # Install formulae
-brew bundle --file ./homebrew/Brewfile_core
-brew bundle --file ./homebrew/Brewfile_optional
+brew bundle --file ./homebrew/Brewfile
 # Install Nerd Fonts
 brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-nerd-font
 
@@ -75,6 +74,10 @@ brew install --cask font-fantasque-sans-mono-nerd-font font-proggy-clean-tt-nerd
 ```
 
 ### Cloning & Deploying Dotfiles - Fedora
+
+> [!WARNING]
+> I no longer use Fedora (I use NixOS, btw), so this instruction is not up-to-date.
+> Please reference my [Nix conf repository](https://github.com/theopn/nix-conf) to see how I declaratively install packages & deploy my configuration files.
 
 ```sh
 # Install packages
@@ -235,7 +238,7 @@ Casks:
 - Fun & Media: GIMP, Minecraft, OBS, Spotify, VLC
 - Productivity: **Itsycal**, Notion, Zotero
 - Sync: Cryptomator, Filen, Nextcloud, Syncthing
-- System: **Aerospace**, **Ice**, **Maccy**, **Stats**
+- System: **Aerospace**, **Maccy**, **Stats**
 - Tools: **Bitwarden**, CEmu, KeyCastr, **Skim**
 - Web: Brave Browser, Discord, **Firefox**, Tailscale, Thunderbird
 
