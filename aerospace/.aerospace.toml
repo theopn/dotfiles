@@ -7,7 +7,6 @@
 config-version = 2
 
 # You can use it to add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 #after-startup-command = ['exec-and-forget sketchybar']
 #exec-on-workspace-change = ['/bin/bash', '-c',
@@ -82,6 +81,46 @@ gaps.outer.left =       5
 gaps.outer.bottom =     5
 gaps.outer.top =        5    # Set to 40 to use with my Sketchybar config
 gaps.outer.right =      5
+
+# Custom window rules
+# Note that Aerospace automatically classifies windows w/o fullscreen buttons as floating
+on-window-detected = [
+    # https://github.com/nikitabobko/AeroSpace/issues/660
+    {
+        if = '''
+          test %{app-bundle-id} = com.apple.finder  \
+          || test %{app-bundle-id} = com.apple.Terminal  \
+          || test %{app-bundle-id} = com.apple.QuickTimePlayerX  \
+          || test %{app-bundle-id} = org.videolan.vlc  \
+          || test %{app-bundle-id} = net.kovidgoyal.kitty  \
+          || test %{app-bundle-id} = com.github.wez.wezterm
+        ''',
+        run = 'layout floating',
+        # Don't stop here, proceed with other rules below
+        check-further-callbacks = true,
+    },
+    {
+        if = 'test %{app-bundle-id} = com.spotify.client',
+        run = 'move-node-to-workspace 9',
+        check-further-callbacks = true,
+    },
+    {
+        if = 'test %{app-bundle-id} = com.mozilla.firefox && test %{window-title} ~= "^Picture-in-Picture$"',
+        run = 'layout floating',
+        check-further-callbacks = true,
+    },
+    {
+        if = 'test %{window-title} ~= "^Extension: \(Bitwarden Password Manager\)" && test %{app-bundle-id} = org.mozilla.firefox',
+        run = 'layout floating',
+        check-further-callbacks = true,
+    },
+    # Thunderbird pop-ups
+    {
+        if = 'test %{window-title} ~= "^(New|Edit) Event:" && test %{app-bundle-id} = org.mozilla.thunderbird',
+        run = 'layout floating',
+        check-further-callbacks = true,
+    },
+]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -191,44 +230,3 @@ gaps.outer.right =      5
     alt-shift-j = ['join-with down', 'mode main']
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
-
-
-
-# Window rules
-# Keep in mind that Aerospace automatically puts apps w/o fullscreen button to floating
-[[on-window-detected]]
-    if.app-id = 'com.spotify.client'
-    run = 'move-node-to-workspace 9'
-
-[[on-window-detected]]
-    if.window-title-regex-substring = 'Picture-in-Picture'
-    run = ['layout floating']
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.finder'
-    run = 'layout floating'
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.Preview'
-    run = 'layout floating'
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.QuickTimePlayerX'
-    run = 'layout floating'
-
-[[on-window-detected]]
-    if.app-id = 'org.videolan.vlc'
-    run = 'layout floating'
-
-# make terminals floating since they are often used for the fuzzy window picker
-[[on-window-detected]]
-    if.app-id = 'net.kovidgoyal.kitty'
-    run = 'layout floating'
-
-[[on-window-detected]]
-    if.app-id = 'com.github.wez.wezterm'
-    run = 'layout floating'
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.Terminal'
-    run = 'layout floating'
