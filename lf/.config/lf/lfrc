@@ -164,12 +164,23 @@ cmd trash !{{
 }}
 map DD trash
 
-# Remove command for bypassing trash
-cmd rm ${{
+# Scary
+cmd rm !{{
   set -f
+  IFS="$(printf '\n\t')"
+  printf "Files 2b deleted:\n"
   printf "$fx\n"
-  printf "delete?[y/n]"
+  printf "delete?[y/n] "
   read ans
-  [ "$ans" = "y" ] && rm -rf $fx
+  if [ "$ans" = "y" ]; then
+    printf "\n"
+    for f in $fx; do
+      if rm -rf -- "$f"; then
+        printf ':) %s gone forever!\n' "$f"
+      else
+        printf ':( Failed to delete %s\n' "$f"
+      fi
+    done
+  fi
 }}
 
