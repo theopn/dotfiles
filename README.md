@@ -221,24 +221,7 @@ My Aerospace configuration mostly default config.
 
 ### Homebrew
 
-Formulae:
-
-- media: exiftool, ffmpeg, figlet, imagemagick, pandoc, qpdf
-- dev: docker-compose git-filter-repo, hugo, node, platformio, python, qemu, r, rust
-- shell: eza, fastfetch, fish, fzf, tmux, tree, zoxide
-- lf: bat, chafa, lf, poppler
-- neovim: fd, lua, neovim, ripgrep, tree-sitter-cli
-- other tools: btop, openconnect, stow, wget
-
-Casks:
-
-- Development: Docker, IntelliJ CE, KiCad, Kitty, MacTex (no GUI), Macvim, Neovide, RStudio, Wezterm
-- Fun & Media: GIMP, Minecraft, OBS, Spotify, VLC
-- Productivity: Itsycal, Notion, Zotero
-- Sync: Cryptomator, Filen, Nextcloud, Syncthing
-- System: Aerospace, Maccy, Stats, Thaw
-- Tools: Bitwarden, CEmu, KeyCastr, Skim
-- Web: Brave Browser, Discord, Firefox, Tailscale, Thunderbird
+See [`./homebrew/Brewfile`](./homebrew/Brewfile) for the list of packages on my macOS systems.
 
 
 ### macOS Settings
