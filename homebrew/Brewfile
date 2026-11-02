@@ -4,61 +4,79 @@
 # - For maximum declarative-ness, use `TODO`
 
 ##### Formulae #####
-brew "bat"
-brew "btop"
-brew "eza"
-brew "fastfetch"
-brew "fd"
+
+# media
+brew "exiftool"
 brew "ffmpeg"
-brew "fish"
-brew "fzf"
+brew "figlet"
+brew "imagemagick"
+brew "pandoc"
+brew "qpdf"
+
+# dev
+brew "docker-compose"
 brew "git-filter-repo"
 brew "hugo"
-brew "imagemagick"
-brew "lf"
-brew "lua"
-brew "neovim"
 brew "node"
-brew "poppler"
-brew "python"
-brew "ripgrep"
-brew "rust"
-brew "stow"
-brew "tmux"
-brew "tree"
-brew "tree-sitter"
-brew "tree-sitter-cli"
-brew "wget"
-brew "zoxide"
-
-brew "chafa"
-brew "exiftool"
-brew "figlet"
-brew "openconnect"
 #brew "platformio"
+brew "python"
 brew "qemu"
 #brew "r"
+brew "rust"
+
+# shell
+brew "eza"
+brew "fastfetch"
+brew "fish"
+brew "fzf"
+brew "tmux"
+brew "tree"
+brew "zoxide"
+
+# lf
+brew "bat"
+brew "chafa"
+brew "lf"
+brew "poppler"
+
+# neovim
+brew "fd"
+brew "lua"
+brew "neovim"
+brew "ripgrep"
+brew "tree-sitter"
+brew "tree-sitter-cli"
+
+# other tools
+brew "btop"
+brew "openconnect"
+brew "stow"
+brew "wget"
 
 ##### Casks #####
 
 # dev
 cask "docker-desktop", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
-cask "macvim-app"
-cask "wezterm"
 #cask "intellij-idea"
 #cask "kicad"
 cask "kitty"
 cask "mactex-no-gui"
+cask "macvim-app"
 cask "neovide-app"
 #cask "rstudio"
+cask "wezterm"
 
-# Tools
-cask "itsycal"
-cask "gimp"
+# fun & media
+cask "gimp", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
 #cask "minecraft"
 cask "obs", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
 cask "spotify"
 cask "vlc"
+
+# productivity
+cask "itsycal"
+cask "notion"
+cask "zotero", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
 
 # sync
 #cask "cryptomator"
@@ -66,26 +84,23 @@ cask "filen"
 #cask "nextcloud"
 cask "syncthing-app"
 
-# Productivity
-cask "notion"
-cask "zotero", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
-
-# 
+# system
 tap "nikitabobko/tap", trusted: true
 cask "nikitabobko/tap/aerospace"
 #cask "maccy"
 cask "stats"
 #cask "thaw"
 
+# tools
 cask "bitwarden"
-cask "skim"
-
 #cask "cemu"
 cask "keycastr"
+cask "skim"
 
-cask "firefox"
+# web
 cask "brave-browser", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
 cask "discord"
+cask "firefox"
 cask "tailscale-app"
 cask "thunderbird"
 

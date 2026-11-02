@@ -221,26 +221,24 @@ My Aerospace configuration mostly default config.
 
 ### Homebrew
 
-> [!NOTE]
-> **Bolded** items are in `Brewfile_core`, other items are in `Brewfile_optional`
-
 Formulae:
 
-- System tools: **btop**, **eza**, **fastfetch**, **fish**, openconnect, **stow**, **tmux**, **tree**, **wget**, **zoxide**
-- media: exiftool, **ffmpeg**, figlet, **imagemagick**, **pandoc**
-- Development: **git-filter-repo**, **hugo**, **node**, platformio, **python**, qemu, r, **rust**
-- lf: **bat**, chafa, **lf**, **poppler**
-- Neovim: **fd**, **neovim**, **ripgrep**, **tree-sitter-cli**
+- media: exiftool, ffmpeg, figlet, imagemagick, pandoc, qpdf
+- dev: docker-compose git-filter-repo, hugo, node, platformio, python, qemu, r, rust
+- shell: eza, fastfetch, fish, fzf, tmux, tree, zoxide
+- lf: bat, chafa, lf, poppler
+- neovim: fd, lua, neovim, ripgrep, tree-sitter-cli
+- other tools: btop, openconnect, stow, wget
 
 Casks:
 
-- Development: Docker, IntelliJ CE, KiCad, Kitty, MacTex (no GUI), **Macvim**, Neovide, RStudio, **Wezterm**
+- Development: Docker, IntelliJ CE, KiCad, Kitty, MacTex (no GUI), Macvim, Neovide, RStudio, Wezterm
 - Fun & Media: GIMP, Minecraft, OBS, Spotify, VLC
-- Productivity: **Itsycal**, Notion, Zotero
+- Productivity: Itsycal, Notion, Zotero
 - Sync: Cryptomator, Filen, Nextcloud, Syncthing
-- System: **Aerospace**, **Maccy**, **Stats**
-- Tools: **Bitwarden**, CEmu, KeyCastr, **Skim**
-- Web: Brave Browser, Discord, **Firefox**, Tailscale, Thunderbird
+- System: Aerospace, Maccy, Stats, Thaw
+- Tools: Bitwarden, CEmu, KeyCastr, Skim
+- Web: Brave Browser, Discord, Firefox, Tailscale, Thunderbird
 
 
 ### macOS Settings
