@@ -92,7 +92,6 @@ cask "stats"
 #cask "thaw"
 
 # tools
-cask "bitwarden"
 #cask "cemu"
 cask "keycastr"
 cask "skim"
