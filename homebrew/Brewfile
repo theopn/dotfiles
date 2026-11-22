@@ -81,6 +81,7 @@ cask "zotero", args: { appdir: "/Volumes/theo-p310-apps/Applications" }
 # sync
 #cask "cryptomator"
 cask "filen"
+cask "localsend"
 #cask "nextcloud"
 cask "syncthing-app"
 
